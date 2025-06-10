@@ -40,6 +40,8 @@ import { addNewNodeFoldersVM } from '../viewmodels/NodeEditingViewModel';
 
 import { fetchEmuData1GdtVM, updateAllSetsVM } from '../viewmodels/EmuManagingViewModel';
 
+import { prepare1Gdt_vm } from '../viewmodels/PrepAc_EmuData';
+
 
 import { 
   fetchNodeDataEachNodeVM, 
@@ -1974,6 +1976,29 @@ console.log("\t\t\t fetched from local ds ");
                                                     
   }
 
+  async function startViewerEntireTest() {
+            
+    let modeName = passInOfflineModeName();
+
+    await prepare1Gdt_vm(
+      authEmailName, 
+      projectName, 
+      backendOption, 
+      setTestPlayerGameDataTracker, 
+      getUserConfigFromEmuManager1Gdt, 
+      modeName
+    ).then(()=>{
+        console.log("opening viewer_entire window...");
+        
+        setDisplayEntireGameViewer(true);
+      }
+    ); 
+
+    //TODO prepare for 2 and 3
+    
+    
+  }
+
 
 {/* //components
       
@@ -2031,7 +2056,8 @@ console.log("\t\t\t fetched from local ds ");
             //fetchcurrChapterContentFromCloud();
             //TODO700: fetch the very first chapter's data?
 
-            setDisplayEntireGameViewer(true);
+            startViewerEntireTest();
+            
           }}
           className="button testEntire"
         >Test ▶︎ </button>

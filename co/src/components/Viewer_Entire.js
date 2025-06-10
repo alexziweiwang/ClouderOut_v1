@@ -136,7 +136,7 @@ export default function Viewer_Entire({
 
 
 
-    const [playerGameDataTracker, setPlayerGameDataTracker] = useState({});
+    const [playerGameDataTracker, setPlayerGameDataTracker] = useState(initialPlayerGameDataTracker !== undefined ? initialPlayerGameDataTracker : {});
     const [playerProfile, setPlayerProfile] = useState(initialPlayerProfile); 
                             //TODO later: "setPlayerProfile" for local-ver(curr-test only) if player did change in player-profile nav-page...
 
@@ -192,8 +192,14 @@ export default function Viewer_Entire({
         setAudioElem(document.getElementById(audioPlayerId));
 
         if (firstTimeEnter === true) {
-                                                console.log("!!!!!!! viewer-entire: entered as first-time"); //for each test-run
-            
+                                                console.log("!!!!!!! viewer-entire: entered as first-time,  ");
+                                                
+                                                
+                                                console.log("init-game-data = ", initialPlayerGameDataTracker); //for each test-run
+                                                console.log("init-player-profile = ", initialPlayerProfile);
+                                                console.log("init-player-account = ", initialPlayerAccountSettings);
+                    
+                                                
             
             initializeGameDataTracker(initialPlayerGameDataTracker);
 
@@ -598,7 +604,7 @@ game-screen (specific node) layer */}
                                                 initialNodeKey={currentGameStatusProgress["nodeKey"]}
                                                 initialChapterTitle={currentGameStatusProgress["chapterTitle"]}
 
-                                                getCurrentGameDataTracker={passInViewerContainerGameDataTracker}
+                                                getInitGameDataTracker={passInViewerContainerGameDataTracker}
                                                 getCurrChapterAllNodeMapping={passInCurrChapterAllNodeMapping}
                                                 getAllChapterList={passInChapterList}
 

@@ -51,17 +51,10 @@ export default function GameScreen_InPracShell_ConvNode ({
             setFirstTimeEnter(false);
         }
 
-                                   console.log("in-prac-shell, allPieceData = ", allPieceData);
+                         //          console.log("in-prac-shell, allPieceData = ", allPieceData);
 
 
-/*      
-
-
-                                                                                    if (allPieceContent[currPieceNum].displayTextFrame === false) {
-                                                                                        setTextStillTyping(false);
-                                                                                    } //TODO test before removing
-*/
-
+console.log("conv-node(from in-prac, enteringEmuGameDataTracker = ", enteringEmuGameDataTracker);
 
 
     }); //-- end of useEffect --

@@ -7,6 +7,9 @@ import { getProjectGameDataDesignVM } from '../viewmodels/GameDataViewModel';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 //TODO6000 offline mode prep
 
+import { prepare1Gdt_vm } from '../viewmodels/PrepAc_EmuData';
+
+
 //fetch data from cloud, and update to outer-layer when user-changed...
 export default function Modal_EmuManager({
     handleEmCancel,
@@ -395,86 +398,13 @@ export default function Modal_EmuManager({
         update5Shp(outputVer);
     }
 
-
-    async function prepare1Gdt(providedUname) {
-        let tempObj1 = {}; //TODO6000 gdt1-template here
-
-        if (offlineModeName === "online_cloud") {
-
-            tempObj1 = await fetchEmuData1GdtVM({
-                projectName: projName, 
-                currUser: providedUname,
-                bkOption: backendOption
-            });
-            
-        }
-                                                    //console.log("emu-gdt1 from cloud: ", tempObj1, "......... getOfflineModeName = ", offlineModeName);
-
-        let objSize = 0;
-
-        if (tempObj1 !== undefined) {
-            objSize = Object.keys(tempObj1).length;
-        }
+ 
+    async function prepare1Gdt_local(providedUname) {
+        await prepare1Gdt_vm(providedUname, projName, backendOption, setGdt1, update1Gdt, offlineModeName);
+    }
 
 
-        if (offlineModeName === "online_cloud") {
-
-            let gDataDesignMap = await getProjectGameDataDesignVM(({ //TODO6000 fetch from game-maker instead (to save cloud op?)
-
-                    projectName: projName, 
-                    uname: providedUname, 
-                    mostUpdated: true,
-                    bkOption: backendOption
-            }));
-                                        //    console.log("prepare1Gdt-fetched from cloud: ", gDataDesignMap);
-                
-            let gdtListLen = 0;
-
-            if (gDataDesignMap !== null && gDataDesignMap !== undefined) {
-                gdtListLen = Object.keys(gDataDesignMap).length;
-
-                    if (objSize !== gdtListLen) { //emu-data-list not updated with game-data-design-list
-
-                            let trackerMap = {};
-                            {Object.keys(gDataDesignMap).map((currKey) => {
-                                    if (tempObj1[currKey] !== undefined) { //compare with emu-list, already here
-                                        trackerMap[currKey] = tempObj1[currKey];
-                                    } else {
-                                        let name = gDataDesignMap[currKey]["name"];
-                                        let defaultVal = gDataDesignMap[currKey]["default_value"];
-                                        let dataType = gDataDesignMap[currKey]["data_type"];
-    
-                                        let obj = {
-                                            "name": name,
-                                            "default_value": defaultVal,
-                                            "data_type": dataType,
-                                            "current_value": defaultVal
-                                        }
-                                        trackerMap[currKey] = obj;
-                                    }
-
-                            })} 
-
-                            tempObj1 = trackerMap;
-
-                    }
-                }
-
-
-
-        }
-
-
-                                                   console.log("... gdt1 prep: ", tempObj1); //TODO test
-
-  
-        setGdt1(tempObj1);
-        update1Gdt(tempObj1);
-        
-    } 
-
-
-
+    //TODO21 
     async function prepare2Epp(providedUname) {
         // if local is not ready, from cloud
         
@@ -509,7 +439,10 @@ export default function Modal_EmuManager({
         setEpp2(tempObj2);
         update2Epp(tempObj2);
 
-    }        
+    }  
+    
+
+    //TODO21     
     async function prepare3Epa(providedUname) {
         // if local is not ready, from cloud
         let tempObj3 = {}; //TODO temp3
@@ -675,30 +608,6 @@ export default function Modal_EmuManager({
 
 
     useEffect(() => {
-    //    console.log("gdt1 = ", gdt1);
-                                    //TODO
-                                    // console.log("modalWindow - EmyMgr: firstTimeEnter? ", firstTimeEnter);
-                                    // console.log("\t\tinfo: username,projName", username , "and" ,projName);
-
-        
-      //  if (firstTimeEnter === true) {
-       //     console.log("\t\tfirst time in emu-manager... username = ", username, "... projectname = ", projName);
-            
-            // prepare1Gdt();
-            // prepare2Epp();
-            // prepare3Epa();
-            // // prepare4Ess();                                   //TODO later
-            // prepare5Shp();
-
-            // fetchVisualListFromCloud();
-
-
-            // update1GdtToOuterLayer(); 
-            // update2EppToOuterLayer(); 
-            // update3EpaToOuterLayer();
-
-            //                     //                console.log("!!!!!!!!!!!! Emu-Manager first-enter...", gdt1 , "\n", epp2, "\n", epa3);
-    //    }
 
         let uname = getUsername();
      
@@ -708,11 +617,12 @@ export default function Modal_EmuManager({
 
             console.log("\t\temu-mgr........ username = ", uname, "... projectname = ", projName);
     
-            prepare1Gdt(uname);
+            prepare1Gdt_local(uname);
             prepare2Epp(uname);
             prepare3Epa(uname);
+
             // prepare4Ess(uname);                                   //TODO later
-            prepare5Shp(uname);
+            // prepare5Shp(uname);
     
             fetchVisualListFromCloud(uname);
     
@@ -782,8 +692,8 @@ export default function Modal_EmuManager({
 
     }
 
-    async function fetchVisualListFromCloud(providedUname) {
-        //TODO500    
+    async function fetchVisualListFromCloud(providedUname) { //TODO6000 can fetch resource-list from outer-game-maker, change later
+
         
         let obj = {};
         if (offlineModeName === "online_cloud") {

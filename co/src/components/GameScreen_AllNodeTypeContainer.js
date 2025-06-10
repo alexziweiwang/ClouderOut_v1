@@ -32,7 +32,7 @@ export default function GameScreen_AllNodeTypeContainer({
     triggerWalkToCurrNode,
     triggerWalkToCurrChapter,
 
-    getCurrentGameDataTracker,
+    getInitGameDataTracker,
     getCurrChapterAllNodeMapping,
     getAllChapterList,
 
@@ -97,8 +97,9 @@ export default function GameScreen_AllNodeTypeContainer({
                                                                 console.log("!!!!!!!!!!!!! game-screen-all-node-container FIRST ENTER , ");
                                         
 
-                let gDataTemp = getCurrentGameDataTracker();
-                setCurrGameDataTracker(gDataTemp);
+                let gDataTemp = getInitGameDataTracker();
+                setCurrGameDataTracker(gDataTemp); //initialize
+                                                                console.log("\t\tgame-data = ", gDataTemp);
 
                 let nodeTypeTemp = getNodeType(); //entering-data only
                 setCurrNodeType(nodeTypeTemp); 
@@ -538,7 +539,8 @@ export default function GameScreen_AllNodeTypeContainer({
     }
 
     function receiveUpdatedGameDataTracker(data) {
-        setCurrGameDataTracker(data);
+        console.log("\t\t\t\t\t current game-data: ", data);
+        setCurrGameDataTracker(data); //updating during the game
     }
 
 
@@ -660,7 +662,8 @@ return (
             username={username}
             projectname={projectname}
             
-            enteringEmuGameDataTracker={currGameDataTracker}
+            enteringEmuGameDataTracker={currGameDataTracker} //TODO change to dynamic fetching?
+
             updatedGameDataTracker={receiveUpdatedGameDataTracker}
 
             visualMap={visualMap} //TODO empty so far

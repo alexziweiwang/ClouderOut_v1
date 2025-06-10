@@ -79,7 +79,7 @@ export default function GameScreen_QuickView_ConvNode ({
         useEffect(() => {
 
 
-            console.log("gs_qv_cn -- allPieceLimit === 0 = ", allPieceLimit);
+            // console.log("gs_qv_cn -- allPieceLimit === 0 = ", allPieceLimit);
 
 
          
@@ -100,7 +100,7 @@ export default function GameScreen_QuickView_ConvNode ({
             }
             
             let scaleObjTemp = fetchGameSettingsForPlaying();
-            console.log("qv-conv :      scaleObj = ", scaleObjTemp);
+                             //                      console.log("qv-conv :      scaleObj = ", scaleObjTemp);
             if (
             gameSettingScaleObj["settingPage-playSpeed"] !== scaleObjTemp["settingPage-playSpeed"]
             && gameSettingScaleObj["settingPage-bgmVol"] !== scaleObjTemp["settingPage-bgmVol"]

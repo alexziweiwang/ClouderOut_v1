@@ -47,34 +47,49 @@ function changeGameDataTrackerByStatement(ds, name, action, newVal, type) { //TO
 
 
 export function buttonConsequenceByStatementEntireArray(pieceNum, item, allPieceContent, gameDataTracker, setGameDataTracker, refreshCompo) {
+//called by level-3
+
 
     let stndButtonThisButtonInfo = allPieceContent[pieceNum]["stnd_btn_arr"].filter(e=>e["buttonText"] === item["buttonText"]);
     
     let conseqMap = stndButtonThisButtonInfo[0]["conseq"]; 
     if (conseqMap === undefined) {
                                                         console.log("... conseqMap undefined.");
-        return;
+        return {};
     }
                                                       //  console.log("conseqMap: ", conseqMap, ", len = ", len);
     let res = gameDataTracker;
+    if (gameDataTracker === undefined) {
+        res = {};
+        setGameDataTracker(res);
+        refreshCompo();
+        return;
 
-                                                       console.log("\nchange-by-stmt-arr: before - ", res);
-    Object.keys(conseqMap).map((currKey) => {
+    } else {
+        Object.keys(conseqMap).map((currKey) => {
 
-        let name = conseqMap[currKey]["name"];  
-        let action = conseqMap[currKey]["action"];  
-        let newVal = conseqMap[currKey]["newVal"];  
-        let type = conseqMap[currKey]["type"];  
-                                                        console.log("calling change-by-stmt, ", conseqMap[currKey]);
-                              
-        res = changeGameDataTrackerByStatement(res, name, action, newVal, type);
+            let name = conseqMap[currKey]["name"];  
+            let action = conseqMap[currKey]["action"];  
+            let newVal = conseqMap[currKey]["newVal"];  
+            let type = conseqMap[currKey]["type"];  
+                                                            console.log("calling change-by-stmt, ", conseqMap[currKey]);
+                                
+            res = changeGameDataTrackerByStatement(res, name, action, newVal, type);
 
-    });
+        });
+        if (res === undefined) {
+            res = {};
+        }
+                                console.log("\nchange-by-stmt-arr: after - ", res);
 
-                                                        console.log("\nchange-by-stmt-arr: after - ", res);
+        setGameDataTracker(res);
 
-    setGameDataTracker(res);
+        refreshCompo();
+    }
 
-    refreshCompo();
+
+
+
+   
     
 }

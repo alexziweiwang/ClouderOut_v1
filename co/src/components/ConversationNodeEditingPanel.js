@@ -1451,7 +1451,9 @@ GameDataDesign <map>
                     getUILanguage={passInUILanguage}
                     username={state.userName} 
                     projName={state.projectName} 
+
                     initialEmuGameDataTracker={testPlayerGameDataDup}
+                    
                     resetViewing={resetQuickView}
                     openSettingPage={openSettingPage}
             />}
