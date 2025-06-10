@@ -40,7 +40,7 @@ import { addNewNodeFoldersVM } from '../viewmodels/NodeEditingViewModel';
 
 import { fetchEmuData1GdtVM, updateAllSetsVM } from '../viewmodels/EmuManagingViewModel';
 
-import { prepare1Gdt_vm } from '../viewmodels/PrepAc_EmuData';
+import { prepare1Gdt_vm, prepare2Epp_vm } from '../viewmodels/PrepAc_EmuData';
 
 
 import { 
@@ -299,12 +299,14 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
   }); //TODO now: default initial values
 
   const [testPlayerGameDataTracker, setTestPlayerGameDataTracker] = useState({});   //TODO important for holder-in-practice
-  const [testPlayerProfile, setTestPlayerProfile] = useState({});                                                                 //TODO important for holder-in-practice
-  const [testPlayerAccount, setTestPlayerAccount] = useState({});                                                               //TODO important for holder-in-practice
+  const [testPlayerProfile, setTestPlayerProfile] = useState({});                                                       //TODO important for holder-in-practice
+  const [testPlayerAccount, setTestPlayerAccount] = useState({});                                                       //TODO important for holder-in-practice
   const [testPlayerSLRecords, setTestPlayerSLRecords] = useState({
       "playername": "playerA",
       "itemStatus": [{}, {}, {}]
-    });
+  });
+
+  const [isEmuMgrOpenedOnce, setIsEmuMgrOpenedOnce] = useState(false);
     
   const [testShopProducts, setTestShopProducts] = useState({});
   const [testPlayerPurchaseStatus, setTestPlayerPurchaseStatus] = useState({});
@@ -1298,6 +1300,8 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
   function openEmuManager() {
       setDisplayEmBool(true);
+
+      setIsEmuMgrOpenedOnce(true);
   }
 
   function passInShopItemInfo() {
@@ -1980,23 +1984,41 @@ console.log("\t\t\t fetched from local ds ");
             
     let modeName = passInOfflineModeName();
 
-    await prepare1Gdt_vm(
-      authEmailName, 
-      projectName, 
-      backendOption, 
-      setTestPlayerGameDataTracker, 
-      getUserConfigFromEmuManager1Gdt, 
-      modeName
-    ).then(()=>{
-        console.log("opening viewer_entire window...");
+    if (isEmuMgrOpenedOnce === false) {
         
-        setDisplayEntireGameViewer(true);
-      }
-    ); 
+        await prepare1Gdt_vm(
+          authEmailName, 
+          projectName, 
+          backendOption, 
+          setTestPlayerGameDataTracker, 
+          getUserConfigFromEmuManager1Gdt, 
+          modeName
+        ).then(async ()=>{
+          await prepare2Epp_vm(
+            authEmailName, 
+            projectName, 
+            backendOption, 
+            setTestPlayerProfile,
+            getUserConfigFromEmuManager2Epp,
+            modeName
 
-    //TODO prepare for 2 and 3
+          )
+        })
+        .then(()=>{
+            console.log("opening viewer_entire window...");
+            
+            setDisplayEntireGameViewer(true);
+          }
+        ); 
     
-    
+        //TODO prepare for 3
+        
+        
+
+
+    }
+
+
   }
 
 

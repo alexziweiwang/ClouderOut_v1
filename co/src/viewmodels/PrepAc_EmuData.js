@@ -77,3 +77,40 @@ export async function prepare1Gdt_vm(providedUname, projName, backendOption, set
     
 } 
 
+
+
+export async function prepare2Epp_vm(providedUname, projName, backendOption, setEpp2, update2Epp, offlineModeName) {
+    
+    let tempObj2 = {}; //TODO template-epp2
+    
+    if (offlineModeName === "online_cloud") {
+        tempObj2 = await fetchEmuData2EppVM({
+            projectName: projName, 
+            currUser: providedUname,
+            bkOption: backendOption
+        });
+    }
+
+    let objSize = 0;
+    if (tempObj2 !== undefined) {
+        objSize = Object.keys(tempObj2).length;
+    } 
+
+    if (objSize === 0 || tempObj2 === undefined || tempObj2 === null) {
+        // initialize
+
+        tempObj2 = { 
+            "playername": "playerA",
+            "userTitle": "title1",
+            "iconPicName": "",
+            "level": 1,
+            "membership": 1,
+        };
+    }
+                                            console.log("... epp2 prep: ", tempObj2); //TODO test
+
+    setEpp2(tempObj2);
+    update2Epp(tempObj2);
+
+}  
+

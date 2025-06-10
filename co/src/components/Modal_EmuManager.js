@@ -7,7 +7,7 @@ import { getProjectGameDataDesignVM } from '../viewmodels/GameDataViewModel';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 //TODO6000 offline mode prep
 
-import { prepare1Gdt_vm } from '../viewmodels/PrepAc_EmuData';
+import { prepare1Gdt_vm, prepare2Epp_vm } from '../viewmodels/PrepAc_EmuData';
 
 
 //fetch data from cloud, and update to outer-layer when user-changed...
@@ -405,43 +405,12 @@ export default function Modal_EmuManager({
 
 
     //TODO21 
-    async function prepare2Epp(providedUname) {
+    async function prepare2Epp_local(providedUname) {
         // if local is not ready, from cloud
-        
-        let tempObj2 = {}; //TODO template-epp2
-        
-        if (offlineModeName === "online_cloud") {
-            tempObj2 = await fetchEmuData2EppVM({
-                projectName: projName, 
-                currUser: providedUname,
-                bkOption: backendOption
-            });
-        }
-
-        let objSize = 0;
-        if (tempObj2 !== undefined) {
-            objSize = Object.keys(tempObj2).length;
-        } 
-
-        if (objSize === 0 || tempObj2 === undefined || tempObj2 === null) {
-            // initialize
-
-            tempObj2 = { 
-                "playername": "playerA",
-                "userTitle": "title1",
-                "iconPicName": "",
-                "level": 1,
-                "membership": 1,
-            };
-        }
-   //                                             console.log("... epp2 prep: ", tempObj2); //TODO test
-
-        setEpp2(tempObj2);
-        update2Epp(tempObj2);
-
-    }  
+        await prepare2Epp_vm(providedUname, projName, backendOption, setEpp2, update2Epp, offlineModeName);
+    }          
     
-
+    
     //TODO21     
     async function prepare3Epa(providedUname) {
         // if local is not ready, from cloud
@@ -473,9 +442,7 @@ export default function Modal_EmuManager({
 
         setEpa3(tempObj3);
         update3Epa(tempObj3);
-
-
-    }              
+    }
 
     async function prepare4Ess(providedUname) {
         // if local is not ready, from cloud
@@ -618,7 +585,7 @@ export default function Modal_EmuManager({
             console.log("\t\temu-mgr........ username = ", uname, "... projectname = ", projName);
     
             prepare1Gdt_local(uname);
-            prepare2Epp(uname);
+            prepare2Epp_local(uname);
             prepare3Epa(uname);
 
             // prepare4Ess(uname);                                   //TODO later
