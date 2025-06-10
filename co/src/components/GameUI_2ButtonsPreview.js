@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react';
 
+//level5 (a part of a node)
+
+
 export default function GameUI_2ButtonsPreview({isSettingUpUI, initialAllPieceData, getAllPieceContent, 
     getCurrentPieceNum, getIsDisplayDefaultButton, getDefaultButtonUISettings, getBackButtonUISettings, 
     getScreenSize, triggerNextPiece, getAudioMap, getVisualMap

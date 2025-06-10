@@ -27,6 +27,7 @@ import GameScreen_AllNodeTypeContainer from './GameScreen_AllNodeTypeContainer';
 
 //TODO100 each nav-page would provide option of bgm?? (maintain or start-new)
 
+//level1 (receives static entry-data and starts running)
 
 export default function Viewer_Entire({
 

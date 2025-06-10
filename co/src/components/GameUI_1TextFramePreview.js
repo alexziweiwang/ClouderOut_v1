@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import ConvTextContent_preview from './ConvTextContent_preview';
 
+//level5 (a part of a node)
+
 export default function GameUI_1TextFramePreview({isEditing, initialAllPieceData, getAllPieceContent, 
     getCurrentPieceNum, getTextFrameUISettings, isInGameView, getIsDirectNextPiece, 
     triggerNextPiece, triggerAutoMode, getUIConvNav,

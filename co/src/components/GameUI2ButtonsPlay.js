@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 
+//currently not used
+
 export default function GameUI2ButtonsPlay({isSettingUpUI, initialAllPieceData, getCurrentPieceNum, getIsDisplayDefaultButton, getDefaultButtonUISettings, getBackButtonUISettings, getScreenSize, triggerNextPiece}) {
    
     //TODO: in play-mode, some input data are settled when first entering

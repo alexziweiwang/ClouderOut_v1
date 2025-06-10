@@ -2,6 +2,9 @@ import { initializeApp } from 'firebase/app';
 import { useState, useEffect } from 'react';
 import ConvTextContent_quickGameView from './ConvTextContent_quickGameView';
 
+//level5 (a part of a node)
+
+
 export default function GameUI_Play_1TextFrame({allPieceContent, getCurrentPieceNum, 
     txtFrameUISettings, getIsDirectNextPiece, triggerNextPieceFunc, speedLevel,
     notifyFinished, notifyNotYet, getInImmedaiteFinishSignal,

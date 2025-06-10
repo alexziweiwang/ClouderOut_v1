@@ -1,5 +1,9 @@
 import { useState, useEffect } from 'react';
 
+//level5 (a part of a node)
+
+
+
 export default function GameUI_Play_2Buttons({initialPieceNum, triggerNextPiece, visualMap, 
     allPieceContent, getCurrentPieceNum, 
     defaultBtnUISettings,

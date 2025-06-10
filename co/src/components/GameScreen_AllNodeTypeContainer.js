@@ -17,7 +17,7 @@ import { fetchNodeDataEachNodeVM, fetchNodeDataEachChapterVM } from '../viewmode
 
 
 
-
+//level2 (includes all types of nodes)
 
 export default function GameScreen_AllNodeTypeContainer({
     getNodeType, 

@@ -4,6 +4,7 @@ import GameScreen_QuickView_ConvNode from './GameScreen_QuickView_ConvNode';
 
 import { changeGameDataTrackerByStatement, buttonConsequenceByStatementEntireArray } from '../viewmodels/CalcAc_QuickView';
 
+//level3 (container of conversation-node, for in-practice)
 
 export default function GameScreen_InPracShell_ConvNode ({
 
@@ -52,12 +53,6 @@ export default function GameScreen_InPracShell_ConvNode ({
 
                                    console.log("in-prac-shell, allPieceData = ", allPieceData);
 
-/* 
-                                                                              
-                                                                                    updateCharPicArr(); // done in conv-node-sub-layer
-                                                                                    updateBgmSource(); // done in conv-node-sub-layer
-                                                                                    updateBgpSource(); // done in conv-node-sub-layer
-/*
 
 /*      
 

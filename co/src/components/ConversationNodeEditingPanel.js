@@ -31,7 +31,7 @@ import { getProjectGameDataDesignVM } from '../viewmodels/GameDataViewModel';
 import { getAuthFirebase } from '../authtools/firebaseAuthOperations';
 
 
-
+//level2
 
 export default function ConversationNodeEditingPanel() {
 // TODO here, keeps all sub-component's "unsaved local" data structures
