@@ -1668,10 +1668,9 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
 
     if (allChaptersContents[chapterKeyName] === undefined
       || allChaptersContents[chapterKeyName] === null
-    
-      ) {//TODO LATER: also if map length zero
+      ) {
 
-console.log("\t\t\t fetched from cloud ");
+                                      console.log("\t\t\t triggerChapterWalk - fetched from cloud ");
 
 
         //fetch content: use chapterKeyName, then update the following:
@@ -1685,12 +1684,13 @@ console.log("\t\t\t fetched from cloud ");
 
                                       //allChaptersContents, setAllChaptersContents
     } else {
-console.log("\t\t\t fetched from local ds ");
+                                      console.log("\t\t\t fetched from local ds ");
 
       chapterContentTemp = allChaptersContents[chapterKeyName];
     }
 
     setCurrChapterContent(chapterContentTemp);
+
     return chapterContentTemp;
   }
 
@@ -1942,7 +1942,7 @@ console.log("\t\t\t fetched from local ds ");
           )
         })
         .then(()=>{
-            console.log("opening viewer_entire window...");
+            console.log("\n\n\n\n\n\n\n\n\n\n\n\nopening viewer_entire window...");
             
             setDisplayEntireGameViewer(true);
           }

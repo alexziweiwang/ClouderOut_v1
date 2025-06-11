@@ -131,14 +131,14 @@ export default function GameScreen_AllNodeTypeContainer({
 
             if (currNodeType === "LogicSplitter") {
                 atLogicSplitterBehaviour();
-                walkToNextNode();
+                walkToNextNode(holdingNextNodeKey);
                 resetJumpNodeSignalToFalse();
             
             } else if (currNodeType === "*chapterEnd*") {
                 walkToNextChapter();
 
             } else if (jumpNodeSignal == true) { //game-content-node
-                walkToNextNode();
+                walkToNextNode(holdingNextNodeKey);
                                                 
                 resetJumpNodeSignalToFalse();
             }
@@ -455,22 +455,23 @@ export default function GameScreen_AllNodeTypeContainer({
 
 
     //TODO21 refactor to VM 
-    function walkToNextNode() {
+    function walkToNextNode(targetNextKey) {
                                                     console.log("#chapterNodeMapping = ", chapterNodeMapping);
-                                                    console.log("\t#holdingNextNodeKey = ", holdingNextNodeKey);
-        if (chapterNodeMapping[currChapterKey][holdingNextNodeKey] === undefined) {
+                                                    console.log("\t#holdingNextNode-Key targetNextKey = ", targetNextKey);
+
+        if (chapterNodeMapping[currChapterKey][targetNextKey] === undefined) {
             return;
         }
 
         // get nextNode's type
-        let upcomingNodeType = chapterNodeMapping[currChapterKey][holdingNextNodeKey]["nodeType"];
+        let upcomingNodeType = chapterNodeMapping[currChapterKey][targetNextKey]["nodeType"];
 
         // set new holding-next
-        locateHoldingNextNode(holdingNextNodeKey, upcomingNodeType);
+        locateHoldingNextNode(targetNextKey, upcomingNodeType);
 
 
         setCurrNodeType(upcomingNodeType);
-        setCurrNodeKey(holdingNextNodeKey);
+        setCurrNodeKey(targetNextKey);
 
         //set upcoming-node's actual data
         if (upcomingNodeType !== "*chapterStart*" 
@@ -478,15 +479,27 @@ export default function GameScreen_AllNodeTypeContainer({
             && upcomingNodeType !== "LogicSplitter"
         ){ // game-content-nodes
 
-            fetchOrFindNodeData(currChapterKey, holdingNextNodeKey);
+            fetchOrFindNodeData(currChapterKey, targetNextKey);
 
         //TODO700
 
 
         } 
     
-        triggerWalkToCurrNode(holdingNextNodeKey, upcomingNodeType);
+        triggerWalkToCurrNode(targetNextKey, upcomingNodeType);
         resetNextNodeSignal();
+    }
+
+
+    function walkToNodeAfterStartNode() {
+                                                    // let nextStartNodeKey = "chapterStart"; //"chapterStart"      "chapterEnd"
+                                                    // setCurrNodeKey(nextStartNodeKey);
+                                                    // setCurrNodeType("*chapterStart*");
+
+
+
+        locateHoldingNextNode("chapterStart", "*chapterStart*");
+        markJumpNodeSignalTrue();
     }
 
 
@@ -516,13 +529,12 @@ export default function GameScreen_AllNodeTypeContainer({
                     setCurrChapterKey(nextChapterItem[0]);
                     setCurrChapterTitle(nextChapterItem[1]);
 
-                    // reset all node info
-                    let nextStartNodeKey = "chapterStart"; //"chapterStart"      "chapterEnd"
 
-                    setCurrNodeKey(nextStartNodeKey);
-                    setCurrNodeType("*chapterStart*");
+                    walkToNodeAfterStartNode();
 
                     await triggerWalkToCurrChapter(nextChapterItem[0], nextChapterItem[1]);
+
+
 
                     console.log("next chapter!! \n", nextChapterItem);
                     break;

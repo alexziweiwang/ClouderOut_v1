@@ -208,7 +208,7 @@ export default function Viewer_Entire({
             if (chapterList.length > 0) {
 
 
-                let firstChapterInfo = chapterList[0];
+                let firstChapterInfo = chapterList[1]; // the first one is placeholder_chapter
 
 
                 let firstChapterKey = firstChapterInfo[0];
