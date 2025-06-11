@@ -40,7 +40,7 @@ import { addNewNodeFoldersVM } from '../viewmodels/NodeEditingViewModel';
 
 import { fetchEmuData1GdtVM, updateAllSetsVM } from '../viewmodels/EmuManagingViewModel';
 
-import { prepare1Gdt_vm, prepare2Epp_vm } from '../viewmodels/PrepAc_EmuData';
+import { prepare1Gdt_vm, prepare2Epp_vm, prepare3Epa_vm } from '../viewmodels/PrepAc_EmuData';
 
 
 import { 
@@ -1993,7 +1993,7 @@ console.log("\t\t\t fetched from local ds ");
           setTestPlayerGameDataTracker, 
           getUserConfigFromEmuManager1Gdt, 
           modeName
-        ).then(async ()=>{
+        ).then(async()=>{
           await prepare2Epp_vm(
             authEmailName, 
             projectName, 
@@ -2001,7 +2001,15 @@ console.log("\t\t\t fetched from local ds ");
             setTestPlayerProfile,
             getUserConfigFromEmuManager2Epp,
             modeName
-
+          )
+        }).then(async()=>{
+          await prepare3Epa_vm(
+            authEmailName, 
+            projectName, 
+            backendOption,  
+            setTestPlayerAccount, 
+            getUserConfigFromEmuManager3Epa, 
+            modeName
           )
         })
         .then(()=>{
@@ -2010,11 +2018,6 @@ console.log("\t\t\t fetched from local ds ");
             setDisplayEntireGameViewer(true);
           }
         ); 
-    
-        //TODO prepare for 3
-        
-        
-
 
     }
 

@@ -7,7 +7,7 @@ import { getProjectGameDataDesignVM } from '../viewmodels/GameDataViewModel';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 //TODO6000 offline mode prep
 
-import { prepare1Gdt_vm, prepare2Epp_vm } from '../viewmodels/PrepAc_EmuData';
+import { prepare1Gdt_vm, prepare2Epp_vm, prepare3Epa_vm } from '../viewmodels/PrepAc_EmuData';
 
 
 //fetch data from cloud, and update to outer-layer when user-changed...
@@ -403,45 +403,12 @@ export default function Modal_EmuManager({
         await prepare1Gdt_vm(providedUname, projName, backendOption, setGdt1, update1Gdt, offlineModeName);
     }
 
-
-    //TODO21 
     async function prepare2Epp_local(providedUname) {
-        // if local is not ready, from cloud
         await prepare2Epp_vm(providedUname, projName, backendOption, setEpp2, update2Epp, offlineModeName);
     }          
     
-    
-    //TODO21     
-    async function prepare3Epa(providedUname) {
-        // if local is not ready, from cloud
-        let tempObj3 = {}; //TODO temp3
-        
-        if (offlineModeName === "online_cloud") {
-
-            tempObj3 = await fetchEmuData3EpaVM({
-                projectName: projName, 
-                currUser: providedUname,
-                bkOption: backendOption
-            });
-        }
-
-
-        let objSize = 0;
-        if (tempObj3 !== undefined) {
-            objSize = Object.keys(tempObj3).length;
-        } 
-
-        if (objSize === 0 || tempObj3 === undefined || tempObj3 === null) {
-            tempObj3 = {
-                "playername": "playerA",
-                "email": "example@email.com",
-            }
-        }
-
-    //                                        console.log("... epa3 prep: ", tempObj3); //TODO test
-
-        setEpa3(tempObj3);
-        update3Epa(tempObj3);
+    async function prepare3Epa_local(providedUname) {
+        await prepare3Epa_vm(providedUname, projName, backendOption, setEpa3, update3Epa, offlineModeName);
     }
 
     async function prepare4Ess(providedUname) {
@@ -586,7 +553,7 @@ export default function Modal_EmuManager({
     
             prepare1Gdt_local(uname);
             prepare2Epp_local(uname);
-            prepare3Epa(uname);
+            prepare3Epa_local(uname);
 
             // prepare4Ess(uname);                                   //TODO later
             // prepare5Shp(uname);

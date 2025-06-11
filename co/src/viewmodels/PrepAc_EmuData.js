@@ -114,3 +114,34 @@ export async function prepare2Epp_vm(providedUname, projName, backendOption, set
 
 }  
 
+
+export async function prepare3Epa_vm(providedUname, projName, backendOption, setEpa3, update3Epa, offlineModeName) {
+    let tempObj3 = {}; //TODO temp3
+    
+    if (offlineModeName === "online_cloud") {
+
+        tempObj3 = await fetchEmuData3EpaVM({
+            projectName: projName, 
+            currUser: providedUname,
+            bkOption: backendOption
+        });
+    }
+
+
+    let objSize = 0;
+    if (tempObj3 !== undefined) {
+        objSize = Object.keys(tempObj3).length;
+    } 
+
+    if (objSize === 0 || tempObj3 === undefined || tempObj3 === null) {
+        tempObj3 = {
+            "playername": "playerA",
+            "email": "example@email.com",
+        }
+    }
+
+                                       console.log("... epa3 prep: ", tempObj3); //TODO test
+
+    setEpa3(tempObj3);
+    update3Epa(tempObj3);
+}
