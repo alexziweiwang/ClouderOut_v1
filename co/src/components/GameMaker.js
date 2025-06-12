@@ -42,6 +42,8 @@ import { fetchEmuData1GdtVM, updateAllSetsVM } from '../viewmodels/EmuManagingVi
 
 import { prepare1Gdt_vm, prepare2Epp_vm, prepare3Epa_vm } from '../viewmodels/PrepAc_EmuData';
 import { prepareForNewChapterMapping_vm, triggerCreatedNewNode_vm } from '../viewmodels/PrepAc_Creations';
+import { updateChapterNodeMappingsToCloud_vm } from '../viewmodels/UpdtAc_UpdateData';
+
 
 import { 
   fetchNodeDataEachNodeVM, 
@@ -705,7 +707,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
       let saveOrNot = window.confirm("Save all changes and exit?");
       if (saveOrNot) {
             if (currChapterKey !== "") {
-              await updateChapterNodeMappingsToCloud(chapterNodeMapAll); 
+              await updateChapterNodeMappingsToCloud_local(chapterNodeMapAll); 
               await saveToCloudNewNodeList(createdNewNodeWaitlist);
             }
   
@@ -861,7 +863,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
           convertNodeMapToGridBlocks, 
           setGridBlocksAll, 
           setGridBlocksUpdatedSignal, 
-          updateChapterNodeMappingsToCloud
+          updateChapterNodeMappingsToCloud_local
       );
   }
 
@@ -965,7 +967,6 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
           //reset create-node-signal to false here
           setCreateNodeFolderSignal(false);
     }
-
   }
  
   async function switchChosenChapterItem(chapterKey) {
@@ -1282,53 +1283,21 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
   }
 
 
-  //TODO21 refactor to VM
-  async function updateChapterNodeMappingsToCloud(nodeMap) {
-    //TODO transfer gridBlocksAll into non-nested array
-    //TODO send nodeMap
-  //  if (nodeMapUpdatedSignal === true || gridBlocksUpdatedSignal === true) {
+  async function updateChapterNodeMappingsToCloud_local(nodeMap) {
 
-console.log("updating to cloud ... func-step2-all-node-mapping-grid", gridBlocksAll);
-console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", nodeMap);
-
-
-        let i = 0;
-        let len = 0;
-
-        let gridMapTemp = {};
-
-        Object.keys(gridBlocksAll).map((currKey) => {
-          let currChapterGrid = gridBlocksAll[currKey]; // the 2d-array
-          len = currChapterGrid.length;
-          i = 0;
-          let obj = {};
-          while (i < len) {
-            obj[i] = currChapterGrid[i];
-
-            i++;
-          }
-          gridMapTemp[currKey] = obj;
-
-        });
-
-        await updateChapterNodesToCloudDataVM({
-            projectName: projectName, 
-            currUser: authEmailName,
-            chapterNodeMappingObj: nodeMap,
-            bkOption: backendOption
-        });      
-        setNodeMapUpdatedSignal(false);
-        setGridBlocksUpdatedSignal(false);
-
-   // }
-    
-    
-    alert("All contents are updated.");
+    await updateChapterNodeMappingsToCloud_vm (
+      nodeMap, 
+      gridBlocksAll, 
+      projectName, 
+      authEmailName, 
+      backendOption, 
+      setNodeMapUpdatedSignal, 
+      setGridBlocksUpdatedSignal
+    );
 
   }
 
 
-  //TODO21 refactor to VM
   async function triggerCreatedNewNode(newNodeKey, chapterKeyTemp, nodeTypeTemp) {
     await triggerCreatedNewNode_vm (
       newNodeKey, 
@@ -1783,7 +1752,7 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
   async function saveEverythingToCloud() { 
 
     await updateProjectNavigationSettingsToCloud();
-    await updateChapterNodeMappingsToCloud(chapterNodeMapAll); 
+    await updateChapterNodeMappingsToCloud_local(chapterNodeMapAll); 
     await saveToCloudNewNodeList(createdNewNodeWaitlist); 
   }
 
