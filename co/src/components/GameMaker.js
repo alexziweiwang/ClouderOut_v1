@@ -937,7 +937,6 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
   }
 
 
-  //TODO21 refactor to VM
   async function saveToCloudNewNodeList(waitlist) {
 //TODO600
 
@@ -1409,12 +1408,11 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
   }
 
 
-  //TODO21 refactor to VM
   async function fetchChapterNodeMappingFromCloud() {
 
-        //TODO fetch all the chapter names & node-relationship-maps into local into a map of <string, map>
-        //TODO format: localChapterInfo = <chapter title, node-relationship-map>
-        
+                          //TODO fetch all the chapter names & node-relationship-maps into local into a map of <string, map>
+                          //TODO format: localChapterInfo = <chapter title, node-relationship-map>
+                          
 
 
 
@@ -1477,7 +1475,6 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
   }
 
 
-  //TODO21 refactor to VM
   async function saveChapterListToCloud(chapterListInfo) {
 
 
@@ -1507,7 +1504,6 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
   }
 
 
-  //TODO21 refactor to VM
   async function fetchChapterListFromCloud() {
     if (authEmailName === "_") {
       console.log("not fetching-chapter-list:  user = ", authEmailName);
@@ -1664,18 +1660,17 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
   }
 
 
-  //TODO21 refactor to vm
   function notifyRmUpdated(data) {
-    console.log("rm updated... (game-maker) ",  data);
- //TODO100 update the visual+audio maps here?
-      //rm-mapping-required: 
-      // <NavigationSetter> [//TODO105 refactored, to test]
+                                                      console.log("rm updated... (game-maker) ",  data);
+                                                  //TODO100 update the visual+audio maps here?
+                                                        //rm-mapping-required: 
+                                                        // <NavigationSetter> [//TODO105 refactored, to test]
 
-      // <NavigationPreview> *** non-dynamic resource-maps so far...
+                                                        // <NavigationPreview> *** non-dynamic resource-maps so far...
 
 
-      let audioListTemp = data.audio;
-      let visualListTemp = data.visual;
+      let audioListTemp = data.audio === undefined ? {} : data.audio;
+      let visualListTemp = data.visual === undefined ? {} : data.visual;
 
       resetVisualMapFromList(visualListTemp);
       resetAudioMapFromList(audioListTemp); 
