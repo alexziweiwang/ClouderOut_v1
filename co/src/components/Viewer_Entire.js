@@ -397,14 +397,18 @@ export default function Viewer_Entire({
     //TODO21 refactor to VM
     async function triggerWalkToCurrChapterLocalViewer(chapterKeyName, chapterTitleName) {
 
+        // for viewer_entire's local data-records
         let temp = currentGameStatusProgress;
         temp["nodeKey"] = "chapterStart";
         temp["nodeType"] = "*chapterStart*";
         temp["chapterKey"] = chapterKeyName;
         temp["chapterTitle"] = chapterTitleName;
-
         setCurrentGameStatusProgress(temp);
 
+
+
+
+        // trigger for actual progress-walking (by outer-layer)
         let chpContent = await triggerChapterWalk(chapterKeyName, chapterTitleName); // cloud related (outer layer)
 
 

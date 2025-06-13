@@ -7,7 +7,10 @@ import { getProjectGameDataDesignVM } from '../viewmodels/GameDataViewModel';
 import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 //TODO6000 offline mode prep
 
-import { prepare1Gdt_vm, prepare2Epp_vm, prepare3Epa_vm } from '../viewmodels/PrepAc_EmuData';
+import { prepare1Gdt_vm, prepare2Epp_vm, prepare3Epa_vm, 
+    makeDupGdt1_vm, makeDupEpp2_vm, makeDupEpa3_vm
+
+} from '../viewmodels/PrepAc_EmuData';
 
 
 //fetch data from cloud, and update to outer-layer when user-changed...
@@ -273,77 +276,28 @@ export default function Modal_EmuManager({
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
 
     function update1GdtToOuterLayer() {
-        let outputVer = makeDupGdt1(gdt1)
+        let outputVer = makeDupGdt1_vm(gdt1)
         update1Gdt(outputVer);
     }
 
 
     function update2EppToOuterLayer() {
-        let outputVer = makeDupEpp2(epp2);
+        let outputVer = makeDupEpp2_vm(epp2);
         update2Epp(outputVer);
     }
   
     function update3EpaToOuterLayer() {
-        let outputVer = makeDupEpa3(epa3);
+        let outputVer = makeDupEpa3_vm(epa3);
         update3Epa(outputVer);
     }
     
-    
-    //TODO21 refactor to VM
-    function makeDupGdt1(data1) {
-        let tempObj = {};
-        {Object.keys(data1).map((currKey) => {
-            let name = data1[currKey]["name"];
-            let defaultVal = data1[currKey]["default_value"];
-            let dataType =data1[currKey]["data_type"];
-            let currVal = data1[currKey]["current_value"];
-
-            let obj = {
-                "name": name,
-                "default_value": defaultVal,
-                "data_type": dataType,
-                "current_value": currVal
-            }
-            let keyStr = currKey;
-            tempObj[keyStr] = obj;
-        })} 
-        return tempObj;
-    }
-
-
-    function makeDupEpp2(data2) {
-        let pn = data2["playername"];
-        let ut = data2["userTitle"];
-        let icpn = data2["iconPicName"];
-        let lvl = data2["level"];
-        let mbsp = data2["membership"];
-
-        let tempObj = { 
-            "playername": pn,
-            "userTitle": ut,
-            "iconPicName": icpn,
-            "level": lvl,
-            "membership": mbsp,
-        };
-
-        return tempObj;
-    }
-
-
-    function makeDupEpa3(data3) {
-        let pn = data3["playername"];
-        let eml = data3["email"];
-
-        let tempObj = {
-            "playername": pn,
-            "email": eml,            
-        }
-
-        return tempObj;
-    }
 
 
 
+
+
+
+//TODO21
     function makeDupShp5(data) {
         //TODO200 make-dup first, and send only the dup-ver.
 
@@ -352,6 +306,8 @@ export default function Modal_EmuManager({
             "playerPurchaseStatus":  []
         };
 
+
+        
 //TODO900 fix later
 
         data["shopStock"].map((item, index) => {
@@ -587,10 +543,6 @@ export default function Modal_EmuManager({
     }
 
     async function saveAllChangesToCloud() {
-        // let temp1 =  makeDupGdt1(gdt1); 
-        // let temp2 = makeDupEpp2(epp2); 
-        // let temp3 = makeDupEpa3(epa3);
-
 
         update1GdtToOuterLayer(); 
         update2EppToOuterLayer(); 

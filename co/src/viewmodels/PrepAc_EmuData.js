@@ -145,3 +145,58 @@ export async function prepare3Epa_vm(providedUname, projName, backendOption, set
     setEpa3(tempObj3);
     update3Epa(tempObj3);
 }
+
+export function makeDupGdt1_vm(data1) {
+    if (data1 === undefined) {
+        return {};
+    }
+
+    let tempObj = {};
+    {Object.keys(data1).map((currKey) => {
+        let name = data1[currKey]["name"];
+        let defaultVal = data1[currKey]["default_value"];
+        let dataType =data1[currKey]["data_type"];
+        let currVal = data1[currKey]["current_value"];
+
+        let obj = {
+            "name": name,
+            "default_value": defaultVal,
+            "data_type": dataType,
+            "current_value": currVal
+        }
+        let keyStr = currKey;
+        tempObj[keyStr] = obj;
+    })} 
+
+    return tempObj;
+}
+
+export function makeDupEpp2_vm(data2) {
+    let pn = data2["playername"];
+    let ut = data2["userTitle"];
+    let icpn = data2["iconPicName"];
+    let lvl = data2["level"];
+    let mbsp = data2["membership"];
+
+    let tempObj = { 
+        "playername": pn,
+        "userTitle": ut,
+        "iconPicName": icpn,
+        "level": lvl,
+        "membership": mbsp,
+    };
+
+    return tempObj;
+}
+
+export function makeDupEpa3_vm(data3) {
+    let pn = data3["playername"];
+    let eml = data3["email"];
+
+    let tempObj = {
+        "playername": pn,
+        "email": eml,            
+    }
+
+    return tempObj;
+}
