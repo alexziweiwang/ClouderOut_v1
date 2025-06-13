@@ -3,6 +3,7 @@ import NavigationPreview from './NavigationPreview';
 import GameScreen_AllNodeTypeContainer from './GameScreen_AllNodeTypeContainer';
 
 import { configureGameProgress_vm } from '../viewmodels/CalcAc_ViewerEntireAc';
+import { initializeGameDataTracker_vm } from '../viewmodels/PrepAc_ViewerEntireAc';
 
 
 /* //TODO
@@ -202,7 +203,7 @@ export default function Viewer_Entire({
                     
                                                 
             
-            initializeGameDataTracker(initialPlayerGameDataTracker);
+            initializeGameDataTracker_local(initialPlayerGameDataTracker);
 
                                
             //chapterList[0]
@@ -292,7 +293,6 @@ export default function Viewer_Entire({
     }
 
   
-    //TODO21 refactor to VM
     function configureGameProgress_local(nodeTypeVal, chapterKeyVal, nodeKeyVal, pageNameVal, chapterTitleVal) {
         configureGameProgress_vm (
             nodeTypeVal, 
@@ -303,9 +303,6 @@ export default function Viewer_Entire({
             currentGameStatusProgress, 
             setCurrentGameStatusProgress
         );
-
-             
-
     }
 
 
@@ -316,35 +313,12 @@ export default function Viewer_Entire({
                                                                 // }
 
 
-    //TODO21 refactor to VM
     
-    function initializeGameDataTracker(dataObj) {
-                                      //                      console.log("viewer-entire... initialize_GameDataTracker");
-
-        //TODO105 if need to fetch from game-maker with the most fresh-ver.
-
-        //TODO
-
-        let objTemp = {};
-        Object.keys(dataObj).map((currKey) => {
-            let item = dataObj[currKey];
-            let currVal = item["current_value"];
-            let dataType = item["data_type"];
-            let defaultVal = item["default_value"];
-            let nameVal = item["name"];
-            
-            let objNewItem = {
-                "current_value": currVal,
-                "data_type": dataType,
-                "default_value": defaultVal,
-                "name": nameVal           
-            }
-            objTemp[nameVal] = objNewItem;
-        });
-
-        setPlayerGameDataTracker(objTemp);
-
+    function initializeGameDataTracker_local(dataObj) {
+        initializeGameDataTracker_vm(dataObj, setPlayerGameDataTracker);
     }
+
+    
 
     function notUsing() {
         console.log();
@@ -372,19 +346,14 @@ export default function Viewer_Entire({
     }
 
     
-    //TODO21 refactor to VM
     function passInPlayerInfoSets() {
         let obj = {};
-        let pp = initialPlayerProfile;
-        let ua = initialPlayerAccountSettings;
+        let pp = initialPlayerProfile === undefined ? {} : initialPlayerProfile;
+        let ua = initialPlayerAccountSettings === undefined ? {} : initialPlayerAccountSettings;
     
-        //TODO for testing only, pass-in test-data
         obj["playerProfile"] = pp;
         obj["userAccount"] = ua;
-    
-    
-        //TODO: later, non-emu data, pass-in non-emu data
-    
+        
         return obj;
       }
 
