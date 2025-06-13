@@ -200,3 +200,48 @@ export function makeDupEpa3_vm(data3) {
 
     return tempObj;
 }
+
+
+
+export function makeDupShp5_vm(data) {
+    //TODO200 make-dup first, and send only the dup-ver.
+
+    let tempObj = {
+        "shopStock": [],
+        "playerPurchaseStatus":  []
+    };
+
+
+    
+//TODO900 fix later
+
+    data["shopStock"].map((item, index) => {
+        tempObj["shopStock"]["productKey"] = item["productKey"];
+        tempObj["shopStock"]["productName"] = item["productName"];
+        tempObj["shopStock"]["productPrice"] = item["productPrice"];
+        tempObj["shopStock"]["productInfo"] = item["productInfo"];
+        tempObj["shopStock"]["hidden"] = item["hidden"];
+
+    });
+
+    data["playerPurchaseStatus"].map((item, index) => {
+        tempObj["playerPurchaseStatus"]["productKey"] 
+            = item["productKey"];
+
+        tempObj["playerPurchaseStatus"]["acquired"] 
+            = item["acquired"];
+
+        tempObj["playerPurchaseStatus"]["acquiredTimeStamp"] 
+            = item["acquiredTimeStamp"];
+        
+    });
+
+
+
+                                // VM func for shop-product-items
+
+
+    return tempObj;
+    
+
+}

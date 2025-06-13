@@ -383,7 +383,6 @@ export default function Viewer_Entire({
 
     }
 
-    //TODO21 refactor to VM
     function triggerWalkToCurrNodeLocalViewer(nodeKeyName, nodeTypeName) {
         let temp = currentGameStatusProgress;
         temp["nodeKey"] = nodeKeyName;
@@ -394,7 +393,6 @@ export default function Viewer_Entire({
         triggerNodeWalk(nodeKeyName, nodeTypeName);
     }
 
-    //TODO21 refactor to VM
     async function triggerWalkToCurrChapterLocalViewer(chapterKeyName, chapterTitleName) {
 
         // for viewer_entire's local data-records
@@ -433,6 +431,8 @@ export default function Viewer_Entire({
     //TODO21 refactor to VM
     function conveyDisplayGameDataTracker(localData) {
         //TODO 
+
+        
     }
 
     function passInCurrChapterAllNodeMapping() {

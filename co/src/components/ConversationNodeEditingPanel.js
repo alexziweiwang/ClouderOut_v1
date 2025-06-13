@@ -631,7 +631,6 @@ GameDataDesign <map>
     }
  
 
-    //TODO21 refactor to VM
     function passInScreenSize() {
         let pair = [];
         pair.push(screenWidth);

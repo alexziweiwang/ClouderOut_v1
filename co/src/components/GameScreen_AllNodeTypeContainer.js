@@ -505,22 +505,22 @@ export default function GameScreen_AllNodeTypeContainer({
 
     //TODO21 refactor to VM
     async function walkToNextChapter() {
-        console.log("walk-chapter:     current chapter = ", currChapterKey);
+        console.log("walk-to-next-chapter:     current chapter = ", currChapterKey);
 
-        let i = 0;
+        let i = 1;
         let len = allChapterList.length;
         while (i < len) {
             let item = allChapterList[i];
-                               console.log("allChapterList[i] = ", item);
+                               console.log("allChapterList[",i,"] = ", item);
+
             if (item[0] === currChapterKey) {
                 //next chapter is the next key
 
                 if (i+1 === len) {
                     console.log("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nlast chapter")
                     return;
-                }
 
-                if (i+1 < len) {
+                } else { // (i+1 < len): more chapters to go
 
                                                     console.log("\t\t more chapters to go");
 
@@ -538,16 +538,17 @@ export default function GameScreen_AllNodeTypeContainer({
 
                     console.log("next chapter!! \n", nextChapterItem);
                     break;
-                } else { 
-                    // TODO end of the entire game / spot of unfinished project end. ask if return ?
-                    //later: if SL-system, go to nav-to-SL hint
-                    //later: if non-SL-system, go to story-page(chapter list page)?
-                                                                                                console.log("flag1");
-
                 }
             }
             i++;
         }
+
+        //when i === len
+        // TODO end of the entire game / spot of unfinished project end. ask if return ?
+        //later: if SL-system, go to nav-to-SL hint
+        //later: if non-SL-system, go to story-page(chapter list page)?
+                                                                                    console.log("flag1");
+
     }
 
     function receiveUpdatedGameDataTracker(data) {

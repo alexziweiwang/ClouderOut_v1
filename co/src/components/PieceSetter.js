@@ -5,6 +5,8 @@ import { GiTrashCan } from "react-icons/gi";
 import langDictionary from './_textDictionary';
 import { characterPictureCurrTemplate } from './_dataStructure_DefaultObjects';
 
+import { resourceVarToUrl_vm } from '../viewmodels/CalcAc_PieceSetting';
+
 //TODO refactor: stnd_btn_arr
 
 
@@ -297,7 +299,7 @@ console.log("audiolist = ", audioList);
 
         getGameDataDesignListFromOuterLayer();
 
-        let bgmSourceUrlTemp = resourceVarToUrl(audioList, allPieceData[lookingPieceNumber-1]["bgm_source_varname"]);
+        let bgmSourceUrlTemp = resourceVarToUrl_local(audioList, allPieceData[lookingPieceNumber-1]["bgm_source_varname"]);
         setSetterPreviewBgmSource(bgmSourceUrlTemp);
 
      //   console.log("0bgm now is ...", bgmSourceUrlTemp);
@@ -585,7 +587,7 @@ console.log("audiolist = ", audioList);
             console.log("\t\tjump-prev -> ", allPiecesDataLocal[lookingPieceNumber-2]);
 
             
-            // let bgmSourceUrlTemp = resourceVarToUrl(audioList, allPieceData[lookingPieceNumber-2]["bgm_source_varname"]);
+            // let bgmSourceUrlTemp = resourceVarToUrl_local(audioList, allPieceData[lookingPieceNumber-2]["bgm_source_varname"]);
             // setSetterPreviewBgmSource(bgmSourceUrlTemp);
 
             setStndButtonDataTable(allPiecesDataLocal[lookingPieceNumber-2]["stnd_btn_arr"] !== undefined ? allPiecesDataLocal[lookingPieceNumber-2]["stnd_btn_arr"] : []);
@@ -624,7 +626,7 @@ console.log("audiolist = ", audioList);
             setCurrentSinglePieceDetail(allPiecesDataLocal[lookingPieceNumber]);
             console.log("\t\tjump-prev -> ", allPiecesDataLocal[lookingPieceNumber]);
 
-            // let bgmSourceUrlTemp = resourceVarToUrl(audioList, allPieceData[lookingPieceNumber]["bgm_source_varname"]);
+            // let bgmSourceUrlTemp = resourceVarToUrl_local(audioList, allPieceData[lookingPieceNumber]["bgm_source_varname"]);
             // setSetterPreviewBgmSource(bgmSourceUrlTemp);
 
          
@@ -802,27 +804,14 @@ console.log("audiolist = ", audioList);
         tempObj["bgm_source_varname"] = val;
         updateToCaller(tempObj);
 
-        let urlTemp = resourceVarToUrl(audioList, val);
+        let urlTemp = resourceVarToUrl_local(audioList, val);
         setSetterPreviewBgmSource(urlTemp);
 
         setCurrentSinglePieceDetail({...currentSinglePieceDetail, "bgm_source_varname": event.target.value});
     }
 
-    //TODO21 refactor to VM
-    function resourceVarToUrl(list, varName) {
-
-        console.log("resource-var-to-url", list);
-
-        if (list === undefined) {
-            return;
-        }
-        
-        let filteredList = list.filter(e => e["var"] == varName);
-        if (filteredList.length > 0) {
-            return filteredList[0]["url"];
-        } else {
-            return "";
-        }
+    function resourceVarToUrl_local(list, varName) {
+        return resourceVarToUrl_vm(list, varName);
     }
 
 

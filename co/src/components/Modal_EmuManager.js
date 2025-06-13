@@ -8,7 +8,7 @@ import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerVie
 //TODO6000 offline mode prep
 
 import { prepare1Gdt_vm, prepare2Epp_vm, prepare3Epa_vm, 
-    makeDupGdt1_vm, makeDupEpp2_vm, makeDupEpa3_vm
+    makeDupGdt1_vm, makeDupEpp2_vm, makeDupEpa3_vm, makeDupShp5_vm
 
 } from '../viewmodels/PrepAc_EmuData';
 
@@ -292,56 +292,6 @@ export default function Modal_EmuManager({
     }
     
 
-
-
-
-
-
-//TODO21
-    function makeDupShp5(data) {
-        //TODO200 make-dup first, and send only the dup-ver.
-
-        let tempObj = {
-            "shopStock": [],
-            "playerPurchaseStatus":  []
-        };
-
-
-        
-//TODO900 fix later
-
-        data["shopStock"].map((item, index) => {
-            tempObj["shopStock"]["productKey"] = item["productKey"];
-            tempObj["shopStock"]["productName"] = item["productName"];
-            tempObj["shopStock"]["productPrice"] = item["productPrice"];
-            tempObj["shopStock"]["productInfo"] = item["productInfo"];
-            tempObj["shopStock"]["hidden"] = item["hidden"];
-
-        });
-
-        data["playerPurchaseStatus"].map((item, index) => {
-            tempObj["playerPurchaseStatus"]["productKey"] 
-                = item["productKey"];
-
-            tempObj["playerPurchaseStatus"]["acquired"] 
-                = item["acquired"];
-
-            tempObj["playerPurchaseStatus"]["acquiredTimeStamp"] 
-                = item["acquiredTimeStamp"];
-            
-        });
-
-
-    
-                                    // VM func for shop-product-items
-
-
-        return tempObj;
-        
-
-    }
-
-
     // function update4EssToOuterLayer(data4) {
     //     //ess4
     //     update4Ess(data4);
@@ -350,7 +300,7 @@ export default function Modal_EmuManager({
 
     function update5ShpToOuterLayer() { 
         
-        let outputVer = makeDupShp5(shp5);
+        let outputVer = makeDupShp5_vm(shp5);
         update5Shp(outputVer);
     }
 
