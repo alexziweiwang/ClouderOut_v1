@@ -577,11 +577,14 @@ return (
 
     {currNodeType === "*chapterStart*" && <div 
         style={{
-            "backgroundColor": "purple", 
+            "backgroundColor": "#000000", 
             "borderRadius": "0px", 
             "width": `${screenWidth}px`, 
             "height": `${screenHeight}px`,
-            "color": "#FFFFFF"
+            "color": "#FFFFFF",
+            "justifyContent": "center",
+            "alignItems": "center",
+            "display": "flex"
         }}
         onClick={()=>{
             locateHoldingNextNode(currNodeKey, currNodeType);
@@ -589,7 +592,11 @@ return (
         }}
     >
 
-    {/* {currChapterTitle}  */}
+        <div>
+            <label style={{"fontSize": "20px"}}>{currChapterTitle}</label>
+            <br></br>
+            press to continue
+        </div>
         
     </div>}
 

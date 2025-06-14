@@ -155,7 +155,6 @@ console.log("game-screen quick-view conv-node ... render once");
         }); // --- end of useEffect ---
     
     
-        //TODO21 refactor to VM
         function updateCharPicArr() {
             if (currPieceNum < 0) {
                 return;
@@ -171,7 +170,7 @@ console.log("game-screen quick-view conv-node ... render once");
             if (currPieceNum < 0) {
                 return;
               }
-              if (allPieceContent[currPieceNum]["bgm_action"] === "startNewBgm") {
+              if (allPieceContent[currPieceNum]["bgm_action"] === "startNewBgm") { // start new 
                 if (allPieceContent[currPieceNum]["bgm_source_varname"] !== "") {
                   setBgmSource(audioMap[allPieceContent[currPieceNum]["bgm_source_varname"]]);
                   setBgmVol(allPieceContent[currPieceNum]["bgm_volume"]);
@@ -183,22 +182,35 @@ console.log("game-screen quick-view conv-node ... render once");
                     allPieceContent[currPieceNum]["bgm_volume"]
                   );
                 }
-              } else if (allPieceContent[currPieceNum]["bgm_action"] === "stopBgm") {
+              } else if (allPieceContent[currPieceNum]["bgm_action"] === "stopBgm") { // immediate stop
                 setBgmSource("");
                 setBgmVol(90);
                 setBgmLoopOption(true);
 
-              } else if (allPieceContent[currPieceNum]["bgm_action"] ===  "naturalStopBgm") {
+                sendOutBgmSettings(
+                    "",
+                    true,
+                    bgmVol
+                );
+
+              } else if (allPieceContent[currPieceNum]["bgm_action"] ===  "naturalStopBgm") { // natural stop
+                                                                      //TODO "naturalStopBgm" : stop looping...
            
                 setBgmLoopOption(false);
-              } else { // maintain
+                sendOutBgmSettings(
+                    bgmSource,
+                    false,
+                    bgmVol
+                )
+
+              } else { // maintain (no change)
+
                 sendOutBgmSettings(
                     bgmSource, 
                     bgmLoopOption, 
                     bgmVol
                 );
               }
-              //TODO "naturalStopBgm" stop looping...
 
        
 
