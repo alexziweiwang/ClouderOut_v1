@@ -336,8 +336,14 @@ export default function GameScreen_AllNodeTypeContainer({
 
             while (i >= 0 && stopBool === false) {
                 let item = arr[i];
+
+
                 let stmt = item["internalStmt"];
-                                            console.log("\tinternal statement = ", stmt);
+                let typeIsNumberFlag = stmt.includes("type[number]");
+
+                                                        console.log("item = ", item);
+
+                                                        console.log("\tinternal statement = ", stmt);
 
 
                 targetNode = item["nextNode"];
@@ -372,9 +378,16 @@ export default function GameScreen_AllNodeTypeContainer({
                 let var1_value = currGameDataTracker[var1]["current_value"]; //TODO use game-data if applies
                 let var2_value = isVar2GivenValue ? var2 : currGameDataTracker[var2]; //TODO
 
+                if (typeIsNumberFlag === true) {
+                    var1_value = var1_value * 1;
+                    var2_value = var2_value * 1;
+                }
+
                                             console.log("\t\t\tvar1-value =  ", var1_value);
                                             console.log("\t\t\tvar2-value =  ", var2_value);
 
+
+                                            console.log("\t\taction: ", action);
                 switch (action){
                     case "equal":
                         if (var1_value == var2_value) {
@@ -426,7 +439,7 @@ export default function GameScreen_AllNodeTypeContainer({
                 i--;
 
             }
-            
+            console.log("~~~ logic-splitter result: target node is ", targetNode);
             return targetNode;
     }
 
