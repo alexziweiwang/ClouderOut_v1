@@ -653,9 +653,7 @@
 - 2025-Jun-13: Design testing-project plot 34
 - 2025-Jun-13: Project-data-version strategies design 7
 
-
-
-
+- 2025-Jun-16: Half-online mode strategies design
 
 
 
