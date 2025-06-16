@@ -26,6 +26,8 @@ export default function ProjectManagerPanel() {
 
     const compoPathName = "/projectmanagingpanel";
 
+    const modeName = "online_cloud";
+
     const {state} = useLocation();
     let username = "default-no-state-username";
     if (state !== null) {
@@ -114,8 +116,7 @@ export default function ProjectManagerPanel() {
         replace: true, 
         state: { 
           selected_project_name: selected_project_name, 
-          username: authEmailName 
-        
+          mode: modeName
         } });
 
     }

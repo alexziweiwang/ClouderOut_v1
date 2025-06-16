@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 
+//level-1
+
 import Modal_ResourceManagingWindow from './Modal_ResourceManagingWindow';
 import Modal_GameDataManager from './Modal_GameDataManager';
 import GameMaker from './GameMaker'
@@ -15,18 +17,19 @@ export default function Container_GameEditor_Outer() {
 
     const {state} = useLocation();
     let projectName = "default-no-state projectname"; //TODO testing
+    let mode = "default-node-state mode";
   
 
-    
     if (state !== null) {
       projectName = state.selected_project_name;
+      mode = state.modeName;
     }
 
 return (<div>
 
     <GameMaker
         projectName={projectName}
-    
+        
     />
 
 
