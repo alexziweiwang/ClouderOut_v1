@@ -321,177 +321,15 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
   const [gameDataDesignList, setGameDataDesignList] = useState({});
   const [gameDataArray, setGameDataArray] = useState([]);
 
-  const [offlineHalfMode, setOfflineHalfMode] = useState(true); //with account log-in and use links from external online-drive, not using the storage place
-  const [offlineFullMode, setOfflineFullMode] = useState(false); //TODO6000
-
-  function manuallyResetWithSampleData() {
-
-  setChapterNodeMapAll({
-    "chp-key1": {
-  "chapterStart": {
-      nodeName: "chapterStart1-title", 
-      row: 2, 
-      col: 0, 
-      nextNode:"A1-key", 
-      display: true, 
-      nodeType:"*chapterStart*", 
-      screenSize:"4:3(horizonal)",
-      notes: "",
-  },
-  "A1-key": {
-      nodeName: "A1-title", 
-      row: 2, 
-      col: 1, 
-      nextNode:"", 
-      display: true, 
-      nodeType:"Conversation", 
-      screenSize:"4:3(horizonal)",
-      notes: "",
-  },
-  "B1-key": {
-      nodeName: "B1-title", 
-      row: 4, 
-      col: 3, 
-      nextNode:"", 
-      display: true, 
-      nodeType:"Conversation", 
-      screenSize:"4:3(horizonal)",
-      notes: "",
-  },
-  "C1-key": {
-      nodeName: "C1-title", 
-      row: 4, 
-      col: 0, 
-      spltLogicPairs: [{"internalStmt":"else", "nextNode": "", "displayStmt": "else"},],  
-      display: true, 
-      nodeType:"LogicSplitter",
-      notes: "",
-  },
-  "D1-key": {
-      nodeName: "D1-title", 
-      row: 2, 
-      col: 4, 
-      nextNode:"", 
-      display: true, 
-      nodeType:"Conversation", 
-      screenSize:"4:3(horizonal)",
-      notes: "",
-  },
-  "E1-key": {
-      nodeName: "E1-title", 
-      row: 2, 
-      col: 5, 
-      nextNode: "chapterEnd", 
-      display: true, 
-      nodeType:"Conversation", 
-      screenSize:"4:3(horizonal)",
-      notes: "",
-  },
-  "chapterEnd": {
-      nodeName: "chapterEnd1-title", 
-      row: 4, 
-      col: 6, 
-      nextNode: "", 
-      display: true, 
-      nodeType:"*chapterEnd*", 
-      screenSize:"4:3(horizonal)",
-      notes: "",
-  },
-},
-"chp-key2": {
-"chapterStart": {
-    nodeName: "chapterStart2-title", 
-    row: 2, 
-    col: 0, 
-    nextNode:"A2-key", 
-    display: true, 
-    nodeType:"*chapterStart*", 
-    screenSize:"4:3(horizonal)",
-    notes: "",
-},
-"A2-key": {
-    nodeName: "A2-title", 
-    row: 2, 
-    col: 1, 
-    nextNode:"", 
-    display: true, 
-    nodeType:"Conversation", 
-    screenSize:"4:3(horizonal)",
-    notes: "",
-},
-"B2-key": {
-    nodeName: "B2-title", 
-    row: 4, 
-    col: 3, 
-    nextNode:"", 
-    display: true, 
-    nodeType:"Conversation", 
-    screenSize:"4:3(horizonal)",
-    notes: "",
-},
-"C2-key": {
-    nodeName: "C2-title", 
-    row: 4, 
-    col: 0, 
-    spltLogicPairs: [{"internalStmt":"else", "nextNode": "", "displayStmt": "else"},],    //TODO refactor 
-    display: true, 
-    nodeType:"LogicSplitter",
-    notes: "",
-},
-"D2-key": {
-  nodeName: "D2-title", 
-  row: 2, 
-  col: 4, 
-  nextNode: "", 
-  display: true, 
-  nodeType:"Conversation", 
-  screenSize:"4:3(horizonal)",
-  notes: "",
-},
-"E2-key": {
-  nodeName: "E2-title", 
-  row: 2, 
-  col: 5, 
-  nextNode: "chapterEnd", 
-  display: true, 
-  nodeType:"Conversation", 
-  screenSize:"4:3(horizonal)",
-  notes: "",
-},
-"chapterEnd": {
-  nodeName: "chapterEnd2-title", 
-  row: 4, 
-  col: 6, 
-  nextNode:"", 
-  display: true, 
-  nodeType:"*chapterEnd*", 
-  screenSize:"4:3(horizonal)",
-  notes: "",
-},
-},
-  });
-  setGridBlocksAll({
-    "chp-key1": 
-    [
-      ["","","","","","","","","",""], 
-      ["","","","","","","","","",""],
-      ["chapterStart","A1-key","","","D1-key","E1-key","","","",""], 
-      ["","","","","","","","","",""],
-      ["C1-key","","","B1-key","","","chapterEnd","","",""]
-    ]
-  ,
-    "chp-key2": [
-        ["","","","","","","","","",""], 
-        ["","","","","","","","","",""],
-        ["chapterStart","A2-key","","","D2-key","E2-key","","","",""], 
-        ["","","","","","","","","",""],
-        ["C2-key","","","B2-key","","","chapterEnd","","",""]
-    ],  
-
-  }); //stores node-keys
+  const [offlineHalfMode, setOfflineHalfMode] = useState(editorMode === "offline_half" ? true : false); //with account log-in and use links from external online-drive, not using the storage place
+  const [offlineFullMode, setOfflineFullMode] = useState(editorMode === "offline_full" ? true : false); //TODO6000
+  // editorMode
+//"offline_half"
+//"offline_full"
+//"online_cloud"
 
 
-  }
+
 
   async function fetchGameDataFromCloud() { //TODO3
 
@@ -573,7 +411,10 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
                   //                console.log("curr chapter-key = ? ", currChapterKey, " data = ", chapterNodeMapAll[currChapterKey], "  from  ", chapterNodeMapAll);
 
 
-        if (authEmailName === "_") {
+        if (authEmailName === "_" 
+          && 
+          (editorMode !== "offline_half" && editorMode !== "offline_full")) 
+        {
           getAuthFirebase(
               {
                   goToNotLoggedInPageFunc: goToNotLoggedInPage,
@@ -585,8 +426,9 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
         }
                     
-            console.log("\t\t\tgame-maker rendered once.");
+            console.log("\t\t\tgame-maker rendered once.      project = ", projectName);
 
+            
         if (authEmailName !== "_") {
 
             //TODO5000 check returned data from cloud-db
@@ -609,22 +451,27 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
         } else { //auth-email-name is "_"
 
-            setOfflineHalfMode(true);
-//offlineHalfMode
+            if (editorMode === "offline_half" || editorMode === "offline_full") {
+                        //TODO6000 offline mode prep
+                            //in this case, ask either log-in, or let the user work on the project offline
+                                
+                                //save: download current data-sets
+                                //import: upload and parse formatted file ...
+                                //resource-pair: half-offline: use online-drive link; full-offline: desktop with file path
+                            
 
-        //TODO6000 offline mode prep
-        //in this case, ask either log-in, or let the user work on the project offline
-            
-            //save: download current data-sets
-            //import: upload and parse formatted file ...
-            //resource-pair: half-offline: use online-drive link; full-offline: desktop with file path
-        
+            } else {
+
+
+            }
+
+   
         }
 
         if (firstTimeEnter === true) {
 
 
-            console.log("!!! First Enter - GameMaker: ");//TODO testing
+            console.log("!!! First Enter - GameMaker:   mode =  ", editorMode, " ... proejct = ", projectName);//TODO testing
 
             //TODO !important: the actual node-content is on cloud, and only fetched when enter the specific node-editing-page
             
@@ -1927,8 +1774,10 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
       5. modal_game_data_manager - [Modal_GameDataManager >
       6. modal_emu_manager - [Modal_EmuManager>
 */}   
-//TODO90 page content
-  return (
+//TODO90 page content                         return (
+
+
+  return(
   <div className="textNoSelect">
 
 
@@ -1955,14 +1804,23 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
 }
 
 
-{(cloudDbConnOk === true && authEmailName !== "_" && gridBlocksAll !== undefined && chapterNodeMapAll !== undefined) 
+{(cloudDbConnOk === true 
+&& authEmailName !== "_" 
+&& gridBlocksAll !== undefined 
+&& chapterNodeMapAll !== undefined
+) 
 
 && <>
 <div>
     
+
+    {/* top banner */}
     <div className="returning_buttons">
       
-      <button className="button2" onClick={()=>{chapterChangingOrExiting(); goToProjectManagingPanel(); }}> ← </button>
+      <button 
+        className="button2" 
+        onClick={()=>{chapterChangingOrExiting(); goToProjectManagingPanel(); }}
+      > ← </button>
  
 
 
@@ -1985,13 +1843,19 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
         
         {authEmailName !== "" && 
         <>
-          <button className="rmTab" onClick={()=>{setDisplayRmModal(true);}}> 
+          <button 
+          className="rmTab" 
+          onClick={()=>{setDisplayRmModal(true);}}> 
             {resourceManagerButtonText} </button>
           
-          <button className="rmTab" onClick={()=>{setDisplayGdmBool(true);}}>
+          <button 
+          className="rmTab" 
+          onClick={()=>{setDisplayGdmBool(true);}}>
             {gameDataManagerButtonText}</button>
           
-          <button className="rmTab" onClick={()=>{setDisplayEmBool(true);}}>
+          <button 
+          className="rmTab" 
+          onClick={()=>{setDisplayEmBool(true);}}>
             {emuManagerText}
           </button>
         </>}
@@ -2013,22 +1877,6 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
       </div>
 
     </div>
-
-
-    {/*//TODO TESTING */}
-                    {/* <div>
-                      <input type="checkbox" value={developOnCloudData} checked={developOnCloudData}
-                        onChange={()=>{
-                          setDevelopOnCloudData(!developOnCloudData);
-                        }}
-                      ></input><label>TEST toggle: Use Cloud Data</label>
-                      <label>Status: {developOnCloudData === true ? "true" : "false"}</label>
-                        <button
-                          style={{"backgroundColor": "pink"}}
-                          onClick={()=>{manuallyResetWithSampleData();}}
-                        >reset ds for chapters&nodes</button>
-                    </div> */}
-    {/*//TODO TESTING */}
 
 
 
@@ -2061,11 +1909,15 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
         }}
       >Download Project File</button>
 
-      <button className={showChapterMaker ? "tabBarGMSelected" : "tabBarGM"} onClick={()=>{
-        setShowChapterMaker(true);
+      <button 
+        className={showChapterMaker ? "tabBarGMSelected" : "tabBarGM"} 
+        onClick={()=>{
+          setShowChapterMaker(true);
         }}>
           {contentChaptersTabText}</button>
-      <button className={showChapterMaker? "tabBarGM" : "tabBarGMSelected"} onClick={()=>{
+      <button 
+        className={showChapterMaker? "tabBarGM" : "tabBarGMSelected"} 
+        onClick={()=>{
         setShowChapterMaker(false);
         if (firstTimeSwitchTabNavPanel === true) {
           fetchProjectNavigationSettingsFromCloud();
@@ -3006,3 +2858,210 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
         },
 },
 */   
+
+
+
+
+
+
+
+    {/*//TODO TESTING */}
+                    {/* <div>
+                      <input type="checkbox" value={developOnCloudData} checked={developOnCloudData}
+                        onChange={()=>{
+                          setDevelopOnCloudData(!developOnCloudData);
+                        }}
+                      ></input><label>TEST toggle: Use Cloud Data</label>
+                      <label>Status: {developOnCloudData === true ? "true" : "false"}</label>
+                        <button
+                          style={{"backgroundColor": "pink"}}
+                          onClick={()=>{manuallyResetWithSampleData();}}
+                        >reset ds for chapters&nodes</button>
+                    </div> */}
+    {/*//TODO TESTING */}
+
+
+
+    /*
+    
+    
+    
+    
+  function manuallyResetWithSampleData() {
+
+  setChapterNodeMapAll({
+    "chp-key1": {
+  "chapterStart": {
+      nodeName: "chapterStart1-title", 
+      row: 2, 
+      col: 0, 
+      nextNode:"A1-key", 
+      display: true, 
+      nodeType:"*chapterStart*", 
+      screenSize:"4:3(horizonal)",
+      notes: "",
+  },
+  "A1-key": {
+      nodeName: "A1-title", 
+      row: 2, 
+      col: 1, 
+      nextNode:"", 
+      display: true, 
+      nodeType:"Conversation", 
+      screenSize:"4:3(horizonal)",
+      notes: "",
+  },
+  "B1-key": {
+      nodeName: "B1-title", 
+      row: 4, 
+      col: 3, 
+      nextNode:"", 
+      display: true, 
+      nodeType:"Conversation", 
+      screenSize:"4:3(horizonal)",
+      notes: "",
+  },
+  "C1-key": {
+      nodeName: "C1-title", 
+      row: 4, 
+      col: 0, 
+      spltLogicPairs: [{"internalStmt":"else", "nextNode": "", "displayStmt": "else"},],  
+      display: true, 
+      nodeType:"LogicSplitter",
+      notes: "",
+  },
+  "D1-key": {
+      nodeName: "D1-title", 
+      row: 2, 
+      col: 4, 
+      nextNode:"", 
+      display: true, 
+      nodeType:"Conversation", 
+      screenSize:"4:3(horizonal)",
+      notes: "",
+  },
+  "E1-key": {
+      nodeName: "E1-title", 
+      row: 2, 
+      col: 5, 
+      nextNode: "chapterEnd", 
+      display: true, 
+      nodeType:"Conversation", 
+      screenSize:"4:3(horizonal)",
+      notes: "",
+  },
+  "chapterEnd": {
+      nodeName: "chapterEnd1-title", 
+      row: 4, 
+      col: 6, 
+      nextNode: "", 
+      display: true, 
+      nodeType:"*chapterEnd*", 
+      screenSize:"4:3(horizonal)",
+      notes: "",
+  },
+},
+"chp-key2": {
+"chapterStart": {
+    nodeName: "chapterStart2-title", 
+    row: 2, 
+    col: 0, 
+    nextNode:"A2-key", 
+    display: true, 
+    nodeType:"*chapterStart*", 
+    screenSize:"4:3(horizonal)",
+    notes: "",
+},
+"A2-key": {
+    nodeName: "A2-title", 
+    row: 2, 
+    col: 1, 
+    nextNode:"", 
+    display: true, 
+    nodeType:"Conversation", 
+    screenSize:"4:3(horizonal)",
+    notes: "",
+},
+"B2-key": {
+    nodeName: "B2-title", 
+    row: 4, 
+    col: 3, 
+    nextNode:"", 
+    display: true, 
+    nodeType:"Conversation", 
+    screenSize:"4:3(horizonal)",
+    notes: "",
+},
+"C2-key": {
+    nodeName: "C2-title", 
+    row: 4, 
+    col: 0, 
+    spltLogicPairs: [{"internalStmt":"else", "nextNode": "", "displayStmt": "else"},],    //TODO refactor 
+    display: true, 
+    nodeType:"LogicSplitter",
+    notes: "",
+},
+"D2-key": {
+  nodeName: "D2-title", 
+  row: 2, 
+  col: 4, 
+  nextNode: "", 
+  display: true, 
+  nodeType:"Conversation", 
+  screenSize:"4:3(horizonal)",
+  notes: "",
+},
+"E2-key": {
+  nodeName: "E2-title", 
+  row: 2, 
+  col: 5, 
+  nextNode: "chapterEnd", 
+  display: true, 
+  nodeType:"Conversation", 
+  screenSize:"4:3(horizonal)",
+  notes: "",
+},
+"chapterEnd": {
+  nodeName: "chapterEnd2-title", 
+  row: 4, 
+  col: 6, 
+  nextNode:"", 
+  display: true, 
+  nodeType:"*chapterEnd*", 
+  screenSize:"4:3(horizonal)",
+  notes: "",
+},
+},
+  });
+  setGridBlocksAll({
+    "chp-key1": 
+    [
+      ["","","","","","","","","",""], 
+      ["","","","","","","","","",""],
+      ["chapterStart","A1-key","","","D1-key","E1-key","","","",""], 
+      ["","","","","","","","","",""],
+      ["C1-key","","","B1-key","","","chapterEnd","","",""]
+    ]
+  ,
+    "chp-key2": [
+        ["","","","","","","","","",""], 
+        ["","","","","","","","","",""],
+        ["chapterStart","A2-key","","","D2-key","E2-key","","","",""], 
+        ["","","","","","","","","",""],
+        ["C2-key","","","B2-key","","","chapterEnd","","",""]
+    ],  
+
+  }); //stores node-keys
+
+
+  }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    */

@@ -24,6 +24,9 @@ export default function ProjectManagingOffline() {
         }
 
         userLogOutVM();
+
+        console.log("non-cloud-navigating to ... game-maker, mode  = ", modeName);
+        
   
         navigate('/editorcontainer', { 
           replace: true, 
