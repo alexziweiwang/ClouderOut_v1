@@ -5,6 +5,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 
 //level-1
 
+
 import Modal_ResourceManagingWindow from './Modal_ResourceManagingWindow';
 import Modal_GameDataManager from './Modal_GameDataManager';
 import GameMaker from './GameMaker'
@@ -29,7 +30,7 @@ return (<div>
 
     <GameMaker
         projectName={projectName}
-        
+        editorMode={mode}
     />
 
 
@@ -38,3 +39,9 @@ return (<div>
 
 
 }
+
+
+
+// "offline_half"
+// "offline_full"
+// "online_cloud"

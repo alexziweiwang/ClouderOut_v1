@@ -57,7 +57,7 @@ import { getAuthFirebase } from '../authtools/firebaseAuthOperations';
 import langDictionary from './_textDictionary';
 import uiLangMap from './uiLangMap';
 
-export default function GameMaker({projectName}) {
+export default function GameMaker({projectName, editorMode}) {
 
 
 /**
