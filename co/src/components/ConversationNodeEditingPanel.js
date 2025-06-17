@@ -1045,6 +1045,10 @@ GameDataDesign <map>
 
     }
 
+    function passInBackendOption() {
+        return backendOption;
+    }
+
           
 
 {/* components:
@@ -1060,7 +1064,9 @@ GameDataDesign <map>
 */}
 
 
-    return (
+
+//return(
+    return ( 
 
         <div
             className="textNoSelect"
@@ -1371,6 +1377,8 @@ GameDataDesign <map>
                     getUsername={passInUsername}
 
                     getOfflineModeName={passInOfflineModeName}
+                    getBackendOption={passInBackendOption}
+
                 />
                                                                     {/* } */}
             </div>

@@ -77,7 +77,6 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 */
   const [backendOption, setBackendOption] = useState("firebase"); //firebase / local?
 //TODO2000 add "platform option"? add UI for choosing platform
-  const [isBackendOptionCloud, setIsBackendOptionCloud] = useState(true);
 
 
 
@@ -274,8 +273,8 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
 //TODO ------------------------------------------------------ testing data area
 
-  const [chapterNodeMapAll, setChapterNodeMapAll] = useState(undefined);
-  const [gridBlocksAll, setGridBlocksAll] = useState(undefined); //stores node-keys
+  const [chapterNodeMapAll, setChapterNodeMapAll] = useState({});
+  const [gridBlocksAll, setGridBlocksAll] = useState([]); //stores node-keys
 
   const [nodeMapUpdatedSignal , setNodeMapUpdatedSignal] = useState(false);
   const [gridBlocksUpdatedSignal, setGridBlocksUpdatedSignal] = useState(false);
@@ -400,6 +399,14 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
   const [firstTimeEnter, setFirstTimeEnter] = useState(true);
   useEffect(() => {
 
+        if (editorMode === "online_cloud") {
+          setBackendOption("firebase");
+        } else {
+          setBackendOption("local");
+
+          //TODO if import file - parse
+          //TODO if from new - prep for default init data
+        }
 
 //TODO1030
         window.onbeforeunload = () => {
@@ -428,7 +435,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
                     
             console.log("\t\t\tgame-maker rendered once.      project = ", projectName);
 
-            
+
         if (authEmailName !== "_") {
 
             //TODO5000 check returned data from cloud-db
@@ -1764,6 +1771,10 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
 
   }
 
+  function passInBackendOption() {
+    return backendOption;
+  }
+
 
 {/* //components
       
@@ -1803,9 +1814,9 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
 
 }
 
-
-{(cloudDbConnOk === true 
-&& authEmailName !== "_" 
+{(
+  
+(editorMode === "online_cloud" && cloudDbConnOk === true && authEmailName !== "_") || (editorMode !== "online_cloud")
 && gridBlocksAll !== undefined 
 && chapterNodeMapAll !== undefined
 ) 
@@ -1882,6 +1893,7 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
 
 
     <div>
+      {editorMode === "online_cloud" && <>
       <button onClick={()=>{
         let ans = window.confirm("Are you sure to load from cloud and cover the project on local?");
         if (ans) {
@@ -1899,6 +1911,8 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
 
       }}
       >Save To Cloud</button>
+
+      </>}
 
       <button>Import from File</button>
 
@@ -2287,6 +2301,8 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
                 getUsername={passInAuthEmailName}
 
                 getOfflineModeName={passInOfflineModeName}
+
+                getBackendOption={passInBackendOption}
 
               />
           

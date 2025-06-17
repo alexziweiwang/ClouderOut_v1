@@ -22,13 +22,14 @@ export default function Modal_ResourceManagingWindow ({
 
     getOfflineModeName, //"offline_half"      "offline_full"          "online_cloud"
 
-    //getBackendOption
+    getBackendOption
+    
 }) {
-    const backendOption = "firebase";    
+
+    const [backendOption, setBackendOption] = useState("firebase");    
     //TODO2000 add "platform option"? - get from game-maker
     
 
-    
     //TODO at previous layer, keep unsaved-local setting data locally, so that switching doesn't trigger cloud-db operations
 
     const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en'); //TODO16
@@ -138,7 +139,6 @@ export default function Modal_ResourceManagingWindow ({
         }
 
         let unameTemp = getUsername();
-
         if (unameTemp !== "_") {
             fetchRmFileList(unameTemp);
             fetchProjResourceVarPairLists(unameTemp);
@@ -150,6 +150,12 @@ export default function Modal_ResourceManagingWindow ({
 
         let UILang = getUILanguage();
         setLanguageCodeTextOption(UILang);
+
+
+        let backendOptionTemp = getBackendOption();
+        setBackendOption(backendOptionTemp);
+
+
     });
 
     function markDataChanged() {
