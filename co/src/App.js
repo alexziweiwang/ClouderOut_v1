@@ -11,6 +11,7 @@ import CardGameNodeEditingPanel from './components/CardGameNodeEditingPanel';
 import ProfilePage from './components/ProfilePage';
 import Container_GameEditor_Outer from './components/Container_GameEditor_Outer';
 import UserNotLoggedInPage from './components/UserNotLoggedInPage';
+import ProjectManagingOffline from './components/ProjectManagingNonCloud';
 
 function App() {
   return (
@@ -29,8 +30,8 @@ function App() {
         <Route path="/accountpage" element={<AccountPage/>} />
         <Route path="/profilepage" element={<ProfilePage/>} />
         <Route path="/editorcontainer" element={<Container_GameEditor_Outer/>} />
-        <Route path="/notloggedin" element={<UserNotLoggedInPage/>}/>
-
+        <Route path="/notloggedin" element={<UserNotLoggedInPage/>} />
+        <Route path="/projectNonCloud" element={<ProjectManagingOffline/>} />
 
       </Routes>     
     </div>
