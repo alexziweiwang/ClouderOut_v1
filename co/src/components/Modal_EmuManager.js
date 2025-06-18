@@ -22,14 +22,13 @@ export default function Modal_EmuManager({
     projName,
     getUsername,
     
-    getOfflineModeName, //"offline_half"      "offline_full"          "online_cloud"
+    editorMode,            //"offline_half"       "offline_full"        "online_cloud"  
+    getBackendOption,
 
-    //getBackendOption
     
 }) {
 
-    const backendOption = "firebase";    
-    //TODO2000 add "platform option"? - get from game-maker
+    const [backendOption, setBackendOption] = useState("firebase");    
 
 
 //allows user to setup emu-data for testing
@@ -306,22 +305,22 @@ export default function Modal_EmuManager({
 
  
     async function prepare1Gdt_local(providedUname) {
-        await prepare1Gdt_vm(providedUname, projName, backendOption, setGdt1, update1Gdt, offlineModeName);
+        await prepare1Gdt_vm(providedUname, projName, backendOption, setGdt1, update1Gdt, editorMode);
     }
 
     async function prepare2Epp_local(providedUname) {
-        await prepare2Epp_vm(providedUname, projName, backendOption, setEpp2, update2Epp, offlineModeName);
+        await prepare2Epp_vm(providedUname, projName, backendOption, setEpp2, update2Epp, editorMode);
     }          
     
     async function prepare3Epa_local(providedUname) {
-        await prepare3Epa_vm(providedUname, projName, backendOption, setEpa3, update3Epa, offlineModeName);
+        await prepare3Epa_vm(providedUname, projName, backendOption, setEpa3, update3Epa, editorMode);
     }
 
     async function prepare4Ess(providedUname) {
         // if local is not ready, from cloud
         let tempObj4 = {}; //TODO temp4
         
-        if (offlineModeName === "online_cloud") {
+        if (editorMode === "online_cloud") {
 
             tempObj4 = await fetchEmuData4EssVM({
                 projectName: projName, 
@@ -347,7 +346,7 @@ export default function Modal_EmuManager({
         let tempObject5 = {}; //TODO temp5
         
 
-        if (offlineModeName === "online_cloud") {
+        if (editorMode === "online_cloud") {
 
             tempObject5 = await fetchEmuData5ShpVM({
                 projectName: projName, 
@@ -443,10 +442,6 @@ export default function Modal_EmuManager({
     }
 
 
-    const [offlineModeName, setOfflineModeName] = useState("online_cloud");
-            //"offline_half"       "offline_full"        "online_cloud"  
-
-
     useEffect(() => {
 
         let uname = getUsername();
@@ -476,13 +471,9 @@ export default function Modal_EmuManager({
         }
 
 
-        
 
-        let modeName = getOfflineModeName();
-        setOfflineModeName(modeName);
-
-
-
+        let backendOptionTemp = getBackendOption(); //future: different backend-option (firebase, etc.)
+        setBackendOption(backendOptionTemp);
 
         let UILang = getUILanguage();
         prepUILange(UILang);
@@ -511,7 +502,7 @@ export default function Modal_EmuManager({
         resObj["ess4"] = ess4;
         resObj["shp5"] = shp5;
 
-        if (offlineModeName === "online_cloud") {
+        if (editorMode === "online_cloud") {
 
             await updateAllSetsVM({
                 projectName: projName, 
@@ -532,7 +523,7 @@ export default function Modal_EmuManager({
 
         
         let obj = {};
-        if (offlineModeName === "online_cloud") {
+        if (editorMode === "online_cloud") {
 
             obj = await fetchProjectResourceVarPairsVM({
                 userName: providedUname, 

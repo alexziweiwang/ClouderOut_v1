@@ -21,13 +21,11 @@ export default function Modal_ResourceManagingWindow ({
     getUsername,
 
     editorMode,            //"offline_half"       "offline_full"        "online_cloud"  
-
     getBackendOption
 
 }) {
 
     const [backendOption, setBackendOption] = useState("firebase");    
-    //TODO2000 add "platform option"? - get from game-maker
     
 
     //TODO at previous layer, keep unsaved-local setting data locally, so that switching doesn't trigger cloud-db operations

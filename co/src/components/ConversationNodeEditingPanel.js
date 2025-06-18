@@ -1385,7 +1385,6 @@ GameDataDesign <map>
                     projName={state.projectName}  
                     getUsername={passInUsername}
 
-                    getOfflineModeName={passInOfflineModeName}
                     getBackendOption={passInBackendOption}
                     editorMode={editorMode}
                 />
@@ -1417,7 +1416,8 @@ GameDataDesign <map>
                     getUsername={passInUsername}
                     projName={state.projectName}  
 
-                    getOfflineModeName={passInOfflineModeName}
+                    getBackendOption={passInBackendOption}
+                    editorMode={editorMode}
 
                 />
             </div>
@@ -1438,7 +1438,8 @@ GameDataDesign <map>
                     getUsername={passInUsername}
                     projName={state.projectName}  
                     
-                    getOfflineModeName={passInOfflineModeName}
+                    getBackendOption={passInBackendOption}
+                    editorMode={editorMode}
 
                     updateForEmuGdt1={getUserConfigFromDataMgr1Gdt}
                     updateGameDataDesignListToOuterLayer={updateGameDataDesignList}

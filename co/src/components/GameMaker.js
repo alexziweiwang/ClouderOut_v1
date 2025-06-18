@@ -2302,10 +2302,7 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
                 projName={projectName}   
                 getUsername={passInAuthEmailName}
 
-                getOfflineModeName={passInOfflineModeName}
-
                 getBackendOption={passInBackendOption}
-
                 editorMode={editorMode}
 
               />
@@ -2331,7 +2328,8 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
                 projName={projectName}  
                 getUsername={passInAuthEmailName}
 
-                getOfflineModeName={passInOfflineModeName}
+                getBackendOption={passInBackendOption}
+                editorMode={editorMode}
 
                 updateForEmuGdt1={getUserConfigFromDataMgr1Gdt}
 
@@ -2366,7 +2364,9 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
               projName={projectName}  
               getUsername={passInAuthEmailName}
 
-              getOfflineModeName={passInOfflineModeName}
+              getBackendOption={passInBackendOption}
+              editorMode={editorMode}
+
             />
           </div>}
 

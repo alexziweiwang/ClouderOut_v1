@@ -23,17 +23,18 @@ export default function Modal_GameDataManager ({
 
         getUsername,
         
-        getOfflineModeName, //"offline_half"      "offline_full"          "online_cloud"
         
         updateGameDataDesignListToOuterLayer,
-        updateForEmuGdt1
+        updateForEmuGdt1,
 
-        //getBackendOption
+
+        editorMode,            //"offline_half"       "offline_full"        "online_cloud"  
+        getBackendOption,
+
     }) {
     
     
-    const backendOption = "firebase";   
-    //TODO2000 add "platform option"? - get from game-maker
+        const [backendOption, setBackendOption] = useState("firebase");    
 
 
     const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en'); //TODO16
@@ -121,8 +122,6 @@ export default function Modal_GameDataManager ({
 
     const [username, setUsername] = useState("_");
 
-    const [offlineModeName, setOfflineModeName] = useState("online_cloud");
-            //"offline_half"       "offline_full"        "online_cloud"  
 
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
@@ -149,9 +148,10 @@ export default function Modal_GameDataManager ({
         //    setFirstTimeEnter(false);
         }
 
-        let modeName = getOfflineModeName();
-        setOfflineModeName(modeName);
 
+
+        let backendOptionTemp = getBackendOption(); //future: different backend-option (firebase, etc.)
+        setBackendOption(backendOptionTemp);
 
         let UILang = getUILanguage();
         setLanguageCodeTextOption(UILang);
@@ -178,7 +178,7 @@ console.log("initializaed game data manager!!!", usernameTemp);
 
         let tempGameDataDesign = {};
 
-        if (offlineModeName === "online_cloud") {
+        if (editorMode === "online_cloud") {
             fetchFromCloud(usernameTemp);
          
         }
@@ -272,7 +272,7 @@ console.log("initializaed game data manager!!!", usernameTemp);
     
         //resetNeedCloudData();// TODO remove?
         
-        if (offlineModeName === "online_cloud") {
+        if (editorMode === "online_cloud") {
             await updateGDataDesignToCloud(gameDataTemp); /* update cloud db */
         }
 
@@ -361,7 +361,7 @@ console.log("initializaed game data manager!!!", usernameTemp);
 
     async function saveTableChanges() {
         //TODO validation? then save changes? for number & boolean types
-        if (offlineModeName === "online_cloud") {
+        if (editorMode === "online_cloud") {
             await updateVarDefaultValue();
         }
 
@@ -411,7 +411,7 @@ console.log("initializaed game data manager!!!", usernameTemp);
                                 console.log("new gdmMap-data size = ", objSize);
         setUsingGameDataDesign(newGameData);
 
-        if (offlineModeName === "online_cloud") {
+        if (editorMode === "online_cloud") {
             await updateGDataDesignToCloud(newGameData);
         }
 
@@ -426,7 +426,7 @@ console.log("initializaed game data manager!!!", usernameTemp);
         }
         let currUser = username;
 
-        if (offlineModeName === "online_cloud") {
+        if (editorMode === "online_cloud") {
 
             await updateGameDataDesignVM({
                 projectName: projName, 
