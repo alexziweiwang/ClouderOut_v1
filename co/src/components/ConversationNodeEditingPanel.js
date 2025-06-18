@@ -34,6 +34,14 @@ import { getAuthFirebase } from '../authtools/firebaseAuthOperations';
 //level2
 
 export default function ConversationNodeEditingPanel() {
+
+
+
+const editorMode = "online_cloud"; //TODO999
+
+
+
+
 // TODO here, keeps all sub-component's "unsaved local" data structures
 
     const [backendOption, setBackendOption] = useState("firebase"); //firebase / local?
@@ -70,6 +78,7 @@ GameDataDesign <map>
         editorUiLang = state.editorUiLang;    
         chapterKey = state.chapterKey;
         clickedNodeKey = state.clickedNodeKey;
+//TODO999 modename
 
     } 
 
@@ -1378,7 +1387,7 @@ GameDataDesign <map>
 
                     getOfflineModeName={passInOfflineModeName}
                     getBackendOption={passInBackendOption}
-
+                    editorMode={editorMode}
                 />
                                                                     {/* } */}
             </div>

@@ -20,10 +20,10 @@ export default function Modal_ResourceManagingWindow ({
 
     getUsername,
 
-    getOfflineModeName, //"offline_half"      "offline_full"          "online_cloud"
+    editorMode,            //"offline_half"       "offline_full"        "online_cloud"  
 
     getBackendOption
-    
+
 }) {
 
     const [backendOption, setBackendOption] = useState("firebase");    
@@ -94,7 +94,7 @@ export default function Modal_ResourceManagingWindow ({
         modalStyleName = "displayNone modalBackboard";
     }
 
-    const [isSourceByUpload, setIsSourceByUpload] = useState(true);
+    const [isSourceByUpload, setIsSourceByUpload] = useState(false);
 
     const [uploadConfirm, setUploadConfirm] = useState(false);
     const [fileSelected, setFileSelected] = useState("");
@@ -123,8 +123,6 @@ export default function Modal_ResourceManagingWindow ({
 
     const [username, setUsername] = useState("_");
 
-    const [offlineModeName, setOfflineModeName] = useState("online_cloud");
-            //"offline_half"       "offline_full"        "online_cloud"  
 
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
@@ -152,7 +150,7 @@ export default function Modal_ResourceManagingWindow ({
         setLanguageCodeTextOption(UILang);
 
 
-        let backendOptionTemp = getBackendOption();
+        let backendOptionTemp = getBackendOption(); //future: different backend-option (firebase, etc.)
         setBackendOption(backendOptionTemp);
 
 
@@ -278,7 +276,7 @@ export default function Modal_ResourceManagingWindow ({
         if (varPairToCloud !== "default") {
 
 
-            if (offlineModeName === "online_cloud") {
+            if (editorMode === "online_cloud") {
 
 
                 await storeProjectResourceVarPairsToCloudVM({
@@ -302,7 +300,7 @@ export default function Modal_ResourceManagingWindow ({
 
         let obj = {};
 
-        if (offlineModeName === "online_cloud") {
+        if (editorMode === "online_cloud") {
 
             obj = await fetchProjectResourceVarPairsVM({
                 userName: usernameTemp, 
@@ -332,7 +330,7 @@ export default function Modal_ResourceManagingWindow ({
 
         const fileName = `${username}_${selectedFile.name}`;
 
-        if (offlineModeName === "online_cloud") {
+        if (editorMode === "online_cloud") {
 
             await submitFileVM({
                 file: selectedFile , 
@@ -362,7 +360,7 @@ export default function Modal_ResourceManagingWindow ({
     async function updateUploadedFileRecords(fileName, type) {
         let url = "";
 
-        if (offlineModeName === "online_cloud") {
+        if (editorMode === "online_cloud") {
 
                 url = await fetchUrlByFilenameVM({
                     fullFilename: fileName,
@@ -392,7 +390,7 @@ export default function Modal_ResourceManagingWindow ({
 
     async function updateGoogleDriveFileRecords(type, addedFileName) {
 
-        if (offlineModeName === "online_cloud") {
+        if (editorMode === "online_cloud") {
 
             await addToRmFileListVM({
                 uname: username, 
@@ -410,7 +408,7 @@ export default function Modal_ResourceManagingWindow ({
     async function fetchRmFileList(authUsername) { //TODO temp debugging
         let fileList = {};
 
-        if (offlineModeName === "online_cloud") {
+        if (editorMode === "online_cloud") {
 
                 fileList = await getRmFileListVM({
                     uname: authUsername,
@@ -525,7 +523,7 @@ export default function Modal_ResourceManagingWindow ({
         let userResponse = window.confirm("Are you sure to delete this resource from all projects?");
         if (userResponse) {
 
-            if (offlineModeName === "online_cloud") {
+            if (editorMode === "online_cloud") {
 
                 await removeFromRmFileListVM({
                     uname: username, 
@@ -636,7 +634,18 @@ export default function Modal_ResourceManagingWindow ({
                 <br></br><br></br>
                 <label> Add a New Picture: </label> <br></br>
                 <div  style={{"textAlign": "left", "padding": "3px"}}>
-                <input type="radio" value={isSourceByUpload} checked={isSourceByUpload} onChange={()=>{setIsSourceByUpload(true);}}></input> <label onClick={()=>{setIsSourceByUpload(true);}}>{newFileUploadText}</label> <br></br>
+                
+                
+                {/* <input 
+                    type="radio" 
+                    value={isSourceByUpload} 
+                    checked={isSourceByUpload} 
+                    onChange={()=>{setIsSourceByUpload(true);}}></input> 
+                    <label onClick={()=>{setIsSourceByUpload(true);}}>
+                        {newFileUploadText}
+                    </label>
+                     */}
+                <br></br>
                 {isSourceByUpload && <div className="uploadArea">
                     {uploadConfirm === false && <input 
                         type="file"
@@ -668,7 +677,16 @@ export default function Modal_ResourceManagingWindow ({
                     > {submitText} </button>}
                 </div>}
                 
-                <input type="radio" value={isSourceByUpload} checked={!isSourceByUpload} onChange={()=>{setIsSourceByUpload(false);}}></input>  <label onClick={()=>{setIsSourceByUpload(false);}}>From Google Drive</label>
+                {/* <input type="radio" 
+                    value={isSourceByUpload} 
+                    checked={!isSourceByUpload} 
+                    onChange={()=>{setIsSourceByUpload(false);}}></input>  
+                 */}
+                    <label 
+                        onClick={()=>{setIsSourceByUpload(false);}}>
+                        From Google Drive
+                    </label>
+
                 {!isSourceByUpload && <div className="uploadArea" style={{"color": "#000000"}}>
                 Enter a public sharing link from Google Drive...
                 <br></br><label style={{"fontStyle": "italic"}}>Example: https://drive.google.com/file/d/[some characters]/view?usp=sharing</label>
@@ -763,8 +781,9 @@ export default function Modal_ResourceManagingWindow ({
                         </ul>
                     </div>
                     }
-                    <div className="uploadArea"> New File Upload <br></br>
-                        {uploadConfirm === false &&  <input 
+                    {/* <div className="uploadArea"> {newFileUploadText} <br></br>
+                        {uploadConfirm === false &&  
+                        <input 
                             type="file"
                             accept=".wav,.mp3,.aac,.m4a"
                             onChange={(event)=>{setFileSelected(event.target.files[0]);}}
@@ -773,7 +792,7 @@ export default function Modal_ResourceManagingWindow ({
                         {uploadConfirm === true && <button onClick={()=>{setFileSelected(""); setUploadConfirm(false);}}>{cancelText}</button>}
                         {uploadConfirm === false && <button onClick={()=>{submitFile("audio", fileSelected); setUploadConfirm(true);}}>{confirmText}</button>}
                         {uploadConfirm === true && <button onClick={()=>{submitFile("audio", fileSelected); setFileSelected(""); setUploadConfirm(false);}}>{submitText}</button>}
-                    </div>
+                    </div> */}
 
                 </div>
                 

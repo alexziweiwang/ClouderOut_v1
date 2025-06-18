@@ -1615,13 +1615,15 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
   }
 
   function passInOfflineModeName() {
-    if (offlineHalfMode === true) {
-        return "offline_half";
-    } else if (offlineFullMode === true) {
-        return "offline_full";
-    } else {
-        return "online_cloud";
-    }
+    // if (offlineHalfMode === true) {
+    //     return "offline_half";
+    // } else if (offlineFullMode === true) {
+    //     return "offline_full";
+    // } else {
+    //     return "online_cloud";
+    // }
+    return editorMode;
+
   }
 
   async function exportEachChapterNodesData(chapterKey) {
@@ -2303,6 +2305,8 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
                 getOfflineModeName={passInOfflineModeName}
 
                 getBackendOption={passInBackendOption}
+
+                editorMode={editorMode}
 
               />
           
