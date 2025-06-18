@@ -292,7 +292,14 @@ GameDataDesign <map>
 
 
 
+        if (editorMode === "online_cloud") {
+            setBackendOption("firebase");
+        } else {
+            setBackendOption(editorMode);
   
+            //TODO if import file - parse
+            //TODO if from new - prep for default init data
+        }
  
     
 
@@ -415,7 +422,7 @@ GameDataDesign <map>
         const obj = await fetchProjectResourceVarPairsVM({
             userName: authEmailName,              
             projectName: state.projectName,
-            bkOption: backendOption
+            bkOption: backendOption //TODO999
         });
 
         if (obj === undefined || obj === null) {

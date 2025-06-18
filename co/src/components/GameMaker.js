@@ -58,7 +58,7 @@ import langDictionary from './_textDictionary';
 import uiLangMap from './uiLangMap';
 
 export default function GameMaker({projectName, editorMode}) {
-
+   //    "offline_half"       "offline_full"        "online_cloud"  
 
 /**
 used data structures:
@@ -211,7 +211,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
       const obj = await fetchProjectResourceVarPairsVM({
         userName: authEmailName, 
         projectName: projectName,
-        bkOption: backendOption
+        bkOption: backendOption //TODO999
       });
       
       if (obj === undefined) {
@@ -345,7 +345,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
       projectName: project, 
       uname: authEmailName, 
       mostUpdated: isUpdated,
-      bkOption: backendOption
+      bkOption: backendOption //TODO999
     
     });
       
@@ -402,7 +402,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
         if (editorMode === "online_cloud") {
           setBackendOption("firebase");
         } else {
-          setBackendOption("local");
+          setBackendOption(editorMode);
 
           //TODO if import file - parse
           //TODO if from new - prep for default init data
@@ -541,7 +541,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
     let ans = await fetchProjectUILangVM({
       projectName: projectName, 
       currUser: authEmailName,
-      bkOption: backendOption
+      bkOption: backendOption //TODO999
     });
 
     setLanguageCodeTextOption(ans);
@@ -556,8 +556,10 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
   async function goToProjectManagingPanel() {
     if (cloudDbConnOk === false) {
       pureNavigateToProjectManagingPanel();
+
     } else {
 
+       
       let saveOrNot = window.confirm("Save all changes and exit?");
       if (saveOrNot) {
             if (currChapterKey !== "") {
@@ -809,7 +811,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
                 username: authEmailName,
                 nodeList: waitlist, 
                 chapterKey: currChapterKey,
-                bkOption: backendOption
+                bkOption: backendOption //TODO999
             }
           );
           //TODO36
@@ -1020,7 +1022,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
         projectName: projectName, 
         currUser: authEmailName, 
         selectedUILang: val,
-        bkOption: backendOption
+        bkOption: backendOption //TODO999
       });
     }
   }
@@ -1056,7 +1058,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
         projectName: projectName, 
         currUser: authEmailName, 
         dataObj: resObj,
-        bkOption: backendOption
+        bkOption: backendOption //TODO999
     });
 
   }
@@ -1172,7 +1174,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
       project: projectName,
       username: authEmailName,
       chapterKey: chapterInfo[0],
-      bkOption: backendOption
+      bkOption: backendOption //TODO999
     });
 
   }
@@ -1273,7 +1275,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
     let data = await fetchChapterNodeMappingVM({   
         projectName: projectName, 
         currUser: authEmailName,
-        bkOption: backendOption
+        bkOption: backendOption //TODO999
     });
 
 
@@ -1309,7 +1311,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
       projectName: projectName, 
       currUser: authEmailName,
       dataObj: currentProjectNav,
-      bkOption: backendOption
+      bkOption: backendOption //TODO999
     });
     
   }
@@ -1351,7 +1353,7 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
         projectName: projectName, 
         currUser: authEmailName,
         chapterListData: chapterListMap,
-        bkOption: backendOption
+        bkOption: backendOption //TODO999
       }
     )
 
@@ -1369,7 +1371,7 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
       {
         projectName: projectName, 
         currUser: authEmailName,
-        bkOption: backendOption
+        bkOption: backendOption //TODO999
       }      
     );
 
@@ -1453,7 +1455,7 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
           projectName: projectName, 
           uname: authEmailName, 
           chapterKey: givenChapterKey,
-          bkOption: backendOption
+          bkOption: backendOption //TODO999
         }
       );
 
@@ -1799,7 +1801,11 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
 <>
       <div className="returning_buttons">
             
-        <button className="button2" onClick={()=>{chapterChangingOrExiting(); goToProjectManagingPanel(); }}> ← </button>
+        {editorMode === "online_cloud" && <button 
+          className="button2" 
+          onClick={()=>{chapterChangingOrExiting(); goToProjectManagingPanel(); }}>
+             ← 
+        </button>}
 
         <div style={{"width": "200px",  "textAlign": "left", "padding": "5px", "marginTop": "10px"}}>
           <label>{projectNameText}: {projectName}</label>
@@ -1830,11 +1836,21 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
     {/* top banner */}
     <div className="returning_buttons">
       
-      <button 
-        className="button2" 
-        onClick={()=>{chapterChangingOrExiting(); goToProjectManagingPanel(); }}
-      > ← </button>
- 
+      {editorMode === "online_cloud" && <button 
+          className="button2" 
+          onClick={()=>{chapterChangingOrExiting(); goToProjectManagingPanel(); }}>
+             ← 
+        </button>}
+
+
+      {editorMode === "online_cloud" && <div style={{"textAlign": "start"}}>
+              <label>{projectName}</label>
+              <br></br>
+              <label>{authEmailName}</label>
+              <br></br>
+              <label>Cloud Mode</label>
+      </div>}
+
 
 
       <div
