@@ -271,12 +271,12 @@ export default function NodeManager({projectName, currUser,
 
 
 
-      // console.log("Node Manager rendered once ........."); //TODO testing
-      // console.log("nodemap = ", initialNodeMap); //TODO testing
-      // console.log("grid = ", initialGridBlock); //TODO testing
-      // console.log("local ds:"); //TODO testing
-      // console.log(nodeRelationshipMap); //TODO testing
-      // console.log(gridBlocks); //TODO testing
+      console.log("Node Manager rendered once ........."); //TODO testing
+      console.log("init nodemap = ", initialNodeMap); //TODO testing
+      console.log("init grid = ", initialGridBlock); //TODO testing
+      console.log("local ds:"); //TODO testing
+      console.log(nodeRelationshipMap); //TODO testing
+      console.log(gridBlocks); //TODO testing
 
       let UILang = getUILanguage();
       setLanguageCodeTextOption(UILang);
@@ -298,8 +298,11 @@ export default function NodeManager({projectName, currUser,
 
 
       //TODO fetch this chapter's all node data
-          let chapterKeyTemp = getCurrChapterKey();
-          if (chapterKeyTemp !== chapterKey) { // means the chapter-clicked changed!
+      let chapterKeyTemp = getCurrChapterKey();
+                              console.log("node-manager: curr chap = ", chapterKeyTemp);
+
+
+      if (chapterKeyTemp !== chapterKey) { // means the chapter-clicked changed!
             
             let tempMap = getNodeMapOfChapter();
           
@@ -987,8 +990,10 @@ export default function NodeManager({projectName, currUser,
           "width": (isChapMgrCollapsed === false) ? "100%" : "85%"
         }}>
 
+chapter-key = {chapterKey}
 
-        {(chapterKey!== "") && <div className="setting_area" 
+
+        {(chapterKey !== "") && <div className="setting_area" 
         style={{
           "width": "90%"    
         }}

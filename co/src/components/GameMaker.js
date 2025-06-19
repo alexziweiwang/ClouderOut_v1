@@ -44,6 +44,7 @@ import { prepare1Gdt_vm, prepare2Epp_vm, prepare3Epa_vm } from '../viewmodels/Pr
 import { prepareForNewChapterMapping_vm, triggerCreatedNewNode_vm } from '../viewmodels/PrepAc_Creations';
 import { updateChapterNodeMappingsToCloud_vm } from '../viewmodels/UpdtAc_UpdateData';
 
+import { downloadEntireProjectFilePart1Meta_vm } from '../viewmodels/PrepAc_ProjectFileInOut';
 
 import { 
   fetchNodeDataEachNodeVM, 
@@ -707,7 +708,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
   }
 
   function passInCurrentChapterNodeMap() {
-    let nodeMap = currChapterKey !== "" ? chapterNodeMapAll[currChapterKey] : {};
+    let nodeMap = currChapterKey !== "" ? chapterNodeMapAll[currChapterKey] : {"invalid_map": "invalid_map"};
     return nodeMap;
   }
 
@@ -846,10 +847,13 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
  
                                             console.log("clicked on chapter-key: ", chapterKey); //TODO testing
 
-        if (chapterKey !== "") {
-          await chapterChangingOrExiting();
-          setCurrChapterKey(chapterKey);
+        await chapterChangingOrExiting();
 
+
+        if (chapterKey !== "") {
+          setCurrChapterKey(chapterKey);
+        } else {
+          setCurrChapterKey("");
         }
   } 
   
@@ -1690,6 +1694,7 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
 
   function downloadEntireProjectFilePart1Meta() {
 
+    
                                               // console.log("\n\n\ndownloaded project file: ");
                                               // console.log("");
 
@@ -1703,36 +1708,22 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
                                         //      console.log("chapter-node-mapping = ", chapterNodeMapAll);
 
 
-    let projectObjPart1Meta = {
-      "game_data": gameDataDesignList,
-      "resource_visual": visualMap,
-      "resource_audio": audioMap,
-      "project_ui_language": languageCodeTextOption,
-      "navigation_settings": currentProjectNav,
-      "chapter_list": chapterList,
-      "chapter_node_mapping": chapterNodeMapAll,
-    };
-
-    let fileContentTemp = JSON.stringify(projectObjPart1Meta);
-
-    let textFileAsBlob = new Blob([fileContentTemp], { type: 'text/plain' });
-
-    let downloadLink = document.createElement('a');
-    downloadLink.download = "project#" + projectName +  "#by#" + authEmailName + "_settings";
-    downloadLink.innerHTML = 'Download File';
+    let downloadFileNameTemp =  "project#" + projectName +  "#by#" + authEmailName + "_settings";
 
 
-    if (window.webkitURL != null) {
-        downloadLink.href = window.webkitURL.createObjectURL(
-            textFileAsBlob
-        );
-    } else {
-        downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
-        downloadLink.style.display = 'none';
-        document.body.appendChild(downloadLink);
-    }
+    downloadEntireProjectFilePart1Meta_vm(
+      {
+        gameDataDesignList: gameDataDesignList,
+        visualMap: visualMap,
+        audioMap: audioMap,
+        languageCodeTextOption: languageCodeTextOption,
+        currentProjectNav: currentProjectNav,
+        chapterList: chapterList,
+        chapterNodeMapAll: chapterNodeMapAll,
+        filename: downloadFileNameTemp,
+      } 
+    )
 
-    downloadLink.click(); 
 
     //------------------------------------------------------------------------------
 

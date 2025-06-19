@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { userLogOutVM } from '../viewmodels/_UserFirebaseAuthViewModel';
 
-import { parseFromFile_vm } from '../viewmodels/PrepAc_ParseImportedFile';
+import { parseFromFile_vm } from '../viewmodels/PrepAc_ProjectFileInOut';
 
 
 //projectNonCloud
@@ -33,7 +33,9 @@ export default function ProjectManagingOffline() {
 
         let projObjTemp = {};
         if (isNewProject === true) {
-            //TODO use default project-data...
+            //TODO use default new-project-data...
+
+
 
         } else {
             //TODO use imported parsed file !
