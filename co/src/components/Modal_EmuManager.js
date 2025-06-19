@@ -331,6 +331,10 @@ export default function Modal_EmuManager({
                 currUser: providedUname,
                 bkOption: backendOption //TODO999
             });
+        } else {
+
+            //TODO99
+
         }
 
 
@@ -357,6 +361,8 @@ export default function Modal_EmuManager({
                 currUser: providedUname,
                 bkOption: backendOption //TODO999
             });
+        } else {
+            //TODO99
         }
 
 
@@ -537,11 +543,13 @@ export default function Modal_EmuManager({
         } else {
             //TODO999
 
+            obj = getLocalProjectDataEmu();
+
 
         }
 
 
-        if (obj === undefined || obj === null) {
+        if (obj === undefined || obj === null || obj.visual === undefined) {
             return;
         }
 

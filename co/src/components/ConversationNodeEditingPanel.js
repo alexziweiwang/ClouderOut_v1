@@ -434,8 +434,9 @@ GameDataDesign <map>
             
                         return;
                     }
-        } else { //offline-modes
-            //TODO999
+        } else { //offline-modes: from imported project file or new project
+            //TODO1001
+            
     
     
         }
@@ -1076,12 +1077,16 @@ GameDataDesign <map>
         return backendOption;
     }
 
-    function passInLocalProjectDataEmu() {
-        return {}; //TODO999
+    function passInLocalProjectData_Emu() {
+        return {}; //TODO1000
     }
 
-    function passInLocalProjectDataRsrcMgr() {
-        return {}; //TODO999
+    function passInLocalProjectData_RsrcMgr() {
+        return {}; //TODO1000
+    }
+
+    function passInLocalProjectData_GameDataDesign() {
+        return {}; //TODO1000
     }
     
           
@@ -1414,7 +1419,7 @@ GameDataDesign <map>
                     getBackendOption={passInBackendOption}
                     editorMode={editorMode}
 
-                    getLocalProjectDataRsrcMgr={passInLocalProjectDataRsrcMgr}
+                    getLocalProjectDataRsrcMgr={passInLocalProjectData_RsrcMgr}
 
                 />
                                                                     {/* } */}
@@ -1448,7 +1453,7 @@ GameDataDesign <map>
                     getBackendOption={passInBackendOption}
                     editorMode={editorMode}
 
-                    getLocalProjectDataEmu={passInLocalProjectDataEmu}
+                    getLocalProjectDataEmu={passInLocalProjectData_Emu}
 
                 />
             </div>
@@ -1474,6 +1479,9 @@ GameDataDesign <map>
 
                     updateForEmuGdt1={getUserConfigFromDataMgr1Gdt}
                     updateGameDataDesignListToOuterLayer={updateGameDataDesignList}
+                
+                    getLocalProjectData_GameDataDesign={passInLocalProjectData_GameDataDesign}
+                
                 />   
             </div>
             

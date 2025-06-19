@@ -21,7 +21,11 @@ export default function Modal_ResourceManagingWindow ({
     getUsername,
 
     editorMode,            //"offline_half"       "offline_full"        "online_cloud"  
-    getBackendOption
+    getBackendOption,
+
+    getLocalProjectDataRsrcMgr,
+
+
 
 }) {
 
@@ -298,23 +302,32 @@ export default function Modal_ResourceManagingWindow ({
 
         let obj = {};
 
-        if (editorMode === "online_cloud") {
-
+        if (editorMode === "online_cloud") { //online-mode: source from cloud
                 obj = await fetchProjectResourceVarPairsVM({
                     userName: usernameTemp, 
                     projectName: projName,
-                    bkOption: backendOption //TODO999
+                    bkOption: backendOption
                 });
 
-                                                //  console.log("rmWindow -- fetchProjResourceVarPairLists-func:", obj);//TODO 
+   
+        } else { //offline-modes: source from outer layer
+                obj = getLocalProjectDataRsrcMgr();
+  
+        }
+   
+        if (obj === undefined || obj === null || Object.keys(obj).length === 0) {
+            return;
+        }  
+        
+        
 
-                setVisualVarPairs(obj.visual);
-                setAudioVarPairs(obj.audio);
-        } else {
-
-                //TODO999
+        if (obj.visual !== undefined) {
+            setVisualVarPairs(obj.visual);
         }
         
+        if (obj.audio !== undefined) {
+            setAudioVarPairs(obj.audio);
+        }
   
     }
 

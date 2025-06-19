@@ -230,14 +230,13 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
             }
 
  
-      } else { //offline-modes
-        //TODO999
+      } else { //offline-modes: from imported project file or new project
+        //TODO1001
 
 
       }
       
  
-
       resetVisualMapFromList(obj.visual);
       resetAudioMapFromList(obj.audio);
 
@@ -1798,12 +1797,17 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
     return backendOption;
   }
 
-  function passInLocalProjectDataEmu() {
-    return {}; //TODO999
+  function passInLocalProjectData_Emu() {
+    return {}; //TODO1000
   }
      
-  function passInLocalProjectDataRsrcMgr() {
-    return {}; //TODO999
+  function passInLocalProjectData_RsrcMgr() {
+    return {}; //TODO1000
+  }
+
+
+  function passInLocalProjectData_GameDataDesign() {
+    return {}; //TODO1000
   }
 
 
@@ -2348,7 +2352,7 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
                 getBackendOption={passInBackendOption}
                 editorMode={editorMode}
 
-                getLocalProjectDataRsrcMgr={passInLocalProjectDataRsrcMgr}
+                getLocalProjectDataRsrcMgr={passInLocalProjectData_RsrcMgr}
 
               />
           
@@ -2379,6 +2383,8 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
                 updateForEmuGdt1={getUserConfigFromDataMgr1Gdt}
 
                 updateGameDataDesignListToOuterLayer={updateGameDataDesignList}
+
+                getLocalProjectData_GameDataDesign={passInLocalProjectData_GameDataDesign}
 
               />
 
@@ -2412,7 +2418,7 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
               getBackendOption={passInBackendOption}
               editorMode={editorMode}
 
-              getLocalProjectDataEmu={passInLocalProjectDataEmu}
+              getLocalProjectDataEmu={passInLocalProjectData_Emu}
 
             />
           </div>}
