@@ -453,6 +453,10 @@ GameDataDesign <map>
     function resetVisualMapFromList(visualList) {
         let tempMap = {};
 
+        if (visualList === undefined) {
+            return;
+        }
+
         //TODO
         let len = visualList.length;
         let i = 0;
@@ -471,6 +475,11 @@ GameDataDesign <map>
     function resetAudioMapFromList(audioList) {
         let tempMap = {};
 
+        if (audioList === undefined) {
+            return;
+        }
+
+        
         //TODO
         let len = audioList.length;
         let i = 0;

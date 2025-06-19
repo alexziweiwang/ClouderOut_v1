@@ -421,7 +421,7 @@ export default function NodeManager({projectName, currUser,
 
 
 
-  function addNewNode2() { //TODO for new data structure
+  async function addNewNode2() { //TODO for new data structure
 
     let tempNodeMap = nodeRelationshipMap;
     if (createNewNodeGameType === "") {
@@ -473,7 +473,7 @@ export default function NodeManager({projectName, currUser,
         
 
         // update node being
-        triggerCreatedNewNode(createNewNodeName, chapterKey, createNewNodeGameType);
+        await triggerCreatedNewNode(createNewNodeName, chapterKey, createNewNodeGameType);
 
 
         /* update all node-mappings */
@@ -2121,7 +2121,11 @@ chapter-key = {chapterKey}
               onClick={()=>{
           
                     chapterChangingOrExiting().then((ans) => {
-                        console.log("node-manager, enter-ans", ans);
+
+
+                                      console.log("node-manager, enter-ans", ans);
+
+
                         if (ans === "wait-and-enter") {
                           updateRenderCounter();
                         }
@@ -2129,11 +2133,11 @@ chapter-key = {chapterKey}
                           enterNodeEditor2();
                         }
                       }
-                    );
-                    
-                    
+                    );    
                     
               }}>
+
+
                 {enterEditorText}
             </button>
         

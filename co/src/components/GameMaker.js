@@ -44,7 +44,7 @@ import { prepare1Gdt_vm, prepare2Epp_vm, prepare3Epa_vm } from '../viewmodels/Pr
 import { prepareForNewChapterMapping_vm, triggerCreatedNewNode_vm } from '../viewmodels/PrepAc_Creations';
 import { updateChapterNodeMappingsToCloud_vm } from '../viewmodels/UpdtAc_UpdateData';
 
-import { downloadEntireProjectFilePart1Meta_vm } from '../viewmodels/PrepAc_ProjectFileInOut';
+import { downloadEntireProjectFilePart1Meta_vm, fetchEntireProjectAllNodesDataFromCloud_vm } from '../viewmodels/PrepAc_ProjectFileInOut';
 
 import { 
   fetchNodeDataEachNodeVM, 
@@ -292,8 +292,8 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
 //TODO ------------------------------------------------------ testing data area
 
-  const [chapterNodeMapAll, setChapterNodeMapAll] = useState({});
-  const [gridBlocksAll, setGridBlocksAll] = useState([]); //stores node-keys
+  const [chapterNodeMapAll, setChapterNodeMapAll] = useState(-1);
+  const [gridBlocksAll, setGridBlocksAll] = useState(-1); //stores node-keys
 
   const [nodeMapUpdatedSignal , setNodeMapUpdatedSignal] = useState(false);
   const [gridBlocksUpdatedSignal, setGridBlocksUpdatedSignal] = useState(false);
@@ -458,7 +458,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
         if (authEmailName !== "_") {
 
             //TODO5000 check returned data from cloud-db
-            if (gridBlocksAll === undefined || chapterNodeMapAll === undefined) {
+            if (gridBlocksAll === -1 || chapterNodeMapAll === -1) {
               
               loadEverythingFromCloud();
             }
@@ -579,13 +579,8 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
     } else {
 
        
-      let saveOrNot = window.confirm("Save all changes and exit?");
+      let saveOrNot = window.confirm("Exit?"); //TODO1001
       if (saveOrNot) {
-            if (currChapterKey !== "") {
-              await updateChapterNodeMappingsToCloud_local(chapterNodeMapAll); 
-              await saveToCloudNewNodeList(createdNewNodeWaitlist);
-            }
-  
             pureNavigateToProjectManagingPanel();
       }
     }
@@ -785,12 +780,16 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
       ) { 
 
           let answer = window.confirm("Save current chapter data to cloud?"); //ask if save to cloud?
+          
+          
           if (answer) {
               //by createdNewNodeWaitlist, update cloud-folders...
 
               await saveEverythingToCloud(); // will reset createNodeFolderSignal
               setNodeMgrDelSignal(false);
+
                              console.log("yes. wait-and-enter");
+
               return "wait-and-enter";
 
           } else {
@@ -1176,6 +1175,9 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
 
   async function triggerCreatedNewNode(newNodeKey, chapterKeyTemp, nodeTypeTemp) {
+    //TODO1000 should check whether the node-key is already there!
+
+
     await triggerCreatedNewNode_vm (
       newNodeKey, 
       chapterKeyTemp, 
@@ -1624,9 +1626,18 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
 
   async function saveEverythingToCloud() { 
 
-    await updateProjectNavigationSettingsToCloud();
-    await updateChapterNodeMappingsToCloud_local(chapterNodeMapAll); 
-    await saveToCloudNewNodeList(createdNewNodeWaitlist); 
+    if (chapterNodeMapAll === -1 || gridBlocksAll === -1) {
+      alert("unable to save");
+      return;
+
+    } else {
+      await updateProjectNavigationSettingsToCloud();
+      await updateChapterNodeMappingsToCloud_local(chapterNodeMapAll); 
+      await saveToCloudNewNodeList(createdNewNodeWaitlist); 
+
+    }
+
+
   }
 
   function triggerNodeDeleted() {
@@ -1650,51 +1661,21 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
 
   }
 
-  async function exportEachChapterNodesData(chapterKey) {
+               
+  async function fetchEntireProjectAllNodesDataFromCloud_local() {
+    let filenamePrefix = "project#" + projectName +  "#by#" + authEmailName + "_";
 
-    let chapAllNodes = await getCurrChpNodeDataFromCloud(chapterKey);
-    let fileContentTemp = JSON.stringify(chapAllNodes);
+    await fetchEntireProjectAllNodesDataFromCloud_vm(chapterNodeMapAll, filenamePrefix, getCurrChpNodeDataFromCloud);
 
-    let textFileAsBlob = new Blob([fileContentTemp], { type: 'text/plain' });
-
-    let downloadLink = document.createElement('a');
-    downloadLink.download = downloadLink.download = "project#" + projectName +  "#by#" + authEmailName + "_" + chapterKey;
-    downloadLink.innerHTML = 'Download File';
-
-
-    if (window.webkitURL != null) {
-        downloadLink.href = window.webkitURL.createObjectURL(
-            textFileAsBlob
-        );
-    } else {
-        downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
-        downloadLink.style.display = 'none';
-        document.body.appendChild(downloadLink);
-    }
-
-    downloadLink.click(); 
-  }
-
-  function fetchEntireProjectAllNodesDataFromCloud() {
-
-
-    Object.keys(chapterNodeMapAll).map(async (chapKey) => {
-      let chapterKeyHandled = chapKey.trim();
-
-        if (chapterKeyHandled !== "chapter0" && chapterKeyHandled != "placeholder") {
-        
-        //TODO999 for each chapter ... get all of its node's data?
-        exportEachChapterNodesData(chapterKeyHandled);
-                 
-        }
-    });
-
- 
   }
 
   function downloadEntireProjectFilePart1Meta() {
 
-    
+    if (chapterNodeMapAll === -1 || gridBlocksAll === -1) {
+      alert("unable to download");
+      return;
+      
+    } else {
                                               // console.log("\n\n\ndownloaded project file: ");
                                               // console.log("");
 
@@ -1707,23 +1688,23 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
                                               // console.log("chapter-list = ", chapterList);
                                         //      console.log("chapter-node-mapping = ", chapterNodeMapAll);
 
+        let downloadFileNameTemp =  "project#" + projectName +  "#by#" + authEmailName + "_settings";
 
-    let downloadFileNameTemp =  "project#" + projectName +  "#by#" + authEmailName + "_settings";
 
+        downloadEntireProjectFilePart1Meta_vm(
+          {
+            gameDataDesignList: gameDataDesignList,
+            visualMap: visualMap,
+            audioMap: audioMap,
+            languageCodeTextOption: languageCodeTextOption,
+            currentProjectNav: currentProjectNav,
+            chapterList: chapterList,
+            chapterNodeMapAll: chapterNodeMapAll,
+            filename: downloadFileNameTemp,
+          } 
+        )
 
-    downloadEntireProjectFilePart1Meta_vm(
-      {
-        gameDataDesignList: gameDataDesignList,
-        visualMap: visualMap,
-        audioMap: audioMap,
-        languageCodeTextOption: languageCodeTextOption,
-        currentProjectNav: currentProjectNav,
-        chapterList: chapterList,
-        chapterNodeMapAll: chapterNodeMapAll,
-        filename: downloadFileNameTemp,
-      } 
-    )
-
+    }
 
     //------------------------------------------------------------------------------
 
@@ -1946,7 +1927,9 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
       <button onClick={()=>{
         let ans = window.confirm("Are you sure to save and cover the project on cloud?");
         if (ans) {
+          
           saveEverythingToCloud();
+          
         }
 
       }}
@@ -1959,7 +1942,7 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
       <button
         onClick={()=>{
           downloadEntireProjectFilePart1Meta();
-          fetchEntireProjectAllNodesDataFromCloud();
+          fetchEntireProjectAllNodesDataFromCloud_local();
         }}
       >Download Project File</button>
 
