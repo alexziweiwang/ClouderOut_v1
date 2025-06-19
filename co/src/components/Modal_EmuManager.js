@@ -17,13 +17,17 @@ import { prepare1Gdt_vm, prepare2Epp_vm, prepare3Epa_vm,
 export default function Modal_EmuManager({
     handleEmCancel,
     getUILanguage,
+    
     update1Gdt, update2Epp, update3Epa, update4Ess, update5Shp,
+    
     isForGameMaker,
     projName,
     getUsername,
     
     editorMode,            //"offline_half"       "offline_full"        "online_cloud"  
     getBackendOption,
+
+    getLocalProjectDataEmu,
 
     
 }) {
@@ -525,11 +529,15 @@ export default function Modal_EmuManager({
         let obj = {};
         if (editorMode === "online_cloud") {
 
-            obj = await fetchProjectResourceVarPairsVM({
-                userName: providedUname, 
-                projectName: projName,
-                bkOption: backendOption //TODO999
-            });
+                    obj = await fetchProjectResourceVarPairsVM({
+                        userName: providedUname, 
+                        projectName: projName,
+                        bkOption: backendOption //TODO999
+                    });
+        } else {
+            //TODO999
+
+
         }
 
 

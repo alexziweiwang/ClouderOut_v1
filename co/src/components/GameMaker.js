@@ -205,19 +205,38 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
         return;
       }
 
+      //TODO999: if half-offline, and imported-file, use the data structure from file
+      // if half-offline, and new-project, use the initial data structure
+
 
       /* fetch from cloud db */
       //TODO500     
-      const obj = await fetchProjectResourceVarPairsVM({
-        userName: authEmailName, 
-        projectName: projectName,
-        bkOption: backendOption //TODO999
-      });
+      let obj = {};
       
-      if (obj === undefined) {
-        return;
-      }
+      if (editorMode === "online_cloud") {
 
+            obj = await fetchProjectResourceVarPairsVM({
+              userName: authEmailName, 
+              projectName: projectName,
+              bkOption: backendOption //TODO999
+            });
+
+
+            if (obj === undefined) {
+              setCloudDbConnOk(false);
+              console.log("unnable to fetch resource-var-pairs !! ");
+
+              return;
+            }
+
+ 
+      } else { //offline-modes
+        //TODO999
+
+
+      }
+      
+ 
 
       resetVisualMapFromList(obj.visual);
       resetAudioMapFromList(obj.audio);
@@ -1779,6 +1798,14 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
     return backendOption;
   }
 
+  function passInLocalProjectDataEmu() {
+    return {}; //TODO999
+  }
+     
+  function passInLocalProjectDataRsrcMgr() {
+    return {}; //TODO999
+  }
+
 
 {/* //components
       
@@ -2321,6 +2348,8 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
                 getBackendOption={passInBackendOption}
                 editorMode={editorMode}
 
+                getLocalProjectDataRsrcMgr={passInLocalProjectDataRsrcMgr}
+
               />
           
           </div>}
@@ -2382,6 +2411,8 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
 
               getBackendOption={passInBackendOption}
               editorMode={editorMode}
+
+              getLocalProjectDataEmu={passInLocalProjectDataEmu}
 
             />
           </div>}

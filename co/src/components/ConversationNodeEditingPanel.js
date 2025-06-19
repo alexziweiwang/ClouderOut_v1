@@ -419,14 +419,25 @@ GameDataDesign <map>
 
         /* fetch from cloud db */
         //TODO500     
-        const obj = await fetchProjectResourceVarPairsVM({
-            userName: authEmailName,              
-            projectName: state.projectName,
-            bkOption: backendOption //TODO999
-        });
+        let obj = {};
+        
+        if (editorMode === "online_cloud") {
 
-        if (obj === undefined || obj === null) {
-            return;
+                    obj = await fetchProjectResourceVarPairsVM({
+                        userName: authEmailName,              
+                        projectName: state.projectName,
+                        bkOption: backendOption //TODO999
+                    });
+
+                    if (obj === undefined) {
+                        console.log("unnable to fetch resource-var-pairs !! ");
+            
+                        return;
+                    }
+        } else { //offline-modes
+            //TODO999
+    
+    
         }
 
         console.log("fetch-proj-resource-lists: ", obj);
@@ -1065,6 +1076,14 @@ GameDataDesign <map>
         return backendOption;
     }
 
+    function passInLocalProjectDataEmu() {
+        return {}; //TODO999
+    }
+
+    function passInLocalProjectDataRsrcMgr() {
+        return {}; //TODO999
+    }
+    
           
 
 {/* components:
@@ -1394,6 +1413,9 @@ GameDataDesign <map>
 
                     getBackendOption={passInBackendOption}
                     editorMode={editorMode}
+
+                    getLocalProjectDataRsrcMgr={passInLocalProjectDataRsrcMgr}
+
                 />
                                                                     {/* } */}
             </div>
@@ -1425,6 +1447,8 @@ GameDataDesign <map>
 
                     getBackendOption={passInBackendOption}
                     editorMode={editorMode}
+
+                    getLocalProjectDataEmu={passInLocalProjectDataEmu}
 
                 />
             </div>

@@ -300,16 +300,19 @@ export default function Modal_ResourceManagingWindow ({
 
         if (editorMode === "online_cloud") {
 
-            obj = await fetchProjectResourceVarPairsVM({
-                userName: usernameTemp, 
-                projectName: projName,
-                bkOption: backendOption //TODO999
-            });
+                obj = await fetchProjectResourceVarPairsVM({
+                    userName: usernameTemp, 
+                    projectName: projName,
+                    bkOption: backendOption //TODO999
+                });
 
-                                              //  console.log("rmWindow -- fetchProjResourceVarPairLists-func:", obj);//TODO 
+                                                //  console.log("rmWindow -- fetchProjResourceVarPairLists-func:", obj);//TODO 
 
-            setVisualVarPairs(obj.visual);
-            setAudioVarPairs(obj.audio);
+                setVisualVarPairs(obj.visual);
+                setAudioVarPairs(obj.audio);
+        } else {
+
+                //TODO999
         }
         
   
