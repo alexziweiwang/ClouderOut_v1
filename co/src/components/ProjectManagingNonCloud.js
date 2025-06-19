@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { userLogOutVM } from '../viewmodels/_UserFirebaseAuthViewModel';
 
+import { parseFromFile_vm } from '../viewmodels/PrepAc_ParseImportedFile';
 
 
 //projectNonCloud
@@ -17,8 +18,10 @@ export default function ProjectManagingOffline() {
 
     const [isCreateNewProject, setIsCreateNewProject] = useState(true);
 
+    const [projectObj, setProjectObj] = useState(-1);
 
-    function goToGameMaker(projectNameTemp) {
+
+    function goToGameMaker(projectNameTemp, isNewProject) {
         if (projectNameTemp === "") {
           return;
         }
@@ -27,12 +30,23 @@ export default function ProjectManagingOffline() {
 
         console.log("non-cloud-navigating to ... game-maker, mode  = ", modeName);
         
+
+        let projObjTemp = {};
+        if (isNewProject === true) {
+            //TODO use default project-data...
+
+        } else {
+            //TODO use imported parsed file !
+
+
+        }
   
         navigate('/editorcontainer', { 
           replace: true, 
           state: { 
             selected_project_name: projectNameTemp, 
-            mode: modeName
+            mode: modeName,
+            projectFile: projectObj
           } });
   
       }
@@ -76,14 +90,35 @@ export default function ProjectManagingOffline() {
                     <br></br><br></br>
                     <button
                         onClick={()=>{
-                            goToGameMaker(projectIdInput);
+                            goToGameMaker(projectIdInput, true);
                         }}
                     >Create Project</button>
                 </div>}
 
 
                 {isCreateNewProject === false && <div>
+                    <br></br><br></br><br></br>
 
+                    <input 
+                        type="file"
+                        accept=".txt"  
+                        onChange={(event)=>{
+                            let fileContent = event.target.files[0];
+                            if (fileContent) {
+                                let projectContent = parseFromFile_vm(fileContent);
+
+                            }
+
+                        }}  
+                    ></input>
+
+                    <br></br><br></br>
+
+                    <button
+                        onClick={()=>{
+                            goToGameMaker(projectIdInput, false);
+                        }}
+                    >Edit Project</button>
                 </div>}
 
 

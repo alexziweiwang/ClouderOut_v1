@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 
-//level-1
+//level(-1)
 
 import GameMaker from './GameMaker'
 
@@ -32,6 +32,7 @@ return (<div style={{"backgroundColor": "orange"}}>
     <GameMaker
         projectName={state.selected_project_name}
         editorMode={state.mode}
+        projectFile={state.projectFile}
     />
 
 

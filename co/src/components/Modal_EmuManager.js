@@ -534,17 +534,14 @@ export default function Modal_EmuManager({
         
         let obj = {};
         if (editorMode === "online_cloud") {
-
                     obj = await fetchProjectResourceVarPairsVM({
                         userName: providedUname, 
                         projectName: projName,
                         bkOption: backendOption //TODO999
                     });
+
         } else {
-            //TODO999
-
-            obj = getLocalProjectDataEmu();
-
+                    obj = getLocalProjectDataEmu();
 
         }
 
