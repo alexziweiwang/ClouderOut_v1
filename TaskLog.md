@@ -659,6 +659,7 @@
 - 2025-Jun-17: Testing-project material prep 15
 
 - 2025-Jun-19: Testing-project material prep 16
+- 2025-Jun-19: Half-online mode strategies design 3
 
 
 
