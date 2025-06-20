@@ -2,80 +2,121 @@ import React from 'react';
 
 
 
-export function parseFromFile_vm(fileContent) {
-    let obj = {};
+    export function parseFromFile_vm(fileContent) {
+        let obj = {};
 
-    let readContent = "default-empty";
-
-
-    const reader = new FileReader();
-    
-    reader.onload = () => {
-        readContent = reader.result;
-    };
+        let readContent = "default-empty";
 
 
-    reader.onerror = () => {
-        console.log("Error reading the file. Please try again.", "error");
-    };
-
-
-    reader.readAsText(fileContent);
-
-
-                        console.log("readContent = ", readContent);
-
-
-
-    return "";
-
-}
-
-
-export function downloadEntireProjectFilePart1Meta_vm(
-    {
-        gameDataDesignList,
-        visualMap,
-        audioMap,
-        languageCodeTextOption,
-        currentProjectNav,
-        chapterList,
-        chapterNodeMapAll,
-        filename
-    }
-) {
-
-
-    let projectObjPart1Meta = {
-        "game_data": gameDataDesignList,
-        "resource_visual": visualMap,
-        "resource_audio": audioMap,
-        "project_ui_language": languageCodeTextOption,
-        "navigation_settings": currentProjectNav,
-        "chapter_list": chapterList,
-        "chapter_node_mapping": chapterNodeMapAll,
-    };
-
-    let fileContentTemp = JSON.stringify(projectObjPart1Meta);
-
-    let textFileAsBlob = new Blob([fileContentTemp], { type: 'text/plain' });
-
-    let downloadLink = document.createElement('a');
-    downloadLink.download = filename;
-    downloadLink.innerHTML = 'Download File';
-
-
-    if (window.webkitURL != null) {
-        downloadLink.href = window.webkitURL.createObjectURL(
-            textFileAsBlob
-        );
-    } else {
-        downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
-        downloadLink.style.display = 'none';
-        document.body.appendChild(downloadLink);
-    }
-
-    downloadLink.click(); 
-
+        const reader = new FileReader();
         
-}
+        reader.onload = () => {
+            readContent = reader.result;
+        };
+
+
+        reader.onerror = () => {
+            console.log("Error reading the file. Please try again.", "error");
+        };
+
+
+        reader.readAsText(fileContent);
+
+
+                            console.log("readContent = ", readContent);
+
+
+
+        return "";
+
+    }
+
+
+    export function downloadEntireProjectFilePart1Meta_vm(
+        {
+            gameDataDesignList,
+            visualMap,
+            audioMap,
+            languageCodeTextOption,
+            currentProjectNav,
+            chapterList,
+            chapterNodeMapAll,
+            filename
+        }
+    ) {
+
+
+            let projectObjPart1Meta = {
+                "game_data": gameDataDesignList,
+                "resource_visual": visualMap,
+                "resource_audio": audioMap,
+                "project_ui_language": languageCodeTextOption,
+                "navigation_settings": currentProjectNav,
+                "chapter_list": chapterList,
+                "chapter_node_mapping": chapterNodeMapAll,
+            };
+
+            let fileContentTemp = JSON.stringify(projectObjPart1Meta);
+
+            let textFileAsBlob = new Blob([fileContentTemp], { type: 'text/plain' });
+
+            let downloadLink = document.createElement('a');
+            downloadLink.download = filename;
+            downloadLink.innerHTML = 'Download File';
+
+
+            if (window.webkitURL != null) {
+                downloadLink.href = window.webkitURL.createObjectURL(
+                    textFileAsBlob
+                );
+            } else {
+                downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
+                downloadLink.style.display = 'none';
+                document.body.appendChild(downloadLink);
+            }
+
+            downloadLink.click(); 
+
+            
+    }
+
+
+    async function exportEachChapterNodesData(chapterKey, getCurrChpNodeDataFromCloud, filenamePrefix) {
+            let chapAllNodes = await getCurrChpNodeDataFromCloud(chapterKey);
+            let fileContentTemp = JSON.stringify(chapAllNodes);
+
+            let textFileAsBlob = new Blob([fileContentTemp], { type: 'text/plain' });
+
+            let downloadLink = document.createElement('a');
+            downloadLink.download = downloadLink.download = filenamePrefix + chapterKey;
+
+
+            downloadLink.innerHTML = 'Download File';
+
+
+            if (window.webkitURL != null) {
+                downloadLink.href = window.webkitURL.createObjectURL(
+                    textFileAsBlob
+                );
+            } else {
+                downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
+                downloadLink.style.display = 'none';
+                document.body.appendChild(downloadLink);
+            }
+
+            downloadLink.click(); 
+    }
+
+    export async function fetchEntireProjectAllNodesDataFromCloud_vm(chapterNodeMapAll, filenamePrefix, getCurrChpNodeDataFromCloud) {
+            Object.keys(chapterNodeMapAll).map(async (chapKey) => {
+            let chapterKeyHandled = chapKey.trim();
+
+                if (chapterKeyHandled !== "chapter0" && chapterKeyHandled != "placeholder") {
+                
+                    //TODO999 for each chapter ... get all of its node's data?
+                    await exportEachChapterNodesData(chapKey, getCurrChpNodeDataFromCloud, filenamePrefix);
+                        
+                }
+            });
+    
+    }
