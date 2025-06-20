@@ -109,7 +109,7 @@ export async function triggerCreatedNewNode_vm (
 
 
 
-  export function prepareForNewProject(
+  export function prepareForNewProject_vm(
       projList, 
       addedNewProjKey, 
       epp2Template, 
@@ -236,7 +236,7 @@ export async function createNewProjectToCloud_vm(
       //TODO900 emu-data-sets
     //TODO900 screen size
 
-      let projectObj = prepareForNewProject(
+      let projectObj = prepareForNewProject_vm(
         projList, 
         addedNewProjKey, 
         epp2Template, 

@@ -1,10 +1,15 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+
 import { userLogOutVM } from '../viewmodels/_UserFirebaseAuthViewModel';
 
-import { parseFromFile_vm } from '../viewmodels/PrepAc_ProjectFileInOut';
+import { fetchProjectListVM, createProjectVM } from '../viewmodels/ProjectManagerViewModel';
 
+import { projectNavUiTemplate, gdt1Template, epp2Template, epa3Template, ess4Template, shp5Template } from './_dataStructure_DefaultObjects';
+
+import { parseFromFile_vm } from '../viewmodels/PrepAc_ProjectFileInOut';
+import { prepareForNewProject_vm } from '../viewmodels/PrepAc_Creations';
 
 //projectNonCloud
 export default function ProjectManagingOffline() {
@@ -35,7 +40,7 @@ export default function ProjectManagingOffline() {
         if (isNewProject === true) {
             //TODO use default new-project-data...
 
-
+            createNewProjectObj_local(projectNameTemp)
 
         } else {
             //TODO use imported parsed file !
@@ -51,7 +56,28 @@ export default function ProjectManagingOffline() {
             projectFile: projectObj
           } });
   
-      }
+    }
+
+
+    async function createNewProjectObj_local(projectNameProvided) {
+        let projListTemp = [];
+        let autherInfo = "author";
+        let descrp = "";
+
+        let projectObject = prepareForNewProject_vm(
+            projListTemp, 
+            projectNameProvided, 
+            epp2Template, 
+            epa3Template, 
+            projectNavUiTemplate, 
+            autherInfo,
+            descrp,
+            projectNameProvided,
+        )
+
+
+        return projectObject;
+    }
 
 
     return (
