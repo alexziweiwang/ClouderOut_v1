@@ -579,8 +579,8 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
     } else {
 
        
-      let saveOrNot = window.confirm("Exit?"); //TODO1001
-      if (saveOrNot) {
+      let exitYes = window.confirm("Exit?"); //TODO1001
+      if (exitYes) {
             pureNavigateToProjectManagingPanel();
       }
     }

@@ -106,3 +106,165 @@ export async function triggerCreatedNewNode_vm (
     setCreatedNewNodeWaitListPending(true);
 
   }
+
+
+
+  export function prepareForNewProject(
+      projList, 
+      addedNewProjKey, 
+      epp2Template, 
+      epa3Template, 
+      projectNavUiTemplate, 
+      addedAuthorInfo,
+      projDedscription,
+      addedNewProjName,
+
+    ) {
+
+   // TODO gather list:
+      /* 
+      project name: addedNewProjName
+      project description: projDedscription
+      game-data map: empty {}
+      author-info field: addedAuthorInfo
+      field: type = "project"
+      chapter directory: collection "chapters"
+      game node directory: default in chapter-management (at least one default node in ecah chapter)
+                genre field (later) */
+      
+
+      const result = projList.filter((name) => name === addedNewProjKey);
+      if (result.length > 0) {
+        console.log("warning: duplicate name");
+        alert("Project Name already taken ...");
+        //if already contains this name
+        //don't navigate
+        return;
+      }
+      
+
+                                                          //TODO: author name default: current user-name, then allow adding others
+      
+      const empty_game_data = {};
+      const empty_rm_audio = [];
+      const empty_rm_visual = [];
+      const empty_chapter_list = {0: ["chapter_placeholder","chapter_placeholder","chapter_placeholder","chapter_placeholder"]};
+
+      const empty_chapter_node_mapping = {
+        "placeholder": {}
+      };
+      const empty_node_ui_plan = {};
+
+      const empty_emu_4sets = {
+        "gdt1": {},
+        "epp2": {},
+        "epa3": {},
+        "ess4": {},
+        "shp5": {}
+      };
+
+
+      Object.keys(epp2Template).map((currKey) => {
+        empty_emu_4sets["epp2"][currKey] = epp2Template[currKey];
+      })
+
+      Object.keys(epa3Template).map((currKey) => {
+        empty_emu_4sets["epa3"][currKey] = epa3Template[currKey];
+      })
+      
+
+
+      let empty_nav_ui_settings = {};
+      Object.keys(projectNavUiTemplate).map((currKey) => {
+        empty_nav_ui_settings[currKey] = projectNavUiTemplate[currKey];
+      }); //TODO900 default
+      
+
+      const default_size_direction = "h450_800"; //TODO900 default
+      const default_ui_language = "en";
+
+
+      const projectObj = {
+        chapterList: empty_chapter_list,
+        chapterNodeMapping: empty_chapter_node_mapping,
+        convNodeUiPlanMap: empty_node_ui_plan,
+        emu4sets: empty_emu_4sets,
+        project_name: addedNewProjName,
+        game_data: empty_game_data,
+        nav_ui_settings: empty_nav_ui_settings,
+        proj_resource_audio: empty_rm_audio,
+        proj_resource_visual: empty_rm_visual,
+        sizeDirection: default_size_direction,
+        type: "project",
+        trashed: false,
+        ui_language: default_ui_language,
+
+        author_info: addedAuthorInfo,
+        project_description: projDedscription,
+        project_title: addedNewProjName
+
+      };
+
+    return projectObj;
+  }
+
+export async function createNewProjectToCloud_vm(
+  createProjectVM, 
+  projList, 
+  addedNewProjKey, 
+  epp2Template, 
+  epa3Template, 
+  projectNavUiTemplate, 
+  addedAuthorInfo,
+  projDedscription,
+
+  username,
+  backendOption,
+
+  triggerCreationSubmit,
+  clearForm,
+
+  addedNewProjName,
+
+
+
+
+  
+  ) {
+   
+
+      //TODO900 emu-data-sets
+    //TODO900 screen size
+
+      let projectObj = prepareForNewProject(
+        projList, 
+        addedNewProjKey, 
+        epp2Template, 
+        epa3Template, 
+        projectNavUiTemplate, 
+        addedAuthorInfo,
+        projDedscription,
+      );
+
+
+                                          console.log("Created project info: "); //TODO testing
+                                          console.log(projectObj); //TODO testing
+
+      let alertStr = "Project " + addedNewProjName + " Created!";
+      alert(alertStr);
+
+      await createProjectVM(
+        {
+          currUser: username, 
+          projectName: addedNewProjKey, 
+          projectObj: projectObj,
+          bkOption: backendOption
+        }
+      );
+      triggerCreationSubmit();
+
+      clearForm();
+      
+      // ensuring approach: warning if no specified directory/data structure exists when doing any CRUD to cloud db
+
+}
