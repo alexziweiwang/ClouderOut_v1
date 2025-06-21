@@ -33,27 +33,34 @@ export default function ProjectManagingOffline() {
 
         userLogOutVM();
 
-        console.log("non-cloud-navigating to ... game-maker, mode  = ", modeName);
         
+        let projectContent = projectObj;
 
-        let projObjTemp = {};
         if (isNewProject === true) {
             //TODO use default new-project-data...
 
-            createNewProjectObj_local(projectNameTemp)
+            projectContent = createNewProjectObj_local(projectNameTemp);
+
+            setProjectObj(projectContent);
 
         } else {
             //TODO use imported parsed file !
 
+            projectContent = projectObj;
+
 
         }
-  
+
+        
+        console.log("non-cloud-navigating to ... game-maker, mode  = ", modeName, "... project-obj = ", projectContent);
+
+        
         navigate('/editorcontainer', { 
           replace: true, 
           state: { 
             selected_project_name: projectNameTemp, 
             mode: modeName,
-            projectFile: projectObj
+            projectFile: projectContent
           } });
   
     }
@@ -77,6 +84,12 @@ export default function ProjectManagingOffline() {
 
 
         return projectObject;
+    }
+
+    function parseFromFile() {
+
+
+        //TODO
     }
 
 
@@ -133,18 +146,30 @@ export default function ProjectManagingOffline() {
                         onChange={(event)=>{
                             let fileContent = event.target.files[0];
                             if (fileContent) {
-                                let projectContent = parseFromFile_vm(fileContent);
-
+                                parseFromFile_vm(fileContent, setProjectObj);
                             }
 
                         }}  
                     ></input>
 
+                                                                <br></br>
+                                                                <button
+                                                                    onClick={()=>{
+                                                                        console.log(projectObj);
+
+                                                                    }}
+                                                                
+                                                                >Print (test)</button>
+
                     <br></br><br></br>
 
                     <button
                         onClick={()=>{
-                            goToGameMaker(projectIdInput, false);
+
+                            console.log(projectObj);
+
+                            // goToGameMaker(projectIdInput, false);
+
                         }}
                     >Edit Project</button>
                 </div>}

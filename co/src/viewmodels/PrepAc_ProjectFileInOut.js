@@ -2,7 +2,7 @@ import React from 'react';
 
 
 
-    export function parseFromFile_vm(fileContent) {
+    export function parseFromFile_vm(fileContent, setupContent) {
         let obj = {};
 
         let readContent = "default-empty";
@@ -12,6 +12,12 @@ import React from 'react';
         
         reader.onload = () => {
             readContent = reader.result;
+
+                                                            console.log("readContent = ", readContent);
+
+
+            setupContent(readContent);
+
         };
 
 
@@ -23,9 +29,9 @@ import React from 'react';
         reader.readAsText(fileContent);
 
 
-                            console.log("readContent = ", readContent);
+                    //        console.log("readContent = ", readContent);
 
-
+//TODO999 create an object !!
 
         return "";
 
