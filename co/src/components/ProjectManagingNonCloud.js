@@ -23,7 +23,15 @@ export default function ProjectManagingOffline() {
 
     const [isCreateNewProject, setIsCreateNewProject] = useState(true);
 
+    const [isSelectedFile, setIsSelectedFile] = useState(false);
+
+
+    const [selectedFileName, setSelectedFileName] = useState(-1);
+    const [selectedFileContent, setSelectedFileContent] = useState(-1);
+
     const [projectObj, setProjectObj] = useState(-1);
+
+    const [isConfirmed, setIsConfirmed] = useState(false);
 
 
     function goToGameMaker(projectNameTemp, isNewProject) {
@@ -37,21 +45,20 @@ export default function ProjectManagingOffline() {
         let projectContent = projectObj;
 
         if (isNewProject === true) {
-            //TODO use default new-project-data...
+            // use default new-project-data
 
             projectContent = createNewProjectObj_local(projectNameTemp);
-
             setProjectObj(projectContent);
 
         } else {
-            //TODO use imported parsed file !
 
+            // use the imported parsed file
             projectContent = projectObj;
 
 
         }
 
-        
+
         console.log("non-cloud-navigating to ... game-maker, mode  = ", modeName, "... project-obj = ", projectContent);
 
         
@@ -86,11 +93,6 @@ export default function ProjectManagingOffline() {
         return projectObject;
     }
 
-    function parseFromFile() {
-
-
-        //TODO
-    }
 
 
     return (
@@ -140,38 +142,80 @@ export default function ProjectManagingOffline() {
                 {isCreateNewProject === false && <div>
                     <br></br><br></br><br></br>
 
+                    {isSelectedFile === false && <>
                     <input 
                         type="file"
                         accept=".txt"  
                         onChange={(event)=>{
-                            let fileContent = event.target.files[0];
-                            if (fileContent) {
-                                parseFromFile_vm(fileContent, setProjectObj);
-                            }
 
-                        }}  
+                            setIsSelectedFile(true);
+
+                            let fileContent = event.target.files[0];
+                            setSelectedFileContent(fileContent);
+
+                            setSelectedFileName(fileContent.name);
+
+                            setIsConfirmed(false);
+                        }}
+
                     ></input>
+
+                    <br></br>
+                    </>}
+
+                    {isSelectedFile === true && <label>File Name: {selectedFileName}</label>}
+
+                    
+
+
+                    <br></br>
+                    
+
+                    {(isSelectedFile === true && selectedFileContent !== -1 && isConfirmed === false) 
+                    &&
+                    <button
+                        onClick={()=>{
+                            setIsConfirmed(true);
+                            parseFromFile_vm(selectedFileContent, setProjectObj);
+
+                        }}
+                    >Confirm</button>}
+
+                    {isSelectedFile === true && <button
+                        onClick={()=>{
+                            setIsSelectedFile(false);
+
+                        }}
+                    >Reselect</button>}
+
+
+                    {isConfirmed === true && 
+                    <>
+                        <br></br><br></br>
+
 
                                                                 <br></br>
                                                                 <button
                                                                     onClick={()=>{
-                                                                        console.log(projectObj);
+                                                                        console.log("printing the obj ... \n", projectObj);
 
                                                                     }}
                                                                 
                                                                 >Print (test)</button>
 
-                    <br></br><br></br>
+                        <br></br><br></br>
 
-                    <button
-                        onClick={()=>{
+                        <button
+                            onClick={()=>{
+                                
+                                console.log("going to edit this project ... \n", projectObj);
 
-                            console.log(projectObj);
+                                // goToGameMaker(projectIdInput, false);
 
-                            // goToGameMaker(projectIdInput, false);
+                            }}
+                        >Edit Project</button>
 
-                        }}
-                    >Edit Project</button>
+                    </>}
                 </div>}
 
 

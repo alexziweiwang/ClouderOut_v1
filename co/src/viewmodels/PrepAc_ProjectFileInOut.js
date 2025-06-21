@@ -13,10 +13,10 @@ import React from 'react';
         reader.onload = () => {
             readContent = reader.result;
 
-                                                            console.log("readContent = ", readContent);
+            let jsonObj = JSON.parse(readContent);
 
 
-            setupContent(readContent);
+            setupContent(jsonObj);
 
         };
 
