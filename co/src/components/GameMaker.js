@@ -44,7 +44,7 @@ import { prepare1Gdt_vm, prepare2Epp_vm, prepare3Epa_vm } from '../viewmodels/Pr
 import { prepareForNewChapterMapping_vm, triggerCreatedNewNode_vm } from '../viewmodels/PrepAc_Creations';
 import { updateChapterNodeMappingsToCloud_vm } from '../viewmodels/UpdtAc_UpdateData';
 
-import { downloadEntireProjectFilePart1Meta_vm, fetchEntireProjectAllNodesDataFromCloud_vm } from '../viewmodels/PrepAc_ProjectFileInOut';
+import { fetchEntireProjectAllNodesDataFromCloud_vm, downloadProjectAllInOne_vm } from '../viewmodels/PrepAc_ProjectFileInOut';
 
 import { 
   fetchNodeDataEachNodeVM, 
@@ -1662,69 +1662,47 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
   }
 
                
-  async function fetchEntireProjectAllNodesDataFromCloud_local() {
-    let filenamePrefix = "project#" + projectName +  "#by#" + authEmailName + "_";
 
-    await fetchEntireProjectAllNodesDataFromCloud_vm(chapterNodeMapAll, filenamePrefix, getCurrChpNodeDataFromCloud);
 
-  }
-
-  function downloadAllInOne_makerLevel() {
-    downloadEntireProjectFilePart1Meta();
-    fetchEntireProjectAllNodesDataFromCloud_local();
-
-  }
-
-  function downloadEntireProjectFilePart1Meta() {
-
+  async function downloadAllInOne_makerLevel() {
     if (chapterNodeMapAll === -1 || gridBlocksAll === -1) {
       alert("unable to download");
       return;
-      
+    
     } else {
-                                              // console.log("\n\n\ndownloaded project file: ");
-                                              // console.log("");
 
-                                              // console.log("game-data-design = ", gameDataDesignList); //TODO3000 update from emu_gameDataManager...
-                                              // console.log("visual-map = ", visualMap);
-                                              // console.log("audio-map = ", audioMap);
-                                              // console.log("project-ui-lang  =", languageCodeTextOption);
-                                              // console.log("nav-settings = ", currentProjectNav);
+      let filenamePrefix = "project#" + projectName +  "#by#" + authEmailName + "_";
 
-                                              // console.log("chapter-list = ", chapterList);
-                                        //      console.log("chapter-node-mapping = ", chapterNodeMapAll);
+      let resAllChapters_Obj = await fetchEntireProjectAllNodesDataFromCloud_vm(
+        chapterNodeMapAll, 
+        filenamePrefix, 
+        getCurrChpNodeDataFromCloud
+      );
 
-        let downloadFileNameTemp =  "project#" + projectName +  "#by#" + authEmailName + "_settings";
-
-        let projectObjPart1Meta = {
-          "game_data": gameDataDesignList,
-          "resource_visual": visualMap,
-          "resource_audio": audioMap,
-          "project_ui_language": languageCodeTextOption,
-          "navigation_settings": currentProjectNav,
-          "chapter_list": chapterList,
-          "chapter_node_mapping": chapterNodeMapAll,
+      let projectObjPart1Meta_Obj = {
+        "game_data": gameDataDesignList,
+        "resource_visual": visualMap,
+        "resource_audio": audioMap,
+        "project_ui_language": languageCodeTextOption,
+        "navigation_settings": currentProjectNav,
+        "chapter_list": chapterList,
+        "chapter_node_mapping": chapterNodeMapAll,
       };
 
+      let largeObj = {
+        "meta-data": projectObjPart1Meta_Obj,
+        "content-by-chapter": resAllChapters_Obj
+      };
 
-        downloadEntireProjectFilePart1Meta_vm(projectObjPart1Meta, downloadFileNameTemp);
+      let outputFileName = filenamePrefix + "__all";
+
+      downloadProjectAllInOne_vm(largeObj, outputFileName);
 
     }
 
-    //------------------------------------------------------------------------------
 
-                                                    // GameDataDesign <map>
-                                                    // ProjectResourceVarPairs_audio  <map>   
-                                                    // ProjectResourceVarPairs_visual  <map>   
-                                                    // ProjectUILang <string>
-                                                    // NavigationSettings <map>
-                                                    
-                                                    // AllChapterList (used in chapter-manager) <map/2d_array>
-                                                    // ChapterNodeMapping (used in node-manager) <map>
-                                                    
-                                                    // Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps>
-                                                    
   }
+
 
   async function startViewerEntireTest() {
             
@@ -1947,7 +1925,7 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
       <button
         onClick={()=>{
           downloadAllInOne_makerLevel();
-          
+
         }}
       >Download Project File</button>
 

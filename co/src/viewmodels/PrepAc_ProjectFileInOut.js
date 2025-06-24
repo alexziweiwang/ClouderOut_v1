@@ -31,72 +31,48 @@ import React from 'react';
         return "";
     }
 
-    export function downloadProjectAllInOne_vm() {
-        
-    }
+    export function downloadProjectAllInOne_vm(obj, filename) {
+
+        let fileContentTemp = JSON.stringify(obj);
+
+        let textFileAsBlob = new Blob([fileContentTemp], { type: 'text/plain' });
+
+        let downloadLink = document.createElement('a');
+        downloadLink.download = filename;
+        downloadLink.innerHTML = 'Download File';
 
 
-    export function downloadEntireProjectFilePart1Meta_vm(projectObjPart1Meta, filename) {
+        if (window.webkitURL != null) {
+            downloadLink.href = window.webkitURL.createObjectURL(
+                textFileAsBlob
+            );
+        } else {
+            downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
+            downloadLink.style.display = 'none';
+            document.body.appendChild(downloadLink);
+        }
 
-            let fileContentTemp = JSON.stringify(projectObjPart1Meta);
-
-            let textFileAsBlob = new Blob([fileContentTemp], { type: 'text/plain' });
-
-            let downloadLink = document.createElement('a');
-            downloadLink.download = filename;
-            downloadLink.innerHTML = 'Download File';
-
-
-            if (window.webkitURL != null) {
-                downloadLink.href = window.webkitURL.createObjectURL(
-                    textFileAsBlob
-                );
-            } else {
-                downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
-                downloadLink.style.display = 'none';
-                document.body.appendChild(downloadLink);
-            }
-
-            downloadLink.click();
-    }
-
-
-    async function exportEachChapterNodesData(chapterKey, getCurrChpNodeDataFromCloud, filenamePrefix) {
-            let chapAllNodes = await getCurrChpNodeDataFromCloud(chapterKey);
-            let fileContentTemp = JSON.stringify(chapAllNodes);
-
-            let textFileAsBlob = new Blob([fileContentTemp], { type: 'text/plain' });
-
-            let downloadLink = document.createElement('a');
-            downloadLink.download = downloadLink.download = filenamePrefix + chapterKey;
-
-
-            downloadLink.innerHTML = 'Download File';
-
-
-            if (window.webkitURL != null) {
-                downloadLink.href = window.webkitURL.createObjectURL(
-                    textFileAsBlob
-                );
-            } else {
-                downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
-                downloadLink.style.display = 'none';
-                document.body.appendChild(downloadLink);
-            }
-
-            downloadLink.click(); 
+        downloadLink.click();
     }
 
     export async function fetchEntireProjectAllNodesDataFromCloud_vm(chapterNodeMapAll, filenamePrefix, getCurrChpNodeDataFromCloud) {
-            Object.keys(chapterNodeMapAll).map(async (chapKey) => {
+        let allMap = {};    
+        
+        Object.keys(chapterNodeMapAll).map(async (chapKey) => {
             let chapterKeyHandled = chapKey.trim();
 
-                if (chapterKeyHandled !== "chapter0" && chapterKeyHandled != "placeholder") {
+            if (chapterKeyHandled !== "chapter0" && chapterKeyHandled != "placeholder") {
                 
                     //TODO999 for each chapter ... get all of its node's data?
-                    await exportEachChapterNodesData(chapKey, getCurrChpNodeDataFromCloud, filenamePrefix);
-                        
-                }
-            });
+                   // await exportEachChapterNodesData(chapKey, getCurrChpNodeDataFromCloud, filenamePrefix);
+                   
+                   let chapNodeTemp = await getCurrChpNodeDataFromCloud(chapKey);
+                   allMap[chapKey] = chapNodeTemp;
+            }
+        });
+
+
+
+        return allMap;
     
     }
