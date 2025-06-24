@@ -1669,6 +1669,12 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
 
   }
 
+  function downloadAllInOne_makerLevel() {
+    downloadEntireProjectFilePart1Meta();
+    fetchEntireProjectAllNodesDataFromCloud_local();
+
+  }
+
   function downloadEntireProjectFilePart1Meta() {
 
     if (chapterNodeMapAll === -1 || gridBlocksAll === -1) {
@@ -1690,19 +1696,18 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
 
         let downloadFileNameTemp =  "project#" + projectName +  "#by#" + authEmailName + "_settings";
 
+        let projectObjPart1Meta = {
+          "game_data": gameDataDesignList,
+          "resource_visual": visualMap,
+          "resource_audio": audioMap,
+          "project_ui_language": languageCodeTextOption,
+          "navigation_settings": currentProjectNav,
+          "chapter_list": chapterList,
+          "chapter_node_mapping": chapterNodeMapAll,
+      };
 
-        downloadEntireProjectFilePart1Meta_vm(
-          {
-            gameDataDesignList: gameDataDesignList,
-            visualMap: visualMap,
-            audioMap: audioMap,
-            languageCodeTextOption: languageCodeTextOption,
-            currentProjectNav: currentProjectNav,
-            chapterList: chapterList,
-            chapterNodeMapAll: chapterNodeMapAll,
-            filename: downloadFileNameTemp,
-          } 
-        )
+
+        downloadEntireProjectFilePart1Meta_vm(projectObjPart1Meta, downloadFileNameTemp);
 
     }
 
@@ -1941,8 +1946,8 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
 
       <button
         onClick={()=>{
-          downloadEntireProjectFilePart1Meta();
-          fetchEntireProjectAllNodesDataFromCloud_local();
+          downloadAllInOne_makerLevel();
+          
         }}
       >Download Project File</button>
 

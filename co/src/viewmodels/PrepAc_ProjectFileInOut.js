@@ -28,39 +28,15 @@ import React from 'react';
 
         reader.readAsText(fileContent);
 
-
-                    //        console.log("readContent = ", readContent);
-
-//TODO999 create an object !!
-
         return "";
+    }
 
+    export function downloadProjectAllInOne_vm() {
+        
     }
 
 
-    export function downloadEntireProjectFilePart1Meta_vm(
-        {
-            gameDataDesignList,
-            visualMap,
-            audioMap,
-            languageCodeTextOption,
-            currentProjectNav,
-            chapterList,
-            chapterNodeMapAll,
-            filename
-        }
-    ) {
-
-
-            let projectObjPart1Meta = {
-                "game_data": gameDataDesignList,
-                "resource_visual": visualMap,
-                "resource_audio": audioMap,
-                "project_ui_language": languageCodeTextOption,
-                "navigation_settings": currentProjectNav,
-                "chapter_list": chapterList,
-                "chapter_node_mapping": chapterNodeMapAll,
-            };
+    export function downloadEntireProjectFilePart1Meta_vm(projectObjPart1Meta, filename) {
 
             let fileContentTemp = JSON.stringify(projectObjPart1Meta);
 
@@ -81,9 +57,7 @@ import React from 'react';
                 document.body.appendChild(downloadLink);
             }
 
-            downloadLink.click(); 
-
-            
+            downloadLink.click();
     }
 
 
