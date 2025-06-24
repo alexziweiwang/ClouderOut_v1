@@ -44,7 +44,7 @@ import { prepare1Gdt_vm, prepare2Epp_vm, prepare3Epa_vm } from '../viewmodels/Pr
 import { prepareForNewChapterMapping_vm, triggerCreatedNewNode_vm } from '../viewmodels/PrepAc_Creations';
 import { updateChapterNodeMappingsToCloud_vm } from '../viewmodels/UpdtAc_UpdateData';
 
-import { fetchEntireProjectAllNodesDataFromCloud_vm, downloadProjectAllInOne_vm } from '../viewmodels/PrepAc_ProjectFileInOut';
+import { downloadProjectAllInOne_vm } from '../viewmodels/PrepAc_ProjectFileInOut';
 
 import { 
   fetchNodeDataEachNodeVM, 
@@ -313,9 +313,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
   const [nodeMgrDelSignal, setNodeMgrDelSignal] = useState(false);
   
 //TODO23 update to and fetch from cloud for this project !!!
-  const [currentProjectNav, setCurrentProjectNav] = useState({
-    
-  }); //TODO now: default initial values
+  const [currentProjectNav, setCurrentProjectNav] = useState({"default": "default"}); //TODO now: default initial values
 
   const [testPlayerGameDataTracker, setTestPlayerGameDataTracker] = useState({});   //TODO important for holder-in-practice
   const [testPlayerProfile, setTestPlayerProfile] = useState({});                                                       //TODO important for holder-in-practice
@@ -372,9 +370,6 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
       console.log("no game_data in this project...");
       let gdataTestResult = [];
       setGameDataDesignList(gdataTestResult);
-    } else {
-             console.log("*from cloud* game-data: gdataTestResult[game_data] ", gdataTestResult); //TODO fetched game-data!
-      setGameDataDesignList(gdataTestResult);      
     }
  
 
@@ -468,9 +463,9 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
               setCloudDbConnOk(true);
             }
 
-            if (Object.keys(gameDataDesignList).length === 0) { //TODO999
-                triggerRefreshFetchCloudData();
-            }
+            // if (Object.keys(gameDataDesignList).length === 0) { //TODO999
+            //     triggerRefreshFetchCloudData();
+            // }
 
             setOfflineHalfMode(false);
             setOfflineFullMode(false);
@@ -1350,7 +1345,7 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
       bkOption: backendOption
     })
 
-                                                  // console.log("proj-nav-settings = ", data);
+                                                  console.log("proj-nav-settings = ", data);
     setCurrentProjectNav(data);
   }
 
@@ -1672,12 +1667,8 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
     } else {
 
       let filenamePrefix = "project#" + projectName +  "#by#" + authEmailName + "_";
+      let outputFileName = filenamePrefix + "__all";
 
-      let resAllChapters_Obj = await fetchEntireProjectAllNodesDataFromCloud_vm(
-        chapterNodeMapAll, 
-        filenamePrefix, 
-        getCurrChpNodeDataFromCloud
-      );
 
       let projectObjPart1Meta_Obj = {
         "game_data": gameDataDesignList,
@@ -1689,14 +1680,15 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
         "chapter_node_mapping": chapterNodeMapAll,
       };
 
-      let largeObj = {
-        "meta-data": projectObjPart1Meta_Obj,
-        "content-by-chapter": resAllChapters_Obj
-      };
 
-      let outputFileName = filenamePrefix + "__all";
 
-      downloadProjectAllInOne_vm(largeObj, outputFileName);
+      await downloadProjectAllInOne_vm(
+        projectObjPart1Meta_Obj, 
+        chapterNodeMapAll, 
+        getCurrChpNodeDataFromCloud, 
+        outputFileName
+      );
+
 
     }
 

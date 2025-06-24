@@ -140,12 +140,12 @@ export default function Modal_GameDataManager ({
             }
         }
 
-        // if (firstTimeEnter === true && username !== "_") {
-        if (username !== "_" && gdmMapSize === 0) {
+        if (firstTimeEnter === true && username !== "_") {
+        // if (username !== "_" && gdmMapSize === 0) {
 
-            initialization(username);
+        //     initialization(username);
 
-        //    setFirstTimeEnter(false);
+           setFirstTimeEnter(false);
         }
 
 

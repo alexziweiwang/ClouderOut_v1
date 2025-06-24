@@ -189,7 +189,6 @@ export async function triggerCreatedNewNode_vm (
         chapterNodeMapping: empty_chapter_node_mapping,
         convNodeUiPlanMap: empty_node_ui_plan,
         emu4sets: empty_emu_4sets,
-        project_name: addedNewProjName,
         game_data: empty_game_data,
         nav_ui_settings: empty_nav_ui_settings,
         proj_resource_audio: empty_rm_audio,
@@ -201,7 +200,9 @@ export async function triggerCreatedNewNode_vm (
 
         author_info: addedAuthorInfo,
         project_description: projDedscription,
-        project_title: addedNewProjName
+        project_title: addedNewProjName,
+        project_name: addedNewProjName,
+
 
       };
 
@@ -244,6 +245,8 @@ export async function createNewProjectToCloud_vm(
         projectNavUiTemplate, 
         addedAuthorInfo,
         projDedscription,
+        addedNewProjName,
+        
       );
 
 

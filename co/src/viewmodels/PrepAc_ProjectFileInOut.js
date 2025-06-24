@@ -31,31 +31,53 @@ import React from 'react';
         return "";
     }
 
-    export function downloadProjectAllInOne_vm(obj, filename) {
-
-        let fileContentTemp = JSON.stringify(obj);
-
-        let textFileAsBlob = new Blob([fileContentTemp], { type: 'text/plain' });
-
-        let downloadLink = document.createElement('a');
-        downloadLink.download = filename;
-        downloadLink.innerHTML = 'Download File';
+    export async function downloadProjectAllInOne_vm(
+        meta_obj, 
+        chapterNodeMapAll, 
+        getCurrChpNodeDataFromCloud, 
+        filename
+    ) {
 
 
-        if (window.webkitURL != null) {
-            downloadLink.href = window.webkitURL.createObjectURL(
-                textFileAsBlob
-            );
-        } else {
-            downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
-            downloadLink.style.display = 'none';
-            document.body.appendChild(downloadLink);
-        }
+        await fetchEntireProjectAllNodesDataFromCloud_vm(
+            chapterNodeMapAll, 
+            getCurrChpNodeDataFromCloud
+        )
+        .then((content_obj)=>{
 
-        downloadLink.click();
+                let largeObj = {
+                    "meta-data": meta_obj,
+                    "content-by-chapter": content_obj
+                };
+        
+                let fileContentTemp = JSON.stringify(largeObj);
+                                                    
+                                                       console.log("!!! entire-obj = \n", largeObj, "\n");
+        
+
+                let textFileAsBlob = new Blob([fileContentTemp], { type: 'text/plain' });
+        
+                let downloadLink = document.createElement('a');
+                downloadLink.download = filename;
+                downloadLink.innerHTML = 'Download File';
+                if (window.webkitURL != null) {
+                    downloadLink.href = window.webkitURL.createObjectURL(
+                        textFileAsBlob
+                    );
+                } else {
+                    downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
+                    downloadLink.style.display = 'none';
+                    document.body.appendChild(downloadLink);
+                }
+                downloadLink.click();
+
+        });
+
+        
+    
     }
 
-    export async function fetchEntireProjectAllNodesDataFromCloud_vm(chapterNodeMapAll, filenamePrefix, getCurrChpNodeDataFromCloud) {
+    export async function fetchEntireProjectAllNodesDataFromCloud_vm(chapterNodeMapAll, getCurrChpNodeDataFromCloud) {
         let allMap = {};    
         
         Object.keys(chapterNodeMapAll).map(async (chapKey) => {
