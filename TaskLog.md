@@ -669,6 +669,9 @@
 
 - 2025-Jun-24: Testing-project material prep 19
 - 2025-Jun-24: Half-online mode strategies design 6
+- 2025-Jun-24: Project-data-version strategies design 8
+
+
 
 
 
