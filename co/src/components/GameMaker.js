@@ -313,7 +313,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
   const [nodeMgrDelSignal, setNodeMgrDelSignal] = useState(false);
   
 //TODO23 update to and fetch from cloud for this project !!!
-  const [currentProjectNav, setCurrentProjectNav] = useState({"default": "default"}); //TODO now: default initial values
+  const [currentProjectNav, setCurrentProjectNav] = useState({}); //TODO now: default initial values
 
   const [testPlayerGameDataTracker, setTestPlayerGameDataTracker] = useState({});   //TODO important for holder-in-practice
   const [testPlayerProfile, setTestPlayerProfile] = useState({});                                                       //TODO important for holder-in-practice
@@ -1660,7 +1660,7 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
 
 
   async function downloadAllInOne_makerLevel() {
-    if (chapterNodeMapAll === -1 || gridBlocksAll === -1) {
+    if (chapterNodeMapAll === -1 || gridBlocksAll === -1 || Object.keys(currentProjectNav).length === 0) {
       alert("unable to download");
       return;
     
@@ -1686,7 +1686,7 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
         projectObjPart1Meta_Obj, 
         chapterNodeMapAll, 
         getCurrChpNodeDataFromCloud, 
-        outputFileName
+        filenamePrefix
       );
 
 
