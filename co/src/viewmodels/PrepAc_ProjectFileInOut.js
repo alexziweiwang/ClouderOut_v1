@@ -59,46 +59,24 @@ import React from 'react';
         filenamePrefix
     ) {
 
-        let metaFilename = filenamePrefix + "meta_data";
-    //    downloadObjectAsFile(meta_obj, metaFilename);
 
-        fetchEntireProjectAllNodesDataFromCloud_vm(chapterNodeMapAll, getCurrChpNodeDataFromCloud, filenamePrefix);
+        downloadEntireProjectAll_vm(
+            chapterNodeMapAll, 
+            getCurrChpNodeDataFromCloud, 
+            filenamePrefix,
+            meta_obj
+        );
         
     }
    
 
-    export async function fetchEntireProjectAllNodesDataFromCloud_vm(
+    export async function downloadEntireProjectAll_vm(
         chapterNodeMapAll, 
         getCurrChpNodeDataFromCloud, 
-        filenamePrefix
+        filenamePrefix,
+        meta_obj
     ) {
-            let allMap = {};
         
-                                                    // Object.keys(chapterNodeMapAll).map(async (chapKey) => {
-                                                    //     let chapterKeyHandled = chapKey.trim();
-
-                                                    //     if (chapterKeyHandled !== "chapter0" && chapterKeyHandled != "placeholder") {
-                                                            
-                                                    //             //TODO999 for each chapter ... get all of its node's data?
-                                                    //         // await exportEachChapterNodesData(chapKey, getCurrChpNodeDataFromCloud, filenamePrefix);
-                                                            
-
-
-                                                    //         let chapNodeTemp = await getCurrChpNodeDataFromCloud(chapKey);
-                                                    //                     //  console.log("\t\t\t chapter - ", chapKey, chapNodeTemp);
-                                                            
-                                                    //                                         //let filename = filenamePrefix + "__" + chapKey;
-
-
-                                                    //         allMap[chapKey] = chapNodeTemp;
-
-                                                    //                                 //  downloadObjectAsFile(chapNodeTemp, filename);
-                                                    //     }                            
-
-                                               
-                                               
-                                                    // });
-
             let promiseArr = [];
 
             Object.keys(chapterNodeMapAll).map((chapKey) => {
@@ -122,12 +100,29 @@ import React from 'react';
 
             });
 
+            
 
             Promise.all(promiseArr).then((values)=>{
-            //    console.log("values = ", values);
 
-                let fileNameEntire = filenamePrefix + "_chapter_content";
-                console.log("values-string = ", JSON.stringify(values));
-                downloadObjectAsFile(values, fileNameEntire);
+                let contentMap = {};
+
+                values.forEach((innerMap)=>{
+                    Object.keys(innerMap).map((currKey) => {
+                        contentMap[currKey] = innerMap[currKey];
+                    })
+                })
+                
+
+                let fileNameEntire = filenamePrefix + "_all";
+      
+                let largeObj = {
+                    "meta_data": meta_obj,
+                    "chapter_content": contentMap
+                }
+
+                                            console.log("\t\tlarge-obj = ", largeObj);
+
+                
+                downloadObjectAsFile(largeObj, fileNameEntire);
             })
     }
