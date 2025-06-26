@@ -66,6 +66,7 @@ export default function ProjectManagerPanel() {
     const [currentProjectAction, setCurrentProjectAction] = useState("selectProject"); //"createProject", "selectProject", "revertProject"
 
 
+    const [selectedFileContent, setSelectedFileContent] = useState("");
 
     const [authEmailName, setAuthEmailName] = useState("_");
     
@@ -279,7 +280,7 @@ export default function ProjectManagerPanel() {
         <div className="parallelFrame"  
           style={{
               "marginTop": "20px", 
-              "justifyContent": "center", 
+              "justifyContent": "start", 
               "alignItems": "center", 
               "display": currentProjectAction === "selectProject" ? "flex" : "none",
               "transition": "all 0.2s ease-out",
@@ -287,9 +288,12 @@ export default function ProjectManagerPanel() {
               "paddingRight": "25px",
 
           }}>
-          
+
           
           <div className="projectGrid">
+                Projects on Cloud
+                <br></br>
+
             {projList.map((item, index) => {
               return (
                 <div className= {(selected_project_name === item) ? "projectGridItemSelected" : "projectGridItem"}
@@ -317,13 +321,35 @@ export default function ProjectManagerPanel() {
 
 
 
-          {<div style={{"width": "500px"}}>
+          {<div style={{"width": selected_project_name === "" ?  "20px" :"200px"}}>
               <button 
                 className="button testEntire" 
                 style={{"display": selected_project_name === "" ? "none" : "flex"}}
                 onClick={()=>{goToGameMaker();}}> 
                 {gameMakerButtonText} 
               </button>
+          </div>}
+
+
+          {selected_project_name === "" && 
+          <div className="projectGrid">
+            Import Project
+            <br></br><br></br>
+                 <input 
+                        type="file"
+                        accept=".txt"  
+                        onChange={(event)=>{
+                            let fileContent = event.target.files[0];
+                            setSelectedFileContent(fileContent);
+
+                        }}
+
+                    ></input>
+
+            <div>
+              
+              
+            </div>  
           </div>}
 
         </div>

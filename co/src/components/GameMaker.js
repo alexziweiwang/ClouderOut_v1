@@ -1912,8 +1912,6 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
 
       </>}
 
-      <button>Import from File</button>
-
       <button
         onClick={()=>{
           downloadAllInOne_makerLevel();

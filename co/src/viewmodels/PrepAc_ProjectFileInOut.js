@@ -120,7 +120,7 @@ import React from 'react';
                     "chapter_content": contentMap
                 }
 
-                                            console.log("\t\tlarge-obj = ", largeObj);
+                                //            console.log("\t\tlarge-obj = ", largeObj);
 
                 
                 downloadObjectAsFile(largeObj, fileNameEntire);
