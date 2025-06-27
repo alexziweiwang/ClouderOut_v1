@@ -677,7 +677,7 @@
 
 - 2025-Jun-26: Project-file strategies design
 - 2025-Jun-26: Half-online mode strategies design 8
-
+- 2025-Jun-26: Testing-project material prep 21
 
 
 
