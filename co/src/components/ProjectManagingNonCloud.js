@@ -177,6 +177,7 @@ export default function ProjectManagingOffline() {
                         onClick={()=>{
                             setIsConfirmed(true);
                             parseFromFile_vm(selectedFileContent, setProjectObj);
+                            
 
                         }}
                     >Confirm</button>}

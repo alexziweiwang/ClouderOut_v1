@@ -3,7 +3,7 @@ import React from 'react';
 
 
     export function parseFromFile_vm(fileContent, setupContent) {
-        let obj = {};
+                                console.log("parseFromFile-vm: [", fileContent, "]...");
 
         let readContent = "default-empty";
 
@@ -13,10 +13,15 @@ import React from 'react';
         reader.onload = () => {
             readContent = reader.result;
 
-            let jsonObj = JSON.parse(readContent);
+            let jsonObj;
 
+            jsonObj = JSON.parse(readContent);
 
+                                        console.log("\t\tcontent obj = ", jsonObj);
+
+                                        
             setupContent(jsonObj);
+
 
         };
 
@@ -29,6 +34,7 @@ import React from 'react';
         reader.readAsText(fileContent);
 
         return "";
+
     }
 
     function downloadObjectAsFile(obj, filename) {

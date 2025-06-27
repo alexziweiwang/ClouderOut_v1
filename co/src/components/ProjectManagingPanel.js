@@ -14,6 +14,9 @@ import { fetchProjectListVM, revertProjectVM, deleteProjectVM } from '../viewmod
 //TODO1090 collection of cloud-related
 
 
+import { parseFromFile_vm } from '../viewmodels/PrepAc_ProjectFileInOut';
+
+
 import { getAuthFirebase } from '../authtools/firebaseAuthOperations';
 
 
@@ -69,6 +72,8 @@ export default function ProjectManagerPanel() {
     const [selectedFileContent, setSelectedFileContent] = useState("");
     const [selectedFileName, setSelectedFileName] = useState("");
     const [imptProjectNameInput, setImptProjectNameInput] = useState("");
+    const [impProjQualityCheckOk, setImptProjQualityCheckOk] = useState(false);
+    const [projectObj, setProjectObj] = useState(undefined);
 
     const [authEmailName, setAuthEmailName] = useState("_");
     
@@ -86,6 +91,8 @@ export default function ProjectManagerPanel() {
         
       console.log("project managing panel page --\t\tauthEmamilName is [", authEmailName, "]");
 
+      console.log("mgr-panel, imported-obj = ", projectObj);
+      
 
     }, [firstTimeEnter]);
 
@@ -209,8 +216,32 @@ export default function ProjectManagerPanel() {
       return authEmailName; //TODO1030
     }
 
+    function   handleImportedFile() {
+        parseFromFile_vm(selectedFileContent, setProjectObj);
+
+    }
+
+    function resetFileSelection() {
+      setSelectedFileContent("");
+      setSelectedFileName("");
+      setImptProjectNameInput("");
+
+    }
+
     let name = "/projectmanagingpanel";
-    
+
+
+
+
+
+
+
+//selectedFileContent
+//selectedFileName
+//imptProjectNameInput
+//impProjQualityCheckOk 
+
+
     
     return (<>
 
@@ -223,6 +254,10 @@ export default function ProjectManagerPanel() {
 
       <div className="dashboard_content">
   
+
+
+{/* "createProject" Section   */}
+
         <div 
           className={currentProjectAction === "createProject" ? "projSelectionArea projManageSectionSelected" : "projSelectionArea projManageSection"}
         >
@@ -258,6 +293,9 @@ export default function ProjectManagerPanel() {
 
         </div>
 
+
+
+{/* "selectProject" Section */}
         <div 
           className={currentProjectAction === "selectProject" ? "projSelectionArea projManageSectionSelected" : "projSelectionArea projManageSection"}
         >
@@ -292,7 +330,7 @@ export default function ProjectManagerPanel() {
           }}>
 
           
-          <div className="projectGrid">
+          <div className="projectGrid" style={{"height": "210px", "overflow": "scroll"}}>
                 Projects on Cloud
                 <br></br>
 
@@ -328,7 +366,6 @@ export default function ProjectManagerPanel() {
             "display": "flex",
             "justifyContent": "center",
             
-            
           }}>
               {selected_project_name !== "" 
               &&
@@ -353,28 +390,47 @@ export default function ProjectManagerPanel() {
 
 
           {selected_project_name === "" && 
-          <div className="projectGrid">
+          <div 
+            className="projectGrid" 
+            style={{
+              "height": "210px", 
+            }}>
+
             Import Project From File
+
             <br></br><br></br>
                  <input 
                         type="file"
                         accept=".txt"  
                         onChange={(event)=>{
-                            let fileContent = event.target.files[0];
-                            setSelectedFileContent(fileContent);
-                            setSelectedFileName(fileContent.name);
-                            
+                            if (event.target.files !== undefined) {
+                              let fileContent = event.target.files[0];
+                              setSelectedFileContent(fileContent);
+                              setSelectedFileName(fileContent.name);
+                              
+                              setImptProjectNameInput("");
+                              setProjectObj(undefined);
+
+                                        console.log("selected file...", fileContent);
+                              
+                            }
+               
                         }}
 
                   ></input>
 
-                  <label>
+                  <label style={{"fontWeight": "normal"}}>
                     {selectedFileName}
                   </label>
 
-                  <label>Project Name: </label>      
+                  <br></br>
+
+                  <label style={{"fontWeight": "normal"}}>
+                    Project Name: </label>      
+                  
                   <input
-                    onClick={(event)=>{
+                    value={imptProjectNameInput}
+                    onChange={(event)=>{
 
 //TODO99999
                         setImptProjectNameInput(event.target.value);
@@ -382,14 +438,18 @@ export default function ProjectManagerPanel() {
                     }}                  
                   ></input>
 
-                  <br></br>
-                  <button
 
+
+                  <br></br><br></br>
+                  <button
+                    onClick={()=>{
+                      handleImportedFile();
+                      resetFileSelection();
+                    }}
                   >Confirm Import</button>
 
                   <br></br>
                   <label>{}</label>
-
 
 
             <div>
@@ -408,6 +468,10 @@ export default function ProjectManagerPanel() {
         </div>
 
 
+
+
+
+{/* "revertProject" Section */}
           <div 
             className={currentProjectAction === "revertProject" ? "projSelectionArea projManageSectionSelected" : "projSelectionArea projManageSection"}
           >   
