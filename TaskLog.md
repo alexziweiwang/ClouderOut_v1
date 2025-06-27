@@ -676,7 +676,7 @@
 - 2025-Jun-25: Half-online mode strategies design 7
 
 - 2025-Jun-26: Project-file strategies design
-
+- 2025-Jun-26: Half-online mode strategies design 8
 
 
 
