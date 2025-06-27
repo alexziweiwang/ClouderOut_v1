@@ -56,7 +56,7 @@ export default function ProjectManagerPanel() {
 
 
 
-    const [selected_project_name, setProjectName] = useState("");
+    const [selected_project_name, setSelectedProjectName] = useState("");
     const [projList, setProjList] = useState(false); 
     const [trashedProjList, setTrashedProjList] = useState(false);
     const [selectedTrashedProj, setSelectedTrashedProj] = useState("");
@@ -67,6 +67,8 @@ export default function ProjectManagerPanel() {
 
 
     const [selectedFileContent, setSelectedFileContent] = useState("");
+    const [selectedFileName, setSelectedFileName] = useState("");
+    const [imptProjectNameInput, setImptProjectNameInput] = useState("");
 
     const [authEmailName, setAuthEmailName] = useState("_");
     
@@ -146,14 +148,14 @@ export default function ProjectManagerPanel() {
     }
 
     function handleProjectSelectionChange(event) {
-      setProjectName(event.target.value);
+      setSelectedProjectName(event.target.value);
     }
 
     function handleProjectGridClicked(project) {
       if (project === selected_project_name) {
-        setProjectName("");
+        setSelectedProjectName("");
       } else {
-        setProjectName(project);
+        setSelectedProjectName(project);
       }
     }
 
@@ -190,7 +192,7 @@ export default function ProjectManagerPanel() {
         }
       );
       
-      setProjectName("");
+      setSelectedProjectName("");
       loadProjectListFromCloud(authEmailName);
     }
 
@@ -321,19 +323,38 @@ export default function ProjectManagerPanel() {
 
 
 
-          {<div style={{"width": selected_project_name === "" ?  "20px" :"200px"}}>
-              <button 
-                className="button testEntire" 
-                style={{"display": selected_project_name === "" ? "none" : "flex"}}
-                onClick={()=>{goToGameMaker();}}> 
-                {gameMakerButtonText} 
-              </button>
+          {<div style={{
+            "width": selected_project_name === "" ?  "20px" :"200px",
+            "display": "flex",
+            "justifyContent": "center",
+            
+            
+          }}>
+              {selected_project_name !== "" 
+              &&
+              <div>
+                <button 
+                  className="button testEntire" 
+                  onClick={()=>{goToGameMaker();}}> 
+                  {gameMakerButtonText} 
+                </button>
+
+                <br></br>
+
+                <button
+                  onClick={()=>{
+                    setSelectedProjectName("");
+                  }}
+                
+                >
+                  cancel</button>
+              </div>}
           </div>}
 
 
           {selected_project_name === "" && 
           <div className="projectGrid">
-            Import Project
+            Import Project From File
             <br></br><br></br>
                  <input 
                         type="file"
@@ -341,10 +362,35 @@ export default function ProjectManagerPanel() {
                         onChange={(event)=>{
                             let fileContent = event.target.files[0];
                             setSelectedFileContent(fileContent);
-
+                            setSelectedFileName(fileContent.name);
+                            
                         }}
 
-                    ></input>
+                  ></input>
+
+                  <label>
+                    {selectedFileName}
+                  </label>
+
+                  <label>Project Name: </label>      
+                  <input
+                    onClick={(event)=>{
+
+//TODO99999
+                        setImptProjectNameInput(event.target.value);
+                        
+                    }}                  
+                  ></input>
+
+                  <br></br>
+                  <button
+
+                  >Confirm Import</button>
+
+                  <br></br>
+                  <label>{}</label>
+
+
 
             <div>
               
