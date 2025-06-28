@@ -1,5 +1,52 @@
 import React from 'react';
 
+    function checkProjectFileContact(obj) {
+        if (obj["meta_data"] === undefined || obj["chapter_content"] === undefined) {
+            return false;
+        } else {
+            let contentMap = obj["chapter_content"];
+            Object.keys(contentMap).map((chapterKey) => {
+                //each chapter
+                let chapterItem = contentMap[chapterKey];
+                Object.keys(chapterItem).map((nodeKey) => {
+                    //each node
+
+                    let nodeItem = chapterItem[nodeKey];
+                    
+                    let nodeContent = nodeItem["nodeContent"];
+                    let nodeUISettings = nodeItem["nodeUISettings"];
+                    //TODO add for node-type
+
+
+                    //TODO check node-content (based on node-type)
+                    //TODO check nodeUI Settings (based on node-type)
+
+
+                });
+
+            });
+
+            
+
+            //TODO check meta_data
+            // "game_data"
+            // "resource_visual"
+                    //check all item's format
+            // "resource_audio"
+            // "project_ui_language"
+            // "navigation_settings"
+                    //TODO check all keys from nav-settings obj
+            // "chapter_list"
+                //each chapter-each node: 
+                    // col, display, nextNode, nodeName, nodeType, row, screenSize, 
+            // "chapter_node_mapping"
+
+
+        }
+
+
+
+    }
 
 
     export function parseFromFile_vm(fileContent, setupContent) {
@@ -19,8 +66,15 @@ import React from 'react';
 
                                         console.log("\t\tcontent obj = ", jsonObj);
 
-                                        
-            setupContent(jsonObj);
+            let checkResult = checkProjectFileContact(jsonObj);
+            if (checkResult === false) {
+                let errObj = {"error######################": "error######################"};
+                setupContent(errObj);
+
+            } else {
+                setupContent(jsonObj);
+            }
+
 
 
         };
