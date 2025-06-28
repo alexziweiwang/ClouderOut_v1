@@ -1995,6 +1995,8 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
           triggerSaveToCloud={saveEverythingToCloud}
           chapterChangingOrExiting={chapterChangingOrExiting}
           triggerNodeDeleted={triggerNodeDeleted}
+
+          editorMode={editorMode}
           //TODO500
         />}
 

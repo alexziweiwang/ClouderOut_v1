@@ -29,7 +29,9 @@ export default function NodeManager({projectName, currUser,
 
 
   chapterChangingOrExiting,
-  triggerNodeDeleted
+  triggerNodeDeleted,
+
+  editorMode
 
 
 }) {
@@ -396,7 +398,8 @@ export default function NodeManager({projectName, currUser,
           userName, 
           screenSizeStr, 
           uiLang, 
-          chapterKey
+          chapterKey,
+          editorMode
         } 
         });
     } else if (currNodeType === "Conversation") {
@@ -409,7 +412,8 @@ export default function NodeManager({projectName, currUser,
           userName, 
           screenSizeStr, 
           uiLang, 
-          chapterKey
+          chapterKey,
+          editorMode
         } 
         });
     } 

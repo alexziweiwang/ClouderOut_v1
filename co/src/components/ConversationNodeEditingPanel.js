@@ -390,7 +390,8 @@ GameDataDesign <map>
         if (resp) {
             let stateObj = {
                 selected_project_name: state.projectName, 
-                username: state.userName
+                username: state.userName,
+                mode: editorMode //TODO999 temp (fixed as const here)
             };
             navigate('/editorcontainer', { replace: true, state: stateObj });
         }

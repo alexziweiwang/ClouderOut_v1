@@ -20,7 +20,7 @@ export default function Container_GameEditor_Outer() {
 
     if (state !== null && state !== undefined) {
       projectName = state.selected_project_name;
-      mode = state.modeName;
+      mode = state.mode;
     }
 
     
