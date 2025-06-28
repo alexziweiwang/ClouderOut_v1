@@ -2,7 +2,7 @@ import  {db} from '../GoogleCloudConnections'; //TODO23 database
 import { doc, getDoc, getDocs, addDoc, setDoc, collection, query, where, updateDoc } from "firebase/firestore"; 
 
 //update node-content + node-ui-settings
-export async function convSingleNodeUpdateToCloud({project, username, chapterKey, nodeKey, dataObj, uiDataObj}) {
+export async function convSingleNodeUpdateToCloud({project, username, chapterKey, nodeKey, dataObj, uiDataObj, nodeType}) {
     
     const projectNodeRef = doc(db, "user_projects", username, "projects", project, "chapters", chapterKey, "nodes", nodeKey);
     const projectNodeSnap = await getDoc(projectNodeRef);
@@ -14,10 +14,10 @@ export async function convSingleNodeUpdateToCloud({project, username, chapterKey
       return "node-not-exist";
     }
 
-
     await updateDoc(projectNodeRef, {
       "nodeContent": dataObj,
-      "nodeUISettings": uiDataObj
+      "nodeUISettings": uiDataObj,
+      "nodeType": nodeType
     });
 
     return "node-update-ok";

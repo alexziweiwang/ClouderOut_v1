@@ -858,6 +858,8 @@ GameDataDesign <map>
         //gameUIDefaultButton, gameUITextFrame, gameUIBackButton, uiConvNav, logPageUISettings
 
 
+        let typeStr = "Conversation";
+
         await convSingleNodeUpdateToCloudVM({
             project: state.projectName, 
             username: authEmailName,       
@@ -865,7 +867,8 @@ GameDataDesign <map>
             nodeKey: state.clickedNodeKey, 
             dataObj: pieceDataStructure, 
             uiDataObj: uiObj,
-            bkOption: backendOption
+            bkOption: backendOption,
+            nodeType: typeStr
         })            
         .then((res)=>{
                 if (res === "node-update-ok") {

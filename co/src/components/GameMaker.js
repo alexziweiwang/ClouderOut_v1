@@ -450,7 +450,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
             console.log("\t\t\tgame-maker rendered once.      project = ", projectName);
 
 
-        if (authEmailName !== "_") {
+        if (authEmailName !== "_" && editorMode === "online_cloud") {
 
             //TODO5000 check returned data from cloud-db
             if (gridBlocksAll === -1 || chapterNodeMapAll === -1) {
