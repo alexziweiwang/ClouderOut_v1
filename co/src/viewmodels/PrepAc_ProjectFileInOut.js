@@ -5,7 +5,8 @@ import {
     gameUITextFrameTemplate,
     gameUIBackButtonTemplate,
     uiConvNavTemplate,
-    logPageUISettingsTemplate
+    logPageUISettingsTemplate,
+    projectNavUiTemplate
 } from '../components/_dataStructure_DefaultObjects';
 
 
@@ -79,6 +80,10 @@ import {
 
             }
 
+        } else {
+
+            //TODO other node-types...
+
         }
 
         
@@ -102,29 +107,83 @@ import {
                     let nodeContent = nodeItem["nodeContent"];
                     let nodeUISettings = nodeItem["nodeUISettings"];
                     let nodeType = nodeItem["nodeType"];
-                    //TODO add for node-type
 
                     let isNodeOk = checkNodeByType(nodeType, nodeContent, nodeUISettings);
-               
+                    if (isNodeOk === false) {
+                        return false;
+                    }
 
                 });
 
             });
 
             
+            let metadataObj = obj["meta_data"];
+
+            if (metadataObj["game_data"] === undefined 
+                || metadataObj["resource_visual"] === undefined 
+                || metadataObj["resource_audio"] === undefined 
+                || metadataObj["project_ui_language"] === undefined 
+                || metadataObj["navigation_settings"] === undefined 
+                || metadataObj["chapter_list"] === undefined 
+                || metadataObj["chapter_node_mapping"] === undefined 
+            ) {
+                return false;                                           
+            } else {
+                let gameDataList = metadataObj["game_data"];
+                // "game_data"
+                            //"data_type"
+                            //"default_value"
+                            //"name"
+                gameDataList.map((item, index)=>{
+
+                    if (item["data_type"] === undefined
+                    || item["default_value"] === undefined
+                    || item["name"] === undefined
+                    ) {
+                        return false;
+                    }
+                });
+
+
+                let projNavSettingObj = metadataObj["navigation_settings"];
+                // "navigation_settings"
+                            //projectNavUiTemplate
+                Object.keys(projectNavUiTemplate).map((currKey) => {
+                    if (projNavSettingObj[currKey] === undefined) {
+                        return false;
+                    }
+
+                })
+
+
+                
+
 
             //TODO check meta_data
-            // "game_data"
+ 
+
             // "resource_visual"
                     //check all item's format
+
             // "resource_audio"
-            // "project_ui_language"
-            // "navigation_settings"
-                    //TODO check all keys from nav-settings obj
+
+
+  
             // "chapter_list"
-                //each chapter-each node: 
-                    // col, display, nextNode, nodeName, nodeType, row, screenSize, 
+                //each item: length should be 4
+
             // "chapter_node_mapping"
+                //each chapter-each node: 
+                                // col, display, nextNode, nodeName, nodeType, row, screenSize, 
+
+
+
+
+
+            }
+
+
 
 
         }

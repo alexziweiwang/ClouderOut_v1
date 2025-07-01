@@ -1051,14 +1051,20 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
           return;
         }
 
-        if (emuGdt1Temp[currKey]["current_value"] === undefined) {
-          return;
+        if (emuGdt1Temp[currKey] !== undefined) {
+            if (emuGdt1Temp[currKey]["current_value"] === undefined) {
+              return;
+            }
+
+            if (emuGdt1Temp[currKey] === undefined) {
+                emuGdt1Temp[currKey] = gameDataDesignList[currKey];
+                emuGdt1Temp[currKey]["current_value"] = emuGdt1Temp[currKey]["default_value"];
+            }
+        } else {
+          //TODO99999 add this for emuGdt1Temp[currKey]
         }
 
-        if (emuGdt1Temp[currKey] === undefined) {
-            emuGdt1Temp[currKey] = gameDataDesignList[currKey];
-            emuGdt1Temp[currKey]["current_value"] = emuGdt1Temp[currKey]["default_value"];
-        }
+
     });
 
     setTestPlayerGameDataTracker(emuGdt1Temp);
