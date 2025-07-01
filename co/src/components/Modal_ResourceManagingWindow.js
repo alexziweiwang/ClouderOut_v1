@@ -115,8 +115,8 @@ export default function Modal_ResourceManagingWindow ({
     const [visualListFilteredList, setVisualListFilteredList] = useState([]);
     const [audioListFilteredList, setAudioListFilteredList] = useState([]);
 
-    const [visualVarPairs, setVisualVarPairs] = useState([]);
-    const [audioVarPairs, setAudioVarPairs] = useState([]);
+    const [visualVarPairs, setVisualVarPairs] = useState(undefined);
+    const [audioVarPairs, setAudioVarPairs] = useState(undefined);
 
     const [varPairToCloud, setVarPairToCloud] = useState("default");
 
@@ -140,9 +140,8 @@ export default function Modal_ResourceManagingWindow ({
 
         let unameTemp = getUsername();
         if (unameTemp !== "_") {
-            fetchRmFileList(unameTemp);
-            fetchProjResourceVarPairLists(unameTemp);
 
+            initFetchPrep(unameTemp);
 
             setUsername(unameTemp);
         }
@@ -157,6 +156,15 @@ export default function Modal_ResourceManagingWindow ({
 
 
     });
+
+    function initFetchPrep(usernameTemp) {
+        if (visualVarPairs === undefined || audioVarPairs === undefined) {
+
+            fetchRmFileList(usernameTemp);
+
+            fetchProjResourceVarPairLists(usernameTemp);
+        }
+    }
 
     function markDataChanged() {
         setCloudUpdated(true)  // when add, delete, edit
@@ -298,16 +306,22 @@ export default function Modal_ResourceManagingWindow ({
 
     async function fetchProjResourceVarPairLists(usernameTemp) {
         /* fetch from cloud db */
-        //TODO500     
+        //TODO99999   
 
         let obj = {};
 
         if (editorMode === "online_cloud") { //online-mode: source from cloud
-                obj = await fetchProjectResourceVarPairsVM({
-                    userName: usernameTemp, 
-                    projectName: projName,
-                    bkOption: backendOption
-                });
+                if (visualVarPairs === undefined || audioVarPairs === undefined) {
+
+                    obj = await fetchProjectResourceVarPairsVM({
+                        userName: usernameTemp, 
+                        projectName: projName,
+                        bkOption: backendOption
+                    });                
+                } else {
+                    return;
+                }
+
 
    
         } else { //offline-modes: source from outer layer
@@ -375,6 +389,7 @@ export default function Modal_ResourceManagingWindow ({
         let url = "";
 
         if (editorMode === "online_cloud") {
+
 
                 url = await fetchUrlByFilenameVM({
                     fullFilename: fileName,
