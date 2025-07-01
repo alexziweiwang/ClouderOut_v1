@@ -1952,7 +1952,7 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
 {/* chapter-and-node setting tab */}
     {showChapterMaker && <div className="parallelFrame sectionArea">
 
-        {!isDisplayRmBool && 
+        {isDisplayRmBool === false && 
         <ChapterManager 
 
           initialChapterData={chapterList} 

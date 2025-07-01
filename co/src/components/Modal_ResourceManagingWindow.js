@@ -141,7 +141,10 @@ export default function Modal_ResourceManagingWindow ({
         let unameTemp = getUsername();
         if (unameTemp !== "_") {
 
-            initFetchPrep(unameTemp);
+            if (visualVarPairs === undefined || audioVarPairs === undefined) {
+
+                initFetchPrep(unameTemp);
+            }
 
             setUsername(unameTemp);
         }
@@ -157,13 +160,13 @@ export default function Modal_ResourceManagingWindow ({
 
     });
 
-    function initFetchPrep(usernameTemp) {
-        if (visualVarPairs === undefined || audioVarPairs === undefined) {
+    async function initFetchPrep(usernameTemp) {
 
-            fetchRmFileList(usernameTemp);
+            console.log("init ... ");
+            await fetchRmFileList(usernameTemp);
 
-            fetchProjResourceVarPairLists(usernameTemp);
-        }
+            await fetchProjResourceVarPairLists(usernameTemp);
+        
     }
 
     function markDataChanged() {
@@ -311,6 +314,7 @@ export default function Modal_ResourceManagingWindow ({
         let obj = {};
 
         if (editorMode === "online_cloud") { //online-mode: source from cloud
+            
                 if (visualVarPairs === undefined || audioVarPairs === undefined) {
 
                     obj = await fetchProjectResourceVarPairsVM({
@@ -329,19 +333,31 @@ export default function Modal_ResourceManagingWindow ({
   
         }
    
-        if (obj === undefined || obj === null || Object.keys(obj).length === 0) {
+        if (obj === undefined || obj === null) {
             return;
         }  
         
         
+        if  (Object.keys(obj).length === 0) {
+            setVisualVarPairs([]);
+            setAudioVarPairs([]);
 
-        if (obj.visual !== undefined) {
-            setVisualVarPairs(obj.visual);
+        } else{
+                if (obj.visual !== undefined) {
+                    setVisualVarPairs(obj.visual);
+                } else {
+                    setVisualVarPairs([]);
+                }
+
+
+                if (obj.audio !== undefined) {
+                    setAudioVarPairs(obj.audio);
+                } else {
+                    setAudioVarPairs([]);
+                }
         }
-        
-        if (obj.audio !== undefined) {
-            setAudioVarPairs(obj.audio);
-        }
+
+
   
     }
 

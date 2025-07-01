@@ -157,7 +157,7 @@ import {
                 })
 
 
-                
+
 
 
             //TODO check meta_data
@@ -165,6 +165,7 @@ import {
 
             // "resource_visual"
                     //check all item's format
+                    //each item: "url" "var"
 
             // "resource_audio"
 

@@ -168,30 +168,35 @@ export async function fetchProjectResourceVarPairs({userName, projectName}) {
     return;
   }
 
-  let visualListSnap = await getDoc(ref, "proj_resource_visual");
+  // let visualListSnap = await getDoc(ref, "proj_resource_visual");
 
   
-  if (visualListSnap === undefined || visualListSnap.data() === undefined) {
-                                                        console.log("~~visualListSnap undefined");
-    return;
+  // if (visualListSnap === undefined || visualListSnap.data() === undefined) {
+  //                                                       console.log("~~visualListSnap undefined");
+  //   return;
+  // }
+  //                                                       // console.log(visualListSnap.data());
+  // let visualList = visualListSnap.data().proj_resource_visual;
+
+  // let audioListSnap = await getDoc(ref, "proj_resource_audio");
+  //                                                       // console.log(audioListSnap.data());
+  // if (audioListSnap === undefined || audioListSnap.data() === undefined) {
+  //                                                       console.log("~~audioListSnap undefined");
+  //   return;
+  // }
+  // let audioList = audioListSnap.data().proj_resource_audio;
+
+  let dataObj = await getDoc(ref);
+
+  const obj = {
+    "audio": dataObj.data().proj_resource_audio,
+    "visual": dataObj.data().proj_resource_visual,
   }
-                                                        // console.log(visualListSnap.data());
 
-  let visualList = visualListSnap.data().proj_resource_visual;
 
-  let audioListSnap = await getDoc(ref, "proj_resource_audio");
-                                                        // console.log(audioListSnap.data());
-  if (audioListSnap === undefined || audioListSnap.data() === undefined) {
-                                                        console.log("~~audioListSnap undefined");
+  // const obj = {audio: audioList, visual: visualList};
 
-    return;
-  }
-
-  let audioList = audioListSnap.data().proj_resource_audio;
-
-  const obj = {audio: audioList, visual: visualList};
-
-                      //  console.log("~~~~~~~ rm-model, fetchProjectResourceVarPairs: ", obj); //TODO test
+                       console.log("~~~~~~~ rm-model, fetchProjectResourceVarPairs: ", obj); //TODO test
 
   return obj;
 }
