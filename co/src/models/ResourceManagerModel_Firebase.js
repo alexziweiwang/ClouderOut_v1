@@ -220,12 +220,14 @@ export async function storeProjectResourceVarPairsToCloud({userName, projectName
 
                                     console.log("VM - before updating to cloud db: ", obj); //TODO test
   
+  let objContent = obj["obj"];
+
   await updateDoc(projectRef, {
-    "proj_resource_audio": obj.audio,
+    "proj_resource_audio": objContent.audio,
   });
 
   await updateDoc(projectRef, {
-    "proj_resource_visual": obj.visual
+    "proj_resource_visual": objContent.visual
   });
 
 }
