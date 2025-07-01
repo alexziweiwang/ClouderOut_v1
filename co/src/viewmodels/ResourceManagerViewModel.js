@@ -54,7 +54,7 @@ export async function fetchProjectResourceVarPairsVM({userName, projectName, bkO
     if (bkOption === "firebase") {
         res = await fetchProjectResourceVarPairs({userName, projectName});
     } else if (bkOption === "offline_half") {
-        //TODO99999
+        //TODO
 
         
     }

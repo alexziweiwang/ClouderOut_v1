@@ -1,4 +1,90 @@
 import React from 'react';
+import {  
+    emptyConvNodeSinglePieceTemplate,
+    gameUIDefaultButtonTemplate,
+    gameUITextFrameTemplate,
+    gameUIBackButtonTemplate,
+    uiConvNavTemplate,
+    logPageUISettingsTemplate
+} from '../components/_dataStructure_DefaultObjects';
+
+
+
+
+
+
+
+    function checkNodeByType(typeStr, nodeContent, nodeUISettings) {
+        let contentOk = false;
+        let uiOk = false;
+
+            //TODO check node-content (based on node-type)
+            //TODO check nodeUI Settings (based on node-type)
+        if (typeStr === "Conversation") {
+            //nodeContent is an array of pieces (for conversatoin-node)
+
+            nodeContent.map((item, index)=>{
+                Object.keys(emptyConvNodeSinglePieceTemplate).map((currKey) => {
+                    if (item[currKey] === undefined) {
+                        contentOk = false;
+                    }
+                })
+            })
+
+                                                                            
+            //nodeUISettings: emptyConvNodeUiAllTemplate
+                    // defaultButton: gameUIDefaultButtonTemplate,
+                    // textFrame: gameUITextFrameTemplate,
+                    // backButton: gameUIBackButtonTemplate,
+                    // convNav: uiConvNavTemplate,
+                    // logPage: logPageUISettingsTemplate
+            if (nodeUISettings["defaultButton"] === undefined
+                || nodeUISettings["textFrame"] === undefined
+                || nodeUISettings["backButton"] === undefined
+                || nodeUISettings["convNav"] === undefined
+                || nodeUISettings["logPage"] === undefined
+
+            ) {
+                uiOk = false;
+            } else {
+                Object.keys(gameUIDefaultButtonTemplate).map((currKey) => {
+                    if (nodeUISettings["defaultButton"][currKey] === undefined) {
+                        uiOk = false;
+                    }
+                })
+
+                Object.keys(gameUITextFrameTemplate).map((currKey) => {
+                    if (nodeUISettings["textFrame"][currKey] === undefined) {
+                        uiOk = false;
+                    }
+                })
+
+                Object.keys(gameUIBackButtonTemplate).map((currKey) => {
+                    if (nodeUISettings["backButton"][currKey] === undefined) {
+                        uiOk = false;
+                    }
+                })
+
+                Object.keys(uiConvNavTemplate).map((currKey) => {
+                    if (nodeUISettings["convNav"][currKey] === undefined) {
+                        uiOk = false;
+                    }
+                })
+
+                Object.keys(logPageUISettingsTemplate).map((currKey) => {
+                    if (nodeUISettings["logPage"][currKey] === undefined) {
+                        uiOk = false;
+                    }
+                })
+
+            }
+
+        }
+
+        
+        return (contentOk && uiOk);
+    }
+
 
     function checkProjectFileContact(obj) {
         if (obj["meta_data"] === undefined || obj["chapter_content"] === undefined) {
@@ -15,12 +101,11 @@ import React from 'react';
                     
                     let nodeContent = nodeItem["nodeContent"];
                     let nodeUISettings = nodeItem["nodeUISettings"];
+                    let nodeType = nodeItem["nodeType"];
                     //TODO add for node-type
 
-
-                    //TODO check node-content (based on node-type)
-                    //TODO check nodeUI Settings (based on node-type)
-
+                    let isNodeOk = checkNodeByType(nodeType, nodeContent, nodeUISettings);
+               
 
                 });
 
