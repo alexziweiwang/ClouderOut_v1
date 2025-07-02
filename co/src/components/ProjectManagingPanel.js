@@ -75,6 +75,9 @@ export default function ProjectManagerPanel() {
     const [impProjQualityCheckOk, setImptProjQualityCheckOk] = useState(false);
     const [projectObj, setProjectObj] = useState(undefined);
 
+    const [imptOkSignal, setImptOkSignal] = useState("");
+    const [parsedFeedback, setParseFeedback] = useState("");
+
     const [authEmailName, setAuthEmailName] = useState("_");
     
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
@@ -216,9 +219,13 @@ export default function ProjectManagerPanel() {
       return authEmailName; //TODO1030
     }
 
-    function   handleImportedFile() {
-        parseFromFile_vm(selectedFileContent, setProjectObj);
-
+    function handleImportedFile() {
+        let res = parseFromFile_vm(selectedFileContent, setProjectObj, setParseFeedback);
+        if (res === true) {
+          setImptOkSignal("Project File accepted.");
+        } else {
+          setImptOkSignal("");
+        }
     }
 
     function resetFileSelection() {
@@ -447,7 +454,7 @@ export default function ProjectManagerPanel() {
                   >Confirm Import</button>
 
                   <br></br>
-                  <label>{}</label>
+                  <label>{parsedFeedback}</label>
 
 
             <div>

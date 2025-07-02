@@ -230,7 +230,7 @@ import {
     }
 
 
-    export function parseFromFile_vm(fileContent, setupContent) {
+    export function parseFromFile_vm(fileContent, setupContent, setParseFeedback) {
                                 console.log("parseFromFile-vm: [", fileContent, "]...");
 
         let readContent = "default-empty";
@@ -252,8 +252,10 @@ import {
                 let errObj = {"error######################": "error######################"};
                 setupContent(errObj);
 
+                setParseFeedback("Project File Format Incorrect.");
             } else {
                 setupContent(jsonObj);
+                setParseFeedback("Project File accepted.");
             }
 
 
