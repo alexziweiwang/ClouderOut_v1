@@ -161,7 +161,7 @@ import {
 
  
 
-                
+
                 // "chapter_list"
                     //each item: length should be 4
                 let chapList = metadataObj["chapter_list"];
@@ -172,17 +172,34 @@ import {
                     }
                 });
 
+            
+
+                    // "resource_visual"
+                //check all item's format
+                //each item: "url" "var"
+                let visResObj = metadataObj["resource_visual"];
+                Object.keys(visResObj).map((currKey) => {
+                    let item = visResObj[currKey];
+                    if (item["url"] === undefined || item["var"] === undefined) {
+                        return false;
+                    }
+
+                });
+
+                
+                // "resource_audio"
+                let auResObj = metadataObj["resource_audio"];
+                Object.keys(auResObj).map((currKey) => {
+                    let item = auResObj[currKey];
+                    if (item["url"] === undefined || item["var"] === undefined) {
+                        return false;
+                    }
+                });
 
 
-
-            //TODO check meta_data
  
 
-            // "resource_visual"
-                    //check all item's format
-                    //each item: "url" "var"
-
-            // "resource_audio"
+ 
 
 
  

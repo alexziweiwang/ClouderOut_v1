@@ -414,7 +414,6 @@ export default function ProjectManagerPanel() {
                                         console.log("selected file...", fileContent);
                               
                             }
-               
                         }}
 
                   ></input>
