@@ -186,7 +186,7 @@ import {
 
                 });
 
-                
+
                 // "resource_audio"
                 let auResObj = metadataObj["resource_audio"];
                 Object.keys(auResObj).map((currKey) => {
@@ -197,30 +197,34 @@ import {
                 });
 
 
- 
 
- 
-
-
- 
 
             // "chapter_node_mapping"
                 //each chapter-each node: 
                                 // col, display, nextNode, nodeName, nodeType, row, screenSize, 
+                let chapNodeMapping = metadataObj["chapter_node_mapping"];
+                Object.keys(chapNodeMapping).map((currKey) => {
+                    let item = chapNodeMapping[currKey];
+
+                    if (item["col"] === undefined
+                    || item["display"] === undefined
+                    || item["nextNode"] === undefined
+                    || item["nodeName"] === undefined
+                    || item["nodeType"] === undefined
+                    || item["row"] === undefined
+                    || item["screenSize"] === undefined
+                        ) {
+                            return false;
+                    } 
 
 
-
-
-
+                });
             }
-
-
-
 
         }
 
 
-        console.log("so far ok");
+                                                console.log("so far ok");
         return true;
 
     }
