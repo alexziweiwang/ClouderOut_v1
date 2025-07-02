@@ -130,12 +130,14 @@ import {
             ) {
                 return false;                                           
             } else {
-                let gameDataList = metadataObj["game_data"];
+                let gameDataMap = metadataObj["game_data"];
                 // "game_data"
                             //"data_type"
                             //"default_value"
                             //"name"
-                gameDataList.map((item, index)=>{
+
+                Object.keys(gameDataMap).map((currKey) => {         
+                    let item = gameDataMap[currKey];  
 
                     if (item["data_type"] === undefined
                     || item["default_value"] === undefined
@@ -157,6 +159,19 @@ import {
                 })
 
 
+ 
+
+                
+                // "chapter_list"
+                    //each item: length should be 4
+                let chapList = metadataObj["chapter_list"];
+                Object.keys(chapList).map((currKey) => {
+                    let item = chapList[currKey];
+                    if (item.length !== 4) {
+                        return false;
+                    }
+                });
+
 
 
 
@@ -170,9 +185,7 @@ import {
             // "resource_audio"
 
 
-  
-            // "chapter_list"
-                //each item: length should be 4
+ 
 
             // "chapter_node_mapping"
                 //each chapter-each node: 
@@ -190,6 +203,8 @@ import {
         }
 
 
+        console.log("so far ok");
+        return true;
 
     }
 

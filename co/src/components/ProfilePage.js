@@ -62,12 +62,14 @@ export default function ProfilePage({}) {
 
     async function getProfile() {
         if (username === "default-no-state-username") {
-            console.log("Not getting profile -- no state");
+                                                    console.log("Not getting profile -- no state");
             return;
         }
         profile = await getProfileInfoVM({uname: username, bkOption: backendOption});
-        console.log("page: ", profile); //TODO test
+                                                    console.log("page: ", profile); //TODO test
         setProfile(profile);
+
+        return profile;
     }
 
     function passInUsername() {
