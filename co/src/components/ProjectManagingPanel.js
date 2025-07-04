@@ -69,7 +69,7 @@ export default function ProjectManagerPanel() {
     const [currentProjectAction, setCurrentProjectAction] = useState("selectProject"); //"createProject", "selectProject", "revertProject"
 
 
-    const [selectedFileContent, setSelectedFileContent] = useState("");
+    const [selectedFileContent, setSelectedFileContent] = useState(undefined);
     const [selectedFileName, setSelectedFileName] = useState("");
     const [imptProjectNameInput, setImptProjectNameInput] = useState("");
     const [impProjQualityCheckOk, setImptProjQualityCheckOk] = useState(false);
@@ -77,6 +77,8 @@ export default function ProjectManagerPanel() {
 
     const [imptOkSignal, setImptOkSignal] = useState("");
     const [parsedFeedback, setParseFeedback] = useState("");
+
+    const [confirmedFileAdding, setConfirmedFileAdding] = useState(false);
 
     const [authEmailName, setAuthEmailName] = useState("_");
     
@@ -229,7 +231,7 @@ export default function ProjectManagerPanel() {
     }
 
     function resetFileSelection() {
-      setSelectedFileContent("");
+      setSelectedFileContent(undefined);
       setSelectedFileName("");
       setImptProjectNameInput("");
 
@@ -405,18 +407,22 @@ export default function ProjectManagerPanel() {
 
             Import Project From File
 
-            <br></br><br></br>
+           
+            {confirmedFileAdding === false 
+                  && <>
+                <br></br><br></br>
                  <input 
                         type="file"
                         accept=".txt"  
                         onChange={(event)=>{
                             if (event.target.files !== undefined) {
+                              setProjectObj(undefined);
+
                               let fileContent = event.target.files[0];
                               setSelectedFileContent(fileContent);
                               setSelectedFileName(fileContent.name);
                               
                               setImptProjectNameInput("");
-                              setProjectObj(undefined);
 
                                         console.log("selected file...", fileContent);
                               
@@ -425,10 +431,7 @@ export default function ProjectManagerPanel() {
 
                   ></input>
 
-                  <label style={{"fontWeight": "normal"}}>
-                    {selectedFileName}
-                  </label>
-
+       
                   <br></br>
 
                   <label style={{"fontWeight": "normal"}}>
@@ -444,18 +447,47 @@ export default function ProjectManagerPanel() {
                   ></input>
 
 
-
+             
                   <br></br><br></br>
                   <button
                     onClick={()=>{
-                      handleImportedFile();
-                      resetFileSelection();
+                      if (selectedFileContent === undefined) {
+                        alert("Please select a project file");
+                      } else if (imptProjectNameInput.length === 0) {
+                        alert("Please enter project name");
+                      } else {
+                        handleImportedFile();
+                        setConfirmedFileAdding(true);
+                      }
+                      
+ 
                     }}
                   >Confirm Import</button>
+                  </>}
 
+                
+                  {confirmedFileAdding === true
+                  && <div>
                   <br></br>
-                  <label>{parsedFeedback}</label>
+                  <label style={{"fontWeight": "normal"}}>
+                    {selectedFileName}
+                  </label>
+                  <br></br>
 
+                  <label>{parsedFeedback}</label>
+                  <br></br>
+
+                    <button
+                      onClick={()=>{
+                        resetFileSelection();
+                        setConfirmedFileAdding(false);
+
+                      }}
+                    >
+                      select another file
+                    </button>
+
+                  </div>}
 
             <div>
               
