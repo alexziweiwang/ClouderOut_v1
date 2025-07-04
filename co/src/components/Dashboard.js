@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Sidebar from './Sidebar';
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
@@ -8,12 +7,11 @@ import langDictionary from './_textDictionary';
 
 
 //TODO1010 username by auth
-import { getAuthFirebase } from '../authtools/firebaseAuthOperations';
 
 /* Dashboard
 Dashboard is for each specific user, and users setup their profile, projects and account.
 */
-export default function Dashboard() {
+export default function Dashboard({username, getUsername}) {
     let name = "/dashboard";
 
     const navigate = useNavigate();
@@ -35,26 +33,20 @@ export default function Dashboard() {
 
 
     //TODO1050 add temp-status for retur nvalue of get-auth?
-    const [authEmailName, setAuthEmailName] = useState("_");
+    const [authEmailName, setAuthEmailName] = useState(username);
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);   //TODO temp
     useEffect(() => {
 
-      getAuthFirebase(
-        {
-          goToNotLoggedInPageFunc: goToNotLoggedInPage,
-          sendOutEmailName: setAuthEmailName
-
-        }
-      );
+      let unameTemp = getUsername();
+      setAuthEmailName(unameTemp);
         
-      console.log("dashboard--\t\tauthEmamilName", authEmailName);
+      console.log("dashboard--\t\tauthEmamilName = [", authEmailName, "]");
 
 
         if (firstTimeEnter === true) {
 
-          
-
+        
             setFirstTimeEnter(false);
         }
 
@@ -86,13 +78,13 @@ export default function Dashboard() {
 
     return (<>
   {authEmailName !== "_" && <div className="page">
-    {!showNewProjCreationPage && 
+    {/* {!showNewProjCreationPage && 
       <Sidebar 
         compName={name} 
         username={authEmailName}
         getUsername={passInUsername}
 
-      />}
+      />} */}
 
     
     {!showNewProjCreationPage && <div className="dashboard_content">

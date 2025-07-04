@@ -45,7 +45,8 @@ export default function Sidebar({compName, username, getUsername}) {
     }
 
     function backToDashboard() {
-        navigate('/dashboard', { replace: true, state: { username } }); 
+        // navigate('/dashboard', { replace: true, state: { username } }); 
+        alert("TODO should go back to dashboard");
 
     }
 

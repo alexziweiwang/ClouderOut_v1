@@ -114,9 +114,9 @@ export default function UserNotLoggedInPage() {
 
     function goToUserDashboard(username) {
 
-
         //only if login successful
-        navigate('/dashboard', { replace: true, state: { username } }); //
+        // navigate('/dashboard', { replace: true, state: { username } }); //
+        alert("TODO should go back to dashboard");
 
     }
 

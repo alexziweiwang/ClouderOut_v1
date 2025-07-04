@@ -12,6 +12,7 @@ import ProfilePage from './components/ProfilePage';
 import Container_GameEditor_Outer from './components/Container_GameEditor_Outer';
 import UserNotLoggedInPage from './components/UserNotLoggedInPage';
 import ProjectManagingOffline from './components/ProjectManagingNonCloud';
+import MainFrame from './components/MainFrame';
 
 function App() {
   return (
@@ -20,8 +21,8 @@ function App() {
         <Route path="/" element={<Dashboard />} />  {/* TODO change later for default entry page */}
         <Route path="*" element={<Dashboard />} />  {/* TODO change later for default entry page */}
         
-        
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/mainpanel" element={<MainFrame/>} />
+        {/* <Route path="/dashboard" element={<Dashboard />} /> */}
         <Route path="/projectmanagingpanel" element={<ProjectManagerPanel />} />
         <Route path="/conversationnode" element={<ConversationNodeEditingPanel />} />
         <Route path="/cardgamenode" element={<CardGameNodeEditingPanel />} />
