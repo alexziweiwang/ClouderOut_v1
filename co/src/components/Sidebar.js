@@ -85,7 +85,7 @@ export default function Sidebar({
         </div>
     }
 
-    {(compName === "accountpage" || compName === "/profilepage") && 
+    {(compName === "accountpage" || compName === "profilepage") && 
     <div className="sidebar1" >
     Welcome, [{displayingUsername}]
 

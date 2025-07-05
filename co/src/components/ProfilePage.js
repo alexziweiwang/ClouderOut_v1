@@ -1,6 +1,5 @@
 import * as React from 'react';
-import Sidebar from './Sidebar';
-import { useLocation, useNavigate } from 'react-router-dom';
+
 import { useState, useEffect } from 'react';
 
 //TODO1090 cloud-db related
@@ -10,20 +9,16 @@ import { getProfileInfoVM, updateProfileInfoVM } from '../viewmodels/AccountView
 import { getAuthFirebase } from '../authtools/firebaseAuthOperations';
 
 
-export default function ProfilePage({}) {
+export default function ProfilePage({
+    goToNotLoggedInPage, 
+    getProfile
+}) {
+
     const [backendOption, setBackendOption] = useState("firebase"); //firebase / local?
     //speacial: default to use firebase for account folder?
     
 
     let name = "/profilepage";
-
-    const navigate = useNavigate();
-
-    const {state} = useLocation();
-    let username = "default-no-state-username";
-    if (state !== null) {
-        username = state.username;
-    }
 
     let profile = [];
     const [profileInfo, setProfile] = useState({});
@@ -55,32 +50,15 @@ export default function ProfilePage({}) {
             console.log("profile from cloud:", profile); //TODO test
             if (profileInfo.size > 0) {
                 setProfileEditInput(profileInfo["introduction"]);
+                setProfile(profile);
             }
             setFirstTimeEnter(false);
         }
     });
 
-    async function getProfile() {
-        if (username === "default-no-state-username") {
-                                                    console.log("Not getting profile -- no state");
-            return;
-        }
-        profile = await getProfileInfoVM({uname: username, bkOption: backendOption});
-                                                    console.log("page: ", profile); //TODO test
-        setProfile(profile);
 
-        return profile;
-    }
+ 
 
-    function passInUsername() {
-        return username; //TODO1030
-    }
-
-
-    function goToNotLoggedInPage() {
-        navigate('/notloggedin', { replace: true });
-  
-    }
 
     async function confirmInfoChange() {
         let obj = {}; 
@@ -103,12 +81,6 @@ export default function ProfilePage({}) {
 
 <>
   {authEmailName !== "_" && <div className="page">
-    
-    <Sidebar 
-        compName = {name}
-        username={username}
-        getUsername={passInUsername}
-    />
 
     <div className="dashboard_content" style={{"padding": "10px"}}>
         <div className="profilePage">

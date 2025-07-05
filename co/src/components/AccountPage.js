@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Sidebar from './Sidebar';
-import { useLocation  } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 import { getAuthFirebase } from '../authtools/firebaseAuthOperations';
@@ -12,12 +11,6 @@ export default function AccountPage({goToNotLoggedInPage}) {
     let name = "/accountpage";
 
 
-
-    const {state} = useLocation();
-    let username = "default-no-state-username";
-    if (state !== null) {
-        username = state.username;
-    } 
 
     const [authEmailName, setAuthEmailName] = useState("_");
 
@@ -36,14 +29,6 @@ export default function AccountPage({goToNotLoggedInPage}) {
     useEffect(() => {
 
 
-        getAuthFirebase(
-          {
-            goToNotLoggedInPageFunc: goToNotLoggedInPage,
-            sendOutEmailName: setAuthEmailName
-
-          }
-        );
-          
         console.log("acount page--\t\tauthEmamilName", authEmailName);
 
  
@@ -56,20 +41,13 @@ export default function AccountPage({goToNotLoggedInPage}) {
 
     });
 
-    function passInUsername() {
-      return state.username; //TODO1030
-    }
 
 
 
     return (
       <>
   {authEmailName !== "_" && <div className="page">
-    <Sidebar 
-      compName = {name}
-      username={state.username}
-      getUsername={passInUsername}
-    />
+
 
     <div className="dashboard_content">
         <div style={{"textAlign": "left", "padding": "10px"}}>

@@ -3,13 +3,13 @@ import { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Sidebar from './Sidebar';
 
-import Dashboard from './Dashboard';
 import ProjectManagingPanel from './ProjectManagingPanel';
 import AccountPage from './AccountPage';
-
+import ProfilePage from './ProfilePage';
 
 import { getAuthFirebase } from '../authtools/firebaseAuthOperations';
 
+import { getProfileInfoVM, updateProfileInfoVM } from '../viewmodels/AccountViewModel';
 
 
 /*
@@ -22,6 +22,7 @@ export default function Panel0_UserMgr({}) {
         navigate('/notloggedin', { replace: true });
     }
 
+    const [backendOption, setBackendOption] = useState("firebase"); //firebase / local?
 
 
     //combine sidebar and content pages accordingly
@@ -95,6 +96,16 @@ export default function Panel0_UserMgr({}) {
   
 
 
+    async function getProfile() {
+        if (authEmailName === "_") {
+                                                    console.log("Not getting profile -- no state");
+            return;
+        }
+        let profile = await getProfileInfoVM({uname: authEmailName, bkOption: backendOption});
+                                                    console.log("page: ", profile); //TODO test
+
+        return profile;
+    }
 
 
 
@@ -130,6 +141,15 @@ export default function Panel0_UserMgr({}) {
                     &&
                     <AccountPage
                         goToNotLoggedInPage={goToNotLoggedInPage}
+                    />
+
+                    }
+
+                    {currentCompoName === "profilepage"
+                    &&
+                    <ProfilePage
+                        goToNotLoggedInPage={goToNotLoggedInPage}
+                        getProfile={getProfile}
                     />
 
                     }
