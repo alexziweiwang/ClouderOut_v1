@@ -11,7 +11,9 @@ import { getAuthFirebase } from '../authtools/firebaseAuthOperations';
 
 export default function ProfilePage({
     goToNotLoggedInPage, 
-    getProfile
+    getProfile,
+
+    getUsername,
 }) {
 
     const [backendOption, setBackendOption] = useState("firebase"); //firebase / local?
@@ -33,14 +35,8 @@ export default function ProfilePage({
     useEffect(() => {
 
 
-        getAuthFirebase(
-            {
-              goToNotLoggedInPageFunc: goToNotLoggedInPage,
-              sendOutEmailName: setAuthEmailName
-  
-            }
-          );
-            
+        let uname = getUsername();
+        setAuthEmailName(uname);
         console.log("profile page--\t\tauthEmamilName", authEmailName);
   
 

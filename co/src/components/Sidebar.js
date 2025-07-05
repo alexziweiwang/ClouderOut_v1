@@ -12,6 +12,7 @@ export default function Sidebar({
     goToDashboard,
     goToAccountPage,
     goToProfilePage,
+    goToNotLoggedInPage
 
 }) {
 
@@ -48,19 +49,6 @@ export default function Sidebar({
     });
 
 
-    async function goToLogOutPage() {
-        //TODO log out here...
-
-        await userLogOutVM();
-
-        let ans = window.confirm("Are you sure to log out?");
-        if (ans) {
-            navigate('/notloggedin',  { replace: true });
-        }
-    }
-
-
-
     return (
     <>
     
@@ -80,7 +68,7 @@ export default function Sidebar({
         <br></br>
         <br></br>
 
-        <button className="sidebar_options sidebar_options1" onClick={() => {goToLogOutPage()}}>{logOutButtonText}</button>
+        <button className="sidebar_options sidebar_options1" onClick={() => {goToNotLoggedInPage()}}>{logOutButtonText}</button>
 
         </div>
     }

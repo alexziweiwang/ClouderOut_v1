@@ -1,12 +1,12 @@
 import * as React from 'react';
-import Sidebar from './Sidebar';
 import { useState, useEffect } from 'react';
 
-import { getAuthFirebase } from '../authtools/firebaseAuthOperations';
-//TODO1010
 
-
-export default function AccountPage({goToNotLoggedInPage}) {
+export default function AccountPage({
+    goToNotLoggedInPage,
+    getUsername
+  
+  }) {
 
     let name = "/accountpage";
 
@@ -28,6 +28,9 @@ export default function AccountPage({goToNotLoggedInPage}) {
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);   //TODO temp
     useEffect(() => {
 
+
+        let uname = getUsername();
+        setAuthEmailName(uname);
 
         console.log("acount page--\t\tauthEmamilName", authEmailName);
 

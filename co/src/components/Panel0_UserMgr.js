@@ -36,13 +36,15 @@ export default function Panel0_UserMgr({}) {
 
 
     useEffect(() => {
+        if (authEmailName === "_") {
+            getAuthFirebase(
+                {
+                  goToNotLoggedInPageFunc: goToNotLoggedInPage,
+                  sendOutEmailName: setAuthEmailName
+                }
+              );
+        }
 
-        getAuthFirebase(
-          {
-            goToNotLoggedInPageFunc: goToNotLoggedInPage,
-            sendOutEmailName: setAuthEmailName
-          }
-        );
 
     });
 
@@ -122,6 +124,9 @@ export default function Panel0_UserMgr({}) {
                         goToDashboard={goToDashboard}
                         goToAccountPage={goToAccountPage}
                         goToProfilePage={goToProfilePage}
+
+                        goToNotLoggedInPage={goToNotLoggedInPage}
+
                 />
 
                 <div style={{"backgroundColor": "pink"}}>
@@ -132,6 +137,9 @@ export default function Panel0_UserMgr({}) {
                     <ProjectManagingPanel
                         goToNotLoggedInPage={goToNotLoggedInPage}
                         goToGameMaker={goToGameMaker}
+
+                        getUsername={passInUsername}
+
                     />
                     }
 
@@ -141,6 +149,8 @@ export default function Panel0_UserMgr({}) {
                     &&
                     <AccountPage
                         goToNotLoggedInPage={goToNotLoggedInPage}
+
+                        getUsername={passInUsername}
                     />
 
                     }
@@ -150,6 +160,9 @@ export default function Panel0_UserMgr({}) {
                     <ProfilePage
                         goToNotLoggedInPage={goToNotLoggedInPage}
                         getProfile={getProfile}
+
+                        getUsername={passInUsername}
+
                     />
 
                     }

@@ -1,5 +1,4 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { GiTrashCan } from "react-icons/gi";
 import ProjectManageNew from './ProjectManageNew';
@@ -16,14 +15,13 @@ import { fetchProjectListVM, revertProjectVM, deleteProjectVM } from '../viewmod
 import { parseFromFile_vm } from '../viewmodels/PrepAc_ProjectFileInOut';
 
 
-import { getAuthFirebase } from '../authtools/firebaseAuthOperations';
-
 
 
 export default function ProjectManagingPanel(
   {
     goToNotLoggedInPage,
-    goToGameMaker
+    goToGameMaker,
+    getUsername
   }
 ) {
     const backendOption = "firebase"; 
@@ -35,12 +33,6 @@ export default function ProjectManagingPanel(
 
     const modeName = "online_cloud";
 
-    const {state} = useLocation();
-    let username = "default-no-state-username";
-    if (state !== null) {
-        username = state.uname;
-    } 
-    
     let textDictItem = langDictionary[languageCodeTextOption];
     let textDictItemDefault = langDictionary["en"];
 
@@ -88,20 +80,23 @@ export default function ProjectManagingPanel(
     useEffect(() => {
   
 
-      getAuthFirebase(
-        {
-          goToNotLoggedInPageFunc: goToNotLoggedInPage,
-          sendOutEmailName: receiveChangeOfAuthEmailName
+      let uname = getUsername();
+      if (uname !== "_") {
+
+        if (firstTimeEnter === true) {
+            loadProjectListFromCloud(uname);
+            setFirstTimeEnter(false);
+            setAuthEmailName(uname);
 
         }
-      );
-        
-      console.log("project managing panel page --\t\tauthEmamilName is [", authEmailName, "]");
+      }
+
+      console.log("project managing panel page --\t\tauthEmamilName is [", uname, "]");
 
       console.log("mgr-panel, imported-obj = ", projectObj);
       
 
-    }, [firstTimeEnter]);
+    });
 
     async function receiveChangeOfAuthEmailName(emailAddrStr) {
     
