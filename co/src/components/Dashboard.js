@@ -14,7 +14,7 @@ Dashboard is for each specific user, and users setup their profile, projects and
 export default function Dashboard({
       username, 
       getUsername,
-      goToProjectManagingPanel,
+      goToDashboard,
     
   }) {
 
@@ -91,7 +91,7 @@ export default function Dashboard({
         </div>
 
         <div className="dashboard_grid" style={{"marginRight": "20px"}}
-          onClick={()=>{goToProjectManagingPanel()}}
+          onClick={()=>{goToDashboard()}}
         >
           {myProjectsButtonText}
         </div>

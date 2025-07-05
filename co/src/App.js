@@ -9,10 +9,10 @@ import ProjectManageEdit from './components/ProjectManageEdit';
 import AccountPage from './components/AccountPage';
 import CardGameNodeEditingPanel from './components/CardGameNodeEditingPanel';
 import ProfilePage from './components/ProfilePage';
-import Container_GameEditor_Outer from './components/Container_GameEditor_Outer';
+import Panel1_Container_GameEditor from './components/Panel1_Container_GameEditor';
 import UserNotLoggedInPage from './components/UserNotLoggedInPage';
 import ProjectManagingOffline from './components/ProjectManagingNonCloud';
-import MainFrame from './components/MainFrame';
+import MainFrame from './components/Panel0_UserMgr';
 
 function App() {
   return (
@@ -22,14 +22,13 @@ function App() {
         <Route path="*" element={<Dashboard />} />  {/* TODO change later for default entry page */}
         
         <Route path="/mainpanel" element={<MainFrame/>} />
-        <Route path="/projectmanagingpanel" element={<ProjectManagingPanel />} />
         <Route path="/conversationnode" element={<ConversationNodeEditingPanel />} />
         <Route path="/cardgamenode" element={<CardGameNodeEditingPanel />} />
         <Route path="/projectmanagenew" element={<ProjectManageNew/>} />
         <Route path="/projectmanageedit" element={<ProjectManageEdit/>} />
         <Route path="/accountpage" element={<AccountPage/>} />
         <Route path="/profilepage" element={<ProfilePage/>} />
-        <Route path="/editorcontainer" element={<Container_GameEditor_Outer/>} />
+        <Route path="/editorcontainer" element={<Panel1_Container_GameEditor/>} />
         <Route path="/notloggedin" element={<UserNotLoggedInPage/>} />
         <Route path="/projectNonCloud" element={<ProjectManagingOffline/>} />
 

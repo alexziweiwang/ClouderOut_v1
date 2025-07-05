@@ -9,7 +9,6 @@ export default function Sidebar({
     compName, 
     username, 
     getUsername,
-    goToProjectManagingPanel,
     goToDashboard,
     goToAccountPage,
     goToProfilePage,
@@ -96,17 +95,6 @@ export default function Sidebar({
         </div>
         
 
-        </div>
-    }
-
-    {(compName === "projectmanagingpanel") && 
-    <div className="sidebar1" >
-    Welcome, [{displayingUsername}]
-
-        <div> 
-            <button className="sidebar_options sidebar_options2" onClick={()=>{goToDashboard()}}>←</button>
-        </div>
-    
         </div>
     }
 

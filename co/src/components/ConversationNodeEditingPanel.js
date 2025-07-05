@@ -273,7 +273,7 @@ GameDataDesign <map>
         
         if (authEmailName !== "_" && (projectName === null || projectName === "default-no-state projectname")) {
             //      alert("No project selected. Returning to project selection page...");
-                  goToProjectManagingPanel();
+                  goToDashboard();
         }
       
 
@@ -361,7 +361,7 @@ GameDataDesign <map>
     }
 
       
-    function goToProjectManagingPanel() {
+    function goToDashboard() {
         navigate('/projectmanagingpanel', { replace: true });
     }
 

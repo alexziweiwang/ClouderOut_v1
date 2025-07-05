@@ -563,11 +563,11 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
   }
 
   function pureNavigateToProjectManagingPanel() {
-    navigate('/projectmanagingpanel', { replace: true });
+    navigate('/mainpanel', { replace: true });
 
   }
 
-  async function goToProjectManagingPanel() {
+  async function goToDashboard() {
     if (cloudDbConnOk === false) {
       pureNavigateToProjectManagingPanel();
 
@@ -1789,7 +1789,7 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
             
         {editorMode === "online_cloud" && <button 
           className="button2" 
-          onClick={()=>{chapterChangingOrExiting(); goToProjectManagingPanel(); }}>
+          onClick={()=>{chapterChangingOrExiting(); goToDashboard(); }}>
              ← 
         </button>}
 
@@ -1824,7 +1824,7 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
       
       {editorMode === "online_cloud" && <button 
           className="button2" 
-          onClick={()=>{chapterChangingOrExiting(); goToProjectManagingPanel(); }}>
+          onClick={()=>{chapterChangingOrExiting(); goToDashboard(); }}>
              ← 
         </button>}
 

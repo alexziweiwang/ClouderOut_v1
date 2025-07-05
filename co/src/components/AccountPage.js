@@ -1,17 +1,16 @@
 import * as React from 'react';
 import Sidebar from './Sidebar';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation  } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 import { getAuthFirebase } from '../authtools/firebaseAuthOperations';
 //TODO1010
 
 
-export default function AccountPage({}) {
+export default function AccountPage({goToNotLoggedInPage}) {
 
     let name = "/accountpage";
 
-    const navigate = useNavigate();
 
 
     const {state} = useLocation();
@@ -59,11 +58,6 @@ export default function AccountPage({}) {
 
     function passInUsername() {
       return state.username; //TODO1030
-    }
-
-    function goToNotLoggedInPage() {
-      navigate('/notloggedin', { replace: true });
-
     }
 
 

@@ -5,6 +5,8 @@ import Sidebar from './Sidebar';
 
 import Dashboard from './Dashboard';
 import ProjectManagingPanel from './ProjectManagingPanel';
+import AccountPage from './AccountPage';
+
 
 import { getAuthFirebase } from '../authtools/firebaseAuthOperations';
 
@@ -13,7 +15,7 @@ import { getAuthFirebase } from '../authtools/firebaseAuthOperations';
 /*
 Keeps the layout of sidebar + content formatted pages
 */
-export default function MainFrame({}) {
+export default function Panel0_UserMgr({}) {
     const navigate = useNavigate();
 
     function goToNotLoggedInPage() {
@@ -61,21 +63,16 @@ export default function MainFrame({}) {
 
     //TODO 5. new project + sidebar2
 
-
-    function goToProjectManagingPanel() {
-        setCurrentCompoName("projectmanagingpanel");
-    }
-
     function goToDashboard() {
         setCurrentCompoName("dashboard");
     }
 
     function goToAccountPage() {
-        navigate('/accountpage',  { replace: true, state: { "username": authEmailName } });
+        setCurrentCompoName("accountpage");
     }
 
     function goToProfilePage() {
-        navigate('/profilepage',  { replace: true, state: { "username": authEmailName } });
+        setCurrentCompoName("profilepage");
     }
 
     function goToGameMaker(selected_project_name, modeName) {
@@ -110,7 +107,7 @@ export default function MainFrame({}) {
                         compName = {currentCompoName}
                         username={authEmailName}
                         getUsername={passInUsername}
-                        goToProjectManagingPanel={goToProjectManagingPanel}
+                        goToDashboard={goToDashboard}
                         goToDashboard={goToDashboard}
                         goToAccountPage={goToAccountPage}
                         goToProfilePage={goToProfilePage}
@@ -121,21 +118,20 @@ export default function MainFrame({}) {
 
                     {currentCompoName === "dashboard" 
                     && 
-                    <Dashboard
-                         username={authEmailName}
-                         getUsername={passInUsername}
-                         goToProjectManagingPanel={goToProjectManagingPanel}
-                    />}
-
-{/* when going to proj-mgr-new and proj-mgr-panel, load project-list from cloud */}
-
-                    {currentCompoName === "projectmanagingpanel"
-                    &&
                     <ProjectManagingPanel
-                    
                         goToNotLoggedInPage={goToNotLoggedInPage}
                         goToGameMaker={goToGameMaker}
                     />
+                    }
+
+{/* when going to proj-mgr-new and proj-mgr-panel, load project-list from cloud */}
+
+                    {currentCompoName === "accountpage"
+                    &&
+                    <AccountPage
+                        goToNotLoggedInPage={goToNotLoggedInPage}
+                    />
+
                     }
 
                 </div>
