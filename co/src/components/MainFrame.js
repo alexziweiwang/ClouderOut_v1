@@ -62,15 +62,8 @@ export default function MainFrame({}) {
     //TODO 5. new project + sidebar2
 
 
-
-
     function goToProjectManagingPanel() {
-        navigate('/projectmanagingpanel', { replace: true, state: { "uname": authEmailName } });
-      }
-
-
-      function goToProjectManagingPanel() {
-        navigate('/projectmanagingpanel', { replace: true, state: { "username": authEmailName } });
+        setCurrentCompoName("projectmanagingpanel");
     }
 
     function goToDashboard() {
@@ -83,6 +76,20 @@ export default function MainFrame({}) {
 
     function goToProfilePage() {
         navigate('/profilepage',  { replace: true, state: { "username": authEmailName } });
+    }
+
+    function goToGameMaker(selected_project_name, modeName) {
+        if (selected_project_name === "") {
+          return;
+        }
+  
+        navigate('/editorcontainer', { 
+          replace: true, 
+          state: { 
+            selected_project_name: selected_project_name, 
+            mode: modeName
+          } });
+  
     }
 
     function passInUsername() {
@@ -126,7 +133,8 @@ export default function MainFrame({}) {
                     &&
                     <ProjectManagingPanel
                     
-                    
+                        goToNotLoggedInPage={goToNotLoggedInPage}
+                        goToGameMaker={goToGameMaker}
                     />
                     }
 

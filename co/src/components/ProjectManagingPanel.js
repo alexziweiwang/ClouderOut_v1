@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { GiTrashCan } from "react-icons/gi";
 import ProjectManageNew from './ProjectManageNew';
@@ -20,7 +20,12 @@ import { getAuthFirebase } from '../authtools/firebaseAuthOperations';
 
 
 
-export default function ProjectManagingPanel() {
+export default function ProjectManagingPanel(
+  {
+    goToNotLoggedInPage,
+    goToGameMaker
+  }
+) {
     const backendOption = "firebase"; 
     //default to use firebase for account folder?
     
@@ -36,8 +41,6 @@ export default function ProjectManagingPanel() {
         username = state.uname;
     } 
     
-    const navigate = useNavigate();
-
     let textDictItem = langDictionary[languageCodeTextOption];
     let textDictItemDefault = langDictionary["en"];
 
@@ -114,26 +117,7 @@ export default function ProjectManagingPanel() {
       }  
   
     }
-  
 
-    function goToNotLoggedInPage() {
-      navigate('/notloggedin', { replace: true });
-
-    }
-
-    function goToGameMaker() {
-      if (selected_project_name === "") {
-        return;
-      }
-
-      navigate('/editorcontainer', { 
-        replace: true, 
-        state: { 
-          selected_project_name: selected_project_name, 
-          mode: modeName
-        } });
-
-    }
 
     async function loadProjectListFromCloud(emailAddr) {
      
@@ -376,7 +360,9 @@ export default function ProjectManagingPanel() {
               <div>
                 <button 
                   className="button testEntire" 
-                  onClick={()=>{goToGameMaker();}}> 
+                  onClick={()=>{
+                    goToGameMaker(selected_project_name, modeName);
+                  }}> 
                   {gameMakerButtonText} 
                 </button>
 
