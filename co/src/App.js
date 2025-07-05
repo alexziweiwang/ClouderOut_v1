@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import Dashboard from './components/Dashboard'
-import ProjectManagerPanel from './components/ProjectManagingPanel';
+import ProjectManagingPanel from './components/ProjectManagingPanel';
 import ConversationNodeEditingPanel from'./components/ConversationNodeEditingPanel';
 import ProjectManageNew from './components/ProjectManageNew';
 import ProjectManageEdit from './components/ProjectManageEdit';
@@ -22,8 +22,7 @@ function App() {
         <Route path="*" element={<Dashboard />} />  {/* TODO change later for default entry page */}
         
         <Route path="/mainpanel" element={<MainFrame/>} />
-        {/* <Route path="/dashboard" element={<Dashboard />} /> */}
-        <Route path="/projectmanagingpanel" element={<ProjectManagerPanel />} />
+        <Route path="/projectmanagingpanel" element={<ProjectManagingPanel />} />
         <Route path="/conversationnode" element={<ConversationNodeEditingPanel />} />
         <Route path="/cardgamenode" element={<CardGameNodeEditingPanel />} />
         <Route path="/projectmanagenew" element={<ProjectManageNew/>} />

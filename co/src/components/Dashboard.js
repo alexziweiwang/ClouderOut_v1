@@ -11,8 +11,12 @@ import langDictionary from './_textDictionary';
 /* Dashboard
 Dashboard is for each specific user, and users setup their profile, projects and account.
 */
-export default function Dashboard({username, getUsername}) {
-    let name = "/dashboard";
+export default function Dashboard({
+      username, 
+      getUsername,
+      goToProjectManagingPanel,
+    
+  }) {
 
     const navigate = useNavigate();
 
@@ -52,18 +56,6 @@ export default function Dashboard({username, getUsername}) {
 
     });
 
-
-  
-
-    function goToNotLoggedInPage() {
-      navigate('/notloggedin', { replace: true });
-
-    }
-
-    function goToProjectManagingPanel() {
-      navigate('/projectmanagingpanel', { replace: true, state: { "uname": authEmailName } });
-    }
-
     function projectManageNew() {
       setShowNewProjCreationPage(true);
     }
@@ -78,15 +70,7 @@ export default function Dashboard({username, getUsername}) {
 
     return (<>
   {authEmailName !== "_" && <div className="page">
-    {/* {!showNewProjCreationPage && 
-      <Sidebar 
-        compName={name} 
-        username={authEmailName}
-        getUsername={passInUsername}
 
-      />} */}
-
-    
     {!showNewProjCreationPage && <div className="dashboard_content">
      <div>
 

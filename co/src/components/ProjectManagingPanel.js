@@ -1,7 +1,6 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import Sidebar from './Sidebar';
 import { GiTrashCan } from "react-icons/gi";
 import ProjectManageNew from './ProjectManageNew';
 import langDictionary from './_textDictionary';
@@ -21,7 +20,7 @@ import { getAuthFirebase } from '../authtools/firebaseAuthOperations';
 
 
 
-export default function ProjectManagerPanel() {
+export default function ProjectManagingPanel() {
     const backendOption = "firebase"; 
     //default to use firebase for account folder?
     
@@ -255,11 +254,7 @@ export default function ProjectManagerPanel() {
     return (<>
 
 {authEmailName !== "_" && <div style={{"display": "flex"}}>    
-      <Sidebar 
-      compName = {name}
-      username={username}
-      getUsername={passInEmailUsername}      
-      />
+
 
       <div className="dashboard_content">
   

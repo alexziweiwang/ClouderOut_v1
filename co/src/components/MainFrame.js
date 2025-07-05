@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import Sidebar from './Sidebar';
 
 import Dashboard from './Dashboard';
-
+import ProjectManagingPanel from './ProjectManagingPanel';
 
 import { getAuthFirebase } from '../authtools/firebaseAuthOperations';
 
@@ -26,7 +26,7 @@ export default function MainFrame({}) {
     //hashboard-phase: vertical side bar
     //game-making-phase: horizontal side bar
 
-    const [currentCompoName, setCurrentCompoName] = useState("/dashboard");
+    const [currentCompoName, setCurrentCompoName] = useState("dashboard");
 
     const [authEmailName, setAuthEmailName] = useState("_");
 
@@ -51,7 +51,7 @@ export default function MainFrame({}) {
 
 
     // combinations:
-    //TODO 1. logged in dashboard page(/dashboard) + sidebar
+    //TODO 1. logged in dashboard page(dashboard) + sidebar
 
     //TODO 2. account page + sidebar
 
@@ -60,6 +60,30 @@ export default function MainFrame({}) {
     //TODO 4. project-managing + sidebar2
 
     //TODO 5. new project + sidebar2
+
+
+
+
+    function goToProjectManagingPanel() {
+        navigate('/projectmanagingpanel', { replace: true, state: { "uname": authEmailName } });
+      }
+
+
+      function goToProjectManagingPanel() {
+        navigate('/projectmanagingpanel', { replace: true, state: { "username": authEmailName } });
+    }
+
+    function goToDashboard() {
+        setCurrentCompoName("dashboard");
+    }
+
+    function goToAccountPage() {
+        navigate('/accountpage',  { replace: true, state: { "username": authEmailName } });
+    }
+
+    function goToProfilePage() {
+        navigate('/profilepage',  { replace: true, state: { "username": authEmailName } });
+    }
 
     function passInUsername() {
         return authEmailName; //TODO1030
@@ -79,21 +103,32 @@ export default function MainFrame({}) {
                         compName = {currentCompoName}
                         username={authEmailName}
                         getUsername={passInUsername}
+                        goToProjectManagingPanel={goToProjectManagingPanel}
+                        goToDashboard={goToDashboard}
+                        goToAccountPage={goToAccountPage}
+                        goToProfilePage={goToProfilePage}
                 />
 
                 <div style={{"backgroundColor": "pink"}}>
-                {/* //dashboard / account / profile / project-managing / new-project */}
+                {/* // dashboard / account / profile / project-managing / new-project */}
 
-                    {currentCompoName === "/dashboard" 
+                    {currentCompoName === "dashboard" 
                     && 
                     <Dashboard
                          username={authEmailName}
                          getUsername={passInUsername}
+                         goToProjectManagingPanel={goToProjectManagingPanel}
                     />}
 
+{/* when going to proj-mgr-new and proj-mgr-panel, load project-list from cloud */}
 
-
-
+                    {currentCompoName === "projectmanagingpanel"
+                    &&
+                    <ProjectManagingPanel
+                    
+                    
+                    />
+                    }
 
                 </div>
             </div>

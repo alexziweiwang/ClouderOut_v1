@@ -5,7 +5,16 @@ import langDictionary from './_textDictionary';
 
 import { userLogOutVM } from '../viewmodels/_UserFirebaseAuthViewModel';
 
-export default function Sidebar({compName, username, getUsername}) {
+export default function Sidebar({
+    compName, 
+    username, 
+    getUsername,
+    goToProjectManagingPanel,
+    goToDashboard,
+    goToAccountPage,
+    goToProfilePage,
+
+}) {
 
     
   //  console.log("sidebar, compName:", compName);
@@ -40,24 +49,6 @@ export default function Sidebar({compName, username, getUsername}) {
     });
 
 
-    function goToProjectManagingPanel() {
-        navigate('/projectmanagingpanel', { replace: true, state: { username } });
-    }
-
-    function backToDashboard() {
-        // navigate('/dashboard', { replace: true, state: { username } }); 
-        alert("TODO should go back to dashboard");
-
-    }
-
-    function goToAccountPage() {
-        navigate('/accountpage',  { replace: true, state: { username } });
-    }
-
-    function goToProfilePage() {
-        navigate('/profilepage',  { replace: true, state: { username } });
-    }
-
     async function goToLogOutPage() {
         //TODO log out here...
 
@@ -74,7 +65,7 @@ export default function Sidebar({compName, username, getUsername}) {
     return (
     <>
     
-    {(compName === "/dashboard") && 
+    {(compName === "dashboard") && 
     <div className="sidebar1" > 
     Welcome, [{displayingUsername}]
 
@@ -95,25 +86,25 @@ export default function Sidebar({compName, username, getUsername}) {
         </div>
     }
 
-    {(compName === "/accountpage" || compName === "/profilepage") && 
+    {(compName === "accountpage" || compName === "/profilepage") && 
     <div className="sidebar1" >
     Welcome, [{displayingUsername}]
 
         <div> 
             
-            <button className="sidebar_options sidebar_options2" onClick={()=>{backToDashboard()}}>← {dashBoardButtonText}</button>
+            <button className="sidebar_options sidebar_options2" onClick={()=>{goToDashboard()}}>← {dashBoardButtonText}</button>
         </div>
         
 
         </div>
     }
 
-    {(compName === "/projectmanagingpanel") && 
+    {(compName === "projectmanagingpanel") && 
     <div className="sidebar1" >
     Welcome, [{displayingUsername}]
 
         <div> 
-            <button className="sidebar_options sidebar_options2" onClick={()=>{backToDashboard()}}>←</button>
+            <button className="sidebar_options sidebar_options2" onClick={()=>{goToDashboard()}}>←</button>
         </div>
     
         </div>
