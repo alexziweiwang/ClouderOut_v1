@@ -70,6 +70,7 @@ export default function Panel1_UserMgr({}) {
               );
         } else {
             if (projList === undefined || trashedProjList === undefined) {
+                console.log("fetching project list from cloud")
                 loadProjectListFromCloudOuter(authEmailName);
             }
         }
@@ -97,6 +98,7 @@ export default function Panel1_UserMgr({}) {
     //TODO 5. new project + sidebar2
 
     function goToDashboard() {
+                                console.log("going to dashboard!");
         setCurrentCompoName("dashboard");
     }
 
@@ -142,6 +144,10 @@ export default function Panel1_UserMgr({}) {
 
     async function loadProjectListFromCloudOuter(usernameTemp) { //TODO22
         
+        if(usernameTemp === "_") {
+            return undefined;
+        }
+        
         const groupList = await fetchProjectListVM(
           {currUser: usernameTemp,
            bkOption: backendOption 
@@ -155,6 +161,8 @@ export default function Panel1_UserMgr({}) {
           setProjList(groupList.untrashed);
           setTrashedProjList(groupList.trashed);
         }
+
+        return groupList;
     }
 
     async function revertProjectOuter(selectedTrashedProj) {
@@ -178,15 +186,13 @@ export default function Panel1_UserMgr({}) {
 
     function passInValidProjectList() {
         return projList;
+        
     }
 
     function passInTrashedProjectList() {
         return trashedProjList;
+        
     }
-
-
-
-
 
 
     return (
@@ -205,49 +211,60 @@ export default function Panel1_UserMgr({}) {
 
                 />
 
-                <div style={{"backgroundColor": "pink"}}>
+                <div 
+                    style={{
+                        "backgroundColor": "pink",
+                    }}>
                 {/* // dashboard / account / profile / project-managing / new-project */}
 
-                    {currentCompoName === "dashboard" 
-                    && 
-                    <ProjectManagingPanel
-                        goToGameMaker={goToGameMakerOuter}
+                    <div
+                        style={{
+                            "display": currentCompoName === "dashboard" ? "flex" : "none"
+                        }}
+                    > 
+                        <ProjectManagingPanel
+                            goToGameMaker={goToGameMakerOuter}
 
-                        getUsername={passInUsername}
+                            getUsername={passInUsername}
 
-                        revertProjectOuter={revertProjectOuter}
-                        deleteProjectOuter={deleteProjectOuter}
-                        parseFromFile_vm={parseFromFile_vm}
+                            revertProjectOuter={revertProjectOuter}
+                            deleteProjectOuter={deleteProjectOuter}
+                            parseFromFile_vm={parseFromFile_vm}
 
-                        getValidProjList={passInValidProjectList}
-                        getTrashedProjList={passInTrashedProjectList}
+                            getValidProjList={passInValidProjectList}
+                            getTrashedProjList={passInTrashedProjectList}
 
-                    />
-                    }
+                        />
+                    </div>
+                    
 
 {/* when going to proj-mgr-new and proj-mgr-panel, load project-list from cloud */}
 
-                    {currentCompoName === "accountpage"
-                    &&
-                    <AccountPage
-                        goToNotLoggedInPage={goToNotLoggedInPage}
+                   
+                    <div
+                      style={{
+                          "display": currentCompoName === "accountpage" ? "flex" : "none"
+                      }}
+                    > 
+                        <AccountPage
+                            goToNotLoggedInPage={goToNotLoggedInPage}
 
-                        getUsername={passInUsername}
-                    />
+                            getUsername={passInUsername}
+                        />
+                    </div>
 
-                    }
+                    <div
+                      style={{
+                          "display": currentCompoName === "profilepage" ? "flex" : "none"
+                      }}
+                    > 
+                        <ProfilePage
+                            goToNotLoggedInPage={goToNotLoggedInPage}
+                            getProfile={getProfile}
 
-                    {currentCompoName === "profilepage"
-                    &&
-                    <ProfilePage
-                        goToNotLoggedInPage={goToNotLoggedInPage}
-                        getProfile={getProfile}
-
-                        getUsername={passInUsername}
-
-                    />
-
-                    }
+                            getUsername={passInUsername}
+                        />
+                    </div>
 
                 </div>
             </div>

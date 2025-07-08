@@ -6,11 +6,9 @@ import { useState, useEffect } from 'react';
 
 import { getProfileInfoVM, updateProfileInfoVM } from '../viewmodels/AccountViewModel';
 //TODO115 collection of cloud-related
-import { getAuthFirebase } from '../authtools/firebaseAuthOperations';
 
 
 export default function ProfilePage({
-    goToNotLoggedInPage, 
     getProfile,
 
     getUsername,

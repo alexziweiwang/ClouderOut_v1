@@ -98,7 +98,7 @@ export default function ProjectManagingPanel(
 
                                  //     console.log("project managing panel page --\t\tauthEmamilName is [", uname, "]");
 
-                                      console.log("mgr-panel, imported-obj = ", projectObj);
+                   //                   console.log("mgr-panel, imported-obj = ", projectObj);
                                       
 
     });
