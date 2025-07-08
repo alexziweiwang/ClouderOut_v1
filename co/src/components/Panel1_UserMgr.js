@@ -46,10 +46,11 @@ export default function Panel1_UserMgr({}) {
 
     const [backendOption, setBackendOption] = useState("firebase"); //firebase / local?
 
+//TODO area of saved info for this panel!!!
 
     const [projList, setProjList] = useState(undefined); 
     const [trashedProjList, setTrashedProjList] = useState(undefined);
-
+    const [profileObj, setProfileObj] = useState(undefined);
 
     //combine sidebar and content pages accordingly
     //hashboard-phase: vertical side bar
@@ -61,20 +62,38 @@ export default function Panel1_UserMgr({}) {
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
-        if (authEmailName === "_") {
+
+
+
+
+        if (authEmailName !== "_" && firstTimeEnter === true) {
+                                        console.log("\n\n\nPanel1_UserMgr FIRST ENTER.\n\n\n");
+
+          
+            if (
+                projList === undefined 
+                || trashedProjList === undefined 
+                || profileObj === undefined
+            ) { // condition of init-status of var...
+
+                loadProjectListFromCloudOuter();
+                fetchProfileFromCloud();
+                
+                setFirstTimeEnter(false);
+            }   
+
+            
+        }
+
+
+        if (authEmailName === "_") { // get login info
             getAuthFirebase(
                 {
                   goToNotLoggedInPageFunc: goToNotLoggedInPage,
                   sendOutEmailName: setAuthEmailName
                 }
               );
-        } else {
-            if (projList === undefined || trashedProjList === undefined) {
-                console.log("fetching project list from cloud")
-                loadProjectListFromCloudOuter(authEmailName);
-            }
         }
-
 
     });
 
@@ -130,31 +149,53 @@ export default function Panel1_UserMgr({}) {
   
 
 
-    async function getProfile() {
+    async function fetchProfileFromCloud() {
         if (authEmailName === "_") {
-                                                    console.log("Not getting profile -- no state");
+                                                    console.log("Not getting profile -- not logged in");
             return;
         }
         let profile = await getProfileInfoVM({uname: authEmailName, bkOption: backendOption});
+
                                                     console.log("page: ", profile); //TODO test
 
+        //TODO set-state for profile-intro
+        setProfileObj(profile);
         return profile;
     }
 
+    function passInProfile() {
 
-    async function loadProjectListFromCloudOuter(usernameTemp) { //TODO22
-        
-        if(usernameTemp === "_") {
+        return profileObj;
+    }
+
+    async function writeProfile(obj) {
+        if (authEmailName === "_") {
+                                                    console.log("Not writing profile -- not logged in");
+            return;
+        }
+
+        await updateProfileInfoVM({
+            uname: authEmailName, 
+            infoObj: obj, 
+            bkOption: backendOption
+        })
+    }
+
+
+    async function loadProjectListFromCloudOuter() { //TODO22
+        console.log("fetching project list from cloud")
+
+        if(authEmailName === "_") {
             return undefined;
         }
         
         const groupList = await fetchProjectListVM(
-          {currUser: usernameTemp,
+          {currUser: authEmailName,
            bkOption: backendOption 
           }
         );
       
-                              console.log("load_ProjectList_FromCloud, group-list for ", usernameTemp , " = ", groupList);
+                              console.log("load_ProjectList_FromCloud, group-list for ", authEmailName , " = ", groupList);
   
   
         if (groupList !== undefined && groupList.length !== 0) {
@@ -259,8 +300,8 @@ export default function Panel1_UserMgr({}) {
                       }}
                     > 
                         <ProfilePage
-                            goToNotLoggedInPage={goToNotLoggedInPage}
-                            getProfile={getProfile}
+                            getProfile={passInProfile}
+                            writeProfile={writeProfile}
 
                             getUsername={passInUsername}
                         />

@@ -2,52 +2,49 @@ import * as React from 'react';
 
 import { useState, useEffect } from 'react';
 
-//TODO1090 cloud-db related
-
-import { getProfileInfoVM, updateProfileInfoVM } from '../viewmodels/AccountViewModel';
-//TODO115 collection of cloud-related
-
-
 export default function ProfilePage({
     getProfile,
-
+    writeProfile,
     getUsername,
+
 }) {
 
-    const [backendOption, setBackendOption] = useState("firebase"); //firebase / local?
-    //speacial: default to use firebase for account folder?
-    
 
-    let name = "/profilepage";
-
-    let profile = [];
-    const [profileInfo, setProfile] = useState({});
+    const [profileInfo, setProfile] = useState(undefined);
     const [profileEditInput, setProfileEditInput] = useState("");
     
 
-    const [isEditingIntro, setIsEditingIntro] = useState("");
+    const [isEditingIntro, setIsEditingIntro] = useState(false);
 
     const [authEmailName, setAuthEmailName] = useState("_");
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
 
+        if (authEmailName !== "_" && firstTimeEnter === true) {
+            const profileTemp = getProfile();
 
-        let uname = getUsername();
-        setAuthEmailName(uname);
-        console.log("profile page--\t\tauthEmamilName", authEmailName);
-  
+                                    console.log("profile from cloud:", profileTemp); //TODO test
 
 
-        if (firstTimeEnter === true) {
-            const profile = getProfile();
-            console.log("profile from cloud:", profile); //TODO test
-            if (profileInfo.size > 0) {
-                setProfileEditInput(profileInfo["introduction"]);
-                setProfile(profile);
+            if (profileTemp !== undefined) { // condition of init-status of var...
+                if (profileTemp["introduction"] !== undefined) {
+                    setProfileEditInput(profileTemp["introduction"]);
+                } else {
+                    setProfileEditInput("...");
+                }
+                setProfile(profileTemp);
+            
+                setFirstTimeEnter(false);
             }
-            setFirstTimeEnter(false);
+            
         }
+
+        let unameTemp = getUsername();
+        if (unameTemp !== "_") {
+            setAuthEmailName(unameTemp);
+        }
+
     });
 
 
@@ -56,15 +53,10 @@ export default function ProfilePage({
 
     async function confirmInfoChange() {
         let obj = {}; 
-        obj["username"] = authEmailName; 
         obj["introduction"] = profileEditInput; 
         setProfile(obj);
 
-        await updateProfileInfoVM({
-            uname: authEmailName, 
-            infoObj: obj, 
-            bkOption: backendOption
-        })
+        await writeProfile(obj);
 
         setProfileEditInput("");
     }
@@ -74,7 +66,7 @@ export default function ProfilePage({
     return (
 
 <>
-  {authEmailName !== "_" && <div className="page">
+    <div className="page">
 
     <div className="dashboard_content" style={{"padding": "10px"}}>
         <div className="profilePage">
@@ -82,15 +74,12 @@ export default function ProfilePage({
             <br></br>
             <table className="noBorder">
                 <tbody>
-                <tr>
-                    <td className="noBorder">Username: </td>
-                    <td className="noBorder">{authEmailName}</td>
-                </tr>
 
                 <tr>
                     <td className="noBorder">Instruction:</td>
                     <td className="noBorder">
-                        <label>{profileInfo["introduction"]}</label>
+                        {profileInfo !== undefined &&
+                            <label>{profileInfo["introduction"]}</label>}
                         
                         
                         
@@ -131,7 +120,7 @@ export default function ProfilePage({
       
     </div>
  
-  </div>}
+  </div>
 
 </>
     );

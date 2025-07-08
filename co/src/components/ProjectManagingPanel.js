@@ -11,7 +11,7 @@ export default function ProjectManagingPanel(
   {
     goToGameMaker,
     getUsername,
-    fetchProjectListVM, 
+
     revertProjectOuter, 
     deleteProjectOuter,
     parseFromFile_vm,
@@ -21,9 +21,7 @@ export default function ProjectManagingPanel(
 
   }
 ) {
-    const [backendOption, setBackendOption] = useState("firebase"); 
-    //default to use firebase for account folder?
-    
+
     let languageCodeTextOption = 'en';
 
     let textDictItem = langDictionary[languageCodeTextOption];
@@ -79,35 +77,15 @@ export default function ProjectManagingPanel(
   
         fetchListsFromOuter();
       }
-      // let uname = getUsername();
-      // if (uname !== "_") {
-
-      //   if (firstTimeEnter === true) {
-
-      //       let validList = getValidProjList();
-      //       let trashedList = getTrashedProjList();
-      //       if (validList !== undefined && trashedList !== undefined) {
-      //         setProjList(validList);
-      //         setTrashedProjList(trashedList);
-      //       }
-            
-      //       setFirstTimeEnter(false);
-      //       setAuthEmailName(uname);
-      //   }
-      // }
-
-                                 //     console.log("project managing panel page --\t\tauthEmamilName is [", uname, "]");
-
-                   //                   console.log("mgr-panel, imported-obj = ", projectObj);
-                                      
 
     });
 
     function fetchListsFromOuter() {
       let validList = getValidProjList();
       let trashedList = getTrashedProjList();
-      console.log("\t\tproj-mgr-panel ... valid-list = ", validList);
-      console.log("\t\tproj-mgr-panel ... trashed-list = ", trashedList);
+
+                        // console.log("\t\tproj-mgr-panel ... valid-list = ", validList);
+                        // console.log("\t\tproj-mgr-panel ... trashed-list = ", trashedList);
 
       if (validList !== undefined && trashedList !== undefined) {
         setProjList(validList);
@@ -200,7 +178,7 @@ export default function ProjectManagingPanel(
     
     return (<>
 
-{true && <div style={{"display": "flex"}}>    
+ <div style={{"display": "flex"}}>    
 
 
       <div className="dashboard_content">
@@ -515,7 +493,7 @@ export default function ProjectManagingPanel(
 
   </div>
     
-            }
+            
 </>            
     );
 }
