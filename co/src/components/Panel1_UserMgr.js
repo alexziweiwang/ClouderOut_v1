@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import Sidebar from './Sidebar';
 
+import Sidebar from './Sidebar';
 import ProjectManagingPanel from './ProjectManagingPanel';
 import AccountPage from './AccountPage';
 import ProfilePage from './ProfilePage';
@@ -10,6 +10,26 @@ import ProfilePage from './ProfilePage';
 import { getAuthFirebase } from '../authtools/firebaseAuthOperations';
 
 import { getProfileInfoVM, updateProfileInfoVM } from '../viewmodels/AccountViewModel';
+
+
+//TODO1090 cloud-db related
+import { fetchProjectListVM, revertProjectVM, deleteProjectVM } from '../viewmodels/ProjectManagerViewModel';
+//TODO1090 collection of cloud-related
+
+
+import { parseFromFile_vm } from '../viewmodels/PrepAc_ProjectFileInOut';
+
+
+/*
+Related sub-compo:
+
+    Sidebar
+    ProjectManageNew (inner of proj-mgr-panel)
+    ProjectManagingPanel
+    AccountPage
+    ProfilePage
+*/
+
 
 
 /*
@@ -27,6 +47,10 @@ export default function Panel1_UserMgr({}) {
     const [backendOption, setBackendOption] = useState("firebase"); //firebase / local?
 
 
+    const [projList, setProjList] = useState(undefined); 
+    const [trashedProjList, setTrashedProjList] = useState(undefined);
+
+
     //combine sidebar and content pages accordingly
     //hashboard-phase: vertical side bar
     //game-making-phase: horizontal side bar
@@ -35,8 +59,7 @@ export default function Panel1_UserMgr({}) {
 
     const [authEmailName, setAuthEmailName] = useState("_");
 
-
-
+    const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
         if (authEmailName === "_") {
             getAuthFirebase(
@@ -45,10 +68,15 @@ export default function Panel1_UserMgr({}) {
                   sendOutEmailName: setAuthEmailName
                 }
               );
+        } else {
+            if (projList === undefined || trashedProjList === undefined) {
+                loadProjectListFromCloudOuter(authEmailName);
+            }
         }
 
 
     });
+
 
 
 
@@ -112,6 +140,34 @@ export default function Panel1_UserMgr({}) {
     }
 
 
+    async function loadProjectListFromCloudOuter(usernameTemp) { //TODO22
+     
+        const groupList = await fetchProjectListVM(
+          {currUser: usernameTemp,
+           bkOption: backendOption 
+          }
+        );
+      
+                              console.log("load_ProjectList_FromCloud, group-list for ", usernameTemp , " = ", groupList);
+  
+  
+        if (groupList !== undefined && groupList.length !== 0) {
+          setProjList(groupList.untrashed);
+          setTrashedProjList(groupList.trashed);
+        }
+
+    }
+
+    function passInValidProjectList() {
+        return projList;
+    }
+
+    function passInTrashedProjectList() {
+        return trashedProjList;
+    }
+
+
+
 
 
 
@@ -137,10 +193,18 @@ export default function Panel1_UserMgr({}) {
                     {currentCompoName === "dashboard" 
                     && 
                     <ProjectManagingPanel
-                        goToNotLoggedInPage={goToNotLoggedInPage}
                         goToGameMaker={goToGameMakerOuter}
 
                         getUsername={passInUsername}
+
+                        fetchProjectListVM={fetchProjectListVM} 
+                        revertProjectVM={revertProjectVM}
+                        deleteProjectVM={deleteProjectVM}
+                        parseFromFile_vm={parseFromFile_vm}
+
+                        loadProjectListFromCloud={loadProjectListFromCloudOuter}
+                        getValidProjList={passInValidProjectList}
+                        getTrashedProjList={passInTrashedProjectList}
 
                     />
                     }

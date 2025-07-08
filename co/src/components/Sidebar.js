@@ -1,13 +1,9 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-import { useNavigate} from 'react-router-dom';
 import langDictionary from './_textDictionary';
-
-import { userLogOutVM } from '../viewmodels/_UserFirebaseAuthViewModel';
 
 export default function Sidebar({
     compName, 
-    username, 
     getUsername,
     goToDashboard,
     goToAccountPage,
@@ -15,10 +11,6 @@ export default function Sidebar({
     goToNotLoggedInPage
 
 }) {
-
-    
-  //  console.log("sidebar, compName:", compName);
-    const navigate = useNavigate();
 
     const [displayingUsername, setDisplayingName] = useState("");
 

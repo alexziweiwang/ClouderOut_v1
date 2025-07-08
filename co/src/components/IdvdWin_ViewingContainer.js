@@ -11,7 +11,7 @@ export default function IdvdWin_ViewingContainer({username, projectName}) {
     //actual-project db structure: project(game) - userlist (each user has their own records, etc.: game-data-tracker, or SL records)
     // for each doc of project(game), only author-on-file can edit, otherwise just read
 
-    const backendOption = "firebase";   
+    const [backendOption, setBackendOption] = useState("firebase");   
     //TODO2000
 
     //TODO 1. project-selector page: import file & select project-on-cloud

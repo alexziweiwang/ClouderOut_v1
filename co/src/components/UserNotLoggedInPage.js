@@ -11,7 +11,7 @@ import { getAuthFirebase, convertEmailAddr } from '../authtools/firebaseAuthOper
 
 
 export default function UserNotLoggedInPage() {
-    const backendOption = "firebase"; 
+    const [backendOption, setBackendOption] = useState("firebase"); 
     //default to use firebase for account folder?
 
     

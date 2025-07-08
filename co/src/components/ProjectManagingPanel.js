@@ -7,31 +7,24 @@ import langDictionary from './_textDictionary';
 //TODO700 feature: latest edited project ... (create or save)
 
 
-//TODO1090 cloud-db related
-import { fetchProjectListVM, revertProjectVM, deleteProjectVM } from '../viewmodels/ProjectManagerViewModel';
-//TODO1090 collection of cloud-related
-
-
-import { parseFromFile_vm } from '../viewmodels/PrepAc_ProjectFileInOut';
-
-
-
-
 export default function ProjectManagingPanel(
   {
-    goToNotLoggedInPage,
     goToGameMaker,
-    getUsername
+    getUsername,
+    fetchProjectListVM, 
+    revertProjectVM, 
+    deleteProjectVM,
+    parseFromFile_vm,
+
+    getValidProjList,
+    getTrashedProjList
+
   }
 ) {
-    const backendOption = "firebase"; 
+    const [backendOption, setBackendOption] = useState("firebase"); 
     //default to use firebase for account folder?
     
     let languageCodeTextOption = 'en';
-
-    const compoPathName = "/projectmanagingpanel";
-
-    const modeName = "online_cloud";
 
     let textDictItem = langDictionary[languageCodeTextOption];
     let textDictItemDefault = langDictionary["en"];
@@ -53,9 +46,12 @@ export default function ProjectManagingPanel(
 
 
 
-    const [selected_project_name, setSelectedProjectName] = useState("");
-    const [projList, setProjList] = useState(false); 
-    const [trashedProjList, setTrashedProjList] = useState(false);
+    const [selected_project_name, setSelectedProjectName] = useState("");     //important !!!!!!
+
+    const [projList, setProjList] = useState(undefined);                     //important !!!!!!
+    const [trashedProjList, setTrashedProjList] = useState(undefined);       //important !!!!!!
+
+
     const [selectedTrashedProj, setSelectedTrashedProj] = useState("");
     const [isDisplayAsk, setDisplayAsk] = useState(false);
     const [showTrashArea, setShowTrashArea] = useState(false);
@@ -78,64 +74,48 @@ export default function ProjectManagingPanel(
     
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
+
+      if (projList === undefined || trashedProjList === undefined) {
   
-
-      let uname = getUsername();
-      if (uname !== "_") {
-
-        if (firstTimeEnter === true) {
-            loadProjectListFromCloud(uname);
-            setFirstTimeEnter(false);
-            setAuthEmailName(uname);
-
-        }
+        fetchListsFromOuter();
       }
+      // let uname = getUsername();
+      // if (uname !== "_") {
 
-      console.log("project managing panel page --\t\tauthEmamilName is [", uname, "]");
+      //   if (firstTimeEnter === true) {
 
-      console.log("mgr-panel, imported-obj = ", projectObj);
-      
+      //       let validList = getValidProjList();
+      //       let trashedList = getTrashedProjList();
+      //       if (validList !== undefined && trashedList !== undefined) {
+      //         setProjList(validList);
+      //         setTrashedProjList(trashedList);
+      //       }
+            
+      //       setFirstTimeEnter(false);
+      //       setAuthEmailName(uname);
+      //   }
+      // }
+
+                                 //     console.log("project managing panel page --\t\tauthEmamilName is [", uname, "]");
+
+                                      console.log("mgr-panel, imported-obj = ", projectObj);
+                                      
 
     });
 
-    async function receiveChangeOfAuthEmailName(emailAddrStr) {
-    
-      setAuthEmailName(emailAddrStr);
+    function fetchListsFromOuter() {
+      let validList = getValidProjList();
+      let trashedList = getTrashedProjList();
+      console.log("\t\tproj-mgr-panel ... valid-list = ", validList);
+      console.log("\t\tproj-mgr-panel ... trashed-list = ", trashedList);
 
-
-      if (emailAddrStr === "_") {
-        console.log("empty username(email-string)");
-        return;
-
-      } else {
-        await loadProjectListFromCloud(emailAddrStr);
-      }  
-  
+      if (validList !== undefined && trashedList !== undefined) {
+        setProjList(validList);
+        setTrashedProjList(trashedList);
+      }
     }
 
 
-    async function loadProjectListFromCloud(emailAddr) {
-     
-        const groupList = await fetchProjectListVM(
-          {currUser: emailAddr,
-           bkOption: backendOption 
-          });
-      
-        console.log("load_ProjectList_FromCloud, group-list for ", emailAddr , " = ", groupList);
-  
-  
-        if (groupList === undefined || groupList.length === 0) {
-          setProjList([]);
-          setTrashedProjList([]);
-        } else {
-          setProjList(groupList.untrashed);
-          setTrashedProjList(groupList.trashed);
-        }
-      
-
-
-
-    }
 
     function handleProjectSelectionChange(event) {
       setSelectedProjectName(event.target.value);
@@ -163,7 +143,7 @@ export default function ProjectManagingPanel(
         });
 
       setSelectedTrashedProj("");
-      loadProjectListFromCloud(authEmailName);
+      fetchListsFromOuter();
     }
 
     function handleDeleteProject() {
@@ -183,7 +163,7 @@ export default function ProjectManagingPanel(
       );
       
       setSelectedProjectName("");
-      loadProjectListFromCloud(authEmailName);
+      fetchListsFromOuter();
     }
 
     function notUsing() {
@@ -191,7 +171,7 @@ export default function ProjectManagingPanel(
     }
 
     function triggerCreationSubmit() {
-      loadProjectListFromCloud(authEmailName);
+      fetchListsFromOuter();
       setCurrentProjectAction("selectProject");
     }
 
@@ -232,7 +212,7 @@ export default function ProjectManagingPanel(
     
     return (<>
 
-{authEmailName !== "_" && <div style={{"display": "flex"}}>    
+{true && <div style={{"display": "flex"}}>    
 
 
       <div className="dashboard_content">

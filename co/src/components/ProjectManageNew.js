@@ -5,7 +5,6 @@ import { useState, useEffect } from 'react';
 //TODO1090 cloud-db related
 import { fetchProjectListVM, createProjectVM } from '../viewmodels/ProjectManagerViewModel';
 
-
 import { projectNavUiTemplate, gdt1Template, epp2Template, epa3Template, ess4Template, shp5Template } from './_dataStructure_DefaultObjects';
 
 import { createNewProjectToCloud_vm } from '../viewmodels/PrepAc_Creations';
@@ -14,7 +13,7 @@ import { createNewProjectToCloud_vm } from '../viewmodels/PrepAc_Creations';
 
 
 export default function ProjectManageNew({cancelAction, showCancelButton, isPart, triggerCreationSubmit, username}) {
-    const backendOption = "firebase"; 
+    const [backendOption, setBackendOption] = useState("firebase"); 
     //default to use firebase for account folder?
 
 
