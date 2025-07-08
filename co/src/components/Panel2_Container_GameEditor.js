@@ -7,7 +7,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 
 import GameMaker from './GameMaker'
 
-export default function Panel1_Container_GameEditor() {
+export default function Panel2_Container_GameEditor() {
 //TODO handle project-creator's authorization here?
 
     const navigate = useNavigate();

@@ -15,7 +15,9 @@ import { getProfileInfoVM, updateProfileInfoVM } from '../viewmodels/AccountView
 /*
 Keeps the layout of sidebar + content formatted pages
 */
-export default function Panel0_UserMgr({}) {
+export default function Panel1_UserMgr({}) {
+    const onlineMode = "online_cloud"; // this is settled because entering from panel_1
+
     const navigate = useNavigate();
 
     function goToNotLoggedInPage() {
@@ -78,7 +80,7 @@ export default function Panel0_UserMgr({}) {
         setCurrentCompoName("profilepage");
     }
 
-    function goToGameMaker(selected_project_name, modeName) {
+    function goToGameMakerOuter(selected_project_name) {
         if (selected_project_name === "") {
           return;
         }
@@ -87,7 +89,7 @@ export default function Panel0_UserMgr({}) {
           replace: true, 
           state: { 
             selected_project_name: selected_project_name, 
-            mode: modeName
+            mode: onlineMode
           } });
   
     }
@@ -136,7 +138,7 @@ export default function Panel0_UserMgr({}) {
                     && 
                     <ProjectManagingPanel
                         goToNotLoggedInPage={goToNotLoggedInPage}
-                        goToGameMaker={goToGameMaker}
+                        goToGameMaker={goToGameMakerOuter}
 
                         getUsername={passInUsername}
 

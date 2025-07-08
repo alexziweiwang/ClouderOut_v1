@@ -356,7 +356,7 @@ export default function ProjectManagingPanel(
                 <button 
                   className="button testEntire" 
                   onClick={()=>{
-                    goToGameMaker(selected_project_name, modeName);
+                    goToGameMaker(selected_project_name);
                   }}> 
                   {gameMakerButtonText} 
                 </button>
