@@ -141,7 +141,7 @@ export default function Panel1_UserMgr({}) {
 
 
     async function loadProjectListFromCloudOuter(usernameTemp) { //TODO22
-     
+        
         const groupList = await fetchProjectListVM(
           {currUser: usernameTemp,
            bkOption: backendOption 
@@ -155,8 +155,26 @@ export default function Panel1_UserMgr({}) {
           setProjList(groupList.untrashed);
           setTrashedProjList(groupList.trashed);
         }
-
     }
+
+    async function revertProjectOuter(selectedTrashedProj) {
+        await revertProjectVM(
+            {
+              projectToRevert: selectedTrashedProj, 
+              currUser: authEmailName,
+              bkOption: backendOption
+        });
+    }
+
+    async function deleteProjectOuter(selectedDeletedProj) {
+        await deleteProjectVM( 
+          { 
+            projectToDelete: selectedDeletedProj, 
+            currUser: authEmailName,
+            bkOption: backendOption
+          }
+        );
+    }  
 
     function passInValidProjectList() {
         return projList;
@@ -197,12 +215,10 @@ export default function Panel1_UserMgr({}) {
 
                         getUsername={passInUsername}
 
-                        fetchProjectListVM={fetchProjectListVM} 
-                        revertProjectVM={revertProjectVM}
-                        deleteProjectVM={deleteProjectVM}
+                        revertProjectOuter={revertProjectOuter}
+                        deleteProjectOuter={deleteProjectOuter}
                         parseFromFile_vm={parseFromFile_vm}
 
-                        loadProjectListFromCloud={loadProjectListFromCloudOuter}
                         getValidProjList={passInValidProjectList}
                         getTrashedProjList={passInTrashedProjectList}
 

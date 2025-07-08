@@ -15,6 +15,11 @@ export async function fetchProjectListVM({currUser, bkOption}) {
 
     let group = {"untrashed": {}, "trashed": {}};
 
+    if (currUser === "_") {
+        return group;
+    }
+
+
     if (bkOption === "firebase") {
             const res = await fetchProjectList(currUser);
             

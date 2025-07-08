@@ -12,8 +12,8 @@ export default function ProjectManagingPanel(
     goToGameMaker,
     getUsername,
     fetchProjectListVM, 
-    revertProjectVM, 
-    deleteProjectVM,
+    revertProjectOuter, 
+    deleteProjectOuter,
     parseFromFile_vm,
 
     getValidProjList,
@@ -135,13 +135,7 @@ export default function ProjectManagingPanel(
     }
 
     async function revertTrashedProject() {
-      await revertProjectVM(
-        {
-          projectToRevert: selectedTrashedProj, 
-          currUser: authEmailName,
-          bkOption: backendOption
-        });
-
+      await revertProjectOuter(selectedTrashedProj);
       setSelectedTrashedProj("");
       fetchListsFromOuter();
     }
@@ -154,14 +148,8 @@ export default function ProjectManagingPanel(
     }
 
     async function deleteProject() {
-      await deleteProjectVM( 
-        { 
-          projectToDelete: selected_project_name, 
-          currUser: authEmailName,
-          bkOption: backendOption
-        }
-      );
-      
+      await deleteProjectOuter(selected_project_name); 
+       
       setSelectedProjectName("");
       fetchListsFromOuter();
     }
@@ -264,7 +252,7 @@ export default function ProjectManagingPanel(
         >
         <div>
 
-        {(projList && projList.length > 0) && 
+        {(projList !== undefined && projList.length > 0) && 
         <div  style={{"display": "flex", "justifyContent": "start", "padding": "10px"}}
               onClick={()=>{  
                 if (currentProjectAction !== "selectProject") {
@@ -279,7 +267,7 @@ export default function ProjectManagingPanel(
         </div>}
 
 
-        {(projList && projList.length > 0) && 
+        {(projList !== undefined && projList.length > 0) && 
         <div className="parallelFrame"  
           style={{
               "marginTop": "20px", 
@@ -495,11 +483,11 @@ export default function ProjectManagingPanel(
                     "justifyContent": "start", 
                 }}>
 
-                  {trashedProjList.length == 0 && <div>
+                  {(trashedProjList !== undefined && trashedProjList.length == 0) && <div>
                       <label>No deleted project.</label>
                   </div>}                
 
-                  {trashedProjList.length > 0 && 
+                  {(trashedProjList !== undefined && trashedProjList.length > 0) && 
                     <><select className="dropdownList" value={selectedTrashedProj} onChange={handleTrashedProjectSelectionChange}>
                       <option value="" key="">-- {trashedProjectSelectListDefaultText} --</option>
                       {
