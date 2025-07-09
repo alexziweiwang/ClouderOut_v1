@@ -1,4 +1,5 @@
 import { emptyConvNodeSinglePieceTemplate, emptyConvNodeUiAllTemplate } from '../components/_dataStructure_DefaultObjects';
+import { createProjectVM } from './ProjectManagerViewModel';
 
 
 export async function prepareForNewChapterMapping_vm (newKey, chapterNodeMapAll, setChapterNodeMapAll, setNodeMapUpdatedSignal, convertNodeMapToGridBlocks, setGridBlocksAll, setGridBlocksUpdatedSignal, updateChapterNodeMappingsToCloud) {
@@ -210,7 +211,6 @@ export async function triggerCreatedNewNode_vm (
   }
 
 export async function createNewProjectToCloud_vm(
-  createProjectVM, 
   projList, 
   addedNewProjKey, 
   epp2Template, 

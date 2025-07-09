@@ -76,7 +76,7 @@ export default function Panel1_UserMgr({}) {
                 || profileObj === undefined
             ) { // condition of init-status of var...
 
-                loadProjectListFromCloudOuter();
+                loadProjectListFromCloud();
                 fetchProfileFromCloud();
                 
                 setFirstTimeEnter(false);
@@ -182,7 +182,7 @@ export default function Panel1_UserMgr({}) {
     }
 
 
-    async function loadProjectListFromCloudOuter() { //TODO22
+    async function loadProjectListFromCloud() { //TODO22
         console.log("fetching project list from cloud")
 
         if(authEmailName === "_") {
@@ -194,7 +194,7 @@ export default function Panel1_UserMgr({}) {
            bkOption: backendOption 
           }
         );
-      
+      //TODO99999
                               console.log("load_ProjectList_FromCloud, group-list for ", authEmailName , " = ", groupList);
   
   
@@ -235,7 +235,6 @@ export default function Panel1_UserMgr({}) {
         
     }
 
-
     return (
         <div>
             <div style={{"display": "flex"}}>
@@ -274,7 +273,7 @@ export default function Panel1_UserMgr({}) {
 
                             getValidProjList={passInValidProjectList}
                             getTrashedProjList={passInTrashedProjectList}
-
+                            triggerFetchProjList={loadProjectListFromCloud}
                         />
                     </div>
                     

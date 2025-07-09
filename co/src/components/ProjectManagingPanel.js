@@ -17,7 +17,9 @@ export default function ProjectManagingPanel(
     parseFromFile_vm,
 
     getValidProjList,
-    getTrashedProjList
+    getTrashedProjList,
+
+    triggerFetchProjList,
 
   }
 ) {
@@ -105,6 +107,16 @@ export default function ProjectManagingPanel(
       }
     }
 
+    function triggerUpdateAndFetchFromOuter() {
+      let obj = triggerFetchProjList();
+
+      if (obj !== undefined && obj.trashed !== undefined && obj.untrashed !== undefined) {
+        setProjList(obj.untrashed);
+        setTrashedProjList(obj.trashed);
+      }
+
+    }
+
 
 
     function handleProjectSelectionChange(event) {
@@ -127,7 +139,8 @@ export default function ProjectManagingPanel(
     async function revertTrashedProject() {
       await revertProjectOuter(selectedTrashedProj);
       setSelectedTrashedProj("");
-      fetchListsFromOuter();
+
+      triggerUpdateAndFetchFromOuter();
     }
 
     function handleDeleteProject() {
@@ -141,7 +154,9 @@ export default function ProjectManagingPanel(
       await deleteProjectOuter(selected_project_name); 
        
       setSelectedProjectName("");
-      fetchListsFromOuter();
+
+      triggerUpdateAndFetchFromOuter();
+
     }
 
     function notUsing() {
@@ -149,7 +164,9 @@ export default function ProjectManagingPanel(
     }
 
     function triggerCreationSubmit() {
-      fetchListsFromOuter();
+
+      triggerUpdateAndFetchFromOuter();
+
       setCurrentProjectAction("selectProject");
     }
 
@@ -229,6 +246,7 @@ export default function ProjectManagingPanel(
                 isPart={true}
                 triggerCreationSubmit={triggerCreationSubmit}
                 username={authEmailName}
+                projList={projList}
               />
             </div>
 

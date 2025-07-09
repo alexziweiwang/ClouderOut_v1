@@ -3,9 +3,15 @@ import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 //TODO1090 cloud-db related
-import { fetchProjectListVM, createProjectVM } from '../viewmodels/ProjectManagerViewModel';
 
-import { projectNavUiTemplate, gdt1Template, epp2Template, epa3Template, ess4Template, shp5Template } from './_dataStructure_DefaultObjects';
+import { 
+    projectNavUiTemplate, 
+    gdt1Template, 
+    epp2Template, 
+    epa3Template, 
+    ess4Template, 
+    shp5Template 
+} from './_dataStructure_DefaultObjects';
 
 import { createNewProjectToCloud_vm } from '../viewmodels/PrepAc_Creations';
 
@@ -17,7 +23,9 @@ export default function ProjectManageNew({
     showCancelButton, 
     isPart, 
     triggerCreationSubmit, 
-    username
+    username,
+    projList
+
   }) {
     const [backendOption, setBackendOption] = useState("firebase"); 
     //default to use firebase for account folder?
@@ -33,13 +41,13 @@ export default function ProjectManageNew({
     const [projDedscription, setProjDescription] = useState("");
     const [addedAuthorInfo, setAddedAuthorInfo] = useState("");
     const [addedGameScreenSize, setAddedGameScreenSize] = useState("");
-    const [projList, setProjList] = useState([]); 
     
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
 
     useEffect(() => {
-      if (firstTimeEnter === true) {
-        loadProjectListFromCloud();
+
+      if (username !== "_" && firstTimeEnter === true) {
+
         setFirstTimeEnter(false);
       }
     });
@@ -48,19 +56,7 @@ export default function ProjectManageNew({
       triggerCreationSubmit();
     }
 
-    async function loadProjectListFromCloud() {
-  
-      const groupList = await fetchProjectListVM(
-        {currUser: username,
-         bkOption: backendOption
-        }
-        );
-      if (groupList === undefined || groupList.length === 0) {
-        setProjList([]);
-      } else {
-        setProjList(groupList.untrashed);
-      }
-    }
+   
 
     function changeProjNameInput(event) {
       const str = event.target.value;
@@ -83,7 +79,6 @@ export default function ProjectManageNew({
     /* Create and setup the default set for a new project */
     async function createNewProjectToCloud() {
       await createNewProjectToCloud_vm(
-          createProjectVM, 
           projList, 
           addedNewProjKey, 
           epp2Template, 
