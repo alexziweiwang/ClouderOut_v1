@@ -28,6 +28,7 @@ export default function ProfilePage({
 
 
             if (profileTemp !== undefined) { // condition of init-status of var...
+                
                 if (profileTemp["introduction"] !== undefined) {
                     setProfileEditInput(profileTemp["introduction"]);
                 } else {

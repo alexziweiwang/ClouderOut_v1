@@ -73,9 +73,21 @@ export default function ProjectManagingPanel(
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
 
-      if (projList === undefined || trashedProjList === undefined) {
-  
-        fetchListsFromOuter();
+      if (authEmailName !== "_" && firstTimeEnter === true) {
+
+        if (
+          projList === undefined 
+          || trashedProjList === undefined
+        ) { // condition of init-status of var...
+    
+          fetchListsFromOuter();
+        }
+      }
+
+
+      let unameTemp = getUsername();
+      if (unameTemp !== "_") {
+          setAuthEmailName(unameTemp);
       }
 
     });

@@ -42,6 +42,11 @@ export default function Sidebar({
 
 
     return (
+<>
+
+    {
+    displayingUsername !== "_"
+    &&    
     <>
     
     {(compName === "dashboard") && 
@@ -80,6 +85,9 @@ export default function Sidebar({
 
  
 
+    </>
+    
+    }
     </>
     );
 }

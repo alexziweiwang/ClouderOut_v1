@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 
 
 export default function AccountPage({
-    goToNotLoggedInPage,
     getUsername
   
   }) {
@@ -12,35 +11,39 @@ export default function AccountPage({
 
 
 
-    const [authEmailName, setAuthEmailName] = useState("_");
 
 
     const [nicknameInput, setNicknameInput] = useState("");
     const [emailLinkedInput, setEmailLinkedInput] = useState("");
     const [phonenumberInput, setPhonenumberInput] = useState("");
 
-    const [nicknameChanging, setNicknameChanging] = useState(false);
-    const [emailLinkedChanging, setEmailLinkedChanging] = useState(false);
-    const [phonenumberChanging, setPhonenumberChanging] = useState(false);
+    const [isNicknameChanging, setIsNicknameChanging] = useState(false);
+    const [isEmailLinkedChanging, setIsEmailLinkedChanging] = useState(false);
+    const [isPhonenumberChanging, setIsPhonenumberChanging] = useState(false);
 
+    const [accountObj, setAccountObj] = useState(undefined); //TODO set into obj with "nickname", "email", "phone-number" keys
 
+    const [authEmailName, setAuthEmailName] = useState("_");
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);   //TODO temp
     useEffect(() => {
 
 
+                                console.log("acount page--\t\tauthEmamilName", authEmailName);
+
+        if (authEmailName !== "_" && firstTimeEnter === true) {
+
+            //if init var is not init-status, then .. set setFirstTimeEnter(false)
+          
+
+                                    //setFirstTimeEnter(false);
+        }
+
         let uname = getUsername();
         setAuthEmailName(uname);
 
-        console.log("acount page--\t\tauthEmamilName", authEmailName);
 
  
-        if (firstTimeEnter === true) {
-
-          
-
-            setFirstTimeEnter(false);
-        }
 
     });
 
@@ -68,10 +71,10 @@ export default function AccountPage({
                   <td className="noBorder">(nickname value) 
                   
                   
-                      {nicknameChanging === false && <button onClick={()=>{setNicknameChanging(true);}}>Edit</button>}
-                      {nicknameChanging === true && <>
+                      {isNicknameChanging === false && <button onClick={()=>{setIsNicknameChanging(true);}}>Edit</button>}
+                      {isNicknameChanging === true && <>
                         <input onChange={(event)=>{setNicknameInput(event.target.value);}}></input>
-                        <button onClick={()=>{setNicknameChanging(false);}}>Cancel</button>
+                        <button onClick={()=>{setIsNicknameChanging(false);}}>Cancel</button>
                         <button onClick={()=>{
                               //TODO update to cloud: nicknameInput
                         }}>Save</button>
@@ -83,10 +86,10 @@ export default function AccountPage({
               <tr>
                   <td className="noBorder">Email linked: </td>
                   <td className="noBorder">(email value) 
-                      {emailLinkedChanging === false && <button onClick={()=>{setEmailLinkedChanging(true);}}>Edit</button>}
-                      {emailLinkedChanging === true && <>
+                      {isEmailLinkedChanging === false && <button onClick={()=>{setIsEmailLinkedChanging(true);}}>Edit</button>}
+                      {isEmailLinkedChanging === true && <>
                         <input onChange={(event)=>{setEmailLinkedInput(event.target.value);}}></input>
-                        <button onClick={()=>{setEmailLinkedChanging(false);}}>Cancel</button>
+                        <button onClick={()=>{setIsEmailLinkedChanging(false);}}>Cancel</button>
                         <button onClick={()=>{
                               //TODO update to cloud: emailLinkedInput
                         }}>Save</button>
@@ -98,10 +101,10 @@ export default function AccountPage({
                   <td className="noBorder">Phone number linked: </td>
                   <td className="noBorder">(phone number value) 
                   
-                      {phonenumberChanging === false && <button onClick={()=>{setPhonenumberChanging(true)}}>Edit</button>}
-                      {phonenumberChanging === true && <>
+                      {isPhonenumberChanging === false && <button onClick={()=>{setIsPhonenumberChanging(true)}}>Edit</button>}
+                      {isPhonenumberChanging === true && <>
                         <input onChange={(event)=>{setPhonenumberInput(event.target.value);}}></input>
-                        <button onClick={()=>{setPhonenumberChanging(false);}}>Cancel</button>
+                        <button onClick={()=>{setIsPhonenumberChanging(false);}}>Cancel</button>
                         <button onClick={()=>{
                               //TODO update to cloud: phonenumberInput
                         }}>Save</button>

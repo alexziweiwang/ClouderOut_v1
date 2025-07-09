@@ -12,7 +12,13 @@ import { createNewProjectToCloud_vm } from '../viewmodels/PrepAc_Creations';
 //TODO115 collection of cloud-related
 
 
-export default function ProjectManageNew({cancelAction, showCancelButton, isPart, triggerCreationSubmit, username}) {
+export default function ProjectManageNew({
+    cancelAction, 
+    showCancelButton, 
+    isPart, 
+    triggerCreationSubmit, 
+    username
+  }) {
     const [backendOption, setBackendOption] = useState("firebase"); 
     //default to use firebase for account folder?
 
