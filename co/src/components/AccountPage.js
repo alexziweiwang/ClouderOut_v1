@@ -34,7 +34,9 @@ export default function AccountPage({
         if (authEmailName !== "_" && firstTimeEnter === true) {
 
             //if init var is not init-status, then .. set setFirstTimeEnter(false)
-          
+                  //if (resBool === true) { //TODO99999
+                  //      setFirstTimeEnter(false);
+                  //}
 
                                     //setFirstTimeEnter(false);
         }

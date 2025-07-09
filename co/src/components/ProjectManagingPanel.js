@@ -82,8 +82,10 @@ export default function ProjectManagingPanel(
           || trashedProjList === undefined
         ) { // condition of init-status of var...
     
-          fetchListsFromOuter();
-          setFirstTimeEnter(false);
+          let resBool = fetchListsFromOuter(); 
+          if (resBool === true) { //TODO99999
+            setFirstTimeEnter(false);
+          }
         }
       }
 
@@ -99,12 +101,16 @@ export default function ProjectManagingPanel(
       let validList = getValidProjList();
       let trashedList = getTrashedProjList();
 
-                        // console.log("\t\tproj-mgr-panel ... valid-list = ", validList);
-                        // console.log("\t\tproj-mgr-panel ... trashed-list = ", trashedList);
+                        console.log("\t\tproj-mgr-panel ... valid-list = ", validList);
+                        console.log("\t\tproj-mgr-panel ... trashed-list = ", trashedList);
 
       if (validList !== undefined && trashedList !== undefined) {
         setProjList(validList);
         setTrashedProjList(trashedList);
+
+        return true;
+      } else {
+        return false;
       }
     }
 
@@ -168,13 +174,11 @@ export default function ProjectManagingPanel(
       return "";
     }
 
-    function triggerCreationSubmit() {
+    function triggerCreationSubmit(newProjectKeyName) {
 
-      //TODO30
-      let validListTemp = validList;
-      //TODO validListTemp add newly created project info
+      let validListTemp = projList;
+      validListTemp.push(newProjectKeyName);
       
-      //TODO99999
       let updatedObj = {
         "untrashed": validListTemp,
         "trashed": trashedProjList

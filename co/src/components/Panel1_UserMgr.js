@@ -78,7 +78,11 @@ export default function Panel1_UserMgr({}) {
 
                 loadProjectListFromCloud();
                 fetchProfileFromCloud();
+               
                 
+                  //if (resBool === true) { //TODO99999
+                  //      setFirstTimeEnter(false);
+                  //}
                 setFirstTimeEnter(false);
             }   
 
@@ -227,7 +231,21 @@ export default function Panel1_UserMgr({}) {
               bkOption: backendOption
         });
 
-        //TODO30 operate on projList and trashedProjList
+                                    // projList, setProjList
+                                    // trashedProjList, setTrashedProjList
+                                    
+        let projListTemp = projList;
+        let trashedProjListTemp = trashedProjList;
+
+        projListTemp.push(selectedTrashedProj);
+        trashedProjListTemp = trashedProjListTemp.filter(
+            (name) => name !== selectedTrashedProj
+        )
+
+        setProjList(projListTemp);
+        setTrashedProjList(trashedProjListTemp);
+
+    //TODO30
     }
 
     async function deleteProjectOuter(selectedDeletedProj) {
@@ -239,8 +257,21 @@ export default function Panel1_UserMgr({}) {
           }
         );
 
-        //TODO99999 operate on project-list here
+                              // projList, setProjList
+                              // trashedProjList, setTrashedProjList
+                                    
+        let projListTemp = projList;
+        let trashedProjListTemp = trashedProjList;
 
+        trashedProjListTemp.push(selectedDeletedProj);
+        projListTemp = projListTemp.filter(
+            (name) => name !== selectedDeletedProj
+        )
+
+        setProjList(projListTemp);
+        setTrashedProjList(trashedProjListTemp);
+
+        //TODO30 operate on projList and trashedProjList
     }  
 
     function passInValidProjectList() {

@@ -35,7 +35,13 @@ export default function ProfilePage({
                     setProfileEditInput("...");
                 }
                 setProfile(profileTemp);
-            
+
+                
+                  //if (resBool === true) { //TODO99999
+                  //      setFirstTimeEnter(false);
+                  //}
+                
+
                 setFirstTimeEnter(false);
             }
             

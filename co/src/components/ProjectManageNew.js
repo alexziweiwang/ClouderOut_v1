@@ -53,7 +53,7 @@ export default function ProjectManageNew({
     });
 
     function triggerCreationNew_local() {
-      triggerCreationSubmit();
+      triggerCreationSubmit(addedNewProjKey);
     }
 
    
