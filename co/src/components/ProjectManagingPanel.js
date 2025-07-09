@@ -83,6 +83,7 @@ export default function ProjectManagingPanel(
         ) { // condition of init-status of var...
     
           fetchListsFromOuter();
+          setFirstTimeEnter(false);
         }
       }
 
@@ -107,10 +108,9 @@ export default function ProjectManagingPanel(
       }
     }
 
-    function triggerUpdateAndFetchFromOuter() {
-      let obj = triggerFetchProjList();
-
-      if (obj !== undefined && obj.trashed !== undefined && obj.untrashed !== undefined) {
+    
+    function updateBothListsLocal(obj) {
+      if (obj !== undefined && obj.untrashed !== undefined && obj.trahsed !== undefined) {
         setProjList(obj.untrashed);
         setTrashedProjList(obj.trashed);
       }
@@ -137,10 +137,14 @@ export default function ProjectManagingPanel(
     }
 
     async function revertTrashedProject() {
-      await revertProjectOuter(selectedTrashedProj);
+      let updatedObj = await revertProjectOuter(selectedTrashedProj);
       setSelectedTrashedProj("");
 
-      triggerUpdateAndFetchFromOuter();
+
+
+      //TODO30
+      updateBothListsLocal(updatedObj);
+      
     }
 
     function handleDeleteProject() {
@@ -151,11 +155,12 @@ export default function ProjectManagingPanel(
     }
 
     async function deleteProject() {
-      await deleteProjectOuter(selected_project_name); 
+      let updatedObj = await deleteProjectOuter(selected_project_name); 
        
       setSelectedProjectName("");
 
-      triggerUpdateAndFetchFromOuter();
+      //TODO30
+      updateBothListsLocal(updatedObj);
 
     }
 
@@ -165,7 +170,17 @@ export default function ProjectManagingPanel(
 
     function triggerCreationSubmit() {
 
-      triggerUpdateAndFetchFromOuter();
+      //TODO30
+      let validListTemp = validList;
+      //TODO validListTemp add newly created project info
+      
+      //TODO99999
+      let updatedObj = {
+        "untrashed": validListTemp,
+        "trashed": trashedProjList
+      };
+      //add this newly created obj into both lists
+      updateBothListsLocal(updatedObj);
 
       setCurrentProjectAction("selectProject");
     }

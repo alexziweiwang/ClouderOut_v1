@@ -181,6 +181,19 @@ export default function Panel1_UserMgr({}) {
         })
     }
 
+    async function triggerFetchProjListOuter() {
+        if(authEmailName === "_") {
+            return undefined;
+        }
+        
+        return await fetchProjectListVM(
+            {currUser: authEmailName,
+             bkOption: backendOption 
+            }
+        );
+
+    }
+
 
     async function loadProjectListFromCloud() { //TODO22
         console.log("fetching project list from cloud")
@@ -213,6 +226,8 @@ export default function Panel1_UserMgr({}) {
               currUser: authEmailName,
               bkOption: backendOption
         });
+
+        //TODO30 operate on projList and trashedProjList
     }
 
     async function deleteProjectOuter(selectedDeletedProj) {
@@ -223,6 +238,9 @@ export default function Panel1_UserMgr({}) {
             bkOption: backendOption
           }
         );
+
+        //TODO99999 operate on project-list here
+
     }  
 
     function passInValidProjectList() {
@@ -273,7 +291,7 @@ export default function Panel1_UserMgr({}) {
 
                             getValidProjList={passInValidProjectList}
                             getTrashedProjList={passInTrashedProjectList}
-                            triggerFetchProjList={loadProjectListFromCloud}
+                            triggerFetchProjList={triggerFetchProjListOuter}
                         />
                     </div>
                     
