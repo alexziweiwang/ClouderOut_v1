@@ -5,6 +5,7 @@ import ProjectManageNew from './ProjectManageNew';
 import langDictionary from './_textDictionary';
 
 //TODO700 feature: latest edited project ... (create or save)
+import { makeDeletionLists_vm, makeReversionLists_vm } from '../viewmodels/PrepAc_ProjectOperation';
 
 
 export default function ProjectManagingPanel(
@@ -143,30 +144,42 @@ export default function ProjectManagingPanel(
     }
 
     async function revertTrashedProject() {
-      let updatedObj = await revertProjectOuter(selectedTrashedProj);
+      await revertProjectOuter(selectedTrashedProj);
       setSelectedTrashedProj("");
 
 
 
       //TODO30
-      updateBothListsLocal(updatedObj);
+      makeReversionLists_vm(
+        projList, 
+        trashedProjList, 
+        setTrashedProjList, 
+        setProjList, 
+        selected_project_name
+      );
       
     }
 
-    function handleDeleteProject() {
+    async function handleDeleteProject() {
       let response = window.confirm("Are you sure to delete this project? (it can be revert from trash-area)?");
         if (response === true) {
-          deleteProject();
+          await deleteProject();
         }  
     }
 
     async function deleteProject() {
-      let updatedObj = await deleteProjectOuter(selected_project_name); 
+      await deleteProjectOuter(selected_project_name); 
        
       setSelectedProjectName("");
 
       //TODO30
-      updateBothListsLocal(updatedObj);
+      makeDeletionLists_vm(
+        projList, 
+        trashedProjList, 
+        setTrashedProjList, 
+        setProjList, 
+        selected_project_name
+    );
 
     }
 
@@ -279,7 +292,7 @@ export default function ProjectManagingPanel(
         >
         <div>
 
-        {(projList !== undefined && projList.length > 0) && 
+         
         <div  style={{"display": "flex", "justifyContent": "start", "padding": "10px"}}
               onClick={()=>{  
                 if (currentProjectAction !== "selectProject") {
@@ -291,10 +304,10 @@ export default function ProjectManagingPanel(
               className="titleBar"
         >
           <label className="cursor_pointer">Select an Ongoing Project ...</label>
-        </div>}
+        </div>
 
 
-        {(projList !== undefined && projList.length > 0) && 
+        {true && 
         <div className="parallelFrame"  
           style={{
               "marginTop": "20px", 
@@ -307,7 +320,7 @@ export default function ProjectManagingPanel(
 
           }}>
 
-          
+          {(projList !== undefined && projList.length > 0) &&
           <div className="projectGrid" style={{"height": "210px", "overflow": "scroll"}}>
                 Projects on Cloud
                 <br></br>
@@ -335,7 +348,7 @@ export default function ProjectManagingPanel(
             })} 
     
           </div>
-
+          }
 
 
 

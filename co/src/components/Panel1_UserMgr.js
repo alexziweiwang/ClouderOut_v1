@@ -11,6 +11,8 @@ import { getAuthFirebase } from '../authtools/firebaseAuthOperations';
 
 import { getProfileInfoVM, updateProfileInfoVM } from '../viewmodels/AccountViewModel';
 
+import { makeDeletionLists_vm, makeReversionLists_vm } from '../viewmodels/PrepAc_ProjectOperation';
+
 
 //TODO1090 cloud-db related
 import { fetchProjectListVM, revertProjectVM, deleteProjectVM } from '../viewmodels/ProjectManagerViewModel';
@@ -213,11 +215,20 @@ export default function Panel1_UserMgr({}) {
         );
       //TODO99999
                               console.log("load_ProjectList_FromCloud, group-list for ", authEmailName , " = ", groupList);
-  
+        
   
         if (groupList !== undefined && groupList.length !== 0) {
-          setProjList(groupList.untrashed);
-          setTrashedProjList(groupList.trashed);
+
+            let pureTrashedProjList = groupList.trashed;
+            if (pureTrashedProjList !== undefined) {
+                pureTrashedProjList = pureTrashedProjList.filter(
+                    (name) => name !== "placeholder123456789___###___###___##"
+                )
+
+            }
+
+            setProjList(groupList.untrashed);
+            setTrashedProjList(groupList.trashed);
         }
 
         return groupList;
@@ -233,17 +244,15 @@ export default function Panel1_UserMgr({}) {
 
                                     // projList, setProjList
                                     // trashedProjList, setTrashedProjList
-                                    
-        let projListTemp = projList;
-        let trashedProjListTemp = trashedProjList;
-
-        projListTemp.push(selectedTrashedProj);
-        trashedProjListTemp = trashedProjListTemp.filter(
-            (name) => name !== selectedTrashedProj
-        )
-
-        setProjList(projListTemp);
-        setTrashedProjList(trashedProjListTemp);
+                
+        makeDeletionLists_vm(
+            projList, 
+            trashedProjList, 
+            setTrashedProjList, 
+            setProjList, 
+            selectedTrashedProj
+        );
+     
 
     //TODO30
     }
@@ -259,18 +268,15 @@ export default function Panel1_UserMgr({}) {
 
                               // projList, setProjList
                               // trashedProjList, setTrashedProjList
-                                    
-        let projListTemp = projList;
-        let trashedProjListTemp = trashedProjList;
-
-        trashedProjListTemp.push(selectedDeletedProj);
-        projListTemp = projListTemp.filter(
-            (name) => name !== selectedDeletedProj
-        )
-
-        setProjList(projListTemp);
-        setTrashedProjList(trashedProjListTemp);
-
+         
+        makeReversionLists_vm(        
+            projList, 
+            trashedProjList, 
+            setTrashedProjList, 
+            setProjList, 
+            selectedDeletedProj
+        );
+  
         //TODO30 operate on projList and trashedProjList
     }  
 
