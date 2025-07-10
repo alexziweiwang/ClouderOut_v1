@@ -107,16 +107,11 @@ export default function UserNotLoggedInPage() {
     }
 
     function loggedInActions(username) {
-
-
-        goToUserDashboard(username);
+        goToUserDashboard();
     }
 
-    function goToUserDashboard(username) {
-
-        //only if login successful
-        alert("TODO should go back to dashboard");
-
+    function goToUserDashboard() {
+        navigate('/mainpanel', { replace: true })
     }
 
     function switchPanel() {

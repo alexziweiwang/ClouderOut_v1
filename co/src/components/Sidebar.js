@@ -40,6 +40,14 @@ export default function Sidebar({
         setDisplayingName(unameTemp);
     });
 
+    function handleLogOutAttempt() {
+        let ans = window.confirm("Are you sure to log out?");
+        if (ans) {
+            goToNotLoggedInPage();
+        }
+
+    }
+
 
     return (
 <>
@@ -65,7 +73,10 @@ export default function Sidebar({
         <br></br>
         <br></br>
 
-        <button className="sidebar_options sidebar_options1" onClick={() => {goToNotLoggedInPage()}}>{logOutButtonText}</button>
+        <button className="sidebar_options sidebar_options1" onClick={() => {
+            handleLogOutAttempt();
+            
+        }}>{logOutButtonText}</button>
 
         </div>
     }
