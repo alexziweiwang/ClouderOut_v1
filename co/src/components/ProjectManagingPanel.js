@@ -96,6 +96,9 @@ export default function ProjectManagingPanel(
           setAuthEmailName(unameTemp);
       }
 
+                                  console.log("pmp - proj-list = ", projList);
+                                  console.log("pmp - trashed-proj-list = ", trashedProjList);
+
     });
 
     function fetchListsFromOuter() {
@@ -155,7 +158,7 @@ export default function ProjectManagingPanel(
         trashedProjList, 
         setTrashedProjList, 
         setProjList, 
-        selected_project_name
+        selectedTrashedProj
       );
       
     }
