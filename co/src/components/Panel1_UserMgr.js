@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import Sidebar from './Sidebar';
 import ProjectManagingPanel from './ProjectManagingPanel';
@@ -82,7 +82,7 @@ export default function Panel1_UserMgr({}) {
                 fetchProfileFromCloud();
                
                 
-                  //if (resBool === true) { //TODO99999
+                  //if (resBool === true) { //TODO30
                   //      setFirstTimeEnter(false);
                   //}
                 setFirstTimeEnter(false);
@@ -144,7 +144,8 @@ export default function Panel1_UserMgr({}) {
           replace: true, 
           state: { 
             selected_project_name: selected_project_name, 
-            mode: onlineMode
+            mode: onlineMode,
+            //TODO99999
           } });
   
     }
@@ -213,7 +214,6 @@ export default function Panel1_UserMgr({}) {
            bkOption: backendOption 
           }
         );
-      //TODO99999
                               console.log("load_ProjectList_FromCloud, group-list for ", authEmailName , " = ", groupList);
         
   
@@ -290,6 +290,11 @@ export default function Panel1_UserMgr({}) {
         
     }
 
+    function receiveImportedProjFromSubCompo(projContent) {
+        //TODO setup "imported-project-obj-provided" here !!
+
+    }
+
     return (
         <div>
             <div style={{"display": "flex"}}>
@@ -329,6 +334,8 @@ export default function Panel1_UserMgr({}) {
                             getValidProjList={passInValidProjectList}
                             getTrashedProjList={passInTrashedProjectList}
                             triggerFetchProjList={triggerFetchProjListOuter}
+
+                            sendOutImportedProject={receiveImportedProjFromSubCompo}
                         />
                     </div>
                     

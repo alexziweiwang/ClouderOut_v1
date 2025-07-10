@@ -20,7 +20,7 @@ export default function ProjectManagingPanel(
     getValidProjList,
     getTrashedProjList,
 
-    triggerFetchProjList,
+    sendOutImportedProject,
 
   }
 ) {
@@ -213,8 +213,13 @@ export default function ProjectManagingPanel(
         let res = parseFromFile_vm(selectedFileContent, setProjectObj, setParseFeedback);
         if (res === true) {
           setImptOkSignal("Project File accepted.");
+          
+          sendOutImportedProject(selectedFileContent);
         } else {
           setImptOkSignal("");
+
+          sendOutImportedProject(undefined);
+
         }
     }
 
@@ -224,8 +229,6 @@ export default function ProjectManagingPanel(
       setImptProjectNameInput("");
 
     }
-
-    let name = "/projectmanagingpanel";
 
 
 
