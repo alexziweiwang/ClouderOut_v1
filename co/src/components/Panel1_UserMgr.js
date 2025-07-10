@@ -69,7 +69,6 @@ export default function Panel1_UserMgr({}) {
 
 
 
-
         if (authEmailName !== "_" && firstTimeEnter === true) {
                                         console.log("\n\n\nPanel1_UserMgr FIRST ENTER.\n\n\n");
 
@@ -305,6 +304,9 @@ export default function Panel1_UserMgr({}) {
 
     return (
         <div>
+        {authEmailName !== "_"
+        && 
+        <>
             <div style={{"display": "flex"}}>
                 <Sidebar
                         compName = {currentCompoName}
@@ -381,7 +383,7 @@ export default function Panel1_UserMgr({}) {
 
 
 
-
+        </>}
         </div>
     )
     

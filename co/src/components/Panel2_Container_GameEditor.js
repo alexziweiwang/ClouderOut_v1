@@ -25,6 +25,8 @@ export default function Panel2_Container_GameEditor() {
       projectName = state.selected_project_name;
       mode = state.mode;
       projectContentProvided = state.providedImptProj;                                                         //   projectContentProvided = state.
+                              console.log("container... \n mode = ", state.mode, "\n state = ", state);
+
     }
 
     function goToNotLoggedInPage() {
@@ -33,13 +35,15 @@ export default function Panel2_Container_GameEditor() {
 
 
     
-    console.log("container... \n mode = ", state.mode, "\n state = ", state);
 
 
     const [authEmailName, setAuthEmailName] = useState("_");
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
+        if (state === null) {
+            goToNotLoggedInPage();
+        }
 
         if (authEmailName !== "_" && firstTimeEnter === true) {
 
@@ -65,7 +69,8 @@ export default function Panel2_Container_GameEditor() {
 
 
 return (<div style={{"backgroundColor": "orange"}}>
-
+    {authEmailName !== "_" && 
+    <>
     <GameMaker
         projectName={state.selected_project_name}
         editorMode={state.mode}
@@ -73,7 +78,7 @@ return (<div style={{"backgroundColor": "orange"}}>
     />
 
 
-  
+    </>}
 </div>);
 
 

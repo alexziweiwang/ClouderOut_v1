@@ -1653,13 +1653,7 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
   }
 
   function passInOfflineModeName() {
-    // if (offlineHalfMode === true) {
-    //     return "offline_half";
-    // } else if (offlineFullMode === true) {
-    //     return "offline_full";
-    // } else {
-    //     return "online_cloud";
-    // }
+
     return editorMode;
 
   }
@@ -1809,8 +1803,10 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
 }
 
 {(
-  
-(editorMode === "online_cloud" && cloudDbConnOk === true && authEmailName !== "_") || (editorMode !== "online_cloud")
+(
+(cloudDbConnOk === true && editorMode === "online_cloud" && authEmailName !== "_") 
+|| (editorMode !== "online_cloud")
+)
 && gridBlocksAll !== undefined 
 && chapterNodeMapAll !== undefined
 ) 
