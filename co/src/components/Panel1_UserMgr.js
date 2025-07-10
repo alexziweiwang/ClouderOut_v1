@@ -54,6 +54,8 @@ export default function Panel1_UserMgr({}) {
     const [trashedProjList, setTrashedProjList] = useState(undefined);
     const [profileObj, setProfileObj] = useState(undefined);
 
+    const [providedImportedProject, setProvidedImportedProject] = useState(undefined);
+
     //combine sidebar and content pages accordingly
     //hashboard-phase: vertical side bar
     //game-making-phase: horizontal side bar
@@ -139,12 +141,18 @@ export default function Panel1_UserMgr({}) {
         if (selected_project_name === "") {
           return;
         }
+
+        let importedProjFileContent = "-1";
+        if (onlineMode !== "online_cloud") { //non-cloud mode -- using the imported-project-file-content
+            importedProjFileContent = providedImportedProject;
+        } 
   
         navigate('/editorcontainer', { 
           replace: true, 
           state: { 
             selected_project_name: selected_project_name, 
             mode: onlineMode,
+            providedImptProj: importedProjFileContent,
             //TODO99999
           } });
   
@@ -291,7 +299,7 @@ export default function Panel1_UserMgr({}) {
     }
 
     function receiveImportedProjFromSubCompo(projContent) {
-        //TODO setup "imported-project-obj-provided" here !!
+        setProvidedImportedProject(projContent);
 
     }
 

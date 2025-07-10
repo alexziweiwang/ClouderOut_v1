@@ -2,6 +2,8 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
+import { getAuthFirebase } from '../authtools/firebaseAuthOperations';
+
 
 //level(-1)
 
@@ -16,15 +18,50 @@ export default function Panel2_Container_GameEditor() {
     const {state} = useLocation();
     let projectName = "default-no-state projectname"; //TODO testing
     let mode = "default-node-state mode";
+    let projectContentProvided = "default-node-state provided-project-content";
   
 
     if (state !== null && state !== undefined) {
       projectName = state.selected_project_name;
       mode = state.mode;
+      projectContentProvided = state.providedImptProj;                                                         //   projectContentProvided = state.
     }
+
+    function goToNotLoggedInPage() {
+        navigate('/notloggedin', { replace: true });
+    }
+
 
     
     console.log("container... \n mode = ", state.mode, "\n state = ", state);
+
+
+    const [authEmailName, setAuthEmailName] = useState("_");
+
+    const [firstTimeEnter, setFirstTimeEnter] = useState(true);
+    useEffect(() => {
+
+        if (authEmailName !== "_" && firstTimeEnter === true) {
+
+
+                                //TODO
+                                // if : condition of init-status of var...
+                                // setFirstTimeEnter(false);
+        }
+
+
+        if (authEmailName === "_") { // get login info
+            getAuthFirebase(
+                {
+                  goToNotLoggedInPageFunc: goToNotLoggedInPage,
+                  sendOutEmailName: setAuthEmailName
+                }
+            );
+        }
+
+        console.log("\n\n\n\n\n\npanel2 state = ", state);
+
+    });
 
 
 return (<div style={{"backgroundColor": "orange"}}>
@@ -32,7 +69,7 @@ return (<div style={{"backgroundColor": "orange"}}>
     <GameMaker
         projectName={state.selected_project_name}
         editorMode={state.mode}
-        projectFile={state.projectFile}
+        projectFile={state.projectContentProvided}
     />
 
 
