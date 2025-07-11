@@ -64,18 +64,18 @@ export default function ProjectManagingOffline() {
         console.log("non-cloud-navigating to ... game-maker, mode  = ", modeName, "... project-obj = ", projectContent);
 
         
-        navigate('/editorcontainer', { 
-          replace: true, 
-          state: { 
-            selected_project_name: projectNameTemp, 
-            mode: modeName,
-            projectFile: projectContent
-          } });
+        // navigate('/editorcontainer', { 
+        //   replace: true, 
+        //   state: { 
+        //     selected_project_name: projectNameTemp, 
+        //     mode: modeName,
+        //     projectFile: projectContent
+        //   } });
   
     }
 
 
-    async function createNewProjectObj_local(projectNameProvided) {
+    function createNewProjectObj_local(projectNameProvided) {
         let projListTemp = [];
         let autherInfo = "author";
         let descrp = "";
@@ -135,7 +135,9 @@ export default function ProjectManagingOffline() {
                     <br></br><br></br>
                     <button
                         onClick={()=>{
-                            goToGameMaker(projectIdInput, true);
+                      //      goToGameMaker(projectIdInput, true);
+                                    let projectContent = createNewProjectObj_local(projectIdInput);
+                                console.log("creating project... ", projectContent);
                         }}
                     >Create Project</button>
                 </div>}
@@ -212,8 +214,6 @@ export default function ProjectManagingOffline() {
                             onClick={()=>{
                                 
                                 console.log("going to edit this project ... \n", projectObj);
-
-                                // goToGameMaker(projectIdInput, false);
 
                             }}
                         >Edit Project</button>
