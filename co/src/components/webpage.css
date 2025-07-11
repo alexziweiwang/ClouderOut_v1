@@ -333,7 +333,7 @@ textarea {
     margin-right: 15px;
 }
 
-.returning_buttons {
+.returning_buttons_cloud_mode {
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
@@ -344,6 +344,19 @@ textarea {
     background-color: #293241;
     color: #FFFFFF;
 }
+
+.returning_buttons_halfcloud_mode {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    
+    border: none;
+    border-radius: 0px;
+    
+    background-color: #eda343;
+    color: #FFFFFF;
+}
+
 
 .textRight {
     text-align: right;

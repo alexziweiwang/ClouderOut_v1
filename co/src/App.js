@@ -12,8 +12,8 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<Panel1_UserMgr />} />  {/* TODO change later for default entry page */}
-        <Route path="*" element={<Panel1_UserMgr />} />  {/* TODO change later for default entry page */}
+        <Route path="/" element={<UserNotLoggedInPage />} />  {/* TODO change later for default entry page */}
+        <Route path="*" element={<UserNotLoggedInPage />} />  {/* TODO change later for default entry page */}
         
         <Route path="/mainpanel" element={<Panel1_UserMgr/>} />
         <Route path="/editorcontainer" element={<Panel2_Container_GameEditor/>} />

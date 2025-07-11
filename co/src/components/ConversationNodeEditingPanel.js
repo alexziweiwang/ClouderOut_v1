@@ -1124,7 +1124,7 @@ GameDataDesign <map>
         <div
             className="textNoSelect"
         >
-            <div className="returning_buttons">
+            <div className="returning_buttons_cloud_mode">
                 <button className="button2" onClick={()=>{goToGameMaker()}}> {returnGameMakerButtonText} </button>
 {state!= undefined && state.projectName !== null && firstEnterButtonPressed === true &&                
 <>

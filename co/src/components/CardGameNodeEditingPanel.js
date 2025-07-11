@@ -30,7 +30,7 @@ export default function CardGameNodeEditingPanel() {
     return (
 
         <div>
-            <div className="returning_buttons"><button className="button" onClick={goToGameMaker}> {returnGameMakerButtonText[0]} </button></div>
+            <div className="returning_buttons_cloud_mode"><button className="button" onClick={goToGameMaker}> {returnGameMakerButtonText[0]} </button></div>
             
             <p className="plans">This is card game editing panel
             <br></br> users can create one level of card game here

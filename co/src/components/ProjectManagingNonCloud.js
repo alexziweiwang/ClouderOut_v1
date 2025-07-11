@@ -33,6 +33,8 @@ export default function ProjectManagingOffline() {
 
     const [isConfirmed, setIsConfirmed] = useState(false);
 
+    const [parsedFeedback, setParseFeedback] = useState("");
+
 
     function goToGameMaker(projectNameTemp, isNewProject) {
         if (projectNameTemp === "") {
@@ -176,7 +178,7 @@ export default function ProjectManagingOffline() {
                     <button
                         onClick={()=>{
                             setIsConfirmed(true);
-                            parseFromFile_vm(selectedFileContent, setProjectObj);
+                            parseFromFile_vm(selectedFileContent, setProjectObj, setParseFeedback);
                             
 
                         }}

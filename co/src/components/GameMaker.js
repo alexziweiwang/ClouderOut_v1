@@ -1779,7 +1779,7 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
 {cloudDbConnOk === false &&
 
 <>
-      <div className="returning_buttons">
+      <div className="returning_buttons_cloud_mode">
             
         {editorMode === "online_cloud" && <button 
           className="button2" 
@@ -1816,7 +1816,10 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
     
 
     {/* top banner */}
-    <div className="returning_buttons">
+    <div className={editorMode === "online_cloud" 
+          ? "returning_buttons_cloud_mode" 
+          : "returning_buttons_halfcloud_mode"
+      }>
       
       {editorMode === "online_cloud" && <button 
           className="button2" 

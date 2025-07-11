@@ -231,6 +231,7 @@ import {
 
 
     export function parseFromFile_vm(fileContent, setupContent, setParseFeedback) {
+        
                                 console.log("parseFromFile-vm: [", fileContent, "]...");
 
         let readContent = "default-empty";
