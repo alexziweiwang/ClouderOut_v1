@@ -41,7 +41,8 @@ export default function Panel2_Container_GameEditor() {
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
-        if (state === null) {
+        if (state === null && state.mode === "online_cloud") {
+                                    console.log("!!! not logged in - going to -login_page......");
             goToNotLoggedInPage();
         }
 
@@ -54,7 +55,7 @@ export default function Panel2_Container_GameEditor() {
         }
 
 
-        if (authEmailName === "_") { // get login info
+        if (authEmailName === "_" && state.mode === "online_cloud") { // get login info
             getAuthFirebase(
                 {
                   goToNotLoggedInPageFunc: goToNotLoggedInPage,
@@ -69,7 +70,11 @@ export default function Panel2_Container_GameEditor() {
 
 
 return (<div style={{"backgroundColor": "orange"}}>
-    {authEmailName !== "_" && 
+    {(
+    (authEmailName !== "_" && state.mode === "online_cloud") 
+    || (state.mode !== "online_cloud")
+    )
+    && 
     <>
     <GameMaker
         projectName={state.selected_project_name}

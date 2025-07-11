@@ -60,6 +60,7 @@ import uiLangMap from './uiLangMap';
 
 export default function GameMaker({projectName, editorMode}) {
    //    "offline_half"       "offline_full"        "online_cloud"  
+                            console.log("game maker, mode = ", editorMode);
 
 /**
 used data structures:

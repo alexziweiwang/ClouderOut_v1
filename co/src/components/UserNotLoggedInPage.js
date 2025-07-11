@@ -119,6 +119,11 @@ export default function UserNotLoggedInPage() {
         userLogOutVM();
     }
 
+    function goToNonCloudProjMgr() {
+        navigate('/projectNonCloud', { replace: true })
+
+    }
+
 
     return (
         <div>
@@ -262,6 +267,17 @@ export default function UserNotLoggedInPage() {
                         New user? Create an account!
                     </label>
 
+                </div>
+
+                <div>
+                    <label 
+                        className="clickableLink"
+                        onClick={()=>{
+                            //TODO999
+                            goToNonCloudProjMgr();
+                        }}
+                    >Try without logging in
+                    </label>
                 </div>
 
             </div>}

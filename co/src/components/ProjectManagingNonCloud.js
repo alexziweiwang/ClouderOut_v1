@@ -41,7 +41,7 @@ export default function ProjectManagingOffline() {
           return;
         }
 
-        userLogOutVM();
+                                        userLogOutVM();
 
         
         let projectContent = projectObj;
@@ -64,13 +64,13 @@ export default function ProjectManagingOffline() {
         console.log("non-cloud-navigating to ... game-maker, mode  = ", modeName, "... project-obj = ", projectContent);
 
         
-        // navigate('/editorcontainer', { 
-        //   replace: true, 
-        //   state: { 
-        //     selected_project_name: projectNameTemp, 
-        //     mode: modeName,
-        //     projectFile: projectContent
-        //   } });
+        navigate('/editorcontainer', { 
+          replace: true, 
+          state: { 
+            selected_project_name: projectNameTemp, 
+            mode: modeName,
+            projectFile: projectContent
+          } });
   
     }
 
@@ -95,9 +95,15 @@ export default function ProjectManagingOffline() {
         return projectObject;
     }
 
+    function goToNotLoggedInPage() {
+        navigate('/notloggedin', { replace: true });
+  
+    }
+
 
 
     return (
+<div>
     <div  style={{"display": "flex", "justifyContent": "center", "alignItem": "center"}}>
 
 
@@ -135,9 +141,9 @@ export default function ProjectManagingOffline() {
                     <br></br><br></br>
                     <button
                         onClick={()=>{
-                      //      goToGameMaker(projectIdInput, true);
-                                    let projectContent = createNewProjectObj_local(projectIdInput);
-                                console.log("creating project... ", projectContent);
+                            goToGameMaker(projectIdInput, true);
+                      //              let projectContent = createNewProjectObj_local(projectIdInput);
+                      //          console.log("creating project... ", projectContent);
                         }}
                     >Create Project</button>
                 </div>}
@@ -226,6 +232,20 @@ export default function ProjectManagingOffline() {
 
 
     </div>
+    
+
+        <div>
+            <label 
+                className="clickableLink"
+                onClick={()=>{goToNotLoggedInPage();}}
+            >
+                        Log in
+            </label>
+
+
+        </div>
+    
+</div>
     )
 
 }
