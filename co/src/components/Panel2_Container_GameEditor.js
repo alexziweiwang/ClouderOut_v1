@@ -14,7 +14,11 @@ import uiLangMap from './uiLangMap';
 import GameMaker from './GameMaker'
 
 export default function Panel2_Container_GameEditor() {
-//TODO handle project-creator's authorization here?
+
+
+//TODO put modals here
+//TODO put editor-switching here
+
 
     const navigate = useNavigate();
 
@@ -94,6 +98,7 @@ return (<div style={{"backgroundColor": "#b5b2b0"}}>
 
 
 {/* top banner area */}
+<div className={state.mode === "online_cloud" ? "" : "colorInvert"}>
 <div className="returning_buttons_cloud_mode">
       
       {state.mode === "online_cloud" && <button 
@@ -101,7 +106,7 @@ return (<div style={{"backgroundColor": "#b5b2b0"}}>
           onClick={()=>{
               //chapterChangingOrExiting(); goToDashboard();
             }}>
-             ← 
+             ←
         </button>}
 
 
@@ -121,52 +126,54 @@ return (<div style={{"backgroundColor": "#b5b2b0"}}>
 
       </div>
 
-      <div className="parallelFrame buttonRight30px" style={{"width": "600px"}}>
-        
-        {authEmailName !== "" && 
-        <>
-          <button 
-          className="rmTab" 
-          onClick={()=>{
-       //       setDisplayRmModal(true);
-            }}> 
-            {resourceManagerButtonText} </button>
-          
-          <button 
-          className="rmTab" 
-          onClick={()=>{
-      //        setDisplayGdmBool(true);
-              
-            }}>
-            {gameDataManagerButtonText}</button>
-          
-          <button 
-          className="rmTab" 
-          onClick={()=>{
-       //       setDisplayEmBool(true);
-            }}>
-            {emuManagerText}
-          </button>
-        </>}
-      
 
-            <div>
-                <label>Editor Language</label><br></br>
-                <select value={languageCodeTextOption}
-                  onChange={(event)=>{
-              //      userChangeEditorUILang(event.target.value);
-                  }}
-                >
-                  <option key="lang-Eng" value="en">English</option>
-                  <option key="lang-chn" value="chn">简体中文</option> 
-                  {/* //TODO16 */}
-                </select>
-            </div>
+                <div className="parallelFrame buttonRight30px" style={{"width": "600px"}}>
+               
 
-      </div>
+                    {authEmailName !== "" && 
+                    <>
+                    <button 
+                    className="rmTab" 
+                    onClick={()=>{
+                //       setDisplayRmModal(true);
+                        }}> 
+                        {resourceManagerButtonText} </button>
+                    
+                    <button 
+                    className="rmTab" 
+                    onClick={()=>{
+                //        setDisplayGdmBool(true);
+                        
+                        }}>
+                        {gameDataManagerButtonText}</button>
+                    
+                    <button 
+                    className="rmTab" 
+                    onClick={()=>{
+                //       setDisplayEmBool(true);
+                        }}>
+                        {emuManagerText}
+                    </button>
+                    </>}
+                
+
+                        <div>
+                            <label>Editor Language</label><br></br>
+                            <select value={languageCodeTextOption}
+                            onChange={(event)=>{
+                        //      userChangeEditorUILang(event.target.value);
+                            }}
+                            >
+                            <option key="lang-Eng" value="en">English</option>
+                            <option key="lang-chn" value="chn">简体中文</option> 
+                            {/* //TODO16 */}
+                            </select>
+                        </div>
+
+                </div>
 
     </div>
-
+</div>
    
    
    

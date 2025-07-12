@@ -61,7 +61,7 @@ import uiLangMap from './uiLangMap';
 export default function GameMaker({projectName, editorMode, projectFile}) {
   const navigate = useNavigate();
 
-  
+
    //    "offline_half"       "offline_full"        "online_cloud"  
                             console.log("game maker, mode = ", editorMode, "\n ... project file = ", projectFile);
 
@@ -726,6 +726,8 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
 
   async function prepareForNewChapterMapping(newKey) {
+    //TODO99999 prepare for new node-mapping!
+    
       await prepareForNewChapterMapping_vm (
           newKey, 
           chapterNodeMapAll, 
@@ -1821,84 +1823,9 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
 <div className={editorMode === "online_cloud" ? "" : "colorInvert"}>
     
 
-    {/* top banner */}
-    <div className="returning_buttons_cloud_mode">
-      
-      {editorMode === "online_cloud" && <button 
-          className="button2" 
-          onClick={()=>{chapterChangingOrExiting(); goToDashboard(); }}>
-             ← 
-        </button>}
-
-
-      {editorMode === "online_cloud" && <div style={{"textAlign": "start"}}>
-              <label>{projectName}</label>
-              <br></br>
-              <label>{authEmailName}</label>
-              <br></br>
-              <label>Cloud Mode</label>
-      </div>}
-
-
-
-      <div
-        style={{"minWidth": "150px"}}
-      >
-        <button
-          onClick={()=>{
-            //fetchcurrChapterContentFromCloud();
-            //TODO700: fetch the very first chapter's data?
-
-            startViewerEntireTest();
-            
-          }}
-          className="button testEntire"
-        >Test ▶︎ </button>
-      </div>
-
-      <div className="parallelFrame buttonRight30px" style={{"width": "600px"}}>
-        
-        {authEmailName !== "" && 
-        <>
-          <button 
-          className="rmTab" 
-          onClick={()=>{setDisplayRmModal(true);}}> 
-            {resourceManagerButtonText} </button>
-          
-          <button 
-          className="rmTab" 
-          onClick={()=>{setDisplayGdmBool(true);}}>
-            {gameDataManagerButtonText}</button>
-          
-          <button 
-          className="rmTab" 
-          onClick={()=>{setDisplayEmBool(true);}}>
-            {emuManagerText}
-          </button>
-        </>}
-      
-
-            <div>
-                <label>Editor Language</label><br></br>
-                <select value={languageCodeTextOption}
-                  onChange={(event)=>{
-                    userChangeEditorUILang(event.target.value);
-                  }}
-                >
-                  <option key="lang-Eng" value="en">English</option>
-                  <option key="lang-chn" value="chn">简体中文</option> 
-                  {/* //TODO16 */}
-                </select>
-            </div>
-
-      </div>
-
-    </div>
-
-
-
-
     <div>
+
+    
       {editorMode === "online_cloud" && <>
       <button onClick={()=>{
         let ans = window.confirm("Are you sure to load from cloud and cover the project on local?");
@@ -1921,6 +1848,7 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
       >Save To Cloud</button>
 
       </>}
+
 
       <button
         onClick={()=>{
@@ -1946,6 +1874,18 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
         }}>
           {menuNavigationsTabText}</button>
     
+
+      <button
+          onClick={()=>{
+            //fetchcurrChapterContentFromCloud();
+            //TODO700: fetch the very first chapter's data?
+
+            startViewerEntireTest();
+            
+          }}
+          className="button testEntire"
+        >Test ▶︎ </button>            
+
     
     </div>
     
