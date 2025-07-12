@@ -5,6 +5,10 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { getAuthFirebase } from '../authtools/firebaseAuthOperations';
 
 
+import langDictionary from './_textDictionary';
+import uiLangMap from './uiLangMap';
+
+
 //level(-1)
 
 import GameMaker from './GameMaker'
@@ -28,6 +32,23 @@ export default function Panel2_Container_GameEditor() {
                               console.log("container... \n mode = ", state.mode, "\n state = ", state);
 
     }
+
+    const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en'); //TODO16
+
+    let textDictItem = langDictionary[languageCodeTextOption];
+    let textDictItemDefault = langDictionary["en"];
+  
+    const resourceManagerButtonText = textDictItem.resourceManagerButtonText !== undefined ?
+            textDictItem.resourceManagerButtonText
+            : textDictItemDefault.resourceManagerButtonText;
+  
+    const gameDataManagerButtonText = textDictItem.gameDataManagerButtonText !== undefined ?
+            textDictItem.gameDataManagerButtonText
+            : textDictItemDefault.gameDataManagerButtonText;
+
+    const emuManagerText = textDictItem.emuManagerText !== undefined ?
+            textDictItem.emuManagerText
+            : textDictItemDefault.emuManagerText;    
 
     function goToNotLoggedInPage() {
         navigate('/notloggedin', { replace: true });
@@ -70,6 +91,87 @@ export default function Panel2_Container_GameEditor() {
 
 
 return (<div style={{"backgroundColor": "#b5b2b0"}}>
+
+
+{/* top banner area */}
+<div className="returning_buttons_cloud_mode">
+      
+      {state.mode === "online_cloud" && <button 
+          className="button2" 
+          onClick={()=>{
+              //chapterChangingOrExiting(); goToDashboard();
+            }}>
+             ← 
+        </button>}
+
+
+      {state.mode === "online_cloud" && <div style={{"textAlign": "start"}}>
+              <label>{projectName}</label>
+              <br></br>
+              <label>{authEmailName}</label>
+              <br></br>
+              <label>Cloud Mode</label>
+      </div>}
+
+
+
+      <div
+        style={{"minWidth": "150px"}}
+      >
+
+      </div>
+
+      <div className="parallelFrame buttonRight30px" style={{"width": "600px"}}>
+        
+        {authEmailName !== "" && 
+        <>
+          <button 
+          className="rmTab" 
+          onClick={()=>{
+       //       setDisplayRmModal(true);
+            }}> 
+            {resourceManagerButtonText} </button>
+          
+          <button 
+          className="rmTab" 
+          onClick={()=>{
+      //        setDisplayGdmBool(true);
+              
+            }}>
+            {gameDataManagerButtonText}</button>
+          
+          <button 
+          className="rmTab" 
+          onClick={()=>{
+       //       setDisplayEmBool(true);
+            }}>
+            {emuManagerText}
+          </button>
+        </>}
+      
+
+            <div>
+                <label>Editor Language</label><br></br>
+                <select value={languageCodeTextOption}
+                  onChange={(event)=>{
+              //      userChangeEditorUILang(event.target.value);
+                  }}
+                >
+                  <option key="lang-Eng" value="en">English</option>
+                  <option key="lang-chn" value="chn">简体中文</option> 
+                  {/* //TODO16 */}
+                </select>
+            </div>
+
+      </div>
+
+    </div>
+
+   
+   
+   
+   
+{/* editor area */}
     {(
     (authEmailName !== "_" && state.mode === "online_cloud") 
     || (state.mode !== "online_cloud")
@@ -79,7 +181,7 @@ return (<div style={{"backgroundColor": "#b5b2b0"}}>
     <GameMaker
         projectName={state.selected_project_name}
         editorMode={state.mode}
-        projectFile={state.projectContentProvided}
+        projectFile={state.projectFile}
     />
 
 

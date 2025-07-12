@@ -58,10 +58,16 @@ import { getAuthFirebase } from '../authtools/firebaseAuthOperations';
 import langDictionary from './_textDictionary';
 import uiLangMap from './uiLangMap';
 
-export default function GameMaker({projectName, editorMode}) {
-   //    "offline_half"       "offline_full"        "online_cloud"  
-                            console.log("game maker, mode = ", editorMode);
+export default function GameMaker({projectName, editorMode, projectFile}) {
+  const navigate = useNavigate();
 
+  
+   //    "offline_half"       "offline_full"        "online_cloud"  
+                            console.log("game maker, mode = ", editorMode, "\n ... project file = ", projectFile);
+
+  if (editorMode !== "online_cloud" && projectFile === undefined) {
+    goToNotLoggedInPage();
+  }
 /**
 used data structures:
 
@@ -168,7 +174,6 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
 
   /* variable area */
-  const navigate = useNavigate();
   const name = "/gamemaker";
 
   const [currChapterKey, setCurrChapterKey] = useState("");
