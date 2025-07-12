@@ -1813,14 +1813,11 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
 ) 
 
 && <>
-<div>
+<div className={editorMode === "online_cloud" ? "" : "colorInvert"}>
     
 
     {/* top banner */}
-    <div className={editorMode === "online_cloud" 
-          ? "returning_buttons_cloud_mode" 
-          : "returning_buttons_halfcloud_mode"
-      }>
+    <div className="returning_buttons_cloud_mode">
       
       {editorMode === "online_cloud" && <button 
           className="button2" 
@@ -2075,7 +2072,7 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
               </div>
 
 
-              <div style={{"marginTop": "15px", "marginLeft": "15px"}}>
+              <div style={{"marginTop": "15px", "marginLeft": "15px"}} className={editorMode === "online_cloud" ? "" : "colorInvert"}>
                 <NavigationPreview
                   fetchNavObj={passInNavObj} 
 
@@ -2146,6 +2143,8 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
           "height": `${screenHeight+2}px`,
           "width": `${screenWidth+2}px`,
         }}
+
+        className={editorMode === "online_cloud" ? "" : "colorInvert"}
       >
 
          

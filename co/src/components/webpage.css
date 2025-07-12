@@ -22,6 +22,10 @@ textarea {
     resize: none;
 }
 
+.colorInvert {
+    filter: invert(90%);
+}
+
 .w300 {
     width: 300px
 }

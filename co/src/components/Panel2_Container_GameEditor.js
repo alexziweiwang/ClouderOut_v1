@@ -69,7 +69,7 @@ export default function Panel2_Container_GameEditor() {
     });
 
 
-return (<div style={{"backgroundColor": "orange"}}>
+return (<div style={{"backgroundColor": "#b5b2b0"}}>
     {(
     (authEmailName !== "_" && state.mode === "online_cloud") 
     || (state.mode !== "online_cloud")
