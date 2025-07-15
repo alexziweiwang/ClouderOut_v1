@@ -321,8 +321,6 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 //TODO23 update to and fetch from cloud for this project !!!
 
   const [currentProjectNav, setCurrentProjectNav] = useState({}); //TODO now: default initial values
-//TODO99999
-
 
 
   const [testPlayerGameDataTracker, setTestPlayerGameDataTracker] = useState({});   //TODO important for holder-in-practice
@@ -489,12 +487,9 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
                                 //save: download current data-sets
                                 //import: upload and parse formatted file ...
                                 //resource-pair: half-offline: use online-drive link; full-offline: desktop with file path
-                            
-                setCurrentProjectNav(projectFile["nav_ui_settings"]);
-                
-            } else {
-
-
+                if (gridBlocksAll === -1 || chapterNodeMapAll === -1) {
+                    loadEverythingFromLocalProjFile();
+                }
             }
 
    
@@ -732,7 +727,8 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
   async function prepareForNewChapterMapping(newKey) {
     //TODO99999 prepare for new node-mapping!
-    
+
+
       await prepareForNewChapterMapping_vm (
           newKey, 
           chapterNodeMapAll, 
@@ -1638,6 +1634,36 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
                                                     console.log("~loading-everything-from-cloud");
     fetchProjectNavigationSettingsFromCloud();
     fetchChapterNodeMappingFromCloud();          
+  }
+
+  function loadEverythingFromLocalProjFile() {
+    //TODO99999 option for offline-modes
+
+    // setup the following:
+
+
+//GameDataDesign <map>
+            //setGameDataDesignList()
+            //["game_data"]
+
+// ProjectResourceVarPairs_audio  <map>   
+
+// ProjectResourceVarPairs_visual  <map>   
+
+// ProjectUILang <string>
+
+// NavigationSettings <map>
+
+// AllChapterList (used in chapter-manager) <map/2d_array>
+
+
+// ChapterNodeMapping (used in node-manager) <map>
+            //setChapterNodeMapAll()
+            //["chapterNodeMapping"]
+
+// Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps>
+
+
   }
 
   async function saveEverythingToCloud() { 
