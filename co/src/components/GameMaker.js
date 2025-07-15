@@ -319,7 +319,11 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
   const [nodeMgrDelSignal, setNodeMgrDelSignal] = useState(false);
   
 //TODO23 update to and fetch from cloud for this project !!!
+
   const [currentProjectNav, setCurrentProjectNav] = useState({}); //TODO now: default initial values
+//TODO99999
+
+
 
   const [testPlayerGameDataTracker, setTestPlayerGameDataTracker] = useState({});   //TODO important for holder-in-practice
   const [testPlayerProfile, setTestPlayerProfile] = useState({});                                                       //TODO important for holder-in-practice
@@ -486,7 +490,8 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
                                 //import: upload and parse formatted file ...
                                 //resource-pair: half-offline: use online-drive link; full-offline: desktop with file path
                             
-
+                setCurrentProjectNav(projectFile["nav_ui_settings"]);
+                
             } else {
 
 
