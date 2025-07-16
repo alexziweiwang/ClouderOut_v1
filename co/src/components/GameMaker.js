@@ -1639,30 +1639,43 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
   function loadEverythingFromLocalProjFile() {
     //TODO99999 option for offline-modes
 
+
     // setup the following:
 
 
 //GameDataDesign <map>
             //setGameDataDesignList()
-            //["game_data"]
+            //projectFile["meta_data"]["game_data"]
 
 // ProjectResourceVarPairs_audio  <map>   
+          // let auList = projectFile["meta_data"]["proj_resource_audio"]
+          // resetAudioMapFromList(auList)
+       
 
 // ProjectResourceVarPairs_visual  <map>   
+          // let visList = projectFile["meta_data"]["proj_resource_visual"]
+          // resetVisualMapFromList(visList)
 
 // ProjectUILang <string>
+          //setLanguageCodeTextOption()
+          //projectFile["meta_data"]["ui_language"]
 
 // NavigationSettings <map>
+          //setCurrentProjectNav()
+          //projectFile["meta_data"]["nav_ui_settings"]
+
 
 // AllChapterList (used in chapter-manager) <map/2d_array>
-
+          //projectFile["meta_data"]["chapterList"]
+          //setChapterList()
 
 // ChapterNodeMapping (used in node-manager) <map>
             //setChapterNodeMapAll()
-            //["chapterNodeMapping"]
+            //projectFile["meta_data"]["chapterNodeMapping"]
 
 // Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps>
-
+            //TOOD99999
+    //projectFile["chapter_content"]
 
   }
 
