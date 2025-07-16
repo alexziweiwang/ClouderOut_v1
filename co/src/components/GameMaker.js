@@ -455,7 +455,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
         }
                     
-            console.log("\t\t\tgame-maker rendered once.      project = ", projectName);
+            console.log("\t\t\tgame-maker rendered once.      project = ", projectName, "  usename = ", authEmailName);
 
 
         if (authEmailName !== "_" && editorMode === "online_cloud") {
@@ -726,7 +726,6 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
 
   async function prepareForNewChapterMapping(newKey) {
-    //TODO99999 prepare for new node-mapping!
 
 
       await prepareForNewChapterMapping_vm (
@@ -1644,38 +1643,46 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
 
 
 //GameDataDesign <map>
-            //setGameDataDesignList()
-            //projectFile["meta_data"]["game_data"]
+          setGameDataDesignList(projectFile["meta_data"]["game_data"]);
+            
 
 // ProjectResourceVarPairs_audio  <map>   
-          // let auList = projectFile["meta_data"]["proj_resource_audio"]
-          // resetAudioMapFromList(auList)
+          let auList = projectFile["meta_data"]["proj_resource_audio"];
+          resetAudioMapFromList(auList);
        
 
 // ProjectResourceVarPairs_visual  <map>   
-          // let visList = projectFile["meta_data"]["proj_resource_visual"]
-          // resetVisualMapFromList(visList)
+          let visList = projectFile["meta_data"]["proj_resource_visual"];
+          resetVisualMapFromList(visList);
 
 // ProjectUILang <string>
-          //setLanguageCodeTextOption()
-          //projectFile["meta_data"]["ui_language"]
+          setLanguageCodeTextOption(projectFile["meta_data"]["ui_language"]);
+          
 
 // NavigationSettings <map>
-          //setCurrentProjectNav()
-          //projectFile["meta_data"]["nav_ui_settings"]
+          setCurrentProjectNav(projectFile["meta_data"]["nav_ui_settings"]);
+          
 
 
 // AllChapterList (used in chapter-manager) <map/2d_array>
-          //projectFile["meta_data"]["chapterList"]
-          //setChapterList()
+          let chapterArr = [];
+          let chapMap = projectFile["meta_data"]["chapterList"];
+          Object.keys(chapMap).map((currKey) => {
+            let item = chapMap[currKey];
+            chapterArr.push(item);
+          })
+          setChapterList(chapterArr);
 
 // ChapterNodeMapping (used in node-manager) <map>
-            //setChapterNodeMapAll()
-            //projectFile["meta_data"]["chapterNodeMapping"]
+          setChapterNodeMapAll(projectFile["meta_data"]["chapterNodeMapping"]);
+          let gridTemp = convertNodeMapToGridBlocks(projectFile["meta_data"]["chapterNodeMapping"]);
+          setGridBlocksAll(gridTemp);
+
 
 // Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps>
-            //TOOD99999
+            //TODO99999
     //projectFile["chapter_content"]
+
 
   }
 

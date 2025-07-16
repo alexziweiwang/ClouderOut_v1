@@ -126,7 +126,7 @@ export default function ChapterManager({
 
   const [firstTimeEnter, setFirstTimeEnter] = useState(true);
   useEffect(() => {
-                                console.log("\t\t\t\tchapter-manager rendered once.");
+                                console.log("\t\t\t\tchapter-manager rendered once. chap-data = ", chapterData);
 
 
     if (firstTimeEnter === true) {
@@ -217,6 +217,8 @@ export default function ChapterManager({
     }
 
     let tempChapterData = chapterData;
+                      console.log("\t\tadding a new chapter: ", chapterData);
+
     let line = [userInputChpKey, newChapterTitleInput, "display", newChapterNoteInput]; //TODO3
     tempChapterData.push(line);
 
@@ -320,79 +322,85 @@ export default function ChapterManager({
                         <label>{chapterManagementText}: </label>
                 
 
+                
                   <ul>
+                    {
+                    (chapterData !== undefined && chapterData.length > 0)
+                    &&   <>
+                        {chapterData.map((item, index) => {
+                          if (item[0] === "chapter_placeholder") {
+                            return;
+                          }
 
-                    {chapterData.map((item, index) => {
-                      if (item[0] === "chapter_placeholder") {
-                        return;
-                      }
-
-                      let hide = "display";
-                      if (chapterData[index][2] === "delete") {
-                        hide = "hide";
-                      }
-                      let divKey = "div"+index;
-                      return (
-                      <div key={divKey}>
-                      {hide === "display" && 
-                      <>
-                        <li key={index}
-                            className={selectedChptKey === item[0] ? "chapterListItemSelected" : "chapterListItem"} 
-                            onClick={()=>{handleSelectChapterKey(item);setIsAddNewChapter(false);}}>             
-                          {item[0]}: {item[1]}
-                        </li>
-                        {selectedChptKey === item[0] && 
+                          let hide = "display";
+                          if (chapterData[index][2] === "delete") {
+                            hide = "hide";
+                          }
+                          let divKey = "div"+index;
+                          return (
+                          <div key={divKey}>
+                          {hide === "display" && 
                           <>
-                            <label>{chapterUniqueIDText}: {item[0]}</label>
-                            <br></br>
-                            <br></br>
+                            <li key={index}
+                                className={selectedChptKey === item[0] ? "chapterListItemSelected" : "chapterListItem"} 
+                                onClick={()=>{handleSelectChapterKey(item);setIsAddNewChapter(false);}}>             
+                              {item[0]}: {item[1]}
+                            </li>
+                            {selectedChptKey === item[0] && 
+                              <>
+                                <label>{chapterUniqueIDText}: {item[0]}</label>
+                                <br></br>
+                                <br></br>
 
-                            <label>{chapterTitleText}:  </label><br></br>
-                            <label>{item[1]}</label>
-                            <br></br>
-                            <br></br>
+                                <label>{chapterTitleText}:  </label><br></br>
+                                <label>{item[1]}</label>
+                                <br></br>
+                                <br></br>
 
-                            <label>{noteText}: </label>
-                            <br></br><label>{(item[3].length > 0 ) ? item[3] : emptyNotePlaceHolder}</label>
-                            <br></br>
-                            <textarea value={editingChapterNote} onChange={(event)=>{
-                              setEditingChapterNote(event.target.value);
-                            }}></textarea>
-                            <br></br>
-                            <button onClick={()=>{setEditingChapterNote("");}}>{cancelText}</button>
-                            <button onClick={()=>{
-                              changeChapterNote(index, editingChapterNote);
-                            }}>{saveText}</button>
+                                <label>{noteText}: </label>
+                                <br></br><label>{(item[3].length > 0 ) ? item[3] : emptyNotePlaceHolder}</label>
+                                <br></br>
+                                <textarea value={editingChapterNote} onChange={(event)=>{
+                                  setEditingChapterNote(event.target.value);
+                                }}></textarea>
+                                <br></br>
+                                <button onClick={()=>{setEditingChapterNote("");}}>{cancelText}</button>
+                                <button onClick={()=>{
+                                  changeChapterNote(index, editingChapterNote);
+                                }}>{saveText}</button>
 
-                            <br></br>
-                            <br></br>
-                            <label>{renameText}{chapterText}: </label><input value={editingChapterTitle} 
-                              onChange={(event)=>{
-                                setEditingChapterTitle(event.target.value);
-                                                console.log("changing title: "); //TODO testing
-                                                console.log(event.target.value); //TODO testing
-                              }}>
-                            </input>
-                            <br></br>
-                            <button onClick={()=>{setEditingChapterTitle("");}}>{cancelText}</button>
-                            <button onClick={()=>{changeChapterTitle(index, editingChapterTitle);}}>{saveText}</button>
+                                <br></br>
+                                <br></br>
+                                <label>{renameText}{chapterText}: </label><input value={editingChapterTitle} 
+                                  onChange={(event)=>{
+                                    setEditingChapterTitle(event.target.value);
+                                                    console.log("changing title: "); //TODO testing
+                                                    console.log(event.target.value); //TODO testing
+                                  }}>
+                                </input>
+                                <br></br>
+                                <button onClick={()=>{setEditingChapterTitle("");}}>{cancelText}</button>
+                                <button onClick={()=>{changeChapterTitle(index, editingChapterTitle);}}>{saveText}</button>
+                                
+                                <br></br>
+                                <br></br>                          
+                                <label>{deleteSText}{chapterText}</label><br></br>
+                                <button onClick={()=>{hideChapter(index);}}>
+                                  {deleteText}
+                                </button>
+                                  
+                                <br></br>
+
+                              </>
                             
-                            <br></br>
-                            <br></br>                          
-                            <label>{deleteSText}{chapterText}</label><br></br>
-                            <button onClick={()=>{hideChapter(index);}}>
-                              {deleteText}
-                            </button>
-                              
-                            <br></br>
+                            }
+                            </>}
+                          </div>
+                          );
+                          })}
 
-                          </>
-                        
-                        }
-                        </>}
-                      </div>
-                      );
-                      })}
+                    </>}
+
 
                       <br></br><br></br>
                       <li 
@@ -521,7 +529,7 @@ console.log("chapterData: ", chapterData); //TODO testing
 {/* //TODO plan */}
                   </ul>
 
-              
+                  
                   </div>
 
                 </div>
