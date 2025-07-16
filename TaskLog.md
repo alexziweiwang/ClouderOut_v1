@@ -706,7 +706,7 @@
 - 2025-Jul-14: Research on rendering-optimization 2
 
 - 2025-Jul-15: Research on rendering-optimization 3
-
+- 2025-Jul-15: Research on visual effect
 
 
 
