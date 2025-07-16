@@ -49,7 +49,7 @@ export default function ProjectManagingOffline() {
         if (isNewProject === true) {
             // use default new-project-data
 
-            projectContent = createNewProjectObj_local(projectNameTemp);
+            projectContent = createNewProjectEntireObj_local(projectNameTemp);
             setProjectObj(projectContent);
 
         } else {
@@ -75,7 +75,7 @@ export default function ProjectManagingOffline() {
     }
 
 
-    function createNewProjectObj_local(projectNameProvided) {
+    function createNewProjectEntireObj_local(projectNameProvided) {
         let projListTemp = [];
         let autherInfo = "author";
         let descrp = "";
@@ -91,8 +91,15 @@ export default function ProjectManagingOffline() {
             projectNameProvided,
         )
 
+        let emptyChapList = {};
 
-        return projectObject;
+        let entireProj = {
+            "chapter_content" : emptyChapList,
+            "meta_data": projectObject
+        }
+
+
+        return entireProj;
     }
 
     function goToNotLoggedInPage() {
@@ -141,9 +148,9 @@ export default function ProjectManagingOffline() {
                     <br></br><br></br>
                     <button
                         onClick={()=>{
+  
                             goToGameMaker(projectIdInput, true);
-                      //              let projectContent = createNewProjectObj_local(projectIdInput);
-                      //          console.log("creating project... ", projectContent);
+        
                         }}
                     >Create Project</button>
                 </div>}
