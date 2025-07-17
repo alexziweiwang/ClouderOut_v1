@@ -11,7 +11,9 @@ import uiLangMap from './uiLangMap';
 
 //level(-1)
 
-import GameMaker from './GameMaker'
+import GameMaker from './GameMaker';
+import ConversationNodeEditingPanel from './ConversationNodeEditingPanel';
+
 
 export default function Panel2_Container_GameEditor() {
 
@@ -27,6 +29,8 @@ export default function Panel2_Container_GameEditor() {
     let projectName = "default-no-state projectname"; //TODO testing
     let mode = "default-node-state mode";
     let projectContentProvided = "default-node-state provided-project-content";
+
+    const [focusingEditor, setFocusingEditor] = useState("gameMaker");
   
 
     if (state !== null && state !== undefined) {
@@ -92,6 +96,26 @@ export default function Panel2_Container_GameEditor() {
         console.log("\n\n\n\n\n\npanel2 state = ", state);
 
     });
+
+    function switchEditor(infoObj) {
+        //TODO99999
+
+            // goToEditorName,
+            // clickedNodeKey, 
+            // projectName, 
+            // userName, 
+            // screenSizeStr, 
+            // uiLang, 
+            // chapterKey,
+            // editorMode
+
+
+    }
+
+    function goToGameMaker() {
+        setFocusingEditor("gameMaker");
+
+    }
 
 
 return (<div style={{"backgroundColor": "#b5b2b0"}}>
@@ -185,11 +209,16 @@ return (<div style={{"backgroundColor": "#b5b2b0"}}>
     )
     && 
     <>
-    <GameMaker
+   
+   
+    {focusingEditor === "gameMaker"
+    && <GameMaker
         projectName={state.selected_project_name}
         editorMode={state.mode}
         projectFile={state.projectFile}
-    />
+        switchEditor={switchEditor}
+    />}
+
 
 
     </>}

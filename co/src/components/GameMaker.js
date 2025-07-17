@@ -58,7 +58,13 @@ import { getAuthFirebase } from '../authtools/firebaseAuthOperations';
 import langDictionary from './_textDictionary';
 import uiLangMap from './uiLangMap';
 
-export default function GameMaker({projectName, editorMode, projectFile}) {
+export default function GameMaker({
+      projectName, 
+      editorMode, 
+      projectFile,
+      switchEditor
+    
+    }) {
   const navigate = useNavigate();
 
 
@@ -1638,35 +1644,49 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
   function loadEverythingFromLocalProjFile() {
     //TODO99999 option for offline-modes
 
+    let metaDataTemp = projectFile["meta_data"];
+    let chapterContentTemp = projectFile["chapter_content"];
 
-    // setup the following:
+
+    if (metaDataTemp === undefined || chapterContentTemp === undefined) {
+      return;
+    }
+
+
+
+
+// Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps>
+            //TODO99999
+    //projectFile["chapter_content"]
+
+
 
 
 //GameDataDesign <map>
-          setGameDataDesignList(projectFile["meta_data"]["game_data"]);
+          setGameDataDesignList(metaDataTemp["game_data"]);
             
 
 // ProjectResourceVarPairs_audio  <map>   
-          let auList = projectFile["meta_data"]["proj_resource_audio"];
+          let auList = metaDataTemp["proj_resource_audio"];
           resetAudioMapFromList(auList);
        
 
 // ProjectResourceVarPairs_visual  <map>   
-          let visList = projectFile["meta_data"]["proj_resource_visual"];
+          let visList = metaDataTemp["proj_resource_visual"];
           resetVisualMapFromList(visList);
 
 // ProjectUILang <string>
-          setLanguageCodeTextOption(projectFile["meta_data"]["ui_language"]);
+          setLanguageCodeTextOption(metaDataTemp["ui_language"]);
           
 
 // NavigationSettings <map>
-          setCurrentProjectNav(projectFile["meta_data"]["nav_ui_settings"]);
+          setCurrentProjectNav(metaDataTemp["nav_ui_settings"]);
           
 
 
 // AllChapterList (used in chapter-manager) <map/2d_array>
           let chapterArr = [];
-          let chapMap = projectFile["meta_data"]["chapterList"];
+          let chapMap = metaDataTemp["chapterList"];
           Object.keys(chapMap).map((currKey) => {
             let item = chapMap[currKey];
             chapterArr.push(item);
@@ -1674,14 +1694,9 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
           setChapterList(chapterArr);
 
 // ChapterNodeMapping (used in node-manager) <map>
-          setChapterNodeMapAll(projectFile["meta_data"]["chapterNodeMapping"]);
-          let gridTemp = convertNodeMapToGridBlocks(projectFile["meta_data"]["chapterNodeMapping"]);
+          setChapterNodeMapAll(metaDataTemp["chapterNodeMapping"]);
+          let gridTemp = convertNodeMapToGridBlocks(metaDataTemp["chapterNodeMapping"]);
           setGridBlocksAll(gridTemp);
-
-
-// Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps>
-            //TODO99999
-    //projectFile["chapter_content"]
 
 
   }
@@ -1816,6 +1831,10 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
 
   function passInLocalProjectData_GameDataDesign() {
     return {}; //TODO1000
+  }
+
+  function switchEditorLocal(infoObj) {
+    switchEditor(infoObj);
   }
 
 
@@ -1998,6 +2017,7 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
           triggerNodeDeleted={triggerNodeDeleted}
 
           editorMode={editorMode}
+          switchEditor={switchEditorLocal}
           //TODO500
         />}
 

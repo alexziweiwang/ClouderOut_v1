@@ -31,7 +31,9 @@ export default function NodeManager({projectName, currUser,
   chapterChangingOrExiting,
   triggerNodeDeleted,
 
-  editorMode
+  editorMode,
+
+  switchEditor
 
 
 }) {
@@ -389,35 +391,54 @@ export default function NodeManager({projectName, currUser,
 
     console.log("node-manager, enter editor2:", clickedNodeKey, projectName, userName, uiLang);
 
+
+    let infoObj = {
+      "nodeType": "",
+      "nodeKey": clickedNodeKey, 
+      "projectName": projectName, 
+      "username": userName, 
+      "screenSizeStr": screenSizeStr, 
+      "uiLang": uiLang, 
+      "chapterKey": chapterKey,
+      "editorMode": editorMode
+    }
+
+
     if (currNodeType === "Card Game") {
-      navigate('/cardgamenode', { replace: true, 
-        state: 
-        { 
-          clickedNodeKey, 
-          projectName, 
-          userName, 
-          screenSizeStr, 
-          uiLang, 
-          chapterKey,
-          editorMode
-        } 
-        });
+      infoObj["nodeType"] = "CardGame";
+      // navigate('/cardgamenode', { replace: true, 
+      //   state: 
+      //   { 
+      //     clickedNodeKey, 
+      //     projectName, 
+      //     userName, 
+      //     screenSizeStr, 
+      //     uiLang, 
+      //     chapterKey,
+      //     editorMode
+      //   } 
+      //   });
     } else if (currNodeType === "Conversation") {
+      infoObj["nodeType"] = "Conversation";
+
       
-      navigate('/conversationnode', { replace: true, 
-        state: 
-        { 
-          clickedNodeKey, 
-          projectName, 
-          userName, 
-          screenSizeStr, 
-          uiLang, 
-          chapterKey,
-          editorMode
-        } 
-        });
+      // navigate('/conversationnode', { replace: true, 
+      //   state: 
+      //   { 
+      //     clickedNodeKey, 
+      //     projectName, 
+      //     userName, 
+      //     screenSizeStr, 
+      //     uiLang, 
+      //     chapterKey,
+      //     editorMode
+      //   } 
+      //   });
+
+
     } 
 
+    switchEditor(infoObj);
 
     //TODO29
         //TODO later add conditions for board game and tower defense
