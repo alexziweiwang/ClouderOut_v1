@@ -1,7 +1,6 @@
 import * as React from 'react';
 import styles from './webpage.css';
 import { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
 
 import PieceSetter from './PieceSetter';
 import Modal_ResourceManagingWindow from './Modal_ResourceManagingWindow';
@@ -33,11 +32,25 @@ import { getAuthFirebase } from '../authtools/firebaseAuthOperations';
 
 //level2
 
-export default function ConversationNodeEditingPanel() {
+export default function ConversationNodeEditingPanel({
+        clickedNodeKey, 
+        projectName, 
+        userName, 
+        screenSizeStr, 
+        editorUiLang, 
+        chapterKey,
+        editorMode
+}
+) {
+
+    // let userName = "default-no-state username";
+    // let projectName = "default-no-state projectname";
+    // let screenSizeStr = "default-no-state screenSizeInfo";
+    // let editorUiLang = "default-no-state uiLang";
+    // let chapterKey = "defualt-no-state chapterkey";
+    // let clickedNodeKey = "default-node-state nodekey";
 
 
-
-const editorMode = "online_cloud"; //TODO999
 
 
 
@@ -59,28 +72,6 @@ conv-node-ui-plans  <map>
 GameDataDesign <map>
 
 */
-
-
-    const navigate = useNavigate();
-    const {state} = useLocation();
-    let userName = "default-no-state username";
-    let projectName = "default-no-state projectname";
-    let screenSizeStr = "default-no-state screenSizeInfo";
-    let editorUiLang = "default-no-state uiLang";
-    let chapterKey = "defualt-no-state chapterkey";
-    let clickedNodeKey = "default-node-state nodekey";
-
-
-    if (state != null) {
-        userName = state.userName;
-        projectName = state.projectName;
-        screenSizeStr = state.screenSizeStr;
-        editorUiLang = state.editorUiLang;    
-        chapterKey = state.chapterKey;
-        clickedNodeKey = state.clickedNodeKey;
-//TODO999 modename
-
-    } 
 
     const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en');
 
@@ -356,13 +347,14 @@ GameDataDesign <map>
 
 
     function goToNotLoggedInPage() {
-        navigate('/notloggedin', { replace: true });
-  
+   //     navigate('/notloggedin', { replace: true });
+        alert("should go to not-logged-in-page");
     }
 
       
     function goToDashboard() {
-        navigate('/projectmanagingpanel', { replace: true });
+   //     navigate('/projectmanagingpanel', { replace: true });
+        alert("shoud go to dashboard");
     }
 
     function passInGameDataDesignList() {
@@ -370,13 +362,12 @@ GameDataDesign <map>
     }
 
     function initializeUILang() {
-        if (state === undefined || state === null) {
-            return;
-        } else {
-            let uiLangFromOuterCompo = state.uiLang;
+    //TODO99999 uiLang
+
+            let uiLangFromOuterCompo = editorUiLang;
             setLanguageCodeTextOption(uiLangFromOuterCompo);
                                 console.log("!!initializeUILang(): ", uiLangFromOuterCompo);
-        }
+        
 
  
 
@@ -385,22 +376,23 @@ GameDataDesign <map>
 
     function goToGameMaker() {
 
-        let resp = window.confirm("Are you sure you saved all the changes?");
+                            // let resp = window.confirm("Are you sure you saved all the changes?");
 
-        if (resp) {
-            let stateObj = {
-                selected_project_name: state.projectName, 
-                username: state.userName,
-                mode: editorMode //TODO999 temp (fixed as const here)
-            };
-            navigate('/editorcontainer', { replace: true, state: stateObj });
-        }
+                            // if (resp) {
+                            //     let stateObj = {
+                            //         selected_project_name: projectName, 
+                            //         username: userName,
+                            //         mode: editorMode //TODO999 temp (fixed as const here)
+                            //     };
+                            //     navigate('/editorcontainer', { replace: true, state: stateObj });
+                            // }
 
+        alert("should go to game-maker");
     }
 
     async function fetchGameDataDesignList() { 
         let gddList = await getProjectGameDataDesignVM({
-            projectName: state.projectName, 
+            projectName: projectName, 
             uname: authEmailName,
             bkOption: backendOption  
         });
@@ -412,7 +404,7 @@ GameDataDesign <map>
 
     async function fetchProjResourceLists() {
 
-        if (state.userName === "default-no-state username" || state.projectName === "default-no-state projectName") {
+        if (userName === "default-no-state username" || projectName === "default-no-state projectName") {
             return;
         }
                                             console.log("fetchProjResourceLists-func...");
@@ -426,7 +418,7 @@ GameDataDesign <map>
 
                     obj = await fetchProjectResourceVarPairsVM({
                         userName: authEmailName,              
-                        projectName: state.projectName,
+                        projectName: projectName,
                         bkOption: backendOption //TODO999
                     });
 
@@ -862,10 +854,10 @@ GameDataDesign <map>
         let typeStr = "Conversation";
 
         await convSingleNodeUpdateToCloudVM({
-            project: state.projectName, 
+            project: projectName, 
             username: authEmailName,       
-            chapterKey: state.chapterKey, 
-            nodeKey: state.clickedNodeKey, 
+            chapterKey: chapterKey, 
+            nodeKey: clickedNodeKey, 
             dataObj: pieceDataStructure, 
             uiDataObj: uiObj,
             bkOption: backendOption,
@@ -886,10 +878,10 @@ GameDataDesign <map>
     async function initializeNodeBothPartsFromCloud() {
 
         let pieceObjTemp = await convNodeBothPartsFromCloudVM({
-            project: state.projectName, 
+            project: projectName, 
             username: authEmailName,       
-            chapterKey: state.chapterKey, 
-            nodeKey: state.clickedNodeKey,
+            chapterKey: chapterKey, 
+            nodeKey: clickedNodeKey,
             bkOption: backendOption
         });
 
@@ -1126,13 +1118,13 @@ GameDataDesign <map>
         >
             <div className="returning_buttons_cloud_mode">
                 <button className="button2" onClick={()=>{goToGameMaker()}}> {returnGameMakerButtonText} </button>
-{state!= undefined && state.projectName !== null && firstEnterButtonPressed === true &&                
+{projectName !== null && firstEnterButtonPressed === true &&                
 <>
 
 <div style={{"width": "200px",  "textAlign": "left", "padding": "5px", "marginTop": "5px"}}>
-                    <label>Project: {state.projectName}</label>
+                    <label>Project: {projectName}</label>
                     <br></br>
-                    <label>Node: {state.clickedNodeKey}</label>
+                    <label>Node: {clickedNodeKey}</label>
                 
                 </div>
 
@@ -1177,7 +1169,7 @@ GameDataDesign <map>
 }
             </div>
 
-{state!= undefined && state.projectName !== null && firstEnterButtonPressed === true &&
+{projectName !== null && firstEnterButtonPressed === true &&
 <>
             <div className="parallelFrame" style={{"marginTop": "-5px"}}>
                 <div className="topParalBarLeftPart">
@@ -1274,8 +1266,8 @@ GameDataDesign <map>
                             getGameDataDesignList={passInGameDataDesignList}
 
                             getUILanguage={passInUILanguage}
-                            username={state.userName} 
-                            projName={state.projectName} 
+                            username={userName} 
+                            projName={projectName} 
                             sendOutBgmVol={receiveBgmVol}   
 
                             sendOutPrvwCharaPic={getPrvwCharaPicFromSubCompo}
@@ -1328,8 +1320,8 @@ GameDataDesign <map>
                             getVisualMap={passInVisualMap}
 
                             getUILanguage={passInUILanguage}
-                            username={state.userName} 
-                            projName={state.projectName}   
+                            username={userName} 
+                            projName={projectName}   
                             
                             updateConvNodeUiPlanToCloud={updateConvNodeUiPlanToCloud}
                             fetchConvNodeUiPlansFromCloud={fetchConvNodeUiPlansFromCloud}
@@ -1375,8 +1367,8 @@ GameDataDesign <map>
                                             //TODO later: voiceline-volume
 
                     
-                    username={state.userName}
-                    projName={state.projectName}
+                    username={userName}
+                    projName={projectName}
                 />
             }
 
@@ -1400,8 +1392,8 @@ GameDataDesign <map>
                     getVisualMap={passInVisualMap}
                     getAudioMap={passInAudioMap}
 
-                    username={state.userName}
-                    projName={state.projectName}
+                    username={userName}
+                    projName={projectName}
                 />
             }
 </>}
@@ -1426,7 +1418,7 @@ GameDataDesign <map>
 
                     getUILanguage={passInUILanguage}    
 
-                    projName={state.projectName}  
+                    projName={projectName}  
                     getUsername={passInUsername}
 
                     getBackendOption={passInBackendOption}
@@ -1461,7 +1453,7 @@ GameDataDesign <map>
                     isForGameMaker={false}
 
                     getUsername={passInUsername}
-                    projName={state.projectName}  
+                    projName={projectName}  
 
                     getBackendOption={passInBackendOption}
                     editorMode={editorMode}
@@ -1485,7 +1477,7 @@ GameDataDesign <map>
                     getUILanguage={passInUILanguage}
 
                     getUsername={passInUsername}
-                    projName={state.projectName}  
+                    projName={projectName}  
                     
                     getBackendOption={passInBackendOption}
                     editorMode={editorMode}
@@ -1518,8 +1510,8 @@ GameDataDesign <map>
                     getVisualMap={passInVisualMap}
         
                     getUILanguage={passInUILanguage}
-                    username={state.userName} 
-                    projName={state.projectName} 
+                    username={userName} 
+                    projName={projectName} 
 
                     initialEmuGameDataTracker={testPlayerGameDataDup}
                     

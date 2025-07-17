@@ -17,9 +17,6 @@ function App() {
         
         <Route path="/mainpanel" element={<Panel1_UserMgr/>} />
         <Route path="/editorcontainer" element={<Panel2_Container_GameEditor/>} />
-
-        <Route path="/conversationnode" element={<ConversationNodeEditingPanel />} />
-        <Route path="/cardgamenode" element={<CardGameNodeEditingPanel />} />
         
         <Route path="/notloggedin" element={<UserNotLoggedInPage/>} />
         <Route path="/projectNonCloud" element={<ProjectManagingOffline/>} />

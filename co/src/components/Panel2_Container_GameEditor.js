@@ -13,6 +13,7 @@ import uiLangMap from './uiLangMap';
 
 import GameMaker from './GameMaker';
 import ConversationNodeEditingPanel from './ConversationNodeEditingPanel';
+import CardGameNodeEditingPanel from './CardGameNodeEditingPanel';
 
 
 export default function Panel2_Container_GameEditor() {
@@ -31,7 +32,9 @@ export default function Panel2_Container_GameEditor() {
     let projectContentProvided = "default-node-state provided-project-content";
 
     const [focusingEditor, setFocusingEditor] = useState("gameMaker");
-  
+    const [currentChapter, setCurrentChapter] = useState("");
+    const [currentNode, setCurrentNode] = useState("");
+
 
     if (state !== null && state !== undefined) {
       projectName = state.selected_project_name;
@@ -99,22 +102,55 @@ export default function Panel2_Container_GameEditor() {
 
     function switchEditor(infoObj) {
         //TODO99999
+        if (infoObj === undefined) {
+            return;
+        }
 
-            // goToEditorName,
-            // clickedNodeKey, 
-            // projectName, 
-            // userName, 
-            // screenSizeStr, 
-            // uiLang, 
-            // chapterKey,
-            // editorMode
+        //TODO compare project name
+            // infoObj["projectName"] 
+
+        //TODO compare username
+            // infoObj["username"]
+
+        //TODO check editorMode - mode name
+            // infoObj["editorMode"]
+
+
+        //TODO details for this node
+            // infoObj["screenSizeStr"] 
+            // infoObj["uiLang"] 
+            // infoObj["chapterKey"]
+            // infoObj["clickedNodeKey"]             
+
+        setCurrentChapter(infoObj["chapterKey"]);
+        setCurrentNode(infoObj["clickedNodeKey"]);
+
+        //
+
+        switch (infoObj["nodeType"]){
+        
+                case "Conversation":
+                    setFocusingEditor("Conversation");
+                    break;
+                case "CardGame":
+                    setFocusingEditor("CardGame");
+
+                    break;
+              
+                default:
+                    console.log();
+        }
+
+   
 
 
     }
 
     function goToGameMaker() {
         setFocusingEditor("gameMaker");
-
+        setCurrentChapter("");
+        setCurrentNode("");
+  
     }
 
 
@@ -219,6 +255,12 @@ return (<div style={{"backgroundColor": "#b5b2b0"}}>
         switchEditor={switchEditor}
     />}
 
+    {focusingEditor === "Conversation"
+    &&
+        <ConversationNodeEditingPanel/>
+
+
+    }
 
 
     </>}

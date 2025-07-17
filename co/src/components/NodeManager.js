@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { GiTrashCan } from "react-icons/gi";
 
 
@@ -222,7 +221,6 @@ export default function NodeManager({projectName, currUser,
  
 
    /* variable area */
-   const navigate = useNavigate();
 
    const [clickedNode, setClickedNode] = useState("");
    const [clickedNode2, setClickedNode2] = useState(-1); //TODO using for new data structure
@@ -406,34 +404,34 @@ export default function NodeManager({projectName, currUser,
 
     if (currNodeType === "Card Game") {
       infoObj["nodeType"] = "CardGame";
-      // navigate('/cardgamenode', { replace: true, 
-      //   state: 
-      //   { 
-      //     clickedNodeKey, 
-      //     projectName, 
-      //     userName, 
-      //     screenSizeStr, 
-      //     uiLang, 
-      //     chapterKey,
-      //     editorMode
-      //   } 
-      //   });
+                                    // navigate('/cardgamenode', { replace: true, 
+                                    //   state: 
+                                    //   { 
+                                    //     clickedNodeKey, 
+                                    //     projectName, 
+                                    //     userName, 
+                                    //     screenSizeStr, 
+                                    //     uiLang, 
+                                    //     chapterKey,
+                                    //     editorMode
+                                    //   } 
+                                    //   });
     } else if (currNodeType === "Conversation") {
       infoObj["nodeType"] = "Conversation";
 
       
-      // navigate('/conversationnode', { replace: true, 
-      //   state: 
-      //   { 
-      //     clickedNodeKey, 
-      //     projectName, 
-      //     userName, 
-      //     screenSizeStr, 
-      //     uiLang, 
-      //     chapterKey,
-      //     editorMode
-      //   } 
-      //   });
+                                    // navigate('/conversationnode', { replace: true, 
+                                    //   state: 
+                                    //   { 
+                                    //     clickedNodeKey, 
+                                    //     projectName, 
+                                    //     userName, 
+                                    //     screenSizeStr, 
+                                    //     uiLang, 
+                                    //     chapterKey,
+                                    //     editorMode
+                                    //   } 
+                                    //   });
 
 
     } 
