@@ -709,6 +709,10 @@
 - 2025-Jul-15: Research on visual effect
 
 - 2025-Jul-16: Research on visual effect 2
+- 2025-Jul-16: Design for rendering-optimization on panel-compos
+
+
+
 
 
 
