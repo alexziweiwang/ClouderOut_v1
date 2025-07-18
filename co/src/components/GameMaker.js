@@ -61,12 +61,13 @@ import uiLangMap from './uiLangMap';
 export default function GameMaker({
       projectName, 
       editorMode, 
-      projectMetaData,
-      switchEditor
+      getProjectMetaData,
+      switchEditor,
+      getAuthEmailName,
     
     }) {
   const navigate = useNavigate();
-
+  const projectMetaData = getProjectMetaData();
 
    //    "offline_half"       "offline_full"        "online_cloud"  
                             console.log("game maker, mode = ", editorMode, "\n ... project meta-data = ", projectMetaData);
@@ -263,6 +264,11 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
     }
 
     function resetVisualMapFromList(visualList) {
+
+                                console.log("audio list = ", visualList);
+      if (visualList === undefined) {
+        setVisualMap({});
+      } else {
         let tempMap = {};
 
         //TODO
@@ -278,27 +284,40 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
                  //                       console.log("initialized visual map = ", tempMap); //TODO test
 
         setVisualMap(tempMap);
+
+      }
+
+      
     }
 
 
     function resetAudioMapFromList(audioList) { //TODO9999
-        let tempMap = {};
+                                          console.log("audio list = ", audioList);
+        if (audioList === undefined) {
+          setAudioMap({});
+        } else {
+          let tempMap = {};
 
-        //TODO
-        let len = audioList.length;
-        let i = 0;
-        tempMap[''] = ''; // if empty key - give empty value to prevent undefined issue (temp)
-        tempMap[""] = '';
-        while (i < len) {
-            let item = audioList[i];
-            tempMap[item["var"]] = item["url"];
-            i++;
+          //TODO
+          let len = audioList.length;
+          let i = 0;
+          tempMap[''] = ''; // if empty key - give empty value to prevent undefined issue (temp)
+          tempMap[""] = '';
+          while (i < len) {
+              let item = audioList[i];
+              tempMap[item["var"]] = item["url"];
+              i++;
+          }
+
+                //                          console.log("initialized audio map = ", tempMap); //TODO test
+          
+
+          setAudioMap(tempMap);
+
         }
 
-              //                          console.log("initialized audio map = ", tempMap); //TODO test
-        
 
-        setAudioMap(tempMap);
+       
     }
 
 
@@ -446,23 +465,11 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
                   //                console.log("curr chapter-key = ? ", currChapterKey, " data = ", chapterNodeMapAll[currChapterKey], "  from  ", chapterNodeMapAll);
 
 
-        if (authEmailName === "_" 
-          && 
-          (editorMode !== "offline_half" && editorMode !== "offline_full")) 
-        {
-          getAuthFirebase(
-              {
-                  goToNotLoggedInPageFunc: goToNotLoggedInPage,
-                  sendOutEmailName: setAuthEmailName
-              
-              }
-          );
-                          console.log("@@@gamek-maker --\t\tauthEmamilName", authEmailName);
 
-        }
                     
             console.log("\t\t\tgame-maker rendered once.      project = ", projectName, "  usename = ", authEmailName);
-
+        let authName = getAuthEmailName();
+        setAuthEmailName(authName);
 
         if (authEmailName !== "_" && editorMode === "online_cloud") {
 
@@ -553,7 +560,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
 
   function goToNotLoggedInPage() {
-    navigate('/notloggedin', { replace: true });
+   // navigate('/notloggedin', { replace: true });
 
   }
 
@@ -1647,7 +1654,7 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
     let metaDataTemp = projectMetaData;
 
 
-    if (metaDataTemp === undefined) {
+    if (metaDataTemp === undefined || metaDataTemp === -1) {
       return;
     }
 

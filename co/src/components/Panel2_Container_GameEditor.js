@@ -78,6 +78,7 @@ export default function Panel2_Container_GameEditor() {
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
+        console.log("panel2 - mode = ", state.mode);
         if (state === null && state.mode === "online_cloud") {
                                     console.log("!!! not logged in - going to -login_page......");
             goToNotLoggedInPage();
@@ -163,6 +164,7 @@ export default function Panel2_Container_GameEditor() {
 
 
     function loadEverythingFromLocalProjFile() {
+        console.log("\t\t!!! func: loadEverythingFrom_LocalProjFile = ", state.projectFile);
 
         let projectFile = state.projectFile;
         let metaDataTemp = projectFile["meta_data"];
@@ -184,6 +186,18 @@ export default function Panel2_Container_GameEditor() {
         setCurrentChapter("");
         setCurrentNode("");
   
+    }
+
+    function passInProjectMetaData() {
+        return projectMetaData;
+    }
+
+    function passInProjecAllNodeContent() {
+        return projectAllNodeContent;
+    }
+
+    function passInAuthEmailName() {
+        return authEmailName;
     }
 
 
@@ -285,8 +299,9 @@ return (<div style={{"backgroundColor": "#b5b2b0"}}>
     && <GameMaker
         projectName={state.selected_project_name}
         editorMode={state.mode}
-        projectMetaData={projectMetaData}
+        getProjectMetaData={passInProjectMetaData}
         switchEditor={switchEditor}
+        getAuthEmailName={passInAuthEmailName}
     />}
 
     {focusingEditor === "Conversation"
