@@ -61,7 +61,7 @@ import uiLangMap from './uiLangMap';
 export default function GameMaker({
       projectName, 
       editorMode, 
-      projectFile,
+      projectMetaData,
       switchEditor
     
     }) {
@@ -69,9 +69,9 @@ export default function GameMaker({
 
 
    //    "offline_half"       "offline_full"        "online_cloud"  
-                            console.log("game maker, mode = ", editorMode, "\n ... project file = ", projectFile);
+                            console.log("game maker, mode = ", editorMode, "\n ... project meta-data = ", projectMetaData);
 
-  if (editorMode !== "online_cloud" && projectFile === undefined) {
+  if (editorMode !== "online_cloud" && projectMetaData === undefined) {
     goToNotLoggedInPage();
   }
 /**
@@ -281,7 +281,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
     }
 
 
-    function resetAudioMapFromList(audioList) {
+    function resetAudioMapFromList(audioList) { //TODO9999
         let tempMap = {};
 
         //TODO
@@ -1644,20 +1644,12 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
   function loadEverythingFromLocalProjFile() {
     //TODO99999 option for offline-modes
 
-    let metaDataTemp = projectFile["meta_data"];
-    let chapterContentTemp = projectFile["chapter_content"];
+    let metaDataTemp = projectMetaData;
 
 
-    if (metaDataTemp === undefined || chapterContentTemp === undefined) {
+    if (metaDataTemp === undefined) {
       return;
     }
-
-
-
-
-// Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps>
-            //TODO99999
-    //projectFile["chapter_content"]
 
 
 

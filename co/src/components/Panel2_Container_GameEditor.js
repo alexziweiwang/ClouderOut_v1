@@ -37,6 +37,9 @@ export default function Panel2_Container_GameEditor() {
     const [currentNode, setCurrentNode] = useState("");
     const [currentScreenSz, setCurrentScreenSz] = useState("4:3(horizonal)");
 
+    const [projectMetaData, setProjectMetaData] = useState(-1);
+    const [projectAllNodeContent, setProjectAllNodeContent] = useState(-1);
+
 
     if (state !== null && state !== undefined) {
       projectName = state.selected_project_name;
@@ -80,12 +83,21 @@ export default function Panel2_Container_GameEditor() {
             goToNotLoggedInPage();
         }
 
-        if (authEmailName !== "_" && firstTimeEnter === true) {
+                                                // if (authEmailName !== "_" && firstTimeEnter === true) {
 
 
-                                //TODO
-                                // if : condition of init-status of var...
-                                // setFirstTimeEnter(false);
+                                                                        //TODO
+                                                                        // if : condition of init-status of var...
+                                                                        // setFirstTimeEnter(false);
+
+                                            
+                                                // }
+
+        if (state.mode !== "online_cloud" && firstTimeEnter === true) {
+            if (projectMetaData === -1 || projectAllNodeContent === -1) {
+                loadEverythingFromLocalProjFile();
+                setFirstTimeEnter(false);
+            }
         }
 
 
@@ -148,6 +160,24 @@ export default function Panel2_Container_GameEditor() {
 
 
     }
+
+
+    function loadEverythingFromLocalProjFile() {
+
+        let projectFile = state.projectFile;
+        let metaDataTemp = projectFile["meta_data"];
+        let chapterContentTemp = projectFile["chapter_content"];
+    
+    
+        if (metaDataTemp === undefined || chapterContentTemp === undefined) {
+          return;
+        }
+    
+        setProjectMetaData(metaDataTemp);
+        setProjectAllNodeContent(chapterContentTemp);
+        
+      }
+    
 
     function goToGameMaker() {
         setFocusingEditor("gameMaker");
@@ -255,7 +285,7 @@ return (<div style={{"backgroundColor": "#b5b2b0"}}>
     && <GameMaker
         projectName={state.selected_project_name}
         editorMode={state.mode}
-        projectFile={state.projectFile}
+        projectMetaData={projectMetaData}
         switchEditor={switchEditor}
     />}
 
