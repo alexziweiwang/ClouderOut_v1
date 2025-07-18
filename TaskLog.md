@@ -713,6 +713,7 @@
 - 2025-Jul-16: Design page-compo structure optimization 6
 
 - 2025-Jul-17: Design testing-project plot 35
+- 2025-Jul-17: Research on visual effect 3
 
 
 
