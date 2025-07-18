@@ -22,6 +22,7 @@ export default function Panel2_Container_GameEditor() {
 //TODO put modals here
 //TODO put editor-switching here
 
+//TODO screen-size-string improve formatting
 
     const navigate = useNavigate();
 
@@ -34,6 +35,7 @@ export default function Panel2_Container_GameEditor() {
     const [focusingEditor, setFocusingEditor] = useState("gameMaker");
     const [currentChapter, setCurrentChapter] = useState("");
     const [currentNode, setCurrentNode] = useState("");
+    const [currentScreenSz, setCurrentScreenSz] = useState("4:3(horizonal)");
 
 
     if (state !== null && state !== undefined) {
@@ -120,10 +122,11 @@ export default function Panel2_Container_GameEditor() {
             // infoObj["screenSizeStr"] 
             // infoObj["uiLang"] 
             // infoObj["chapterKey"]
-            // infoObj["clickedNodeKey"]             
-
+            // infoObj["clickedNodeKey"]   
+  
         setCurrentChapter(infoObj["chapterKey"]);
         setCurrentNode(infoObj["clickedNodeKey"]);
+        setCurrentScreenSz(infoObj["screenSizeStr"]);
 
         //
 
@@ -222,6 +225,7 @@ return (<div style={{"backgroundColor": "#b5b2b0"}}>
                             <select value={languageCodeTextOption}
                             onChange={(event)=>{
                         //      userChangeEditorUILang(event.target.value);
+                        //TODO99999
                             }}
                             >
                             <option key="lang-Eng" value="en">English</option>
@@ -257,7 +261,18 @@ return (<div style={{"backgroundColor": "#b5b2b0"}}>
 
     {focusingEditor === "Conversation"
     &&
-        <ConversationNodeEditingPanel/>
+        <ConversationNodeEditingPanel
+
+            clickedNodeKey={currentNode}
+            projectName={state.selected_project_name}
+            userName={authEmailName}
+            screenSizeStr={currentScreenSz}
+            editorUiLang={languageCodeTextOption}
+            chapterKey={currentChapter}
+            editorMode={state.mode}
+            goToGameMakerFunc={goToGameMaker}
+   
+        />
 
 
     }

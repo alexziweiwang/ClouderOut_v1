@@ -461,3 +461,4 @@ export const shp5Template = {
     "shopStock": [],
     "playerPurchaseStatus":  []
 }
+

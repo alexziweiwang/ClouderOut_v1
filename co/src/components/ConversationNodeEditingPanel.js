@@ -26,10 +26,6 @@ import { getProjectGameDataDesignVM } from '../viewmodels/GameDataViewModel';
 
 
 
-//TODO1010 username by auth
-import { getAuthFirebase } from '../authtools/firebaseAuthOperations';
-
-
 //level2
 
 export default function ConversationNodeEditingPanel({
@@ -39,10 +35,12 @@ export default function ConversationNodeEditingPanel({
         screenSizeStr, 
         editorUiLang, 
         chapterKey,
-        editorMode
+        editorMode,
+        goToGameMakerFunc
 }
 ) {
 
+    const authEmailName = userName;
     // let userName = "default-no-state username";
     // let projectName = "default-no-state projectname";
     // let screenSizeStr = "default-no-state screenSizeInfo";
@@ -256,28 +254,11 @@ GameDataDesign <map>
     const [offlineFullMode, setOfflineFullMode] = useState(false); //TODO6000
   
 
-    const [authEmailName, setAuthEmailName] = useState("_");
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
           console.log("testPlayerGameData = " , testPlayerGameData);
-        
-        if (authEmailName !== "_" && (projectName === null || projectName === "default-no-state projectname")) {
-            //      alert("No project selected. Returning to project selection page...");
-                  goToDashboard();
-        }
-      
 
-        if (authEmailName === "_") {
-            getAuthFirebase(
-                {
-                  goToNotLoggedInPageFunc: goToNotLoggedInPage,
-                  sendOutEmailName: configAuthEmailName
-        
-                }
-            );
-            console.log("auth! conv-node-editor --\t\tauthEmamilName", authEmailName);
-        } 
 
      
 
@@ -329,27 +310,8 @@ GameDataDesign <map>
     
     }); // --- useEffect ends here ---
 
-    function configAuthEmailName(name) {
-        setAuthEmailName(name);
+                                                    
 
-        if (name !== "_") { //online-mode
-            setOfflineHalfMode(false);
-            setOfflineFullMode(false);
-        } else {
-            setOfflineHalfMode(true);
-        //TODO6000 offline mode: import, edit and save one-node's content and ui-settings
-
-
-        }
-
-
-    }
-
-
-    function goToNotLoggedInPage() {
-   //     navigate('/notloggedin', { replace: true });
-        alert("should go to not-logged-in-page");
-    }
 
       
     function goToDashboard() {
@@ -376,18 +338,7 @@ GameDataDesign <map>
 
     function goToGameMaker() {
 
-                            // let resp = window.confirm("Are you sure you saved all the changes?");
-
-                            // if (resp) {
-                            //     let stateObj = {
-                            //         selected_project_name: projectName, 
-                            //         username: userName,
-                            //         mode: editorMode //TODO999 temp (fixed as const here)
-                            //     };
-                            //     navigate('/editorcontainer', { replace: true, state: stateObj });
-                            // }
-
-        alert("should go to game-maker");
+        goToGameMakerFunc();           
     }
 
     async function fetchGameDataDesignList() { 
@@ -1138,33 +1089,7 @@ GameDataDesign <map>
                 </div>
 
 
-                <div className="buttonRight30px parallelFrame" style={{"width": "500px"}}>
-                    <button className="rmTab" onClick={()=>{setDisplayGameDataWindow(true);}}>{gameDataManagerText}</button>
-                    <button className="rmTab" onClick={() => {setDisplayRmModal(true)}}> {resourceManagerButtonText} </button>
-                    <button className="rmTab" onClick={()=>{setDisplayEmBool(true);}}>
-                        {emuManagerText}
-                    </button>
-
-                    
-                            <div>
-                                <label>Editor Language</label><br></br>
-                                <select value={languageCodeTextOption}
-                                    onChange={(event)=>{
-                                        let opt = event.target.value;
-                                        let askStr = "Are you sure to change editor language to " + uiLangMap[opt] + " ?";
-                                        let response = window.confirm(askStr);
-                                        if (response) {
-                                            setLanguageCodeTextOption(opt);
-                                        }
-
-                                    }}
-                                >
-                                    <option key="lang-Eng" value="en">English</option>
-                                    <option key="lang-chn" value="chn">简体中文</option> 
-                                </select>
-                            </div>
-                </div>
-
+    
 </>
 }
             </div>
