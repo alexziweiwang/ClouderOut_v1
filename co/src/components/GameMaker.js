@@ -47,12 +47,9 @@ import { updateChapterNodeMappingsToCloud_vm } from '../viewmodels/UpdtAc_Update
 import { downloadProjectAllInOne_vm } from '../viewmodels/PrepAc_ProjectFileInOut';
 
 import { 
-  fetchNodeDataEachNodeVM, 
   fetchNodeDataEachChapterVM, 
 } from '../viewmodels/NodeDataInPlayViewModel';
 //TODO112: fetch node-contents here, and send into Viewer_Entire and its sub-component [GameScreen_AllNodeTypeContainer]
-
-import { getAuthFirebase } from '../authtools/firebaseAuthOperations';
 
 
 import langDictionary from './_textDictionary';
@@ -491,19 +488,16 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
             setOfflineHalfMode(false);
             setOfflineFullMode(false);
 
-        } else { //auth-email-name is "_"
-
-            if (editorMode === "offline_half" || editorMode === "offline_full") {
+        } else if (editorMode === "offline_half" || editorMode === "offline_full") { //auth-email-name is "_"
                         //TODO6000 offline mode prep
-                            //in this case, ask either log-in, or let the user work on the project offline
                                 
                                 //save: download current data-sets
                                 //import: upload and parse formatted file ...
                                 //resource-pair: half-offline: use online-drive link; full-offline: desktop with file path
-                if (gridBlocksAll === -1 || chapterNodeMapAll === -1) {
-                    loadEverythingFromLocalProjFile();
-                }
-            }
+          if (gridBlocksAll === -1 || chapterNodeMapAll === -1) {
+            loadEverythingFromLocalProjFile();
+          }
+            
 
    
         }

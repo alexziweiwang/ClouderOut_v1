@@ -78,9 +78,21 @@ export default function Panel2_Container_GameEditor() {
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
-        console.log("panel2 - mode = ", state.mode);
+        window.onbeforeunload = () => {
+            
+            return "show message";
+        }
+
+        console.log("panel2 (render once) - mode = ", state.mode);
+
+
+
         if (state === null && state.mode === "online_cloud") {
                                     console.log("!!! not logged in - going to -login_page......");
+            goToNotLoggedInPage();
+        }
+
+        if (state === undefined) {
             goToNotLoggedInPage();
         }
 
@@ -99,7 +111,18 @@ export default function Panel2_Container_GameEditor() {
                 loadEverythingFromLocalProjFile();
                 setFirstTimeEnter(false);
             }
+        } else if (state.mode === "online_cloud" && firstTimeEnter === true) {
+            //TODO fetch from cloud...
+            
+            //load meta-data from cloud
+                //TODO99999
+            //prepare for project-content map, and fetch when user reached that chapter?
+                //TODO99999
+
+
+
         }
+
 
 
         if (authEmailName === "_" && state.mode === "online_cloud") { // get login info
@@ -164,7 +187,7 @@ export default function Panel2_Container_GameEditor() {
 
 
     function loadEverythingFromLocalProjFile() {
-        console.log("\t\t!!! func: loadEverythingFrom_LocalProjFile = ", state.projectFile);
+                                                console.log("\t\t!!! func: loadEverythingFrom_LocalProjFile = ", state.projectFile);
 
         let projectFile = state.projectFile;
         let metaDataTemp = projectFile["meta_data"];
@@ -203,7 +226,14 @@ export default function Panel2_Container_GameEditor() {
     function handleBannerGoBack() {
         // according to current focusing panel, go to different panels
         if (focusingEditor === "gameMaker") {
-            //TODO go to dashboard
+            if (state.mode === "online_cloud") {
+                //TODO go to dashboard
+                alert("TODO go to dashboard");
+
+            } else {
+                //TODO go to not-logged-in page
+                alert("TODO go to not-logged-in page");
+            }
         } else {
             // node-editors
             setFocusingEditor("gameMaker");
@@ -222,9 +252,7 @@ return (<div style={{"backgroundColor": "#b5b2b0"}}>
 <div className={state.mode === "online_cloud" ? "" : "colorInvert"}>
 <div className="returning_buttons_cloud_mode">
       
-      {(state.mode === "online_cloud")
-      || (focusingEditor !== "gameMaker")
-      && <button 
+      {<button 
           className="button2" 
           onClick={()=>{
               //chapterChangingOrExiting(); goToDashboard();
