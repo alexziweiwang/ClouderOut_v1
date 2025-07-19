@@ -200,6 +200,20 @@ export default function Panel2_Container_GameEditor() {
         return authEmailName;
     }
 
+    function handleBannerGoBack() {
+        // according to current focusing panel, go to different panels
+        if (focusingEditor === "gameMaker") {
+            //TODO go to dashboard
+        } else {
+            // node-editors
+            setFocusingEditor("gameMaker");
+
+
+        }
+
+
+    }
+
 
 return (<div style={{"backgroundColor": "#b5b2b0"}}>
 
@@ -208,10 +222,13 @@ return (<div style={{"backgroundColor": "#b5b2b0"}}>
 <div className={state.mode === "online_cloud" ? "" : "colorInvert"}>
 <div className="returning_buttons_cloud_mode">
       
-      {state.mode === "online_cloud" && <button 
+      {(state.mode === "online_cloud")
+      || (focusingEditor !== "gameMaker")
+      && <button 
           className="button2" 
           onClick={()=>{
               //chapterChangingOrExiting(); goToDashboard();
+              handleBannerGoBack();
             }}>
              ←
         </button>}

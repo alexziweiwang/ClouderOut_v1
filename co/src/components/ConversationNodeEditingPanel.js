@@ -1067,44 +1067,52 @@ GameDataDesign <map>
         <div
             className="textNoSelect"
         >
-            <div className="returning_buttons_cloud_mode">
-                <button className="button2" onClick={()=>{goToGameMaker()}}> {returnGameMakerButtonText} </button>
-{projectName !== null && firstEnterButtonPressed === true &&                
-<>
+                                                {/* <div className="returning_buttons_cloud_mode">
+                                                    <button className="button2" onClick={()=>{goToGameMaker()}}> {returnGameMakerButtonText} </button>
+                                    {projectName !== null && firstEnterButtonPressed === true &&                
+                                    <>
 
-<div style={{"width": "200px",  "textAlign": "left", "padding": "5px", "marginTop": "5px"}}>
-                    <label>Project: {projectName}</label>
-                    <br></br>
-                    <label>Node: {clickedNodeKey}</label>
-                
-                </div>
+                                    <div style={{"width": "200px",  "textAlign": "left", "padding": "5px", "marginTop": "5px"}}>
+                                                        <label>Project: {projectName}</label>
+                                                        <br></br>
+                                                        <label>Node: {clickedNodeKey}</label>
+                                                    
+                                                    </div>
 
-                <div style={{"minWidth": "200px", "marginTop": "2px"}}>
-                    <button className="button testEntire"
-                        onClick={()=>{
-                            setIsDisplayQview(true);
-                            }}>
-                            {quickGameViewText}
-                    </button>                    
-                </div>
+                                                    <div style={{"minWidth": "200px", "marginTop": "2px"}}>
+                                                        <button className="button testEntire"
+                                                            onClick={()=>{
+                                                                setIsDisplayQview(true);
+                                                                }}>
+                                                                {quickGameViewText}
+                                                        </button>                    
+                                                    </div>
 
 
-    
-</>
-}
-            </div>
+                                        
+                                    </>
+                                    }
+                                                </div> */}
 
 {projectName !== null && firstEnterButtonPressed === true &&
 <>
             <div className="parallelFrame" style={{"marginTop": "-5px"}}>
                 <div className="topParalBarLeftPart">
+                <>
+                        <button className="button testEntire"
+                                                            onClick={()=>{
+                                                                setIsDisplayQview(true);
+                                                                }}>
+                                                                {quickGameViewText}
+                        </button>      
+                    </>
 
               
                 </div>
 
 
 
-                <div className="topParalBarRightPart" style={{"height": "45px"}}>
+                <div className="" style={{"height": "45px"}}>
                     <button
                         onClick={()=>{
                             loadFromCloud();
@@ -1144,6 +1152,7 @@ GameDataDesign <map>
                     </>
 
 
+              
                 </div>
              
             </div>
