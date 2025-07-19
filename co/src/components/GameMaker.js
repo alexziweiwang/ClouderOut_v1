@@ -61,13 +61,14 @@ export default function GameMaker({
       getProjectMetaData,
       switchEditor,
       getAuthEmailName,
+      updateMetaDataToOuter
     
     }) {
   const navigate = useNavigate();
   const projectMetaData = getProjectMetaData();
 
    //    "offline_half"       "offline_full"        "online_cloud"  
-                            console.log("game maker, mode = ", editorMode, "\n ... project meta-data = ", projectMetaData);
+                                console.log("game maker, mode = ", editorMode, "\n ... project meta-data = ", projectMetaData);
 
   if (editorMode !== "online_cloud" && projectMetaData === undefined) {
     goToNotLoggedInPage();
@@ -102,13 +103,6 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
   let textDictItem = langDictionary[languageCodeTextOption];
   let textDictItemDefault = langDictionary["en"];
 
-  const resourceManagerButtonText = textDictItem.resourceManagerButtonText !== undefined ?
-        textDictItem.resourceManagerButtonText
-        : textDictItemDefault.resourceManagerButtonText;
-
-  const gameDataManagerButtonText = textDictItem.gameDataManagerButtonText !== undefined ?
-        textDictItem.gameDataManagerButtonText
-        : textDictItemDefault.gameDataManagerButtonText;
   
   const contentChaptersTabText = textDictItem.contentChaptersTabText !== undefined ?
         textDictItem.contentChaptersTabText
@@ -138,10 +132,6 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
         textDictItem.projectNameText
         : textDictItemDefault.projectNameText;
 
-
-  const emuManagerText = textDictItem.emuManagerText !== undefined ?
-        textDictItem.emuManagerText
-        : textDictItemDefault.emuManagerText;
     
 //TODO15
 
@@ -1828,6 +1818,19 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
 
   function switchEditorLocal(infoObj) {
     switchEditor(infoObj);
+  }
+
+  function updateAllInObj() { //TODO99999
+    let metadataObj = {};
+    metadataObj["game_data"] = gameDataDesignList;
+    metadataObj["resource_visual"] = visualMap;
+    metadataObj["resource_audio"] = audioMap;
+    metadataObj["project_ui_language"] = languageCodeTextOption;
+    metadataObj["navigation_settings"] = currentProjectNav;
+    metadataObj["chapter_list"] = chapterList;
+    metadataObj["chapter_node_mapping"] = chapterNodeMapAll;
+
+    updateMetaDataToOuter(metadataObj);
   }
 
 

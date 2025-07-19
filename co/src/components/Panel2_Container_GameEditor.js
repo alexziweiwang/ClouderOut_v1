@@ -15,6 +15,10 @@ import GameMaker from './GameMaker';
 import ConversationNodeEditingPanel from './ConversationNodeEditingPanel';
 import CardGameNodeEditingPanel from './CardGameNodeEditingPanel';
 
+import Modal_ResourceManagingWindow from './Modal_ResourceManagingWindow';
+import Modal_GameDataManager from './Modal_GameDataManager';
+import Modal_EmuManager from './Modal_EmuManager';
+
 
 import { checkProjectMetaData_vm } from '../viewmodels/PrepAc_ProjectFileInOut';
 
@@ -41,6 +45,14 @@ export default function Panel2_Container_GameEditor() {
 
     const [projectMetaData, setProjectMetaData] = useState(-1); //TODO99
     const [projectAllNodeContent, setProjectAllNodeContent] = useState(-1); //TODO99
+
+
+    const [isDisplayRmBool, setDisplayRmModal] = useState(false);
+    const [isDisplayGdmBool, setDisplayGdmBool] = useState(false);
+    const [isDisplayEmBool, setDisplayEmBool] = useState(false); 
+    //TODO99999 modal panels in panel2, display or not
+
+
 
 
     if (state !== null && state !== undefined) {
@@ -252,7 +264,7 @@ export default function Panel2_Container_GameEditor() {
     }
 
     function fetchUpdatedNodeContentFromSubCompo(addingNodeKey, oneNodeContent) {
-        //TODO add this one-node into current content-obj, check if valid to add
+        //TODO add this one-node into current content-obj, then check if valid to add
 
     }
     
@@ -364,6 +376,7 @@ return (<div style={{"backgroundColor": "#b5b2b0"}}>
         getProjectMetaData={passInProjectMetaData}
         switchEditor={switchEditor}
         getAuthEmailName={passInAuthEmailName}
+        updateToOuter={fetchUpdatedMetaDataFromSubCompo}
     />}
 
     {focusingEditor === "Conversation"
