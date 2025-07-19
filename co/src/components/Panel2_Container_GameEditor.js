@@ -37,6 +37,9 @@ export default function Panel2_Container_GameEditor() {
     let projectName = "default-no-state projectname"; //TODO testing
     let mode = "default-node-state mode";
     let projectContentProvided = "default-node-state provided-project-content";
+    
+    const [backendOption, setBackendOption] = useState("firebase");    
+
 
     const [focusingEditor, setFocusingEditor] = useState("gameMaker");
     const [currentChapter, setCurrentChapter] = useState("");
@@ -267,11 +270,24 @@ export default function Panel2_Container_GameEditor() {
         //TODO add this one-node into current content-obj, then check if valid to add
 
     }
+
+    function passInLocalProjectData_RsrcMgr() {
+
+        //TODO return var-pairs
+        //formatting of "fetchProjectResourceVarPairsVM"
+    }
+
+    function notifyRmUpdated() {
+        alert("TODO resource-manager should update");
+    }
     
 
     // const [projectMetaData, setProjectMetaData] = useState(-1); //TODO99
     // const [projectAllNodeContent, setProjectAllNodeContent] = useState(-1); //TODO99
 
+    function handleResourceManagerCancel() {
+        setDisplayRmModal(false);
+    }
 
 
 return (<div style={{"backgroundColor": "#b5b2b0"}}>
@@ -398,7 +414,106 @@ return (<div style={{"backgroundColor": "#b5b2b0"}}>
 
 
     </>}
+
+{/* modal floating window - manager area */}
+
+<div>
+
+
+          
+          {isDisplayRmBool === true && <div>
+
+              <Modal_ResourceManagingWindow 
+
+                handleRmCancel={handleResourceManagerCancel} 
+                languageCodeTextOption={languageCodeTextOption}
+                editorMode={state.mode}
+
+                triggerRmUpdate={notifyRmUpdated}  //?
+
+
+                projName={state.selected_project_name}   
+                username={authEmailName}
+
+                backendOption={backendOption}
+
+                getLocalProjectDataRsrcMgr={passInLocalProjectData_RsrcMgr}
+
+              />
+          
+          </div>}
+
+
+     
+          {isDisplayGdmBool === true && <div>
+       
+              {/* <Modal_GameDataManager 
+                isDisplay={isDisplayGdmBool} 
+                handleGdmCancel={handleGameDataManagerCancel} 
+                resetNeedCloudData={markNextNeedCloudGameData} 
+
+                getUILanguage={passInUILanguage}  //TODO20 languageOption
+
+                projName={projectName}  
+                getUsername={passInAuthEmailName}
+
+                getBackendOption={passInBackendOption}
+                editorMode={editorMode}
+
+                updateForEmuGdt1={getUserConfigFromDataMgr1Gdt}
+
+                updateGameDataDesignListToOuterLayer={updateGameDataDesignList}
+
+                getLocalProjectData_GameDataDesign={passInLocalProjectData_GameDataDesign}
+
+              /> */}
+
+          </div>}
+
+
+
+          {isDisplayEmBool === true && <div>
+
+            {/* <Modal_EmuManager
+              handleEmCancel={handleEmuManagerCancel}
+
+              update1Gdt={getUserConfigFromEmuManager1Gdt}
+              update2Epp={getUserConfigFromEmuManager2Epp}
+              update3Epa={getUserConfigFromEmuManager3Epa}
+              update4Ess={getUserConfigFromEmuManager4Ess}
+              update5Shp={getUserConfigFromEmuManager5Shp}
+
+              getUILanguage={passInUILanguage}
+              isForGameMaker={true}
+
+              projName={projectName}  
+              getUsername={passInAuthEmailName}
+
+              getBackendOption={passInBackendOption}
+              editorMode={editorMode}
+
+              getLocalProjectDataEmu={passInLocalProjectData_Emu}
+
+            /> */}
+          </div>}
+
+
+
+
+
+
+</div>
+
+
 </div>);
+
+
+
+
+
+
+
+
 
 
 }

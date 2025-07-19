@@ -2293,107 +2293,11 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
 
 
 
-<div>
 
-          
-          {/* {<div
-            style={{
-              "display": isDisplayRmBool === false ? "none" : "flex",
-            }}
-          > */}
-          
-          {isDisplayRmBool === true && <div>
-
-              <Modal_ResourceManagingWindow 
-
-                isDisplay = {isDisplayRmBool} 
-                handleRmCancel={handleResourceManagerCancel} 
-                handleRmSaveChanges={handleResourceManagerSaveChanges}
-                refresh={triggerRefreshFetchCloudData}
-                triggerRmUpdate={notifyRmUpdated}
-
-                getUILanguage={passInUILanguage}  //TODO20 languageOption
-
-                projName={projectName}   
-                getUsername={passInAuthEmailName}
-
-                getBackendOption={passInBackendOption}
-                editorMode={editorMode}
-
-                getLocalProjectDataRsrcMgr={passInLocalProjectData_RsrcMgr}
-
-              />
-          
-          </div>}
-
-
-          {/* {<div
-            style={{
-              "display": isDisplayGdmBool === false ? "none" : "flex",
-            }}
-          > */}
-
-          {isDisplayGdmBool === true && <div>
-       
-              <Modal_GameDataManager 
-                isDisplay={isDisplayGdmBool} 
-                handleGdmCancel={handleGameDataManagerCancel} 
-                resetNeedCloudData={markNextNeedCloudGameData} 
-
-                getUILanguage={passInUILanguage}  //TODO20 languageOption
-
-                projName={projectName}  
-                getUsername={passInAuthEmailName}
-
-                getBackendOption={passInBackendOption}
-                editorMode={editorMode}
-
-                updateForEmuGdt1={getUserConfigFromDataMgr1Gdt}
-
-                updateGameDataDesignListToOuterLayer={updateGameDataDesignList}
-
-                getLocalProjectData_GameDataDesign={passInLocalProjectData_GameDataDesign}
-
-              />
-
-          </div>}
-
-{/* 
-          {<div
-            style={{
-              "display": isDisplayEmBool === false ? "none" : "flex",
-            }}
-          > */}
-
-
-          {isDisplayEmBool === true && <div>
-
-            <Modal_EmuManager
-              handleEmCancel={handleEmuManagerCancel}
-
-              update1Gdt={getUserConfigFromEmuManager1Gdt}
-              update2Epp={getUserConfigFromEmuManager2Epp}
-              update3Epa={getUserConfigFromEmuManager3Epa}
-              update4Ess={getUserConfigFromEmuManager4Ess}
-              update5Shp={getUserConfigFromEmuManager5Shp}
-
-              getUILanguage={passInUILanguage}
-              isForGameMaker={true}
-
-              projName={projectName}  
-              getUsername={passInAuthEmailName}
-
-              getBackendOption={passInBackendOption}
-              editorMode={editorMode}
-
-              getLocalProjectDataEmu={passInLocalProjectData_Emu}
-
-            />
-          </div>}
-
-
-</div>
 </>} 
+
+
+
 {/* cloudDbConnOk */}
 
 

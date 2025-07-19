@@ -14,14 +14,14 @@ import langDictionary from './_textDictionary';
 
 //fetch data from cloud, and update to outer-layer when user-changed...
 export default function Modal_ResourceManagingWindow ({
-    handleRmCancel, handleRmSaveChanges, isDisplay, triggerRmUpdate, refresh,
-    getUILanguage,
+    handleRmCancel, triggerRmUpdate, 
+    languageCodeTextOption,
     projName,
 
-    getUsername,
+    username,
 
     editorMode,            //"offline_half"       "offline_full"        "online_cloud"  
-    getBackendOption,
+    backendOption,
 
     getLocalProjectDataRsrcMgr,
 
@@ -29,12 +29,11 @@ export default function Modal_ResourceManagingWindow ({
 
 }) {
 
-    const [backendOption, setBackendOption] = useState("firebase");    
+    // const [backendOption, setBackendOption] = useState("firebase");    
     
 
     //TODO at previous layer, keep unsaved-local setting data locally, so that switching doesn't trigger cloud-db operations
 
-    const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en'); //TODO16
 
     let modalStyleName = "modalBackboard";
 
@@ -90,11 +89,9 @@ export default function Modal_ResourceManagingWindow ({
             : textDictItemDefault.notInThisProjectText;
 
 //TODO15
-    if (isDisplay === true) {
-        modalStyleName = "displayBlock modalBackboard";
-    } else {
-        modalStyleName = "displayNone modalBackboard";
-    }
+
+    modalStyleName = "displayBlock modalBackboard";
+   
 
     const [isSourceByUpload, setIsSourceByUpload] = useState(false);
 
@@ -123,7 +120,7 @@ export default function Modal_ResourceManagingWindow ({
     const [cloudUpdated, setCloudUpdated] = useState(false); //TODO15 
 
 
-    const [username, setUsername] = useState("_");
+    // const [username, setUsername] = useState("_");
 
 
 
@@ -138,24 +135,21 @@ export default function Modal_ResourceManagingWindow ({
             setFirstTimeEnter(false);
         }
 
-        let unameTemp = getUsername();
-        if (unameTemp !== "_") {
+        // let unameTemp = getUsername();
+        // if (unameTemp !== "_") {
 
-            if (visualVarPairs === undefined || audioVarPairs === undefined) {
+        //     if (visualVarPairs === undefined || audioVarPairs === undefined) {
 
-                initFetchPrep(unameTemp);
-            }
+        //         initFetchPrep(unameTemp);
+        //     }
 
-            setUsername(unameTemp);
-        }
-
-
-        let UILang = getUILanguage();
-        setLanguageCodeTextOption(UILang);
+        //     setUsername(unameTemp);
+        // }
 
 
-        let backendOptionTemp = getBackendOption(); //future: different backend-option (firebase, etc.)
-        setBackendOption(backendOptionTemp);
+     
+        // let backendOptionTemp = getBackendOption(); //future: different backend-option (firebase, etc.)
+        // setBackendOption(backendOptionTemp);
 
 
     });
