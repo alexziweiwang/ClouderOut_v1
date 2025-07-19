@@ -16,6 +16,8 @@ import ConversationNodeEditingPanel from './ConversationNodeEditingPanel';
 import CardGameNodeEditingPanel from './CardGameNodeEditingPanel';
 
 
+import { checkProjectMetaData_vm } from '../viewmodels/PrepAc_ProjectFileInOut';
+
 export default function Panel2_Container_GameEditor() {
 
 
@@ -37,8 +39,8 @@ export default function Panel2_Container_GameEditor() {
     const [currentNode, setCurrentNode] = useState("");
     const [currentScreenSz, setCurrentScreenSz] = useState("4:3(horizonal)");
 
-    const [projectMetaData, setProjectMetaData] = useState(-1);
-    const [projectAllNodeContent, setProjectAllNodeContent] = useState(-1);
+    const [projectMetaData, setProjectMetaData] = useState(-1); //TODO99
+    const [projectAllNodeContent, setProjectAllNodeContent] = useState(-1); //TODO99
 
 
     if (state !== null && state !== undefined) {
@@ -180,8 +182,6 @@ export default function Panel2_Container_GameEditor() {
                     console.log();
         }
 
-   
-
 
     }
 
@@ -204,7 +204,7 @@ export default function Panel2_Container_GameEditor() {
       }
     
 
-    function goToGameMaker() {
+    function goToGameMakerResetNodeFocus() {
         setFocusingEditor("gameMaker");
         setCurrentChapter("");
         setCurrentNode("");
@@ -227,22 +227,39 @@ export default function Panel2_Container_GameEditor() {
         // according to current focusing panel, go to different panels
         if (focusingEditor === "gameMaker") {
             if (state.mode === "online_cloud") {
-                //TODO go to dashboard
-                alert("TODO go to dashboard");
+                navigate('/mainpanel', { replace: true });
 
             } else {
-                //TODO go to not-logged-in page
-                alert("TODO go to not-logged-in page");
+                navigate('/projectNonCloud', { replace: true });
+
             }
         } else {
-            // node-editors
-            setFocusingEditor("gameMaker");
-
+            // when inside node-editors
+            goToGameMakerResetNodeFocus();
 
         }
 
+    }
+
+    function fetchUpdatedMetaDataFromSubCompo(obj) { // from game-maker
+        if (obj !== undefined) {
+            let checkRes = checkProjectMetaData_vm(obj);
+            if (checkRes === true) {
+                setProjectMetaData(obj);
+
+            }
+        }
+    }
+
+    function fetchUpdatedNodeContentFromSubCompo(addingNodeKey, oneNodeContent) {
+        //TODO add this one-node into current content-obj, check if valid to add
 
     }
+    
+
+    // const [projectMetaData, setProjectMetaData] = useState(-1); //TODO99
+    // const [projectAllNodeContent, setProjectAllNodeContent] = useState(-1); //TODO99
+
 
 
 return (<div style={{"backgroundColor": "#b5b2b0"}}>
@@ -360,7 +377,6 @@ return (<div style={{"backgroundColor": "#b5b2b0"}}>
             editorUiLang={languageCodeTextOption}
             chapterKey={currentChapter}
             editorMode={state.mode}
-            goToGameMakerFunc={goToGameMaker}
    
         />
 

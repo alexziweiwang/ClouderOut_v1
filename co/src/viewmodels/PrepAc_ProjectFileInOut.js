@@ -90,142 +90,155 @@ import {
         return (contentOk && uiOk);
     }
 
+    function checkProjectContentData_vm(contentMap) {
+        let res = true;
+        Object.keys(contentMap).map((chapterKey) => {
+            //each chapter
+            let chapterItem = contentMap[chapterKey];
+            Object.keys(chapterItem).map((nodeKey) => {
+                //each node
+
+                let nodeItem = chapterItem[nodeKey];
+                
+                let nodeContent = nodeItem["nodeContent"];
+                let nodeUISettings = nodeItem["nodeUISettings"];
+                let nodeType = nodeItem["nodeType"];
+
+                let isNodeOk = checkNodeByType(nodeType, nodeContent, nodeUISettings);
+                if (isNodeOk === false) {
+                    return false;
+                }
+
+            });
+
+        });
+        return res;
+    }
+
+    export function checkProjectMetaData_vm(metadataObj) {
+
+        if (metadataObj["game_data"] === undefined 
+        || metadataObj["resource_visual"] === undefined 
+        || metadataObj["resource_audio"] === undefined 
+        || metadataObj["project_ui_language"] === undefined 
+        || metadataObj["navigation_settings"] === undefined 
+        || metadataObj["chapter_list"] === undefined 
+        || metadataObj["chapter_node_mapping"] === undefined 
+    ) {
+        return false;                                           
+    } else {
+        let gameDataMap = metadataObj["game_data"];
+        // "game_data"
+                    //"data_type"
+                    //"default_value"
+                    //"name"
+
+        Object.keys(gameDataMap).map((currKey) => {         
+            let item = gameDataMap[currKey];  
+
+            if (item["data_type"] === undefined
+            || item["default_value"] === undefined
+            || item["name"] === undefined
+            ) {
+                return false;
+            }
+        });
+
+
+        let projNavSettingObj = metadataObj["navigation_settings"];
+        // "navigation_settings"
+                    //projectNavUiTemplate
+        Object.keys(projectNavUiTemplate).map((currKey) => {
+            if (projNavSettingObj[currKey] === undefined) {
+                return false;
+            }
+
+        })
+
+        // "chapter_list"
+            //each item: length should be 4
+        let chapList = metadataObj["chapter_list"];
+        Object.keys(chapList).map((currKey) => {
+            let item = chapList[currKey];
+            if (item.length !== 4) {
+                return false;
+            }
+        });
+
+    
+
+            // "resource_visual"
+        //check all item's format
+        //each item: "url" "var"
+        let visResObj = metadataObj["resource_visual"];
+        Object.keys(visResObj).map((currKey) => {
+            let item = visResObj[currKey];
+            if (item["url"] === undefined || item["var"] === undefined) {
+                return false;
+            }
+
+        });
+
+
+        // "resource_audio"
+        let auResObj = metadataObj["resource_audio"];
+        Object.keys(auResObj).map((currKey) => {
+            let item = auResObj[currKey];
+            if (item["url"] === undefined || item["var"] === undefined) {
+                return false;
+            }
+        });
+
+
+
+
+    // "chapter_node_mapping"
+        //each chapter-each node: 
+                        // col, display, nextNode, nodeName, nodeType, row, screenSize, 
+        let chapNodeMapping = metadataObj["chapter_node_mapping"];
+        Object.keys(chapNodeMapping).map((currKey) => {
+            let item = chapNodeMapping[currKey];
+
+            if (item["col"] === undefined
+            || item["display"] === undefined
+            || item["nextNode"] === undefined
+            || item["nodeName"] === undefined
+            || item["nodeType"] === undefined
+            || item["row"] === undefined
+            || item["screenSize"] === undefined
+                ) {
+                    return false;
+            } 
+
+
+        });
+    }
+
+        return true;
+    }
+
 
     function checkProjectFileContact(obj) {
+        let contentMapOk = false;
+        let metadataObjOk = false;
+
         if (obj["meta_data"] === undefined || obj["chapter_content"] === undefined) {
             return false;
         } else {
             let contentMap = obj["chapter_content"];
-            Object.keys(contentMap).map((chapterKey) => {
-                //each chapter
-                let chapterItem = contentMap[chapterKey];
-                Object.keys(chapterItem).map((nodeKey) => {
-                    //each node
-
-                    let nodeItem = chapterItem[nodeKey];
-                    
-                    let nodeContent = nodeItem["nodeContent"];
-                    let nodeUISettings = nodeItem["nodeUISettings"];
-                    let nodeType = nodeItem["nodeType"];
-
-                    let isNodeOk = checkNodeByType(nodeType, nodeContent, nodeUISettings);
-                    if (isNodeOk === false) {
-                        return false;
-                    }
-
-                });
-
-            });
-
+            contentMapOk = checkProjectContentData_vm(contentMap);
             
             let metadataObj = obj["meta_data"];
-
-            if (metadataObj["game_data"] === undefined 
-                || metadataObj["resource_visual"] === undefined 
-                || metadataObj["resource_audio"] === undefined 
-                || metadataObj["project_ui_language"] === undefined 
-                || metadataObj["navigation_settings"] === undefined 
-                || metadataObj["chapter_list"] === undefined 
-                || metadataObj["chapter_node_mapping"] === undefined 
-            ) {
-                return false;                                           
-            } else {
-                let gameDataMap = metadataObj["game_data"];
-                // "game_data"
-                            //"data_type"
-                            //"default_value"
-                            //"name"
-
-                Object.keys(gameDataMap).map((currKey) => {         
-                    let item = gameDataMap[currKey];  
-
-                    if (item["data_type"] === undefined
-                    || item["default_value"] === undefined
-                    || item["name"] === undefined
-                    ) {
-                        return false;
-                    }
-                });
-
-
-                let projNavSettingObj = metadataObj["navigation_settings"];
-                // "navigation_settings"
-                            //projectNavUiTemplate
-                Object.keys(projectNavUiTemplate).map((currKey) => {
-                    if (projNavSettingObj[currKey] === undefined) {
-                        return false;
-                    }
-
-                })
-
-
- 
-
-
-                // "chapter_list"
-                    //each item: length should be 4
-                let chapList = metadataObj["chapter_list"];
-                Object.keys(chapList).map((currKey) => {
-                    let item = chapList[currKey];
-                    if (item.length !== 4) {
-                        return false;
-                    }
-                });
-
-            
-
-                    // "resource_visual"
-                //check all item's format
-                //each item: "url" "var"
-                let visResObj = metadataObj["resource_visual"];
-                Object.keys(visResObj).map((currKey) => {
-                    let item = visResObj[currKey];
-                    if (item["url"] === undefined || item["var"] === undefined) {
-                        return false;
-                    }
-
-                });
-
-
-                // "resource_audio"
-                let auResObj = metadataObj["resource_audio"];
-                Object.keys(auResObj).map((currKey) => {
-                    let item = auResObj[currKey];
-                    if (item["url"] === undefined || item["var"] === undefined) {
-                        return false;
-                    }
-                });
-
-
-
-
-            // "chapter_node_mapping"
-                //each chapter-each node: 
-                                // col, display, nextNode, nodeName, nodeType, row, screenSize, 
-                let chapNodeMapping = metadataObj["chapter_node_mapping"];
-                Object.keys(chapNodeMapping).map((currKey) => {
-                    let item = chapNodeMapping[currKey];
-
-                    if (item["col"] === undefined
-                    || item["display"] === undefined
-                    || item["nextNode"] === undefined
-                    || item["nodeName"] === undefined
-                    || item["nodeType"] === undefined
-                    || item["row"] === undefined
-                    || item["screenSize"] === undefined
-                        ) {
-                            return false;
-                    } 
-
-
-                });
-            }
+            metadataObjOk = checkProjectMetaData_vm(metadataObj);
 
         }
 
+                                                                        if (contentMapOk && metadataObjOk) {
+                                                                            console.log("so far ok");
 
-                                                console.log("so far ok");
-        return true;
+                                                                        }
+
+        return contentMapOk && metadataObjOk;
 
     }
 
