@@ -22,6 +22,8 @@ import Modal_EmuManager from './Modal_EmuManager';
 
 import { checkProjectMetaData_vm } from '../viewmodels/PrepAc_ProjectFileInOut';
 
+import { fetchEmuData1GdtVM, updateAllSetsVM } from '../viewmodels/EmuManagingViewModel';
+
 export default function Panel2_Container_GameEditor() {
 
 
@@ -55,6 +57,13 @@ export default function Panel2_Container_GameEditor() {
     const [isDisplayEmBool, setDisplayEmBool] = useState(false); 
     //TODO99999 modal panels in panel2, display or not
 
+    const [testPlayerGameDataTracker, setTestPlayerGameDataTracker] = useState({});   //TODO important for holder-in-practice
+    const [testPlayerProfile, setTestPlayerProfile] = useState({});                                                       //TODO important for holder-in-practice
+    const [testPlayerAccount, setTestPlayerAccount] = useState({});                                                       //TODO important for holder-in-practice
+    const [testPlayerSLRecords, setTestPlayerSLRecords] = useState({
+        "playername": "playerA",
+        "itemStatus": [{}, {}, {}]
+    });
 
 
 
@@ -271,6 +280,51 @@ export default function Panel2_Container_GameEditor() {
 
     }
 
+    async function getUserConfigFromDataMgr1Gdt(gameDataDesignList) {
+        let emuGdt1Temp = testPlayerGameDataTracker; //TODO999
+      
+        Object.keys(gameDataDesignList).map((currKey) => {
+            if (currKey === "placeholder123456789___###___###___##") {
+              return;
+            }
+    
+            if (emuGdt1Temp[currKey] !== undefined) {
+    
+                if (emuGdt1Temp[currKey]["current_value"] === undefined) {
+                    emuGdt1Temp[currKey]["current_value"] = 
+                    gameDataDesignList[currKey]["default_value"] !== undefined ? 
+                    gameDataDesignList[currKey]["default_value"] 
+                        : 0;
+                }
+               
+            } else { //emuGdt1Temp[currKey] is undefined
+                emuGdt1Temp[currKey] = gameDataDesignList[currKey];
+                emuGdt1Temp[currKey]["current_value"] = gameDataDesignList[currKey]["default_value"];
+                
+            }
+    
+    
+        });
+    
+        setTestPlayerGameDataTracker(emuGdt1Temp);
+    
+        let resObj = {};
+        resObj["gdt1"] = emuGdt1Temp;
+        resObj["epp2"] = testPlayerProfile;
+        resObj["epa3"] = testPlayerAccount;
+        resObj["ess4"] = {"placeholder": "placerholder"};
+        resObj["shp5"] = {"placeholder": "placerholder"};
+    
+        await updateAllSetsVM({
+            projectName: projectName, 
+            currUser: authEmailName, 
+            dataObj: resObj,
+            bkOption: backendOption //TODO999
+        });
+    
+      }
+    
+
     function passInLocalProjectData_RsrcMgr() {
 
         //TODO return var-pairs
@@ -289,6 +343,9 @@ export default function Panel2_Container_GameEditor() {
         setDisplayRmModal(false);
     }
 
+    function handleGameDataManagerCancel() {
+        setDisplayGdmBool(false);
+    }
 
 return (<div style={{"backgroundColor": "#b5b2b0"}}>
 
@@ -332,17 +389,17 @@ return (<div style={{"backgroundColor": "#b5b2b0"}}>
                     <button 
                     className="rmTab" 
                     onClick={()=>{
-                //       setDisplayRmModal(true);
+                      setDisplayRmModal(true);
                         }}> 
-                        {resourceManagerButtonText} </button>
+                    {resourceManagerButtonText} </button>
                     
                     <button 
                     className="rmTab" 
                     onClick={()=>{
-                //        setDisplayGdmBool(true);
+                       setDisplayGdmBool(true);
                         
                         }}>
-                        {gameDataManagerButtonText}</button>
+                    {gameDataManagerButtonText}</button>
                     
                     <button 
                     className="rmTab" 
@@ -447,18 +504,22 @@ return (<div style={{"backgroundColor": "#b5b2b0"}}>
      
           {isDisplayGdmBool === true && <div>
        
-              {/* <Modal_GameDataManager 
-                isDisplay={isDisplayGdmBool} 
+              <Modal_GameDataManager 
                 handleGdmCancel={handleGameDataManagerCancel} 
-                resetNeedCloudData={markNextNeedCloudGameData} 
 
-                getUILanguage={passInUILanguage}  //TODO20 languageOption
+                languageCodeTextOption={languageCodeTextOption}
+                backendOption={backendOption}
 
-                projName={projectName}  
-                getUsername={passInAuthEmailName}
+                projName={state.selected_project_name}   
+                username={authEmailName}
 
-                getBackendOption={passInBackendOption}
-                editorMode={editorMode}
+                editorMode={state.mode}
+
+
+                resetNeedCloudData={markNextNeedCloudGameData}  //?
+
+
+
 
                 updateForEmuGdt1={getUserConfigFromDataMgr1Gdt}
 
@@ -466,7 +527,7 @@ return (<div style={{"backgroundColor": "#b5b2b0"}}>
 
                 getLocalProjectData_GameDataDesign={passInLocalProjectData_GameDataDesign}
 
-              /> */}
+              />
 
           </div>}
 

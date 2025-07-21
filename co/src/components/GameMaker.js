@@ -335,13 +335,13 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
   const [currentProjectNav, setCurrentProjectNav] = useState({}); //TODO now: default initial values
 
 
-  const [testPlayerGameDataTracker, setTestPlayerGameDataTracker] = useState({});   //TODO important for holder-in-practice
-  const [testPlayerProfile, setTestPlayerProfile] = useState({});                                                       //TODO important for holder-in-practice
-  const [testPlayerAccount, setTestPlayerAccount] = useState({});                                                       //TODO important for holder-in-practice
-  const [testPlayerSLRecords, setTestPlayerSLRecords] = useState({
-      "playername": "playerA",
-      "itemStatus": [{}, {}, {}]
-  });
+                                  // const [testPlayerGameDataTracker, setTestPlayerGameDataTracker] = useState({});   //TODO important for holder-in-practice
+                                  // const [testPlayerProfile, setTestPlayerProfile] = useState({});                                                       //TODO important for holder-in-practice
+                                  // const [testPlayerAccount, setTestPlayerAccount] = useState({});                                                       //TODO important for holder-in-practice
+                                  // const [testPlayerSLRecords, setTestPlayerSLRecords] = useState({
+                                  //     "playername": "playerA",
+                                  //     "itemStatus": [{}, {}, {}]
+                                  // });
 
   const [isEmuMgrOpenedOnce, setIsEmuMgrOpenedOnce] = useState(false);
     

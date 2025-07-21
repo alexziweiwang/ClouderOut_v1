@@ -14,38 +14,29 @@ import { getProjectGameDataDesignVM, updateGameDataDesignVM } from '../viewmodel
 
 //fetch data from cloud, and update to outer-layer when user-changed...
 export default function Modal_GameDataManager ({
-        isDisplay, handleGdmCancel, 
+        handleGdmCancel, 
         resetNeedCloudData, 
-
-        getUILanguage,
 
         projName,
 
-        getUsername,
+        username,
         
         
         updateGameDataDesignListToOuterLayer,
         updateForEmuGdt1,
-
+        
+        languageCodeTextOption,
 
         editorMode,            //"offline_half"       "offline_full"        "online_cloud"  
-        getBackendOption,
-
+        
+        backendOption
     }) {
     
     
-        const [backendOption, setBackendOption] = useState("firebase");    
 
 
-    const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en'); //TODO16
-
-    let modalStyleName = "modalBackboard";
-
-    if (isDisplay === true) {
-        modalStyleName = "displayBlock modalBackboard";
-    } else {
-        modalStyleName = "displayNone modalBackboard";
-    }
+    let modalStyleName = "displayBlock modalBackboard";
+  
 
     let textDictItem = langDictionary[languageCodeTextOption];
     let textDictItemDefault = langDictionary["en"];
@@ -120,9 +111,6 @@ export default function Modal_GameDataManager ({
 
 
 
-    const [username, setUsername] = useState("_");
-
-
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     
@@ -130,11 +118,9 @@ export default function Modal_GameDataManager ({
    //     console.log("game-data-manager: authname = ", username);
         if (username === "_") {
 
-            let unameTemp = getUsername();
-            if (unameTemp !== "_") {
-                initialization(unameTemp);
+            if (username !== "_") {
+                initialization(username);
 
-                setUsername(unameTemp);
             } else {
                 setFirstTimeEnter(true);
             }
@@ -149,12 +135,6 @@ export default function Modal_GameDataManager ({
         }
 
 
-
-        let backendOptionTemp = getBackendOption(); //future: different backend-option (firebase, etc.)
-        setBackendOption(backendOptionTemp);
-
-        let UILang = getUILanguage();
-        setLanguageCodeTextOption(UILang);
     });
 
     const [displayNewVarArea, setDisplayNewVarArea] = useState(false);
