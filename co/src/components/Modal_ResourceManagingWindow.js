@@ -12,6 +12,12 @@ import AudioPreview from './AudioPreview';
 import ItemVarPairManage from './ItemVarPairManage';
 import langDictionary from './_textDictionary';
 
+
+//TODO: all operations in this component aim to change these two lists: visual-list and audio-list!
+//TODO consider update-operation here or in the outer-component
+//TODO99999
+
+
 //fetch data from cloud, and update to outer-layer when user-changed...
 export default function Modal_ResourceManagingWindow ({
     handleRmCancel, triggerRmUpdate, 
@@ -35,7 +41,8 @@ export default function Modal_ResourceManagingWindow ({
     //TODO at previous layer, keep unsaved-local setting data locally, so that switching doesn't trigger cloud-db operations
 
 
-    let modalStyleName = "modalBackboard";
+    let modalStyleName = "displayBlock modalBackboard";
+
 
     const GoogleDrivePrefix = "https://drive.google.com/thumbnail?id=";
     const [googleDriveFileSharedLink, setGoogleDriveFileSharedLink] = useState("");
@@ -90,7 +97,6 @@ export default function Modal_ResourceManagingWindow ({
 
 //TODO15
 
-    modalStyleName = "displayBlock modalBackboard";
    
 
     const [isSourceByUpload, setIsSourceByUpload] = useState(false);
@@ -120,10 +126,6 @@ export default function Modal_ResourceManagingWindow ({
     const [cloudUpdated, setCloudUpdated] = useState(false); //TODO15 
 
 
-    // const [username, setUsername] = useState("_");
-
-
-
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
         if (firstTimeEnter === true) {
@@ -134,22 +136,6 @@ export default function Modal_ResourceManagingWindow ({
 
             setFirstTimeEnter(false);
         }
-
-        // let unameTemp = getUsername();
-        // if (unameTemp !== "_") {
-
-        //     if (visualVarPairs === undefined || audioVarPairs === undefined) {
-
-        //         initFetchPrep(unameTemp);
-        //     }
-
-        //     setUsername(unameTemp);
-        // }
-
-
-     
-        // let backendOptionTemp = getBackendOption(); //future: different backend-option (firebase, etc.)
-        // setBackendOption(backendOptionTemp);
 
 
     });

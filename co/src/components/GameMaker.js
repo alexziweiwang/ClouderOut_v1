@@ -3,9 +3,6 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ChapterManager from './ChapterManager';
 import NodeManager from './NodeManager';
-import Modal_ResourceManagingWindow from './Modal_ResourceManagingWindow';
-import Modal_GameDataManager from './Modal_GameDataManager';
-import Modal_EmuManager from './Modal_EmuManager';
 
 
 import NavigationSetter from './NavigationSetter';
@@ -61,7 +58,9 @@ export default function GameMaker({
       getProjectMetaData,
       switchEditor,
       getAuthEmailName,
-      updateMetaDataToOuter
+      updateMetaDataToOuter,
+      backendOption,
+      getUiLangOption,
     
     }) {
   const navigate = useNavigate();
@@ -73,6 +72,8 @@ export default function GameMaker({
   if (editorMode !== "online_cloud" && projectMetaData === undefined) {
     goToNotLoggedInPage();
   }
+
+
 /**
 used data structures:
 
@@ -88,7 +89,6 @@ ChapterNodeMapping (used in node-manager) <map>
 Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps>
 
 */
-  const [backendOption, setBackendOption] = useState("firebase"); //firebase / local?
 //TODO2000 add "platform option"? add UI for choosing platform
 
 
@@ -433,14 +433,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
   const [firstTimeEnter, setFirstTimeEnter] = useState(true);
   useEffect(() => {
 
-        if (editorMode === "online_cloud") {
-          setBackendOption("firebase");
-        } else {
-          setBackendOption(editorMode);
-
-          //TODO if import file - parse
-          //TODO if from new - prep for default init data
-        }
+  
 
 //TODO1030
         window.onbeforeunload = () => {
@@ -455,8 +448,12 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
                     
             console.log("\t\t\tgame-maker rendered once.      project = ", projectName, "  usename = ", authEmailName);
+
+
         let authName = getAuthEmailName();
         setAuthEmailName(authName);
+
+        
 
         if (authEmailName !== "_" && editorMode === "online_cloud") {
 
@@ -491,6 +488,11 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
    
         }
+
+    
+        let langOp = getUiLangOption();
+        setLanguageCodeTextOption(langOp);
+
 
         if (firstTimeEnter === true) {
 
@@ -553,17 +555,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
     return fetchUILangFromCLoud()
   }
 
-  async function fetchUILangFromCLoud() {
 
-    let ans = await fetchProjectUILangVM({
-      projectName: projectName, 
-      currUser: authEmailName,
-      bkOption: backendOption //TODO999
-    });
-
-    setLanguageCodeTextOption(ans);
-    return ans;
-  }
 
   function pureNavigateToProjectManagingPanel() {
     navigate('/mainpanel', { replace: true });
@@ -1024,29 +1016,6 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
     return languageCodeTextOption;
   }
 
-  async function userChangeEditorUILang(val) {
-    
-    if (val.length === 0 || uiLangMap[val] === undefined) {
-      return;
-    }
-
-    //TODO add to dictionary later
-    let askStr = "Are you sure to change the editor language to: " + uiLangMap[val] + " ?";
-
-
-    let resp = window.confirm(askStr);
-    
-    if (resp) {
-      setLanguageCodeTextOption(val);
-
-      await updateProjectUILangVM({
-        projectName: projectName, 
-        currUser: authEmailName, 
-        selectedUILang: val,
-        bkOption: backendOption //TODO999
-      });
-    }
-  }
 
   async function getUserConfigFromDataMgr1Gdt(gameDataDesignList) {
     let emuGdt1Temp = testPlayerGameDataTracker; //TODO999
@@ -1630,6 +1599,7 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
                                                     console.log("~loading-everything-from-cloud");
     fetchProjectNavigationSettingsFromCloud();
     fetchChapterNodeMappingFromCloud();          
+
   }
 
   function loadEverythingFromLocalProjFile() {

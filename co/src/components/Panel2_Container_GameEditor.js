@@ -22,8 +22,41 @@ import Modal_EmuManager from './Modal_EmuManager';
 
 import { checkProjectMetaData_vm } from '../viewmodels/PrepAc_ProjectFileInOut';
 
-import { fetchEmuData1GdtVM, updateAllSetsVM } from '../viewmodels/EmuManagingViewModel';
-
+import { 
+    getProjectGameDataDesignVM, 
+  } from '../viewmodels/GameDataViewModel';
+  import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
+  import { 
+    updateProjectUILangVM, 
+    fetchProjectUILangVM, 
+    updateProjectNavigationSettingsVM, 
+    fetchProjectNavigationSettingsVM,
+  } from '../viewmodels/ProjectManagerViewModel';
+  import { 
+    fetchChapterNodeMappingVM, 
+    updateChapterNodesToCloudDataVM, 
+    fetchAllChapterListVM, 
+    updateChapterListToCloudVM, 
+  
+  
+    addNewOneChapterFolderVM 
+  } from '../viewmodels/ChapterInfoViewModel';
+  
+  import { addNewNodeFoldersVM } from '../viewmodels/NodeEditingViewModel';
+  
+  import { fetchEmuData1GdtVM, updateAllSetsVM } from '../viewmodels/EmuManagingViewModel';
+  
+  import { prepare1Gdt_vm, prepare2Epp_vm, prepare3Epa_vm } from '../viewmodels/PrepAc_EmuData';
+  import { prepareForNewChapterMapping_vm, triggerCreatedNewNode_vm } from '../viewmodels/PrepAc_Creations';
+  import { updateChapterNodeMappingsToCloud_vm } from '../viewmodels/UpdtAc_UpdateData';
+  
+  import { downloadProjectAllInOne_vm } from '../viewmodels/PrepAc_ProjectFileInOut';
+  
+  import { 
+    fetchNodeDataEachChapterVM, 
+  } from '../viewmodels/NodeDataInPlayViewModel';
+  //TODO112: fetch node-contents here, and send into Viewer_Entire and its sub-component [GameScreen_AllNodeTypeContainer]
+  
 export default function Panel2_Container_GameEditor() {
 
 
@@ -40,23 +73,34 @@ export default function Panel2_Container_GameEditor() {
     let mode = "default-node-state mode";
     let projectContentProvided = "default-node-state provided-project-content";
     
-    const [backendOption, setBackendOption] = useState("firebase");    
+    let backendOption = "firease";
+    if (state.mode !== "online_cloud") {
+                    //TODO
+    } 
 
 
+    /* display option for this large container: which editor is displayed for user */
     const [focusingEditor, setFocusingEditor] = useState("gameMaker");
     const [currentChapter, setCurrentChapter] = useState("");
     const [currentNode, setCurrentNode] = useState("");
     const [currentScreenSz, setCurrentScreenSz] = useState("4:3(horizonal)");
 
+    /* 
+    entire project-object, important
+    meta-data (managed by game-maker)
+    node-content (managed by node-editor based on each node's: by chapter-key and node-key) */
     const [projectMetaData, setProjectMetaData] = useState(-1); //TODO99
     const [projectAllNodeContent, setProjectAllNodeContent] = useState(-1); //TODO99
 
 
+    /* display flags for modals: resource-manager, game-data-manager, emu-data-manager */
     const [isDisplayRmBool, setDisplayRmModal] = useState(false);
     const [isDisplayGdmBool, setDisplayGdmBool] = useState(false);
     const [isDisplayEmBool, setDisplayEmBool] = useState(false); 
     //TODO99999 modal panels in panel2, display or not
 
+
+    /* testing-emu-data, for test-viewing and emu-manager */
     const [testPlayerGameDataTracker, setTestPlayerGameDataTracker] = useState({});   //TODO important for holder-in-practice
     const [testPlayerProfile, setTestPlayerProfile] = useState({});                                                       //TODO important for holder-in-practice
     const [testPlayerAccount, setTestPlayerAccount] = useState({});                                                       //TODO important for holder-in-practice
@@ -64,6 +108,12 @@ export default function Panel2_Container_GameEditor() {
         "playername": "playerA",
         "itemStatus": [{}, {}, {}]
     });
+
+
+
+
+
+
 
 
 
@@ -209,6 +259,17 @@ export default function Panel2_Container_GameEditor() {
 
     }
 
+    async function fetchUILangFromCLoud() {
+
+        let ans = await fetchProjectUILangVM({
+          projectName: state.projectName, 
+          currUser: authEmailName,
+          bkOption: backendOption //TODO999
+        });
+    
+        setLanguageCodeTextOption(ans);
+        return ans;
+    }
 
     function loadEverythingFromLocalProjFile() {
                                                 console.log("\t\t!!! func: loadEverythingFrom_LocalProjFile = ", state.projectFile);
@@ -322,13 +383,41 @@ export default function Panel2_Container_GameEditor() {
             bkOption: backendOption //TODO999
         });
     
-      }
+    }
+
+    async function userChangeEditorUILang(val) {
+    
+        if (val.length === 0 || uiLangMap[val] === undefined) {
+          return;
+        }
+    
+        //TODO add to dictionary later
+        let askStr = "Are you sure to change the editor language to: " + uiLangMap[val] + " ?";
+    
+    
+        let resp = window.confirm(askStr);
+        
+        if (resp) {
+          setLanguageCodeTextOption(val);
+    
+          await updateProjectUILangVM({
+            projectName: projectName, 
+            currUser: authEmailName, 
+            selectedUILang: val,
+            bkOption: backendOption //TODO999
+          });
+        }
+    }
     
 
     function passInLocalProjectData_RsrcMgr() {
 
         //TODO return var-pairs
         //formatting of "fetchProjectResourceVarPairsVM"
+    }
+
+    function passInUiLanguageOption() {
+        return languageCodeTextOption;
     }
 
     function notifyRmUpdated() {
@@ -346,6 +435,13 @@ export default function Panel2_Container_GameEditor() {
     function handleGameDataManagerCancel() {
         setDisplayGdmBool(false);
     }
+
+
+    function updateGameDataDesignList(data) {
+        //TODO999 update game-data-design-list
+        setGameDataDesignList(data);
+    }
+
 
 return (<div style={{"backgroundColor": "#b5b2b0"}}>
 
@@ -415,7 +511,7 @@ return (<div style={{"backgroundColor": "#b5b2b0"}}>
                             <label>Editor Language</label><br></br>
                             <select value={languageCodeTextOption}
                             onChange={(event)=>{
-                        //      userChangeEditorUILang(event.target.value);
+                             userChangeEditorUILang(event.target.value);
                         //TODO99999
                             }}
                             >
@@ -441,7 +537,8 @@ return (<div style={{"backgroundColor": "#b5b2b0"}}>
     && 
     <>
    
-   
+
+{/* Game-Maker for metadata */}
     {focusingEditor === "gameMaker"
     && <GameMaker
         projectName={state.selected_project_name}
@@ -450,8 +547,15 @@ return (<div style={{"backgroundColor": "#b5b2b0"}}>
         switchEditor={switchEditor}
         getAuthEmailName={passInAuthEmailName}
         updateToOuter={fetchUpdatedMetaDataFromSubCompo}
+        backendOption={backendOption}
+
+        getUiLanguageOption={passInUiLanguageOption}
     />}
 
+
+
+{/* Node Editors */}
+<>
     {focusingEditor === "Conversation"
     &&
         <ConversationNodeEditingPanel
@@ -460,20 +564,35 @@ return (<div style={{"backgroundColor": "#b5b2b0"}}>
             projectName={state.selected_project_name}
             userName={authEmailName}
             screenSizeStr={currentScreenSz}
-            editorUiLang={languageCodeTextOption}
             chapterKey={currentChapter}
             editorMode={state.mode}
-   
+            
+            editorUiLang={languageCodeTextOption} //TODO change
+            getUiLanguageOption={passInUiLanguageOption} //TODO to add
+
         />
 
 
     }
 
+    {/* //TODO card-node-editers, etc. */}
+
+</>
+
+
+
+
+
 
     </>}
 
-{/* modal floating window - manager area */}
 
+
+
+
+
+
+{/* modal floating window - manager area */}
 <div>
 
 
@@ -483,7 +602,6 @@ return (<div style={{"backgroundColor": "#b5b2b0"}}>
               <Modal_ResourceManagingWindow 
 
                 handleRmCancel={handleResourceManagerCancel} 
-                languageCodeTextOption={languageCodeTextOption}
                 editorMode={state.mode}
 
                 triggerRmUpdate={notifyRmUpdated}  //?
@@ -496,6 +614,10 @@ return (<div style={{"backgroundColor": "#b5b2b0"}}>
 
                 getLocalProjectDataRsrcMgr={passInLocalProjectData_RsrcMgr}
 
+
+                languageCodeTextOption={languageCodeTextOption} //TODO change
+                getUiLanguageOption={passInUiLanguageOption} //TODO to add
+
               />
           
           </div>}
@@ -507,7 +629,6 @@ return (<div style={{"backgroundColor": "#b5b2b0"}}>
               <Modal_GameDataManager 
                 handleGdmCancel={handleGameDataManagerCancel} 
 
-                languageCodeTextOption={languageCodeTextOption}
                 backendOption={backendOption}
 
                 projName={state.selected_project_name}   
@@ -527,6 +648,8 @@ return (<div style={{"backgroundColor": "#b5b2b0"}}>
 
                 getLocalProjectData_GameDataDesign={passInLocalProjectData_GameDataDesign}
 
+                languageCodeTextOption={languageCodeTextOption} //TODO change
+                getUiLanguageOption={passInUiLanguageOption} //TODO to add
               />
 
           </div>}
@@ -544,7 +667,6 @@ return (<div style={{"backgroundColor": "#b5b2b0"}}>
               update4Ess={getUserConfigFromEmuManager4Ess}
               update5Shp={getUserConfigFromEmuManager5Shp}
 
-              getUILanguage={passInUILanguage}
               isForGameMaker={true}
 
               projName={projectName}  
@@ -554,6 +676,8 @@ return (<div style={{"backgroundColor": "#b5b2b0"}}>
               editorMode={editorMode}
 
               getLocalProjectDataEmu={passInLocalProjectData_Emu}
+
+              getUILanguage={passInUiLanguageOption} //TODO keep this
 
             /> */}
           </div>}
