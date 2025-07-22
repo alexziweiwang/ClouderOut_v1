@@ -31,6 +31,9 @@ export default function Modal_ResourceManagingWindow ({
 
     getLocalProjectDataRsrcMgr,
 
+    updateVarPairToCloud_p2Layer,
+    getProjectResourceVarPairs
+
 
 
 }) {
@@ -106,8 +109,8 @@ export default function Modal_ResourceManagingWindow ({
     const [cloudFileList, setCloudFileList] = useState([]);
     const [isTabVisual, setIsTabVisual] = useState(true);
 
-    const [fileListVisual, setFileListVisual] = useState([]);
-    const [fileListAudio, setFileListAudio] = useState([]);
+    const [usersAllFileListVisual, setUsersAllFileListVisual] = useState([]); // all of this user's files(visual)
+    const [usersAllFileListAudio, setUsersAllFileListAudio] = useState([]); // all of this user's files(audio)
 
     const [clickedFileUrl, setClickedFileUrl] = useState(""); //TODO refactor
     const [clickedFileName, setClickedFileName] = useState("");
@@ -261,9 +264,6 @@ export default function Modal_ResourceManagingWindow ({
             }
         }
 
-
-
-     
     }
 
     async function updateVarPairToCloud() { //TODO test and debug
@@ -273,12 +273,7 @@ export default function Modal_ResourceManagingWindow ({
             if (editorMode === "online_cloud") {
 
 
-                await storeProjectResourceVarPairsToCloudVM({
-                    userName: username, 
-                    projectName: projName, 
-                    obj: varPairToCloud,
-                    bkOption: backendOption //TODO999
-                });
+                await updateVarPairToCloud_p2Layer(varPairToCloud);
             }
 
 
@@ -298,11 +293,14 @@ export default function Modal_ResourceManagingWindow ({
             
                 if (visualVarPairs === undefined || audioVarPairs === undefined) {
 
-                    obj = await fetchProjectResourceVarPairsVM({
-                        userName: usernameTemp, 
-                        projectName: projName,
-                        bkOption: backendOption
-                    });                
+                    // obj = await fetchProjectResourceVarPairsVM({
+                    //     userName: usernameTemp, 
+                    //     projectName: projName,
+                    //     bkOption: backendOption
+                    // });   
+                    obj = getProjectResourceVarPairs(); 
+                    
+                    
                 } else {
                     return;
                 }
@@ -446,12 +444,12 @@ export default function Modal_ResourceManagingWindow ({
 
                 setCloudFileList(fileList.filename_records);
                 const vList = fileList.filename_records.filter((item)=>(item.filetype === "visual"));
-                setFileListVisual(vList);
+                setUsersAllFileListVisual(vList);
                 if (visualListFilter !== "allVis") {
                     setVisualListFilteredList(vList);
                 }
                 const aList = fileList.filename_records.filter((item)=>(item.filetype === "audio"));
-                setFileListAudio(aList);
+                setUsersAllFileListAudio(aList);
                 if (audioListFilter !== "allAu") {
                     setAudioListFilteredList(aList);
                 }
@@ -465,14 +463,14 @@ export default function Modal_ResourceManagingWindow ({
 
     function changeVisFilter(type) {
         if (type === "all") {
-            setVisualListFilteredList(fileListVisual);
+            setVisualListFilteredList(usersAllFileListVisual);
             return;
         }
 
         let inList = [];
         let notInList = [];
 
-        fileListVisual.map((item, index) => {
+        usersAllFileListVisual.map((item, index) => {
             let i = 0;
             for(; i < visualVarPairs.length; i++) {
                 if (visualVarPairs[i]["url"] === item["fileurl"]) {
@@ -483,9 +481,9 @@ export default function Modal_ResourceManagingWindow ({
         });
 
         let j = 0;
-        for (; j < fileListVisual.length; j++) {
-            if (!inList.includes(fileListVisual[j])) {
-                notInList.push(fileListVisual[j]);
+        for (; j < usersAllFileListVisual.length; j++) {
+            if (!inList.includes(usersAllFileListVisual[j])) {
+                notInList.push(usersAllFileListVisual[j]);
             }
         }
   
@@ -503,14 +501,14 @@ export default function Modal_ResourceManagingWindow ({
 
     function changeAuFilter(type) {
         if (type === "all") {
-            setAudioListFilteredList(fileListAudio);
+            setAudioListFilteredList(usersAllFileListAudio);
             return;
         }
 
         let inList = [];
         let notInList = [];
 
-        fileListAudio.map((item, index) => {
+        usersAllFileListAudio.map((item, index) => {
             let i = 0;
             for(; i < audioVarPairs.length; i++) {
                 if (audioVarPairs[i]["url"] === item["fileurl"]) {
@@ -520,9 +518,9 @@ export default function Modal_ResourceManagingWindow ({
         });
 
         let j = 0;
-        for (; j < fileListAudio.length; j++) {
-            if (!inList.includes(fileListAudio[j])) {
-                notInList.push(fileListAudio[j]);
+        for (; j < usersAllFileListAudio.length; j++) {
+            if (!inList.includes(usersAllFileListAudio[j])) {
+                notInList.push(usersAllFileListAudio[j]);
             }
         }
 

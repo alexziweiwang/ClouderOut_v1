@@ -400,6 +400,18 @@ export default function Panel2_Container_GameEditor() {
 
   
     }
+
+    async function updateVarPairToCloud_p2Layer(varPairToCloud) {
+        if (state.mode === "online_cloud") {
+
+            await storeProjectResourceVarPairsToCloudVM({
+                userName: authEmailName, 
+                projectName: state.projName, 
+                obj: varPairToCloud,
+                bkOption: backendOption //TODO999
+            });
+        }
+    }
     
 
     function goToGameMakerResetNodeFocus() {
@@ -531,6 +543,15 @@ export default function Panel2_Container_GameEditor() {
 
     function passInUiLanguageOption() {
         return languageCodeTextOption;
+    }
+
+    function passInProjectResourceVarPairs() {
+          //return result of :
+          // await fetchProjectResourceVarPairsVM({
+                    //     userName: usernameTemp, 
+                    //     projectName: projName,
+                    //     bkOption: backendOption
+                    // });  
     }
 
     function notifyRmUpdated() {
@@ -730,6 +751,9 @@ return (<div style={{"backgroundColor": "#b5b2b0"}}>
 
                 languageCodeTextOption={languageCodeTextOption} //TODO change
                 getUiLanguageOption={passInUiLanguageOption} //TODO to add
+
+                updateVarPairToCloud_p2Layer={updateVarPairToCloud_p2Layer}
+                getProjectResourceVarPairs={passInProjectResourceVarPairs}
 
               />
           
