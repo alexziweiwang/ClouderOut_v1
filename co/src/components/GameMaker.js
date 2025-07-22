@@ -63,6 +63,7 @@ export default function GameMaker({
       getUiLangOption,
       getProjectResourceVarPairs,
       getUiLanguageOption,
+      
       getTestPlayerGameDataTracker,
       getTestPlayerProfile,
       getTestPlayerAccount,
@@ -1629,8 +1630,8 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
 
   function loadEverythingFromCloud() {
                                                     console.log("~loading-everything-from-cloud");
-    fetchProjectNavigationSettingsFromCloud();
-    fetchChapterNodeMappingFromCloud();          
+    // fetchProjectNavigationSettingsFromCloud();
+    // fetchChapterNodeMappingFromCloud();          
 
   }
 

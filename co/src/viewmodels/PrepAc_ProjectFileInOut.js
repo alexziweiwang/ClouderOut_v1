@@ -317,7 +317,7 @@ import {
     ) {
 
 
-        downloadEntireProjectAll_vm(
+        await downloadEntireProjectAll_vm(
             chapterNodeMapAll, 
             getCurrChpNodeDataFromCloud, 
             filenamePrefix,

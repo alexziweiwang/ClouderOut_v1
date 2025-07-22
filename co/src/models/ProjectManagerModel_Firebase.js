@@ -229,3 +229,17 @@ export async function addNewAccountFolder({userId, username, userEmailAddr}) {
      
       //TODO1060 test
 }
+
+export async function fetchProjectAllMetadata({projectName, currUser}) {
+  const projRef = doc(db, "user_projects", currUser, "projects", projectName);
+  const projSnap = await getDoc(projRef);
+
+  if (!projSnap.exists()) {
+    return {"invalid obj": "invalid obj"};
+  }
+
+  let projectData = projSnap.data();
+
+  return projectData;
+
+}

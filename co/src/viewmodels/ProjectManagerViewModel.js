@@ -6,7 +6,8 @@ import {fetchProjectList, revertProject,
     fetchProjectNavigationSettings,
     saveConvNodeUiPlan,
     fetchConvNodeUiAllPlans,
-    addNewAccountFolder
+    addNewAccountFolder,
+    fetchProjectAllMetadata
 } from '../models/ProjectManagerModel_Firebase';
 
 
@@ -70,8 +71,6 @@ export async function createProjectVM({currUser, projectName, projectObj, bkOpti
 
 }
 
-
-
 export async function updateProjectUILangVM({projectName, currUser, selectedUILang, bkOption}) {
 
     if (bkOption === "firebase") {
@@ -133,4 +132,9 @@ export async function addNewAccountFolderVM({userId, username, userEmailAddr, bk
         res = await addNewAccountFolder({userId, username, userEmailAddr});
     }
     return res;
+}
+
+
+export async function fetchProjectAllMetadataVM({projectName, currUser}) {
+    return await fetchProjectAllMetadata({projectName, currUser});
 }

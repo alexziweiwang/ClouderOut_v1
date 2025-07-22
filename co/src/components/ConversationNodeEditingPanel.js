@@ -1336,14 +1336,15 @@ GameDataDesign <map>
             </div>
 }
 
+{/* 3 modals */}
+<>
 {/* resource-manager modal */}
             <div
                 style={{
                     "display": isDisplayRmBool === true ? "flex" : "none"
                 }}
             >
-                                                                {/* {isDisplayRmBool &&  */}
-                <Modal_ResourceManagingWindow 
+                {/* <Modal_ResourceManagingWindow 
                     isDisplay = {isDisplayRmBool} 
                     handleRmCancel={handleResourceManagerCancel} 
                     handleRmSaveChanges={handleResourceManagerSaveChanges} 
@@ -1360,8 +1361,8 @@ GameDataDesign <map>
 
                     getLocalProjectDataRsrcMgr={passInLocalProjectData_RsrcMgr}
 
-                />
-                                                                    {/* } */}
+                /> */}
+                                                                    
             </div>
 
 
@@ -1374,7 +1375,7 @@ GameDataDesign <map>
                 "display": isDisplayEmBool === false ? "none" : "flex",
                 }}
             >
-                <Modal_EmuManager
+                {/* <Modal_EmuManager
                     handleEmCancel={handleEmuManagerCancel}
 
                     update1Gdt={getUserConfigFromEmuManager1Gdt}
@@ -1394,7 +1395,7 @@ GameDataDesign <map>
 
                     getLocalProjectDataEmu={passInLocalProjectData_Emu}
 
-                />
+                /> */}
             </div>
     
 {/* game-data-manager modal */}
@@ -1403,7 +1404,7 @@ GameDataDesign <map>
                     "display": displayGameDataWindow === true ? "flex" : "none"
                 }}
             >
-                <Modal_GameDataManager 
+                {/* <Modal_GameDataManager 
                     isDisplay={displayGameDataWindow}
                     handleGdmCancel={handleModal_GameDataManagerCancel} 
                     resetNeedCloudData={markNextNeedCloudGameData} 
@@ -1421,9 +1422,15 @@ GameDataDesign <map>
                 
                     getLocalProjectData_GameDataDesign={passInLocalProjectData_GameDataDesign}
                 
-                />   
+                />    */}
             </div>
             
+</>
+
+
+
+
+
 
 {/* *** quick-view modal ***  */}
 

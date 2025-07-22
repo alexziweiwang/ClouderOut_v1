@@ -28,12 +28,14 @@ import { checkProjectMetaData_vm } from '../viewmodels/PrepAc_ProjectFileInOut';
   import { 
     getProjectGameDataDesignVM, 
   } from '../viewmodels/GameDataViewModel';
+  
   import { 
     updateProjectUILangVM, 
     fetchProjectUILangVM, 
     updateProjectNavigationSettingsVM, 
     fetchProjectNavigationSettingsVM,
   } from '../viewmodels/ProjectManagerViewModel';
+
   import { 
     fetchChapterNodeMappingVM, 
     updateChapterNodesToCloudDataVM, 
@@ -63,7 +65,7 @@ import { checkProjectMetaData_vm } from '../viewmodels/PrepAc_ProjectFileInOut';
   import { fetchProjectResourceVarPairsVM, storeProjectResourceVarPairsToCloudVM } from '../viewmodels/ResourceManagerViewModel';
 
 
-
+  import { fetchProjectAllMetadataVM } from '../viewmodels/ProjectManagerViewModel';
 
 
 
@@ -92,6 +94,8 @@ export default function Panel2_Container_GameEditor() {
     if (state.mode !== "online_cloud") {
                     //TODO
     } 
+
+    const [isFetchedFromCloud, setFetchedFromCloud] = useState(false);
 
 
     /* display option for this large container: which editor is displayed for user */
@@ -236,8 +240,15 @@ export default function Panel2_Container_GameEditor() {
                 //TODO99999
             if (authEmailName !== "_") {
                 if (visualVarPairs === undefined || audioVarPairs === undefined) {
-                    fetchProjResourceVarPairListsFromCloud(authEmailName);
+              //      fetchProjResourceVarPairListsFromCloud(authEmailName);
+
                 }
+
+                if (isFetchedFromCloud === false) {
+                    loadEverythingFromCloud();
+                    setFetchedFromCloud(true);
+                }
+   
             }
 
 
@@ -335,10 +346,25 @@ export default function Panel2_Container_GameEditor() {
         
     }
 
-    function loadEverythingFromCloud() {
-        let metaDataTemp = {}
-        let chapterContentTemp = {};
+    async function loadEverythingFromCloud() {
+                        console.log("load everything from cloud (At panel2): ", authEmailName, "...", state.selected_project_name);
 
+        if (authEmailName === "_" || state.selected_project_name === undefined) {
+                    
+            return;
+        }
+
+
+
+
+        let objTemp = await fetchProjectAllMetadataVM({
+            projectName: state.selected_project_name, 
+            currUser: authEmailName
+        })
+
+        let metaDataTemp = objTemp;
+        let chapterContentTemp = {};
+                                console.log("panel2-everything from cloud: metadata = ", objTemp); 
         //TODO99999
 
             // --- metadata's keys ---
@@ -352,7 +378,6 @@ export default function Panel2_Container_GameEditor() {
 
             // metadataObj["navigation_settings"]
                 //nav-settings-obj
-
 
             // metadataObj["chapter_list"]
                 //chapter-list
@@ -378,7 +403,7 @@ export default function Panel2_Container_GameEditor() {
                
                     obj = await fetchProjectResourceVarPairsVM({
                         userName: usernameTemp, 
-                        projectName: state.projName,
+                        projectName: state.selected_project_name,
                         bkOption: backendOption
                     });                
                
@@ -417,7 +442,7 @@ export default function Panel2_Container_GameEditor() {
 
             await storeProjectResourceVarPairsToCloudVM({
                 userName: authEmailName, 
-                projectName: state.projName, 
+                projectName: state.selected_project_name, 
                 obj: varPairToCloud,
                 bkOption: backendOption //TODO999
             });
@@ -439,7 +464,7 @@ export default function Panel2_Container_GameEditor() {
             
             await prepare1Gdt_vm(
               authEmailName, 
-              state.projName, 
+              state.selected_project_name, 
               backendOption, 
               setTestPlayerGameDataTracker, 
               getUserConfigFromEmuManager1Gdt, 
@@ -447,7 +472,7 @@ export default function Panel2_Container_GameEditor() {
             ).then(async()=>{
               await prepare2Epp_vm(
                 authEmailName, 
-                state.projName, 
+                state.selected_project_name, 
                 backendOption, 
                 setTestPlayerProfile,
                 getUserConfigFromEmuManager2Epp,
@@ -456,7 +481,7 @@ export default function Panel2_Container_GameEditor() {
             }).then(async()=>{
               await prepare3Epa_vm(
                 authEmailName, 
-                state.projName, 
+                state.selected_project_name, 
                 backendOption,  
                 setTestPlayerAccount, 
                 getUserConfigFromEmuManager3Epa, 
@@ -608,7 +633,7 @@ export default function Panel2_Container_GameEditor() {
         resObj["shp5"] = {"placeholder": "placerholder"};
     
         await updateAllSetsVM({
-            projectName: state.projName, 
+            projectName: state.selected_project_name, 
             currUser: authEmailName, 
             dataObj: resObj,
             bkOption: backendOption //TODO999
@@ -632,7 +657,7 @@ export default function Panel2_Container_GameEditor() {
           setLanguageCodeTextOption(val);
     
           await updateProjectUILangVM({
-            projectName: state.projName, 
+            projectName: state.selected_project_name, 
             currUser: authEmailName, 
             selectedUILang: val,
             bkOption: backendOption //TODO999
@@ -686,7 +711,7 @@ export default function Panel2_Container_GameEditor() {
     }
 
     function notifyRmUpdated() {
-        alert("TODO resource-manager should update");
+      //  alert("TODO resource-manager should update");
     }
     
 
@@ -826,7 +851,7 @@ return (<div style={{"backgroundColor": "#b5b2b0"}}
         updateToOuter={fetchUpdatedMetaDataFromSubCompo}
         backendOption={backendOption}
 
-        getUiLanguageOption={passInUiLanguageOption}
+        getUiLangOption={passInUiLanguageOption}
         getProjectResourceVarPairs={passInProjectResourceVarPairs}
 
         getTestPlayerGameDataTracker={passInTestPlayerGameDataTracker}

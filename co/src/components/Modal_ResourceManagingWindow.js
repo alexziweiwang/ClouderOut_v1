@@ -17,25 +17,25 @@ import langDictionary from './_textDictionary';
 //TODO consider update-operation here or in the outer-component
 //TODO99999
 
-//TODO: some operations aim to do file-pair storing (either shared link or storage-upload): rm-file-list (for all projects)
+//operations aim to do file-pair-matching in this compo (either shared link or storage-upload): rm-file-list (for all projects)
 
 
 //fetch data from cloud, and update to outer-layer when user-changed...
 export default function Modal_ResourceManagingWindow ({
-    handleRmCancel, triggerRmUpdate, 
+    handleRmCancel, 
+    getProjectResourceVarPairs,
+    
+    triggerRmUpdate, 
+    
     languageCodeTextOption,
     projName,
-
     username,
-
     editorMode,            //"offline_half"       "offline_full"        "online_cloud"  
     backendOption,
 
     getLocalProjectDataRsrcMgr,
 
     updateVarPairToCloud_p2Layer,
-    getProjectResourceVarPairs
-
 
 
 }) {
@@ -273,9 +273,8 @@ export default function Modal_ResourceManagingWindow ({
 
     }
 
-    async function updateVarPairToCloud() { //TODO test and debug
+    async function updateVarPairToCloud_local() { //TODO test and debug
         if (varPairToCloud !== "default") {
-
 
             if (editorMode === "online_cloud") {
 
@@ -286,8 +285,8 @@ export default function Modal_ResourceManagingWindow ({
 
             setVarPairToCloud("default");
         }
-        resetDataUpdatedFalse();
 
+        resetDataUpdatedFalse();
     }
 
     function prepProjResourceVarPairLists() {
@@ -549,6 +548,18 @@ export default function Modal_ResourceManagingWindow ({
 
     }
 
+    function handleSaveToCloud() {
+        updateVarPairToCloud_local();
+
+        let temp = {
+            "audio": audioVarPairs,
+            "visual": visualVarPairs
+        }
+        triggerRmUpdate(temp);
+
+    }
+
+
     return (
       <div className={modalStyleName}>
         <div>
@@ -581,17 +592,12 @@ export default function Modal_ResourceManagingWindow ({
 
                     <button className="" 
                         onClick={()=>{
-                            updateVarPairToCloud();
-
-                            let temp = {
-                                "audio": audioVarPairs,
-                                "visual": visualVarPairs
-                            }
-                            triggerRmUpdate(temp);
-                            resetDataUpdatedFalse();
+                         
+                            handleSaveToCloud();
+                         
                         }}
                     >
-                            {saveToCloudText}?
+                            {saveToCloudText}
                     </button>
                     <button className="buttonRight cursor_pointer modalClose" onClick={()=>{
                             if (cloudUpdated === true) { //TODO15 
@@ -744,7 +750,7 @@ export default function Modal_ResourceManagingWindow ({
                             selectedUrl={clickedFileUrl} 
                             storeNewVarPairDataFunction={storeNewVarPairDataFuncGen} 
                             fileType="visual" 
-                            saveToCloudFunc={updateVarPairToCloud}
+                            saveToCloudFunc={updateVarPairToCloud_local}
                         />}
                 
                     {(googleDriveFileId !== "" && clickedFileUrl === "") && <img 
@@ -807,7 +813,7 @@ export default function Modal_ResourceManagingWindow ({
 {/* audio resource-previewing area */}
                 <div className="areaBlue" style={{}}>
                     {clickedFileUrl !== "" && <AudioPreview className="paddings" urlList={audioListFilteredList} selectedUrl={clickedFileUrl}/>}
-                    {clickedFileUrl !== "" && <ItemVarPairManage className="paddings" varPairInfo={audioVarPairs} selectedUrl={clickedFileUrl} storeNewVarPairDataFunction={storeNewVarPairDataFuncGen} fileType="audio" saveToCloudFunc={updateVarPairToCloud}/>}
+                    {clickedFileUrl !== "" && <ItemVarPairManage className="paddings" varPairInfo={audioVarPairs} selectedUrl={clickedFileUrl} storeNewVarPairDataFunction={storeNewVarPairDataFuncGen} fileType="audio" saveToCloudFunc={updateVarPairToCloud_local}/>}
                 </div>
 
                 </div>
