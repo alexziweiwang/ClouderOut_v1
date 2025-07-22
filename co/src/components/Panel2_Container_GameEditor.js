@@ -121,7 +121,8 @@ export default function Panel2_Container_GameEditor() {
     // metadataObj["navigation_settings"]
     // metadataObj["chapter_list"]
     // metadataObj["chapter_node_mapping"]
-
+    const [visualVarPairs, setVisualVarPairs] = useState(undefined);
+    const [audioVarPairs, setAudioVarPairs] = useState(undefined);
 
 
 
@@ -222,6 +223,11 @@ export default function Panel2_Container_GameEditor() {
                 //TODO99999
             //prepare for project-content map, and fetch when user reached that chapter?
                 //TODO99999
+            if (authEmailName !== "_") {
+                if (visualVarPairs === undefined || audioVarPairs === undefined) {
+                    fetchProjResourceVarPairListsFromCloud(authEmailName);
+                }
+            }
 
 
 
@@ -312,6 +318,8 @@ export default function Panel2_Container_GameEditor() {
         }
     
         setProjectMetaData(metaDataTemp);
+            //TODO99999 setup visual-var-pair and audio-var-pair maps
+        
         setProjectAllNodeContent(chapterContentTemp);
         
     }
@@ -348,7 +356,7 @@ export default function Panel2_Container_GameEditor() {
         
     }
 
-    async function fetchProjResourceVarPairLists(usernameTemp) {
+    async function fetchProjResourceVarPairListsFromCloud(usernameTemp) {
         /* fetch from cloud db */
         //TODO99999   
 
@@ -356,24 +364,16 @@ export default function Panel2_Container_GameEditor() {
 
         if (editorMode === "online_cloud") { //online-mode: source from cloud
             
-                if (visualVarPairs === undefined || audioVarPairs === undefined) {
-
+               
                     obj = await fetchProjectResourceVarPairsVM({
                         userName: usernameTemp, 
                         projectName: projName,
                         bkOption: backendOption
                     });                
-                } else {
-                    return;
-                }
+               
 
-
-   
-        } else { //offline-modes: source from outer layer
-                obj = getLocalProjectDataRsrcMgr();
-  
         }
-   
+
         if (obj === undefined || obj === null) {
             return;
         }  
@@ -546,12 +546,13 @@ export default function Panel2_Container_GameEditor() {
     }
 
     function passInProjectResourceVarPairs() {
-          //return result of :
-          // await fetchProjectResourceVarPairsVM({
-                    //     userName: usernameTemp, 
-                    //     projectName: projName,
-                    //     bkOption: backendOption
-                    // });  
+        let obj = {
+            "visual": visualVarPairs !== undefined ? visualVarPairs : {},
+            "audio": audioVarPairs !== undefined ? audioVarPairs : {}
+        }
+
+        return obj;
+        
     }
 
     function notifyRmUpdated() {
