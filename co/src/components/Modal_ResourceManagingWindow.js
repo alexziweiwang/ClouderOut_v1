@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 
 //TODO1090 cloud-db related
-import { submitFileVM, getRmFileListVM, addToRmFileListVM, fetchUrlByFilenameVM, removeFromRmFileListVM } from '../viewmodels/ResourceManagerViewModel';
-import { fetchProjectResourceVarPairsVM, storeProjectResourceVarPairsToCloudVM } from '../viewmodels/ResourceManagerViewModel';
+// import { submitFileVM, getRmFileListVM, addToRmFileListVM, fetchUrlByFilenameVM, removeFromRmFileListVM } from '../viewmodels/ResourceManagerViewModel';
+// import { fetchProjectResourceVarPairsVM, storeProjectResourceVarPairsToCloudVM } from '../viewmodels/ResourceManagerViewModel';
 
 //TODO6000 offline mode prep
 
@@ -13,7 +13,7 @@ import ItemVarPairManage from './ItemVarPairManage';
 import langDictionary from './_textDictionary';
 
 
-//TODO: all operations in this component aim to change these two lists: visual-list and audio-list!
+//TODO: all operations in this component aim to change these three lists: rm-file-list (for all projects), visual-list and audio-list (for this project)!
 //TODO consider update-operation here or in the outer-component
 //TODO99999
 
@@ -158,10 +158,11 @@ export default function Modal_ResourceManagingWindow ({
         setCloudUpdated(false);
     }
 
-    function storeNewVarPairDataFuncGen(type, url, givenContent, fileType) {
+    //TODO22 for all operations on resource: 
+    function storeNewVarPairDataFuncGen(action, url, givenContent, fileType) {
         markDataChanged();
 
-        if (type === "delete") {
+        if (action === "delete") {
             let updatePartArr = [];
             let object = {};
             
@@ -204,11 +205,11 @@ export default function Modal_ResourceManagingWindow ({
             let updatePart = "";
             let updatePartArr = [];
     
-            if (type === "add") {
+            if (action === "add") {
                 updatePart = {};
                 updatePart["url"] = url;
                 updatePart["var"] = givenContent;
-            } else if (type === "edit") {
+            } else if (action === "edit") {
     
                 if (fileType === "visual") {
                     updatePartArr = visualVarPairs.filter(elem => elem["url"] === url);
@@ -458,7 +459,6 @@ export default function Modal_ResourceManagingWindow ({
 
                                         // console.log("rmWindow --raw-rsrc vlist = ", vList); //TODO test
                                         // console.log("rmWindow --raw-rsrc alist = ", aList); //TODO test
-
 
             }
     }

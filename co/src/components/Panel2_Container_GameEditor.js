@@ -22,10 +22,9 @@ import Modal_EmuManager from './Modal_EmuManager';
 
 import { checkProjectMetaData_vm } from '../viewmodels/PrepAc_ProjectFileInOut';
 
-import { 
+  import { 
     getProjectGameDataDesignVM, 
   } from '../viewmodels/GameDataViewModel';
-  import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
   import { 
     updateProjectUILangVM, 
     fetchProjectUILangVM, 
@@ -57,6 +56,19 @@ import {
   } from '../viewmodels/NodeDataInPlayViewModel';
   //TODO112: fetch node-contents here, and send into Viewer_Entire and its sub-component [GameScreen_AllNodeTypeContainer]
   
+  import { submitFileVM, getRmFileListVM, addToRmFileListVM, fetchUrlByFilenameVM, removeFromRmFileListVM } from '../viewmodels/ResourceManagerViewModel';
+  import { fetchProjectResourceVarPairsVM, storeProjectResourceVarPairsToCloudVM } from '../viewmodels/ResourceManagerViewModel';
+
+
+
+
+
+
+
+
+
+
+
 export default function Panel2_Container_GameEditor() {
 
 
@@ -100,6 +112,19 @@ export default function Panel2_Container_GameEditor() {
     //TODO99999 modal panels in panel2, display or not
 
 
+
+    // --- metadata's keys ---
+    // metadataObj["game_data"]
+    // metadataObj["resource_visual"]
+    // metadataObj["resource_audio"]
+    // metadataObj["project_ui_language"]
+    // metadataObj["navigation_settings"]
+    // metadataObj["chapter_list"]
+    // metadataObj["chapter_node_mapping"]
+
+
+
+
     /* testing-emu-data, for test-viewing and emu-manager */
     const [testPlayerGameDataTracker, setTestPlayerGameDataTracker] = useState({});   //TODO important for holder-in-practice
     const [testPlayerProfile, setTestPlayerProfile] = useState({});                                                       //TODO important for holder-in-practice
@@ -108,6 +133,9 @@ export default function Panel2_Container_GameEditor() {
         "playername": "playerA",
         "itemStatus": [{}, {}, {}]
     });
+
+
+
 
 
 
@@ -272,7 +300,7 @@ export default function Panel2_Container_GameEditor() {
     }
 
     function loadEverythingFromLocalProjFile() {
-                                                console.log("\t\t!!! func: loadEverythingFrom_LocalProjFile = ", state.projectFile);
+                                                console.log("\t\t!!! func: load-EverythingFrom_LocalProjFile = ", state.projectFile);
 
         let projectFile = state.projectFile;
         let metaDataTemp = projectFile["meta_data"];
@@ -286,7 +314,92 @@ export default function Panel2_Container_GameEditor() {
         setProjectMetaData(metaDataTemp);
         setProjectAllNodeContent(chapterContentTemp);
         
-      }
+    }
+
+    function loadEverythingFromCloud() {
+        let metaDataTemp = {}
+        let chapterContentTemp = {};
+
+        //TODO99999
+
+            // --- metadata's keys ---
+            // metadataObj["game_data"]
+                //game-data-design-list
+
+            // metadataObj["resource_visual"]
+            // metadataObj["resource_audio"]
+
+            // metadataObj["project_ui_language"]
+
+            // metadataObj["navigation_settings"]
+                //nav-settings-obj
+
+
+            // metadataObj["chapter_list"]
+                //chapter-list
+
+            // metadataObj["chapter_node_mapping"]
+                //node-mapping
+
+
+
+        setProjectMetaData(metaDataTemp);
+        setProjectAllNodeContent(chapterContentTemp);
+        
+    }
+
+    async function fetchProjResourceVarPairLists(usernameTemp) {
+        /* fetch from cloud db */
+        //TODO99999   
+
+        let obj = {};
+
+        if (editorMode === "online_cloud") { //online-mode: source from cloud
+            
+                if (visualVarPairs === undefined || audioVarPairs === undefined) {
+
+                    obj = await fetchProjectResourceVarPairsVM({
+                        userName: usernameTemp, 
+                        projectName: projName,
+                        bkOption: backendOption
+                    });                
+                } else {
+                    return;
+                }
+
+
+   
+        } else { //offline-modes: source from outer layer
+                obj = getLocalProjectDataRsrcMgr();
+  
+        }
+   
+        if (obj === undefined || obj === null) {
+            return;
+        }  
+        
+        
+        if  (Object.keys(obj).length === 0) {
+            setVisualVarPairs([]);
+            setAudioVarPairs([]);
+
+        } else{
+                if (obj.visual !== undefined) {
+                    setVisualVarPairs(obj.visual);
+                } else {
+                    setVisualVarPairs([]);
+                }
+
+                if (obj.audio !== undefined) {
+                    setAudioVarPairs(obj.audio);
+                } else {
+                    setAudioVarPairs([]);
+                }
+        }
+
+
+  
+    }
     
 
     function goToGameMakerResetNodeFocus() {
