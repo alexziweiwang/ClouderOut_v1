@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 //TODO1090 cloud-db related
-// import { submitFileVM, getRmFileListVM, addToRmFileListVM, fetchUrlByFilenameVM, removeFromRmFileListVM } from '../viewmodels/ResourceManagerViewModel';
+import { submitFileVM, getRmFileListVM, addToRmFileListVM, fetchUrlByFilenameVM, removeFromRmFileListVM } from '../viewmodels/ResourceManagerViewModel';
 // import { fetchProjectResourceVarPairsVM, storeProjectResourceVarPairsToCloudVM } from '../viewmodels/ResourceManagerViewModel';
 
 //TODO6000 offline mode prep
@@ -13,9 +13,11 @@ import ItemVarPairManage from './ItemVarPairManage';
 import langDictionary from './_textDictionary';
 
 
-//TODO: all operations in this component aim to change these three lists: rm-file-list (for all projects), visual-list and audio-list (for this project)!
+//TODO: some operations in this component aim to change these lists: visual-list and audio-list (for this project)!
 //TODO consider update-operation here or in the outer-component
 //TODO99999
+
+//TODO: some operations aim to do file-pair storing (either shared link or storage-upload): rm-file-list (for all projects)
 
 
 //fetch data from cloud, and update to outer-layer when user-changed...

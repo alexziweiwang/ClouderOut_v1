@@ -15,6 +15,9 @@ import GameMaker from './GameMaker';
 import ConversationNodeEditingPanel from './ConversationNodeEditingPanel';
 import CardGameNodeEditingPanel from './CardGameNodeEditingPanel';
 
+import Viewer_Entire from './Viewer_Entire';
+
+
 import Modal_ResourceManagingWindow from './Modal_ResourceManagingWindow';
 import Modal_GameDataManager from './Modal_GameDataManager';
 import Modal_EmuManager from './Modal_EmuManager';
@@ -109,10 +112,11 @@ export default function Panel2_Container_GameEditor() {
     const [isDisplayRmBool, setDisplayRmModal] = useState(false);
     const [isDisplayGdmBool, setDisplayGdmBool] = useState(false);
     const [isDisplayEmBool, setDisplayEmBool] = useState(false); 
-    //TODO99999 modal panels in panel2, display or not
+
+    const [isDisplayEntireGameViewer, setDisplayEntireGameViewer] = useState(false);
 
 
-
+                                        //TODO metadata99
     // --- metadata's keys ---
     // metadataObj["game_data"]
     // metadataObj["resource_visual"]
@@ -124,6 +128,10 @@ export default function Panel2_Container_GameEditor() {
     const [visualVarPairs, setVisualVarPairs] = useState(undefined);
     const [audioVarPairs, setAudioVarPairs] = useState(undefined);
 
+    //emu-data-sets
+    //TODO99999
+    //init here, prepare for emu-manager, and test-viewing
+
 
 
     /* testing-emu-data, for test-viewing and emu-manager */
@@ -134,7 +142,10 @@ export default function Panel2_Container_GameEditor() {
         "playername": "playerA",
         "itemStatus": [{}, {}, {}]
     });
-
+    
+    const [testShopProducts, setTestShopProducts] = useState({});
+    const [testPlayerPurchaseStatus, setTestPlayerPurchaseStatus] = useState({});
+  
 
 
 
@@ -319,7 +330,7 @@ export default function Panel2_Container_GameEditor() {
     
         setProjectMetaData(metaDataTemp);
             //TODO99999 setup visual-var-pair and audio-var-pair maps
-        
+
         setProjectAllNodeContent(chapterContentTemp);
         
     }
@@ -362,12 +373,12 @@ export default function Panel2_Container_GameEditor() {
 
         let obj = {};
 
-        if (editorMode === "online_cloud") { //online-mode: source from cloud
+        if (state.mode === "online_cloud") { //online-mode: source from cloud
             
                
                     obj = await fetchProjectResourceVarPairsVM({
                         userName: usernameTemp, 
-                        projectName: projName,
+                        projectName: state.projName,
                         bkOption: backendOption
                     });                
                
@@ -420,6 +431,101 @@ export default function Panel2_Container_GameEditor() {
         setCurrentNode("");
   
     }
+
+    async function startViewerEntireTest() {
+            
+        let modeName = state.mode;
+    
+            
+            await prepare1Gdt_vm(
+              authEmailName, 
+              state.projName, 
+              backendOption, 
+              setTestPlayerGameDataTracker, 
+              getUserConfigFromEmuManager1Gdt, 
+              modeName
+            ).then(async()=>{
+              await prepare2Epp_vm(
+                authEmailName, 
+                state.projName, 
+                backendOption, 
+                setTestPlayerProfile,
+                getUserConfigFromEmuManager2Epp,
+                modeName
+              )
+            }).then(async()=>{
+              await prepare3Epa_vm(
+                authEmailName, 
+                state.projName, 
+                backendOption,  
+                setTestPlayerAccount, 
+                getUserConfigFromEmuManager3Epa, 
+                modeName
+              )
+            })
+            .then(()=>{
+                console.log("\n\n\n\n\n\n\n\n\n\n\n\nopening viewer_entire window...");
+                
+                setDisplayEntireGameViewer(true);
+              }
+            ); 
+    
+        
+    
+    
+    }
+      function getUserConfigFromEmuManager1Gdt(data1) {
+    //update data1 to be the new Game-Data-Tracker
+    //TODO  //recreate emu data object
+    setTestPlayerGameDataTracker(data1);
+  }
+
+  function getUserConfigFromEmuManager2Epp(data2) {
+    //update data2 to be the new Emu-Player-Profile
+    //TODO  //recreate emu data object
+
+    setTestPlayerProfile(data2);
+  }
+
+  function getUserConfigFromEmuManager3Epa(data3) {
+    //update data3 to be the new Emu Player Account
+    //TODO  //recreate emu data object
+
+    setTestPlayerAccount(data3);
+  }
+
+  function getUserConfigFromEmuManager4Ess(data4) {
+    //TODO update data4 to be the new Emu SL slots
+    //TODO  //recreate emu data object
+    
+    //TODO temp: not using
+  }
+
+  function getUserConfigFromEmuManager5Shp(data5) {
+    //TODO update data5 to be emu-shop-product-list data
+    //TODO  //recreate emu data object
+
+    let obj5 = data5;
+                              //console.log("game-maker recevied 5 shp = " , data5);
+    if (obj5 === undefined) {
+      return;
+    }
+
+    let shopStock = obj5["shopStock"];
+    let playerPurchase = obj5["playerPurchaseStatus"];
+
+    if (shopStock === undefined || playerPurchase === undefined) {
+      return;
+    }
+                              // console.log("game-maker recevied 5 shp - stock = " , shopStock);
+                              // console.log("game-maker recevied 5 shp - player-purchase = " , playerPurchase);
+
+    setTestShopProducts(shopStock);
+    setTestPlayerPurchaseStatus(playerPurchase);
+    
+  }  
+
+
 
     function passInProjectMetaData() {
         return projectMetaData;
@@ -502,7 +608,7 @@ export default function Panel2_Container_GameEditor() {
         resObj["shp5"] = {"placeholder": "placerholder"};
     
         await updateAllSetsVM({
-            projectName: projectName, 
+            projectName: state.projName, 
             currUser: authEmailName, 
             dataObj: resObj,
             bkOption: backendOption //TODO999
@@ -526,7 +632,7 @@ export default function Panel2_Container_GameEditor() {
           setLanguageCodeTextOption(val);
     
           await updateProjectUILangVM({
-            projectName: projectName, 
+            projectName: state.projName, 
             currUser: authEmailName, 
             selectedUILang: val,
             bkOption: backendOption //TODO999
@@ -572,17 +678,19 @@ export default function Panel2_Container_GameEditor() {
     }
 
 
-    function updateGameDataDesignList(data) {
-        //TODO999 update game-data-design-list
-        setGameDataDesignList(data);
-    }
+    // function updateGameDataDesignList(data) {
+    //     //TODO999 update game-data-design-list
+    //     setGameDataDesignList(data);
+    // }
 
 
-return (<div style={{"backgroundColor": "#b5b2b0"}}>
+return (<div style={{"backgroundColor": "#b5b2b0"}}
+    className={state.mode === "online_cloud" ? "" : "colorInvert"}
+>
 
 
 {/* top banner area */}
-<div className={state.mode === "online_cloud" ? "" : "colorInvert"}>
+<div>
 <div className="returning_buttons_cloud_mode">
       
       {<button 
@@ -610,6 +718,16 @@ return (<div style={{"backgroundColor": "#b5b2b0"}}>
       >
 
       </div>
+            <button
+                onClick={()=>{
+                    //fetchcurrChapterContentFromCloud();
+                    //TODO700: fetch the very first chapter's data?
+
+                    startViewerEntireTest();
+                    
+                }}
+                className="button testEntire"
+                >Test ▶︎ </button>       
 
 
                 <div className="parallelFrame buttonRight30px" style={{"width": "600px"}}>
@@ -685,6 +803,8 @@ return (<div style={{"backgroundColor": "#b5b2b0"}}>
         backendOption={backendOption}
 
         getUiLanguageOption={passInUiLanguageOption}
+        getProjectResourceVarPairs={passInProjectResourceVarPairs}
+
     />}
 
 
@@ -764,7 +884,7 @@ return (<div style={{"backgroundColor": "#b5b2b0"}}>
      
           {isDisplayGdmBool === true && <div>
        
-              <Modal_GameDataManager 
+              {/* <Modal_GameDataManager 
                 handleGdmCancel={handleGameDataManagerCancel} 
 
                 backendOption={backendOption}
@@ -788,7 +908,7 @@ return (<div style={{"backgroundColor": "#b5b2b0"}}>
 
                 languageCodeTextOption={languageCodeTextOption} //TODO change
                 getUiLanguageOption={passInUiLanguageOption} //TODO to add
-              />
+              /> */}
 
           </div>}
 
@@ -827,6 +947,54 @@ return (<div style={{"backgroundColor": "#b5b2b0"}}>
 
 </div>
 
+
+
+{/* test-viewing floating window */}
+<div>
+            
+    {isDisplayEntireGameViewer === true 
+    &&
+    <div>
+
+        {/* <Viewer_Entire
+
+            initialNavObj={currentProjectNav}
+
+            initialChapterList={chapterList}
+            initialCurrChapterAllNodeMapping={chapterNodeMapAll}
+
+            initialPlayerGameDataTracker={testPlayerGameDataTracker}
+            initialPlayerProfile={testPlayerProfile}
+            initialPlayerAccountSettings={testPlayerAccount}
+        
+            initialPlayerSlRecords={testPlayerSLRecords}
+
+            uiLangOption={languageCodeTextOption}
+
+            username={authEmailName}
+            projectname={projectName}
+            getUsername={passInAuthEmailName}
+
+            initialShopItemInfo={testShopProducts}
+            initialPlayerPurchaseInfo={testPlayerPurchaseStatus}
+
+            triggerNodeWalk={triggerNodeWalk} //update things to this layer
+            triggerChapterWalk={triggerChapterWalk} //update things to this layer
+            triggerUpdateCurrentStanding={triggerUpdateCurrentStanding} //update things to this layer
+
+            visualMap={visualMap}
+            audioMap={audioMap}
+            mutedViewOption={mutedViewOption}
+
+            getCurrChapterContent={passInCurrChapterContent}
+
+            backendOption={backendOption}
+
+        /> */}
+
+    </div>}
+
+</div>
 
 </div>);
 

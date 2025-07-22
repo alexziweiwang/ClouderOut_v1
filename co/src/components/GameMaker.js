@@ -61,6 +61,8 @@ export default function GameMaker({
       updateMetaDataToOuter,
       backendOption,
       getUiLangOption,
+      getProjectResourceVarPairs,
+      getUiLanguageOption
     
     }) {
   const navigate = useNavigate();
@@ -201,7 +203,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
   const [currChapterContent, setCurrChapterContent] = useState([]); //TODO200
 
 
-    async function fetchProjResourceLists() {
+    function fetchProjResourceLists() {
       if (projectName === "default-no-state projectName") {
         return;
       }
@@ -213,29 +215,34 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
       /* fetch from cloud db */
       //TODO500     
       let obj = {};
+
+      obj = getProjectResourceVarPairs();
+      if (obj === undefined || obj.visual === undefined || obj.audio === undefined) {
+        return;
+      }
       
-      if (editorMode === "online_cloud") {
+      // if (editorMode === "online_cloud") {
 
-            obj = await fetchProjectResourceVarPairsVM({
-              userName: authEmailName, 
-              projectName: projectName,
-              bkOption: backendOption //TODO999
-            });
+      //       obj = await fetchProjectResourceVarPairsVM({
+      //         userName: authEmailName, 
+      //         projectName: projectName,
+      //         bkOption: backendOption //TODO999
+      //       });
 
 
-            if (obj === undefined) {
-              setCloudDbConnOk(false);
-              console.log("unnable to fetch resource-var-pairs !! ");
+      //       if (obj === undefined) {
+      //         setCloudDbConnOk(false);
+      //         console.log("unnable to fetch resource-var-pairs !! ");
 
-              return;
-            }
+      //         return;
+      //       }
 
  
-      } else { //offline-modes: from imported project file or new project
-        //TODO1001
+      // } else { //offline-modes: from imported project file or new project
+      //   //TODO1001
 
 
-      }
+      // }
       
  
       resetVisualMapFromList(obj.visual);
@@ -454,7 +461,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
         setAuthEmailName(authName);
 
         
-
+        //TODO load any from outer-layer (panel2), regardless of mode?
         if (authEmailName !== "_" && editorMode === "online_cloud") {
 
             //TODO5000 check returned data from cloud-db
@@ -552,7 +559,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
 
   function firstSetupUILanguage() {
-    return fetchUILangFromCLoud()
+    return getUiLanguageOption();
   }
 
 
@@ -1856,7 +1863,7 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
 ) 
 
 && <>
-<div className={editorMode === "online_cloud" ? "" : "colorInvert"}>
+<div>
     
 
     <div>
@@ -1911,7 +1918,7 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
           {menuNavigationsTabText}</button>
     
 
-      <button
+      {/* <button
           onClick={()=>{
             //fetchcurrChapterContentFromCloud();
             //TODO700: fetch the very first chapter's data?
@@ -1920,7 +1927,7 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
             
           }}
           className="button testEntire"
-        >Test ▶︎ </button>            
+        >Test ▶︎ </button>             */}
 
     
     </div>
@@ -2054,7 +2061,7 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
               </div>
 
 
-              <div style={{"marginTop": "15px", "marginLeft": "15px"}} className={editorMode === "online_cloud" ? "" : "colorInvert"}>
+              <div style={{"marginTop": "15px", "marginLeft": "15px"}}>
                 <NavigationPreview
                   fetchNavObj={passInNavObj} 
 
@@ -2126,10 +2133,9 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
           "width": `${screenWidth+2}px`,
         }}
 
-        className={editorMode === "online_cloud" ? "" : "colorInvert"}
       >
 
-         
+{/*          
 
       <Viewer_Entire
 
@@ -2165,7 +2171,7 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
 
           backendOption={backendOption}
 
-      />
+      /> */}
 
 
 
