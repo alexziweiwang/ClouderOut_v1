@@ -62,7 +62,14 @@ export default function GameMaker({
       backendOption,
       getUiLangOption,
       getProjectResourceVarPairs,
-      getUiLanguageOption
+      getUiLanguageOption,
+      getTestPlayerGameDataTracker,
+      getTestPlayerProfile,
+      getTestPlayerAccount,
+      getTestPlayerSLRecords,
+      getTestShopProducts,
+      getTestPlayerPurchaseStatus,
+
     
     }) {
   const navigate = useNavigate();
@@ -201,6 +208,19 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
   const [audioMap, setAudioMap] = useState([]);
 
   const [currChapterContent, setCurrChapterContent] = useState([]); //TODO200
+
+
+  const [testPlayerGameDataTracker, setTestPlayerGameDataTracker] = useState({});   //TODO important for holder-in-practice
+  const [testPlayerProfile, setTestPlayerProfile] = useState({});                                                       //TODO important for holder-in-practice
+  const [testPlayerAccount, setTestPlayerAccount] = useState({});                                                       //TODO important for holder-in-practice
+  const [testPlayerSLRecords, setTestPlayerSLRecords] = useState({
+      "playername": "playerA",
+      "itemStatus": [{}, {}, {}]
+  });
+  
+  const [testShopProducts, setTestShopProducts] = useState({});
+  const [testPlayerPurchaseStatus, setTestPlayerPurchaseStatus] = useState({});
+
 
 
     function fetchProjResourceLists() {
@@ -351,9 +371,6 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
                                   // });
 
   const [isEmuMgrOpenedOnce, setIsEmuMgrOpenedOnce] = useState(false);
-    
-  const [testShopProducts, setTestShopProducts] = useState({});
-  const [testPlayerPurchaseStatus, setTestPlayerPurchaseStatus] = useState({});
 
   const [allChaptersContents, setAllChaptersContents] = useState({});
                                                            //TODO important for holder-in-practice
@@ -548,6 +565,14 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
           setScreenHeight(600);
         }
 
+        setTestPlayerGameDataTracker(getTestPlayerGameDataTracker());
+        setTestPlayerProfile(getTestPlayerProfile());
+        setTestPlayerAccount(getTestPlayerAccount());
+        setTestPlayerSLRecords(getTestPlayerSLRecords());
+        setTestShopProducts(getTestShopProducts());
+        setTestPlayerPurchaseStatus(getTestPlayerPurchaseStatus());
+
+  
 
   });
 

@@ -661,6 +661,30 @@ export default function Panel2_Container_GameEditor() {
         
     }
 
+    function passInTestPlayerGameDataTracker() {
+        return testPlayerGameDataTracker;
+    }
+
+    function passInTestPlayerProfile() {
+        return testPlayerProfile;
+    }
+
+    function passInTestPlayerAccount() {
+        return testPlayerAccount;
+    }
+
+    function passInTestPlayerSLRecords() {
+        return testPlayerSLRecords;
+    }
+
+    function passInTestShopProducts() {
+        return testShopProducts;
+    }
+
+    function passInTestPlayerPurchaseStatus() {
+        return testPlayerPurchaseStatus;
+    }
+
     function notifyRmUpdated() {
         alert("TODO resource-manager should update");
     }
@@ -805,6 +829,12 @@ return (<div style={{"backgroundColor": "#b5b2b0"}}
         getUiLanguageOption={passInUiLanguageOption}
         getProjectResourceVarPairs={passInProjectResourceVarPairs}
 
+        getTestPlayerGameDataTracker={passInTestPlayerGameDataTracker}
+        getTestPlayerProfile={passInTestPlayerProfile}
+        getTestPlayerAccount={passInTestPlayerAccount}
+        getTestPlayerSLRecords={passInTestPlayerSLRecords}
+        getTestShopProducts={passInTestShopProducts}
+        getTestPlayerPurchaseStatus={passInTestPlayerPurchaseStatus}
     />}
 
 
