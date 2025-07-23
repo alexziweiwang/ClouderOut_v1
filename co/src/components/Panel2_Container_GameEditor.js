@@ -70,8 +70,7 @@ import { checkProjectMetaData_vm } from '../viewmodels/PrepAc_ProjectFileInOut';
 
 
   //TODO ------------------------- new vm and model funcs for optimizations
-  import { fetchProjectAllMetadataVM } from '../viewmodels/ProjectMetadataViewModel'; //TODO60
-
+import { fetchProjectAllMetadataVM, updateProjectMetadataSingleFieldVM } from '../viewmodels/ProjectMetadataViewModel'; //TODO60
 
 
 
@@ -478,6 +477,16 @@ export default function Panel2_Container_GameEditor() {
 
 
   
+    }
+
+    async function updateSingleFieldToCloud(fieldName, contentValue) {
+        await updateProjectMetadataSingleFieldVM({
+            projectName: state.selected_project_name,
+            currUser: authEmailName, 
+            fieldName: fieldName, 
+            contentValue: contentValue, 
+            backendOption: backendOption
+        });
     }
 
     async function updateVarPairToCloud_p2Layer(varPairToCloud) {

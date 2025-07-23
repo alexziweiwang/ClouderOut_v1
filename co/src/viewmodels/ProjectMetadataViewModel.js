@@ -1,4 +1,4 @@
-import { fetchProjectAllMetadata } from '../models/ProjectMetadataModel';
+import { fetchProjectAllMetadata, updateProjectMetadataSingleField } from '../models/ProjectMetadataModel';
 
 export async function fetchProjectAllMetadataVM({projectName, currUser, backendOption}) {
     if (backendOption === "firease") {

@@ -16,16 +16,85 @@ export async function fetchProjectAllMetadata({projectName, currUser}) {
 }
 
 export async function updateProjectMetadataSingleField({projectName, currUser, fieldName, contentValue}) {
-    const projRef = doc(db, "user_projects", currUser, "projects", projectName);
-    const projectSnap = await getDoc(projRef);
+    const docRef = doc(db, "user_projects", currUser, "projects", projectName);
+    const docSnap = await getDoc(docRef);
   
-    if (!projectSnap.exists()) {
+    if (!docSnap.exists()) {
       return;
     }
 
-    await updateDoc(projectRef, {
-        fieldName: contentValue
-    });
+    let outObj = {};
+    switch (fieldName){
+
+        case "author_info":
+            outObj = {"author_info": contentValue};
+            break;
+
+        case "chapterList":
+            outObj = {"chapterList": contentValue};
+            break;
+            
+        case "chapterNodeMapping":
+            outObj = {"chapterNodeMapping": contentValue};
+            break;  
+
+        case "convNodeUiPlanMap":
+            outObj = {"convNodeUiPlanMap": contentValue};
+            break;
+
+        case "emu4sets":
+            outObj = {"emu4sets": contentValue};
+            break;
+
+        case "game_data":
+            outObj = {"game_data": contentValue};
+            break;   
+            
+        case "nav_ui_settings":
+            outObj = {"nav_ui_settings": contentValue};
+            break;          
+            
+        case "proj_resource_audio":
+            outObj = {"proj_resource_audio": contentValue};
+            break;   
+
+        case "proj_resource_visual":
+            outObj = {"proj_resource_visual": contentValue};
+            break;  
+
+        case "project_description":
+            outObj = {"project_description": contentValue};
+            break;  
+
+        case "project_name":
+            outObj = {"project_name": contentValue};
+            break;  
+
+        case "project_title":
+            outObj = {"project_title": contentValue};
+            break;  
+        
+        case "sizeDirection":
+            outObj = {"sizeDirection": contentValue};
+            break;  
+
+        case "trashed":
+            outObj = {"trashed": contentValue};
+            break;     
+
+        case "type":
+            outObj = {"type": contentValue};
+            break;             
+            
+        case "ui_language":
+            outObj = {"ui_language": contentValue};
+            break;  
+
+        default:
+            return;
+        }
+
+    await updateDoc(docRef, outObj);
 
     //TODO test
   
@@ -39,11 +108,13 @@ export async function updateProjectMetadataSingleField({projectName, currUser, f
                                 // emu4sets:  {shp5: {…}, ess4: {…}, epp2: {…}, gdt1: {…}, epa3: {…}}
                                 // game_data:  {health: {…}}
                                 // nav_ui_settings:  {outWindow-Btn-textColor: '#FFFFFF', mainPage-playerProfile-posX: 300, shopPage-bConfWindow-confirmText: 'Confirm', settingPage-sliderColor: '#0373fc', mainPage-shop-isShape: false, …}
+                                
                                 // proj_resource_audio:  [] //array
                                 // proj_resource_visual:  [{…}] //array
                                 // project_description:  ""
                                 // project_name:  "a6_p2"
                                 // project_title:  "a6_p2"
+
                                 // sizeDirection:  "h450_800"
                                 // trashed:  false
                                 // type:  "project"
