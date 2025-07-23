@@ -28,7 +28,7 @@ import { checkProjectMetaData_vm } from '../viewmodels/PrepAc_ProjectFileInOut';
   import { 
     getProjectGameDataDesignVM, 
   } from '../viewmodels/GameDataViewModel';
-  
+
   import { 
     updateProjectUILangVM, 
     fetchProjectUILangVM, 
@@ -61,11 +61,16 @@ import { checkProjectMetaData_vm } from '../viewmodels/PrepAc_ProjectFileInOut';
   } from '../viewmodels/NodeDataInPlayViewModel';
   //TODO112: fetch node-contents here, and send into Viewer_Entire and its sub-component [GameScreen_AllNodeTypeContainer]
   
-  import { submitFileVM, getRmFileListVM, addToRmFileListVM, fetchUrlByFilenameVM, removeFromRmFileListVM } from '../viewmodels/ResourceManagerViewModel';
   import { fetchProjectResourceVarPairsVM, storeProjectResourceVarPairsToCloudVM } from '../viewmodels/ResourceManagerViewModel';
 
 
-  import { fetchProjectAllMetadataVM } from '../viewmodels/ProjectManagerViewModel';
+  import { submitFileVM, getRmFileListVM, addToRmFileListVM, fetchUrlByFilenameVM, removeFromRmFileListVM } from '../viewmodels/ResourceManagerViewModel';
+
+
+
+
+  //TODO ------------------------- new vm and model funcs for optimizations
+  import { fetchProjectAllMetadataVM } from '../viewmodels/ProjectMetadataViewModel'; //TODO60
 
 
 
@@ -105,7 +110,7 @@ export default function Panel2_Container_GameEditor() {
     const [currentScreenSz, setCurrentScreenSz] = useState("4:3(horizonal)");
 
     /* 
-    entire project-object, important
+    entire project-object, ! important
     meta-data (managed by game-maker)
     node-content (managed by node-editor based on each node's: by chapter-key and node-key) */
     const [projectMetaData, setProjectMetaData] = useState(-1); //TODO99
@@ -233,9 +238,7 @@ export default function Panel2_Container_GameEditor() {
             }
         } else if (state.mode === "online_cloud" && firstTimeEnter === true) {
             //TODO fetch from cloud...
-            
-            //load meta-data from cloud
-                //TODO99999
+          
             //prepare for project-content map, and fetch when user reached that chapter?
                 //TODO99999
             if (authEmailName !== "_") {
@@ -355,17 +358,57 @@ export default function Panel2_Container_GameEditor() {
         }
 
 
-
-
-        let objTemp = await fetchProjectAllMetadataVM({
+        let metaDataTemp = await fetchProjectAllMetadataVM({
             projectName: state.selected_project_name, 
-            currUser: authEmailName
+            currUser: authEmailName,
+            backendOption: backendOption
         })
 
-        let metaDataTemp = objTemp;
         let chapterContentTemp = {};
-                                console.log("panel2-everything from cloud: metadata = ", objTemp); 
+
+                                console.log("panel2-everything from cloud: metadata = ", metaDataTemp); 
+        
+        if (metaDataTemp !== undefined) {
+            let res = checkProjectMetaData_vm(metaDataTemp);
+            if (res === true) {
+                setProjectMetaData(metaDataTemp);
+
+            }
+        }
+
         //TODO99999
+
+                        //example obj(for metadata): 
+                                // author_info:  ""
+                                // chapterList: {0: Array(4), 1: Array(4), 2: Array(4)}
+                                // chapterNodeMapping:  {placeholder: {…}, chapter1: {…}, chapter2: {…}}
+                                // convNodeUiPlanMap:  {}
+                                // emu4sets:  {shp5: {…}, ess4: {…}, epp2: {…}, gdt1: {…}, epa3: {…}}
+                                // game_data:  {health: {…}}
+                                // nav_ui_settings:  {outWindow-Btn-textColor: '#FFFFFF', mainPage-playerProfile-posX: 300, shopPage-bConfWindow-confirmText: 'Confirm', settingPage-sliderColor: '#0373fc', mainPage-shop-isShape: false, …}
+                                // proj_resource_audio:  [] //array
+                                // proj_resource_visual:  [{…}] //array
+                                // project_description:  ""
+                                // project_name:  "a6_p2"
+                                // project_title:  "a6_p2"
+                                // sizeDirection:  "h450_800"
+                                // trashed:  false
+                                // type:  "project"
+                                // ui_language: "chn"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             // --- metadata's keys ---
             // metadataObj["game_data"]

@@ -208,7 +208,6 @@ export async function addNewAccountFolder({userId, username, userEmailAddr}) {
         {
           "default_ui_language": "en",
           "filename_records": [],
-          "filenames": [],
           "introduction": "",
           "username": username,
           "nickname": username,
@@ -235,7 +234,7 @@ export async function fetchProjectAllMetadata({projectName, currUser}) {
   const projSnap = await getDoc(projRef);
 
   if (!projSnap.exists()) {
-    return {"invalid obj": "invalid obj"};
+    return {"invalid key": "invalid value"};
   }
 
   let projectData = projSnap.data();

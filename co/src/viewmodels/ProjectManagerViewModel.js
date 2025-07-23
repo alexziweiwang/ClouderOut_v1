@@ -134,7 +134,3 @@ export async function addNewAccountFolderVM({userId, username, userEmailAddr, bk
     return res;
 }
 
-
-export async function fetchProjectAllMetadataVM({projectName, currUser}) {
-    return await fetchProjectAllMetadata({projectName, currUser});
-}
