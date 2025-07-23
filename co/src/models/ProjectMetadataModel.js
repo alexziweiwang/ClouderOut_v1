@@ -15,10 +15,95 @@ export async function fetchProjectAllMetadata({projectName, currUser}) {
   
 }
 
+export async function fetchProjectMetadataSingleField({projectName, currUser, fieldName}) {
+    const docRef = doc(db, "user_projects", currUser, "projects", projectName);
+    const docSnap = await getDoc(docRef);
+  
+    if (!docSnap.exists()) {
+      return;
+    }
+
+    let projectData = docSnap.data();
+
+    let item = "";
+    switch (fieldName){
+
+        case "author_info":
+            item = projectData.author_info;
+            break;
+
+        case "chapterList":
+            item = projectData.chapterList;
+            break;
+            
+        case "chapterNodeMapping":
+            item = projectData.chapterNodeMapping;
+            break;  
+
+        case "convNodeUiPlanMap":
+            item = projectData.convNodeUiPlanMap;
+            break;
+
+        case "emu4sets":
+            item = projectData.emu4sets;
+            break;
+
+        case "game_data":
+            item = projectData.game_data;
+            break;   
+            
+        case "nav_ui_settings":
+            item = projectData.nav_ui_settings;
+            break;          
+            
+        case "proj_resource_audio":
+            item = projectData.proj_resource_audio;
+            break;   
+
+        case "proj_resource_visual":
+            item = projectData.proj_resource_visual;
+            break;  
+
+        case "project_description":
+            item = projectData.project_description
+            break;  
+
+        case "project_name":
+            item = projectData.project_description;
+            break;  
+
+        case "project_title":
+            item = projectData.project_title;
+            break;  
+        
+        case "sizeDirection":
+            item = projectData.sizeDirection;
+            break;  
+
+        case "trashed":
+            item = projectData.trashed;
+            break;     
+
+        case "type":
+            item = projectData.type;
+            break;             
+            
+        case "ui_language":
+            item = projectData.ui_language;
+            break;  
+
+        default:
+            return "default: not fetched";
+        }
+
+        return item;
+}
+
 export async function updateProjectMetadataSingleField({projectName, currUser, fieldName, contentValue}) {
     const docRef = doc(db, "user_projects", currUser, "projects", projectName);
     const docSnap = await getDoc(docRef);
   
+
     if (!docSnap.exists()) {
       return;
     }

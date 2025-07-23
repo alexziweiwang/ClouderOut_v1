@@ -30,8 +30,8 @@ import { checkProjectMetaData_vm } from '../viewmodels/PrepAc_ProjectFileInOut';
   } from '../viewmodels/GameDataViewModel';
 
   import { 
-    updateProjectUILangVM, 
-    fetchProjectUILangVM, 
+
+   
     updateProjectNavigationSettingsVM, 
     fetchProjectNavigationSettingsVM,
   } from '../viewmodels/ProjectManagerViewModel';
@@ -41,7 +41,6 @@ import { checkProjectMetaData_vm } from '../viewmodels/PrepAc_ProjectFileInOut';
     updateChapterNodesToCloudDataVM, 
     fetchAllChapterListVM, 
     updateChapterListToCloudVM, 
-  
   
     addNewOneChapterFolderVM 
   } from '../viewmodels/ChapterInfoViewModel';
@@ -56,12 +55,16 @@ import { checkProjectMetaData_vm } from '../viewmodels/PrepAc_ProjectFileInOut';
   
   import { downloadProjectAllInOne_vm } from '../viewmodels/PrepAc_ProjectFileInOut';
   
+
+
   import { 
     fetchNodeDataEachChapterVM, 
   } from '../viewmodels/NodeDataInPlayViewModel';
   //TODO112: fetch node-contents here, and send into Viewer_Entire and its sub-component [GameScreen_AllNodeTypeContainer]
   
-  import { fetchProjectResourceVarPairsVM, storeProjectResourceVarPairsToCloudVM } from '../viewmodels/ResourceManagerViewModel';
+
+//keep this
+import { storeProjectResourceVarPairsToCloudVM } from '../viewmodels/ResourceManagerViewModel';
 
 
   import { submitFileVM, getRmFileListVM, addToRmFileListVM, fetchUrlByFilenameVM, removeFromRmFileListVM } from '../viewmodels/ResourceManagerViewModel';
@@ -94,7 +97,7 @@ export default function Panel2_Container_GameEditor() {
     let mode = "default-node-state mode";
     let projectContentProvided = "default-node-state provided-project-content";
     
-    let backendOption = "firease";
+    let backendOption = "firebase";
     if (state.mode !== "online_cloud") {
                     //TODO
     } 
@@ -127,13 +130,18 @@ export default function Panel2_Container_GameEditor() {
                                         //TODO metadata99
     // --- metadata's keys ---
     // metadataObj["game_data"]
-    // metadataObj["resource_visual"]
-    // metadataObj["resource_audio"]
+
     // metadataObj["project_ui_language"]
+    const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en');
     // metadataObj["navigation_settings"]
+    const [currentProjectNav, setCurrentProjectNav] = useState({});
+
     // metadataObj["chapter_list"]
     // metadataObj["chapter_node_mapping"]
+
+    // metadataObj["resource_visual"]
     const [visualVarPairs, setVisualVarPairs] = useState(undefined);
+    // metadataObj["resource_audio"]
     const [audioVarPairs, setAudioVarPairs] = useState(undefined);
 
     //emu-data-sets
@@ -172,8 +180,6 @@ export default function Panel2_Container_GameEditor() {
                               console.log("container... \n mode = ", state.mode, "\n state = ", state);
 
     }
-
-    const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en'); //TODO16
 
     let textDictItem = langDictionary[languageCodeTextOption];
     let textDictItemDefault = langDictionary["en"];
@@ -317,31 +323,19 @@ export default function Panel2_Container_GameEditor() {
 
     }
 
-    async function fetchUILangFromCLoud() {
-
-        let ans = await fetchProjectUILangVM({
-          projectName: state.projectName, 
-          currUser: authEmailName,
-          bkOption: backendOption //TODO999
-        });
-    
-        setLanguageCodeTextOption(ans);
-        return ans;
-    }
-
     function loadEverythingFromLocalProjFile() {
                                                 console.log("\t\t!!! func: load-EverythingFrom_LocalProjFile = ", state.projectFile);
 
         let projectFile = state.projectFile;
-        let metaDataTemp = projectFile["meta_data"];
+        let metadataTemp = projectFile["meta_data"];
         let chapterContentTemp = projectFile["chapter_content"];
     
     
-        if (metaDataTemp === undefined || chapterContentTemp === undefined) {
+        if (metadataTemp === undefined || chapterContentTemp === undefined) {
           return;
         }
     
-        setProjectMetaData(metaDataTemp);
+        setProjectMetaData(metadataTemp);
             //TODO99999 setup visual-var-pair and audio-var-pair maps
 
         setProjectAllNodeContent(chapterContentTemp);
@@ -357,20 +351,20 @@ export default function Panel2_Container_GameEditor() {
         }
 
 
-        let metaDataTemp = await fetchProjectAllMetadataVM({
+        let metadataTemp = await fetchProjectAllMetadataVM({
             projectName: state.selected_project_name, 
             currUser: authEmailName,
-            backendOption: backendOption
+            bkOption: backendOption
         })
 
         let chapterContentTemp = {};
 
-                                console.log("panel2-everything from cloud: metadata = ", metaDataTemp); 
+                                console.log("panel2-everything from cloud: metadata = ", metadataTemp); 
         
-        if (metaDataTemp !== undefined) {
-            let res = checkProjectMetaData_vm(metaDataTemp);
+        if (metadataTemp !== undefined) {
+            let res = checkProjectMetaData_vm(metadataTemp);
             if (res === true) {
-                setProjectMetaData(metaDataTemp);
+                setProjectMetaData(metadataTemp);
 
             }
         }
@@ -417,6 +411,7 @@ export default function Panel2_Container_GameEditor() {
             // metadataObj["resource_audio"]
 
             // metadataObj["project_ui_language"]
+            setLanguageCodeTextOption(metadataTemp["ui_language"]);
 
             // metadataObj["navigation_settings"]
                 //nav-settings-obj
@@ -429,63 +424,18 @@ export default function Panel2_Container_GameEditor() {
 
 
 
-        setProjectMetaData(metaDataTemp);
+        setProjectMetaData(metadataTemp);
         setProjectAllNodeContent(chapterContentTemp);
         
     }
 
-    async function fetchProjResourceVarPairListsFromCloud(usernameTemp) {
-        /* fetch from cloud db */
-        //TODO99999   
-
-        let obj = {};
-
-        if (state.mode === "online_cloud") { //online-mode: source from cloud
-            
-               
-                    obj = await fetchProjectResourceVarPairsVM({
-                        userName: usernameTemp, 
-                        projectName: state.selected_project_name,
-                        bkOption: backendOption
-                    });                
-               
-
-        }
-
-        if (obj === undefined || obj === null) {
-            return;
-        }  
-        
-        
-        if  (Object.keys(obj).length === 0) {
-            setVisualVarPairs([]);
-            setAudioVarPairs([]);
-
-        } else{
-                if (obj.visual !== undefined) {
-                    setVisualVarPairs(obj.visual);
-                } else {
-                    setVisualVarPairs([]);
-                }
-
-                if (obj.audio !== undefined) {
-                    setAudioVarPairs(obj.audio);
-                } else {
-                    setAudioVarPairs([]);
-                }
-        }
-
-
-  
-    }
-
-    async function updateSingleFieldToCloud(fieldName, contentValue) {
+    async function updateSingleFieldToCloud(fieldName, contentValue) { //TODO100
         await updateProjectMetadataSingleFieldVM({
             projectName: state.selected_project_name,
             currUser: authEmailName, 
             fieldName: fieldName, 
             contentValue: contentValue, 
-            backendOption: backendOption
+            bkOption: backendOption
         });
     }
 
@@ -513,39 +463,40 @@ export default function Panel2_Container_GameEditor() {
             
         let modeName = state.mode;
     
+        //TODO when all emu-set-data ready - display the entire-view window
             
-            await prepare1Gdt_vm(
-              authEmailName, 
-              state.selected_project_name, 
-              backendOption, 
-              setTestPlayerGameDataTracker, 
-              getUserConfigFromEmuManager1Gdt, 
-              modeName
-            ).then(async()=>{
-              await prepare2Epp_vm(
-                authEmailName, 
-                state.selected_project_name, 
-                backendOption, 
-                setTestPlayerProfile,
-                getUserConfigFromEmuManager2Epp,
-                modeName
-              )
-            }).then(async()=>{
-              await prepare3Epa_vm(
-                authEmailName, 
-                state.selected_project_name, 
-                backendOption,  
-                setTestPlayerAccount, 
-                getUserConfigFromEmuManager3Epa, 
-                modeName
-              )
-            })
-            .then(()=>{
-                console.log("\n\n\n\n\n\n\n\n\n\n\n\nopening viewer_entire window...");
+            // await prepare1Gdt_vm(
+            //   authEmailName, 
+            //   state.selected_project_name, 
+            //   backendOption, 
+            //   setTestPlayerGameDataTracker, 
+            //   getUserConfigFromEmuManager1Gdt, 
+            //   modeName
+            // ).then(async()=>{
+            //   await prepare2Epp_vm(
+            //     authEmailName, 
+            //     state.selected_project_name, 
+            //     backendOption, 
+            //     setTestPlayerProfile,
+            //     getUserConfigFromEmuManager2Epp,
+            //     modeName
+            //   )
+            // }).then(async()=>{
+            //   await prepare3Epa_vm(
+            //     authEmailName, 
+            //     state.selected_project_name, 
+            //     backendOption,  
+            //     setTestPlayerAccount, 
+            //     getUserConfigFromEmuManager3Epa, 
+            //     modeName
+            //   )
+            // })
+            // .then(()=>{
+            //     console.log("\n\n\n\n\n\n\n\n\n\n\n\nopening viewer_entire window...");
                 
-                setDisplayEntireGameViewer(true);
-              }
-            ); 
+            //     setDisplayEntireGameViewer(true);
+            //   }
+            // ); 
     
         
     
@@ -650,6 +601,8 @@ export default function Panel2_Container_GameEditor() {
     }
 
     async function getUserConfigFromDataMgr1Gdt(gameDataDesignList) {
+        //when game-data-design-list updates, the emu-data prepares with its default value
+
         let emuGdt1Temp = testPlayerGameDataTracker; //TODO999
       
         Object.keys(gameDataDesignList).map((currKey) => {
@@ -684,12 +637,22 @@ export default function Panel2_Container_GameEditor() {
         resObj["ess4"] = {"placeholder": "placerholder"};
         resObj["shp5"] = {"placeholder": "placerholder"};
     
-        await updateAllSetsVM({
+                                                    // await updateAllSetsVM({
+                                                    //     projectName: state.selected_project_name, 
+                                                    //     currUser: authEmailName, 
+                                                    //     dataObj: resObj,
+                                                    //     bkOption: backendOption
+                                                    // });
+
+        await updateProjectMetadataSingleFieldVM({
             projectName: state.selected_project_name, 
             currUser: authEmailName, 
-            dataObj: resObj,
-            bkOption: backendOption //TODO999
+            fieldName: "emu4sets", 
+            contentValue: resObj, 
+            bkOption: backendOption 
         });
+
+//TODO300
     
     }
 
@@ -708,12 +671,28 @@ export default function Panel2_Container_GameEditor() {
         if (resp) {
           setLanguageCodeTextOption(val);
     
-          await updateProjectUILangVM({
+                                                //   await updateProjectUILangVM({
+                                                //     projectName: state.selected_project_name, 
+                                                //     currUser: authEmailName, 
+                                                //     selectedUILang: val,
+                                                //     bkOption: backendOption //TODO999
+                                                //   });
+console.log("ui-langauge changed to: ", val);
+
+          await updateProjectMetadataSingleFieldVM({
             projectName: state.selected_project_name, 
             currUser: authEmailName, 
-            selectedUILang: val,
-            bkOption: backendOption //TODO999
+            fieldName: "ui_language", 
+            contentValue: val, 
+            bkOption: backendOption 
+          })
+
+          setProjectMetaData({
+              ...projectMetaData,
+              "ui_language": val
           });
+
+
         }
     }
     

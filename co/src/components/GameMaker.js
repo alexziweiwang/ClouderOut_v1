@@ -16,10 +16,8 @@ import Panel_GameDataTest from './Panel_GameDataTest';
 import { 
   getProjectGameDataDesignVM, 
 } from '../viewmodels/GameDataViewModel';
-import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
-import { 
-  updateProjectUILangVM, 
-  fetchProjectUILangVM, 
+
+import {
   updateProjectNavigationSettingsVM, 
   fetchProjectNavigationSettingsVM,
 } from '../viewmodels/ProjectManagerViewModel';

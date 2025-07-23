@@ -229,11 +229,19 @@ export async function storeProjectResourceVarPairsToCloud({userName, projectName
 
   await updateDoc(projectRef, {
     "proj_resource_audio": objContent.audio,
-  });
-
-  await updateDoc(projectRef, {
     "proj_resource_visual": objContent.visual
-  });
+  }); 
+
+
+  //improved
+  
+                                                  // await updateDoc(projectRef, {
+                                                  //   "proj_resource_audio": objContent.audio,
+                                                  // });
+
+                                                  // await updateDoc(projectRef, {
+                                                  //   "proj_resource_visual": objContent.visual
+                                                  // });
 
 }
 
