@@ -130,6 +130,7 @@ export default function Panel2_Container_GameEditor() {
                                         //TODO metadata99
     // --- metadata's keys ---
     // metadataObj["game_data"]
+    const [gameDataDesignList, setGameDataDesignList] = useState(undefined);
 
     // metadataObj["project_ui_language"]
     const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en');
@@ -137,7 +138,12 @@ export default function Panel2_Container_GameEditor() {
     const [currentProjectNav, setCurrentProjectNav] = useState({});
 
     // metadataObj["chapter_list"]
+    const [chapterList, setChapterList] = useState([]);
+    const [chapterListRaw, setChapterListRaw] = useState([]);
+
+
     // metadataObj["chapter_node_mapping"]
+    const [chapterNodeMapAll, setChapterNodeMapAll] = useState(-1);
 
     // metadataObj["resource_visual"]
     const [visualVarPairs, setVisualVarPairs] = useState(undefined);
@@ -148,6 +154,7 @@ export default function Panel2_Container_GameEditor() {
     //TODO99999
     //init here, prepare for emu-manager, and test-viewing
 
+ 
 
 
     /* testing-emu-data, for test-viewing and emu-manager */
@@ -367,7 +374,7 @@ export default function Panel2_Container_GameEditor() {
                 setProjectMetaData(metadataTemp);
 
                 //TODO99999 setup local hook vars
-                
+
 
             }
         }
@@ -399,7 +406,7 @@ export default function Panel2_Container_GameEditor() {
 
             // --- metadata's keys ---
             // metadataObj["game_data"]
-                //game-data-design-list
+            setGameDataDesignList(metadataTemp["game_data"]);
 
             // metadataObj["resource_visual"]
             // metadataObj["resource_audio"]
@@ -410,20 +417,53 @@ export default function Panel2_Container_GameEditor() {
             setLanguageCodeTextOption(metadataTemp["ui_language"]);
 
             // metadataObj["navigation_settings"]
-                //nav-settings-obj
             setCurrentProjectNav(metadataTemp["nav_ui_settings"]);
 
             // metadataObj["chapter_list"]
                 //chapter-list
+            setChapterListRaw(metadataTemp["chapterList"]);    
+                //TODO setChapterList() based on this    
 
             // metadataObj["chapter_node_mapping"]
                 //node-mapping
-
+            setChapterNodeMapAll(metadataTemp["chapterNodeMapping"]);
 
 
         setProjectMetaData(metadataTemp);
         setProjectAllNodeContent(chapterContentTemp);
         
+    }
+
+    function updateLargeMetadataObjForChanges() {
+        // based on local hooks, update the "projectMetadata" large-object here for the version-control...?
+        
+            //local hooks:
+        //gameDataDesignList
+        //languageCodeTextOption
+        //currentProjectNav
+        //chapterList
+        //chapterNodeMapAll
+        //visualVarPairs
+        //audioVarPairs
+
+
+         // author_info:  ""
+                                // chapterList: {0: Array(4), 1: Array(4), 2: Array(4)}
+                                // chapterNodeMapping:  {placeholder: {…}, chapter1: {…}, chapter2: {…}}
+                                // convNodeUiPlanMap:  {}
+                                // emu4sets:  {shp5: {…}, ess4: {…}, epp2: {…}, gdt1: {…}, epa3: {…}}
+                                // game_data:  {health: {…}}
+                                // nav_ui_settings:  {outWindow-Btn-textColor: '#FFFFFF', mainPage-playerProfile-posX: 300, shopPage-bConfWindow-confirmText: 'Confirm', settingPage-sliderColor: '#0373fc', mainPage-shop-isShape: false, …}
+                                // proj_resource_audio:  [] //array
+                                // proj_resource_visual:  [{…}] //array
+                                // project_description:  ""
+                                // project_name:  "a6_p2"
+                                // project_title:  "a6_p2"
+                                // sizeDirection:  "h450_800"
+                                // trashed:  false
+                                // type:  "project"
+                                // ui_language: "chn"
+
     }
 
     async function updateSingleFieldToCloud(fieldName, contentValue) { //TODO100
