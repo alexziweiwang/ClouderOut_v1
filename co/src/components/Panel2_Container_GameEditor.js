@@ -102,7 +102,7 @@ export default function Panel2_Container_GameEditor() {
                     //TODO
     } 
 
-    const [isFetchedFromCloud, setFetchedFromCloud] = useState(false);
+    const [isPrepFinished, setPrepFinished] = useState(false);
 
 
     /* display option for this large container: which editor is displayed for user */
@@ -184,7 +184,7 @@ export default function Panel2_Container_GameEditor() {
       projectName = state.selected_project_name;
       mode = state.mode;
       projectContentProvided = state.providedImptProj;                                                         //   projectContentProvided = state.
-                              console.log("container... \n mode = ", state.mode, "\n state = ", state);
+                       //       console.log("init-container-panel2... \n mode = ", state.mode, "\n state = ", state);
 
     }
 
@@ -220,7 +220,7 @@ export default function Panel2_Container_GameEditor() {
             return "show message";
         }
 
-        console.log("panel2 (render once) - mode = ", state.mode);
+        console.log("panel2 (render once) - mode = ", state.mode, "... isPrepFinished = ", isPrepFinished);
 
 
 
@@ -253,15 +253,11 @@ export default function Panel2_Container_GameEditor() {
           
             //prepare for project-content map, and fetch when user reached that chapter?
                 //TODO99999
-            if (authEmailName !== "_") {
-                if (visualVarPairs === undefined || audioVarPairs === undefined) {
-              //      fetchProjResourceVarPairListsFromCloud(authEmailName);
-
-                }
-
-                if (isFetchedFromCloud === false) {
+            if (authEmailName === "localUser###") {
+          
+                if (isPrepFinished === false) {
                     loadEverythingFromCloud();
-                    setFetchedFromCloud(true);
+                    setPrepFinished(true);
                 }
    
             }
@@ -279,9 +275,11 @@ export default function Panel2_Container_GameEditor() {
                   sendOutEmailName: setAuthEmailName
                 }
             );
+        } else if (state.mode !== "online_cloud") {
+            setAuthEmailName("localUser###");
         }
 
-        console.log("\n\n\n\n\n\npanel2 state = ", state);
+    //    console.log("\n\n\n\n\n\npanel2 state = ", state);
 
     });
 
@@ -404,30 +402,27 @@ export default function Panel2_Container_GameEditor() {
 
 
 
-            // --- metadata's keys ---
-            // metadataObj["game_data"]
-            setGameDataDesignList(metadataTemp["game_data"]);
+        // --- metadata's keys ---
+        // metadataObj["game_data"]
+        setGameDataDesignList(metadataTemp["game_data"]);
 
-            // metadataObj["resource_visual"]
-            // metadataObj["resource_audio"]
-            setVisualVarPairs(metadataTemp["proj_resource_visual"]);
-            setAudioVarPairs (metadataTemp["proj_resource_audio]"]); 
+        // metadataObj["resource_visual"]
+        // metadataObj["resource_audio"]
+        setVisualVarPairs(metadataTemp["proj_resource_visual"]);
+        setAudioVarPairs (metadataTemp["proj_resource_audio]"]); 
 
-            // metadataObj["project_ui_language"]
-            setLanguageCodeTextOption(metadataTemp["ui_language"]);
+        // metadataObj["project_ui_language"]
+        setLanguageCodeTextOption(metadataTemp["ui_language"]);
 
-            // metadataObj["navigation_settings"]
-            setCurrentProjectNav(metadataTemp["nav_ui_settings"]);
+        // metadataObj["navigation_settings"]
+        setCurrentProjectNav(metadataTemp["nav_ui_settings"]);
 
-            // metadataObj["chapter_list"]
-                //chapter-list
-            setChapterListRaw(metadataTemp["chapterList"]);    
+        // metadataObj["chapter_list"]
+        setChapterListRaw(metadataTemp["chapterList"]);    
                 //TODO setChapterList() based on this    
 
-            // metadataObj["chapter_node_mapping"]
-                //node-mapping
-            setChapterNodeMapAll(metadataTemp["chapterNodeMapping"]);
-
+        // metadataObj["chapter_node_mapping"]
+        setChapterNodeMapAll(metadataTemp["chapterNodeMapping"]);
 
         setProjectMetaData(metadataTemp);
         setProjectAllNodeContent(chapterContentTemp);
@@ -592,8 +587,13 @@ export default function Panel2_Container_GameEditor() {
 
 
 
-    function passInProjectMetaData() {
-        return projectMetaData;
+    function passInProjectMetaData(source) {
+        if ((state.mode === "online_cloud" && authEmailName !== "_") || authEmailName === "localUser###") {
+       
+                                console.log("passing in panel2 - metadata = (requested by ", source ,")", projectMetaData);
+            return projectMetaData;
+        }
+
     }
 
     function passInProjecAllNodeContent() {
@@ -778,6 +778,10 @@ console.log("ui-langauge changed to: ", val);
         return testPlayerPurchaseStatus;
     }
 
+    function passInNodeMapping() {
+        return chapterNodeMapAll;
+    }
+
     function notifyRmUpdated() {
       //  alert("TODO resource-manager should update");
     }
@@ -804,6 +808,15 @@ console.log("ui-langauge changed to: ", val);
 return (<div style={{"backgroundColor": "#b5b2b0"}}
     className={state.mode === "online_cloud" ? "" : "colorInvert"}
 >
+
+{(state !== undefined
+&&
+    ((state.mode === "online_cloud" && authEmailName !== "_" && isPrepFinished === true)
+        || authEmailName === "localUser###"
+    )
+)
+   &&
+<>
 
 
 {/* top banner area */}
@@ -901,15 +914,15 @@ return (<div style={{"backgroundColor": "#b5b2b0"}}
    
 {/* editor area */}
     {(
-    (authEmailName !== "_" && state.mode === "online_cloud") 
-    || (state.mode !== "online_cloud")
+    (state.mode === "online_cloud" && authEmailName !== "_") 
+    || (authEmailName === "localUser###")
     )
     && 
     <>
    
 
 {/* Game-Maker for metadata */}
-    {focusingEditor === "gameMaker"
+    {(focusingEditor === "gameMaker" && projectMetaData !== -1)
     && <GameMaker
         projectName={state.selected_project_name}
         editorMode={state.mode}
@@ -921,6 +934,7 @@ return (<div style={{"backgroundColor": "#b5b2b0"}}
 
         getUiLangOption={passInUiLanguageOption}
         getProjectResourceVarPairs={passInProjectResourceVarPairs}
+        getNodeMapping={passInNodeMapping}
 
         getTestPlayerGameDataTracker={passInTestPlayerGameDataTracker}
         getTestPlayerProfile={passInTestPlayerProfile}
@@ -928,6 +942,8 @@ return (<div style={{"backgroundColor": "#b5b2b0"}}
         getTestPlayerSLRecords={passInTestPlayerSLRecords}
         getTestShopProducts={passInTestShopProducts}
         getTestPlayerPurchaseStatus={passInTestPlayerPurchaseStatus}
+
+
     />}
 
 
@@ -1119,6 +1135,8 @@ return (<div style={{"backgroundColor": "#b5b2b0"}}
 
 </div>
 
+
+</>}
 </div>);
 
 

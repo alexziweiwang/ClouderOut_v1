@@ -22,7 +22,7 @@ import {
   fetchProjectNavigationSettingsVM,
 } from '../viewmodels/ProjectManagerViewModel';
 import { 
-  fetchChapterNodeMappingVM, 
+//  fetchChapterNodeMappingVM, 
   updateChapterNodesToCloudDataVM, 
   fetchAllChapterListVM, 
   updateChapterListToCloudVM, 
@@ -69,17 +69,15 @@ export default function GameMaker({
       getTestShopProducts,
       getTestPlayerPurchaseStatus,
 
+      getNodeMapping,
+
     
     }) {
   const navigate = useNavigate();
-  const projectMetaData = getProjectMetaData();
+  const projectMetaData = getProjectMetaData("gameMaker");
 
    //    "offline_half"       "offline_full"        "online_cloud"  
-                                console.log("game maker, mode = ", editorMode, "\n ... project meta-data = ", projectMetaData);
-
-  if (editorMode !== "online_cloud" && projectMetaData === undefined) {
-    goToNotLoggedInPage();
-  }
+                      //          console.log("game maker, mode = ", editorMode, "\n ... project meta-data = ", projectMetaData);
 
 
 /**
@@ -223,10 +221,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
 
     function fetchProjResourceLists() {
-      if (projectName === "default-no-state projectName") {
-        return;
-      }
-
+  
       //TODO999: if half-offline, and imported-file, use the data structure from file
       // if half-offline, and new-project, use the initial data structure
 
@@ -343,14 +338,6 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
   const [gridBlocksUpdatedSignal, setGridBlocksUpdatedSignal] = useState(false);
 
   //TODO501 node-ui template...
-
-
- // const [currentChapterNodeMap, setCurrentChapterNodeMap] = useState({});           //--- not used ---
- // const [gridBlocks, setGridBlocks] = useState([]); //stores node-keys              //--- not used ---
-
-
-
-
 
 
   const [isChapMgrCollapsed, setChapMgrCollapsed] = useState(false);
@@ -482,8 +469,8 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
             //TODO5000 check returned data from cloud-db
             if (gridBlocksAll === -1 || chapterNodeMapAll === -1) {
-              
-              loadEverythingFromCloud();
+              fetchChapterNodeMappingFromOuter();
+
             }
 
             if (gridBlocksAll !== undefined && chapterNodeMapAll !== undefined) {
@@ -527,27 +514,6 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
             
 
             setFirstTimeEnter(false);
-        }
-
-
-                                // if (secondTimeEnter === true) {
-                                //   //This area is for any "reset" procedure...
-                                //   //  usually for modals -- resource-manager, game-data-manager, 
-
-                                //                     console.log("!!! Second Enter - GameMaker: ");//TODO testing
-                                //     triggerRefreshFetchCloudData();
-
-                                //     setSecondTimeEnter(false);
-                                // }
-
-
-
-
-
-
-        if (projectName === "default-no-state projectname") {
-        //  alert("No project selected. Returning to project selection page...");
-          pureNavigateToProjectManagingPanel();
         }
 
         // if (currChapterKey !== undefined && currChapterKey !== "") {
@@ -1296,40 +1262,37 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
   }
 
 
-  async function fetchChapterNodeMappingFromCloud() {
-
-                          //TODO fetch all the chapter names & node-relationship-maps into local into a map of <string, map>
-                          //TODO format: localChapterInfo = <chapter title, node-relationship-map>
+  function fetchChapterNodeMappingFromOuter() {
+                          //fetch all the chapter names & node-relationship-maps into local into a map of <string, map>
+                          //format: localChapterInfo = <chapter title, node-relationship-map>
                           
 
 
+    let data = getNodeMapping();
 
-    let data = await fetchChapterNodeMappingVM({   
-        projectName: projectName, 
-        currUser: authEmailName,
-        bkOption: backendOption //TODO999
-    });
-
-
-    if (data === undefined || data === null || data.chapterNodeMapping === undefined) {
+    if (data === undefined || data === null) {
                                             console.log("!!! unable to fetch node-mapping");
 
         
             setCloudDbConnOk(false);
+      //TODO change later to: panel2-layer
+
 
     } else {
             setCloudDbConnOk(true);
+
+
+
             let gridChapterMap = {};
 
-            gridChapterMap = convertNodeMapToGridBlocks(data.chapterNodeMapping);
+            gridChapterMap = convertNodeMapToGridBlocks(data);
         
             setGridBlocksAll(gridChapterMap);            
-            setChapterNodeMapAll(data.chapterNodeMapping);
-
-                      //                 console.log("FromCloud !!! data.chapterNodeMapping = ", data.chapterNodeMapping);
-                   //                    console.log("FromCloud !!! after conversion ... GridBlocks = ", gridChapterMap);
+            setChapterNodeMapAll(data);
 
     }
+
+
 
   }
 
@@ -1626,12 +1589,7 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
     return createdNewNodeWaitListPending;
   }
 
-  function loadEverythingFromCloud() {
-                                                    console.log("~loading-everything-from-cloud");
-    // fetchProjectNavigationSettingsFromCloud();
-    // fetchChapterNodeMappingFromCloud();          
 
-  }
 
   function loadEverythingFromLocalProjFile() {
     //TODO99999 option for offline-modes
@@ -1897,7 +1855,7 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
       <button onClick={()=>{
         let ans = window.confirm("Are you sure to load from cloud and cover the project on local?");
         if (ans) {
-          loadEverythingFromCloud();
+          alert("TODO should load from cloud");
         }
 
       }}
