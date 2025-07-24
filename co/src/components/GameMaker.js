@@ -7,8 +7,7 @@ import NodeManager from './NodeManager';
 
 import NavigationSetter from './NavigationSetter';
 import NavigationPreview from './NavigationPreview';
-import Viewer_Entire from './Viewer_Entire';
-import Panel_GameDataTest from './Panel_GameDataTest';
+
 
 //level0
 
@@ -25,6 +24,7 @@ import {
 //  fetchChapterNodeMappingVM, 
   updateChapterNodesToCloudDataVM, 
   fetchAllChapterListVM, 
+  
   updateChapterListToCloudVM, 
 
 
@@ -68,8 +68,6 @@ export default function GameMaker({
       getTestPlayerSLRecords,
       getTestShopProducts,
       getTestPlayerPurchaseStatus,
-
-      getNodeMapping,
 
     
     }) {
@@ -422,7 +420,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
   }
 
   function resetGdmUpdateSignal() {
-    setGdmUpdatedSignal(false);
+    console.log("... func: resetGdmUpdateSignal");
   }
 
   function passInGameDataDesignList() {
@@ -871,15 +869,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
     setChapterList(chapterData);
   }
 
-  const [showGameDataPanel, setShowGameDataPanel] = useState(false);
-
-  let modalStyleName = "";
-
-  if (isDisplayEntireGameViewer === true) {
-      modalStyleName = "displayBlock modalBackboard";
-  } else {
-      modalStyleName = "displayNone modalBackboard";
-  }
+  
 
   function notUsing() {
     //not doing anything
@@ -1282,41 +1272,6 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
     return gridEntireTemp;
   }
 
-
-  function fetchChapterNodeMappingFromOuter() {
-                          //fetch all the chapter names & node-relationship-maps into local into a map of <string, map>
-                          //format: localChapterInfo = <chapter title, node-relationship-map>
-                          
-
-
-    let data = getNodeMapping();
-
-    if (data === undefined || data === null) {
-                                            console.log("!!! unable to fetch node-mapping");
-
-        
-            setCloudDbConnOk(false);
-      //TODO change later to: panel2-layer
-
-
-    } else {
-            setCloudDbConnOk(true);
-
-
-
-            let gridChapterMap = {};
-
-            gridChapterMap = convertNodeMapToGridBlocks(data);
-        
-            setGridBlocksAll(gridChapterMap);            
-            setChapterNodeMapAll(data);
-
-    }
-
-
-
-  }
-
   function passInChapterNodeMapping() {
     return chapterNodeMapAll;
   }
@@ -1330,20 +1285,6 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
       bkOption: backendOption //TODO999
     });
     
-  }
-
-  async function fetchProjectNavigationSettingsFromCloud() {
-
-console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
-
-    let data = await fetchProjectNavigationSettingsVM({
-      projectName: projectName, 
-      currUser: authEmailName,
-      bkOption: backendOption
-    })
-
-                                                  console.log("proj-nav-settings = ", data);
-    setCurrentProjectNav(data);
   }
 
 
@@ -1567,7 +1508,7 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
 
 
   function loadEverythingFromProvidedMetadata(metaDataTemp) {
-                  console.log("game-maker :  prep metadata... ", metaDataTemp);
+                           console.log("game-maker :  prep metadata... ", metaDataTemp);
 
 
     if (metaDataTemp === undefined || metaDataTemp === -1) {
@@ -1867,7 +1808,6 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
         onClick={()=>{
         setShowChapterMaker(false);
         if (firstTimeSwitchTabNavPanel === true) {
-          fetchProjectNavigationSettingsFromCloud();
           setFirstTimeSwitchTabNavPanel(false);
         }
         }}>
@@ -2063,10 +2003,10 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
 
 
 
-{/*  Entire Viewing -- all parts  */}
-    {isDisplayEntireGameViewer && 
+{/*  Entire Viewing -- all parts NOT-USING */}
+    {false && 
 
-<div className={modalStyleName} style={{}}>
+<div>
 
         <button className="testEntire" onClick={()=>{closeEntireGameViewer();}}>Stop Testing</button>
         <button
@@ -2132,7 +2072,7 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
 
 
     {/* status table */}
-      <table style={{"width": "800px", "marginTop": `${screenHeight+20}px`, "marginLeft": "170px","position": "absolute"}}>
+      {/* <table style={{"width": "800px", "marginTop": `${screenHeight+20}px`, "marginLeft": "170px","position": "absolute"}}>
               <thead>
                 <tr>
                   <th>Current Page Status</th>
@@ -2153,7 +2093,7 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
 
               </tbody>
 
-            </table>
+            </table> */}
 
       </div>
 
@@ -2177,7 +2117,7 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
                 "height": `${screenHeight}px`, 
                  
               }}>
-
+{/* 
                 <Panel_GameDataTest
                        localTest={true}
                        initialGameDataStatus={gameDataTracker}
@@ -2190,7 +2130,7 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
 
                        getUILanguage={passInUILanguage}
                 /> 
-        
+         */}
               </div>
             }
 
@@ -2201,7 +2141,7 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
 </div>
 
       </div>}
-{/*  Entire Viewing -- all parts  */}
+{/*  Entire Viewing -- all parts NOT-USING */}
 
 
 

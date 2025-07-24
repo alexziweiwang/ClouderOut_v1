@@ -778,10 +778,6 @@ console.log("ui-langauge changed to: ", val);
         return testPlayerPurchaseStatus;
     }
 
-    function passInNodeMapping() {
-        return chapterNodeMapAll;
-    }
-
     function notifyRmUpdated() {
       //  alert("TODO resource-manager should update");
     }
@@ -934,7 +930,6 @@ return (<div style={{"backgroundColor": "#b5b2b0"}}
 
         getUiLangOption={passInUiLanguageOption}
         getProjectResourceVarPairs={passInProjectResourceVarPairs}
-        getNodeMapping={passInNodeMapping}
 
         getTestPlayerGameDataTracker={passInTestPlayerGameDataTracker}
         getTestPlayerProfile={passInTestPlayerProfile}
@@ -1130,6 +1125,16 @@ return (<div style={{"backgroundColor": "#b5b2b0"}}
             backendOption={backendOption}
 
         /> */}
+
+        {/* also :  <Panel_GameDataTest
+
+                note: for test-viewing: keep these: for the [status table]
+                currTestingPageStatus("Main Page");
+                currTestingChapterKey("");
+                currTestingChapterTitle("");
+                currTestingNodeKey("");
+                currTestingNodeType("");
+        */}
 
     </div>}
 
