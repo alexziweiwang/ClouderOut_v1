@@ -3,12 +3,17 @@ import { useState, useEffect } from 'react';
 import langDictionary from './_textDictionary';
 
 export default function ChapterManager({
-  initialChapterData, updateChapterData, 
+  initialChapterData, 
+  updateChapterData, 
   getChapterDataInfo,
-  updateChosenChapterItem, updateLinkingNode,
+  updateChosenChapterItem, 
+  updateLinkingNode,
   prepareForNewChapterMapping, 
+  
   updateChapterListToCloud,
-  fetchChapterListFromCloud,
+  fetchChapterList,
+
+
   triggerCreatedNewChapter,
   sendOutIsCollapsed,
 
@@ -130,7 +135,7 @@ export default function ChapterManager({
 
 
     if (firstTimeEnter === true) {
-      fetchChapterListFromCloud(); //TODO500 use this
+      fetchChapterList(); //TODO500 use this
       
 
       setFirstTimeEnter(false);
@@ -235,7 +240,7 @@ export default function ChapterManager({
     setNewChapterKeyInput("");
     setNewChapterTitleInput("");
 
-    let newListTemp = await fetchChapterListFromCloud();
+    let newListTemp = fetchChapterList();
     setChapterData(newListTemp);
 
   }

@@ -253,7 +253,7 @@ export default function Panel2_Container_GameEditor() {
           
             //prepare for project-content map, and fetch when user reached that chapter?
                 //TODO99999
-            if (authEmailName === "localUser###") {
+        if (authEmailName !== "_") {
           
                 if (isPrepFinished === false) {
                     loadEverythingFromCloud();

@@ -74,7 +74,9 @@ export default function GameMaker({
     
     }) {
   const navigate = useNavigate();
-  const projectMetaData = getProjectMetaData("gameMaker");
+
+
+  const [projectMetaData, setProjectMetaData] = useState(undefined);
 
    //    "offline_half"       "offline_full"        "online_cloud"  
                       //          console.log("game maker, mode = ", editorMode, "\n ... project meta-data = ", projectMetaData);
@@ -273,7 +275,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
     function resetVisualMapFromList(visualList) {
 
-                                console.log("audio list = ", visualList);
+                                console.log("visual list = ", visualList);
       if (visualList === undefined) {
         setVisualMap({});
       } else {
@@ -464,57 +466,76 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
         setAuthEmailName(authName);
 
         
-        //TODO load any from outer-layer (panel2), regardless of mode?
-        if (authEmailName !== "_" && editorMode === "online_cloud") {
+        //load from outer-layer (panel2), regardless of mode
+        if ((authEmailName !== "_" && editorMode === "online_cloud") || authEmailName === "localUser###") {
+            //valid username, or local-mode
 
-            //TODO5000 check returned data from cloud-db
-            if (gridBlocksAll === -1 || chapterNodeMapAll === -1) {
-              fetchChapterNodeMappingFromOuter();
 
-            }
-
-            if (gridBlocksAll !== undefined && chapterNodeMapAll !== undefined) {
-
-              setCloudDbConnOk(true);
-            }
-
-            // if (Object.keys(gameDataDesignList).length === 0) { //TODO999
-            //     triggerRefreshFetchCloudData();
-            // }
-
-            setOfflineHalfMode(false);
-            setOfflineFullMode(false);
-
-        } else if (editorMode === "offline_half" || editorMode === "offline_full") { //auth-email-name is "_"
-                        //TODO6000 offline mode prep
-                                
-                                //save: download current data-sets
-                                //import: upload and parse formatted file ...
-                                //resource-pair: half-offline: use online-drive link; full-offline: desktop with file path
-          if (gridBlocksAll === -1 || chapterNodeMapAll === -1) {
-            loadEverythingFromLocalProjFile();
+          if (projectMetaData === undefined) {
+            let metadataTemp = getProjectMetaData("gameMaker");
+            loadEverythingFromProvidedMetadata(metadataTemp);
+  
+  
           }
-            
 
-   
         }
+                                            // if (authEmailName !== "_" && editorMode === "online_cloud") {
 
+                                            //     //TODO5000 check returned data from cloud-db
+                                            //     if (gridBlocksAll === -1 || chapterNodeMapAll === -1) {
+                                            //       fetchChapterNodeMappingFromOuter();
+
+                                            //     }
+
+                                            //     if (gridBlocksAll !== undefined && chapterNodeMapAll !== undefined) {
+
+                                            //       setCloudDbConnOk(true);
+                                            //     }
+
+                                            //     // if (Object.keys(gameDataDesignList).length === 0) { //TODO999
+                                            //     //     triggerRefreshFetchCloudData();
+                                            //     // }
+
+                                            //     setOfflineHalfMode(false);
+                                            //     setOfflineFullMode(false);
+
+                                            // } else if (editorMode === "offline_half" || editorMode === "offline_full") { //auth-email-name is "_"
+                                            //                 //TODO6000 offline mode prep
+                                                                    
+                                            //                         //save: download current data-sets
+                                            //                         //import: upload and parse formatted file ...
+                                            //                         //resource-pair: half-offline: use online-drive link; full-offline: desktop with file path
+                                            //   if (gridBlocksAll === -1 || chapterNodeMapAll === -1) {
+                                            //     loadEverythingFromLocalProjFile();
+                                            //   }
+
+                                            // }
+
+        if (authEmailName !== "_") {
+          let langOp = getUiLangOption();
+          setLanguageCodeTextOption(langOp);
+  
+  
+          if (firstTimeEnter === true) {
+  
+              if (authEmailName !== "_") {
+                
+                
+                console.log("!!! First Enter - GameMaker:   mode =  ", editorMode, " ... proejct = ", projectName);//TODO testing
+  
+                //TODO !important: the actual node-content is on cloud, and only fetched when enter the specific node-editing-page
+                
+                
     
-        let langOp = getUiLangOption();
-        setLanguageCodeTextOption(langOp);
+                setFirstTimeEnter(false);
 
+              }
 
-        if (firstTimeEnter === true) {
+          }
 
-
-            console.log("!!! First Enter - GameMaker:   mode =  ", editorMode, " ... proejct = ", projectName);//TODO testing
-
-            //TODO !important: the actual node-content is on cloud, and only fetched when enter the specific node-editing-page
-            
-            
-
-            setFirstTimeEnter(false);
         }
+    
+   
 
         // if (currChapterKey !== undefined && currChapterKey !== "") {
         //   setCurrentChapterNodeMap(chapterNodeMapAll[currChapterKey]);
@@ -1355,59 +1376,13 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
   }
 
 
-  async function fetchChapterListFromCloud() {
+  function fetchChapterList() {
     if (authEmailName === "_") {
       console.log("not fetching-chapter-list:  user = ", authEmailName);
       return;
     }
 
-
-    let listTemp = await fetchAllChapterListVM(
-      {
-        projectName: projectName, 
-        currUser: authEmailName,
-        bkOption: backendOption //TODO999
-      }      
-    );
-
-    if (listTemp === undefined || listTemp === null) {
-              console.log("test func-fetchChapterList-FromCloud(): ...data is invalid");
-      setChapterList([]);
-
-
-                                          console.log("Flag: cloud-database connection problem"); //TODO900
-
-      setCloudDbConnOk(false);
-      return [];
-
-
-    } else {
-
-      setCloudDbConnOk(true);
-
-      //convert map into nested array...
-      let arrTemp = [];
-      Object.keys(listTemp).map((chapterKey) => {   
-        let currArr = [];
-        listTemp[chapterKey].map((item, index) => {
-          currArr.push(item);
-        });
-          
-        arrTemp.push(currArr);
-      })
-
-      //TODO test
-      console.log("test func-fetchChapterList-FromCloud(): ", arrTemp);
-
-      setChapterList(arrTemp);
-
-      return arrTemp;
-
-    }
-
-
-   
-
+      return chapterList;
   }
 
   function passInVisualMap() {
@@ -1591,54 +1566,52 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
 
 
 
-  function loadEverythingFromLocalProjFile() {
-    //TODO99999 option for offline-modes
-
-    let metaDataTemp = projectMetaData;
+  function loadEverythingFromProvidedMetadata(metaDataTemp) {
+                  console.log("game-maker :  prep metadata... ", metaDataTemp);
 
 
     if (metaDataTemp === undefined || metaDataTemp === -1) {
       return;
     }
 
-
+    setProjectMetaData(metaDataTemp);
 
 
 //GameDataDesign <map>
-          setGameDataDesignList(metaDataTemp["game_data"]);
+    setGameDataDesignList(metaDataTemp["game_data"]);
             
 
 // ProjectResourceVarPairs_audio  <map>   
-          let auList = metaDataTemp["proj_resource_audio"];
-          resetAudioMapFromList(auList);
+    let auList = metaDataTemp["proj_resource_audio"];
+    resetAudioMapFromList(auList);
        
 
 // ProjectResourceVarPairs_visual  <map>   
-          let visList = metaDataTemp["proj_resource_visual"];
-          resetVisualMapFromList(visList);
+    let visList = metaDataTemp["proj_resource_visual"];
+    resetVisualMapFromList(visList);
 
 // ProjectUILang <string>
-          setLanguageCodeTextOption(metaDataTemp["ui_language"]);
+    setLanguageCodeTextOption(metaDataTemp["ui_language"]);
           
 
 // NavigationSettings <map>
-          setCurrentProjectNav(metaDataTemp["nav_ui_settings"]);
+    setCurrentProjectNav(metaDataTemp["nav_ui_settings"]);
           
 
 
 // AllChapterList (used in chapter-manager) <map/2d_array>
-          let chapterArr = [];
-          let chapMap = metaDataTemp["chapterList"];
-          Object.keys(chapMap).map((currKey) => {
+    let chapterArr = [];
+    let chapMap = metaDataTemp["chapterList"];
+        Object.keys(chapMap).map((currKey) => {
             let item = chapMap[currKey];
             chapterArr.push(item);
-          })
-          setChapterList(chapterArr);
+    })
+    setChapterList(chapterArr);
 
 // ChapterNodeMapping (used in node-manager) <map>
-          setChapterNodeMapAll(metaDataTemp["chapterNodeMapping"]);
-          let gridTemp = convertNodeMapToGridBlocks(metaDataTemp["chapterNodeMapping"]);
-          setGridBlocksAll(gridTemp);
+    setChapterNodeMapAll(metaDataTemp["chapterNodeMapping"]);
+    let gridTemp = convertNodeMapToGridBlocks(metaDataTemp["chapterNodeMapping"]);
+    setGridBlocksAll(gridTemp);
 
 
   }
@@ -1838,8 +1811,9 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
 {(
 (
 (cloudDbConnOk === true && editorMode === "online_cloud" && authEmailName !== "_") 
-|| (editorMode !== "online_cloud")
+|| (authEmailName === "localUser###")
 )
+&& projectMetaData !== undefined
 && gridBlocksAll !== undefined 
 && chapterNodeMapAll !== undefined
 ) 
@@ -1936,7 +1910,7 @@ console.log("fetching nav-settings ... ", projectName, " ... ", authEmailName);
           getUILanguage={passInUILanguage}
 
           updateChapterListToCloud={saveChapterListToCloud}
-          fetchChapterListFromCloud={fetchChapterListFromCloud}
+          fetchChapterList={fetchChapterList}
           triggerCreatedNewChapter={triggerCreatedNewChapter}
           sendOutIsCollapsed={getChapMgrCollapsed}
           
