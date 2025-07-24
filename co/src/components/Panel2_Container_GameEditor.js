@@ -366,6 +366,9 @@ export default function Panel2_Container_GameEditor() {
             if (res === true) {
                 setProjectMetaData(metadataTemp);
 
+                //TODO99999 setup local hook vars
+                
+
             }
         }
 
@@ -394,27 +397,21 @@ export default function Panel2_Container_GameEditor() {
 
 
 
-
-
-
-
-
-
-
-
-
             // --- metadata's keys ---
             // metadataObj["game_data"]
                 //game-data-design-list
 
             // metadataObj["resource_visual"]
             // metadataObj["resource_audio"]
+            setVisualVarPairs(metadataTemp["proj_resource_visual"]);
+            setAudioVarPairs (metadataTemp["proj_resource_audio]"]); 
 
             // metadataObj["project_ui_language"]
             setLanguageCodeTextOption(metadataTemp["ui_language"]);
 
             // metadataObj["navigation_settings"]
                 //nav-settings-obj
+            setCurrentProjectNav(metadataTemp["nav_ui_settings"]);
 
             // metadataObj["chapter_list"]
                 //chapter-list
@@ -670,7 +667,10 @@ export default function Panel2_Container_GameEditor() {
         
         if (resp) {
           setLanguageCodeTextOption(val);
-    
+          setProjectMetaData({...projectMetaData,
+                "ui_language": val
+          });
+  
                                                 //   await updateProjectUILangVM({
                                                 //     projectName: state.selected_project_name, 
                                                 //     currUser: authEmailName, 
@@ -686,11 +686,6 @@ console.log("ui-langauge changed to: ", val);
             contentValue: val, 
             bkOption: backendOption 
           })
-
-          setProjectMetaData({
-              ...projectMetaData,
-              "ui_language": val
-          });
 
 
         }
@@ -712,6 +707,8 @@ console.log("ui-langauge changed to: ", val);
             "visual": visualVarPairs !== undefined ? visualVarPairs : {},
             "audio": audioVarPairs !== undefined ? audioVarPairs : {}
         }
+
+                                console.log("panel2-passInProjectResourceVarPairs = ", obj);
 
         return obj;
         

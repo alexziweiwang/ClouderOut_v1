@@ -111,8 +111,8 @@ export default function Modal_ResourceManagingWindow ({
     const [cloudFileList, setCloudFileList] = useState([]);
     const [isTabVisual, setIsTabVisual] = useState(true);
 
-    const [usersAllFileListVisual, setUsersAllFileListVisual] = useState([]); // all of this user's files(visual)
-    const [usersAllFileListAudio, setUsersAllFileListAudio] = useState([]); // all of this user's files(audio)
+    const [usersAllFileListVisual, setUsersAllFileListVisual] = useState(undefined); // all of this user's files(visual)
+    const [usersAllFileListAudio, setUsersAllFileListAudio] = useState(undefined); // all of this user's files(audio)
 
     const [clickedFileUrl, setClickedFileUrl] = useState(""); //TODO refactor
     const [clickedFileName, setClickedFileName] = useState("");
@@ -135,8 +135,10 @@ export default function Modal_ResourceManagingWindow ({
     useEffect(() => {
         if (firstTimeEnter === true) {
                                         console.log("ResourceManager-ModalWindow: First Enter!");
+            if (usersAllFileListVisual === undefined || usersAllFileListAudio === undefined) {
+                initFetchPrep(username);
 
-   
+            }
 
 
             setFirstTimeEnter(false);
@@ -154,8 +156,6 @@ export default function Modal_ResourceManagingWindow ({
 
             console.log("init ... ");
             await fetchRmFileList(usernameTemp);
-
-       //     await prepProjResourceVarPairLists(usernameTemp);
         
     }
 
@@ -176,12 +176,12 @@ export default function Modal_ResourceManagingWindow ({
             let updatePartArr = [];
             let object = {};
             
-            if (fileType === "visual") {
+            if (fileType === "visual" && visualVarPairs !== undefined) {
                 updatePartArr = visualVarPairs.filter(elem => elem["url"] !== url);
                 setVisualVarPairs(updatePartArr);
                 object["visual"] = updatePartArr;
                 object["audio"] = audioVarPairs;
-            } else if (fileType === "audio") {
+            } else if (fileType === "audio" && audioVarPairs !== undefined) {
                 updatePartArr = audioVarPairs.filter(elem => elem["url"] !== url);
                 setAudioVarPairs(updatePartArr);
                 object["audio"] = updatePartArr;
@@ -436,10 +436,10 @@ export default function Modal_ResourceManagingWindow ({
                 if (audioListFilter !== "allAu") {
                     setAudioListFilteredList(aList);
                 }
-                                        // console.log("rmWindow --raw-rsrc ...gen list = ", cloudFileList); //TODO test
+                                        console.log("rmWindow --raw-rsrc ...gen list = ", cloudFileList); //TODO test
 
-                                        // console.log("rmWindow --raw-rsrc vlist = ", vList); //TODO test
-                                        // console.log("rmWindow --raw-rsrc alist = ", aList); //TODO test
+                                        console.log("rmWindow --raw-rsrc vlist = ", vList); //TODO test
+                                        console.log("rmWindow --raw-rsrc alist = ", aList); //TODO test
 
             }
     }
