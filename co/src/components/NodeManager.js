@@ -273,7 +273,7 @@ export default function NodeManager({projectName, currUser,
 
 
 
-      console.log("Node Manager rendered once ........."); //TODO testing
+      console.log("\t\t\t\tNode Manager rendered once .........\n\n\n"); //TODO testing
       console.log("init nodemap = ", initialNodeMap); //TODO testing
       console.log("init grid = ", initialGridBlock); //TODO testing
       console.log("local ds:"); //TODO testing

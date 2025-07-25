@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 import langDictionary from './_textDictionary';
 
 export default function ChapterManager({
-  initialChapterData, 
   updateChapterData, 
   updateChosenChapterItem, 
   updateLinkingNode,
@@ -130,13 +129,12 @@ export default function ChapterManager({
 
   const [firstTimeEnter, setFirstTimeEnter] = useState(true);
   useEffect(() => {
-                                console.log("\t\t\t\tchapter-manager rendered once. chap-data = ", chapterData);
 
-
-
+                  console.log("\t\t\t\tchapter-manager rendered once.");
 
     if (firstTimeEnter === true) {
       if (chapterData === undefined) {
+
         loadListFromOuter();
         
         setFirstTimeEnter(false);

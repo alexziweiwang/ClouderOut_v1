@@ -12,9 +12,6 @@ import NavigationPreview from './NavigationPreview';
 //level0
 
 //TODO1090 cloud-db related
-import { 
-  getProjectGameDataDesignVM, 
-} from '../viewmodels/GameDataViewModel';
 
 import {
   updateProjectNavigationSettingsVM, 
@@ -220,7 +217,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
 
 
-    function fetchProjResourceLists() {
+    function getResourceVarPairsLocal() {
   
       //TODO999: if half-offline, and imported-file, use the data structure from file
       // if half-offline, and new-project, use the initial data structure
@@ -377,36 +374,6 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
 
 
-  async function fetchGameDataFromCloud() { //TODO3
-
-   // console.log("!!! This is for project: ", projectName);
-    let project  = projectName;
-  //  console.log("checking2 on project ... [", project, "]");
-    if (project === undefined || project === null || project === "" || project.trim() === "") {
-      return;
-    }
-    const isUpdated = true;
-    
-    
-    const gdataTestResult = await getProjectGameDataDesignVM({
-      projectName: project, 
-      uname: authEmailName, 
-      mostUpdated: isUpdated,
-      bkOption: backendOption //TODO999
-    
-    });
-      
-    if (gdataTestResult === undefined) {
-      console.log("no game_data in this project...");
-      let gdataTestResult = [];
-      setGameDataDesignList(gdataTestResult);
-    }
- 
-
-    return gdataTestResult;
-
-  }
-
   const [needCloudGameData, setNeedCloudGameData] = useState(true);
 
 
@@ -472,7 +439,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
           if (projectMetaData === undefined) {
             let metadataTemp = getProjectMetaData("gameMaker");
             loadEverythingFromProvidedMetadata(metadataTemp);
-  
+            
   
           }
 
@@ -519,7 +486,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
               if (authEmailName !== "_") {
                 
                 
-                console.log("!!! First Enter - GameMaker:   mode =  ", editorMode, " ... proejct = ", projectName);//TODO testing
+                //console.log("!!! First Enter - GameMaker:   mode =  ", editorMode, " ... proejct = ", projectName);//TODO testing
   
                 //TODO !important: the actual node-content is on cloud, and only fetched when enter the specific node-editing-page
                 
@@ -678,8 +645,10 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
   }
 
   function triggerRefreshFetchCloudData() {
-    fetchGameDataFromCloud();
-    fetchProjResourceLists();
+    getResourceVarPairsLocal();
+    
+    //TODO get game-data-design local
+
   }
 
   // function resetRmUpdatedSignal() {
@@ -1831,12 +1800,11 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
 
 {/* chapter-and-node setting tab */}
-    {showChapterMaker && <div className="parallelFrame sectionArea">
+    {(showChapterMaker && authEmailName !== "_") && <div className="parallelFrame sectionArea">
 
         {isDisplayRmBool === false && 
         <ChapterManager 
 
-          initialChapterData={chapterList} 
           getChapterDataInfo={passInChapterList}
           
           chosenChapter={currChapterKey} 
