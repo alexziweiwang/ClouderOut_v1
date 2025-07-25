@@ -24,7 +24,7 @@ import {
 //  fetchChapterNodeMappingVM, 
   updateChapterNodesToCloudDataVM, 
   fetchAllChapterListVM, 
-  
+
   updateChapterListToCloudVM, 
 
 
@@ -1317,13 +1317,13 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
   }
 
 
-  function fetchChapterList() {
+  function passInChapterList() {
     if (authEmailName === "_") {
-      console.log("not fetching-chapter-list:  user = ", authEmailName);
+            console.log("not fetching-chapter-list:  user = ", authEmailName);
       return;
     }
 
-      return chapterList;
+    return chapterList;
   }
 
   function passInVisualMap() {
@@ -1850,7 +1850,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
           getUILanguage={passInUILanguage}
 
           updateChapterListToCloud={saveChapterListToCloud}
-          fetchChapterList={fetchChapterList}
+          getChapterList={passInChapterList}
           triggerCreatedNewChapter={triggerCreatedNewChapter}
           sendOutIsCollapsed={getChapMgrCollapsed}
           

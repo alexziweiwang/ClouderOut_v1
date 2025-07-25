@@ -5,13 +5,12 @@ import langDictionary from './_textDictionary';
 export default function ChapterManager({
   initialChapterData, 
   updateChapterData, 
-  getChapterDataInfo,
   updateChosenChapterItem, 
   updateLinkingNode,
   prepareForNewChapterMapping, 
   
   updateChapterListToCloud,
-  fetchChapterList,
+  getChapterList,
 
 
   triggerCreatedNewChapter,
@@ -22,7 +21,7 @@ export default function ChapterManager({
 }) {
 
 //TODO3: game-maker level: all chapter's data (each chapter's node list)
-//TODO3: add getChapterData (from caller) : "getChapterDataInfo()"
+//TODO3: add getChapterData (from caller) : "getChapterList()"
 
   const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en'); //TODO16
 
@@ -127,34 +126,42 @@ export default function ChapterManager({
 
   const [createdNewChapterList, setCreatedNewChapterList] = useState([]);
 
-  const [chapterData, setChapterData] = useState(initialChapterData);
+  const [chapterData, setChapterData] = useState(undefined);
 
   const [firstTimeEnter, setFirstTimeEnter] = useState(true);
   useEffect(() => {
                                 console.log("\t\t\t\tchapter-manager rendered once. chap-data = ", chapterData);
 
 
+
+
     if (firstTimeEnter === true) {
-      fetchChapterList(); //TODO500 use this
-      
-
-      setFirstTimeEnter(false);
+      if (chapterData === undefined) {
+        loadListFromOuter();
+        
+        setFirstTimeEnter(false);
+      }
     } 
 
-    let chapterListTemp = getChapterDataInfo(); // current-version(not necessarily newest from cloud)
-                   //   console.log("chp-mgr, chapter list  = ", chapterListTemp);
-    setChapterData(chapterListTemp);
-
-    if (chapterListTemp != chapterData) {
-      makeDeletedList(chapterListTemp);
-    } 
-    
 
     let UILang = getUILanguage();
     setLanguageCodeTextOption(UILang);
 
 
   });
+
+  function loadListFromOuter() {
+        let chapterListTemp = getChapterList(); // current-version(not necessarily newest from cloud)
+        //   console.log("chp-mgr, chapter list  = ", chapterListTemp);
+        setChapterData(chapterListTemp);
+        
+        
+        //prepare for deleted-list as well
+        if (chapterListTemp != chapterData) {
+          makeDeletedList(chapterListTemp);
+        } 
+
+  }
 
   function makeDeletedList(chapterInfo) {
 //console.log("make deleted list: before = ", chapterInfo);
@@ -240,7 +247,7 @@ export default function ChapterManager({
     setNewChapterKeyInput("");
     setNewChapterTitleInput("");
 
-    let newListTemp = fetchChapterList();
+    let newListTemp = getChapterList();
     setChapterData(newListTemp);
 
   }
