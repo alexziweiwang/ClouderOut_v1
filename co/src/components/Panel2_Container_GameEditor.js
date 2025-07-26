@@ -97,9 +97,7 @@ export default function Panel2_Container_GameEditor() {
     let projectContentProvided = "default-node-state provided-project-content";
     
     let backendOption = "firebase";
-    if (state.mode !== "online_cloud") {
-                    //TODO
-    } 
+
 
     const [isPrepFinished, setPrepFinished] = useState(false);
 
@@ -214,6 +212,11 @@ export default function Panel2_Container_GameEditor() {
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
+        if (state === undefined || state === null) {
+            navigate('/mainpanel', { replace: true });
+    
+        } 
+        
         window.onbeforeunload = () => {
             
             return "show message";
@@ -798,7 +801,13 @@ console.log("ui-langauge changed to: ", val);
     // }
 
 
-return (<div style={{"backgroundColor": "#b5b2b0"}}
+return (
+<div>
+
+
+{(state !== undefined && state !== null)
+&&
+<div style={{"backgroundColor": "#b5b2b0"}}
     className={state.mode === "online_cloud" ? "" : "colorInvert"}
 >
 
@@ -1139,7 +1148,10 @@ return (<div style={{"backgroundColor": "#b5b2b0"}}
 
 
 </>}
-</div>);
+</div>}
+</div>
+
+);
 
 
 

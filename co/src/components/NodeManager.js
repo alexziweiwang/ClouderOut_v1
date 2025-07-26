@@ -5,6 +5,25 @@ import { GiTrashCan } from "react-icons/gi";
 
 import langDictionary from './_textDictionary';
 
+/*
+important operations:
+
+(locally)
+[ ] 1.create a node
+[ ] 2.revert a delieted node
+[ ] 3.change node title/note
+[ ] 4.delete a node
+[ ] 5.detach linking of a node
+[ ] 6.add next-node linking of a node
+TODO99999 test for these
+
+(update to cloud, if online mode)
+this will be done by outer-game-maker's outer layer: panel2_container_game-editor
+
+
+*/
+
+
 
 export default function NodeManager({projectName, currUser, 
   initialChapterKey, getNodeMapOfChapter, 
@@ -38,9 +57,9 @@ export default function NodeManager({projectName, currUser,
 
   const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en'); //TODO16
 
-    // console.log("Node Manager ?? "); //TODO testing
-    // console.log(initialNodeMap); //TODO testing
-    // console.log(initialGridBlock); //TODO testing
+                                                // console.log("Node Manager ?? "); //TODO testing
+                                                // console.log(initialNodeMap); //TODO testing
+                                                // console.log(initialGridBlock); //TODO testing
   const verticalOffset = 8;
   const horizontalOffset = 3;
   const nodeGap = 10;
@@ -348,25 +367,6 @@ export default function NodeManager({projectName, currUser,
 
 
 
-  // function updateNodeDataActions(data) {
-  //      setNodeData(data);
-  //      //TODO calculate needed scale
-  //      console.log("new node data:");
-  //      console.log(data); //TODO test
-
-  //      //TODO later: update to cloud db
-  // }
-
-  async function updateNodeRelationship() {
-    //TODO update current node-data to cloud db
-    //TODO cloud node-data design:
-      //TODO each node is a collection
-      //TODO each node-collection contains many documents
-        //TODO for board-game/card-game node, each document is an element?
-        //TODO for conversational node, each document is a piece?        
-
-  }
-
   function enterNodeEditor2() { 
     if (nodeRelationshipMap[clickedNodeKey] === undefined) {
                     console.log("Not found in node-map");
@@ -414,7 +414,8 @@ export default function NodeManager({projectName, currUser,
 
 
 
-  async function addNewNode2() { //TODO for new data structure
+  async function addNewNodeFunc() { //TODO for new data structure
+    //TODO30 01
 
     let tempNodeMap = nodeRelationshipMap;
     if (createNewNodeGameType === "") {
@@ -494,17 +495,27 @@ export default function NodeManager({projectName, currUser,
 
       }
 
+      setClickedNodeKey("");
+      setAddNewNodeAreaDisplay(false);
  
     } else {
       console.log("warning: invalid empty node name"); //TODO test
+
     }
 
   }
 
 
-  function addNewNodeGameType(event) {
+  // [ ] 1.create a node
+  // [ ] 2.revert a delieted node
+  // [ ] 3.change node title/note
+  // [ ] 4.delete a node
+  // [ ] 5.detach linking of a node
+  // [ ] 6.add next-node linking of a node  
+
+  function handleSelectNewNodeGameType(event) {
     setCreateNewNodeGameType(event.target.value); //TODO later update to cloud db
-    console.log("changed selection of new game type : " + event.target.value);
+                                                console.log("changed selection of new game type : " + event.target.value);
   }
 
 
@@ -517,7 +528,7 @@ export default function NodeManager({projectName, currUser,
   }
 
 
-  function changeGameScreenSize(event) {
+  function handleSelectGameScreenSize(event) {
     const input = event.target.value;
     if (event != null && event.target != null && event.target.value!= null) {
       
@@ -526,7 +537,7 @@ export default function NodeManager({projectName, currUser,
         || input === "4:3(horizonal)"
         ||input === "4:3(vertical)") {
         setAddedGameScreenSize(event.target.value);
-        //TODO pass into cloud: node info
+
       } else {
         console.log("not selected!");
         setAddedGameScreenSize("");
@@ -534,11 +545,8 @@ export default function NodeManager({projectName, currUser,
     }
   }
 
-  function markNextNeedCloudGameData() {
-    setNeedCloudGameData(true);
-  }
 
-  function updateNodeToNewName2() {
+  function handleNodeInfoEditTitle() { //TODO30 03
     let tempNodeData = nodeRelationshipMap;
 
     if (tempNodeData[clickedNodeKey] === undefined) {
@@ -552,7 +560,7 @@ export default function NodeManager({projectName, currUser,
     setTempNewName("");
   }
 
-  function updateNodeWithNewNote() {
+  function handleNodeInfoEditNote() { //TODO30 03
     let tempNodeData = nodeRelationshipMap;
 
     if (tempNodeData[clickedNodeKey] === undefined) {
@@ -566,7 +574,7 @@ export default function NodeManager({projectName, currUser,
     setTempNewNote("");
   }
 
-  function deleteNode2() {
+  function deleteNodeFunc() { //TODO30 04
     let tempNodeMap = nodeRelationshipMap;
     let tempGridBlocks = gridBlocks;
     // now the node is tempNodeMap[clickedNodeKey]
@@ -588,7 +596,7 @@ export default function NodeManager({projectName, currUser,
     Object.keys(tempNodeMap).map((nodeKey) => {             
       if (tempNodeMap[nodeKey].nodeType === "LogicSplitter") {
         //traverse spltLogicPairs
-        let arr = tempNodeMap[nodeKey].spltLogicPairs;      //TODO32 test    deleteNode-2()
+        let arr = tempNodeMap[nodeKey].spltLogicPairs;      //TODO32 test    deleteNodeFunc-2()
         let i = 0;
         let len = arr.length;
         let updatedArr = [];
@@ -601,7 +609,7 @@ export default function NodeManager({projectName, currUser,
             updatedArr.push(item);
           }
         }
-        tempNodeMap[nodeKey].spltLogicPairs = updatedArr; //deleteNode-2() 
+        tempNodeMap[nodeKey].spltLogicPairs = updatedArr; //deleteNodeFunc-2() 
        
       } else {
         let nextNodeName = tempNodeMap[nodeKey].nextNode;
@@ -979,6 +987,38 @@ export default function NodeManager({projectName, currUser,
     setStyleArrHook(styleArray);
   }
 
+  function revertNodeFunc() {
+    //TODO30 02
+      let askStr = "Are you sure to revert node" + "" + "?";
+      let response = window.confirm(askStr);
+      if (response) {
+            // update gridBlocks on this grid
+            // update node-map for this node's row and col info, and display info
+            let crd = clickedNode2;
+            let ic = crd % 10000;
+            let ir = (crd-ic) / 10000;
+                      
+            let nodeMapTemp = nodeRelationshipMap;
+            nodeMapTemp[toRevertNodeKey].row = ir;
+            nodeMapTemp[toRevertNodeKey].col= ic;
+            nodeMapTemp[toRevertNodeKey].display = true;
+
+            let gridBlocksTemp = gridBlocks;
+            gridBlocksTemp[ir][ic] = toRevertNodeKey;
+
+            /* update all node-mappings */
+            setNodeRelationshipMap(nodeMapTemp);
+            setGridBlocks(gridBlocksTemp);
+            updateNodeLinkingsOnce(nodeMapTemp, gridBlocksTemp);
+            triggerNodeMappingsChange(nodeMapTemp, gridBlocksTemp);
+
+            updateNodeMapOfChapter(nodeMapTemp);
+            updateGridBlockOfChapter(gridBlocksTemp);
+
+            setClickedNode2(-1);
+
+      }
+  }
 
 //TODO page content 
     return (      
@@ -1219,7 +1259,6 @@ chapter-key = {chapterKey}
           
           {/* Node-grid-blocks */}
           
-                                                  {/* //TODO300 more flexible grid-adding ... */}
                                                   {/* "width": (isChapMgrCollapsed === false) ? "700px" : "1500px" */}
 
           <div style={{
@@ -1364,7 +1403,7 @@ chapter-key = {chapterKey}
               />
               <br></br>
               <label>{nodeGameType}: </label>
-              <select className="setting_item" onChange={(event)=>{addNewNodeGameType(event);}} value={createNewNodeGameType}>
+              <select className="setting_item" onChange={(event)=>{handleSelectNewNodeGameType(event);}} value={createNewNodeGameType}>
                 <option value="" key=""> -- {selectNodeGameTypeText} -- </option>
                 {/* <option value="Card Game" key="Card Game">Card Game</option>
                 <option value="Board Game" key="Board Game">Board Game</option>
@@ -1374,7 +1413,7 @@ chapter-key = {chapterKey}
               </select>
               <br></br>
               {createNewNodeGameType !== "LogicSplitter" && <><label>{screenSizeText}: </label>
-              <select value={addedGameScreenSize} onChange={changeGameScreenSize}>
+              <select value={addedGameScreenSize} onChange={handleSelectGameScreenSize}>
                     <option value="" key=""> ----- {selectSizeDirectionText} ----- </option>
                     {/* <option value="16:9(horizonal)" key="node-mgr-16:9(horizonal)"> 16:9 (horizontal) </option>
                     <option value="16:9(vertical)" key="node-mgr-16:9(vertical)"> 16:9 (vertical) </option> */}
@@ -1385,10 +1424,8 @@ chapter-key = {chapterKey}
               <button 
                 className="setting_item buttonRight80"
                 onClick={()=>{
-                                                       //    addNewNode(); //TODO remove later
-                  addNewNode2();
-                  setClickedNodeKey("");
-                  setAddNewNodeAreaDisplay(false);
+                        addNewNodeFunc();
+                 
                   }}>
                   {createText}
               </button>
@@ -1426,35 +1463,8 @@ chapter-key = {chapterKey}
                   </select>
                   
                   <button onClick={()=>{
-                    let askStr = "Are you sure to revert node" + "" + "?";
-                    let response = window.confirm(askStr);
-                    if (response) {
-                      // update gridBlocks on this grid
-                      // update node-map for this node's row and col info, and display info
-                      let crd = clickedNode2;
-                      let ic = crd % 10000;
-                      let ir = (crd-ic) / 10000;
-                      
-                      let nodeMapTemp = nodeRelationshipMap;
-                      nodeMapTemp[toRevertNodeKey].row = ir;
-                      nodeMapTemp[toRevertNodeKey].col= ic;
-                      nodeMapTemp[toRevertNodeKey].display = true;
 
-                      let gridBlocksTemp = gridBlocks;
-                      gridBlocksTemp[ir][ic] = toRevertNodeKey;
-
-                      /* update all node-mappings */
-                      setNodeRelationshipMap(nodeMapTemp);
-                      setGridBlocks(gridBlocksTemp);
-                      updateNodeLinkingsOnce(nodeMapTemp, gridBlocksTemp);
-                      triggerNodeMappingsChange(nodeMapTemp, gridBlocksTemp);
-
-                      updateNodeMapOfChapter(nodeMapTemp);
-                      updateGridBlockOfChapter(gridBlocksTemp);
-
-                      setClickedNode2(-1);
-
-                    }
+                    revertNodeFunc();
                   }}>{revertText}</button>
 
                   <br></br><br></br>
@@ -1529,21 +1539,27 @@ chapter-key = {chapterKey}
 {(nodeRelationshipMap[clickedNodeKey].nodeType !== "*chapterEnd*" && nodeRelationshipMap[clickedNodeKey].nodeType !== "*chapterStart*")                  
 && <>
                           <p className="sectionHeader"> {nodeOperationsText} </p>
-                  
 
                       <div>
                           <label>{changeSText}{nodeTitleText}: </label>
                           <div className="indentOne">
                             <input onChange={(event) =>{setTempNewName(event.target.value);}} value={tempNewName}></input>
-                            <br></br><button onClick={()=>{updateNodeToNewName2();}}>{updateText}</button>
+                            <br></br>
+                              <button onClick={()=>{
+                                handleNodeInfoEditTitle();
+                              }}>{updateText}</button>
                           </div>
+
+
                           <label>{changeSText}{noteText}: </label>
                           <div className="indentOne">
                             <input onChange={(event) =>{setTempNewNote(event.target.value);}} value={tempNewNote}></input>
                             <br></br>
                             <button onClick={()=>{setTempNewNote("");}}>{cancelText}</button>
-                            <button onClick={()=>{updateNodeWithNewNote();}}>{updateText}</button>
+                            <button onClick={()=>{handleNodeInfoEditNote();}}>{updateText}</button>
                           </div>
+
+                          
                           {(nodeRelationshipMap[clickedNodeKey].nodeType !== "*chapterStart*" && nodeRelationshipMap[clickedNodeKey].nodeType !=="*chapterEnd*") 
                           && 
                           <>
@@ -1555,7 +1571,7 @@ chapter-key = {chapterKey}
                                 let askStr = "Are you sure to remove this Node [" + nodeRelationshipMap[clickedNodeKey].nodeName + "] ?";
                                 let response = window.confirm(askStr);
                                 if (response) {
-                                  deleteNode2();
+                                  deleteNodeFunc();
                    
                                 }
                               }}>{deleteText}</button>
@@ -1610,7 +1626,7 @@ chapter-key = {chapterKey}
                             }
                         })}
                 </select>
-                <button onClick={()=>{
+                <button onClick={()=>{ //TODO30 06
                     if (selectedNextNode !== "") {
                       let tempMap = nodeRelationshipMap;
                       tempMap[clickedNodeKey].nextNode = selectedNextNode;
@@ -1636,7 +1652,7 @@ chapter-key = {chapterKey}
                 )
                 &&  
                 <button
-                  onClick={()=>{
+                  onClick={()=>{ //TODO30 06
 
                     let tempMap2 = nodeRelationshipMap;
                     if (tempMap2[clickedNodeKey] === undefined) {
