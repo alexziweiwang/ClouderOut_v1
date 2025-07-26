@@ -15,24 +15,17 @@ import NavigationPreview from './NavigationPreview';
 
 import {
   updateProjectNavigationSettingsVM, 
-  fetchProjectNavigationSettingsVM,
+
 } from '../viewmodels/ProjectManagerViewModel';
 import { 
-//  fetchChapterNodeMappingVM, 
-  updateChapterNodesToCloudDataVM, 
-  fetchAllChapterListVM, 
 
   updateChapterListToCloudVM, 
-
-
   addNewOneChapterFolderVM 
+
 } from '../viewmodels/ChapterInfoViewModel';
 
 import { addNewNodeFoldersVM } from '../viewmodels/NodeEditingViewModel';
 
-import { fetchEmuData1GdtVM, updateAllSetsVM } from '../viewmodels/EmuManagingViewModel';
-
-import { prepare1Gdt_vm, prepare2Epp_vm, prepare3Epa_vm } from '../viewmodels/PrepAc_EmuData';
 import { prepareForNewChapterMapping_vm, triggerCreatedNewNode_vm } from '../viewmodels/PrepAc_Creations';
 import { updateChapterNodeMappingsToCloud_vm } from '../viewmodels/UpdtAc_UpdateData';
 
@@ -701,7 +694,6 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
   async function prepareForNewChapterMapping(newKey) {
 
-
       await prepareForNewChapterMapping_vm (
           newKey, 
           chapterNodeMapAll, 
@@ -993,50 +985,6 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
     return languageCodeTextOption;
   }
 
-
-  async function getUserConfigFromDataMgr1Gdt(gameDataDesignList) {
-    let emuGdt1Temp = testPlayerGameDataTracker; //TODO999
-  
-    Object.keys(gameDataDesignList).map((currKey) => {
-        if (currKey === "placeholder123456789___###___###___##") {
-          return;
-        }
-
-        if (emuGdt1Temp[currKey] !== undefined) {
-
-            if (emuGdt1Temp[currKey]["current_value"] === undefined) {
-                emuGdt1Temp[currKey]["current_value"] = 
-                gameDataDesignList[currKey]["default_value"] !== undefined ? 
-                gameDataDesignList[currKey]["default_value"] 
-                    : 0;
-            }
-           
-        } else { //emuGdt1Temp[currKey] is undefined
-            emuGdt1Temp[currKey] = gameDataDesignList[currKey];
-            emuGdt1Temp[currKey]["current_value"] = gameDataDesignList[currKey]["default_value"];
-            
-        }
-
-
-    });
-
-    setTestPlayerGameDataTracker(emuGdt1Temp);
-
-    let resObj = {};
-    resObj["gdt1"] = emuGdt1Temp;
-    resObj["epp2"] = testPlayerProfile;
-    resObj["epa3"] = testPlayerAccount;
-    resObj["ess4"] = {"placeholder": "placerholder"};
-    resObj["shp5"] = {"placeholder": "placerholder"};
-
-    await updateAllSetsVM({
-        projectName: projectName, 
-        currUser: authEmailName, 
-        dataObj: resObj,
-        bkOption: backendOption //TODO999
-    });
-
-  }
 
   function updateGameDataDesignList(data) {
     //TODO999 update game-data-design-list
@@ -1533,9 +1481,9 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
       return;
 
     } else {
-      await updateProjectNavigationSettingsToCloud();
-      await updateChapterNodeMappingsToCloud_local(chapterNodeMapAll); 
-      await saveToCloudNewNodeList(createdNewNodeWaitlist); 
+      // await updateProjectNavigationSettingsToCloud();
+      // await updateChapterNodeMappingsToCloud_local(chapterNodeMapAll); 
+      // await saveToCloudNewNodeList(createdNewNodeWaitlist); 
 
     }
 
@@ -1596,50 +1544,6 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
   }
 
-
-  async function startViewerEntireTest() {
-            
-    let modeName = passInOfflineModeName();
-
-    if (isEmuMgrOpenedOnce === false) {
-        
-        await prepare1Gdt_vm(
-          authEmailName, 
-          projectName, 
-          backendOption, 
-          setTestPlayerGameDataTracker, 
-          getUserConfigFromEmuManager1Gdt, 
-          modeName
-        ).then(async()=>{
-          await prepare2Epp_vm(
-            authEmailName, 
-            projectName, 
-            backendOption, 
-            setTestPlayerProfile,
-            getUserConfigFromEmuManager2Epp,
-            modeName
-          )
-        }).then(async()=>{
-          await prepare3Epa_vm(
-            authEmailName, 
-            projectName, 
-            backendOption,  
-            setTestPlayerAccount, 
-            getUserConfigFromEmuManager3Epa, 
-            modeName
-          )
-        })
-        .then(()=>{
-            console.log("\n\n\n\n\n\n\n\n\n\n\n\nopening viewer_entire window...");
-            
-            setDisplayEntireGameViewer(true);
-          }
-        ); 
-
-    }
-
-
-  }
 
   function passInBackendOption() {
     return backendOption;
@@ -1749,7 +1653,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
         let ans = window.confirm("Are you sure to save and cover the project on cloud?");
         if (ans) {
           
-          saveEverythingToCloud();
+       //   saveEverythingToCloud();
           
         }
 
@@ -1783,16 +1687,6 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
           {menuNavigationsTabText}</button>
     
 
-      {/* <button
-          onClick={()=>{
-            //fetchcurrChapterContentFromCloud();
-            //TODO700: fetch the very first chapter's data?
-
-            startViewerEntireTest();
-            
-          }}
-          className="button testEntire"
-        >Test ▶︎ </button>             */}
 
     
     </div>
@@ -1849,7 +1743,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
           getUILanguage={passInUILanguage}
 
           getCreatedNewNodeWaitListPending={passInCreatedNewNodeWaitListPending}
-          triggerSaveToCloud={saveEverythingToCloud}
+
           chapterChangingOrExiting={chapterChangingOrExiting}
           triggerNodeDeleted={triggerNodeDeleted}
 

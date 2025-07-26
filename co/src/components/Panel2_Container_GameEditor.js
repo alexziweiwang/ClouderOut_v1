@@ -56,7 +56,6 @@ import { checkProjectMetaData_vm } from '../viewmodels/PrepAc_ProjectFileInOut';
   import { downloadProjectAllInOne_vm } from '../viewmodels/PrepAc_ProjectFileInOut';
   
 
-
   import { 
     fetchNodeDataEachChapterVM, 
   } from '../viewmodels/NodeDataInPlayViewModel';
@@ -309,7 +308,6 @@ export default function Panel2_Container_GameEditor() {
         setCurrentNode(infoObj["clickedNodeKey"]);
         setCurrentScreenSz(infoObj["screenSizeStr"]);
 
-        //
 
         switch (infoObj["nodeType"]){
         
@@ -318,11 +316,10 @@ export default function Panel2_Container_GameEditor() {
                     break;
                 case "CardGame":
                     setFocusingEditor("CardGame");
-
                     break;
               
                 default:
-                    console.log();
+                    console.log("default in switch-editor");
         }
 
 

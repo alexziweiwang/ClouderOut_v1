@@ -24,7 +24,6 @@ export default function NodeManager({projectName, currUser,
   getUILanguage,
 
   getCreatedNewNodeWaitListPending,
-  triggerSaveToCloud,
 
 
   chapterChangingOrExiting,
@@ -271,14 +270,12 @@ export default function NodeManager({projectName, currUser,
    const [firstTimeEnter, setFirstTimeEnter] = useState(true);
    useEffect(() => {
 
-
-
-      console.log("\t\t\t\tNode Manager rendered once .........\n\n\n"); //TODO testing
-      console.log("init nodemap = ", initialNodeMap); //TODO testing
-      console.log("init grid = ", initialGridBlock); //TODO testing
-      console.log("local ds:"); //TODO testing
-      console.log(nodeRelationshipMap); //TODO testing
-      console.log(gridBlocks); //TODO testing
+                                              console.log("\t\t\t\tNode Manager rendered once .........\n\n\n"); //TODO testing
+                                              console.log("init nodemap = ", initialNodeMap); //TODO testing
+                                              console.log("init grid = ", initialGridBlock); //TODO testing
+                                              console.log("local ds:"); //TODO testing
+                                              console.log(nodeRelationshipMap); //TODO testing
+                                              console.log(gridBlocks); //TODO testing
 
       let UILang = getUILanguage();
       setLanguageCodeTextOption(UILang);
@@ -379,7 +376,6 @@ export default function NodeManager({projectName, currUser,
 
     //TODO outer-layer(game-maker) chapterChangingOrExiting
 
-
     let currNodeType = nodeRelationshipMap[clickedNodeKey].nodeType;
     let userName = currUser;
 
@@ -387,7 +383,7 @@ export default function NodeManager({projectName, currUser,
 
     let uiLang = languageCodeTextOption;
 
-    console.log("node-manager, enter editor2:", clickedNodeKey, projectName, userName, uiLang);
+                                  console.log("node-manager, enter editor2:", clickedNodeKey, projectName, userName, uiLang);
 
 
     let infoObj = {
@@ -404,35 +400,9 @@ export default function NodeManager({projectName, currUser,
 
     if (currNodeType === "Card Game") {
       infoObj["nodeType"] = "CardGame";
-                                    // navigate('/cardgamenode', { replace: true, 
-                                    //   state: 
-                                    //   { 
-                                    //     clickedNodeKey, 
-                                    //     projectName, 
-                                    //     userName, 
-                                    //     screenSizeStr, 
-                                    //     uiLang, 
-                                    //     chapterKey,
-                                    //     editorMode
-                                    //   } 
-                                    //   });
+                              
     } else if (currNodeType === "Conversation") {
       infoObj["nodeType"] = "Conversation";
-
-      
-                                    // navigate('/conversationnode', { replace: true, 
-                                    //   state: 
-                                    //   { 
-                                    //     clickedNodeKey, 
-                                    //     projectName, 
-                                    //     userName, 
-                                    //     screenSizeStr, 
-                                    //     uiLang, 
-                                    //     chapterKey,
-                                    //     editorMode
-                                    //   } 
-                                    //   });
-
 
     } 
 
@@ -496,14 +466,19 @@ export default function NodeManager({projectName, currUser,
         
 
         // update node being
-        await triggerCreatedNewNode(createNewNodeName, chapterKey, createNewNodeGameType);
+        //await triggerCreatedNewNode(createNewNodeName, chapterKey, createNewNodeGameType);
+        //TODO: add actual node-default-content?
 
 
         /* update all node-mappings */
         setGridBlocks(tempGrid);
         setNodeRelationshipMap(tempNodeMap);
         updateNodeLinkingsOnce(tempNodeMap, tempGrid);
-        triggerNodeMappingsChange(tempNodeMap, tempGrid);
+        
+        triggerNodeMappingsChange(tempNodeMap, tempGrid); // notify outer-layer
+
+
+        
 
 
 
@@ -613,7 +588,7 @@ export default function NodeManager({projectName, currUser,
     Object.keys(tempNodeMap).map((nodeKey) => {             
       if (tempNodeMap[nodeKey].nodeType === "LogicSplitter") {
         //traverse spltLogicPairs
-        let arr = tempNodeMap[nodeKey].spltLogicPairs;      //TODO32 test    deleteNode2()
+        let arr = tempNodeMap[nodeKey].spltLogicPairs;      //TODO32 test    deleteNode-2()
         let i = 0;
         let len = arr.length;
         let updatedArr = [];
@@ -626,7 +601,7 @@ export default function NodeManager({projectName, currUser,
             updatedArr.push(item);
           }
         }
-        tempNodeMap[nodeKey].spltLogicPairs = updatedArr; //deleteNode2() 
+        tempNodeMap[nodeKey].spltLogicPairs = updatedArr; //deleteNode-2() 
        
       } else {
         let nextNodeName = tempNodeMap[nodeKey].nextNode;
@@ -639,18 +614,21 @@ export default function NodeManager({projectName, currUser,
 
     /* update all node-mappings */
     setNodeRelationshipMap(tempNodeMap);
-    
     setGridBlocks(tempGridBlocks);
-
     updateNodeLinkingsOnce(tempNodeMap, tempGridBlocks);
     
+    // notify outer layer
     triggerNodeMappingsChange(tempNodeMap, tempGridBlocks);
 
     //update both data structures to outer layer
     updateNodeMapOfChapter(tempNodeMap);
     updateGridBlockOfChapter(tempGridBlocks);
 
+
     triggerNodeDeleted();
+
+    setClickedNodeKey("");
+    setClickedNode2(-1);
   }
 
   function updateRenderCounter() {
@@ -1001,11 +979,6 @@ export default function NodeManager({projectName, currUser,
     setStyleArrHook(styleArray);
   }
 
-  function saveNodeInfoToCloud() {
-    // TODO saves nodeRelationshipMap to cloud db...
-    //TODO35
-
-  }
 
 //TODO page content 
     return (      
@@ -1583,8 +1556,7 @@ chapter-key = {chapterKey}
                                 let response = window.confirm(askStr);
                                 if (response) {
                                   deleteNode2();
-                                  setClickedNodeKey("");
-                                  setClickedNode2(-1);
+                   
                                 }
                               }}>{deleteText}</button>
                           </div>
@@ -2223,15 +2195,6 @@ chapter-key = {chapterKey}
 
 
         </div>
-    
-    
-        <button 
-          className="setting_item"
-          onClick={() => {
-            saveNodeInfoToCloud();
-          }}>
-            {saveToMyProjectText}
-        </button>
     
         </div>
         }

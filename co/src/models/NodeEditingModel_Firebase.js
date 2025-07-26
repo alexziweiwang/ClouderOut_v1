@@ -57,21 +57,44 @@ export async function addNewNodeFolders({project, username, nodeList, chapterKey
       return;
     }
 
-                        //TODO group func       group-func
-    nodeList.map(async (item, i) => {
-        let currNodeKey = item["nodeKey"];
+    //TODO99999
+    //new strategy: chapterKey_nodeKey
 
-        if (item["chapKey"] === chapterKey) {
-          console.log();
+    const batch = db.batch();
 
-          await setDoc(
-            doc(ref, "nodes", currNodeKey), 
-            item["detailObj"]
-          );
-          //TODO600 test!!
+    let docList = []; // each item is one document to add
+    
+    //TODO according to node-list, make the doc-list
+    nodeList.map((item, i) => {
+      let obj = {};
+      //TODO
 
-        }
+
     });
+
+
+    docList.forEach(data => {
+      const newDocRef = ref.doc();
+      batch.set(newDocRef, data);
+    });
+
+
+                                                            //                     //TODO group func       group-func
+                                                            // nodeList.map(async (item, i) => {
+                                                            //     let currNodeKey = item["nodeKey"];
+
+                                                            //     if (item["chapKey"] === chapterKey) {
+                                                            //       console.log();
+
+                                                            //       await setDoc(
+                                                            //         doc(ref, "nodes", currNodeKey), 
+                                                            //         item["detailObj"]
+                                                            //       );
+                                                            //       //TODO600 test!!
+
+                                                            //     }
+                                                            // });
+
 
     /*
     each elem in nodeKeyList: 
