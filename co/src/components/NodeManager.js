@@ -283,6 +283,9 @@ export default function NodeManager({projectName, currUser,
 
    const [styleArrHook, setStyleArrHook] = useState([]);
 
+
+   const [askUpdateNextNodeFlag, setAskUpdateNextNodeFlag] = useState(false);
+
   
    const [nodeMgrDisplay, setNodeMgrDisplay] = useState(true);
 
@@ -1592,55 +1595,81 @@ chapter-key = {chapterKey}
               && nodeRelationshipMap[clickedNodeKey].nodeType !== "LogicSplitter" 
               && nodeRelationshipMap[clickedNodeKey].nodeType !== "*chapterEnd*" 
               && <div>
+
+
                 <p className="sectionHeader"> 
                 {nextNodeText} </p>
-                {(nodeRelationshipMap[clickedNodeKey].nextNode !== "" 
-                  && nodeRelationshipMap[clickedNodeKey].nextNode !== "-") && <>
-                    {nextNodeTitleText}: <label>{nodeRelationshipMap[nodeRelationshipMap[clickedNodeKey].nextNode]["nodeName"]}</label><br></br>
-                  </>}
-              
-                <label>{updateText}: </label>
-                <select onChange={(event)=>{
-                    setSelectedNextNode(event.target.value);
-                }}
-                  value={selectedNextNode}
-                >
-                  <option key="defaultNextNodeEmpty" value="">-- {selectTheNextNodeText} --</option>
-                  {Object.keys(nodeRelationshipMap).map((currKey) => {
+                    {/* next node : */}
+
+                    {nextNodeTitleText}: <br></br>
+               
+                    <div>
+                    {(nodeRelationshipMap[clickedNodeKey].nextNode !== "" 
+                      && nodeRelationshipMap[clickedNodeKey].nextNode !== "-") && <>
+                        
+                        
+                      <label>{nodeRelationshipMap[nodeRelationshipMap[clickedNodeKey].nextNode]["nodeName"]}</label><br></br>
+                      </>}
+                    </div>
                     
-                            let item = nodeRelationshipMap[currKey];
-                            if (item === undefined) {
-                              return;
-                            }
-                            let nodeType = item["nodeType"];
-                            let boolVal = true;
-                            if (nodeType === "*chapterStart*") {
-                              boolVal = false;
-                            }
-                            
-                            let opKey = "opnextnode-" + currKey;
-                            if (nodeType !== "*chapterStart*") {
-                                return (
-                                  <option key={opKey} value={currKey}>{item["nodeName"]}</option>
-                                );
-                            }
-                        })}
-                </select>
-                <button onClick={()=>{ //TODO30 06
-                    if (selectedNextNode !== "") {
-                      let tempMap = nodeRelationshipMap;
-                      tempMap[clickedNodeKey].nextNode = selectedNextNode;
+                
+                    <div style={{"marginLeft": "135px"}}> {/* options: update next-node or detach */}
+                  
+                  
+                  
+                  {/* option1: update the next-node */}
+                <button onClick={()=>{setAskUpdateNextNodeFlag(!askUpdateNextNodeFlag);}}>
+                  {askUpdateNextNodeFlag === false 
+                  ? updateText 
+                  : cancelText}
+                  </button>
+                {askUpdateNextNodeFlag === true
+                &&
+                <div className="indentOne">
+                      <select onChange={(event)=>{
+                          setSelectedNextNode(event.target.value);
+                      }}
+                        value={selectedNextNode}
+                      >
+                        <option key="defaultNextNodeEmpty" value="">-- {selectTheNextNodeText} --</option>
+                        {Object.keys(nodeRelationshipMap).map((currKey) => {
+                          
+                                  let item = nodeRelationshipMap[currKey];
+                                  if (item === undefined) {
+                                    return;
+                                  }
+                                  let nodeType = item["nodeType"];
+                                  let boolVal = true;
+                                  if (nodeType === "*chapterStart*") {
+                                    boolVal = false;
+                                  }
+                                  
+                                  let opKey = "opnextnode-" + currKey;
+                                  if (nodeType !== "*chapterStart*") {
+                                      return (
+                                        <option key={opKey} value={currKey}>{item["nodeName"]}</option>
+                                      );
+                                  }
+                              })}
+                      </select>
+                      <button onClick={()=>{ //TODO30 06
+                          if (selectedNextNode !== "") {
+                            let tempMap = nodeRelationshipMap;
+                            tempMap[clickedNodeKey].nextNode = selectedNextNode;
 
-                      setNodeRelationshipMap(tempMap);
-                      updateNodeLinkingsOnce(tempMap, gridBlocks);
-                      triggerNodeMappingsChange(tempMap, gridBlocks);
+                            setNodeRelationshipMap(tempMap);
+                            updateNodeLinkingsOnce(tempMap, gridBlocks);
+                            triggerNodeMappingsChange(tempMap, gridBlocks);
 
-                      setSelectedNextNode("");
-                      updateRenderCounter();
-                    }
-                }}>{confirmText}</button>
+                            setSelectedNextNode("");
+                            updateRenderCounter();
+                          }
+                      }}>{confirmText}</button>
+                </div>}
+                
                 <br></br>
                 
+                  {/* option2: detach the linking */}
                 {(nodeRelationshipMap[clickedNodeKey]["nodeType"] !== "*chapterStart*" 
                   && 
                   ((nodeRelationshipMap[clickedNodeKey]["nodeType"] !== "LogicSplitter" && nodeRelationshipMap[clickedNodeKey]["nextNode"] !== "")
@@ -1653,6 +1682,9 @@ chapter-key = {chapterKey}
                 &&  
                 <button
                   onClick={()=>{ //TODO30 06
+                    setAskUpdateNextNodeFlag(false);
+
+
 
                     let tempMap2 = nodeRelationshipMap;
                     if (tempMap2[clickedNodeKey] === undefined) {
@@ -1679,7 +1711,8 @@ chapter-key = {chapterKey}
                 >{detachLinkingText}</button>}
              
 
-
+                </div>
+               
               </div>}
 
 

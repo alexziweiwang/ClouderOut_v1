@@ -1400,6 +1400,10 @@ button:hover {
     margin-left: 15px;
 }
 
+.indentTwo {
+    margin-left: 70px;
+}
+
 .optionArea2 {
     background-color: rgb(238, 238, 238);
     padding: 5px;
