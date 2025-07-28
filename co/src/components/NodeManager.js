@@ -419,94 +419,86 @@ export default function NodeManager({projectName, currUser,
 
   async function addNewNodeFunc() { //TODO for new data structure
     //TODO30 01
-
-    let tempNodeMap = nodeRelationshipMap;
     if (createNewNodeGameType === "") {
-      console.log("Game type is required.") //TODO test
+      console.log("Game type is required.");                           //TODO test
       return;
     }
 
     if (createNewNodeName.length > 0) {
+      console.log("warning: invalid empty node name");                //TODO test
+      return;
+    }
 
-      if (tempNodeMap[createNewNodeName] !== undefined || tempNodeMap[createNewNodeName] !== "") {
-        console.log("2create-node submitted:" + createNewNodeName + ", " + createNewNodeGameType); // TODO temp
+    if (nodeRelationshipMap[createNewNodeName] !== undefined || nodeRelationshipMap[createNewNodeName] !== "") {
+      console.log("2Invalid node name: duplicate");                   //TODO test
+      return;
+    }
 
-        //clickedNode2: ir * 10000 + ic;
-        let clickedCol = clickedNode2 % 10000;
-        let clickedRow = (clickedNode2 - clickedCol) / 10000;
+
+    let tempNodeMap = nodeRelationshipMap;
+
+
+                                    console.log("2create-node submitted:" + createNewNodeName + ", " + createNewNodeGameType); // TODO temp
+
+
+    //clickedNode2: ir * 10000 + ic;
+    let clickedCol = clickedNode2 % 10000;
+    let clickedRow = (clickedNode2 - clickedCol) / 10000;
         
-        let newDataItem = {};
-
-        if (createNewNodeGameType === "LogicSplitter") {
+    let newDataItem = {};
+    if (createNewNodeGameType === "LogicSplitter") {
           newDataItem = { 
             nodeName: `${createNewNodeName}`, 
-            nodeType:`${createNewNodeGameType}`,
+            nodeType:"LogicSplitter",
             screenSize: createdNewNodeScreenSize,
             row: clickedRow,
             col: clickedCol,
+            display: true,     
+
             spltLogicPairs: [{"internalStmt":"else", "nextNode": "", "displayStmt": "else"},],  //TODO32 test
-            display: true,     
           }; //TODO temp
-        } else {
+
+    } else {
           newDataItem = { 
             nodeName: `${createNewNodeName}`, 
             nodeType:`${createNewNodeGameType}`,
             screenSize: createdNewNodeScreenSize,
             row: clickedRow,
             col: clickedCol,
-            nextNode: "",
-            display: true,     
+            display: true,
+            
+            nextNode: "",  
           }; //TODO temp
-        }
-
-
-
-        tempNodeMap[createNewNodeName] = newDataItem;
+    }
+    tempNodeMap[createNewNodeName] = newDataItem;
         
-        
-
-        let tempGrid = gridBlocks;
-        gridBlocks[clickedRow][clickedCol] = createNewNodeName;
+      
+    let tempGrid = gridBlocks;
+    gridBlocks[clickedRow][clickedCol] = createNewNodeName;
         
 
-        // update node being
-        //await triggerCreatedNewNode(createNewNodeName, chapterKey, createNewNodeGameType);
-        //TODO: add actual node-default-content?
-
-
-        /* update all node-mappings */
+    /* local changes */
+        /* update all node-mappings and grid-blocks - local */
         setGridBlocks(tempGrid);
-        setNodeRelationshipMap(tempNodeMap);
-        updateNodeLinkingsOnce(tempNodeMap, tempGrid);
-        
-        triggerNodeMappingsChange(tempNodeMap, tempGrid); // notify outer-layer
-
-
-        
-
-
-
-        // reset the creation layout
+        setNodeRelationshipMap(tempNodeMap);        
+        /* reset the creation panel */
         setCreateNewNodeName("");
         setCreateNewNodeGameType("");
         setCreatedNewNodeScreenSize("4:3(horizonal)");
         setClickedNode2(-1); //create new node --> unclick any node on vis-map
-
-
-      } else {
-        console.log("2Invalid node name: duplicate"); //TODO test
-
-      }
-
-      setClickedNodeKey("");
-      setAddNewNodeAreaDisplay(false);
- 
-    } else {
-      console.log("warning: invalid empty node name"); //TODO test
-
-    }
-
+        setAddNewNodeAreaDisplay(false);
+        /* reset display of node-grid-panel: no node selected */
+        setClickedNodeKey("");
+  
+    
+    /* outer-layer changes */
+        /* outer-layer: notify update node-mapping (this chapter) */
+        triggerNodeMappingsChange(tempNodeMap, tempGrid); // notify outer-layer
+        /* creation of node-content and data-structure-preparation */
+        triggerCreatedNewNode(createNewNodeName, chapterKey, createNewNodeGameType);
+  
   }
+
 
 
   // [ ] 1.create a node

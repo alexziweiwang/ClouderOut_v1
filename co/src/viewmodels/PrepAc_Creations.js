@@ -49,7 +49,7 @@ export async function prepareForNewChapterMapping_vm (newKey, chapterNodeMapAll,
 }
 
 
-export async function triggerCreatedNewNode_vm (
+export function triggerCreatedNewNode_vm (
     newNodeKey, chapterKeyTemp, nodeTypeTemp, setCreateNodeFolderSignal,
     createdNewNodeWaitlist,
     setCreatedNewNodeWaitlist,
@@ -99,13 +99,21 @@ export async function triggerCreatedNewNode_vm (
 
     }
 
-    infoObj["detailObj"] = nodeObj;
+
+    return nodeObj;
+
+    
+                // infoObj["detailObj"] = nodeObj;
 
 
-    newNodeList.push(infoObj);
-    setCreatedNewNodeWaitlist(newNodeList); // append this node into node-adding-list ...
-    setCreatedNewNodeWaitListPending(true);
 
+                // //TODO9999 newly created node -- hanldling
+                // newNodeList.push(infoObj);
+                // setCreatedNewNodeWaitlist(newNodeList); // append this node into node-adding-list ...
+                // setCreatedNewNodeWaitListPending(true);
+
+
+                // return newNodeList;
   }
 
 

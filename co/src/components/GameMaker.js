@@ -65,6 +65,7 @@ export default function GameMaker({
 
 
   const [projectMetaData, setProjectMetaData] = useState(undefined);
+  const [projectAllNodeContent, setProjectAllNodeContent] = useState(-1); //TODO99999
 
    //    "offline_half"       "offline_full"        "online_cloud"  
                       //          console.log("game maker, mode = ", editorMode, "\n ... project meta-data = ", projectMetaData);
@@ -1076,11 +1077,11 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
   }
 
 
-  async function triggerCreatedNewNode(newNodeKey, chapterKeyTemp, nodeTypeTemp) {
+  function triggerCreatedNewNode(newNodeKey, chapterKeyTemp, nodeTypeTemp) {
     //TODO1000 should check whether the node-key is already there!
 
 
-    await triggerCreatedNewNode_vm (
+    let nodeContentTemp = triggerCreatedNewNode_vm (
       newNodeKey, 
       chapterKeyTemp, 
       nodeTypeTemp, 
@@ -1089,6 +1090,14 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
       setCreatedNewNodeWaitlist,
       setCreatedNewNodeWaitListPending
     );
+
+
+    // now nodeContentTemp is ready for this node's folder
+
+
+    //TODO99999 node-editor should allow enter, no matter ready on cloud or not
+    
+
 
   }
 
@@ -1263,8 +1272,6 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
     setNodeMapUpdatedSignal(true);
     setGridBlocksUpdatedSignal(true);
-
-    return nodeMapAll;
 
   }
 

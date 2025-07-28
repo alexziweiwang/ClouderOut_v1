@@ -216,7 +216,7 @@ export default function Panel2_Container_GameEditor() {
             navigate('/mainpanel', { replace: true });
     
         } 
-        
+
         window.onbeforeunload = () => {
             
             return "show message";
@@ -782,9 +782,6 @@ console.log("ui-langauge changed to: ", val);
       //  alert("TODO resource-manager should update");
     }
     
-
-    // const [projectMetaData, setProjectMetaData] = useState(-1); //TODO99
-    // const [projectAllNodeContent, setProjectAllNodeContent] = useState(-1); //TODO99
 
     function handleResourceManagerCancel() {
         setDisplayRmModal(false);
