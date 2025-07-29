@@ -43,7 +43,9 @@ export default function ConversationNodeEditingPanel({
         editorUiLang, 
         chapterKey,
         editorMode,
-        goToGameMakerFunc
+        goToGameMakerFunc,
+
+        getProjectResourceVarPairs
 }
 ) {
 
@@ -362,37 +364,12 @@ GameDataDesign <map>
 
     async function fetchProjResourceLists() {
 
-        if (userName === "default-no-state username" || projectName === "default-no-state projectName") {
-            return;
-        }
-                                            console.log("fetchProjResourceLists-func...");
-
 
         /* fetch from cloud db */
         //TODO500     
-        let obj = {};
-        
-        if (editorMode === "online_cloud") {
+        let obj = getProjectResourceVarPairs();
 
-                    obj = await fetchProjectResourceVarPairsVM({
-                        userName: authEmailName,              
-                        projectName: projectName,
-                        bkOption: backendOption //TODO999
-                    });
-
-                    if (obj === undefined) {
-                        console.log("unnable to fetch resource-var-pairs !! ");
-            
-                        return;
-                    }
-        } else { //offline-modes: from imported project file or new project
-            //TODO1001
-            
-    
-    
-        }
-
-        console.log("fetch-proj-resource-lists: ", obj);
+                                            console.log("conv-node-editor:   fetch-proj-resource-lists: ", obj);
 
         setAudioList(obj.audio);
         setVisualList(obj.visual);
@@ -835,13 +812,14 @@ GameDataDesign <map>
 
     async function initializeNodeBothPartsFromCloud() {
 
-        let pieceObjTemp = await convNodeBothPartsFromCloudVM({
-            project: projectName, 
-            username: authEmailName,       
-            chapterKey: chapterKey, 
-            nodeKey: clickedNodeKey,
-            bkOption: backendOption
-        });
+        let pieceObjTemp = []; 
+        //await convNodeBothPartsFromCloudVM({
+        //     project: projectName, 
+        //     username: authEmailName,       
+        //     chapterKey: chapterKey, 
+        //     nodeKey: clickedNodeKey,
+        //     bkOption: backendOption
+        // });
 
 
         if (pieceObjTemp === undefined || pieceObjTemp === null || pieceObjTemp.length === 0) {
@@ -1120,13 +1098,7 @@ GameDataDesign <map>
 
 
                 <div className="" style={{"height": "45px"}}>
-                    <button
-                        onClick={()=>{
-                            loadFromCloud();
-                        }}
-                    >Load From Cloud
-                    {/* TODO12 button-text: use from dictionary */}
-                    </button>
+            
                     <button
                         onClick={()=>{saveAllToCloud();}}
                     >{saveToCloudText}</button>

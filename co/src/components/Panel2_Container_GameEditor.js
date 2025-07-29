@@ -617,6 +617,24 @@ export default function Panel2_Container_GameEditor() {
         return projectAllNodeContent;
     }
 
+    function passInProjecCurrNodeObject(nodeKeyTemp) {
+        if (projectAllNodeContent === undefined || projectAllNodeContent[nodeKeyTemp] === undefined) {
+            goToGameMakerResetNodeFocus();
+            alert("Unable to go to editor for node [", nodeKeyTemp, "] !");
+            return;
+        }
+
+        let nodeObject = projectAllNodeContent[nodeKeyTemp];
+
+        return nodeObject;
+    }
+
+    function receiveUpdateForCurrNodeObject(nodeKeyTemp, nodeObjectUpdated) {
+        let allNodeTemp = projectAllNodeContent;
+        allNodeTemp[nodeKeyTemp] = nodeObjectUpdated;
+        setProjectAllNodeContent(allNodeTemp);
+    }
+
     function passInAuthEmailName() {
         return authEmailName;
     }
@@ -980,6 +998,9 @@ return (
     {focusingEditor === "Conversation"
     &&
         <ConversationNodeEditingPanel
+            
+            getUiLanguageOption={passInUiLanguageOption}
+            getProjectResourceVarPairs={passInProjectResourceVarPairs}
 
             clickedNodeKey={currentNode}
             projectName={state.selected_project_name}
@@ -989,7 +1010,7 @@ return (
             editorMode={state.mode}
             
             editorUiLang={languageCodeTextOption} //TODO change
-            getUiLanguageOption={passInUiLanguageOption} //TODO to add
+            
 
         />
 

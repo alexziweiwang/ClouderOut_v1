@@ -226,30 +226,6 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
       if (obj === undefined || obj.visual === undefined || obj.audio === undefined) {
         return;
       }
-      
-      // if (editorMode === "online_cloud") {
-
-      //       obj = await fetchProjectResourceVarPairsVM({
-      //         userName: authEmailName, 
-      //         projectName: projectName,
-      //         bkOption: backendOption //TODO999
-      //       });
-
-
-      //       if (obj === undefined) {
-      //         setCloudDbConnOk(false);
-      //         console.log("unnable to fetch resource-var-pairs !! ");
-
-      //         return;
-      //       }
-
- 
-      // } else { //offline-modes: from imported project file or new project
-      //   //TODO1001
-
-
-      // }
-      
  
       resetVisualMapFromList(obj.visual);
       resetAudioMapFromList(obj.audio);
@@ -1325,7 +1301,8 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
 
         //fetch content: use chapterKeyName, then update the following:
-        chapterContentTemp = await getCurrChpNodeDataFromCloud(chapterKeyName);  
+                //TODO99999 should be from panel2
+        chapterContentTemp = await getCurrChpNodeDataFromCloud(chapterKeyName);   
   
         let tempAllChpMap = allChaptersContents;
         tempAllChpMap[chapterKeyName] = chapterContentTemp
