@@ -59,13 +59,14 @@ export default function GameMaker({
       getTestShopProducts,
       getTestPlayerPurchaseStatus,
 
+      triggerCreatedNewNode_panel2,
+
     
     }) {
   const navigate = useNavigate();
 
 
   const [projectMetaData, setProjectMetaData] = useState(undefined);
-  const [projectAllNodeContent, setProjectAllNodeContent] = useState(-1); //TODO99999
 
    //    "offline_half"       "offline_full"        "online_cloud"  
                       //          console.log("game maker, mode = ", editorMode, "\n ... project meta-data = ", projectMetaData);
@@ -426,7 +427,10 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
         
         //load from outer-layer (panel2), regardless of mode
-        if ((authEmailName !== "_" && editorMode === "online_cloud") || authEmailName === "localUser###") {
+        if (
+          (authEmailName !== "_" && editorMode === "online_cloud") 
+          || authEmailName === "localUser###"
+        ) {
             //valid username, or local-mode
 
 
@@ -1077,23 +1081,14 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
   }
 
 
-  function triggerCreatedNewNode(newNodeKey, chapterKeyTemp, nodeTypeTemp) {
+  function triggerCreatedNewNode_gmLayer(newNodeKey, chapterKeyTemp, nodeTypeTemp) {
     //TODO1000 should check whether the node-key is already there!
 
 
-    let nodeContentTemp = triggerCreatedNewNode_vm (
-      newNodeKey, 
-      chapterKeyTemp, 
-      nodeTypeTemp, 
-      setCreateNodeFolderSignal,
-      createdNewNodeWaitlist,
-      setCreatedNewNodeWaitlist,
-      setCreatedNewNodeWaitListPending
-    );
+    let nodeObjTemp = triggerCreatedNewNode_vm (nodeTypeTemp);
 
 
-    // now nodeContentTemp is ready for this node's folder
-
+    triggerCreatedNewNode_panel2(newNodeKey, chapterKeyTemp, nodeObjTemp);
 
     //TODO99999 node-editor should allow enter, no matter ready on cloud or not
     
@@ -1569,8 +1564,8 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
     return {}; //TODO1000
   }
 
-  function switchEditorLocal(infoObj) {
-    switchEditor(infoObj);
+  function switchEditorLocal(visitInfoObj) {
+    switchEditor(visitInfoObj);
   }
 
   function updateAllInObj() { //TODO99999
@@ -1742,7 +1737,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
           loadChapterInfoFromCaller={passInSelectedChapterInfo_Cloud}
           getGdmUpdatedSignal={passInGdmUpdatedSignal}
           resetGdmUpdateSignal={resetGdmUpdateSignal}
-          triggerCreatedNewNode={triggerCreatedNewNode}
+          triggerCreatedNewNode={triggerCreatedNewNode_gmLayer}
           triggerNodeMappingsChange={triggerNodeMappingsChange}
 
           getChapMgrCollapsed={passInChapMgrCollapsed}

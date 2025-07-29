@@ -389,7 +389,7 @@ export default function NodeManager({projectName, currUser,
                                   console.log("node-manager, enter editor2:", clickedNodeKey, projectName, userName, uiLang);
 
 
-    let infoObj = {
+    let visitInfoObj = {
       "nodeType": "",
       "nodeKey": clickedNodeKey, 
       "projectName": projectName, 
@@ -397,19 +397,12 @@ export default function NodeManager({projectName, currUser,
       "screenSizeStr": screenSizeStr, 
       "uiLang": uiLang, 
       "chapterKey": chapterKey,
-      "editorMode": editorMode
+      "editorMode": editorMode,
+      "nodeType": currNodeType
     }
 
 
-    if (currNodeType === "Card Game") {
-      infoObj["nodeType"] = "CardGame";
-                              
-    } else if (currNodeType === "Conversation") {
-      infoObj["nodeType"] = "Conversation";
-
-    } 
-
-    switchEditor(infoObj);
+    switchEditor(visitInfoObj);
 
     //TODO29
         //TODO later add conditions for board game and tower defense

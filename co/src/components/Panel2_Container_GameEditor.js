@@ -285,39 +285,56 @@ export default function Panel2_Container_GameEditor() {
 
     });
 
-    function switchEditor(infoObj) {
+    function switchEditor(visitInfoObj) {
+
+        // object format: 
+        // {      
+        //     "nodeType": "",
+        //     "nodeKey": clickedNodeKey, 
+        //     "projectName": projectName, 
+        //     "username": userName, 
+        //     "screenSizeStr": screenSizeStr, 
+        //     "uiLang": uiLang, 
+        //     "chapterKey": chapterKey,
+        //     "editorMode": editorMode,
+        //     "nodeType": currNodeType
+        // }
         //TODO99999
-        if (infoObj === undefined) {
+        if (visitInfoObj === undefined) {
             return;
         }
 
         //TODO compare project name
-            // infoObj["projectName"] 
+            // visitInfoObj["projectName"] 
 
         //TODO compare username
-            // infoObj["username"]
+            // visitInfoObj["username"]
 
         //TODO check editorMode - mode name
-            // infoObj["editorMode"]
+            // visitInfoObj["editorMode"]
 
 
         //TODO details for this node
-            // infoObj["screenSizeStr"] 
-            // infoObj["uiLang"] 
-            // infoObj["chapterKey"]
-            // infoObj["clickedNodeKey"]   
+            // visitInfoObj["screenSizeStr"] 
+            // visitInfoObj["uiLang"] 
+            // visitInfoObj["chapterKey"]
+            // visitInfoObj["clickedNodeKey"]  
+            
+        //TODO check if this node exists in the ds !!!
+
+
   
-        setCurrentChapter(infoObj["chapterKey"]);
-        setCurrentNode(infoObj["clickedNodeKey"]);
-        setCurrentScreenSz(infoObj["screenSizeStr"]);
+        setCurrentChapter(visitInfoObj["chapterKey"]);
+        setCurrentNode(visitInfoObj["clickedNodeKey"]);
+        setCurrentScreenSz(visitInfoObj["screenSizeStr"]);
 
 
-        switch (infoObj["nodeType"]){
+        switch (visitInfoObj["nodeType"]){
         
                 case "Conversation":
                     setFocusingEditor("Conversation");
                     break;
-                case "CardGame":
+                case "Card Game":
                     setFocusingEditor("CardGame");
                     break;
               
@@ -797,6 +814,15 @@ console.log("ui-langauge changed to: ", val);
     //     setGameDataDesignList(data);
     // }
 
+    function triggerCreatedNewNode_panel2(nodeKey, nodeChapter, nodeObject) {
+        // add this node's content into the project-all-node-content ds
+
+
+
+
+
+    }
+
 
 return (
 <div>
@@ -926,6 +952,7 @@ return (
         projectName={state.selected_project_name}
         editorMode={state.mode}
         getProjectMetaData={passInProjectMetaData}
+
         switchEditor={switchEditor}
         getAuthEmailName={passInAuthEmailName}
         updateToOuter={fetchUpdatedMetaDataFromSubCompo}
@@ -940,6 +967,8 @@ return (
         getTestPlayerSLRecords={passInTestPlayerSLRecords}
         getTestShopProducts={passInTestShopProducts}
         getTestPlayerPurchaseStatus={passInTestPlayerPurchaseStatus}
+
+        triggerCreatedNewNode_panel2={triggerCreatedNewNode_panel2}
 
 
     />}

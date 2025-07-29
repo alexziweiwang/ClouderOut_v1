@@ -49,23 +49,8 @@ export async function prepareForNewChapterMapping_vm (newKey, chapterNodeMapAll,
 }
 
 
-export function triggerCreatedNewNode_vm (
-    newNodeKey, chapterKeyTemp, nodeTypeTemp, setCreateNodeFolderSignal,
-    createdNewNodeWaitlist,
-    setCreatedNewNodeWaitlist,
-    setCreatedNewNodeWaitListPending
-) {
+export function triggerCreatedNewNode_vm (nodeTypeTemp) {
     
-    setCreateNodeFolderSignal(true);
-
-    let newNodeList = createdNewNodeWaitlist;
-    let infoObj = {
-      "nodeKey": newNodeKey,
-      "chapKey": chapterKeyTemp,
-      "nodeType": nodeTypeTemp,
-    }
-
-
     let nodeObj = {};
 
     if (nodeTypeTemp === "Conversation") {
@@ -78,7 +63,7 @@ export function triggerCreatedNewNode_vm (
 
       convNodeArr.push(contentItem);
 
-      console.log("new conv-node created!!", contentItem, "\n" ,convNodeArr);
+                                              console.log("new conv-node created!!", contentItem, "\n" ,convNodeArr);
       
       nodeObj["nodeContent"] = convNodeArr;
 
@@ -99,21 +84,7 @@ export function triggerCreatedNewNode_vm (
 
     }
 
-
     return nodeObj;
-
-    
-                // infoObj["detailObj"] = nodeObj;
-
-
-
-                // //TODO9999 newly created node -- hanldling
-                // newNodeList.push(infoObj);
-                // setCreatedNewNodeWaitlist(newNodeList); // append this node into node-adding-list ...
-                // setCreatedNewNodeWaitListPending(true);
-
-
-                // return newNodeList;
   }
 
 
