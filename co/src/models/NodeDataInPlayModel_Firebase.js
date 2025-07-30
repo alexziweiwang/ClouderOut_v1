@@ -9,7 +9,7 @@ export async function fetchNodeDataEachNode({projectName, uname, chapterKey, nod
     let obj = {};
 
     const projectNodeRef = doc(db, "user_projects", uname, "projects", projectName, "chapters", chapterKey, "nodes", nodeKey);
-    //TODO199: change sturcture: "chapters"-level should be the last collection-level: 
+          //TODO199: change sturcture: chapters-level should be the last collection-level: 
     //the docs should be each node (named as <chapterKey_nodeKey)
     
     const projectNodeSnap = await getDoc(projectNodeRef);
@@ -36,6 +36,8 @@ export async function fetchNodeDataEachChapter({projectName, uname, chapterKey})
 
     let dataMap = {};
 
+
+          //TODO199: change sturcture: chapters-level should be the last collection-level: 
     const q = query(collection(db, "user_projects", uname, "projects", projectName, "chapters", chapterKey, "nodes"));
     const querySnapshot = await getDocs(q);
     // for current chapter, its collection of nodes -- then details inside the nodes (docs in the sublevel)

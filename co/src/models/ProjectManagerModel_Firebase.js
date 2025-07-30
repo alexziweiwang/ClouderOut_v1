@@ -101,7 +101,12 @@ export async function createProject({currUser, projectName, projectObj}) {
     projectObj)
   }).catch((e) => {
     console.log(e)
-  })
+  });
+
+      //TODO199: change sturcture: chapters-level should be the last collection-level: 
+
+
+
 }
 
 //firebase

@@ -411,18 +411,19 @@ export default function NodeManager({projectName, currUser,
 
 
   async function addNewNodeFunc() { //TODO for new data structure
+
     //TODO30 01
     if (createNewNodeGameType === "") {
       console.log("Game type is required.");                           //TODO test
       return;
     }
 
-    if (createNewNodeName.length > 0) {
+    if (createNewNodeName.length === 0) {
       console.log("warning: invalid empty node name");                //TODO test
       return;
     }
 
-    if (nodeRelationshipMap[createNewNodeName] !== undefined || nodeRelationshipMap[createNewNodeName] !== "") {
+    if (nodeRelationshipMap[createNewNodeName] !== undefined) {
       console.log("2Invalid node name: duplicate");                   //TODO test
       return;
     }
@@ -1387,7 +1388,7 @@ chapter-key = {chapterKey}
               <input 
                 className="setting_item"
                 type="text" value={createNewNodeName} 
-                onChange={e => {setCreateNewNodeName(e.target.value)}}  
+                onChange={(e) => {setCreateNewNodeName(e.target.value)}}  
               />
               <br></br>
               <label>{nodeGameType}: </label>
@@ -2149,21 +2150,21 @@ chapter-key = {chapterKey}
               style={{"height": "30px",  "width": "100px"}}
               onClick={()=>{
           
-                    chapterChangingOrExiting().then((ans) => {
+                    // chapterChangingOrExiting().then((ans) => {
 
 
-                                      console.log("node-manager, enter-ans", ans);
+                    //                   console.log("node-manager, enter-ans", ans);
 
 
-                        if (ans === "wait-and-enter") {
-                          updateRenderCounter();
-                        }
-                        if (ans === "wait-and-enter" || ans === "immediate-enter") {
-                          enterNodeEditor2();
-                        }
-                      }
-                    );    
-                    
+                    //     if (ans === "wait-and-enter") {
+                    //       updateRenderCounter();
+                    //     }
+                    //     if (ans === "wait-and-enter" || ans === "immediate-enter") {
+                    //       enterNodeEditor2();
+                    //     }
+                    //   }
+                    // );    
+                    enterNodeEditor2(); //TODO to test
               }}>
 
 

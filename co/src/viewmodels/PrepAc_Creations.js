@@ -108,7 +108,7 @@ export function triggerCreatedNewNode_vm (nodeTypeTemp) {
       game-data map: empty {}
       author-info field: addedAuthorInfo
       field: type = "project"
-      chapter directory: collection "chapters"
+      chapter directory: collection "chapters" see todo-199
       game node directory: default in chapter-management (at least one default node in ecah chapter)
                 genre field (later) */
       

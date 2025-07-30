@@ -235,7 +235,7 @@ export default function ChapterManager({
     // add current chapter-key into created-key-list
     triggerCreatedNewChapter(line);
 
-    updateChapterListToCloud(tempChapterData);
+                                            //updateChapterListToCloud(tempChapterData);
 
     updateBothLocalAndOuterChapterData(tempChapterData);
     makeDeletedList(tempChapterData);

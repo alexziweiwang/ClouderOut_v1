@@ -286,8 +286,18 @@ export default function Panel2_Container_GameEditor() {
     });
 
     function switchEditor(visitInfoObj) {
+        let keyStr = visitInfoObj["chapterKey"] + "_" + visitInfoObj["nodeKey"];
 
-        if (projectAllNodeContent === undefined) {
+        if (projectAllNodeContent === undefined || projectAllNodeContent[keyStr] === undefined
+                || projectAllNodeContent[keyStr] === null  
+                || projectAllNodeContent[keyStr].nodeContent === undefined
+                || projectAllNodeContent[keyStr].nodeUISettings === undefined            
+       
+    
+            //TODO20
+            ) {
+      
+
             console.log("projectAllNodeContent not ready: undefined");
             return;
         }
@@ -450,7 +460,10 @@ export default function Panel2_Container_GameEditor() {
 
 
         let chapterContentTemp = {};
-        //TODO99999
+        //TODO99999 fetch from cloud --- path: user-projects-<project key>-folder
+
+
+
         setProjectAllNodeContent(chapterContentTemp);
         
     }
@@ -866,6 +879,16 @@ console.log("ui-langauge changed to: ", val);
     }
 
     function passInCurrNodeEntire(chapterKeyTemp, nodeKeyTemp) {
+        let keyStr = chapterKeyTemp + "_" + nodeKeyTemp;
+        if (projectAllNodeContent === undefined || projectAllNodeContent[keyStr] === undefined
+            || projectAllNodeContent[keyStr] === null  
+            || projectAllNodeContent[keyStr].nodeContent === undefined
+            || projectAllNodeContent[keyStr].nodeUISettings === undefined            
+            ) {
+            return -1;
+        } else {
+            return projectAllNodeContent[keyStr];
+        }
 
     }
 

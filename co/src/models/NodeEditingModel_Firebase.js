@@ -3,7 +3,8 @@ import { doc, getDoc, getDocs, addDoc, setDoc, collection, query, where, updateD
 
 //update node-content + node-ui-settings
 export async function convSingleNodeUpdateToCloud({project, username, chapterKey, nodeKey, dataObj, uiDataObj, nodeType}) {
-    
+
+              //TODO199: change sturcture: chapters-level should be the last collection-level: 
     const projectNodeRef = doc(db, "user_projects", username, "projects", project, "chapters", chapterKey, "nodes", nodeKey);
     const projectNodeSnap = await getDoc(projectNodeRef);
   
@@ -31,6 +32,8 @@ export async function convSingleNodeUpdateToCloud({project, username, chapterKey
 //get both node-content and node-ui-settings
 export async function convNodeBothPartsFromCloud({project, username, chapterKey, nodeKey}) {
   const projectNodeRef = doc(db, "user_projects", username, "projects", project, "chapters", chapterKey, "nodes", nodeKey);
+          //TODO199: change sturcture: chapters-level should be the last collection-level: 
+  
   const projectNodeSnap = await getDoc(projectNodeRef);
 
   if (!projectNodeSnap.exists()) {
@@ -51,6 +54,9 @@ export async function convNodeBothPartsFromCloud({project, username, chapterKey,
 export async function addNewNodeFolders({project, username, nodeList, chapterKey}) {
 
     const ref = doc(db, "user_projects", username, "projects", project, "chapters", chapterKey);
+          //TODO199: change sturcture: chapters-level should be the last collection-level: 
+    
+    
     const snap = await getDoc(ref);
 
     if (!snap.exists()) {

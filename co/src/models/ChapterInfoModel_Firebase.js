@@ -90,7 +90,8 @@ export async function addNewChapterFolders({project, username, chapterKeyList}) 
     chapterKeyList.map(async (item, i) => {
   
       await setDoc(doc(ref, "chapters", item), {});
-      
+          //TODO199: change sturcture: chapters-level should be the last collection-level: 
+
     });
 
 
@@ -104,13 +105,19 @@ export async function addNewOneChapterFolder({project, username, chapterKey}) {
       return;
     }
 
+
+          //TODO199: change sturcture: chapters-level should be the last collection-level: 
     await setDoc(doc(ref, "chapters", chapterKey), {})
     .then(
         await setDoc(
             doc(ref, "chapters", chapterKey, "nodes", "placeholder123456789___###___###___##"), 
+
+
+
             {}
         )
     ); //works ok
+          //TODO199: change sturcture: chapters-level should be the last collection-level: 
 
 }
 

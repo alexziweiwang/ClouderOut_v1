@@ -38,19 +38,19 @@ console.log("updating to cloud ... func-step2-all-node-mapping-nodemap", nodeMap
 
         });
 
-        await updateChapterNodesToCloudDataVM({
-            projectName: projectName, 
-            currUser: authEmailName,
-            chapterNodeMappingObj: nodeMap,
-            bkOption: backendOption
-        });      
-        setNodeMapUpdatedSignal(false);
-        setGridBlocksUpdatedSignal(false);
+        // await updateChapterNodesToCloudDataVM({
+        //     projectName: projectName, 
+        //     currUser: authEmailName,
+        //     chapterNodeMappingObj: nodeMap,
+        //     bkOption: backendOption
+        // });      
+        // setNodeMapUpdatedSignal(false);
+        // setGridBlocksUpdatedSignal(false);
 
    // }
     
     
-    alert("All contents are updated.");
+  //  alert("All contents are updated.");
 
   }
 

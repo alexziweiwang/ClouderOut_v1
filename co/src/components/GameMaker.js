@@ -770,6 +770,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
     if (createNodeFolderSignal === true) {
           //by signal, add a new document at /"nodes"
+          //TODO199: change sturcture: chapters-level should be the last collection-level: 
 
                           console.log("updating to cloud: func-step1-node-folders node-waitlist = ", createdNewNodeWaitlist);
 //TODO600
@@ -796,7 +797,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
  
                                             console.log("clicked on chapter-key: ", chapterKey); //TODO testing
 
-        await chapterChangingOrExiting();
+        //await chapterChangingOrExiting();
 
 
         if (chapterKey !== "") {
