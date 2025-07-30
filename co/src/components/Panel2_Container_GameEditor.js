@@ -508,6 +508,8 @@ export default function Panel2_Container_GameEditor() {
   
     }
 
+
+
     async function startViewerEntireTest() {
             
         let modeName = state.mode;
@@ -789,6 +791,17 @@ console.log("ui-langauge changed to: ", val);
         
     }
 
+    function passInGameDataDesignList() {
+        if (projectMetaData === undefined || projectMetaData["game_data"] === undefined) {
+            return -1;
+
+        } else {
+            return projectMetaData["game_data"];
+
+        }
+
+    }
+
     function passInTestPlayerGameDataTracker() {
         return testPlayerGameDataTracker;
     }
@@ -838,6 +851,10 @@ console.log("ui-langauge changed to: ", val);
 
 
 
+
+    }
+
+    function passInCurrNodeEntire(chapterKeyTemp, nodeKeyTemp) {
 
     }
 
@@ -1001,6 +1018,8 @@ return (
             
             getUiLanguageOption={passInUiLanguageOption}
             getProjectResourceVarPairs={passInProjectResourceVarPairs}
+            getGameDataDesignList={passInGameDataDesignList}
+            gerCurrNodeEntire={passInCurrNodeEntire}
 
             clickedNodeKey={currentNode}
             projectName={state.selected_project_name}
@@ -1010,7 +1029,7 @@ return (
             editorMode={state.mode}
             
             editorUiLang={languageCodeTextOption} //TODO change
-            
+            backToGameMaker={goToGameMakerResetNodeFocus}
 
         />
 

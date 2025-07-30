@@ -13,11 +13,6 @@ import PreviewWindow_convNodeUiSetup from './PreviewWindow_convNodeUiSetup';
 import AllPanels_QuickView_ConvNode from './AllPanels_QuickView_ConvNode';
 
 
-import Modal_ResourceManagingWindow from './Modal_ResourceManagingWindow';
-import Modal_EmuManager from './Modal_EmuManager';
-import Modal_GameDataManager from './Modal_GameDataManager';
-
-
 import langDictionary from './_textDictionary';
 import uiLangMap from './uiLangMap';
 import { emptyConvNodeSinglePieceTemplate, gameUIDefaultButtonTemplate, gameUITextFrameTemplate, gameUIBackButtonTemplate, uiConvNavTemplate, logPageUISettingsTemplate } from './_dataStructure_DefaultObjects';
@@ -45,7 +40,11 @@ export default function ConversationNodeEditingPanel({
         editorMode,
         goToGameMakerFunc,
 
-        getProjectResourceVarPairs
+        getProjectResourceVarPairs,
+        getGameDataDesignList,
+
+        gerCurrNodeEntire,
+        backToGameMaker
 }
 ) {
 
@@ -296,14 +295,16 @@ GameDataDesign <map>
             if (authEmailName !== "_") {
                 initializeUILang();
 
-                loadFromCloud();
+                loadFromOuterLayer();
 
+                                        //TODO99999
 
-                const item = {};
-                Object.keys(emptyConvNodeSinglePieceTemplate).map((currKey) => {
-                    item[currKey] = emptyConvNodeSinglePieceTemplate[currKey];
-                });
-                setEditingPmPreviewPiece(item);
+                                        
+                                        // const item = {};
+                                        // Object.keys(emptyConvNodeSinglePieceTemplate).map((currKey) => {
+                                        //     item[currKey] = emptyConvNodeSinglePieceTemplate[currKey];
+                                        // });
+                                        // setEditingPmPreviewPiece(item);
 
 
 
@@ -351,14 +352,11 @@ GameDataDesign <map>
     }
 
     async function fetchGameDataDesignList() { 
-        let gddList = await getProjectGameDataDesignVM({
-            projectName: projectName, 
-            uname: authEmailName,
-            bkOption: backendOption  
-        });
+        let gddList = getGameDataDesignList();
+        if (gddList !== -1) {
+            setGameDataDesignList(gddList);
+        }
 
-
-        setGameDataDesignList(gddList);
     }
 
 
@@ -366,7 +364,6 @@ GameDataDesign <map>
 
 
         /* fetch from cloud db */
-        //TODO500     
         let obj = getProjectResourceVarPairs();
 
                                             console.log("conv-node-editor:   fetch-proj-resource-lists: ", obj);
@@ -812,23 +809,22 @@ GameDataDesign <map>
 
     async function initializeNodeBothPartsFromCloud() {
 
-        let pieceObjTemp = []; 
-        //await convNodeBothPartsFromCloudVM({
-        //     project: projectName, 
-        //     username: authEmailName,       
-        //     chapterKey: chapterKey, 
-        //     nodeKey: clickedNodeKey,
-        //     bkOption: backendOption
-        // });
+        let pieceObjTemp = gerCurrNodeEntire(chapterKey, clickedNodeKey); 
 
+                                    console.log("!!! conv-editor: initialize piece data... ", pieceObjTemp);
 
-        if (pieceObjTemp === undefined || pieceObjTemp === null || pieceObjTemp.length === 0) {
+        if (pieceObjTemp === undefined || pieceObjTemp === null || pieceObjTemp.length === 0
+            || pieceObjTemp.nodeContent === undefined
+            || pieceObjTemp.nodeUISettings === undefined
+            ) {
             setPiecedataStructure([]);
-            console.log("......................");
+
+            alert("Unable to enter for this node: [", clickedNodeKey, "]. ");
+            backToGameMaker();
+            
             return;
         }
 
-                                console.log("!!! conv-editor: initialize piece data... ", pieceObjTemp);
 
         let nodeContentTemp = pieceObjTemp.nodeContent;
         setPiecedataStructure(nodeContentTemp);
@@ -875,7 +871,7 @@ GameDataDesign <map>
 
     }
 
-    function loadFromCloud() { //resource & pieces
+    function loadFromOuterLayer() { //resource & pieces
         fetchProjResourceLists();
         initializeNodeBothPartsFromCloud();
         
@@ -1314,98 +1310,6 @@ GameDataDesign <map>
  
             </div>
 }
-
-{/* 3 modals */}
-<>
-{/* resource-manager modal */}
-            <div
-                style={{
-                    "display": isDisplayRmBool === true ? "flex" : "none"
-                }}
-            >
-                {/* <Modal_ResourceManagingWindow 
-                    isDisplay = {isDisplayRmBool} 
-                    handleRmCancel={handleResourceManagerCancel} 
-                    handleRmSaveChanges={handleResourceManagerSaveChanges} 
-                    refresh={triggerRefresh}
-                    triggerRmUpdate={notifyRmUpdated}
-
-                    getUILanguage={passInUILanguage}    
-
-                    projName={projectName}  
-                    getUsername={passInUsername}
-
-                    getBackendOption={passInBackendOption}
-                    editorMode={editorMode}
-
-                    getLocalProjectDataRsrcMgr={passInLocalProjectData_RsrcMgr}
-
-                /> */}
-                                                                    
-            </div>
-
-
-
-
-
-{/* emu-manager modal */}
-            <div
-                style={{
-                "display": isDisplayEmBool === false ? "none" : "flex",
-                }}
-            >
-                {/* <Modal_EmuManager
-                    handleEmCancel={handleEmuManagerCancel}
-
-                    update1Gdt={getUserConfigFromEmuManager1Gdt}
-                    update2Epp={notUsing}
-                    update3Epa={notUsing}
-                    update4Ess={notUsing}
-                    update5Shp={notUsing}
-                    
-                    getUILanguage={passInUILanguage}
-                    isForGameMaker={false}
-
-                    getUsername={passInUsername}
-                    projName={projectName}  
-
-                    getBackendOption={passInBackendOption}
-                    editorMode={editorMode}
-
-                    getLocalProjectDataEmu={passInLocalProjectData_Emu}
-
-                /> */}
-            </div>
-    
-{/* game-data-manager modal */}
-            <div
-                style={{
-                    "display": displayGameDataWindow === true ? "flex" : "none"
-                }}
-            >
-                {/* <Modal_GameDataManager 
-                    isDisplay={displayGameDataWindow}
-                    handleGdmCancel={handleModal_GameDataManagerCancel} 
-                    resetNeedCloudData={markNextNeedCloudGameData} 
-
-                    getUILanguage={passInUILanguage}
-
-                    getUsername={passInUsername}
-                    projName={projectName}  
-                    
-                    getBackendOption={passInBackendOption}
-                    editorMode={editorMode}
-
-                    updateForEmuGdt1={getUserConfigFromDataMgr1Gdt}
-                    updateGameDataDesignListToOuterLayer={updateGameDataDesignList}
-                
-                    getLocalProjectData_GameDataDesign={passInLocalProjectData_GameDataDesign}
-                
-                />    */}
-            </div>
-            
-</>
-
 
 
 
