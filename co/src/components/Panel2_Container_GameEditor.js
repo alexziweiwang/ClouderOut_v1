@@ -285,7 +285,13 @@ export default function Panel2_Container_GameEditor() {
     });
 
     function switchEditor(visitInfoObj) {
-        let keyStr = visitInfoObj["chapterKey"] + "_" + visitInfoObj["nodeKey"];
+        let keyStr = generateNodeLongKeyString_vm({
+            chapterKey: visitInfoObj["chapterKey"], 
+            nodeKey: visitInfoObj["nodeKey"]
+        });
+        //TODO30
+        
+        
 
         if (projectAllNodeContent === undefined || projectAllNodeContent[keyStr] === undefined
                 || projectAllNodeContent[keyStr] === null  
@@ -914,7 +920,13 @@ console.log("ui-langauge changed to: ", val);
     }
 
     function passInCurrNodeEntire(chapterKeyTemp, nodeKeyTemp) {
-        let keyStr = chapterKeyTemp + "_" + nodeKeyTemp;
+        let keyStr =  generateNodeLongKeyString_vm({
+            chapterKey: chapterKeyTemp, 
+            nodeKey:nodeKeyTemp
+        });
+        //TODO30
+
+
         if (projectAllNodeContent === undefined || projectAllNodeContent[keyStr] === undefined
             || projectAllNodeContent[keyStr] === null  
             || projectAllNodeContent[keyStr].nodeContent === undefined

@@ -1,9 +1,11 @@
 import  {db} from '../GoogleCloudConnections'; //TODO23 database
 import { doc, getDoc, getDocs, addDoc, setDoc, collection, query, where, updateDoc } from "firebase/firestore"; 
+import { generateNodeLongKeyString_vm } from '../viewmodels/PrepAc_ProjectOperation';
 
 //update node-content + node-ui-settings
 export async function convSingleNodeUpdateToCloud({project, username, chapterKey, nodeKey, dataObj, uiDataObj, nodeType}) {
-    let keyStr = chapterKey + "_" + nodeKey;
+    let keyStr = generateNodeLongKeyString_vm({chapterKey: chapterKey, nodeKey: nodeKey});
+
 
               //TODO199: change sturcture: chapters-level should be the last collection-level: 
     const projectNodeRef = doc(db, "user_projects", username, "projects", project, "allNodes", keyStr);
@@ -66,7 +68,11 @@ export async function addNewNodeFolders({project, username, nodeList, chapterKey
     }
                                                                                 //TODO group func       group-func
     nodeList.map(async (item, i) => {
-      let keyStr = item["chapKey"] + "_" + item["nodeKey"];
+      let keyStr =  generateNodeLongKeyString_vm({
+        chapterKey: item["chapKey"], 
+        nodeKey: item["nodeKey"]
+      });
+
 
       if (item["chapKey"] === chapterKey) {
           console.log();

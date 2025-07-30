@@ -7,6 +7,7 @@ import GameScreen_InPracShell_ConvNode from './GameScreen_InPracShell_ConvNode';
 
 //TODO1090 cloud-db related
 import { fetchNodeDataEachNodeVM, fetchNodeDataEachChapterVM } from '../viewmodels/NodeDataInPlayViewModel';
+import { generateNodeLongKeyString_vm } from '../viewmodels/PrepAc_ProjectOperation';
 
 //TODO6000 offline mode prep
 
@@ -197,7 +198,7 @@ export default function GameScreen_AllNodeTypeContainer({
      //   Object.keys(nodeMappingTemp).map(async (chapterKey) => {
  
             let docCollection = {};
-            //TODO99999 use all-node-content data object!!!
+            //TODO99999 use all-node-content data object from panel2 !!!
             // await fetchNodeDataEachChapterVM({
             //     projectName: projectname, 
             //     uname: username, 
@@ -209,7 +210,12 @@ export default function GameScreen_AllNodeTypeContainer({
 
 
             Object.keys(docCollection).map((nodeKey) => {
-               let keyStr = chapterKeyTemp + "--" + nodeKey;
+               let keyStr = generateNodeLongKeyString_vm({
+                    chapterKey: chapterKeyTemp, 
+                    nodeKey: nodeKey
+                });
+
+
                containerTemp[keyStr] = docCollection[nodeKey];
 
             });
@@ -232,7 +238,11 @@ export default function GameScreen_AllNodeTypeContainer({
 //allNodeDataContainer, setAllNodeDataContainer
 //getCurrChapterDataContainer!!!
 
-        let keyStr = chapterKeyTemp + "--" + nodeKeyTemp;
+        let keyStr = generateNodeLongKeyString_vm({
+            chapterKey: chapterKeyTemp, 
+            nodeKey:nodeKeyTemp
+        });
+        
 
         if (allNodeDataContainer[keyStr] !== undefined && allNodeDataContainer[keyStr] !== null) {
                                                                 console.log(" \t\t... already in map, node-data = ", allNodeDataContainer[keyStr], "\n\t\t for key - ", keyStr);
@@ -245,20 +255,21 @@ export default function GameScreen_AllNodeTypeContainer({
 
         } else {
             //cloud func
-            let dataObj = await fetchNodeDataEachNodeVM({
-                projectName: projectname, 
-                uname: username, 
-                chapterKey: chapterKeyTemp, 
-                nodeKey: nodeKeyTemp,
-                bkOption: backendOption
-            });
-            let tempMap = allNodeDataContainer;
-            tempMap[keyStr] = dataObj;
-            setAllNodeDataContainer(tempMap);
-            
-            setFocusedNodeData(dataObj)
-  
-            return dataObj;
+
+                                                                // let dataObj = await fetchNodeDataEachNodeVM({
+                                                                //     projectName: projectname, 
+                                                                //     uname: username, 
+                                                                //     chapterKey: chapterKeyTemp, 
+                                                                //     nodeKey: nodeKeyTemp,
+                                                                //     bkOption: backendOption
+                                                                // });
+                                                                // let tempMap = allNodeDataContainer;
+                                                                // tempMap[keyStr] = dataObj;
+                                                                // setAllNodeDataContainer(tempMap);
+                                                                
+                                                                // setFocusedNodeData(dataObj)
+                                                    
+                                                                // return dataObj;
 
         }
 
