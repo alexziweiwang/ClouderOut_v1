@@ -265,11 +265,7 @@ GameDataDesign <map>
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
-          console.log("testPlayerGameData = " , testPlayerGameData);
-
-
-     
-
+        console.log("testPlayerGameData = " , testPlayerGameData);
 
 
         if (editorMode === "online_cloud") {

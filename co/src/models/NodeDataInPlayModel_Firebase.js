@@ -9,6 +9,9 @@ export async function fetchNodeDataEachNode({projectName, uname, chapterKey, nod
     let obj = {};
 
     const projectNodeRef = doc(db, "user_projects", uname, "projects", projectName, "chapters", chapterKey, "nodes", nodeKey);
+    //TODO199: change sturcture: "chapters"-level should be the last collection-level: 
+    //the docs should be each node (named as <chapterKey_nodeKey)
+    
     const projectNodeSnap = await getDoc(projectNodeRef);
   
     if (!projectNodeSnap.exists()) {

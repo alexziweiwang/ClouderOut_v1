@@ -287,6 +287,11 @@ export default function Panel2_Container_GameEditor() {
 
     function switchEditor(visitInfoObj) {
 
+        if (projectAllNodeContent === undefined) {
+            console.log("projectAllNodeContent not ready: undefined");
+            return;
+        }
+
         // object format: 
         // {      
         //     "nodeType": "",
@@ -328,6 +333,8 @@ export default function Panel2_Container_GameEditor() {
         setCurrentNode(visitInfoObj["clickedNodeKey"]);
         setCurrentScreenSz(visitInfoObj["screenSizeStr"]);
 
+        console.log("node-data-obj = ", projectAllNodeContent);
+        
 
         switch (visitInfoObj["nodeType"]){
         
@@ -341,7 +348,6 @@ export default function Panel2_Container_GameEditor() {
                 default:
                     console.log("default in switch-editor");
         }
-
 
     }
 
@@ -379,7 +385,6 @@ export default function Panel2_Container_GameEditor() {
             bkOption: backendOption
         })
 
-        let chapterContentTemp = {};
 
                                 console.log("panel2-everything from cloud: metadata = ", metadataTemp); 
         
@@ -442,6 +447,10 @@ export default function Panel2_Container_GameEditor() {
         setChapterNodeMapAll(metadataTemp["chapterNodeMapping"]);
 
         setProjectMetaData(metadataTemp);
+
+
+        let chapterContentTemp = {};
+        //TODO99999
         setProjectAllNodeContent(chapterContentTemp);
         
     }
@@ -620,7 +629,9 @@ export default function Panel2_Container_GameEditor() {
     }
 
     function passInProjecCurrNodeObject(nodeKeyTemp) {
-        if (projectAllNodeContent === undefined || projectAllNodeContent[nodeKeyTemp] === undefined) {
+        console.log("...passIn:ProjecCurrNodeObject", nodeKeyTemp, "...", projectAllNodeContent, "\n", projectAllNodeContent[nodeKeyTemp]);
+
+        if (nodeKeyTemp === undefined || projectAllNodeContent === undefined || projectAllNodeContent[nodeKeyTemp] === undefined) {
             goToGameMakerResetNodeFocus();
             alert("Unable to go to editor for node [", nodeKeyTemp, "] !");
             return;
