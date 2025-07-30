@@ -3,12 +3,13 @@ import { doc, getDoc, getDocs, addDoc, setDoc, collection, query, where, updateD
 
 //update node-content + node-ui-settings
 export async function convSingleNodeUpdateToCloud({project, username, chapterKey, nodeKey, dataObj, uiDataObj, nodeType}) {
+    let keyStr = chapterKey + "_" + nodeKey;
 
               //TODO199: change sturcture: chapters-level should be the last collection-level: 
-    const projectNodeRef = doc(db, "user_projects", username, "projects", project, "chapters", chapterKey, "nodes", nodeKey);
+    const projectNodeRef = doc(db, "user_projects", username, "projects", project, "allNodes", keyStr);
     const projectNodeSnap = await getDoc(projectNodeRef);
   
-                                  console.log("model-func-convSingleNodeUpdateToCloud-  ", dataObj, " for node - ", nodeKey);
+                                  console.log("model-func-convSingleNodeUpdateToCloud-  ", dataObj, " for node - ", keyStr);
 
 
     if (!projectNodeSnap.exists()) {
@@ -18,7 +19,8 @@ export async function convSingleNodeUpdateToCloud({project, username, chapterKey
     await updateDoc(projectNodeRef, {
       "nodeContent": dataObj,
       "nodeUISettings": uiDataObj,
-      "nodeType": nodeType
+      "nodeType": nodeType,
+      "chapterKey": chapterKey
     });
 
     return "node-update-ok";
@@ -31,7 +33,7 @@ export async function convSingleNodeUpdateToCloud({project, username, chapterKey
 
 //get both node-content and node-ui-settings
 export async function convNodeBothPartsFromCloud({project, username, chapterKey, nodeKey}) {
-  const projectNodeRef = doc(db, "user_projects", username, "projects", project, "chapters", chapterKey, "nodes", nodeKey);
+  const projectNodeRef = doc(db, "user_projects", username, "projects", project, "allNodes");
           //TODO199: change sturcture: chapters-level should be the last collection-level: 
   
   const projectNodeSnap = await getDoc(projectNodeRef);
@@ -53,7 +55,7 @@ export async function convNodeBothPartsFromCloud({project, username, chapterKey,
 //for locally-added nodes, add these to cloud?  //TODOtest later
 export async function addNewNodeFolders({project, username, nodeList, chapterKey}) {
 
-    const ref = doc(db, "user_projects", username, "projects", project, "chapters", chapterKey);
+    const ref = doc(db, "user_projects", username, "projects", project, "allNodes");
           //TODO199: change sturcture: chapters-level should be the last collection-level: 
     
     
@@ -62,44 +64,21 @@ export async function addNewNodeFolders({project, username, nodeList, chapterKey
     if (!snap.exists()) {
       return;
     }
+                                                                                //TODO group func       group-func
+    nodeList.map(async (item, i) => {
+      let keyStr = item["chapKey"] + "_" + item["nodeKey"];
 
-    //TODO99999
-    //new strategy: chapterKey_nodeKey
+      if (item["chapKey"] === chapterKey) {
+          console.log();
 
-    const batch = db.batch();
+          await setDoc(
+              doc(ref, "allNodes", keyStr), 
+              item["detailObj"]
+          );
+        //TODO600 test!!
 
-    let docList = []; // each item is one document to add
-    
-    //TODO according to node-list, make the doc-list
-    nodeList.map((item, i) => {
-      let obj = {};
-      //TODO
-
-
+      }
     });
-
-
-    docList.forEach(data => {
-      const newDocRef = ref.doc();
-      batch.set(newDocRef, data);
-    });
-
-
-                                                            //                     //TODO group func       group-func
-                                                            // nodeList.map(async (item, i) => {
-                                                            //     let currNodeKey = item["nodeKey"];
-
-                                                            //     if (item["chapKey"] === chapterKey) {
-                                                            //       console.log();
-
-                                                            //       await setDoc(
-                                                            //         doc(ref, "nodes", currNodeKey), 
-                                                            //         item["detailObj"]
-                                                            //       );
-                                                            //       //TODO600 test!!
-
-                                                            //     }
-                                                            // });
 
 
     /*

@@ -1077,13 +1077,13 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
   async function triggerCreatedNewChapter(chapterInfo) {
 
-    await addNewOneChapterFolderVM({
-      project: projectName,
-      username: authEmailName,
-      chapterKey: chapterInfo[0],
-      bkOption: backendOption //TODO999
-    });
-
+                        // await addNewOneChapterFolderVM({
+                        //   project: projectName,
+                        //   username: authEmailName,
+                        //   chapterKey: chapterInfo[0],
+                        //   bkOption: backendOption //TODO999
+                        // });
+            //TODO adjustign for optimization
   }
 
   function convertNodeMapToGridBlocks(nodeMapTemp) {
