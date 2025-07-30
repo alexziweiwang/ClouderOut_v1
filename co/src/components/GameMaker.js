@@ -1255,74 +1255,27 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
     setCurrTestingNodeType(nodeTypeName);
   }
 
-  async function getCurrChpNodeDataFromCloud(givenChapterKey) {
-    console.log("fetching for chapter [",givenChapterKey,"]"); 
-//TODO900
-      let chapterContentTemp = await fetchNodeDataEachChapterVM(
-        {
-          projectName: projectName, 
-          uname: authEmailName, 
-          chapterKey: givenChapterKey,
-          bkOption: backendOption //TODO999
-        }
-      );
+ // async function getCurrChpNodeDataFromCloud(givenChapterKey) {
+//     console.log("fetching for chapter [",givenChapterKey,"]"); 
+// //TODO900
+//       let chapterContentTemp = await fetchNodeDataEachChapterVM(
+//         {
+//           projectName: projectName, 
+//           uname: authEmailName, 
+//           chapterKey: givenChapterKey,
+//           bkOption: backendOption //TODO999
+//         }
+//       );
 
-      if (chapterContentTemp !== undefined) {
+//       if (chapterContentTemp !== undefined) {
 
-        return chapterContentTemp;
-      } else {
+//         return chapterContentTemp;
+//       } else {
 
-        return {};
-      }
+//         return {};
+//       }
 
-  }
-
-  async function triggerChapterWalk(chapterKeyName, chapterTitleName) { //important for viewing //from sub-compo
-    // as a container outside of viewer-entire, here it uses cloud functions and ds-container for all-chapters' data
-
-
-
-    // --- update displayed info ---
-    setCurrTestingNodeKey("chapterStart");
-    setCurrTestingNodeType("*chapterStart*");
-    setCurrTestingChapterKey(chapterKeyName);
-    setCurrTestingChapterTitle(chapterTitleName);
-
-
-
-
-    // --- data-fetching as outer-layer container of viewer-entire ---
-
-    let chapterContentTemp = {};
-
-    if (allChaptersContents[chapterKeyName] === undefined
-      || allChaptersContents[chapterKeyName] === null
-      ) {
-
-                                      console.log("\t\t\t triggerChapterWalk - fetched from cloud ");
-
-
-        //fetch content: use chapterKeyName, then update the following:
-                //TODO99999 should be from panel2
-        chapterContentTemp = await getCurrChpNodeDataFromCloud(chapterKeyName);   
-  
-        let tempAllChpMap = allChaptersContents;
-        tempAllChpMap[chapterKeyName] = chapterContentTemp
-        setAllChaptersContents(tempAllChpMap);
-
-                                      console.log("game-maker, \nupdated all-chapter-contents = ", tempAllChpMap);
-
-                                      //allChaptersContents, setAllChaptersContents
-    } else {
-                                      console.log("\t\t\t fetched from local ds ");
-
-      chapterContentTemp = allChaptersContents[chapterKeyName];
-    }
-
-    setCurrChapterContent(chapterContentTemp);
-
-    return chapterContentTemp;
-  }
+  //}
 
 
   function notifyRmUpdated(data) {

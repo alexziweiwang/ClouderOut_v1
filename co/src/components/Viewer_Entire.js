@@ -33,6 +33,8 @@ import { initializeGameDataTracker_vm } from '../viewmodels/PrepAc_ViewerEntireA
 
 export default function Viewer_Entire({
 
+//TODO99999 fetch metadata and all-node-contents from outer!
+
 
     initialNavObj,
     initialChapterList, 

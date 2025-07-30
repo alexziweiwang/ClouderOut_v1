@@ -184,7 +184,7 @@ export default function GameScreen_AllNodeTypeContainer({
     }
 
     //TODO21 refactor to VM
-    async function initializeAllNodeDataContainer(chapterKeyTemp) {
+    async function initializeAllNodeDataContainer(chapterKeyTemp) {//TODO99999
         if (chapterKeyTemp.length === 0) {
             return;
         }
@@ -196,12 +196,14 @@ export default function GameScreen_AllNodeTypeContainer({
 
      //   Object.keys(nodeMappingTemp).map(async (chapterKey) => {
  
-            let docCollection = await fetchNodeDataEachChapterVM({
-                projectName: projectname, 
-                uname: username, 
-                chapterKey: chapterKeyTemp,
-                bkOption: backendOption
-            });
+            let docCollection = {};
+            //TODO99999 use all-node-content data object!!!
+            // await fetchNodeDataEachChapterVM({
+            //     projectName: projectname, 
+            //     uname: username, 
+            //     chapterKey: chapterKeyTemp,
+            //     bkOption: backendOption
+            // });
 
                                 console.log("### ", chapterKeyTemp, ": node-data by each chapter: ", docCollection);
 

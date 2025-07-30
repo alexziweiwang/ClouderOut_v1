@@ -57,7 +57,6 @@ import { checkProjectMetaData_vm } from '../viewmodels/PrepAc_ProjectFileInOut';
   
 
   import { 
-    fetchNodeDataEachChapterVM, 
     fetchAllNodes2VM
   } from '../viewmodels/NodeDataInPlayViewModel';
   //TODO112: fetch node-contents here, and send into Viewer_Entire and its sub-component [GameScreen_AllNodeTypeContainer]
@@ -928,6 +927,10 @@ console.log("ui-langauge changed to: ", val);
 
     }
 
+    function passInCurrChapAllNodes(chapterKeyName) {
+
+    }
+
     function downloadAllInOne() {
         let largeObj = {
             "meta_data": projectMetaData,
@@ -938,6 +941,40 @@ console.log("ui-langauge changed to: ", val);
       downloadObjectAsFile(largeObj, filename);
 
     }
+
+
+    function triggerChapterWalk(chapterKeyName, chapterTitleName) { //important for viewing //from sub-compo
+        // as a container outside of viewer-entire, here it uses cloud functions and ds-container for all-chapters' data
+
+
+
+        // --- update displayed info ---
+        // setCurrTestingNodeKey("chapterStart"); //TODO add later
+        // setCurrTestingNodeType("*chapterStart*"); //TODO add later
+        // setCurrTestingChapterKey(chapterKeyName); //TODO add later
+        // setCurrTestingChapterTitle(chapterTitleName); //TODO add later
+
+        let allChaptersContents = {}; //TODO add later!! all nodes
+
+
+        // --- data-fetching as outer-layer container of viewer-entire ---
+
+        let chapterContentTemp = {}; //TODO add later!! all nodes
+
+        if (allChaptersContents[chapterKeyName] === undefined
+        || allChaptersContents[chapterKeyName] === null
+        ) {
+
+            alert("chapter-walk: need to fetch from cloud?");
+
+                                        //allChaptersContents, setAllChaptersContents
+        }
+
+        //setCurrChapterContent(chapterContentTemp); //TODO add later
+
+        return chapterContentTemp;
+  }
+
 
 
 return (
