@@ -22,6 +22,7 @@ import Modal_ResourceManagingWindow from './Modal_ResourceManagingWindow';
 import Modal_GameDataManager from './Modal_GameDataManager';
 import Modal_EmuManager from './Modal_EmuManager';
 
+import { downloadObjectAsFile } from '../viewmodels/PrepAc_ProjectFileInOut';
 
 import { checkProjectMetaData_vm } from '../viewmodels/PrepAc_ProjectFileInOut';
 
@@ -53,7 +54,6 @@ import { checkProjectMetaData_vm } from '../viewmodels/PrepAc_ProjectFileInOut';
   import { prepareForNewChapterMapping_vm, triggerCreatedNewNode_vm } from '../viewmodels/PrepAc_Creations';
   import { updateChapterNodeMappingsToCloud_vm } from '../viewmodels/UpdtAc_UpdateData';
   
-  import { downloadProjectAllInOne_vm } from '../viewmodels/PrepAc_ProjectFileInOut';
   
 
   import { 
@@ -925,6 +925,17 @@ console.log("ui-langauge changed to: ", val);
         } else {
             return projectAllNodeContent[keyStr];
         }
+
+    }
+
+    function downloadAllInOne() {
+        let largeObj = {
+            "meta_data": projectMetaData,
+            "chapter_content": projectAllNodeContent
+        };
+      let filename = "project#" + state.selected_project_name +  "#by#" + authEmailName + "_";
+
+      downloadObjectAsFile(largeObj, filename);
 
     }
 

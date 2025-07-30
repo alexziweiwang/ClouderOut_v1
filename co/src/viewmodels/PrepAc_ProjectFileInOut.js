@@ -297,7 +297,7 @@ import {
 
     }
 
-    function downloadObjectAsFile(obj, filename) {
+    export function downloadObjectAsFile(obj, filename) {
         let fileContentTemp = JSON.stringify(obj);
                          
         let textFileAsBlob = new Blob([fileContentTemp], { type: 'text/plain' });
@@ -318,77 +318,81 @@ import {
 
     }
 
-    export async function downloadProjectAllInOne_vm(
-        meta_obj, 
-        chapterNodeMapAll, 
-        getCurrChpNodeDataFromCloud, 
-        filenamePrefix
-    ) {
+    // export async function downloadProjectAllInOne_vm(
+    //     meta_obj, 
+    //     chapterNodeMapAll, 
+    //     getCurrChpNodeDataFromCloud, 
+    //     filenamePrefix
+    // ) {
 
 
-        await downloadEntireProjectAll_vm(
-            chapterNodeMapAll, 
-            getCurrChpNodeDataFromCloud, 
-            filenamePrefix,
-            meta_obj
-        );
+    //     await downloadEntireProjectAll_vm(
+    //         chapterNodeMapAll, 
+    //         getCurrChpNodeDataFromCloud, 
+    //         filenamePrefix,
+    //         meta_obj
+    //     );
         
-    }
+    // }
    
 
-    export async function downloadEntireProjectAll_vm(
-        chapterNodeMapAll, 
-        getCurrChpNodeDataFromCloud, 
-        filenamePrefix,
-        meta_obj
-    ) {
+    // export async function downloadEntireProjectAll_vm(
+    //     chapterNodeMapAll, 
+    //     getCurrChpNodeDataFromCloud, 
+    //     filenamePrefix,
+    //     meta_obj
+    // ) {
         
-            let promiseArr = [];
+                                    // let promiseArr = [];
 
-            Object.keys(chapterNodeMapAll).map((chapKey) => {
-                let chapterKeyHandled = chapKey.trim();
+                                    // Object.keys(chapterNodeMapAll).map((chapKey) => {
+                                    //     let chapterKeyHandled = chapKey.trim();
 
-                if (chapterKeyHandled !== "chapter0" && chapterKeyHandled != "placeholder") {
+                                    //     if (chapterKeyHandled !== "chapter0" && chapterKeyHandled != "placeholder") {
 
-                    const currPromise = new Promise(async(resolve, reject) => {
-                        let fetchedChapterContent = await getCurrChpNodeDataFromCloud(chapKey);
-                  
-                        let outputObj = {};                 
-                        outputObj[chapKey] = fetchedChapterContent;
+                                    //         const currPromise = new Promise(async(resolve, reject) => {
+                                    //             let fetchedChapterContent = await getCurrChpNodeDataFromCloud(chapKey);
+                                        
+                                    //             let outputObj = {};                 
+                                    //             outputObj[chapKey] = fetchedChapterContent;
 
-                        resolve(outputObj);
+                                    //             resolve(outputObj);
 
-                    });
+                                    //         });
 
-                    promiseArr.push(currPromise);
+                                    //         promiseArr.push(currPromise);
 
-                }                            
+                                    //     }                            
 
-            });
+                                    // });
 
             
 
-            Promise.all(promiseArr).then((values)=>{
+                                    // Promise.all(promiseArr).then((values)=>{
 
-                let contentMap = {};
+                                    //     let contentMap = {};
 
-                values.forEach((innerMap)=>{
-                    Object.keys(innerMap).map((currKey) => {
-                        contentMap[currKey] = innerMap[currKey];
-                    })
-                })
-                
+                                    //     values.forEach((innerMap)=>{
+                                    //         Object.keys(innerMap).map((currKey) => {
+                                    //             contentMap[currKey] = innerMap[currKey];
+                                    //         })
+                                    //     })
+                                        
 
-                let fileNameEntire = filenamePrefix + "_all";
-      
-                let largeObj = {
-                    "meta_data": meta_obj,
-                    "chapter_content": contentMap
-                }
+                                    //     let fileNameEntire = filenamePrefix + "_all";
+                            
+                                    //     let largeObj = {
+                                    //         "meta_data": meta_obj,
+                                    //         "chapter_content": contentMap
+                                    //     }
 
-                                //            console.log("\t\tlarge-obj = ", largeObj);
+                                    //                     //            console.log("\t\tlarge-obj = ", largeObj);
 
-                
-                downloadObjectAsFile(largeObj, fileNameEntire);
-            })
-    }
+                                        
+                                    //     downloadObjectAsFile(largeObj, fileNameEntire);
+                                    // })
+
+//fetchAllNodes2VM({projectName, uname});
+//downloadObjectAsFile(largeObj, fileNameEntire);
+
+    // }

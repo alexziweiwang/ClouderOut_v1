@@ -60,6 +60,7 @@ export default function GameMaker({
       getTestPlayerPurchaseStatus,
 
       triggerCreatedNewNode_panel2,
+      downloadAllInOne,
 
     
     }) {
@@ -1488,41 +1489,41 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
                
 
 
-  async function downloadAllInOne_makerLevel() {
-    if (chapterNodeMapAll === -1 || gridBlocksAll === -1 || Object.keys(currentProjectNav).length === 0) {
-      alert("unable to download");
-      return;
+  // async function downloadAllInOne() { //download file
+  //   if (chapterNodeMapAll === -1 || gridBlocksAll === -1 || Object.keys(currentProjectNav).length === 0) {
+  //     alert("unable to download");
+  //     return;
     
-    } else {
+  //   } else {
 
-      let filenamePrefix = "project#" + projectName +  "#by#" + authEmailName + "_";
-      let outputFileName = filenamePrefix + "__all";
-
-
-      let projectObjPart1Meta_Obj = {
-        "game_data": gameDataDesignList,
-        "proj_resource_visual": visualMap,
-        "proj_resource_audio": audioMap,
-        "ui_language": languageCodeTextOption,
-        "nav_ui_settings": currentProjectNav,
-        "chapterList": chapterList,
-        "chapterNodeMapping": chapterNodeMapAll,
-      };
+  //     let filenamePrefix = "project#" + projectName +  "#by#" + authEmailName + "_";
+  //     let outputFileName = filenamePrefix + "__all";
 
 
+  //                 // let projectObjPart1Meta_Obj = {
+  //                 //   "game_data": gameDataDesignList,
+  //                 //   "proj_resource_visual": visualMap,
+  //                 //   "proj_resource_audio": audioMap,
+  //                 //   "ui_language": languageCodeTextOption,
+  //                 //   "nav_ui_settings": currentProjectNav,
+  //                 //   "chapterList": chapterList,
+  //                 //   "chapterNodeMapping": chapterNodeMapAll,
+  //                 // };
 
-      await downloadProjectAllInOne_vm(
-        projectObjPart1Meta_Obj, 
-        chapterNodeMapAll, 
-        getCurrChpNodeDataFromCloud, 
-        filenamePrefix
-      );
 
 
-    }
+  //                 // await downloadProjectAllInOne_vm(
+  //                 //   projectObjPart1Meta_Obj, 
+  //                 //   chapterNodeMapAll, 
+  //                 //   getCurrChpNodeDataFromCloud, 
+  //                 //   filenamePrefix
+  //                 // );
 
 
-  }
+  //   }
+
+
+  // }
 
 
   function passInBackendOption() {
@@ -1645,7 +1646,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
       <button
         onClick={()=>{
-          downloadAllInOne_makerLevel();
+          downloadAllInOne();
 
         }}
       >Download Project File</button>
