@@ -58,6 +58,7 @@ import { checkProjectMetaData_vm } from '../viewmodels/PrepAc_ProjectFileInOut';
 
   import { 
     fetchNodeDataEachChapterVM, 
+    fetchAllNodes2VM
   } from '../viewmodels/NodeDataInPlayViewModel';
   //TODO112: fetch node-contents here, and send into Viewer_Entire and its sub-component [GameScreen_AllNodeTypeContainer]
   
@@ -129,23 +130,19 @@ export default function Panel2_Container_GameEditor() {
     // metadataObj["game_data"]
     const [gameDataDesignList, setGameDataDesignList] = useState(undefined);
 
-    // metadataObj["project_ui_language"]
+    // metadataObj["ui_language"]
     const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en');
-    // metadataObj["navigation_settings"]
+    // metadataObj["nav_ui_settings"]
     const [currentProjectNav, setCurrentProjectNav] = useState({});
 
-    // metadataObj["chapter_list"]
+    // metadataObj["chapterList"]
     const [chapterList, setChapterList] = useState([]);
     const [chapterListRaw, setChapterListRaw] = useState([]);
 
 
-    // metadataObj["chapter_node_mapping"]
+    // metadataObj["chapterNodeMapping"]
     const [chapterNodeMapAll, setChapterNodeMapAll] = useState(-1);
 
-    // metadataObj["resource_visual"]
-    const [visualVarPairs, setVisualVarPairs] = useState(undefined);
-    // metadataObj["resource_audio"]
-    const [audioVarPairs, setAudioVarPairs] = useState(undefined);
 
     //emu-data-sets
     //TODO99999
@@ -222,7 +219,12 @@ export default function Panel2_Container_GameEditor() {
             return "show message";
         }
 
-        console.log("panel2 (render once) - mode = ", state.mode, "... isPrepFinished = ", isPrepFinished);
+                                                        console.log("panel2 (render once) - mode = ", state.mode, 
+                                                            "... isPrepFinished = ", isPrepFinished, 
+                                                            "\n focusing on: ", focusingEditor, 
+                                                            "\n username = ", authEmailName,
+                                                            "\n\t metadata = ", projectMetaData,
+                                                            "\n\t all-node-content = ", projectAllNodeContent);
 
 
 
@@ -245,21 +247,19 @@ export default function Panel2_Container_GameEditor() {
                                             
                                                 // }
 
-        if (state.mode !== "online_cloud" && firstTimeEnter === true) {
+        if (state.mode !== "online_cloud") {
             if (projectMetaData === -1 || projectAllNodeContent === -1) {
                 loadEverythingFromLocalProjFile();
-                setFirstTimeEnter(false);
             }
-        } else if (state.mode === "online_cloud" && firstTimeEnter === true) {
+        } else if (state.mode === "online_cloud") {
             //TODO fetch from cloud...
           
             //prepare for project-content map, and fetch when user reached that chapter?
                 //TODO99999
-        if (authEmailName !== "_") {
+            if (authEmailName !== "_") {
           
-                if (isPrepFinished === false) {
+                if ((projectMetaData === -1 || projectAllNodeContent === -1)) {
                     loadEverythingFromCloud();
-                    setPrepFinished(true);
                 }
    
             }
@@ -373,10 +373,17 @@ export default function Panel2_Container_GameEditor() {
           return;
         }
     
-        setProjectMetaData(metadataTemp);
+        let res = checkProjectMetaData_vm(metadataTemp);
+        if (res === true) {
+            setProjectMetaData(metadataTemp);
             //TODO99999 setup visual-var-pair and audio-var-pair maps
 
-        setProjectAllNodeContent(chapterContentTemp);
+            setProjectAllNodeContent(chapterContentTemp);
+        } else {
+            alert("Data for this project file is broken.");
+
+        }
+
         
     }
 
@@ -388,26 +395,71 @@ export default function Panel2_Container_GameEditor() {
             return;
         }
 
+        await loadMetadataFromCloud()
+        .then(async()=>{
+            await loadProjectAllNodeContentFromCloud();
+        })
+        .then(()=>{
+                        console.log("metadata-prep finished!");
+            setPrepFinished(true);
+        });
+        
+       
 
-        let metadataTemp = await fetchProjectAllMetadataVM({
+ 
+    }
+
+    async function loadMetadataFromCloud() {
+        await fetchProjectAllMetadataVM({
             projectName: state.selected_project_name, 
             currUser: authEmailName,
             bkOption: backendOption
+        }).then((metadataTemp)=>{
+
+                                        console.log("panel2-everything from cloud: metadata = ", metadataTemp); 
+        
+            if (metadataTemp !== undefined) {
+                let res = checkProjectMetaData_vm(metadataTemp);
+                if (res === true) {
+
+                    setProjectMetaData(metadataTemp);
+
+                    //TODO99999 setup local hook vars
+
+                    // --- metadata's keys ---
+                    // metadataObj["game_data"]
+                    setGameDataDesignList(metadataTemp["game_data"]);
+
+                    // metadataObj["proj_resource_visual"]
+                    // metadataObj["proj_resource_audio"]
+
+                    // metadataObj["ui_language"]
+                    setLanguageCodeTextOption(metadataTemp["ui_language"]);
+
+                    // metadataObj["nav_ui_settings"]
+                    setCurrentProjectNav(metadataTemp["nav_ui_settings"]);
+
+                    // metadataObj["chapterList"]
+                    setChapterListRaw(metadataTemp["chapterList"]);    
+                            //TODO setChapterList() based on this    
+
+                    // metadataObj["chapterNodeMapping"]
+                    setChapterNodeMapAll(metadataTemp["chapterNodeMapping"]);
+
+                    //!important
+                    setProjectMetaData(metadataTemp);
+
+                } else {
+                    alert("Data for this project file is broken.");
+                }
+            }
+
+
+
         })
 
 
-                                console.log("panel2-everything from cloud: metadata = ", metadataTemp); 
-        
-        if (metadataTemp !== undefined) {
-            let res = checkProjectMetaData_vm(metadataTemp);
-            if (res === true) {
-                setProjectMetaData(metadataTemp);
-
-                //TODO99999 setup local hook vars
-
-
-            }
-        }
+   
 
         //TODO99999
 
@@ -429,43 +481,22 @@ export default function Panel2_Container_GameEditor() {
                                 // type:  "project"
                                 // ui_language: "chn"
 
+    }
 
+    async function loadProjectAllNodeContentFromCloud() {
+        await fetchAllNodes2VM({
+            projectName: state.selected_project_name, 
+            uname: authEmailName
+        }).then((chapterContentTemp)=>{
 
+                        console.log("panel2-everything from cloud: all-node-contents = ", chapterContentTemp); 
 
+            
+            setProjectAllNodeContent(chapterContentTemp);
 
-
-        // --- metadata's keys ---
-        // metadataObj["game_data"]
-        setGameDataDesignList(metadataTemp["game_data"]);
-
-        // metadataObj["resource_visual"]
-        // metadataObj["resource_audio"]
-        setVisualVarPairs(metadataTemp["proj_resource_visual"]);
-        setAudioVarPairs (metadataTemp["proj_resource_audio]"]); 
-
-        // metadataObj["project_ui_language"]
-        setLanguageCodeTextOption(metadataTemp["ui_language"]);
-
-        // metadataObj["navigation_settings"]
-        setCurrentProjectNav(metadataTemp["nav_ui_settings"]);
-
-        // metadataObj["chapter_list"]
-        setChapterListRaw(metadataTemp["chapterList"]);    
-                //TODO setChapterList() based on this    
-
-        // metadataObj["chapter_node_mapping"]
-        setChapterNodeMapAll(metadataTemp["chapterNodeMapping"]);
-
-        setProjectMetaData(metadataTemp);
-
-
-        let chapterContentTemp = {};
+        }); 
         //TODO99999 fetch from cloud --- path: user-projects-<project key>-folder
-
-
-
-        setProjectAllNodeContent(chapterContentTemp);
-        
+     
     }
 
     function updateLargeMetadataObjForChanges() {
@@ -683,7 +714,7 @@ export default function Panel2_Container_GameEditor() {
 
     }
 
-    function fetchUpdatedMetaDataFromSubCompo(obj) { // from game-maker
+    function fetchUpdatedMetaDataFromSubCompo(obj) { // from game-maker //!important
         if (obj !== undefined) {
             let checkRes = checkProjectMetaData_vm(obj);
             if (checkRes === true) {
@@ -693,7 +724,7 @@ export default function Panel2_Container_GameEditor() {
         }
     }
 
-    function fetchUpdatedNodeContentFromSubCompo(addingNodeKey, oneNodeContent) {
+    function fetchUpdatedNodeContentFromSubCompo(addingNodeKey, oneNodeContent) { //!important
         //TODO add this one-node into current content-obj, then check if valid to add
 
     }
@@ -804,6 +835,11 @@ console.log("ui-langauge changed to: ", val);
     }
 
     function passInProjectResourceVarPairs() {
+//TODO20
+        let visualVarPairs = projectMetaData["proj_resource_visual"];
+        let audioVarPairs = projectMetaData["proj_resource_audio]"]; 
+
+
         let obj = {
             "visual": visualVarPairs !== undefined ? visualVarPairs : {},
             "audio": audioVarPairs !== undefined ? audioVarPairs : {}
@@ -1016,8 +1052,11 @@ return (
    
 
 {/* Game-Maker for metadata */}
-    {(focusingEditor === "gameMaker" && projectMetaData !== -1)
-    && <GameMaker
+    {(focusingEditor === "gameMaker" && isPrepFinished === true)
+    && 
+    
+    <>
+    <GameMaker
         projectName={state.selected_project_name}
         editorMode={state.mode}
         getProjectMetaData={passInProjectMetaData}
@@ -1040,7 +1079,8 @@ return (
         triggerCreatedNewNode_panel2={triggerCreatedNewNode_panel2}
 
 
-    />}
+    />
+    </>}
 
 
 

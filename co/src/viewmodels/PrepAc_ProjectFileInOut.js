@@ -118,13 +118,14 @@ import {
     export function checkProjectMetaData_vm(metadataObj) {
 
         if (metadataObj["game_data"] === undefined 
-        || metadataObj["resource_visual"] === undefined 
-        || metadataObj["resource_audio"] === undefined 
-        || metadataObj["project_ui_language"] === undefined 
-        || metadataObj["navigation_settings"] === undefined 
-        || metadataObj["chapter_list"] === undefined 
-        || metadataObj["chapter_node_mapping"] === undefined 
+        || metadataObj["proj_resource_visual"] === undefined 
+        || metadataObj["proj_resource_audio"] === undefined 
+        || metadataObj["ui_language"] === undefined 
+        || metadataObj["nav_ui_settings"] === undefined 
+        || metadataObj["chapterList"] === undefined 
+        || metadataObj["chapterNodeMapping"] === undefined 
     ) {
+                                            console.log("@@@field incomplete");
         return false;                                           
     } else {
         let gameDataMap = metadataObj["game_data"];
@@ -140,51 +141,57 @@ import {
             || item["default_value"] === undefined
             || item["name"] === undefined
             ) {
+                                            console.log("@@@incomplete game-data-design-list");
                 return false;
             }
         });
 
 
-        let projNavSettingObj = metadataObj["navigation_settings"];
-        // "navigation_settings"
+        let projNavSettingObj = metadataObj["nav_ui_settings"];
+        // "nav_ui_settings"
                     //projectNavUiTemplate
         Object.keys(projectNavUiTemplate).map((currKey) => {
             if (projNavSettingObj[currKey] === undefined) {
+                                            console.log("@@@invalid nav-ui-settings");
                 return false;
             }
 
         })
 
-        // "chapter_list"
+        // "chapterList"
             //each item: length should be 4
-        let chapList = metadataObj["chapter_list"];
+        let chapList = metadataObj["chapterList"];
         Object.keys(chapList).map((currKey) => {
             let item = chapList[currKey];
             if (item.length !== 4) {
+                                            console.log("@@@invalid chapter-list");
                 return false;
             }
         });
 
     
 
-            // "resource_visual"
+            // "proj_resource_visual"
         //check all item's format
         //each item: "url" "var"
-        let visResObj = metadataObj["resource_visual"];
+        let visResObj = metadataObj["proj_resource_visual"];
         Object.keys(visResObj).map((currKey) => {
             let item = visResObj[currKey];
             if (item["url"] === undefined || item["var"] === undefined) {
+                                            console.log("@@@invalid visual resource var pairs");
                 return false;
             }
 
         });
 
 
-        // "resource_audio"
-        let auResObj = metadataObj["resource_audio"];
+        // "proj_resource_audio"
+        let auResObj = metadataObj["proj_resource_audio"];
         Object.keys(auResObj).map((currKey) => {
             let item = auResObj[currKey];
             if (item["url"] === undefined || item["var"] === undefined) {
+                                            console.log("@@@invalid visual resource var pairs");
+
                 return false;
             }
         });
@@ -192,10 +199,10 @@ import {
 
 
 
-    // "chapter_node_mapping"
+    // "chapterNodeMapping"
         //each chapter-each node: 
                         // col, display, nextNode, nodeName, nodeType, row, screenSize, 
-        let chapNodeMapping = metadataObj["chapter_node_mapping"];
+        let chapNodeMapping = metadataObj["chapterNodeMapping"];
         Object.keys(chapNodeMapping).map((currKey) => {
             let item = chapNodeMapping[currKey];
 
@@ -207,6 +214,8 @@ import {
             || item["row"] === undefined
             || item["screenSize"] === undefined
                 ) {
+                                            console.log("@@@invalid node mapping");
+
                     return false;
             } 
 

@@ -1,4 +1,4 @@
-import { fetchNodeDataEachNode, fetchNodeDataEachChapter } from '../models/NodeDataInPlayModel_Firebase';
+import { fetchNodeDataEachNode, fetchNodeDataEachChapter, fetchAllNodes2 } from '../models/NodeDataInPlayModel_Firebase';
 
 
 
@@ -21,4 +21,8 @@ export async function fetchNodeDataEachChapterVM({projectName, uname, chapterKey
     }
     
     return data;
+}
+
+export async function fetchAllNodes2VM({projectName, uname}) {
+    return await fetchAllNodes2({projectName, uname});
 }

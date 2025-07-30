@@ -1501,12 +1501,12 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
       let projectObjPart1Meta_Obj = {
         "game_data": gameDataDesignList,
-        "resource_visual": visualMap,
-        "resource_audio": audioMap,
-        "project_ui_language": languageCodeTextOption,
-        "navigation_settings": currentProjectNav,
-        "chapter_list": chapterList,
-        "chapter_node_mapping": chapterNodeMapAll,
+        "proj_resource_visual": visualMap,
+        "proj_resource_audio": audioMap,
+        "ui_language": languageCodeTextOption,
+        "nav_ui_settings": currentProjectNav,
+        "chapterList": chapterList,
+        "chapterNodeMapping": chapterNodeMapAll,
       };
 
 
@@ -1549,12 +1549,12 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
   function updateAllInObj() { //TODO99999
     let metadataObj = {};
     metadataObj["game_data"] = gameDataDesignList;
-    metadataObj["resource_visual"] = visualMap;
-    metadataObj["resource_audio"] = audioMap;
-    metadataObj["project_ui_language"] = languageCodeTextOption;
-    metadataObj["navigation_settings"] = currentProjectNav;
-    metadataObj["chapter_list"] = chapterList;
-    metadataObj["chapter_node_mapping"] = chapterNodeMapAll;
+    metadataObj["proj_resource_visual"] = visualMap;
+    metadataObj["proj_resource_audio"] = audioMap;
+    metadataObj["ui_language"] = languageCodeTextOption;
+    metadataObj["nav_ui_settings"] = currentProjectNav;
+    metadataObj["chapterList"] = chapterList;
+    metadataObj["chapterNodeMapping"] = chapterNodeMapAll;
 
     updateMetaDataToOuter(metadataObj);
   }
