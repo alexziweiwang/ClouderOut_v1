@@ -22,7 +22,8 @@ export async function convSingleNodeUpdateToCloud({project, username, chapterKey
       "nodeContent": dataObj,
       "nodeUISettings": uiDataObj,
       "nodeType": nodeType,
-      "chapterKey": chapterKey
+      "chapterKey": chapterKey,
+      "nodeKey": nodeKey
     });
 
     return "node-update-ok";
@@ -91,7 +92,8 @@ export async function addNewNodeFolders({project, username, nodeList, chapterKey
     each elem in nodeKeyList: 
         {
         "nodeKey": newNodeKey,
-        "chapKey": chapterKeyTemp
+        "chapKey": chapterKeyTemp,
+        "detailObj": 
         }
 
     */

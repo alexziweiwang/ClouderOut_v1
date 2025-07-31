@@ -26,7 +26,7 @@ import {
 
 import { addNewNodeFoldersVM } from '../viewmodels/NodeEditingViewModel';
 
-import { prepareForNewChapterMapping_vm, triggerCreatedNewNode_vm } from '../viewmodels/PrepAc_Creations';
+import { prepareForNewChapterMapping_vm } from '../viewmodels/PrepAc_Creations';
 import { updateChapterNodeMappingsToCloud_vm } from '../viewmodels/UpdtAc_UpdateData';
 
 import { downloadProjectAllInOne_vm } from '../viewmodels/PrepAc_ProjectFileInOut';
@@ -1060,18 +1060,8 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
 
   function triggerCreatedNewNode_gmLayer(newNodeKey, chapterKeyTemp, nodeTypeTemp) {
-    //TODO1000 should check whether the node-key is already there!
 
-
-    let nodeObjTemp = triggerCreatedNewNode_vm (nodeTypeTemp);
-
-
-    triggerCreatedNewNode_panel2(newNodeKey, chapterKeyTemp, nodeObjTemp);
-
-    //TODO99999 node-editor should allow enter, no matter ready on cloud or not
-    
-
-
+    triggerCreatedNewNode_panel2(newNodeKey, chapterKeyTemp, nodeTypeTemp);
   }
 
 

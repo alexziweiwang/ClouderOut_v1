@@ -49,7 +49,7 @@ export async function prepareForNewChapterMapping_vm (newKey, chapterNodeMapAll,
 }
 
 
-export function triggerCreatedNewNode_vm (nodeTypeTemp) {
+export function triggerCreatedNewNode_vm(nodeTypeTemp) {
     
     let nodeObj = {};
 
@@ -84,6 +84,7 @@ export function triggerCreatedNewNode_vm (nodeTypeTemp) {
 
     }
 
+    nodeObj["nodeType"] = nodeTypeTemp;
     return nodeObj;
   }
 

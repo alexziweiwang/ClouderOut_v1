@@ -910,13 +910,17 @@ console.log("ui-langauge changed to: ", val);
     //     setGameDataDesignList(data);
     // }
 
-    function triggerCreatedNewNode_panel2(nodeKey, nodeChapter, nodeObject) {
+    function triggerCreatedNewNode_panel2(nodeKey, nodeChapter, nodeType) {
         // add this node's content into the project-all-node-content ds
 
+        let genObjBothParts = triggerCreatedNewNode_vm(nodeType);
 
+        genObjBothParts["nodeKey"] = nodeKey;
+        genObjBothParts["chapterKey"] = nodeChapter;
+        
+        //TODO20 add this node into all-node-contents ds
 
-
-
+        
     }
 
     function passInCurrNodeEntire(chapterKeyTemp, nodeKeyTemp) {
