@@ -4,21 +4,19 @@ import { generateNodeLongKeyString_vm } from '../viewmodels/PrepAc_ProjectOperat
 
 //update node-content + node-ui-settings
 export async function convSingleNodeUpdateToCloud({project, username, chapterKey, nodeKey, dataObj, uiDataObj, nodeType}) {
-    let keyStr = generateNodeLongKeyString_vm({chapterKey: chapterKey, nodeKey: nodeKey});
-
 
               //TODO199: change sturcture: chapters-level should be the last collection-level: 
-    const projectNodeRef = doc(db, "user_projects", username, "projects", project, "allNodes", keyStr);
-    const projectNodeSnap = await getDoc(projectNodeRef);
+    const docRef = doc(db, "user_projects", username, "projects", project, "allNodes", nodeKey);
+    const docSnap = await getDoc(docRef);
   
-                                  console.log("model-func-convSingleNodeUpdateToCloud-  ", dataObj, " for node - ", keyStr);
+                                  console.log("model-func-convSingleNodeUpdateToCloud-  ", dataObj, " for node - ", nodeKey);
 
 
-    if (!projectNodeSnap.exists()) {
+    if (!docSnap.exists()) {
       return "node-not-exist";
     }
 
-    await updateDoc(projectNodeRef, {
+    await updateDoc(docRef, {
       "nodeContent": dataObj,
       "nodeUISettings": uiDataObj,
       "nodeType": nodeType,
@@ -35,19 +33,19 @@ export async function convSingleNodeUpdateToCloud({project, username, chapterKey
 
 
 //get both node-content and node-ui-settings
-export async function convNodeBothPartsFromCloud({project, username, chapterKey, nodeKey}) {
-  const projectNodeRef = doc(db, "user_projects", username, "projects", project, "allNodes");
+export async function convNodeBothPartsFromCloud({project, username, nodeKey}) {
+  const docRef = doc(db, "user_projects", username, "projects", project, "allNodes", nodeKey);
           //TODO199: change sturcture: chapters-level should be the last collection-level: 
   
-  const projectNodeSnap = await getDoc(projectNodeRef);
+  const docSnap = await getDoc(docRef);
 
-  if (!projectNodeSnap.exists()) {
+  if (!docSnap.exists()) {
     return;
   }
 
 
   let bothObj = [];
-  bothObj = projectNodeSnap.data(); 
+  bothObj = docSnap.data(); 
 
     //TODO test
 
@@ -69,11 +67,7 @@ export async function addNewNodeFolders({project, username, nodeList, chapterKey
     }
                                                                                 //TODO group func       group-func
     nodeList.map(async (item, i) => {
-      let keyStr =  generateNodeLongKeyString_vm({
-        chapterKey: item["chapKey"], 
-        nodeKey: item["nodeKey"]
-      });
-
+      let keyStr = item["nodeKey"];
 
       if (item["chapKey"] === chapterKey) {
           console.log();

@@ -1,9 +1,6 @@
 import { useState, useEffect } from 'react';
 import langDictionary from './_textDictionary';
 
-//TODO20 cloud-func
-
-
 
 export default function NavigationSetter({initialNavObj, 
   updateNavObj, openRm, 

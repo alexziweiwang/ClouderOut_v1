@@ -86,7 +86,8 @@ export async function fetchNodeDataEachChapter2({projectName, uname, chapterKey}
 //new data structure
     const q = query(
       collection(db, "user_projects", uname, "projects", projectName, "allNodes"), 
-      where("chapterKey", "==", chapterKey));
+      where("chapterKey", "==", chapterKey)
+    );
 
     const querySnapshot = await getDocs(q);
 

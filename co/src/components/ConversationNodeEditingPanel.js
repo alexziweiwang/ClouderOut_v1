@@ -744,7 +744,7 @@ GameDataDesign <map>
     }
 
     function passInUILanguage() {
-        return languageCodeTextOption; //TODO20 //navigation-jumpped here, add strategy later
+        return languageCodeTextOption;
         
     }
 

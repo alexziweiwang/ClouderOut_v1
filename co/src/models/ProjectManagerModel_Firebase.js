@@ -95,7 +95,7 @@ export async function createProject({currUser, projectName, projectObj}) {
   await setDoc(projRef, projectObj);
 
 //TODO199
-  const placeholder = "placeholder_default_node";
+  const placeholder = "placeholder123456789___###___###___##";
   await setDoc(projRef, projectObj).then(() => {
     setDoc(doc(db, "user_projects", currUser, "projects", projectName, "allNodes", placeholder), 
     projectObj)

@@ -285,10 +285,7 @@ export default function Panel2_Container_GameEditor() {
     });
 
     function switchEditor(visitInfoObj) {
-        let keyStr = generateNodeLongKeyString_vm({
-            chapterKey: visitInfoObj["chapterKey"], 
-            nodeKey: visitInfoObj["nodeKey"]
-        });
+        let keyStr = visitInfoObj["nodeKey"];
         //TODO30
         
         
@@ -920,14 +917,11 @@ console.log("ui-langauge changed to: ", val);
         
         //TODO20 add this node into all-node-contents ds
 
-        
+
     }
 
     function passInCurrNodeEntire(chapterKeyTemp, nodeKeyTemp) {
-        let keyStr =  generateNodeLongKeyString_vm({
-            chapterKey: chapterKeyTemp, 
-            nodeKey:nodeKeyTemp
-        });
+        let keyStr =  nodeKeyTemp;
         //TODO30
 
 
