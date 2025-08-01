@@ -726,6 +726,7 @@
 - 2025-Jul-28: Design plans for rendering-optimization for panel2 .2
 
 - 2025-Jul-31: Design page-compo structure optimization 9
+- 2025-Jul-31: Design node-key best strategy (balance for search and naming)
 
 
 
