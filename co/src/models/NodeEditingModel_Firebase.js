@@ -67,13 +67,13 @@ export async function addNewNodeFolders({project, username, nodeList, chapterKey
     }
                                                                                 //TODO group func       group-func
     nodeList.map(async (item, i) => {
-      let keyStr = item["nodeKey"];
+      let nodeKeyName = item["nodeKey"];
 
       if (item["chapKey"] === chapterKey) {
           console.log();
 
           await setDoc(
-              doc(ref, "allNodes", keyStr), 
+              doc(ref, "allNodes", nodeKeyName), 
               item["detailObj"]
           );
         //TODO600 test!!
