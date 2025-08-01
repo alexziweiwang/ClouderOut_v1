@@ -29,11 +29,7 @@ import { addNewNodeFoldersVM } from '../viewmodels/NodeEditingViewModel';
 import { prepareForNewChapterMapping_vm } from '../viewmodels/PrepAc_Creations';
 import { updateChapterNodeMappingsToCloud_vm } from '../viewmodels/UpdtAc_UpdateData';
 
-import { downloadProjectAllInOne_vm } from '../viewmodels/PrepAc_ProjectFileInOut';
-
-import { 
-  fetchNodeDataEachChapterVM, 
-} from '../viewmodels/NodeDataInPlayViewModel';
+//node key rule: generateNodeLongKeyString_vm({chapterKey, nodeKey})
 //TODO112: fetch node-contents here, and send into Viewer_Entire and its sub-component [GameScreen_AllNodeTypeContainer]
 
 

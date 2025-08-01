@@ -4,12 +4,13 @@ import { generateNodeLongKeyString_vm } from '../viewmodels/PrepAc_ProjectOperat
 
 //update node-content + node-ui-settings
 export async function convSingleNodeUpdateToCloud({project, username, chapterKey, nodeKey, dataObj, uiDataObj, nodeType}) {
+    let longKey = generateNodeLongKeyString_vm({chapterKey: chapterKey, nodeKey: nodeKey});
 
               //TODO199: change sturcture: chapters-level should be the last collection-level: 
-    const docRef = doc(db, "user_projects", username, "projects", project, "allNodes", nodeKey);
+    const docRef = doc(db, "user_projects", username, "projects", project, "allNodes", longKey);
     const docSnap = await getDoc(docRef);
   
-                                  console.log("model-func-convSingleNodeUpdateToCloud-  ", dataObj, " for node - ", nodeKey);
+                                  console.log("model-func-convSingleNodeUpdateToCloud-  ", dataObj, " for node - ", nodeKey, " ... as ", longKey);
 
 
     if (!docSnap.exists()) {
@@ -33,7 +34,9 @@ export async function convSingleNodeUpdateToCloud({project, username, chapterKey
 
 
 //get both node-content and node-ui-settings
-export async function convNodeBothPartsFromCloud({project, username, nodeKey}) {
+export async function convNodeBothPartsFromCloud({project, username, chapterKey, nodeKey}) {
+  let longKey = generateNodeLongKeyString_vm({chapterKey: chapterKey, nodeKey: nodeKey}); //TODO77777
+
   const docRef = doc(db, "user_projects", username, "projects", project, "allNodes", nodeKey);
           //TODO199: change sturcture: chapters-level should be the last collection-level: 
   
@@ -68,12 +71,14 @@ export async function addNewNodeFolders({project, username, nodeList, chapterKey
                                                                                 //TODO group func       group-func
     nodeList.map(async (item, i) => {
       let nodeKeyName = item["nodeKey"];
+      let longKey = generateNodeLongKeyString_vm({chapterKey: item["chapKey"], nodeKey: item["nodeKey"]});
+
 
       if (item["chapKey"] === chapterKey) {
           console.log();
 
           await setDoc(
-              doc(ref, "allNodes", nodeKeyName), 
+              doc(ref, "allNodes", longKey), 
               item["detailObj"]
           );
         //TODO600 test!!
