@@ -279,11 +279,6 @@ GameDataDesign <map>
  
     
 
-//TODO1030
-        window.onbeforeunload = () => {
-
-            return "show message";
-        }
 
 
         if (firstTimeEnter === true) {

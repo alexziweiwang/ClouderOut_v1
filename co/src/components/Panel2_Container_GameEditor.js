@@ -203,7 +203,7 @@ export default function Panel2_Container_GameEditor() {
         } 
 
         window.onbeforeunload = () => {
-            
+
             return "show message";
         }
 
@@ -690,12 +690,18 @@ export default function Panel2_Container_GameEditor() {
     function handleBannerGoBack() {
         // according to current focusing panel, go to different panels
         if (focusingEditor === "gameMaker") {
-            if (state.mode === "online_cloud") {
-                navigate('/mainpanel', { replace: true });
+            let askStr = "Are you sure to exit?";
 
-            } else {
-                navigate('/projectNonCloud', { replace: true });
+            let resp = window.confirm(askStr);
 
+            if (resp) {
+                    if (state.mode === "online_cloud") {
+                        navigate('/mainpanel', { replace: true }); //go to panel1
+
+                    } else {
+                        navigate('/projectNonCloud', { replace: true });
+                        
+                    }
             }
         } else {
             // when inside node-editors
@@ -907,8 +913,15 @@ console.log("ui-langauge changed to: ", val);
         //TODO20 add this node into all-node-contents ds
         
         //TODO333
+        console.log("trigger crated node: ", genObjBothParts);
 
-        //sign of "a new folder for this node should be created"
+
+                                    //format:
+                                        // chapterKey
+                                        // nodeContent
+                                        // nodeKey
+                                        // nodeType
+                                        // nodeUISettings
 
 
 
@@ -977,6 +990,14 @@ console.log("ui-langauge changed to: ", val);
         //setCurrChapterContent(chapterContentTemp); //TODO add later
 
         return chapterContentTemp;
+  }
+
+  function saveEverythingToCloud_panel2() {
+      //TODO333 saves both metadata and all-node-contents to cloud !!!
+
+
+
+
   }
 
 
@@ -1130,6 +1151,7 @@ return (
         getTestPlayerPurchaseStatus={passInTestPlayerPurchaseStatus}
 
         triggerCreatedNewNode_panel2={triggerCreatedNewNode_panel2}
+        saveEverythingToCloud_panel2={saveEverythingToCloud_panel2}
 
 
     />

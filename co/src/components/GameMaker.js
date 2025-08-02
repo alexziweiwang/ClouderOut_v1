@@ -57,6 +57,8 @@ export default function GameMaker({
 
       triggerCreatedNewNode_panel2,
       downloadAllInOne,
+      saveEverythingToCloud_panel2,
+
 
     
     }) {
@@ -379,10 +381,6 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
   
 
-//TODO1030
-        window.onbeforeunload = () => {
-          return "show message";
-        }
                   //               console.log("gridBlocksUpdatedSignal = ", gridBlocksUpdatedSignal);
                       
                       
@@ -717,40 +715,40 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
         return "no";
       }
 
-     
       
-      if (createNodeFolderSignal === true 
-        || nodeMgrDelSignal === true
-        || nodeMapUpdatedSignal === true
-        || gridBlocksUpdatedSignal === true
-      ) { 
+      
+      // if (createNodeFolderSignal === true 
+      //   || nodeMgrDelSignal === true
+      //   || nodeMapUpdatedSignal === true
+      //   || gridBlocksUpdatedSignal === true
+      // ) { 
 
-          let answer = window.confirm("Save current chapter data to cloud?"); //ask if save to cloud?
+      //     let answer = window.confirm("Save current chapter data to cloud?"); //ask if save to cloud?
           
           
-          if (answer) {
-              //by createdNewNodeWaitlist, update cloud-folders...
+      //     if (answer) {
+      //         //by createdNewNodeWaitlist, update cloud-folders...
 
-              await saveEverythingToCloud(); // will reset createNodeFolderSignal
-              setNodeMgrDelSignal(false);
+      //         await saveEverythingToCloud(); // will reset createNodeFolderSignal
+      //         setNodeMgrDelSignal(false);
 
-                             console.log("yes. wait-and-enter");
+      //                        console.log("yes. wait-and-enter");
 
-              return "wait-and-enter";
+      //         return "wait-and-enter";
 
-          } else {
-              setNodeMapUpdatedSignal(false);
-              setGridBlocksUpdatedSignal(false);
+      //     } else {
+      //         setNodeMapUpdatedSignal(false);
+      //         setGridBlocksUpdatedSignal(false);
 
-                              console.log("no");
-              return "no";
-          }
+      //                         console.log("no");
+      //         return "no";
+      //     }
 
-      } else {
-                              console.log("immediate-enter");
-        return "immediate-enter";
+      // } else {
+      //                         console.log("immediate-enter");
+      //   return "immediate-enter";
 
-      }
+      // }
       
       
 
@@ -1551,7 +1549,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
         let ans = window.confirm("Are you sure to save and cover the project on cloud?");
         if (ans) {
           
-       //   saveEverythingToCloud();
+          saveEverythingToCloud_panel2();
           
         }
 

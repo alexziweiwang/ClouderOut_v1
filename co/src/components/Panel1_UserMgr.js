@@ -67,6 +67,10 @@ export default function Panel1_UserMgr({}) {
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
 
+        window.onbeforeunload = () => {
+            
+            return "show message";
+        }
 
 
         if (authEmailName !== "_" && firstTimeEnter === true) {
