@@ -84,7 +84,6 @@ ChapterNodeMapping (used in node-manager) <map>
 Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps>
 
 */
-//TODO2000 add "platform option"? add UI for choosing platform
 
 
 
@@ -1241,27 +1240,6 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
     setCurrTestingNodeType(nodeTypeName);
   }
 
- // async function getCurrChpNodeDataFromCloud(givenChapterKey) {
-//     console.log("fetching for chapter [",givenChapterKey,"]"); 
-// //TODO900
-//       let chapterContentTemp = await fetchNodeDataEachChapterVM(
-//         {
-//           projectName: projectName, 
-//           uname: authEmailName, 
-//           chapterKey: givenChapterKey,
-//           bkOption: backendOption //TODO999
-//         }
-//       );
-
-//       if (chapterContentTemp !== undefined) {
-
-//         return chapterContentTemp;
-//       } else {
-
-//         return {};
-//       }
-
-  //}
 
 
   function notifyRmUpdated(data) {

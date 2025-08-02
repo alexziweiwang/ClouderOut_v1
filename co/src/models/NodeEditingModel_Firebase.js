@@ -70,7 +70,6 @@ export async function addNewNodeFolders({project, username, nodeList, chapterKey
     }
                                                                                 //TODO group func       group-func
     nodeList.map(async (item, i) => {
-      let nodeKeyName = item["nodeKey"];
       let longKey = generateNodeLongKeyString_vm({chapterKey: item["chapKey"], nodeKey: item["nodeKey"]});
 
 

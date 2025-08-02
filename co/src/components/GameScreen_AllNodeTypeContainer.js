@@ -6,7 +6,6 @@ import GameScreen_InPracShell_ConvNode from './GameScreen_InPracShell_ConvNode';
 //TODO fetch-and-updte data for conv-node-game-screen
 
 //TODO1090 cloud-db related
-import { fetchNodeDataEachNodeVM, fetchNodeDataEachChapterVM } from '../viewmodels/NodeDataInPlayViewModel';
 import { generateNodeLongKeyString_vm } from '../viewmodels/PrepAc_ProjectOperation';
 
 //TODO6000 offline mode prep
@@ -199,12 +198,12 @@ export default function GameScreen_AllNodeTypeContainer({
  
             let docCollection = {};
             //TODO99999 use all-node-content data object from panel2 !!!
-            // await fetchNodeDataEachChapterVM({
-            //     projectName: projectname, 
-            //     uname: username, 
-            //     chapterKey: chapterKeyTemp,
-            //     bkOption: backendOption
-            // });
+                                    // await fetchNodeDataEachChapterVM({
+                                    //     projectName: projectname, 
+                                    //     uname: username, 
+                                    //     chapterKey: chapterKeyTemp,
+                                    //     bkOption: backendOption
+                                    // });
 
                                 console.log("### ", chapterKeyTemp, ": node-data by each chapter: ", docCollection);
 

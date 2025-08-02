@@ -31,17 +31,6 @@ import { checkProjectMetaData_vm } from '../viewmodels/PrepAc_ProjectFileInOut';
   } from '../viewmodels/GameDataViewModel';
 
   import { 
-
-   
-    updateProjectNavigationSettingsVM, 
-    fetchProjectNavigationSettingsVM,
-  } from '../viewmodels/ProjectManagerViewModel';
-
-  import { 
-    fetchChapterNodeMappingVM, 
-    updateChapterNodesToCloudDataVM, 
-    fetchAllChapterListVM, 
-    updateChapterListToCloudVM, 
   
     addNewOneChapterFolderVM 
   } from '../viewmodels/ChapterInfoViewModel';
@@ -916,6 +905,11 @@ console.log("ui-langauge changed to: ", val);
         genObjBothParts["chapterKey"] = nodeChapter;
         
         //TODO20 add this node into all-node-contents ds
+        
+        //TODO333
+
+        //sign of "a new folder for this node should be created"
+
 
 
     }
@@ -1041,7 +1035,8 @@ return (
                     //fetchcurrChapterContentFromCloud();
                     //TODO700: fetch the very first chapter's data?
 
-                    startViewerEntireTest();
+                    // startViewerEntireTest(); //TODO temp
+                    console.log("LATER: entire_viewer should pop");
                     
                 }}
                 className="button testEntire"
