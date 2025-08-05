@@ -414,17 +414,17 @@ export default function NodeManager({projectName, currUser,
 
     //TODO30 01
     if (createNewNodeGameType === "") {
-      console.log("Game type is required.");                           //TODO test
+                                     console.log("Game type is required.");                           //TODO test
       return;
     }
 
     if (createNewNodeName.length === 0) {
-      console.log("warning: invalid empty node name");                //TODO test
+                                    console.log("warning: invalid empty node name");                 //TODO test
       return;
     }
 
     if (nodeRelationshipMap[createNewNodeName] !== undefined) {
-      console.log("2Invalid node name: duplicate");                   //TODO test
+                                    console.log("2Invalid node name: duplicate");                    //TODO test
       return;
     }
 
@@ -472,25 +472,32 @@ export default function NodeManager({projectName, currUser,
         
 
     /* local changes */
-        /* update all node-mappings and grid-blocks - local */
-        setGridBlocks(tempGrid);
-        setNodeRelationshipMap(tempNodeMap);        
-        /* reset the creation panel */
-        setCreateNewNodeName("");
-        setCreateNewNodeGameType("");
-        setCreatedNewNodeScreenSize("4:3(horizonal)");
-        setClickedNode2(-1); //create new node --> unclick any node on vis-map
-        setAddNewNodeAreaDisplay(false);
-        /* reset display of node-grid-panel: no node selected */
-        setClickedNodeKey("");
-  
-    
+    nodeChangedHandlingLocal(tempGrid, tempNodeMap);
+
     /* outer-layer changes */
-        /* outer-layer: notify update node-mapping (this chapter) */
-        triggerNodeMappingsChange(tempNodeMap, tempGrid); // notify outer-layer
-        /* creation of node-content and data-structure-preparation */
-        triggerCreatedNewNode(createNewNodeName, chapterKey, createNewNodeGameType);
-  
+    nodeChangedHandlingOuter(tempGrid, tempNodeMap, createNewNodeName, chapterKey, createNewNodeGameType);
+    
+  }
+
+  function nodeChangedHandlingLocal(gridTemp, nodeMapTemp) {
+      /* update all node-mappings and grid-blocks - local */
+      setGridBlocks(gridTemp);
+      setNodeRelationshipMap(nodeMapTemp);        
+      /* reset the creation panel */
+      setCreateNewNodeName("");
+      setCreateNewNodeGameType("");
+      setCreatedNewNodeScreenSize("4:3(horizonal)");
+      setClickedNode2(-1); //create new node --> unclick any node on vis-map
+      setAddNewNodeAreaDisplay(false);
+      /* reset display of node-grid-panel: no node selected */
+      setClickedNodeKey("");
+  }
+
+  function nodeChangedHandlingOuter(gridTemp, nodeMapTemp, nodeKey, chapKey, nodeType) {
+      /* outer-layer: notify update node-mapping (this chapter) */
+      triggerNodeMappingsChange(nodeMapTemp, gridTemp); // notify outer-layer
+      /* creation of node-content and data-structure-preparation */
+      triggerCreatedNewNode(nodeKey, chapKey, nodeType);
   }
 
 

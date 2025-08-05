@@ -55,13 +55,14 @@ import { checkProjectMetaData_vm } from '../viewmodels/PrepAc_ProjectFileInOut';
 import { storeProjectResourceVarPairsToCloudVM } from '../viewmodels/ResourceManagerViewModel';
 
 
-  import { submitFileVM, getRmFileListVM, addToRmFileListVM, fetchUrlByFilenameVM, removeFromRmFileListVM } from '../viewmodels/ResourceManagerViewModel';
+import { submitFileVM, getRmFileListVM, addToRmFileListVM, fetchUrlByFilenameVM, removeFromRmFileListVM } from '../viewmodels/ResourceManagerViewModel';
 
 
 
 
   //TODO ------------------------- new vm and model funcs for optimizations
 import { fetchProjectAllMetadataVM, updateProjectMetadataSingleFieldVM } from '../viewmodels/ProjectMetadataViewModel'; //TODO60
+import { generateNodeLongKeyString_vm } from '../viewmodels/PrepAc_ProjectOperation';
 
 
 
@@ -700,7 +701,7 @@ export default function Panel2_Container_GameEditor() {
 
                     } else {
                         navigate('/projectNonCloud', { replace: true });
-                        
+
                     }
             }
         } else {
@@ -922,8 +923,13 @@ console.log("ui-langauge changed to: ", val);
                                         // nodeKey
                                         // nodeType
                                         // nodeUISettings
+        let longKey = generateNodeLongKeyString_vm({chapterKey: nodeChapter, nodeKey: nodeKey});
 
 
+        let projAllNodeContentTemp = projectAllNodeContent;
+        projAllNodeContentTemp[longKey] = genObjBothParts;
+        setProjectAllNodeContent(projAllNodeContentTemp);
+        console.log(" finally... added a new node, now proj-all-node-content is : ", projAllNodeContentTemp);
 
     }
 
