@@ -191,9 +191,6 @@ export default function Panel2_Container_GameEditor() {
     }
 
 
-    
-
-
     const [authEmailName, setAuthEmailName] = useState("_");
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
@@ -275,22 +272,22 @@ export default function Panel2_Container_GameEditor() {
     });
 
     function switchEditor(visitInfoObj) {
-        let keyStr = visitInfoObj["nodeKey"];
+        let longKey = generateNodeLongKeyString_vm({chapterKey: visitInfoObj["chapterKey"], nodeKey: visitInfoObj["nodeKey"]});
+            
         //TODO30
         
         
 
-        if (projectAllNodeContent === undefined || projectAllNodeContent[keyStr] === undefined
-                || projectAllNodeContent[keyStr] === null  
-                || projectAllNodeContent[keyStr].nodeContent === undefined
-                || projectAllNodeContent[keyStr].nodeUISettings === undefined            
+        if (projectAllNodeContent === undefined 
+                || projectAllNodeContent[longKey] === undefined
+                || projectAllNodeContent[longKey] === null  
+                || projectAllNodeContent[longKey].nodeContent === undefined
+                || projectAllNodeContent[longKey].nodeUISettings === undefined            
        
     
             //TODO20
             ) {
-      
-
-            console.log("projectAllNodeContent not ready: undefined");
+                                        console.log("projectAllNodeContent not ready: undefined (for [", longKey, "], \n", projectAllNodeContent);
             return;
         }
 
@@ -325,14 +322,12 @@ export default function Panel2_Container_GameEditor() {
             // visitInfoObj["screenSizeStr"] 
             // visitInfoObj["uiLang"] 
             // visitInfoObj["chapterKey"]
-            // visitInfoObj["clickedNodeKey"]  
             
         //TODO check if this node exists in the ds !!!
 
-
-  
+     
         setCurrentChapter(visitInfoObj["chapterKey"]);
-        setCurrentNode(visitInfoObj["clickedNodeKey"]);
+        setCurrentNode(visitInfoObj["nodeKey"]);
         setCurrentScreenSz(visitInfoObj["screenSizeStr"]);
 
         console.log("node-data-obj = ", projectAllNodeContent);
@@ -934,18 +929,21 @@ console.log("ui-langauge changed to: ", val);
     }
 
     function passInCurrNodeEntire(chapterKeyTemp, nodeKeyTemp) {
-        let keyStr =  nodeKeyTemp;
+        let longKey = generateNodeLongKeyString_vm({chapterKey: chapterKeyTemp, nodeKey: nodeKeyTemp});
+        
         //TODO30
+        console.log()
+        console.log("longKey = ", longKey, ", projectAllNodeContent[longKey] = ", projectAllNodeContent[longKey], "\n", projectAllNodeContent);
 
-
-        if (projectAllNodeContent === undefined || projectAllNodeContent[keyStr] === undefined
-            || projectAllNodeContent[keyStr] === null  
-            || projectAllNodeContent[keyStr].nodeContent === undefined
-            || projectAllNodeContent[keyStr].nodeUISettings === undefined            
+        if (projectAllNodeContent === undefined 
+            || projectAllNodeContent[longKey] === undefined
+            || projectAllNodeContent[longKey] === null  
+            || projectAllNodeContent[longKey].nodeContent === undefined
+            || projectAllNodeContent[longKey].nodeUISettings === undefined            
             ) {
-            return -1;
+            goToGameMakerResetNodeFocus();
         } else {
-            return projectAllNodeContent[keyStr];
+            return projectAllNodeContent[longKey];
         }
 
     }

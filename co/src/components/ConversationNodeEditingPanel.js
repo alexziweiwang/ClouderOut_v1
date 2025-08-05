@@ -799,7 +799,7 @@ GameDataDesign <map>
     }
 
     async function initializeNodeBothPartsFromCloud() {
-
+                    console.log("!!!!!!!, init: ",chapterKey, " from ", clickedNodeKey);
         let pieceObjTemp = gerCurrNodeEntire(chapterKey, clickedNodeKey); 
 
                                     console.log("!!! conv-editor: initialize piece data... ", pieceObjTemp);

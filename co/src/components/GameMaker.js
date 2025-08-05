@@ -233,8 +233,8 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
 
     function updateRenderCounter() {
-      console.log("updateRenderCounter!");
-      setRenderCounter((renderCounter+1) % 100);
+      console.log("updateRenderCounter called! (not doing anything now as func)");
+    //  setRenderCounter((renderCounter+1) % 100);
     }
 
     function resetVisualMapFromList(visualList) {
@@ -802,6 +802,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
   } 
   
   function updateChapterList(chapterData) { // game-maker local
+    //TODO30 should notify panel2!
     
     setChapterList(chapterData);
   }
