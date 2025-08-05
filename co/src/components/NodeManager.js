@@ -29,7 +29,6 @@ export default function NodeManager({projectName, currUser,
   initialChapterKey, getNodeMapOfChapter, 
   getCurrChapterKey, getGridBlocks,
   initialNodeMap, initialGridBlock,
-  updateNodeMapOfChapter, updateGridBlockOfChapter,
   displayGameDataPanel, getGameData, getGdmUpdatedSignal, resetGdmUpdateSignal,
 
   loadChapterInfoFromCaller,
@@ -465,24 +464,20 @@ export default function NodeManager({projectName, currUser,
           }; //TODO temp
     }
     tempNodeMap[createNewNodeName] = newDataItem;
-        
       
     let tempGrid = gridBlocks;
     gridBlocks[clickedRow][clickedCol] = createNewNodeName;
         
-
-    /* local changes */
-    nodeChangedHandlingLocal(tempGrid, tempNodeMap);
-
-    /* outer-layer changes */
-    nodeChangedHandlingOuter(tempGrid, tempNodeMap, createNewNodeName, chapterKey, createNewNodeGameType);
+    tirggerNodeLookChangeBothInOut(tempGrid, tempNodeMap);
     
+    /* creation of node-content and data-structure-preparation */
+    triggerCreatedNewNode(createNewNodeName, chapterKey, createNewNodeGameType);
+
+
+    resetCreationArea();
   }
 
-  function nodeChangedHandlingLocal(gridTemp, nodeMapTemp) {
-      /* update all node-mappings and grid-blocks - local */
-      setGridBlocks(gridTemp);
-      setNodeRelationshipMap(nodeMapTemp);        
+  function resetCreationArea() {
       /* reset the creation panel */
       setCreateNewNodeName("");
       setCreateNewNodeGameType("");
@@ -493,12 +488,15 @@ export default function NodeManager({projectName, currUser,
       setClickedNodeKey("");
   }
 
-  function nodeChangedHandlingOuter(gridTemp, nodeMapTemp, nodeKey, chapKey, nodeType) {
+  function tirggerNodeLookChangeBothInOut(tempGrid, tempNodeMap) {
+      /* update all node-mappings and grid-blocks - local */
+      setGridBlocks(tempGrid);
+      setNodeRelationshipMap(tempNodeMap);   
+
       /* outer-layer: notify update node-mapping (this chapter) */
-      triggerNodeMappingsChange(nodeMapTemp, gridTemp); // notify outer-layer
-      /* creation of node-content and data-structure-preparation */
-      triggerCreatedNewNode(nodeKey, chapKey, nodeType);
+      triggerNodeMappingsChange(tempNodeMap, tempGrid); // notify outer-layer
   }
+
 
 
 
@@ -543,15 +541,17 @@ export default function NodeManager({projectName, currUser,
 
 
   function handleNodeInfoEditTitle() { //TODO30 03
-    let tempNodeData = nodeRelationshipMap;
+    let tempNodeMap = nodeRelationshipMap;
 
-    if (tempNodeData[clickedNodeKey] === undefined) {
+    if (tempNodeMap[clickedNodeKey] === undefined) {
       return;
     }
 
-    tempNodeData[clickedNodeKey].nodeName = tempNewName;
-    setNodeRelationshipMap(tempNodeData);
-    triggerNodeMappingsChange(tempNodeData, gridBlocks);
+    tempNodeMap[clickedNodeKey].nodeName = tempNewName;
+
+   
+    tirggerNodeLookChangeBothInOut(gridBlocks, tempNodeMap);
+
   
     setTempNewName("");
   }
@@ -564,8 +564,8 @@ export default function NodeManager({projectName, currUser,
     }
 
     tempNodeData[clickedNodeKey].notes = tempNewNote;
-    setNodeRelationshipMap(tempNodeData);
-    triggerNodeMappingsChange(tempNodeData, gridBlocks);
+
+    tirggerNodeLookChangeBothInOut(gridBlocks, tempNodeData);
 
     setTempNewNote("");
   }
@@ -617,19 +617,11 @@ export default function NodeManager({projectName, currUser,
 
 
     /* update all node-mappings */
-    setNodeRelationshipMap(tempNodeMap);
-    setGridBlocks(tempGridBlocks);
-    updateNodeLinkingsOnce(tempNodeMap, tempGridBlocks);
-    
-    // notify outer layer
-    triggerNodeMappingsChange(tempNodeMap, tempGridBlocks);
+    updateNodeLinkingsOnce(tempNodeMap, tempGridBlocks); //TODO60
 
-    //update both data structures to outer layer
-    updateNodeMapOfChapter(tempNodeMap);
-    updateGridBlockOfChapter(tempGridBlocks);
+    tirggerNodeLookChangeBothInOut(tempGridBlocks, tempNodeMap);
 
-
-    triggerNodeDeleted();
+    triggerNodeDeleted(); //TODO60
 
     setClickedNodeKey("");
     setClickedNode2(-1);
@@ -661,10 +653,10 @@ export default function NodeManager({projectName, currUser,
                         
     let tempNodeRelMap = nodeRelationshipMap;
     tempNodeRelMap[clickedNodeKey].spltLogicPairs = pairsArr; //TODO32 test updateTableCondt()
-
-    setNodeRelationshipMap(tempNodeRelMap);
+    
     updateNodeLinkingsOnce(tempNodeRelMap, gridBlocks);
-    triggerNodeMappingsChange(tempNodeRelMap, gridBlocks);
+
+    tirggerNodeLookChangeBothInOut(gridBlocks, tempNodeRelMap);
 
   }
 
@@ -682,9 +674,9 @@ export default function NodeManager({projectName, currUser,
     let tempNodeRelMap = nodeRelationshipMap;
     tempNodeRelMap[clickedNodeKey].spltLogicPairs = tempPairs; 
 
-    setNodeRelationshipMap(tempNodeRelMap);
     updateNodeLinkingsOnce(tempNodeRelMap, gridBlocks);
-    triggerNodeMappingsChange(tempNodeRelMap, gridBlocks);
+
+    tirggerNodeLookChangeBothInOut(gridBlocks, tempNodeRelMap);
 
     updateRenderCounter();
   }
@@ -867,7 +859,7 @@ export default function NodeManager({projectName, currUser,
                 return styleArray;
   }
 
-  function updateNodeLinkingsOnce(nodeMap, grid) { //TODO15
+  function updateNodeLinkingsOnce(nodeMap, grid) { //TODO60
   
     let styleArray = [];
 
@@ -1003,13 +995,9 @@ export default function NodeManager({projectName, currUser,
             gridBlocksTemp[ir][ic] = toRevertNodeKey;
 
             /* update all node-mappings */
-            setNodeRelationshipMap(nodeMapTemp);
-            setGridBlocks(gridBlocksTemp);
             updateNodeLinkingsOnce(nodeMapTemp, gridBlocksTemp);
-            triggerNodeMappingsChange(nodeMapTemp, gridBlocksTemp);
 
-            updateNodeMapOfChapter(nodeMapTemp);
-            updateGridBlockOfChapter(gridBlocksTemp);
+            tirggerNodeLookChangeBothInOut(gridBlocksTemp, nodeMapTemp);
 
             setClickedNode2(-1);
 
@@ -1650,9 +1638,9 @@ chapter-key = {chapterKey}
                             let tempMap = nodeRelationshipMap;
                             tempMap[clickedNodeKey].nextNode = selectedNextNode;
 
-                            setNodeRelationshipMap(tempMap);
                             updateNodeLinkingsOnce(tempMap, gridBlocks);
-                            triggerNodeMappingsChange(tempMap, gridBlocks);
+
+                            tirggerNodeLookChangeBothInOut(gridBlocks, tempMap);
 
                             setSelectedNextNode("");
                             updateRenderCounter();
@@ -1692,10 +1680,9 @@ chapter-key = {chapterKey}
                     let resp = window.confirm(confirmStr);
                     if (resp) {
                       tempMap2[clickedNodeKey].nextNode = "";
-                      
-                      setNodeRelationshipMap(tempMap2);
-                      updateNodeLinkingsOnce(tempMap2, gridBlocks);
-                      triggerNodeMappingsChange(tempMap2, gridBlocks);
+                      updateNodeLinkingsOnce(tempMap2, gridBlocks); //TODO60
+
+                      tirggerNodeLookChangeBothInOut(gridBlocks, tempMap2);
 
                       updateRenderCounter();
                     }
@@ -1998,10 +1985,10 @@ chapter-key = {chapterKey}
 
                       let tempNodeRelMap = nodeRelationshipMap;
                       tempNodeRelMap[clickedNodeKey].spltLogicPairs = tempLogicPairs; //TODO change to map
-
-                      setNodeRelationshipMap(tempNodeRelMap);
+                      
                       updateNodeLinkingsOnce(tempNodeRelMap, gridBlocks);
-                      triggerNodeMappingsChange(tempNodeRelMap, gridBlocks);
+
+                      tirggerNodeLookChangeBothInOut(gridBlocks, tempNodeRelMap);
 
       console.log("new node-rel-map = ", tempNodeRelMap); //TODO test
                       
@@ -2049,11 +2036,12 @@ chapter-key = {chapterKey}
                 let crd = targetR * 10000 + targetC;
                 setClickedNode2(crd);
 
-                /* update all node-mappings */
-                setGridBlocks(tempGrid);
-                setNodeRelationshipMap(tempMap);
+
                 updateNodeLinkingsOnce(tempMap, tempGrid); //TODO
-                triggerNodeMappingsChange(tempMap, tempGrid);
+
+                /* update all node-mappings */
+                tirggerNodeLookChangeBothInOut(tempGrid, tempMap);
+
               }
               
             }}>←</button>
@@ -2077,11 +2065,11 @@ chapter-key = {chapterKey}
                 let crd = targetR * 10000 + targetC;
                 setClickedNode2(crd);
 
-                /* update all node-mappings */
-                setGridBlocks(tempGrid);
-                setNodeRelationshipMap(tempMap);
                 updateNodeLinkingsOnce(tempMap, tempGrid); //TODO
-                triggerNodeMappingsChange(tempMap, tempGrid);
+
+                /* update all node-mappings */
+                tirggerNodeLookChangeBothInOut(tempGrid, tempMap);
+
               }
             }}>↑</button></div>
             <div><button
@@ -2103,11 +2091,11 @@ chapter-key = {chapterKey}
                   let crd = targetR * 10000 + targetC;
                   setClickedNode2(crd);
 
-                  /* update all node-mappings */
-                  setGridBlocks(tempGrid);
-                  setNodeRelationshipMap(tempMap);
                   updateNodeLinkingsOnce(tempMap, tempGrid); //TODO
-                  triggerNodeMappingsChange(tempMap, tempGrid);
+
+                  /* update all node-mappings */
+                  tirggerNodeLookChangeBothInOut(tempGrid, tempMap);
+
                 }
             }}>↓</button></div>
           </div>
@@ -2130,11 +2118,12 @@ chapter-key = {chapterKey}
                 let crd = targetR * 10000 + targetC;
                 setClickedNode2(crd);
 
-                /* update all node-mappings */
-                setGridBlocks(tempGrid);
-                setNodeRelationshipMap(tempMap);
                 updateNodeLinkingsOnce(tempMap, tempGrid); //TODO
-                triggerNodeMappingsChange(tempMap, tempGrid);
+
+                /* update all node-mappings */
+
+                tirggerNodeLookChangeBothInOut(tempGrid, tempMap);
+
               }
             }}>→</button>            
           </div>
