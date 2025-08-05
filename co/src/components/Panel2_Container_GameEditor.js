@@ -683,6 +683,14 @@ export default function Panel2_Container_GameEditor() {
         return authEmailName;
     }
 
+    function saveSingleNodeContentToCloud() {
+        //chapter is from currchapter
+        //nodekey is from currndoe
+        //nodeInfoObj is fetched from the large-obj: projectAllNodeContet[longKey]
+                        //TODO50: for node-editing of a newly-created node: if the cloud does not have it ... write with setDoc() for it
+
+    }
+
     function handleBannerGoBack() {
         // according to current focusing panel, go to different panels
         if (focusingEditor === "gameMaker") {
@@ -700,8 +708,21 @@ export default function Panel2_Container_GameEditor() {
                     }
             }
         } else {
-            // when inside node-editors
-            goToGameMakerResetNodeFocus();
+
+
+
+                            //TODO50: asks if save to cloud? or no?
+            let resp = window.confirm("Save and exit?");
+            if (resp) {
+
+                //TODO50: for node-editing of a newly-created node:  write with setDoc() for either write or overwrite
+
+                // when inside node-editors
+
+                saveSingleNodeContentToCloud();
+                goToGameMakerResetNodeFocus();
+
+            }
 
         }
 
@@ -924,7 +945,7 @@ console.log("ui-langauge changed to: ", val);
         let projAllNodeContentTemp = projectAllNodeContent;
         projAllNodeContentTemp[longKey] = genObjBothParts;
         setProjectAllNodeContent(projAllNodeContentTemp);
-        console.log(" finally... added a new node, now proj-all-node-content is : ", projAllNodeContentTemp);
+                console.log(" finally... added a new node, now proj-all-node-content is : ", projAllNodeContentTemp);
 
     }
 

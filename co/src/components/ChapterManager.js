@@ -19,6 +19,14 @@ export default function ChapterManager({
   
 }) {
 
+
+
+  // [ ] 1.create a chapter
+  // [ ] 2.revert a delieted chapter
+  // [ ] 3.change chapter title/note
+  // [ ] 4.delete a node
+
+
 //TODO3: game-maker level: all chapter's data (each chapter's node list)
 //TODO3: add getChapterData (from caller) : "getChapterList()"
 
@@ -185,6 +193,7 @@ export default function ChapterManager({
   }
 
   function changeChapterTitle(index, newTitle) {
+    //TODO30 03
     let tempChapterData = chapterData;
     tempChapterData[index][1] = newTitle;
 
@@ -194,6 +203,7 @@ export default function ChapterManager({
   }
 
   function changeChapterNote(index, note) {
+    //TODO30 03
     let tempChapterData = chapterData;
     tempChapterData[index][3] = note;
 
@@ -204,6 +214,7 @@ export default function ChapterManager({
 
 
   async function addNewChapterItem() { //add a new chapter - important
+    //TODO30 01
     let userInputChpKey = newChapterKeyInput;
 
     //1. not allowing empty chapter key or chapter title
@@ -251,6 +262,7 @@ export default function ChapterManager({
   }
 
   function hideChapter(index) {
+    //TODO30 04
     let askStr = "Are you sure to delete the chapter " + chapterData[index][1] + "?";
     let response = window.confirm(askStr);
     if (response) {
@@ -281,6 +293,7 @@ export default function ChapterManager({
   }
 
   function revertChapter(keyStr) {
+    //TODO30 02
     let i = 0;
     let tempChapterData = chapterData;
     let tempDeletedLocalList = [];
@@ -304,20 +317,6 @@ export default function ChapterManager({
 
     setIsRevertingChapter(false);
 
-  }
-
-  function updateStartingNode() {
-    // TODO by currChapter, get chapterKey from chapterData, or send chapter-key directly
-    let nodename = "temp";
-    let chapterkey = "temp";
-    updateLinkingNode("starting", nodename, chapterkey);
-  }
-
-  function updateEndingNode() {
-    // TODO by currChapter, get chapterKey from chapterData, or send chapter-key directly
-    let nodename = "temp";
-    let chapterkey = "temp";
-    updateLinkingNode("ending", nodename, chapterkey);
   }
 
 
