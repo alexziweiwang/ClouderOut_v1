@@ -697,7 +697,7 @@ export default function Panel2_Container_GameEditor() {
         let obj = projectAllNodeContent[longKey];
 
         //TODO60 save this to cloud!
-        
+
     }
 
     function handleBannerGoBack() {
@@ -1034,6 +1034,13 @@ console.log("ui-langauge changed to: ", val);
 
   }
 
+  function triggerNodeLookChange_panel2(nodeMapAll) {
+    setProjectMetaData({...projectMetaData,
+        "chapterNodeMapping": nodeMapAll
+    })
+//TODO90
+  }
+
 
 
 return (
@@ -1186,7 +1193,7 @@ return (
 
         triggerCreatedNewNode_panel2={triggerCreatedNewNode_panel2}
         saveEverythingToCloud_panel2={saveEverythingToCloud_panel2}
-
+        triggerNodeLookChange_panel2={triggerNodeLookChange_panel2}
 
     />
     </>}

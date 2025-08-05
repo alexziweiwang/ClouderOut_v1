@@ -36,15 +36,36 @@ import { updateChapterNodeMappingsToCloud_vm } from '../viewmodels/UpdtAc_Update
 import langDictionary from './_textDictionary';
 import uiLangMap from './uiLangMap';
 
+
+/*
+              metadata format
+      metadataObj["game_data"]
+      metadataObj["proj_resource_visual"]
+      metadataObj["proj_resource_audio"]
+      metadataObj["ui_language"]
+      metadataObj["nav_ui_settings"]
+      metadataObj["chapterList"]
+      metadataObj["chapterNodeMapping"]
+*/ 
+
+
+
+
+
+
+
 export default function GameMaker({
       projectName, 
       editorMode, 
       getProjectMetaData,
-      switchEditor,
-      getAuthEmailName,
-      updateMetaDataToOuter,
       backendOption,
-      getUiLangOption,
+      getUiLangOption,      
+      getAuthEmailName,
+
+      updateMetaDataToOuter,
+
+      switchEditor,
+
       getProjectResourceVarPairs,
       getUiLanguageOption,
       
@@ -59,6 +80,8 @@ export default function GameMaker({
       downloadAllInOne,
       saveEverythingToCloud_panel2,
 
+      triggerNodeLookChange_panel2,
+      triggerChapterListChange_panel2
 
     
     }) {
@@ -803,7 +826,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
   
   function updateChapterList(chapterData) { // game-maker local
     //TODO30 should notify panel2!
-    
+
     setChapterList(chapterData);
   }
 
@@ -1229,6 +1252,8 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
     setNodeMapUpdatedSignal(true);
     setGridBlocksUpdatedSignal(true);
+
+    triggerNodeLookChange_panel2(nodeMapAll);
 
   }
 
