@@ -688,7 +688,16 @@ export default function Panel2_Container_GameEditor() {
         //nodekey is from currndoe
         //nodeInfoObj is fetched from the large-obj: projectAllNodeContet[longKey]
                         //TODO50: for node-editing of a newly-created node: if the cloud does not have it ... write with setDoc() for it
+        //currentChapter
+        //currentNode
+        //projectAllNodeContent
+                                    console.log("saving a node... ", currentChapter, " - ", currentNode, " \n", projectAllNodeContent);
 
+        let longKey = generateNodeLongKeyString_vm({chapterKey: currentChapter, nodeKey: currentNode});
+        let obj = projectAllNodeContent[longKey];
+
+        //TODO60 save this to cloud!
+        
     }
 
     function handleBannerGoBack() {

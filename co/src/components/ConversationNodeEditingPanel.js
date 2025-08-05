@@ -776,25 +776,25 @@ GameDataDesign <map>
 
         let typeStr = "Conversation";
 
-        await convSingleNodeUpdateToCloudVM({
-            project: projectName, 
-            username: authEmailName,       
-            chapterKey: chapterKey, 
-            nodeKey: clickedNodeKey, 
-            dataObj: pieceDataStructure, 
-            uiDataObj: uiObj,
-            bkOption: backendOption,
-            nodeType: typeStr
-        })            
-        .then((res)=>{
-                if (res === "node-update-ok") {
-                    alert("Saved to Cloud!")
-                } else {
-                    alert("Node not exist on cloud!");
-                }
-            }
+        // await convSingleNodeUpdateToCloudVM({
+        //     project: projectName, 
+        //     username: authEmailName,       
+        //     chapterKey: chapterKey, 
+        //     nodeKey: clickedNodeKey, 
+        //     dataObj: pieceDataStructure, 
+        //     uiDataObj: uiObj,
+        //     bkOption: backendOption,
+        //     nodeType: typeStr
+        // })            
+        // .then((res)=>{
+        //         if (res === "node-update-ok") {
+        //             alert("Saved to Cloud!")
+        //         } else {
+        //             alert("Node not exist on cloud!");
+        //         }
+        //     }
 
-        );
+        // );
 
     }
 
@@ -1087,7 +1087,9 @@ GameDataDesign <map>
                 <div className="" style={{"height": "45px"}}>
             
                     <button
-                        onClick={()=>{saveAllToCloud();}}
+                        onClick={()=>{
+                            // saveAllToCloud();
+                        }}
                     >{saveToCloudText}</button>
 
                     <button className={isDisplayGameContentPreview === true ? "topBarTabSelected" : "topBarTab"} onClick={()=>{

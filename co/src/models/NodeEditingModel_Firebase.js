@@ -32,6 +32,24 @@ export async function convSingleNodeUpdateToCloud({project, username, chapterKey
 
 }
 
+export async function singleNodeWriteToCloud({project, username, chapterKey, nodeKey, dataObj}) {
+  let longKey = generateNodeLongKeyString_vm({chapterKey: chapterKey, nodeKey: nodeKey});
+
+  const docRef = doc(db, "user_projects", username, "projects", project, "allNodes", longKey);
+  const docSnap = await getDoc(docRef);
+
+                                console.log("singleNodeWriteToCloud-  ", dataObj, " for node - ", nodeKey, " ... as ", longKey);
+
+
+  if (!docSnap.exists()) {
+    return "node-not-exist";
+  }
+
+  await setDoc(docRef, dataObj);
+
+
+}
+
 
 //get both node-content and node-ui-settings
 export async function convNodeBothPartsFromCloud({project, username, chapterKey, nodeKey}) {
