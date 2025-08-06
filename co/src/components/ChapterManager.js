@@ -8,7 +8,6 @@ export default function ChapterManager({
   updateLinkingNode,
   prepareForNewChapterMapping, 
   
-  updateChapterListToCloud,
   getChapterList,
 
 
@@ -186,8 +185,7 @@ export default function ChapterManager({
 
   }
   
-  function updateBothLocalAndOuterChapterData(tempChapterData) {
-                        console.log("updateBothLocalAndOuterChapterData (not cloud): ", tempChapterData);
+  function triggerChapterChangeBothInOut(tempChapterData) {
     updateChapterData(tempChapterData);
     setChapterData(tempChapterData);
   }
@@ -197,7 +195,7 @@ export default function ChapterManager({
     let tempChapterData = chapterData;
     tempChapterData[index][1] = newTitle;
 
-    updateBothLocalAndOuterChapterData(tempChapterData);
+    triggerChapterChangeBothInOut(tempChapterData);
 
     setEditingChapterTitle("");
   }
@@ -207,13 +205,13 @@ export default function ChapterManager({
     let tempChapterData = chapterData;
     tempChapterData[index][3] = note;
 
-    updateBothLocalAndOuterChapterData(tempChapterData);
+    triggerChapterChangeBothInOut(tempChapterData);
 
     setEditingChapterNote("");
   }
 
 
-  async function addNewChapterItem() { //add a new chapter - important
+  function addNewChapterItem() { //add a new chapter - important
     //TODO30 01
     let userInputChpKey = newChapterKeyInput;
 
@@ -246,12 +244,11 @@ export default function ChapterManager({
     // add current chapter-key into created-key-list
     triggerCreatedNewChapter(line);
 
-                                            //updateChapterListToCloud(tempChapterData);
 
-    updateBothLocalAndOuterChapterData(tempChapterData);
+    triggerChapterChangeBothInOut(tempChapterData);
     makeDeletedList(tempChapterData);
 
-    await prepareForNewChapterMapping(userInputChpKey);
+    prepareForNewChapterMapping(userInputChpKey);
 
     setNewChapterKeyInput("");
     setNewChapterTitleInput("");
@@ -272,9 +269,8 @@ export default function ChapterManager({
       let tempChapterData = chapterData;
       tempChapterData[index][2] = "delete";
 
-      updateChapterListToCloud(tempChapterData);
 
-      updateBothLocalAndOuterChapterData(tempChapterData);
+      triggerChapterChangeBothInOut(tempChapterData);
 
       makeDeletedList(tempChapterData);
 
@@ -312,8 +308,7 @@ export default function ChapterManager({
     // update deletedLocalList
     setDeletedLocalList(tempDeletedLocalList);
 
-    updateBothLocalAndOuterChapterData(tempChapterData);
-    updateChapterListToCloud(tempChapterData);
+    triggerChapterChangeBothInOut(tempChapterData);
 
     setIsRevertingChapter(false);
 

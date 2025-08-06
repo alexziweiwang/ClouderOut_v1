@@ -690,9 +690,9 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
   }
 
 
-  async function prepareForNewChapterMapping(newKey) {
+  function prepareForNewChapterMapping(newKey) {
 
-      await prepareForNewChapterMapping_vm (
+      prepareForNewChapterMapping_vm (
           newKey, 
           chapterNodeMapAll, 
           setChapterNodeMapAll, 
@@ -825,8 +825,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
   } 
   
   function updateChapterList(chapterData) { // game-maker local
-    //TODO30 should notify panel2!
-
+    saveChapterListToOuter(chapterData);
     setChapterList(chapterData);
   }
 
@@ -1092,7 +1091,12 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
                         //   bkOption: backendOption //TODO999
                         // });
             //TODO adjustign for optimization
+    //trigger "chapterList" change
+
+
   }
+
+
 
   function convertNodeMapToGridBlocks(nodeMapTemp) {
     
@@ -1194,9 +1198,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
   }
 
 
-  async function saveChapterListToCloud(chapterListInfo) {
-
-
+  async function saveChapterListToOuter(chapterListInfo) {
 
     //convert the nested array into map
     let chapterListMap = {};
@@ -1207,19 +1209,10 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
       i++;
     }
 
- 
 
-    console.log("test func- saveChapterListToCloud()", chapterListMap);
-
-    await updateChapterListToCloudVM(
-      {
-        projectName: projectName, 
-        currUser: authEmailName,
-        chapterListData: chapterListMap,
-        bkOption: backendOption //TODO999
-      }
-    )
-
+    //update this to panel2
+    triggerChapterListChange_panel2(chapterListMap);
+    
   }
 
 
@@ -1633,7 +1626,6 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
           
           getUILanguage={passInUILanguage}
 
-          updateChapterListToCloud={saveChapterListToCloud}
           getChapterList={passInChapterList}
           triggerCreatedNewChapter={triggerCreatedNewChapter}
           sendOutIsCollapsed={getChapMgrCollapsed}

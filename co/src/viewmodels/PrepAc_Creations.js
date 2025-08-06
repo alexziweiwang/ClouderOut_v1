@@ -2,7 +2,7 @@ import { emptyConvNodeSinglePieceTemplate, emptyConvNodeUiAllTemplate } from '..
 import { createProjectVM } from './ProjectManagerViewModel';
 
 
-export async function prepareForNewChapterMapping_vm (newKey, chapterNodeMapAll, setChapterNodeMapAll, setNodeMapUpdatedSignal, convertNodeMapToGridBlocks, setGridBlocksAll, setGridBlocksUpdatedSignal, updateChapterNodeMappingsToCloud) {
+export function prepareForNewChapterMapping_vm (newKey, chapterNodeMapAll, setChapterNodeMapAll, setNodeMapUpdatedSignal, convertNodeMapToGridBlocks, setGridBlocksAll, setGridBlocksUpdatedSignal, updateChapterNodeMappingsToCloud) {
     //update all-node-map
 
     let nodeMapTemp = chapterNodeMapAll;
@@ -41,11 +41,6 @@ export async function prepareForNewChapterMapping_vm (newKey, chapterNodeMapAll,
     setGridBlocksAll(gridAllTemp);
 
     setGridBlocksUpdatedSignal(true);
-
-    //update to cloud
-    await updateChapterNodeMappingsToCloud(nodeMapTemp); 
-
-
 }
 
 
