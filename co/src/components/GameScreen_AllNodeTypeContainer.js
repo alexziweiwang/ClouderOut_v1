@@ -205,6 +205,8 @@ export default function GameScreen_AllNodeTypeContainer({
                                     //     bkOption: backendOption
                                     // });
 
+                                    //await fetchNodeByNodeKey2VM
+
                                 console.log("### ", chapterKeyTemp, ": node-data by each chapter: ", docCollection);
 
 
@@ -254,6 +256,7 @@ export default function GameScreen_AllNodeTypeContainer({
 
         } else {
             //cloud func
+// use : chapterKeyTemp     nodeKeyTemp       
 
                                                                 // let dataObj = await fetchNodeDataEachNodeVM({
                                                                 //     projectName: projectname, 

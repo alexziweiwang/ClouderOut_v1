@@ -537,6 +537,7 @@ game-screen (specific node) layer */}
                                                     //important: setup entry-gameData-set (if multiple) 
                                           */}
 
+//TODO30: for fetching single-node-data from cloud - when doing the play-view
                                           <GameScreen_AllNodeTypeContainer
                                                 getNodeType={passInNodeType}
                                                 getChapterKey={passInChapterKey} 

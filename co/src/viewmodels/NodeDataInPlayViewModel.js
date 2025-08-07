@@ -1,6 +1,7 @@
 import { fetchNodeDataEachNode, fetchNodeDataEachChapter, 
     fetchAllNodes2,
-    fetchNodeDataEachChapter2
+    fetchNodeByChapter2,
+    fetchNodeByNodeKey2
  } from '../models/NodeDataInPlayModel_Firebase';
 
 
@@ -33,6 +34,10 @@ export async function fetchAllNodes2VM({projectName, uname}) {
     return await fetchAllNodes2({projectName, uname});
 }
 
-export async function fetchNodeDataEachChapter2VM({projectName, uname, chapterKey}) {
-    return await fetchNodeDataEachChapter2({projectName, uname, chapterKey});
+export async function fetchNodeByChapter2VM({projectName, uname, chapterKey}) {
+    return await fetchNodeByChapter2({projectName, uname, chapterKey});
+}
+
+export async function fetchNodeByNodeKey2VM({projectName, uname, chapterKey, nodeKey}) {
+    return await fetchNodeByNodeKey2({projectName, uname, chapterKey, nodeKey});
 }

@@ -15,7 +15,7 @@ export async function fetchNodeDataEachNode({projectName, uname, chapterKey, nod
                           // const projectNodeSnap = await getDoc(projectNodeRef);
                         
                           // if (!projectNodeSnap.exists()) {
-                          //   return {"node-not-exist": "node-not-exist"};
+                          //   return {"node-dont-exist": "node-dont-exist"};
                           // }
 
                           // let nodeContentData = projectNodeSnap.data().nodeContent;
@@ -79,10 +79,9 @@ export async function fetchAllNodes2({projectName, uname}) {
     });
 
     return dataMap;
-
 }
 
-export async function fetchNodeDataEachChapter2({projectName, uname, chapterKey}) {
+export async function fetchNodeByChapter2({projectName, uname, chapterKey}) {
 //new data structure
     const q = query(
       collection(db, "user_projects", uname, "projects", projectName, "allNodes"), 
@@ -104,6 +103,25 @@ export async function fetchNodeDataEachChapter2({projectName, uname, chapterKey}
     });
 
     return dataMap;
+
+
+}
+
+export async function fetchNodeByNodeKey2({projectName, uname, chapterKey, nodeKey}) {
+  let longKey = generateNodeLongKeyString_vm({chapterKey: chapterKey, nodeKey: nodeKey});
+
+  const docRef = doc(db, "user_projects", uname, "projects", projectName, "allNodes", longKey);
+  const docSnap = await getDoc(docRef);
+
+
+
+  if (!docSnap.exists()) {
+    return "node-dont-exist";
+  }
+
+  let nodeObj = docSnap.data();
+
+  return nodeObj;
 
 
 }

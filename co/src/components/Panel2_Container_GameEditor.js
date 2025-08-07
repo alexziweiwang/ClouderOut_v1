@@ -36,12 +36,9 @@ import { checkProjectMetaData_vm } from '../viewmodels/PrepAc_ProjectFileInOut';
   } from '../viewmodels/ChapterInfoViewModel';
   
   import { addNewNodeFoldersVM } from '../viewmodels/NodeEditingViewModel';
-  
-  import { fetchEmuData1GdtVM, updateAllSetsVM } from '../viewmodels/EmuManagingViewModel';
-  
+    
   import { prepare1Gdt_vm, prepare2Epp_vm, prepare3Epa_vm } from '../viewmodels/PrepAc_EmuData';
   import { prepareForNewChapterMapping_vm, triggerCreatedNewNode_vm } from '../viewmodels/PrepAc_Creations';
-  import { updateChapterNodeMappingsToCloud_vm } from '../viewmodels/UpdtAc_UpdateData';
   
   
 
@@ -965,7 +962,9 @@ console.log("ui-langauge changed to: ", val);
         let projAllNodeContentTemp = projectAllNodeContent;
         projAllNodeContentTemp[longKey] = genObjBothParts;
         setProjectAllNodeContent(projAllNodeContentTemp);
-                console.log(" finally... added a new node, now proj-all-node-content is : ", projAllNodeContentTemp);
+                
+        
+                    console.log(" finally... added a new node, now proj-all-node-content is : ", projAllNodeContentTemp);
 
     }
 

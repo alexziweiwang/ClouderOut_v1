@@ -2,36 +2,6 @@ import  {db} from '../GoogleCloudConnections'; //TODO23 database
 import { doc, getDoc, getDocs, addDoc, setDoc, collection, query, where, updateDoc } from "firebase/firestore"; 
 import { generateNodeLongKeyString_vm } from '../viewmodels/PrepAc_ProjectOperation';
 
-//update node-content + node-ui-settings
-export async function convSingleNodeUpdateToCloud({project, username, chapterKey, nodeKey, dataObj, uiDataObj, nodeType}) {
-    let longKey = generateNodeLongKeyString_vm({chapterKey: chapterKey, nodeKey: nodeKey});
-
-              //TODO199: change sturcture: chapters-level should be the last collection-level: 
-    const docRef = doc(db, "user_projects", username, "projects", project, "allNodes", longKey);
-    const docSnap = await getDoc(docRef);
-  
-                                  console.log("model-func-convSingleNodeUpdateToCloud-  ", dataObj, " for node - ", nodeKey, " ... as ", longKey);
-
-
-    if (!docSnap.exists()) {
-      return "node-not-exist";
-    }
-
-    await updateDoc(docRef, {
-      "nodeContent": dataObj,
-      "nodeUISettings": uiDataObj,
-      "nodeType": nodeType,
-      "chapterKey": chapterKey,
-      "nodeKey": nodeKey
-    });
-
-    return "node-update-ok";
-    
-    //TODO test
-
-
-}
-
 export async function singleNodeWriteToCloud({project, username, chapterKey, nodeKey, dataObj}) {
   let longKey = generateNodeLongKeyString_vm({chapterKey: chapterKey, nodeKey: nodeKey});
 
@@ -42,7 +12,7 @@ export async function singleNodeWriteToCloud({project, username, chapterKey, nod
 
 
   if (!docSnap.exists()) {
-    return "node-not-exist";
+    return "node-dont-exist";
   }
 
   await setDoc(docRef, dataObj);
@@ -52,10 +22,10 @@ export async function singleNodeWriteToCloud({project, username, chapterKey, nod
 
 
 //get both node-content and node-ui-settings
-export async function convNodeBothPartsFromCloud({project, username, chapterKey, nodeKey}) {
+export async function singleNodeGetFromCloud({project, username, chapterKey, nodeKey}) {
   let longKey = generateNodeLongKeyString_vm({chapterKey: chapterKey, nodeKey: nodeKey}); //TODO77777
 
-  const docRef = doc(db, "user_projects", username, "projects", project, "allNodes", nodeKey);
+  const docRef = doc(db, "user_projects", username, "projects", project, "allNodes", longKey);
           //TODO199: change sturcture: chapters-level should be the last collection-level: 
   
   const docSnap = await getDoc(docRef);

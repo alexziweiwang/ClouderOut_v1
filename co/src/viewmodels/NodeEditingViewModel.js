@@ -1,25 +1,15 @@
-import { convSingleNodeUpdateToCloud, addNewNodeFolders, convNodeBothPartsFromCloud, singleNodeWriteToCloud } from '../models/NodeEditingModel_Firebase';
+import { addNewNodeFolders, singleNodeGetFromCloud, singleNodeWriteToCloud } from '../models/NodeEditingModel_Firebase';
 
-
-export async function convSingleNodeUpdateToCloudVM({project, username, chapterKey, nodeKey, dataObj, uiDataObj, bkOption, nodeType}) {
-    let res = {};
-
-    if (bkOption === "firebase") {
-        res = await convSingleNodeUpdateToCloud({project, username, chapterKey, nodeKey, dataObj, uiDataObj, nodeType});
-    }
-
-    return res;
-}
 
 export async function singleNodeWriteToCloudVM({project, username, chapterKey, nodeKey, dataObj}) {
     await singleNodeWriteToCloud({project, username, chapterKey, nodeKey, dataObj});
 }
 
-export async function convNodeBothPartsFromCloudVM({project, username, chapterKey, nodeKey, bkOption}) {
+export async function singleNodeGetFromCloudVM({project, username, chapterKey, nodeKey, bkOption}) {
     let res = {};
 
     if (bkOption === "firebase") {
-        res = await convNodeBothPartsFromCloud({project, username, chapterKey, nodeKey});
+        res = await singleNodeGetFromCloud({project, username, chapterKey, nodeKey});
     }
     
     return res;
