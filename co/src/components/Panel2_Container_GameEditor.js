@@ -113,6 +113,16 @@ export default function Panel2_Container_GameEditor() {
 
     const [isDisplayEntireGameViewer, setDisplayEntireGameViewer] = useState(false);
 
+/* todo30
+      metadata format
+      metadataObj["game_data"]
+      metadataObj["proj_resource_visual"]
+      metadataObj["proj_resource_audio"]
+      metadataObj["ui_language"]
+      metadataObj["nav_ui_settings"]
+      metadataObj["chapterList"]
+      metadataObj["chapterNodeMapping"]
+*/ 
 
                                         //TODO metadata99
     // --- metadata's keys ---
@@ -1037,8 +1047,13 @@ console.log("ui-langauge changed to: ", val);
   function triggerNodeLookChange_panel2(nodeMapAll) {
     setProjectMetaData({...projectMetaData,
         "chapterNodeMapping": nodeMapAll
-    })
-//TODO90
+    });
+  }
+
+  function triggerChapterListChange_panel2(chapMapProvided) {
+    setProjectMetaData({...projectMetaData,
+        "chapterList": chapMapProvided
+    });
   }
 
 
@@ -1194,7 +1209,7 @@ return (
         triggerCreatedNewNode_panel2={triggerCreatedNewNode_panel2}
         saveEverythingToCloud_panel2={saveEverythingToCloud_panel2}
         triggerNodeLookChange_panel2={triggerNodeLookChange_panel2}
-
+        triggerChapterListChange_panel2={triggerChapterListChange_panel2}
     />
     </>}
 

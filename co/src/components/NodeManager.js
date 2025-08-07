@@ -1666,8 +1666,6 @@ chapter-key = {chapterKey}
                   onClick={()=>{ //TODO30 06
                     setAskUpdateNextNodeFlag(false);
 
-
-
                     let tempMap2 = nodeRelationshipMap;
                     if (tempMap2[clickedNodeKey] === undefined) {
                       return;

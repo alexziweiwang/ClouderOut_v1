@@ -5,7 +5,6 @@ import langDictionary from './_textDictionary';
 export default function ChapterManager({
   updateChapterData, 
   updateChosenChapterItem, 
-  updateLinkingNode,
   prepareForNewChapterMapping, 
   
   getChapterList,

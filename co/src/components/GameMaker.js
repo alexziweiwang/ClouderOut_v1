@@ -594,10 +594,6 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
   }
 
-  function updateLinkingNodeFunc(position, nodename, chapterkey) {
-    //TODO either update "starting" or "ending" node of a chapter
-  }
-
   // function fetchCurrChapterNodeList(chapterKey) {
   //   // with chapter key, return the node list from cloud(?)
   //   console.log("fetchCurrChapterNodeList - key is: ", chapterKey); //TODO
@@ -1614,22 +1610,19 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
         {isDisplayRmBool === false && 
         <ChapterManager 
 
-          getChapterDataInfo={passInChapterList}
+          getChapterList={passInChapterList}
           
           chosenChapter={currChapterKey} 
           updateChosenChapterItem={switchChosenChapterItem} 
           
-          updateChapterData={updateChapterList} 
-          prepareForNewChapterMapping={prepareForNewChapterMapping}
-       
-          updateLinkingNode={updateLinkingNodeFunc}
-          
+          prepareForNewChapterMapping={prepareForNewChapterMapping}             
           getUILanguage={passInUILanguage}
-
-          getChapterList={passInChapterList}
-          triggerCreatedNewChapter={triggerCreatedNewChapter}
           sendOutIsCollapsed={getChapMgrCollapsed}
+
           
+          triggerCreatedNewChapter={triggerCreatedNewChapter}
+          updateChapterData={updateChapterList} 
+             
         />}
 
         {currChapterKey !== "" && 
