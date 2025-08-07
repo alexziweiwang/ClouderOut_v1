@@ -114,7 +114,7 @@ export default function Panel2_Container_GameEditor() {
     const [isDisplayEntireGameViewer, setDisplayEntireGameViewer] = useState(false);
 
 /* todo30
-      metadata format
+                        metadata format
       metadataObj["game_data"]
       metadataObj["proj_resource_visual"]
       metadataObj["proj_resource_audio"]
@@ -122,6 +122,7 @@ export default function Panel2_Container_GameEditor() {
       metadataObj["nav_ui_settings"]
       metadataObj["chapterList"]
       metadataObj["chapterNodeMapping"]
+      metadataObj["emu4sets"]
 */ 
 
                                         //TODO metadata99
@@ -528,13 +529,13 @@ export default function Panel2_Container_GameEditor() {
 
     }
 
-    async function updateSingleFieldToCloud(fieldName, contentValue) { //TODO100
+    async function updateSingleFieldToCloud(fieldName, contentValue, ) { //TODO100
         await updateProjectMetadataSingleFieldVM({
             projectName: state.selected_project_name,
             currUser: authEmailName, 
             fieldName: fieldName, 
             contentValue: contentValue, 
-            bkOption: backendOption
+            bkOption: backendOption,
         });
     }
 
@@ -1039,7 +1040,7 @@ console.log("ui-langauge changed to: ", val);
   function saveEverythingToCloud_panel2() {
       //TODO333 saves both metadata and all-node-contents to cloud !!!
 
-
+        //save
 
 
   }
@@ -1055,6 +1056,8 @@ console.log("ui-langauge changed to: ", val);
         "chapterList": chapMapProvided
     });
   }
+
+  
 
 
 

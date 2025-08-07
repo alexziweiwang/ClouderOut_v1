@@ -46,6 +46,7 @@ import uiLangMap from './uiLangMap';
       metadataObj["nav_ui_settings"]
       metadataObj["chapterList"]
       metadataObj["chapterNodeMapping"]
+      metadataObj["emu4sets"]
 */ 
 
 
@@ -821,7 +822,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
   } 
   
   function updateChapterList(chapterData) { // game-maker local
-    saveChapterListToOuter(chapterData);
+    genChapterListToOuter(chapterData);
     setChapterList(chapterData);
   }
 
@@ -1194,7 +1195,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
   }
 
 
-  async function saveChapterListToOuter(chapterListInfo) {
+  async function genChapterListToOuter(chapterListInfo) {
 
     //convert the nested array into map
     let chapterListMap = {};

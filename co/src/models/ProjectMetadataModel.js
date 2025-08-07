@@ -108,78 +108,80 @@ export async function updateProjectMetadataSingleField({projectName, currUser, f
       return;
     }
 
-    let outObj = {};
-    switch (fieldName){
+    let projectDocObj = docSnap.data();
+    projectDocObj[fieldName] = contentValue;
 
-        case "author_info":
-            outObj = {"author_info": contentValue};
-            break;
+                                                    // switch (fieldName){
 
-        case "chapterList":
-            outObj = {"chapterList": contentValue};
-            break;
-            
-        case "chapterNodeMapping":
-            outObj = {"chapterNodeMapping": contentValue};
-            break;  
+                                                    //     case "author_info":
+                                                    //         projectDocObj["author_info"] = contentValue;
+                                                    //         break;
 
-        case "convNodeUiPlanMap":
-            outObj = {"convNodeUiPlanMap": contentValue};
-            break;
+                                                    //     case "chapterList":
+                                                    //         projectDocObj["chapterList"] = contentValue;
+                                                    //         break;
+                                                            
+                                                    //     case "chapterNodeMapping":
+                                                    //         projectDocObj["chapterNodeMapping"] = contentValue;
+                                                    //         break;  
 
-        case "emu4sets":
-            outObj = {"emu4sets": contentValue};
-            break;
+                                                    //     case "convNodeUiPlanMap":
+                                                    //         projectDocObj["convNodeUiPlanMap"] = contentValue;
+                                                    //         break;
 
-        case "game_data":
-            outObj = {"game_data": contentValue};
-            break;   
-            
-        case "nav_ui_settings":
-            outObj = {"nav_ui_settings": contentValue};
-            break;          
-            
-        case "proj_resource_audio":
-            outObj = {"proj_resource_audio": contentValue};
-            break;   
+                                                    //     case "emu4sets":
+                                                    //         projectDocObj["emu4sets"] = contentValue;
+                                                    //         break;
 
-        case "proj_resource_visual":
-            outObj = {"proj_resource_visual": contentValue};
-            break;  
+                                                    //     case "game_data":
+                                                    //         projectDocObj["game_data"] = contentValue;
+                                                    //         break;   
+                                                            
+                                                    //     case "nav_ui_settings":
+                                                    //         projectDocObj["nav_ui_settings"] = contentValue;
+                                                    //         break;          
+                                                            
+                                                    //     case "proj_resource_audio":
+                                                    //         projectDocObj["proj_resource_audio"] = contentValue;
+                                                    //         break;   
 
-        case "project_description":
-            outObj = {"project_description": contentValue};
-            break;  
+                                                    //     case "proj_resource_visual":
+                                                    //         projectDocObj["proj_resource_visual"] = contentValue;
+                                                    //         break;  
 
-        case "project_name":
-            outObj = {"project_name": contentValue};
-            break;  
+                                                    //     case "project_description":
+                                                    //         projectDocObj["project_description"] = contentValue;
+                                                    //         break;  
 
-        case "project_title":
-            outObj = {"project_title": contentValue};
-            break;  
-        
-        case "sizeDirection":
-            outObj = {"sizeDirection": contentValue};
-            break;  
+                                                    //     case "project_name":
+                                                    //         projectDocObj["project_name"] = contentValue;
+                                                    //         break;  
 
-        case "trashed":
-            outObj = {"trashed": contentValue};
-            break;     
+                                                    //     case "project_title":
+                                                    //         projectDocObj["project_title"] = contentValue;
+                                                    //         break;  
+                                                        
+                                                    //     case "sizeDirection":
+                                                    //         projectDocObj["sizeDirection"] = contentValue;
+                                                    //         break;  
 
-        case "type":
-            outObj = {"type": contentValue};
-            break;             
-            
-        case "ui_language":
-            outObj = {"ui_language": contentValue};
-            break;  
+                                                    //     case "trashed":
+                                                    //         projectDocObj["trashed"] = contentValue;
+                                                    //         break;     
 
-        default:
-            return;
-        }
+                                                    //     case "type":
+                                                    //         projectDocObj["type"] = contentValue;
+                                                    //         break;             
+                                                            
+                                                    //     case "ui_language":
+                                                    //         projectDocObj["ui_language"] = contentValue;
+                                                    //         break;  
 
-    await updateDoc(docRef, outObj);
+                                                    //     default:
+                                                    //         return;
+                                                    //     }
+
+    await updateDoc(docRef, projectDocObj);
 
     //TODO test
   
