@@ -128,7 +128,7 @@ export default function Panel2_Container_GameEditor() {
     const [gameDataDesignList, setGameDataDesignList] = useState(undefined);
 
     // metadataObj["ui_language"]
-    const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en');
+
     // metadataObj["nav_ui_settings"]
     const [currentProjectNav, setCurrentProjectNav] = useState({});
 
@@ -179,7 +179,7 @@ export default function Panel2_Container_GameEditor() {
 
     }
 
-    let textDictItem = langDictionary[languageCodeTextOption];
+    let textDictItem = langDictionary[(projectMetaData === -1 || projectMetaData["ui_language"] === undefined) ? "en" : projectMetaData["ui_language"]];
     let textDictItemDefault = langDictionary["en"];
   
     const resourceManagerButtonText = textDictItem.resourceManagerButtonText !== undefined ?
@@ -429,7 +429,6 @@ export default function Panel2_Container_GameEditor() {
                     // metadataObj["proj_resource_audio"]
 
                     // metadataObj["ui_language"]
-                    setLanguageCodeTextOption(metadataTemp["ui_language"]);
 
                     // metadataObj["nav_ui_settings"]
                     setCurrentProjectNav(metadataTemp["nav_ui_settings"]);
@@ -828,8 +827,7 @@ export default function Panel2_Container_GameEditor() {
     
         let resp = window.confirm(askStr);
         
-        if (resp) {
-          setLanguageCodeTextOption(val);
+        if (resp) {          
           setProjectMetaData({...projectMetaData,
                 "ui_language": val
           });
@@ -862,7 +860,7 @@ console.log("ui-langauge changed to: ", val);
     }
 
     function passInUiLanguageOption() {
-        return languageCodeTextOption;
+        return projectMetaData["ui_language"];
     }
 
     function passInProjectResourceVarPairs() {
@@ -1154,7 +1152,7 @@ return (
 
                         <div>
                             <label>Editor Language</label><br></br>
-                            <select value={languageCodeTextOption}
+                            <select value={projectMetaData["ui_language"]}
                             onChange={(event)=>{
                              userChangeEditorUILang(event.target.value);
                         //TODO99999
@@ -1235,7 +1233,7 @@ return (
             chapterKey={currentChapter}
             editorMode={state.mode}
             
-            editorUiLang={languageCodeTextOption} //TODO change
+            editorUiLang={projectMetaData["ui_language"]} //TODO change
             backToGameMaker={goToGameMakerResetNodeFocus}
 
         />
@@ -1283,7 +1281,7 @@ return (
                 getLocalProjectDataRsrcMgr={passInLocalProjectData_RsrcMgr}
 
 
-                languageCodeTextOption={languageCodeTextOption} //TODO change
+                languageCodeTextOption={projectMetaData["ui_language"]} //TODO change
                 getUiLanguageOption={passInUiLanguageOption} //TODO to add
 
                 updateVarPairToCloud_p2Layer={updateVarPairToCloud_p2Layer}
