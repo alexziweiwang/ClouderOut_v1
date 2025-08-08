@@ -89,7 +89,7 @@ export default function GameMaker({
   const navigate = useNavigate();
 
 
-  const [projectMetaData, setProjectMetaData] = useState(undefined);
+  const [projectMetaData, setProjectMetaData] = useState(undefined); //receive & send-out
 
    //    "offline_half"       "offline_full"        "online_cloud"  
                       //          console.log("game maker, mode = ", editorMode, "\n ... project meta-data = ", projectMetaData);
@@ -113,10 +113,10 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
 
 
-  const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en'); //TODO16
+  const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en'); // receive
 
-  const [screenHeight, setScreenHeight] = useState(600);
-  const [screenWidth, setScreenWidth] = useState(800); //TODO
+  const [screenHeight, setScreenHeight] = useState(600); // receive
+  const [screenWidth, setScreenWidth] = useState(800); // receive
 
   const [cloudDbConnOk, setCloudDbConnOk] = useState(true);
 
@@ -176,10 +176,6 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
   const [rmUpdatedSignal, setRmUpdatedSignal] = useState(false);
   const [gdmUpdatedSignal, setGdmUpdatedSignal] = useState(false);
 
-
-  const [gameDataTracker, setGameDataTracker] = useState({}); //used during test-play
-
-
   const [isDisplayEntireGameViewer, setDisplayEntireGameViewer] = useState(false);
   
   const [mutedViewOption, setMutedViewOption] = useState(false);
@@ -190,50 +186,51 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
   /* variable area */
   const name = "/gamemaker";
 
-  const [currChapterKey, setCurrChapterKey] = useState("");
+  const [currChapterKey, setCurrChapterKey] = useState(""); // local-use
+
 
   //TODO6
-  const [currTestingPageStatus, setCurrTestingPageStatus] = useState("Main Page");
-  const [currTestingChapterKey, setCurrTestingChapterKey] = useState("");
-  const [currTestingChapterTitle, setCurrTestingChapterTitle] = useState("");
-
-  const [currTestingNodeKey, setCurrTestingNodeKey] = useState("");
-  const [currTestingNodeType, setCurrTestingNodeType] = useState("");
-
-  const [chapterList, setChapterList] = useState([]);
-
-  const [isDisplayRmBool, setDisplayRmModal] = useState(false);
-  const [isDisplayGdmBool, setDisplayGdmBool] = useState(false);
-  const [isDisplayEmBool, setDisplayEmBool] = useState(false);
+  const [currTestingPageStatus, setCurrTestingPageStatus] = useState("Main Page"); //move to outer-layer
+  const [currTestingChapterKey, setCurrTestingChapterKey] = useState(""); //move to outer-layer
+  const [currTestingChapterTitle, setCurrTestingChapterTitle] = useState(""); //move to outer-layer
+  const [currTestingNodeKey, setCurrTestingNodeKey] = useState(""); //move to outer-layer
+  const [currTestingNodeType, setCurrTestingNodeType] = useState(""); //move to outer-layer
+  const [currPageName, setCurrPageName] = useState("Main Page"); //move to outer-layer
 
 
-  const [showChapterMaker, setShowChapterMaker] = useState(true);
 
-  const [currPageName, setCurrPageName] = useState("Main Page");
 
-  const [createNodeFolderSignal, setCreateNodeFolderSignal] = useState(false);
-  const [createdNewNodeWaitlist, setCreatedNewNodeWaitlist] = useState([]);
-  const [createdNewNodeWaitListPending, setCreatedNewNodeWaitListPending] = useState(false);
+  const [chapterList, setChapterList] = useState([]); //receive & send-out
 
-  const [visualMap, setVisualMap] = useState([]); 
-  const [audioMap, setAudioMap] = useState([]);
+  const [isDisplayRmBool, setDisplayRmModal] = useState(false); //TODO remove
+  const [isDisplayGdmBool, setDisplayGdmBool] = useState(false); //TODO remove
+  const [isDisplayEmBool, setDisplayEmBool] = useState(false); //TODO remove
+
+
+  const [showChapterMaker, setShowChapterMaker] = useState(true); // local-use
+
+  const [createNodeFolderSignal, setCreateNodeFolderSignal] = useState(false); // local-use
+  const [createdNewNodeWaitlist, setCreatedNewNodeWaitlist] = useState([]); // local-use
+  const [createdNewNodeWaitListPending, setCreatedNewNodeWaitListPending] = useState(false); // local-use
+
+  const [visualMap, setVisualMap] = useState([]); // receive
+  const [audioMap, setAudioMap] = useState([]); // receive
 
   const [currChapterContent, setCurrChapterContent] = useState([]); //TODO200
 
 
-  const [testPlayerGameDataTracker, setTestPlayerGameDataTracker] = useState({});   //TODO important for holder-in-practice
-  const [testPlayerProfile, setTestPlayerProfile] = useState({});                                                       //TODO important for holder-in-practice
-  const [testPlayerAccount, setTestPlayerAccount] = useState({});                                                       //TODO important for holder-in-practice
+  const [testPlayerGameDataTracker, setTestPlayerGameDataTracker] = useState({}); //move to outer-layer
+  const [testPlayerProfile, setTestPlayerProfile] = useState({}); //move to outer-layer                                                       //TODO important for holder-in-practice
+  const [testPlayerAccount, setTestPlayerAccount] = useState({}); //move to outer-layer                                                       //TODO important for holder-in-practice
   const [testPlayerSLRecords, setTestPlayerSLRecords] = useState({
       "playername": "playerA",
       "itemStatus": [{}, {}, {}]
-  });
-  
-  const [testShopProducts, setTestShopProducts] = useState({});
-  const [testPlayerPurchaseStatus, setTestPlayerPurchaseStatus] = useState({});
+  }); //move to outer-layer
+  const [testShopProducts, setTestShopProducts] = useState({}); //move to outer-layer
+  const [testPlayerPurchaseStatus, setTestPlayerPurchaseStatus] = useState({}); //move to outer-layer
 
 
-
+//receive & send-out
     function getResourceVarPairsLocal() {
   
       //TODO999: if half-offline, and imported-file, use the data structure from file
@@ -321,7 +318,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
 //TODO ------------------------------------------------------ testing data area
 
-  const [chapterNodeMapAll, setChapterNodeMapAll] = useState(-1);
+  const [chapterNodeMapAll, setChapterNodeMapAll] = useState(-1); // receive & send-out
   const [gridBlocksAll, setGridBlocksAll] = useState(-1); //stores node-keys
 
   const [nodeMapUpdatedSignal , setNodeMapUpdatedSignal] = useState(false);
@@ -330,44 +327,27 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
   //TODO501 node-ui template...
 
 
-  const [isChapMgrCollapsed, setChapMgrCollapsed] = useState(false);
+  const [isChapMgrCollapsed, setChapMgrCollapsed] = useState(false); // local-use
   const [nodeMgrDelSignal, setNodeMgrDelSignal] = useState(false);
   
 //TODO23 update to and fetch from cloud for this project !!!
 
-  const [currentProjectNav, setCurrentProjectNav] = useState({}); //TODO now: default initial values
+  const [currentProjectNav, setCurrentProjectNav] = useState({}); // receive & send-out
 
 
-                                  // const [testPlayerGameDataTracker, setTestPlayerGameDataTracker] = useState({});   //TODO important for holder-in-practice
-                                  // const [testPlayerProfile, setTestPlayerProfile] = useState({});                                                       //TODO important for holder-in-practice
-                                  // const [testPlayerAccount, setTestPlayerAccount] = useState({});                                                       //TODO important for holder-in-practice
-                                  // const [testPlayerSLRecords, setTestPlayerSLRecords] = useState({
-                                  //     "playername": "playerA",
-                                  //     "itemStatus": [{}, {}, {}]
-                                  // });
+  const [isEmuMgrOpenedOnce, setIsEmuMgrOpenedOnce] = useState(false); //TODO remove
 
-  const [isEmuMgrOpenedOnce, setIsEmuMgrOpenedOnce] = useState(false);
-
-  const [allChaptersContents, setAllChaptersContents] = useState({});
                                                            //TODO important for holder-in-practice
 //TODO ------------------------------------------------------ testing data area
 
     const [selectedGameDataPanelBetween2, setSelectedGameDataPanelBetween2] = useState(true);
 
-  const [gameDataDesignList, setGameDataDesignList] = useState({});
+  const [gameDataDesignList, setGameDataDesignList] = useState({}); //TODO90 receive only
   const [gameDataArray, setGameDataArray] = useState([]);
 
-  const [offlineHalfMode, setOfflineHalfMode] = useState(editorMode === "offline_half" ? true : false); //with account log-in and use links from external online-drive, not using the storage place
-  const [offlineFullMode, setOfflineFullMode] = useState(editorMode === "offline_full" ? true : false); //TODO6000
-  // editorMode
-//"offline_half"
-//"offline_full"
-//"online_cloud"
 
 
-
-
-  const [needCloudGameData, setNeedCloudGameData] = useState(true);
+  const [needCloudGameData, setNeedCloudGameData] = useState(true); //TODO remove
 
 
   function markNextNeedCloudGameData() {
