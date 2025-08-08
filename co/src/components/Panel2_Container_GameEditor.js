@@ -120,26 +120,7 @@ export default function Panel2_Container_GameEditor() {
       metadataObj["chapterList"]
       metadataObj["chapterNodeMapping"]
       metadataObj["emu4sets"]
-*/ 
-
-                                        //TODO metadata99
-    // --- metadata's keys ---
-    // metadataObj["game_data"]
-    const [gameDataDesignList, setGameDataDesignList] = useState(undefined);
-
-    // metadataObj["ui_language"]
-
-    // metadataObj["nav_ui_settings"]
-    const [currentProjectNav, setCurrentProjectNav] = useState({});
-
-    // metadataObj["chapterList"]
-    const [chapterList, setChapterList] = useState([]);
-    const [chapterListRaw, setChapterListRaw] = useState([]);
-
-
-    // metadataObj["chapterNodeMapping"]
-    const [chapterNodeMapAll, setChapterNodeMapAll] = useState(-1);
-
+*/
 
     //emu-data-sets
     //TODO99999
@@ -179,7 +160,7 @@ export default function Panel2_Container_GameEditor() {
 
     }
 
-    let textDictItem = langDictionary[(projectMetaData === -1 || projectMetaData["ui_language"] === undefined) ? "en" : projectMetaData["ui_language"]];
+    let textDictItem = langDictionary[(projectMetaData === -1 || projectMetaData === undefined || projectMetaData["ui_language"] === undefined) ? "en" : projectMetaData["ui_language"]];
     let textDictItemDefault = langDictionary["en"];
   
     const resourceManagerButtonText = textDictItem.resourceManagerButtonText !== undefined ?
@@ -416,29 +397,6 @@ export default function Panel2_Container_GameEditor() {
             if (metadataTemp !== undefined) {
                 let res = checkProjectMetaData_vm(metadataTemp);
                 if (res === true) {
-
-                    setProjectMetaData(metadataTemp);
-
-                    //TODO99999 setup local hook vars
-
-                    // --- metadata's keys ---
-                    // metadataObj["game_data"]
-                    setGameDataDesignList(metadataTemp["game_data"]);
-
-                    // metadataObj["proj_resource_visual"]
-                    // metadataObj["proj_resource_audio"]
-
-                    // metadataObj["ui_language"]
-
-                    // metadataObj["nav_ui_settings"]
-                    setCurrentProjectNav(metadataTemp["nav_ui_settings"]);
-
-                    // metadataObj["chapterList"]
-                    setChapterListRaw(metadataTemp["chapterList"]);    
-                            //TODO setChapterList() based on this    
-
-                    // metadataObj["chapterNodeMapping"]
-                    setChapterNodeMapAll(metadataTemp["chapterNodeMapping"]);
 
                     //!important
                     setProjectMetaData(metadataTemp);
@@ -929,10 +887,12 @@ console.log("ui-langauge changed to: ", val);
     }
 
 
-    // function updateGameDataDesignList(data) {
-    //     //TODO999 update game-data-design-list
-    //     setGameDataDesignList(data);
-    // }
+    function triggerGameDataDesignListChange(data) {
+        //TODO999 update game-data-design-list
+        setProjectMetaData({...projectMetaData, 
+            "game_data": data
+        })
+    }
 
     function triggerCreatedNewNode_panel2(nodeKey, nodeChapter, nodeType) {
         // add this node's content into the project-all-node-content ds
@@ -1313,7 +1273,7 @@ return (
 
                 updateForEmuGdt1={getUserConfigFromDataMgr1Gdt}
 
-                updateGameDataDesignListToOuterLayer={updateGameDataDesignList}
+                updateGameDataDesignListToOuterLayer={triggerGameDataDesignListChange}
 
                 getLocalProjectData_GameDataDesign={passInLocalProjectData_GameDataDesign}
 
