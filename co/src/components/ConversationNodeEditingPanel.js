@@ -79,7 +79,7 @@ GameDataDesign <map>
 
 */
 
-    const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en');
+    const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en'); // local-use
 
 
 
@@ -148,8 +148,9 @@ GameDataDesign <map>
         
         ]
     ); //TODO testing *Important* later: load from cloud, with all detailed setting info
+    // receive & send-out
 
-    const [gameUIisDisplayDefaultButton, setGameUIisDisplayDefaultButton] = useState(true); //fetch from cloud-db
+    const [gameUIisDisplayDefaultButton, setGameUIisDisplayDefaultButton] = useState(true); // receive & send-out
 
 //TODO600 test start --- 
 
@@ -159,7 +160,7 @@ GameDataDesign <map>
     });
     const [gameUIDefaultButton, setGameUIDefaultButton] = useState(
         gameUIDefaultButtonLocal
-    ); 
+    ); // receive & send-out
 
 
     let gameUITextFrameLocal = {};
@@ -168,7 +169,7 @@ GameDataDesign <map>
     });
     const [gameUITextFrame, setGameUITextFrame] = useState(
         gameUITextFrameLocal
-    ); 
+    ); // receive & send-out
   
     
     let gameUIBackButtonLocal = {};
@@ -177,7 +178,7 @@ GameDataDesign <map>
     });
     const [gameUIBackButton, setGameUIBackButton] = useState(
         gameUIBackButtonLocal
-    );
+    ); // receive & send-out
   
 
     let uiConvNavLocal = {};
@@ -186,7 +187,7 @@ GameDataDesign <map>
     });
     const [uiConvNav, setUIConvNav] = useState(
         uiConvNavLocal
-    );
+    ); // receive & send-out
 
 
     let logPageUISettingsLocal = {};
@@ -196,7 +197,7 @@ GameDataDesign <map>
 
     const [logPageUISettings, setLogPageUISettings] = useState(
         logPageUISettingsLocal
-    );
+    ); // receive & send-out
 
 //TODO600 test end --- 
 
@@ -231,9 +232,7 @@ GameDataDesign <map>
 
     const [testPlayerGameData, setTestPlayerGameData] = useState({});   //TODO important for holder-in-practice
     const [testPlayerGameDataDup, setTestPlayerGameDataDup] = useState({});   //TODO important for holder-in-practice
-
     const [testPlayerProfile, setTestPlayerProfile] = useState({});                                                                 //TODO important for holder-in-practice
-  
     const [testPlayerAccount, setTestPlayerAccount] = useState({});        
 
     const [selectedGameScreenSize, setSelectedGameScreenSize] = useState("");
@@ -252,15 +251,8 @@ GameDataDesign <map>
     const [gameDataDesignList, setGameDataDesignList] = useState({});                    /* Important */
  
     const [charaPicPrvw, setCharaPicPrvw] = useState(-1);
-
-
-    const [firstEnterButtonPressed, setFirstEnterButtonPressed] = useState(true);
     
     const [rmUpdatedSignal, setRmUpdatedSignal] = useState(false);
-
-    const [offlineHalfMode, setOfflineHalfMode] = useState(false); //with account log-in and use links from external online-drive, not using the storage place
-    const [offlineFullMode, setOfflineFullMode] = useState(false); //TODO6000
-  
 
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
@@ -978,16 +970,6 @@ GameDataDesign <map>
         return authEmailName;
     }
 
-    function passInOfflineModeName() {
-        if (offlineHalfMode === true) {
-            return "offline_half";
-        } else if (offlineFullMode === true) {
-            return "offline_full";
-        } else {
-            return "online_cloud";
-        }
-
-    }
 
 
 
@@ -1041,7 +1023,7 @@ GameDataDesign <map>
         >
                                                 {/* <div className="returning_buttons_cloud_mode">
                                                     <button className="button2" onClick={()=>{goToGameMaker()}}> {returnGameMakerButtonText} </button>
-                                    {projectName !== null && firstEnterButtonPressed === true &&                
+                                    {projectName !== null &&                
                                     <>
 
                                     <div style={{"width": "200px",  "textAlign": "left", "padding": "5px", "marginTop": "5px"}}>
@@ -1066,7 +1048,7 @@ GameDataDesign <map>
                                     }
                                                 </div> */}
 
-{projectName !== null && firstEnterButtonPressed === true &&
+{projectName !== null && 
 <>
             <div className="parallelFrame" style={{"marginTop": "-5px"}}>
                 <div className="topParalBarLeftPart">
@@ -1125,7 +1107,7 @@ GameDataDesign <map>
              
             </div>
 
-{firstEnterButtonPressed === true &&
+{
             <div 
                 className={isDisplayQview === true ? "noScrolling" : ""} 
                 style={{
