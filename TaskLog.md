@@ -750,5 +750,11 @@
 
 - 2025-Aug-11: Improve plans for rendering-optimization for panel2 6
 - 2025-Aug-11: Design testing-project plot 44
+- 2025-Aug-11: Research on visual effect
+
+
+
+
+
 
 
