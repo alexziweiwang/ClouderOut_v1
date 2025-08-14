@@ -756,6 +756,6 @@
 - 2025-Aug-12: Design testing-project plot 45
 
 - 2025-Aug-13: Design testing-project plot 46
-
+- 2025-Aug-13: Research on visual effect
 
 
