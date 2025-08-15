@@ -44,6 +44,8 @@ export async function singleNodeGetFromCloud({project, username, chapterKey, nod
 }
 
 
+
+
 //for locally-added nodes, add these to cloud?  //TODOtest later
 export async function addNewNodeFolders({project, username, nodeList, chapterKey}) {
 
@@ -59,7 +61,6 @@ export async function addNewNodeFolders({project, username, nodeList, chapterKey
                                                                                 //TODO group func       group-func
     nodeList.map(async (item, i) => {
       let longKey = generateNodeLongKeyString_vm({chapterKey: item["chapKey"], nodeKey: item["nodeKey"]});
-
 
       if (item["chapKey"] === chapterKey) {
           console.log();

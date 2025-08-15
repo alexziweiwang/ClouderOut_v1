@@ -24,8 +24,6 @@ import {
 
 } from '../viewmodels/ChapterInfoViewModel';
 
-import { addNewNodeFoldersVM } from '../viewmodels/NodeEditingViewModel';
-
 import { prepareForNewChapterMapping_vm } from '../viewmodels/PrepAc_Creations';
 import { updateChapterNodeMappingsToCloud_vm } from '../viewmodels/UpdtAc_UpdateData';
 
@@ -755,37 +753,37 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
   }
 
 
-  async function saveToCloudNewNodeList(waitlist) {
-//TODO600
+//   async function saveToCloudNewNodeList(waitlist) {
+// //TODO600
 
-    if (createdNewNodeWaitlist.length === 0) {
-      return;
-    }
+//     if (createdNewNodeWaitlist.length === 0) {
+//       return;
+//     }
 
-    if (createNodeFolderSignal === true) {
-          //by signal, add a new document at /"nodes"
-          //TODO199: change sturcture: chapters-level should be the last collection-level: 
+//     if (createNodeFolderSignal === true) {
+//           //by signal, add a new document at /"nodes"
+//           //TODO199: change sturcture: chapters-level should be the last collection-level: 
 
-                          console.log("updating to cloud: func-step1-node-folders node-waitlist = ", createdNewNodeWaitlist);
-//TODO600
-          await addNewNodeFoldersVM(
-            { 
-                project: projectName,
-                username: authEmailName,
-                nodeList: waitlist, 
-                chapterKey: currChapterKey,
-                bkOption: backendOption //TODO999
-            }
-          );
-          //TODO36
+//                           console.log("updating to cloud: func-step1-node-folders node-waitlist = ", createdNewNodeWaitlist);
+// //TODO600
+//           await addNewNodeFoldersVM(
+//             { 
+//                 project: projectName,
+//                 username: authEmailName,
+//                 nodeList: waitlist, 
+//                 chapterKey: currChapterKey,
+//                 bkOption: backendOption //TODO999
+//             }
+//           );
+//           //TODO36
 
-          setCreatedNewNodeWaitlist([]);
-          setCreatedNewNodeWaitListPending(false);
+//           setCreatedNewNodeWaitlist([]);
+//           setCreatedNewNodeWaitListPending(false);
 
-          //reset create-node-signal to false here
-          setCreateNodeFolderSignal(false);
-    }
-  }
+//           //reset create-node-signal to false here
+//           setCreateNodeFolderSignal(false);
+//     }
+//   }
  
   async function switchChosenChapterItem(chapterKey) {
  

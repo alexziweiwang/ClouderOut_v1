@@ -60,6 +60,7 @@ import { submitFileVM, getRmFileListVM, addToRmFileListVM, fetchUrlByFilenameVM,
   //TODO ------------------------- new vm and model funcs for optimizations
 import { fetchProjectAllMetadataVM, updateProjectMetadataSingleFieldVM } from '../viewmodels/ProjectMetadataViewModel'; //TODO60
 import { generateNodeLongKeyString_vm } from '../viewmodels/PrepAc_ProjectOperation';
+import { singleNodeWriteToCloudVM } from '../viewmodels/NodeEditingViewModel';
 
 
 
@@ -262,10 +263,6 @@ export default function Panel2_Container_GameEditor() {
 
     function switchEditor(visitInfoObj) {
         let longKey = generateNodeLongKeyString_vm({chapterKey: visitInfoObj["chapterKey"], nodeKey: visitInfoObj["nodeKey"]});
-            
-        //TODO30
-        
-        
 
         if (projectAllNodeContent === undefined 
                 || projectAllNodeContent[longKey] === undefined
@@ -648,7 +645,7 @@ export default function Panel2_Container_GameEditor() {
         return authEmailName;
     }
 
-    function saveSingleNodeContentToCloud() {
+    async function saveSingleNodeContentToCloud() {
         //chapter is from currchapter
         //nodekey is from currndoe
         //nodeInfoObj is fetched from the large-obj: projectAllNodeContet[longKey]
@@ -658,10 +655,18 @@ export default function Panel2_Container_GameEditor() {
         //projectAllNodeContent
                                     console.log("saving a node... ", currentChapter, " - ", currentNode, " \n", projectAllNodeContent);
 
-        let longKey = generateNodeLongKeyString_vm({chapterKey: currentChapter, nodeKey: currentNode});
         let obj = projectAllNodeContent[longKey];
 
-        //TODO60 save this to cloud!
+        // save this to cloud
+        await singleNodeWriteToCloudVM({
+            project: state.selected_project_name, 
+            username: authEmailName, 
+            chapterKey: currentChapter, 
+            nodeKey: currentNode, 
+            dataObj: obj
+        })
+
+        //TODO30         bkOption: backendOption 
 
     }
 
