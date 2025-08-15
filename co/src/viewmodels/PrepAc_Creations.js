@@ -44,7 +44,7 @@ export function prepareForNewChapterMapping_vm (newKey, chapterNodeMapAll, setCh
 }
 
 
-export function triggerCreatedNewNode_vm(nodeTypeTemp) {
+export function triggerCreatedNewNode_Prep_vm(nodeTypeTemp) {
     
     let nodeObj = {};
 

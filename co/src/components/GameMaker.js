@@ -11,18 +11,11 @@ import NavigationPreview from './NavigationPreview';
 
 //level0
 
-//TODO1090 cloud-db related
-
 import {
   updateProjectNavigationSettingsVM, 
 
 } from '../viewmodels/ProjectManagerViewModel';
-import { 
 
-  updateChapterListToCloudVM, 
-  addNewOneChapterFolderVM 
-
-} from '../viewmodels/ChapterInfoViewModel';
 
 import { prepareForNewChapterMapping_vm } from '../viewmodels/PrepAc_Creations';
 import { updateChapterNodeMappingsToCloud_vm } from '../viewmodels/UpdtAc_UpdateData';
@@ -497,6 +490,11 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
   });
 
+  useEffect(()=>{
+    updateAllInObj();
+    console.log("sending out for these of metadat: ")
+  }, [currentProjectNav, chapterList, chapterNodeMapAll]);
+
 
   function goToNotLoggedInPage() {
    // navigate('/notloggedin', { replace: true });
@@ -665,7 +663,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
   }
 
 
-  function prepareForNewChapterMapping(newKey) {
+  function prepareForNewChapterMapping_GameMaker(newKey) {
 
       prepareForNewChapterMapping_vm (
           newKey, 
@@ -1314,16 +1312,13 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
 
 
-  function loadEverythingFromProvidedMetadata(metaDataTemp) {
+  function loadEverythingFromProvidedMetadata(metaDataTemp) { //read-only from the fetched object
                            console.log("game-maker :  prep metadata... ", metaDataTemp);
 
 
     if (metaDataTemp === undefined || metaDataTemp === -1) {
       return;
     }
-
-    setProjectMetaData(metaDataTemp);
-
 
 //GameDataDesign <map>
     setGameDataDesignList(metaDataTemp["game_data"]);
@@ -1345,8 +1340,6 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 // NavigationSettings <map>
     setCurrentProjectNav(metaDataTemp["nav_ui_settings"]);
           
-
-
 // AllChapterList (used in chapter-manager) <map/2d_array>
     let chapterArr = [];
     let chapMap = metaDataTemp["chapterList"];
@@ -1364,22 +1357,6 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
   }
 
-  async function saveEverythingToCloud() { 
-
-    if (chapterNodeMapAll === -1 || gridBlocksAll === -1) {
-      alert("unable to save");
-      return;
-
-    } else {
-      // await updateProjectNavigationSettingsToCloud();
-      // await updateChapterNodeMappingsToCloud_local(chapterNodeMapAll); 
-      // await saveToCloudNewNodeList(createdNewNodeWaitlist); 
-
-    }
-
-
-  }
-
   function triggerNodeDeleted() {
     setNodeMgrDelSignal(true);
   }
@@ -1387,12 +1364,6 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
   function passInAuthEmailName() {
     return authEmailName;
-  }
-
-  function passInOfflineModeName() {
-
-    return editorMode;
-
   }
 
                
@@ -1457,15 +1428,15 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
   }
 
   function updateAllInObj() { //TODO99999
-    let metadataObj = {};
-    metadataObj["game_data"] = gameDataDesignList;
-    metadataObj["proj_resource_visual"] = visualMap;
-    metadataObj["proj_resource_audio"] = audioMap;
-    metadataObj["ui_language"] = languageCodeTextOption;
+    let metadataObj = getProjectMetaData();
+
+    // only update these three
     metadataObj["nav_ui_settings"] = currentProjectNav;
     metadataObj["chapterList"] = chapterList;
     metadataObj["chapterNodeMapping"] = chapterNodeMapAll;
 
+    // currentProjectNav, chapterList, chapterNodeMapAll
+//TODO11111
     updateMetaDataToOuter(metadataObj);
   }
 
@@ -1594,7 +1565,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
           chosenChapter={currChapterKey} 
           updateChosenChapterItem={switchChosenChapterItem} 
           
-          prepareForNewChapterMapping={prepareForNewChapterMapping}             
+          prepareForNewChapterMapping={prepareForNewChapterMapping_GameMaker}             
           getUILanguage={passInUILanguage}
           sendOutIsCollapsed={getChapMgrCollapsed}
 

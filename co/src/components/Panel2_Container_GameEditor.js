@@ -26,19 +26,10 @@ import { downloadObjectAsFile } from '../viewmodels/PrepAc_ProjectFileInOut';
 
 import { checkProjectMetaData_vm } from '../viewmodels/PrepAc_ProjectFileInOut';
 
-  import { 
-    getProjectGameDataDesignVM, 
-  } from '../viewmodels/GameDataViewModel';
 
-  import { 
-  
-    addNewOneChapterFolderVM 
-  } from '../viewmodels/ChapterInfoViewModel';
-  
-  import { addNewNodeFoldersVM } from '../viewmodels/NodeEditingViewModel';
-    
+
   import { prepare1Gdt_vm, prepare2Epp_vm, prepare3Epa_vm } from '../viewmodels/PrepAc_EmuData';
-  import { prepareForNewChapterMapping_vm, triggerCreatedNewNode_vm } from '../viewmodels/PrepAc_Creations';
+  import { prepareForNewChapterMapping_vm, triggerCreatedNewNode_Prep_vm } from '../viewmodels/PrepAc_Creations';
   
   
 
@@ -653,7 +644,7 @@ export default function Panel2_Container_GameEditor() {
         //currentChapter
         //currentNode
         //projectAllNodeContent
-                                    console.log("saving a node... ", currentChapter, " - ", currentNode, " \n", projectAllNodeContent);
+                                    console.log("saving a node... ", currentChapter, " - ", currentNode, " \n", projectAllNodeContent, "\n", projectAllNodeContent[longKey]);
 
         let obj = projectAllNodeContent[longKey];
 
@@ -663,10 +654,9 @@ export default function Panel2_Container_GameEditor() {
             username: authEmailName, 
             chapterKey: currentChapter, 
             nodeKey: currentNode, 
-            dataObj: obj
+            dataObj: obj,
+            bkOption: backendOption 
         })
-
-        //TODO30         bkOption: backendOption 
 
     }
 
@@ -902,15 +892,13 @@ console.log("ui-langauge changed to: ", val);
     function triggerCreatedNewNode_panel2(nodeKey, nodeChapter, nodeType) {
         // add this node's content into the project-all-node-content ds
 
-        let genObjBothParts = triggerCreatedNewNode_vm(nodeType);
+        let genObjBothParts = triggerCreatedNewNode_Prep_vm(nodeType);
+        // now a new node's obj is prepared
 
         genObjBothParts["nodeKey"] = nodeKey;
         genObjBothParts["chapterKey"] = nodeChapter;
-        
-        //TODO20 add this node into all-node-contents ds
-        
-        //TODO333
-        console.log("trigger crated node: ", genObjBothParts);
+
+                                console.log("trigger crated node: ", genObjBothParts);
 
 
                                     //format:

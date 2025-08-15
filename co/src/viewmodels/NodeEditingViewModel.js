@@ -1,8 +1,11 @@
-import { addNewNodeFolders, singleNodeGetFromCloud, singleNodeWriteToCloud } from '../models/NodeEditingModel_Firebase';
+import { singleNodeGetFromCloud, singleNodeWriteToCloud } from '../models/NodeEditingModel_Firebase';
 
 
-export async function singleNodeWriteToCloudVM({project, username, chapterKey, nodeKey, dataObj}) {
-    await singleNodeWriteToCloud({project, username, chapterKey, nodeKey, dataObj});
+export async function singleNodeWriteToCloudVM({project, username, chapterKey, nodeKey, dataObj, bkOption}) {
+    if (bkOption === "firebase") {
+        await singleNodeWriteToCloud({project, username, chapterKey, nodeKey, dataObj});
+    }
+
 }
 
 export async function singleNodeGetFromCloudVM({project, username, chapterKey, nodeKey, bkOption}) {
@@ -15,10 +18,10 @@ export async function singleNodeGetFromCloudVM({project, username, chapterKey, n
     return res;
 }
 
-export async function addNewNodeFoldersVM({project, username, nodeList, chapterKey, bkOption}) {
+// export async function addNewNodeFoldersVM({project, username, nodeList, chapterKey, bkOption}) {
 
-    if (bkOption === "firebase") {
-        await addNewNodeFolders({project, username, nodeList, chapterKey});
-    }
+//     if (bkOption === "firebase") {
+//         await addNewNodeFolders({project, username, nodeList, chapterKey});
+//     }
 
-}
+// }

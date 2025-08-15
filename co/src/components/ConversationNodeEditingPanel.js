@@ -20,9 +20,7 @@ import { emptyConvNodeSinglePieceTemplate, gameUIDefaultButtonTemplate, gameUITe
 
 
 //TODO1090 cloud-db related
-import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 import { saveConvNodeUiPlanVM, fetchConvNodeUiAllPlansVM } from '../viewmodels/ProjectManagerViewModel';
-import { getProjectGameDataDesignVM } from '../viewmodels/GameDataViewModel';
  
 
 

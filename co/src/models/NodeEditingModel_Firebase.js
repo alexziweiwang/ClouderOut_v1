@@ -47,45 +47,45 @@ export async function singleNodeGetFromCloud({project, username, chapterKey, nod
 
 
 //for locally-added nodes, add these to cloud?  //TODOtest later
-export async function addNewNodeFolders({project, username, nodeList, chapterKey}) {
+// export async function addNewNodeFolders({project, username, nodeList, chapterKey}) {
 
-    const ref = doc(db, "user_projects", username, "projects", project, "allNodes");
-          //TODO199: change sturcture: chapters-level should be the last collection-level: 
+//     const ref = doc(db, "user_projects", username, "projects", project, "allNodes");
+//           //TODO199: change sturcture: chapters-level should be the last collection-level: 
     
     
-    const snap = await getDoc(ref);
+//     const snap = await getDoc(ref);
 
-    if (!snap.exists()) {
-      return;
-    }
-                                                                                //TODO group func       group-func
-    nodeList.map(async (item, i) => {
-      let longKey = generateNodeLongKeyString_vm({chapterKey: item["chapKey"], nodeKey: item["nodeKey"]});
+//     if (!snap.exists()) {
+//       return;
+//     }
+//                                                                                 //TODO group func       group-func
+//     nodeList.map(async (item, i) => {
+//       let longKey = generateNodeLongKeyString_vm({chapterKey: item["chapKey"], nodeKey: item["nodeKey"]});
 
-      if (item["chapKey"] === chapterKey) {
-          console.log();
+//       if (item["chapKey"] === chapterKey) {
+//           console.log();
 
-          await setDoc(
-              doc(ref, "allNodes", longKey), 
-              item["detailObj"]
-          );
-        //TODO600 test!!
+//           await setDoc(
+//               doc(ref, "allNodes", longKey), 
+//               item["detailObj"]
+//           );
+//         //TODO600 test!!
 
-      }
-    });
-
-
-    /*
-    each elem in nodeKeyList: 
-        {
-        "nodeKey": newNodeKey,
-        "chapKey": chapterKeyTemp,
-        "detailObj": 
-        }
-
-    */
+//       }
+//     });
 
 
+//     /*
+//     each elem in nodeKeyList: 
+//         {
+//         "nodeKey": newNodeKey,
+//         "chapKey": chapterKeyTemp,
+//         "detailObj": 
+//         }
+
+//     */
 
 
-}
+
+
+// }
