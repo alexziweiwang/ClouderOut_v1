@@ -99,6 +99,14 @@ export async function fetchProjectMetadataSingleField({projectName, currUser, fi
         return item;
 }
 
+export async function updateProjectAllMetadata({projectName, currUser, dataObj}) {
+    const docRef = doc(db, "user_projects", currUser, "projects", projectName);
+   
+    await setDoc(docRef, dataObj);
+
+
+}
+
 export async function updateProjectMetadataSingleField({projectName, currUser, fieldName, contentValue}) {
     const docRef = doc(db, "user_projects", currUser, "projects", projectName);
     const docSnap = await getDoc(docRef);
@@ -181,11 +189,13 @@ export async function updateProjectMetadataSingleField({projectName, currUser, f
                                                     //         return;
                                                     //     }
 
-    await updateDoc(docRef, projectDocObj);
+    await setDoc(docRef, projectDocObj);
 
     //TODO test
   
 }
+
+
 
     //example obj(for metadata): 
                                 // author_info:  ""

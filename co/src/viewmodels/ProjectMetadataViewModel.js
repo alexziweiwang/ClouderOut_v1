@@ -1,4 +1,4 @@
-import { fetchProjectAllMetadata, updateProjectMetadataSingleField, fetchProjectMetadataSingleField } from '../models/ProjectMetadataModel';
+import { fetchProjectAllMetadata, updateProjectMetadataSingleField, fetchProjectMetadataSingleField, updateProjectAllMetadata } from '../models/ProjectMetadataModel';
 
 export async function fetchProjectAllMetadataVM({projectName, currUser, bkOption}) {
     if (bkOption === "firebase") {
@@ -14,6 +14,13 @@ export async function fetchProjectMetadataSingleFieldVM({projectName, currUser, 
     } else {
         return {"invalid key": "invalid value"};
     }
+}
+
+export async function  updateProjectAllMetadataVM({projectName, currUser, dataObj, bkOption}) {
+    if (bkOption === "firebase") {
+        await updateProjectAllMetadata({projectName, currUser, dataObj});
+    }
+
 }
 
 export async function updateProjectMetadataSingleFieldVM({projectName, currUser, fieldName, contentValue, bkOption}) {
