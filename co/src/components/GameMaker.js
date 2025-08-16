@@ -1442,7 +1442,6 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
       <button onClick={()=>{
         let ans = window.confirm("Are you sure to save and cover the project on cloud?");
         if (ans) {
-          
           saveMetadataToCloud_panel2();
           
         }

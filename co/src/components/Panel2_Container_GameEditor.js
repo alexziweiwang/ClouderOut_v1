@@ -49,7 +49,7 @@ import { submitFileVM, getRmFileListVM, addToRmFileListVM, fetchUrlByFilenameVM,
 
 
   //TODO ------------------------- new vm and model funcs for optimizations
-import { fetchProjectAllMetadataVM, updateProjectMetadataSingleFieldVM } from '../viewmodels/ProjectMetadataViewModel'; //TODO60
+import { fetchProjectAllMetadataVM, updateProjectMetadataSingleFieldVM, updateProjectAllMetadataVM } from '../viewmodels/ProjectMetadataViewModel'; //TODO60
 import { generateNodeLongKeyString_vm } from '../viewmodels/PrepAc_ProjectOperation';
 import { singleNodeWriteToCloudVM } from '../viewmodels/NodeEditingViewModel';
 
@@ -987,10 +987,19 @@ console.log("ui-langauge changed to: ", val);
         return chapterContentTemp;
   }
 
-  function saveMetadataToCloud_panel2() {
-      //TODO333 saves both metadata and all-node-contents to cloud !!!
+  async function saveMetadataToCloud_panel2() {
 
-        //save
+    let res = checkProjectMetaData_vm(projectMetaData);
+
+    if (res === true) {
+        await updateProjectAllMetadata({
+            projectName: state.selected_project_name, 
+            currUser: authEmailName, 
+            dataObj: projectMetaData, 
+            bkOption: backendOption
+        });
+    }
+
 
 
   }
