@@ -13,12 +13,15 @@ import NavigationPreview from './NavigationPreview';
 
 import {
   updateProjectNavigationSettingsVM, 
-
 } from '../viewmodels/ProjectManagerViewModel';
 
+import { 
+  prepareForNewChapterMapping_vm 
+} from '../viewmodels/PrepAc_Creations';
 
-import { prepareForNewChapterMapping_vm } from '../viewmodels/PrepAc_Creations';
-import { updateChapterNodeMappingsToCloud_vm } from '../viewmodels/UpdtAc_UpdateData';
+import { 
+  updateChapterNodeMappingsToCloud_vm 
+} from '../viewmodels/UpdtAc_UpdateData';
 
 //node key rule: generateNodeLongKeyString_vm({chapterKey, nodeKey})
 //TODO112: fetch node-contents here, and send into Viewer_Entire and its sub-component [GameScreen_AllNodeTypeContainer]
@@ -70,7 +73,8 @@ export default function GameMaker({
 
       triggerCreatedNewNode_panel2,
       downloadAllInOne,
-      saveEverythingToCloud_panel2,
+      saveMetadataToCloud_panel2,
+      loadMetadataFromCloud_panel2,
 
       triggerNodeLookChange_panel2,
       triggerChapterListChange_panel2
@@ -491,8 +495,8 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
   });
 
   useEffect(()=>{
-    updateAllInObj();
-    console.log("sending out for these of metadat: ")
+    update3InObj();
+                            console.log("sending out for these of metadat: currentProjectNav, chapterList, chapterNodeMapAll");
   }, [currentProjectNav, chapterList, chapterNodeMapAll]);
 
 
@@ -702,53 +706,6 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
                         console.log("grid-blocks updated.");
   }
 
-  async function chapterChangingOrExiting() {
-                                          console.log("exiting chapter - ", currChapterKey);
-        
-      if (currChapterKey === "") {
-
-                            console.log("no");
-        return "no";
-      }
-
-      
-      
-      // if (createNodeFolderSignal === true 
-      //   || nodeMgrDelSignal === true
-      //   || nodeMapUpdatedSignal === true
-      //   || gridBlocksUpdatedSignal === true
-      // ) { 
-
-      //     let answer = window.confirm("Save current chapter data to cloud?"); //ask if save to cloud?
-          
-          
-      //     if (answer) {
-      //         //by createdNewNodeWaitlist, update cloud-folders...
-
-      //         await saveEverythingToCloud(); // will reset createNodeFolderSignal
-      //         setNodeMgrDelSignal(false);
-
-      //                        console.log("yes. wait-and-enter");
-
-      //         return "wait-and-enter";
-
-      //     } else {
-      //         setNodeMapUpdatedSignal(false);
-      //         setGridBlocksUpdatedSignal(false);
-
-      //                         console.log("no");
-      //         return "no";
-      //     }
-
-      // } else {
-      //                         console.log("immediate-enter");
-      //   return "immediate-enter";
-
-      // }
-      
-      
-
-  }
 
 
 //   async function saveToCloudNewNodeList(waitlist) {
@@ -786,9 +743,6 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
   async function switchChosenChapterItem(chapterKey) {
  
                                             console.log("clicked on chapter-key: ", chapterKey); //TODO testing
-
-        //await chapterChangingOrExiting();
-
 
         if (chapterKey !== "") {
           setCurrChapterKey(chapterKey);
@@ -1159,16 +1113,6 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
     return chapterNodeMapAll;
   }
 
-  async function updateProjectNavigationSettingsToCloud() {
-
-    await updateProjectNavigationSettingsVM({
-      projectName: projectName, 
-      currUser: authEmailName,
-      dataObj: currentProjectNav,
-      bkOption: backendOption //TODO999
-    });
-    
-  }
 
 
   async function genChapterListToOuter(chapterListInfo) {
@@ -1427,7 +1371,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
     switchEditor(visitInfoObj);
   }
 
-  function updateAllInObj() { //TODO99999
+  function update3InObj() { //TODO99999
     let metadataObj = getProjectMetaData();
 
     // only update these three
@@ -1460,23 +1404,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 {cloudDbConnOk === false &&
 
 <>
-      <div className="returning_buttons_cloud_mode">
             
-        {editorMode === "online_cloud" && <button 
-          className="button2" 
-          onClick={()=>{chapterChangingOrExiting(); goToDashboard(); }}>
-             ← 
-        </button>}
-
-        <div style={{"width": "200px",  "textAlign": "left", "padding": "5px", "marginTop": "10px"}}>
-          <label>{projectNameText}: {projectName}</label>
-          {/* <br></br> */}
-
-        </div>    
-
-      </div>
-
-
       <div> Unable to connect to database for user: [{authEmailName}] </div>
 
 </>
@@ -1485,7 +1413,8 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
 {(
 (
-(cloudDbConnOk === true && editorMode === "online_cloud" && authEmailName !== "_") 
+(cloudDbConnOk === true 
+  && editorMode === "online_cloud" && authEmailName !== "_") 
 || (authEmailName === "localUser###")
 )
 && projectMetaData !== undefined
@@ -1504,7 +1433,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
       <button onClick={()=>{
         let ans = window.confirm("Are you sure to load from cloud and cover the project on local?");
         if (ans) {
-          alert("TODO should load from cloud");
+          loadMetadataFromCloud_panel2();
         }
 
       }}
@@ -1514,7 +1443,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
         let ans = window.confirm("Are you sure to save and cover the project on cloud?");
         if (ans) {
           
-          saveEverythingToCloud_panel2();
+          saveMetadataToCloud_panel2();
           
         }
 

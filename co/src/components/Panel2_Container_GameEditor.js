@@ -697,7 +697,7 @@ export default function Panel2_Container_GameEditor() {
 
     }
 
-    function fetchUpdatedMetaDataFromSubCompo(obj) { // from game-maker //!important
+    function receiveMetaDataFromSubCompo(obj) { // from game-maker //!important
         if (obj !== undefined) {
             let checkRes = checkProjectMetaData_vm(obj);
             if (checkRes === true) {
@@ -987,13 +987,14 @@ console.log("ui-langauge changed to: ", val);
         return chapterContentTemp;
   }
 
-  function saveEverythingToCloud_panel2() {
+  function saveMetadataToCloud_panel2() {
       //TODO333 saves both metadata and all-node-contents to cloud !!!
 
         //save
 
 
   }
+
 
   function triggerNodeLookChange_panel2(nodeMapAll) {
     setProjectMetaData({...projectMetaData,
@@ -1142,11 +1143,13 @@ return (
     <GameMaker
         projectName={state.selected_project_name}
         editorMode={state.mode}
-        getProjectMetaData={passInProjectMetaData}
-
         switchEditor={switchEditor}
-        getAuthEmailName={passInAuthEmailName}
-        updateToOuter={fetchUpdatedMetaDataFromSubCompo}
+        getAuthEmailName={passInAuthEmailName} 
+
+        getProjectMetaData={passInProjectMetaData}
+        updateMetaDataToOuter={receiveMetaDataFromSubCompo}
+
+
         backendOption={backendOption}
 
         getUiLangOption={passInUiLanguageOption}
@@ -1160,7 +1163,8 @@ return (
         getTestPlayerPurchaseStatus={passInTestPlayerPurchaseStatus}
 
         triggerCreatedNewNode_panel2={triggerCreatedNewNode_panel2}
-        saveEverythingToCloud_panel2={saveEverythingToCloud_panel2}
+        saveMetadataToCloud_panel2={saveMetadataToCloud_panel2}
+        loadMetadataFromCloud_panel2={loadMetadataFromCloud}
         triggerNodeLookChange_panel2={triggerNodeLookChange_panel2}
         triggerChapterListChange_panel2={triggerChapterListChange_panel2}
     />
