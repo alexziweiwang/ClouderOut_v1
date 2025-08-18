@@ -11,17 +11,9 @@ import NavigationPreview from './NavigationPreview';
 
 //level0
 
-import {
-  updateProjectNavigationSettingsVM, 
-} from '../viewmodels/ProjectManagerViewModel';
-
 import { 
   prepareForNewChapterMapping_vm 
 } from '../viewmodels/PrepAc_Creations';
-
-import { 
-  updateChapterNodeMappingsToCloud_vm 
-} from '../viewmodels/UpdtAc_UpdateData';
 
 //node key rule: generateNodeLongKeyString_vm({chapterKey, nodeKey})
 //TODO112: fetch node-contents here, and send into Viewer_Entire and its sub-component [GameScreen_AllNodeTypeContainer]
@@ -676,8 +668,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
           setNodeMapUpdatedSignal, 
           convertNodeMapToGridBlocks, 
           setGridBlocksAll, 
-          setGridBlocksUpdatedSignal, 
-          updateChapterNodeMappingsToCloud_local
+          setGridBlocksUpdatedSignal
       );
   }
 
@@ -986,20 +977,6 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
     return testPlayerPurchaseStatus; //TODO30
   }
 
-
-  async function updateChapterNodeMappingsToCloud_local(nodeMap) {
-
-    await updateChapterNodeMappingsToCloud_vm (
-      nodeMap, 
-      gridBlocksAll, 
-      projectName, 
-      authEmailName, 
-      backendOption, 
-      setNodeMapUpdatedSignal, 
-      setGridBlocksUpdatedSignal
-    );
-
-  }
 
 
   function triggerCreatedNewNode_gmLayer(newNodeKey, chapterKeyTemp, nodeTypeTemp) {
@@ -1377,6 +1354,10 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
     // only update these three
     metadataObj["nav_ui_settings"] = currentProjectNav;
     metadataObj["chapterList"] = chapterList;
+    //TODO
+
+
+
     metadataObj["chapterNodeMapping"] = chapterNodeMapAll;
 
     // currentProjectNav, chapterList, chapterNodeMapAll
