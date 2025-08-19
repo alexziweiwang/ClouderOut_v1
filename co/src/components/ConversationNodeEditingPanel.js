@@ -39,6 +39,8 @@ export default function ConversationNodeEditingPanel({
 
         getProjectResourceVarPairs,
         getGameDataDesignList,
+        saveConvNodeUiPlanFunc,
+        fetchConvNodeUiAllPlansFunc,
 
         gerCurrNodeEntire,
         backToGameMaker
@@ -915,22 +917,30 @@ GameDataDesign <map>
     }
 
     async function updateConvNodeUiPlanToCloud(allPlansMap) {
-        await saveConvNodeUiPlanVM({
-            projectName: projectName, 
-            currUser: authEmailName,          
-            updatedAllPlans: allPlansMap, 
-            nodeType: "Conversation",
-            bkOption: backendOption
-        });
+        // await saveConvNodeUiPlanVM({
+        //     projectName: projectName, 
+        //     currUser: authEmailName,          
+        //     updatedAllPlans: allPlansMap, 
+        //     nodeType: "Conversation",
+        //     bkOption: backendOption
+        // });
+
+
+        //TODO saveConvNodeUiPlanFunc()
+
+
     }
 
     async function fetchConvNodeUiPlansFromCloud() {
-        let obj = await fetchConvNodeUiAllPlansVM({
-            projectName: projectName, 
-            currUser: authEmailName,            
-            nodeType: "Conversation",
-            bkOption: backendOption
-        });
+        let obj = {};
+        // await fetchConvNodeUiAllPlansVM({
+        //     projectName: projectName, 
+        //     currUser: authEmailName,            
+        //     nodeType: "Conversation",
+        //     bkOption: backendOption
+        // });
+
+        //TODO fetchConvNodeUiAllPlansFunc()
 
         if (obj === undefined) {
         return -1;

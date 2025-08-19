@@ -31,6 +31,8 @@ import { checkProjectMetaData_vm } from '../viewmodels/PrepAc_ProjectFileInOut';
   import { prepare1Gdt_vm, prepare2Epp_vm, prepare3Epa_vm } from '../viewmodels/PrepAc_EmuData';
   import { prepareForNewChapterMapping_vm, triggerCreatedNewNode_Prep_vm } from '../viewmodels/PrepAc_Creations';
   
+  import { saveConvNodeUiPlanVM, fetchConvNodeUiAllPlansVM } from '../viewmodels/ProjectManagerViewModel';
+
   
 
   import { 
@@ -1017,6 +1019,33 @@ console.log("ui-langauge changed to: ", val);
     });
   }
 
+  async function saveConvNodeUiPlanFunc() {
+         // await saveConvNodeUiPlanVM({
+        //     projectName: projectName, 
+        //     currUser: authEmailName,          
+        //     updatedAllPlans: allPlansMap, 
+        //     nodeType: "Conversation",
+        //     bkOption: backendOption
+        // });
+
+//TODO30
+  }
+  
+  async function fetchConvNodeUiAllPlansFunc() {
+        let obj = {};
+        // await fetchConvNodeUiAllPlansVM({
+        //     projectName: projectName, 
+        //     currUser: authEmailName,            
+        //     nodeType: "Conversation",
+        //     bkOption: backendOption
+        // });
+
+//TODO30
+
+
+        return obj;
+  }
+  
   
 
 
@@ -1191,6 +1220,8 @@ return (
             getProjectResourceVarPairs={passInProjectResourceVarPairs}
             getGameDataDesignList={passInGameDataDesignList}
             gerCurrNodeEntire={passInCurrNodeEntire}
+            fetchConvNodeUiAllPlansFunc={fetchConvNodeUiAllPlansFunc}
+            saveConvNodeUiPlanFunc={saveConvNodeUiPlanFunc}
 
             clickedNodeKey={currentNode}
             projectName={state.selected_project_name}

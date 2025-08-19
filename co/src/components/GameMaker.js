@@ -20,7 +20,6 @@ import {
 
 
 import langDictionary from './_textDictionary';
-import uiLangMap from './uiLangMap';
 
 
 /*
