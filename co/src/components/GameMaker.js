@@ -974,7 +974,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
   }
 
   function passInPlayerPurchaseStatus() {
-    return testPlayerPurchaseStatus; //TODO30
+    return testPlayerPurchaseStatus;
   }
 
 
@@ -1267,7 +1267,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
         Object.keys(chapMap).map((currKey) => {
             let item = chapMap[currKey];
             chapterArr.push(item);
-    }) //TODO30 conversion
+    }) //todo50 conversion
     setChapterList(chapterArr);
 
 // ChapterNodeMapping (used in node-manager) <map>
@@ -1315,7 +1315,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
     // only update these three
     metadataObj["nav_ui_settings"] = currentProjectNav;
     metadataObj["chapterList"] = chapterList;
-    //TODO30 convert to map-idnexed-list
+    //todo50 convert to map-idnexed-list
 
 
 

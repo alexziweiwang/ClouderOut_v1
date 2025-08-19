@@ -132,7 +132,6 @@ const tempFontSize = 12;
 
 
     const [isOpenSettingsPage, setOpenSettingsPage] = useState(false);
-//TODo301
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {

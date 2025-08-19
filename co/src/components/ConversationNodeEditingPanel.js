@@ -916,17 +916,9 @@ GameDataDesign <map>
         return charaPicPrvw;
     }
 
-    async function updateConvNodeUiPlanToCloud(allPlansMap) {
-        // await saveConvNodeUiPlanVM({
-        //     projectName: projectName, 
-        //     currUser: authEmailName,          
-        //     updatedAllPlans: allPlansMap, 
-        //     nodeType: "Conversation",
-        //     bkOption: backendOption
-        // });
+    function updateConvNodeUiPlanToCloud(allPlansMap) {
 
-
-        //TODO saveConvNodeUiPlanFunc()
+        saveConvNodeUiPlanFunc(allPlansMap);
 
 
     }

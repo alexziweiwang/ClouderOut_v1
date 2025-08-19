@@ -925,8 +925,6 @@ console.log("ui-langauge changed to: ", val);
     function passInCurrNodeEntire(chapterKeyTemp, nodeKeyTemp) {
         let longKey = generateNodeLongKeyString_vm({chapterKey: chapterKeyTemp, nodeKey: nodeKeyTemp});
         
-        //TODO30
-        console.log()
         console.log("longKey = ", longKey, ", projectAllNodeContent[longKey] = ", projectAllNodeContent[longKey], "\n", projectAllNodeContent);
 
         if (projectAllNodeContent === undefined 
@@ -1015,37 +1013,27 @@ console.log("ui-langauge changed to: ", val);
   }
 
   function triggerChapterListChange_panel2(chapMapProvided) {
-      //TODO30 conversion
+      //TODO50 conversion
     setProjectMetaData({...projectMetaData,
         "chapterList": chapMapProvided
     });
   }
 
-  async function saveConvNodeUiPlanFunc() {
-         // await saveConvNodeUiPlanVM({
-        //     projectName: projectName, 
-        //     currUser: authEmailName,          
-        //     updatedAllPlans: allPlansMap, 
-        //     nodeType: "Conversation",
-        //     bkOption: backendOption
-        // });
+  async function saveConvNodeUiPlanFunc(dataObj) {
+  
+    setProjectMetaData({...projectMetaData,
+        "convNodeUiPlanMap": dataObj,
+    })
 
-//TODO30
+//TODO50
   }
   
-  async function fetchConvNodeUiAllPlansFunc() {
-        let obj = projectMetaData[""];
-        // await fetchConvNodeUiAllPlansVM({
-        //     projectName: projectName, 
-        //     currUser: authEmailName,            
-        //     nodeType: "Conversation",
-        //     bkOption: backendOption
-        // });
+  function fetchConvNodeUiAllPlansFunc() {
+
+    return projectMetaData["convNodeUiPlanMap"];
 
 //TODO30
 
-
-        return obj;
   }
   
   

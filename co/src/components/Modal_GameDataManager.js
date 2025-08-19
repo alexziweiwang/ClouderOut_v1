@@ -7,8 +7,6 @@ import { getProjectGameDataDesignVM, updateGameDataDesignVM } from '../viewmodel
 
 //TODO6000 offline mode prep
 
- //TODO3000 update from emu_gameDataManager...
-
 //TODO adjust plan: fetch data from cloud-db, and provde display and setup features
 
 
