@@ -62,6 +62,7 @@ export async function updateChapterNodesToCloudData({projectName, currUser, chap
     });
 }
 
+//TODO30 remove
 export async function updateChapterListToCloud({projectName, currUser, chapterListData}) {
 
     const projectChapRef = doc(db, "user_projects", currUser, "projects", projectName);
@@ -75,8 +76,6 @@ export async function updateChapterListToCloud({projectName, currUser, chapterLi
     await updateDoc(projectChapRef, {
         "chapterList": chapterListData,
     });
-
-//TODO test
 
 }
 

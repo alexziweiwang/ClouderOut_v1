@@ -114,6 +114,7 @@ export default function Panel2_Container_GameEditor() {
       metadataObj["chapterList"]
       metadataObj["chapterNodeMapping"]
       metadataObj["emu4sets"]
+      metadataObj["convNodeUiPlanMap"]
 */
 
     //emu-data-sets
@@ -1014,6 +1015,7 @@ console.log("ui-langauge changed to: ", val);
   }
 
   function triggerChapterListChange_panel2(chapMapProvided) {
+      //TODO30 conversion
     setProjectMetaData({...projectMetaData,
         "chapterList": chapMapProvided
     });
@@ -1032,7 +1034,7 @@ console.log("ui-langauge changed to: ", val);
   }
   
   async function fetchConvNodeUiAllPlansFunc() {
-        let obj = {};
+        let obj = projectMetaData[""];
         // await fetchConvNodeUiAllPlansVM({
         //     projectName: projectName, 
         //     currUser: authEmailName,            

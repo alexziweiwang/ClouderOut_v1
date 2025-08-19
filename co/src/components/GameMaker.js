@@ -32,6 +32,7 @@ import langDictionary from './_textDictionary';
       metadataObj["chapterList"]
       metadataObj["chapterNodeMapping"]
       metadataObj["emu4sets"]
+      metadataObj["convNodeUiPlanMap"]
 */ 
 
 
@@ -1266,7 +1267,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
         Object.keys(chapMap).map((currKey) => {
             let item = chapMap[currKey];
             chapterArr.push(item);
-    })
+    }) //TODO30 conversion
     setChapterList(chapterArr);
 
 // ChapterNodeMapping (used in node-manager) <map>
@@ -1287,45 +1288,6 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
   }
 
                
-
-
-  // async function downloadAllInOne() { //download file
-  //   if (chapterNodeMapAll === -1 || gridBlocksAll === -1 || Object.keys(currentProjectNav).length === 0) {
-  //     alert("unable to download");
-  //     return;
-    
-  //   } else {
-
-  //     let filenamePrefix = "project#" + projectName +  "#by#" + authEmailName + "_";
-  //     let outputFileName = filenamePrefix + "__all";
-
-
-  //                 // let projectObjPart1Meta_Obj = {
-  //                 //   "game_data": gameDataDesignList,
-  //                 //   "proj_resource_visual": visualMap,
-  //                 //   "proj_resource_audio": audioMap,
-  //                 //   "ui_language": languageCodeTextOption,
-  //                 //   "nav_ui_settings": currentProjectNav,
-  //                 //   "chapterList": chapterList,
-  //                 //   "chapterNodeMapping": chapterNodeMapAll,
-  //                 // };
-
-
-
-  //                 // await downloadProjectAllInOne_vm(
-  //                 //   projectObjPart1Meta_Obj, 
-  //                 //   chapterNodeMapAll, 
-  //                 //   getCurrChpNodeDataFromCloud, 
-  //                 //   filenamePrefix
-  //                 // );
-
-
-  //   }
-
-
-  // }
-
-
   function passInBackendOption() {
     return backendOption;
   }
@@ -1353,7 +1315,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
     // only update these three
     metadataObj["nav_ui_settings"] = currentProjectNav;
     metadataObj["chapterList"] = chapterList;
-    //TODO
+    //TODO30 convert to map-idnexed-list
 
 
 

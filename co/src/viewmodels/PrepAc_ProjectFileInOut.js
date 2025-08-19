@@ -124,6 +124,7 @@ import {
         || metadataObj["nav_ui_settings"] === undefined 
         || metadataObj["chapterList"] === undefined 
         || metadataObj["chapterNodeMapping"] === undefined 
+        || metadataObj["convNodeUiPlanMap"] === undefined
     ) {
                                             console.log("@@@field incomplete");
         return false;                                           
@@ -167,7 +168,7 @@ import {
                                             console.log("@@@invalid chapter-list");
                 return false;
             }
-        });
+        });//todo30 conversion
 
     
 
