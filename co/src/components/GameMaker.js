@@ -1314,10 +1314,13 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
     // only update these three
     metadataObj["nav_ui_settings"] = currentProjectNav;
-    metadataObj["chapterList"] = chapterList;
-    //todo50 convert to map-idnexed-list
 
-
+    let chapListMap = {};
+    chapterList.map((item, index) => {
+        chapListMap[index] = item;
+    }) 
+//todo50 conversion
+    metadataObj["chapterList"] = chapListMap;
 
     metadataObj["chapterNodeMapping"] = chapterNodeMapAll;
 

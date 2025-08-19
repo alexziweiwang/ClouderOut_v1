@@ -1,5 +1,5 @@
 import { fetchChapterNodeMapping, updateChapterNodesToCloudData,
-    fetchAllChapterList, updateChapterListToCloud,
+    fetchAllChapterList, 
     addNewOneChapterFolder
     
 } from '../models/ChapterInfoModel_Firebase';
@@ -30,13 +30,6 @@ export async function fetchAllChapterListVM({projectName, currUser, bkOption}) {
     }
 
     return list;
-}
-
-export async function updateChapterListToCloudVM({projectName, currUser, chapterListData, bkOption}) {
-    if (bkOption === "firebase") {
-        await updateChapterListToCloud({projectName, currUser, chapterListData});
-    }
-
 }
 
 export async function addNewOneChapterFolderVM({project, username, chapterKey, bkOption}) {

@@ -168,7 +168,7 @@ import {
                                             console.log("@@@invalid chapter-list");
                 return false;
             }
-        });//todo50 conversion
+        });
 
     
 

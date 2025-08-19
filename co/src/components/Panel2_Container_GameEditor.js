@@ -1013,7 +1013,7 @@ console.log("ui-langauge changed to: ", val);
   }
 
   function triggerChapterListChange_panel2(chapMapProvided) {
-      //TODO50 conversion
+
     setProjectMetaData({...projectMetaData,
         "chapterList": chapMapProvided
     });
@@ -1032,7 +1032,7 @@ console.log("ui-langauge changed to: ", val);
 
     return projectMetaData["convNodeUiPlanMap"];
 
-//TODO30
+//TODO50
 
   }
   

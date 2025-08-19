@@ -62,22 +62,7 @@ export async function updateChapterNodesToCloudData({projectName, currUser, chap
     });
 }
 
-//TODO50 remove
-export async function updateChapterListToCloud({projectName, currUser, chapterListData}) {
 
-    const projectChapRef = doc(db, "user_projects", currUser, "projects", projectName);
-    const projectChapSnap = await getDoc(projectChapRef);
-
-
-    if (!projectChapSnap.exists()) {
-        return;
-    }
-
-    await updateDoc(projectChapRef, {
-        "chapterList": chapterListData,
-    });
-
-}
 
 export async function addNewChapterFolders({project, username, chapterKeyList}) {
                                             // const ref = doc(db, "user_projects", username, "projects", project);
