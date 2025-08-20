@@ -17,6 +17,7 @@ import {
 
 //node key rule: generateNodeLongKeyString_vm({chapterKey, nodeKey})
 //TODO112: fetch node-contents here, and send into Viewer_Entire and its sub-component [GameScreen_AllNodeTypeContainer]
+import { checkProjectMetaData_vm } from '../viewmodels/PrepAc_ProjectFileInOut';
 
 
 import langDictionary from './_textDictionary';
@@ -1310,23 +1311,28 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
   }
 
   function update3InObj() { //TODO99999
+    // 3 fields: currentProjectNav, chapterList->chapListMap, chapterNodeMapAll
+
     let metadataObj = getProjectMetaData();
+    let resBool = checkProjectMetaData_vm(metadataObj);
+    if (resBool === true) {
 
-    // only update these three
-    metadataObj["nav_ui_settings"] = currentProjectNav;
+        metadataObj["nav_ui_settings"] = currentProjectNav;
 
-    let chapListMap = {};
-    chapterList.map((item, index) => {
-        chapListMap[index] = item;
-    }) 
-//todo50 conversion
-    metadataObj["chapterList"] = chapListMap;
+        let chapListMap = {};
+        chapterList.map((item, index) => {
+            chapListMap[index] = item;
+        }) 
+        metadataObj["chapterList"] = chapListMap;
 
-    metadataObj["chapterNodeMapping"] = chapterNodeMapAll;
+        metadataObj["chapterNodeMapping"] = chapterNodeMapAll;
 
-    // currentProjectNav, chapterList, chapterNodeMapAll
-//TODO11111
-    updateMetaDataToOuter(metadataObj);
+
+        updateMetaDataToOuter(metadataObj);
+
+    }
+    
+
   }
 
 
