@@ -412,7 +412,7 @@ export default function NodeManager({projectName, currUser,
 
   async function addNewNodeFunc() { //TODO for new data structure
 
-    //TODO30 01
+    //action 01
     if (createNewNodeGameType === "") {
                                      console.log("Game type is required.");                           //TODO test
       return;
@@ -541,7 +541,7 @@ export default function NodeManager({projectName, currUser,
   }
 
 
-  function handleNodeInfoEditTitle() { //TODO30 03
+  function handleNodeInfoEditTitle() { //action 03
     let tempNodeMap = nodeRelationshipMap;
 
     if (tempNodeMap[clickedNodeKey] === undefined) {
@@ -557,7 +557,7 @@ export default function NodeManager({projectName, currUser,
     setTempNewName("");
   }
 
-  function handleNodeInfoEditNote() { //TODO30 03
+  function handleNodeInfoEditNote() { //action 03
     let tempNodeData = nodeRelationshipMap;
 
     if (tempNodeData[clickedNodeKey] === undefined) {
@@ -571,7 +571,7 @@ export default function NodeManager({projectName, currUser,
     setTempNewNote("");
   }
 
-  function deleteNodeFunc() { //TODO30 04
+  function deleteNodeFunc() { //action 04
     let tempNodeMap = nodeRelationshipMap;
     let tempGridBlocks = gridBlocks;
     // now the node is tempNodeMap[clickedNodeKey]
@@ -977,7 +977,7 @@ export default function NodeManager({projectName, currUser,
   }
 
   function revertNodeFunc() {
-    //TODO30 02
+    //action 02
       let askStr = "Are you sure to revert node" + "" + "?";
       let response = window.confirm(askStr);
       if (response) {
@@ -1634,7 +1634,7 @@ chapter-key = {chapterKey}
                                   }
                               })}
                       </select>
-                      <button onClick={()=>{ //TODO30 06
+                      <button onClick={()=>{ //action 06
                           if (selectedNextNode !== "") {
                             let tempMap = nodeRelationshipMap;
                             tempMap[clickedNodeKey].nextNode = selectedNextNode;
@@ -1663,7 +1663,7 @@ chapter-key = {chapterKey}
                 )
                 &&  
                 <button
-                  onClick={()=>{ //TODO30 06
+                  onClick={()=>{ //action 06
                     setAskUpdateNextNodeFlag(false);
 
                     let tempMap2 = nodeRelationshipMap;

@@ -1351,8 +1351,9 @@ return (
 <div>
             
     {isDisplayEntireGameViewer === true 
-    &&
+    &&<>
     <div>
+        <div>
 
         {/* <Viewer_Entire
 
@@ -1390,6 +1391,42 @@ return (
 
         /> */}
 
+   
+    
+    
+    
+    
+    
+      {/* status table */}
+      {/* <table style={{"width": "800px", "marginTop": `${screenHeight+20}px`, "marginLeft": "170px","position": "absolute"}}>
+              <thead>
+                <tr>
+                  <th>Current Page Status</th>
+                  <th>Current Chapter-Key</th>
+                  <th>Current Node-Key</th>
+                  <th>Current Node-Type</th>
+                </tr>
+              </thead>
+
+              <tbody> 
+                <tr>
+                  <td>{currTestingPageStatus}</td>
+                  <td>{currTestingChapterKey}</td>
+                  <td>{currTestingNodeKey}</td>
+                  <td>{currTestingNodeType}</td>         
+                </tr>
+      
+
+              </tbody>
+
+            </table> */}
+    
+    
+            </div>
+    
+    
+    
+            <div>
         {/* also :  <Panel_GameDataTest
 
                 note: for test-viewing: keep these: for the [status table]
@@ -1400,7 +1437,16 @@ return (
                 currTestingNodeType("");
         */}
 
-    </div>}
+            </div>
+    
+    </div>
+    
+    
+    
+    
+    </>}
+
+
 
 </div>
 

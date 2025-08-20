@@ -190,7 +190,7 @@ export default function ChapterManager({
   }
 
   function changeChapterTitle(index, newTitle) {
-    //TODO30 03
+    //action 03
     let tempChapterData = chapterData;
     tempChapterData[index][1] = newTitle;
 
@@ -200,7 +200,7 @@ export default function ChapterManager({
   }
 
   function changeChapterNote(index, note) {
-    //TODO30 03
+    //action 03
     let tempChapterData = chapterData;
     tempChapterData[index][3] = note;
 
@@ -211,7 +211,7 @@ export default function ChapterManager({
 
 
   function addNewChapterItem() { //add a new chapter - important
-    //TODO30 01
+    //action 01
     let userInputChpKey = newChapterKeyInput;
 
     //1. not allowing empty chapter key or chapter title
@@ -258,7 +258,7 @@ export default function ChapterManager({
   }
 
   function hideChapter(index) {
-    //TODO30 04
+    //action 04
     let askStr = "Are you sure to delete the chapter " + chapterData[index][1] + "?";
     let response = window.confirm(askStr);
     if (response) {
@@ -288,7 +288,7 @@ export default function ChapterManager({
   }
 
   function revertChapter(keyStr) {
-    //TODO30 02
+    //action 02
     let i = 0;
     let tempChapterData = chapterData;
     let tempDeletedLocalList = [];
