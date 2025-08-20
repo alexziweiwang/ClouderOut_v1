@@ -1019,21 +1019,16 @@ console.log("ui-langauge changed to: ", val);
     });
   }
 
-  async function saveConvNodeUiPlanFunc(dataObj) {
-  
+  async function saveConvNodeUiPlanFunc(dataObj) {  
     setProjectMetaData({...projectMetaData,
         "convNodeUiPlanMap": dataObj,
     })
 
-//TODO50
   }
   
   function fetchConvNodeUiAllPlansFunc() {
-
+    
     return projectMetaData["convNodeUiPlanMap"];
-
-//TODO50
-
   }
   
   

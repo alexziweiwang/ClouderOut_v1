@@ -15,6 +15,7 @@ export default function IdvdWin_ViewingContainer({username, projectName}) {
     //TODO2000
 
     //TODO 1. project-selector page: import file & select project-on-cloud
+    
 
     //TODO 2. parser for project-local-file
 
@@ -46,6 +47,7 @@ export default function IdvdWin_ViewingContainer({username, projectName}) {
 
     //TODO fetch visual-map & audio-map of that author [project-side]
 
+    // player's data fetching (if login); or from start (default init data sets)
 
 
 
@@ -67,40 +69,38 @@ export default function IdvdWin_ViewingContainer({username, projectName}) {
 
              <Viewer_Entire
 
-                    initialNavObj={currentProjectNav}
+                    // initialNavObj={currentProjectNav}
 
-                    initialChapterList={chapterList}
-                    initialCurrChapterAllNodeMapping={chapterNodeMapAll}
+                    // initialChapterList={chapterList}
+                    // initialCurrChapterAllNodeMapping={chapterNodeMapAll}
 
-                    initialPlayerGameDataTracker={testPlayerGameDataTracker}
-                    initialPlayerProfile={testPlayerProfile}
-                    initialPlayerAccountSettings={testPlayerAccount}
+                    // initialPlayerGameDataTracker={testPlayerGameDataTracker}
+                    // initialPlayerProfile={testPlayerProfile}
+                    // initialPlayerAccountSettings={testPlayerAccount}
 
-                    initialPlayerSlRecords={testPlayerSLRecords}
+                    // initialPlayerSlRecords={testPlayerSLRecords}
 
+                    // uiLangOption={languageCodeTextOption}
 
-                                                
+                    // username={username}
+                    // projectname={projectName}
 
+                    // initialShopItemInfo={testShopProducts}
+                    // initialPlayerPurchaseInfo={testPlayerPurchaseStatus}
 
-                    uiLangOption={languageCodeTextOption}
+                    // triggerNodeWalk={notUsing} //update things to this layer
+                    // triggerChapterWalk={triggerChapterWalk} //update things to this layer
+                    // triggerUpdateCurrentStanding={notUsing} //update things to this layer
 
-                    username={username}
-                    projectname={projectName}
+                    // visualMap={visualMap}
+                    // audioMap={audioMap}
+                    // mutedViewOption={mutedViewOption}
 
-                    initialShopItemInfo={testShopProducts}
-                    initialPlayerPurchaseInfo={testPlayerPurchaseStatus}
-
-                    triggerNodeWalk={notUsing} //update things to this layer
-                    triggerChapterWalk={triggerChapterWalk} //update things to this layer
-                    triggerUpdateCurrentStanding={notUsing} //update things to this layer
-
-                    visualMap={visualMap}
-                    audioMap={audioMap}
-                    mutedViewOption={mutedViewOption}
-
-                    getCurrChapterContent={passInCurrChapterContent}
-                    backendOption={backendOption}
-                    />
+                    // getCurrChapterContent={passInCurrChapterContent}
+                    // backendOption={backendOption}
+            
+            
+            />
 
 
         </div>

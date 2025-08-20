@@ -916,26 +916,16 @@ GameDataDesign <map>
         return charaPicPrvw;
     }
 
-    function updateConvNodeUiPlanToCloud(allPlansMap) {
+    function updateConvNodeUiPlanToOuter(allPlansMap) {
 
         saveConvNodeUiPlanFunc(allPlansMap);
-
-
     }
 
-    async function fetchConvNodeUiPlansFromCloud() {
-        let obj = {};
-        // await fetchConvNodeUiAllPlansVM({
-        //     projectName: projectName, 
-        //     currUser: authEmailName,            
-        //     nodeType: "Conversation",
-        //     bkOption: backendOption
-        // });
-
-        //TODO fetchConvNodeUiAllPlansFunc()
+    async function fetchConvNodeUiPlansFromOuter() {
+        let obj = fetchConvNodeUiAllPlansFunc();
 
         if (obj === undefined) {
-        return -1;
+            return -1;
         }
 
         return obj;
@@ -1206,8 +1196,8 @@ GameDataDesign <map>
                             username={userName} 
                             projName={projectName}   
                             
-                            updateConvNodeUiPlanToCloud={updateConvNodeUiPlanToCloud}
-                            fetchConvNodeUiPlansFromCloud={fetchConvNodeUiPlansFromCloud}
+                            updateConvNodeUiPlanToOuter={updateConvNodeUiPlanToOuter}
+                            fetchConvNodeUiPlansFromOuter={fetchConvNodeUiPlansFromOuter}
                             convUiHoverPreviewPlans={convUiHoverPreviewPlans}
 
                     />}

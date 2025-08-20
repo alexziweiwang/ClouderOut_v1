@@ -24,8 +24,8 @@ export default function ConvNodeUISetter({
     getUILanguage,
     username, projName,
 
-    updateConvNodeUiPlanToCloud,
-    fetchConvNodeUiPlansFromCloud,
+    updateConvNodeUiPlanToOuter,
+    fetchConvNodeUiPlansFromOuter,
     convUiHoverPreviewPlans
     
 }) {
@@ -286,11 +286,11 @@ export default function ConvNodeUISetter({
 
     }
 
-    async function fetchUiPlanListLocal() {
-        let uiPlansTemp = await fetchConvNodeUiPlansFromCloud();
+    function fetchUiPlanListLocal() {
+        let uiPlansTemp = fetchConvNodeUiPlansFromOuter();
         setUiPlanMap(uiPlansTemp);
 
-        console.log("fetched from cloud... ui plans are: ", uiPlansTemp );
+        console.log("fetched from outer... ui plans are: ", uiPlansTemp );
     }
 
 //TODO5
@@ -399,7 +399,7 @@ export default function ConvNodeUISetter({
                                             let uiMapTemp = uiPlanMap;
                                             delete uiMapTemp[currKey];
 
-                                            updateConvNodeUiPlanToCloud(uiMapTemp); //notify outer-layer
+                                            updateConvNodeUiPlanToOuter(uiMapTemp); //notify outer-layer
 
                                             setUiPlanMap(uiMapTemp); // update for local ds
                         
@@ -438,7 +438,7 @@ export default function ConvNodeUISetter({
                     }
                     uiMapTemp[addingPlanName] = currentlyEditedUiPlan;
 
-                    updateConvNodeUiPlanToCloud(uiMapTemp); //notify outer-layer
+                    updateConvNodeUiPlanToOuter(uiMapTemp); //notify outer-layer
 
                     setUiPlanMap(uiMapTemp); // update for local ds
 
