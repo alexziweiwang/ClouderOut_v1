@@ -1204,7 +1204,6 @@ return (
             getUiLanguageOption={passInUiLanguageOption}
             getProjectResourceVarPairs={passInProjectResourceVarPairs}
             getGameDataDesignList={passInGameDataDesignList}
-            gerCurrNodeEntire={passInCurrNodeEntire}
             fetchConvNodeUiAllPlansFunc={fetchConvNodeUiAllPlansFunc}
             saveConvNodeUiPlanFunc={saveConvNodeUiPlanFunc}
 
@@ -1215,8 +1214,12 @@ return (
             chapterKey={currentChapter}
             editorMode={state.mode}
             
-            editorUiLang={projectMetaData["ui_language"]} //TODO change
+            getUiLangOption={passInUiLanguageOption}
+
             backToGameMaker={goToGameMakerResetNodeFocus}
+
+            gerCurrNodeEntire={passInCurrNodeEntire}
+
 
         />
 

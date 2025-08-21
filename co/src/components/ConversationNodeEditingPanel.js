@@ -28,34 +28,26 @@ import { saveConvNodeUiPlanVM, fetchConvNodeUiAllPlansVM } from '../viewmodels/P
 //level2
 
 export default function ConversationNodeEditingPanel({
-        clickedNodeKey, 
-        projectName, 
-        userName, 
-        screenSizeStr, 
-        editorUiLang, 
-        chapterKey,
-        editorMode,
-        goToGameMakerFunc,
+        clickedNodeKey,  //TODO adjust for display-use
+        chapterKey,  //TODO adjust for display-use
+        projectName, //TODO adjust for display-use
+        userName,  //TODO adjust for display-use
+        screenSizeStr,  //TODO to dynamic
+        getUiLangOption,
 
         getProjectResourceVarPairs,
         getGameDataDesignList,
+
         saveConvNodeUiPlanFunc,
         fetchConvNodeUiAllPlansFunc,
 
         gerCurrNodeEntire,
+        enteringNodeAllData,
         backToGameMaker
 }
 ) {
 
     const authEmailName = userName;
-    // let userName = "default-no-state username";
-    // let projectName = "default-no-state projectname";
-    // let screenSizeStr = "default-no-state screenSizeInfo";
-    // let editorUiLang = "default-no-state uiLang";
-    // let chapterKey = "defualt-no-state chapterkey";
-    // let clickedNodeKey = "default-node-state nodekey";
-
-
 
 
 
@@ -258,18 +250,9 @@ GameDataDesign <map>
     useEffect(() => {
         console.log("testPlayerGameData = " , testPlayerGameData);
 
-
-        if (editorMode === "online_cloud") {
-            setBackendOption("firebase");
-        } else {
-            setBackendOption(editorMode);
-  
-            //TODO if import file - parse
-            //TODO if from new - prep for default init data
-        }
- 
     
-
+        let uiLangFromOuterCompo = getUiLangOption();
+        setLanguageCodeTextOption(uiLangFromOuterCompo);
 
 
         if (firstTimeEnter === true) {
@@ -305,12 +288,6 @@ GameDataDesign <map>
                                                     
 
 
-      
-    function goToDashboard() {
-   //     navigate('/projectmanagingpanel', { replace: true });
-        alert("shoud go to dashboard");
-    }
-
     function passInGameDataDesignList() {
         return gameDataDesignList;
     }
@@ -318,7 +295,7 @@ GameDataDesign <map>
     function initializeUILang() {
     //TODO99999 uiLang
 
-            let uiLangFromOuterCompo = editorUiLang;
+            let uiLangFromOuterCompo = getUiLangOption();
             setLanguageCodeTextOption(uiLangFromOuterCompo);
                                 console.log("!!initializeUILang(): ", uiLangFromOuterCompo);
         
@@ -327,11 +304,6 @@ GameDataDesign <map>
 
     }
 
-
-    function goToGameMaker() {
-
-        goToGameMakerFunc();           
-    }
 
     async function fetchGameDataDesignList() { 
         let gddList = getGameDataDesignList();
