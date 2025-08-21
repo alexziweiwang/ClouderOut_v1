@@ -770,7 +770,7 @@
 - 2025-Aug-19: Research on visual effect
 
 - 2025-Aug-20: Design testing-project plot
-
+- 2025-Aug-20: Improve plans for rendering-optimization for panel2
 
 
 
