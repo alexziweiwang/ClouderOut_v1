@@ -14,14 +14,10 @@ import AllPanels_QuickView_ConvNode from './AllPanels_QuickView_ConvNode';
 
 
 import langDictionary from './_textDictionary';
-import uiLangMap from './uiLangMap';
+
 import { emptyConvNodeSinglePieceTemplate, gameUIDefaultButtonTemplate, gameUITextFrameTemplate, gameUIBackButtonTemplate, uiConvNavTemplate, logPageUISettingsTemplate } from './_dataStructure_DefaultObjects';
+import { generateNodeLongKeyString_vm } from '../viewmodels/PrepAc_ProjectOperation';
 
-
-
-//TODO1090 cloud-db related
-import { saveConvNodeUiPlanVM, fetchConvNodeUiAllPlansVM } from '../viewmodels/ProjectManagerViewModel';
- 
 
 
 
@@ -41,14 +37,15 @@ export default function ConversationNodeEditingPanel({
         saveConvNodeUiPlanFunc,
         fetchConvNodeUiAllPlansFunc,
 
-        gerCurrNodeEntire,
-        enteringNodeAllData,
+        getCurrNodeEntire,
+        saveCurrNodeEntire,
         backToGameMaker
 }
 ) {
 
     const authEmailName = userName;
 
+    let longKey = generateNodeLongKeyString_vm({chapterKey: chapterKey, nodeKey: clickedNodeKey});
 
 
 
@@ -283,7 +280,22 @@ GameDataDesign <map>
 //         console.log("index = ", previewingIndex ,"\ncurr piece info: ", pieceDataStructure[ previewingIndex ]["stnd_btn_arr"]);
 // //TODO1
     
-    }); // --- useEffect ends here ---
+    }); 
+    
+    
+    useEffect(()=>{
+        // saveCurrNodeEntire(dataObj, longKey)
+    }, []);
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    // --- useEffect ends here ---
 
                                                     
 
@@ -763,7 +775,10 @@ GameDataDesign <map>
 
     async function initializeNodeBothPartsFromCloud() {
                     console.log("!!!!!!!, init: ",chapterKey, " from ", clickedNodeKey);
-        let pieceObjTemp = gerCurrNodeEntire(chapterKey, clickedNodeKey); 
+        
+        let longKey = generateNodeLongKeyString_vm({chapterKey: chapterKey, nodeKey: clickedNodeKey});
+
+        let pieceObjTemp = getCurrNodeEntire(longKey); 
 
                                     console.log("!!! conv-editor: initialize piece data... ", pieceObjTemp);
 

@@ -922,8 +922,7 @@ console.log("ui-langauge changed to: ", val);
 
     }
 
-    function passInCurrNodeEntire(chapterKeyTemp, nodeKeyTemp) {
-        let longKey = generateNodeLongKeyString_vm({chapterKey: chapterKeyTemp, nodeKey: nodeKeyTemp});
+    function passInCurrNodeEntire(longKey) {
         
         console.log("longKey = ", longKey, ", projectAllNodeContent[longKey] = ", projectAllNodeContent[longKey], "\n", projectAllNodeContent);
 
@@ -938,6 +937,19 @@ console.log("ui-langauge changed to: ", val);
             return projectAllNodeContent[longKey];
         }
 
+    }
+
+    function saveCurrNodeEntireFromSubEditor(dataObj, longKey) {
+        if (projectAllNodeContent === undefined) {
+            return;
+        }
+
+
+        let res = checkProjectMetaData_vm(dataObj);
+
+        if (res === true) {
+            projectAllNodeContent[longKey] = dataObj;
+        }
     }
 
     function passInCurrChapAllNodes(chapterKeyName) {
@@ -1218,7 +1230,8 @@ return (
 
             backToGameMaker={goToGameMakerResetNodeFocus}
 
-            gerCurrNodeEntire={passInCurrNodeEntire}
+            getCurrNodeEntire={passInCurrNodeEntire}
+            saveCurrNodeEntire={saveCurrNodeEntireFromSubEditor}
 
 
         />
