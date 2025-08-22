@@ -255,7 +255,6 @@ GameDataDesign <map>
         if (firstTimeEnter === true) {
 
             if (authEmailName !== "_") {
-                initializeUILang();
 
                 loadFromOuterLayer();
 
@@ -302,18 +301,6 @@ GameDataDesign <map>
 
     function passInGameDataDesignList() {
         return gameDataDesignList;
-    }
-
-    function initializeUILang() {
-    //TODO99999 uiLang
-
-            let uiLangFromOuterCompo = getUiLangOption();
-            setLanguageCodeTextOption(uiLangFromOuterCompo);
-                                console.log("!!initializeUILang(): ", uiLangFromOuterCompo);
-        
-
- 
-
     }
 
 

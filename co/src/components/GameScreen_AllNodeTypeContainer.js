@@ -196,7 +196,7 @@ export default function GameScreen_AllNodeTypeContainer({
 
      //   Object.keys(nodeMappingTemp).map(async (chapterKey) => {
  
-            let docCollection = {};
+            let entireChapter = {};
             //TODO99999 use all-node-content data object from panel2 !!!
                                     // await fetchNodeDataEachChapterVM({
                                     //     projectName: projectname, 
@@ -207,17 +207,17 @@ export default function GameScreen_AllNodeTypeContainer({
 
                                     //await fetchNodeByNodeKey2VM
 
-                                console.log("### ", chapterKeyTemp, ": node-data by each chapter: ", docCollection);
+                                console.log("### ", chapterKeyTemp, ": node-data by each chapter: ", entireChapter);
 
 
-            Object.keys(docCollection).map((nodeKey) => {
-               let keyStr = generateNodeLongKeyString_vm({
+            Object.keys(entireChapter).map((nodeKey) => {
+               let longKey = generateNodeLongKeyString_vm({
                     chapterKey: chapterKeyTemp, 
                     nodeKey: nodeKey
                 });
 
 
-               containerTemp[keyStr] = docCollection[nodeKey];
+               containerTemp[longKey] = entireChapter[nodeKey];
 
             });
         

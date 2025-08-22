@@ -35,18 +35,28 @@ export default function Viewer_Entire({
 
 //TODO99999 fetch metadata and all-node-contents from outer!
 
+    initialMetadata,
+    initialChapterContent,
+    getCurrChapterContent,
 
-    initialNavObj,
-    initialChapterList, 
 
-    uiLangOption,
 
-    initialPlayerGameDataTracker,
-    initialPlayerProfile,
-    initialPlayerAccountSettings,
-    initialPlayerSlRecords, //TODO later
-
+    initialNavObj, //TODO remove
+    initialChapterList,  //TODO remove
     initialCurrChapterAllNodeMapping, //single chapter
+    visualMap,
+    audioMap,
+
+    
+
+    initialPlayerGameDataTracker,  //TODO remove (emu or in-prac)
+    initialPlayerProfile, //TODO remove (emu or in-prac)
+    initialPlayerAccountSettings, //TODO remove (emu or in-prac)
+    initialPlayerSlRecords, //TODO later (emu or in-prac)
+    initialShopItemInfo,
+    initialPlayerPurchaseInfo,
+
+
 
     triggerUpdateCurrentStanding, //game-progress related, send to outer-layer
     triggerNodeWalk, //game-progress related, send to outer-layer
@@ -56,18 +66,11 @@ export default function Viewer_Entire({
     projectname,
     username,
 
+    uiLangOption,
 
-    initialShopItemInfo,
-    initialPlayerPurchaseInfo,
+    backendOption,
 
-    visualMap,
-    audioMap,
     mutedViewOption,
-
-
-    getCurrChapterContent,
-    backendOption
-
     
 }) { //notes: "initialGameData" is this player's cloud-game-data, 
     // and when updating in this compo, it also updates to outside layer

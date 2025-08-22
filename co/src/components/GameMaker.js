@@ -1310,7 +1310,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
     switchEditor(visitInfoObj);
   }
 
-  function update3InObj() { //TODO99999
+  function update3InObj() {
     // 3 fields: currentProjectNav, chapterList->chapListMap, chapterNodeMapAll
 
     let metadataObj = getProjectMetaData();
