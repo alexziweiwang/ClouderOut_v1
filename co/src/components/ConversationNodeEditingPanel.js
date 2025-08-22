@@ -17,7 +17,7 @@ import langDictionary from './_textDictionary';
 
 import { emptyConvNodeSinglePieceTemplate, gameUIDefaultButtonTemplate, gameUITextFrameTemplate, gameUIBackButtonTemplate, uiConvNavTemplate, logPageUISettingsTemplate } from './_dataStructure_DefaultObjects';
 import { generateNodeLongKeyString_vm } from '../viewmodels/PrepAc_ProjectOperation';
-
+import { sizeLookupMap } from './_dataStructure_DefaultObjects';
 
 
 
@@ -74,15 +74,6 @@ GameDataDesign <map>
     
 // console.log("ConversationNodeEditingPanel-state: ", state);//TODO test
  
-
-    const sizeLookupMap = { 
-        "16:9(horizonal)": [800, 450],
-        "16:9(vertical)": [450, 800],
-        "4:3(horizonal)": [800, 600],
-        "4:3(vertical)": [600, 800]
-    };
-
-
 
     let textDictItem = langDictionary[languageCodeTextOption];
     let textDictItemDefault = langDictionary["en"];

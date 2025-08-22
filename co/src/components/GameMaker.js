@@ -25,15 +25,23 @@ import langDictionary from './_textDictionary';
 
 /*
               metadata format
+
+
       metadataObj["game_data"]
+    
       metadataObj["proj_resource_visual"]
       metadataObj["proj_resource_audio"]
       metadataObj["ui_language"]
+    
       metadataObj["nav_ui_settings"]
       metadataObj["chapterList"]
       metadataObj["chapterNodeMapping"]
+    
       metadataObj["emu4sets"]
       metadataObj["convNodeUiPlanMap"]
+
+      metadataObj["sizeDirection"]
+    
 */ 
 
 
@@ -45,11 +53,11 @@ import langDictionary from './_textDictionary';
 export default function GameMaker({
       projectName, 
       editorMode, 
-      getProjectMetaData,
       backendOption,
       getUiLangOption,      
       getAuthEmailName,
 
+      getProjectMetaData,
       updateMetaDataToOuter,
 
       switchEditor,
@@ -1311,7 +1319,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
   }
 
   function update3InObj() {
-    // 3 fields: currentProjectNav, chapterList->chapListMap, chapterNodeMapAll
+    // 3+1 fields: currentProjectNav, chapterList->chapListMap, chapterNodeMapAll
 
     let metadataObj = getProjectMetaData();
     let resBool = checkProjectMetaData_vm(metadataObj);
@@ -1326,6 +1334,8 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
         metadataObj["chapterList"] = chapListMap;
 
         metadataObj["chapterNodeMapping"] = chapterNodeMapAll;
+
+        metadataObj["sizeDirection"] = currentProjectNav["screenSize"];
 
 
         updateMetaDataToOuter(metadataObj);

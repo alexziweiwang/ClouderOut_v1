@@ -199,20 +199,23 @@ export async function updateProjectMetadataSingleField({projectName, currUser, f
 
     //example obj(for metadata): 
                                 // author_info:  ""
+                                // project_description:  ""
+                                // project_name:  "a6_p2"
+                                // project_title:  "a6_p2"
+                                // type:  "project"
+
+
                                 // chapterList: {0: Array(4), 1: Array(4), 2: Array(4)}
                                 // chapterNodeMapping:  {placeholder: {…}, chapter1: {…}, chapter2: {…}}
                                 // convNodeUiPlanMap:  {}
                                 // emu4sets:  {shp5: {…}, ess4: {…}, epp2: {…}, gdt1: {…}, epa3: {…}}
                                 // game_data:  {health: {…}}
                                 // nav_ui_settings:  {outWindow-Btn-textColor: '#FFFFFF', mainPage-playerProfile-posX: 300, shopPage-bConfWindow-confirmText: 'Confirm', settingPage-sliderColor: '#0373fc', mainPage-shop-isShape: false, …}
-                                
                                 // proj_resource_audio:  [] //array
                                 // proj_resource_visual:  [{…}] //array
-                                // project_description:  ""
-                                // project_name:  "a6_p2"
-                                // project_title:  "a6_p2"
-
                                 // sizeDirection:  "h450_800"
-                                // trashed:  false
-                                // type:  "project"
                                 // ui_language: "chn"
+
+                                
+                                // trashed:  false
+

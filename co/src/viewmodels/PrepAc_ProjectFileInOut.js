@@ -125,6 +125,8 @@ import {
         || metadataObj["chapterList"] === undefined 
         || metadataObj["chapterNodeMapping"] === undefined 
         || metadataObj["convNodeUiPlanMap"] === undefined
+        || metadataObj["sizeDirection"] === undefined
+        || metadataObj["emu4sets"] === undefined
     ) {
                                             console.log("@@@field incomplete");
         return false;                                           
@@ -222,6 +224,11 @@ import {
 
 
         });
+
+
+
+        //TODO99999 emu-4-sets
+        //"emu4sets"
     }
 
         return true;

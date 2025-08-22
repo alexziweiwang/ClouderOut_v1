@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { sizeLookupMap } from './_dataStructure_DefaultObjects';
 
 
 export default function NavigationPreview ({
@@ -111,12 +112,6 @@ const tempFontSize = 12;
 
     const [qWindowSetup, setQwindowSetup] = useState(false);
 
-
-
-    const sizeLookupMap = { "16:9(horizonal)": [800, 450],
-        "16:9(vertical)": [450, 800],
-        "4:3(horizonal)": [800, 600],
-        "4:3(vertical)": [600, 800]};
 
     const [tryPPText, setTryPPText] = useState(-1);
     const [tryPPValue, setTryPPValue] = useState(-1);

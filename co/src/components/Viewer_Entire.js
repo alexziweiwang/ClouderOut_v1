@@ -4,6 +4,7 @@ import GameScreen_AllNodeTypeContainer from './GameScreen_AllNodeTypeContainer';
 
 import { configureGameProgress_vm } from '../viewmodels/CalcAc_ViewerEntireAc';
 import { initializeGameDataTracker_vm } from '../viewmodels/PrepAc_ViewerEntireAc';
+import { sizeLookupMap } from './_dataStructure_DefaultObjects';
 
 
 /* //TODO
@@ -100,11 +101,6 @@ export default function Viewer_Entire({
 
     const languageCodeTextOption = uiLangOption;
 
-    const sizeLookupMap = { "16:9(horizonal)": [800, 450],
-        "16:9(vertical)": [450, 800],
-        "4:3(horizonal)": [800, 600],
-        "4:3(vertical)": [600, 800]};
-    
     const screenWidth = ((initialNavObj !== undefined && Object.keys(initialNavObj).length > 0) 
             &&
             (initialNavObj["screenSize"] === "16:9(horizonal)"
