@@ -191,13 +191,16 @@ export default function Panel2_Container_GameEditor() {
 
             return "show message";
         }
+        
+        let checkMetadataValid = checkProjectMetaData_vm(projectMetaData);
 
                                                         console.log("panel2 (render once) - mode = ", state.mode, 
                                                             "... isPrepFinished = ", isPrepFinished, 
                                                             "\n focusing on: ", focusingEditor, 
                                                             "\n username = ", authEmailName,
                                                             "\n\t metadata = ", projectMetaData,
-                                                            "\n\t all-node-content = ", projectAllNodeContent);
+                                                            "\n\tmetadata valid ? ", checkMetadataValid,
+                                                            "\n\n\t all-node-content = ", projectAllNodeContent);
 
 
 
@@ -608,7 +611,7 @@ export default function Panel2_Container_GameEditor() {
     function passInProjectMetaData(source) {
         if ((state.mode === "online_cloud" && authEmailName !== "_") || authEmailName === "localUser###") {
        
-                                console.log("passing in panel2 - metadata = (requested by ", source ,")", projectMetaData);
+             //                   console.log("passing in panel2 - metadata = (requested by ", source ,")", projectMetaData);
             return projectMetaData;
         } else {
             return -1;
@@ -1182,12 +1185,14 @@ return (
     && 
     
     <>
+ 
     <GameMaker
         projectName={state.selected_project_name}
         editorMode={state.mode}
         switchEditor={switchEditor}
         getAuthEmailName={passInAuthEmailName} 
 
+        initialMetadata={projectMetaData}
         getProjectMetaData={passInProjectMetaData}
         updateMetaDataToOuter={receiveMetaDataFromSubCompo}
 
@@ -1209,7 +1214,8 @@ return (
         loadMetadataFromCloud_panel2={loadMetadataFromCloud}
         triggerNodeLookChange_panel2={triggerNodeLookChange_panel2}
         triggerChapterListChange_panel2={triggerChapterListChange_panel2}
-    />
+    /> 
+    
     </>}
 
 

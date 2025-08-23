@@ -116,6 +116,10 @@ import {
     }
 
     export function checkProjectMetaData_vm(metadataObj) {
+        if (metadataObj === undefined || metadataObj === -1) {
+                                        console.log("invalid metadata-obj: ", metadataObj);
+            return false;
+        }
 
         if (metadataObj["game_data"] === undefined 
         || metadataObj["proj_resource_visual"] === undefined 
@@ -210,6 +214,9 @@ import {
                         // col, display, nextNode, nodeName, nodeType, row, screenSize, 
         let chapNodeMapping = metadataObj["chapterNodeMapping"];
         Object.keys(chapNodeMapping).map((currKey) => {
+            if (currKey === "placeholder") {
+                return;
+            }
             let item = chapNodeMapping[currKey];
 
             if (item["col"] === undefined

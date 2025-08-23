@@ -58,6 +58,7 @@ export default function GameMaker({
       getAuthEmailName,
 
       getProjectMetaData,
+      initialMetadata,
       updateMetaDataToOuter,
 
       switchEditor,
@@ -256,7 +257,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
     function resetVisualMapFromList(visualList) {
 
-                                console.log("visual list = ", visualList);
+                 //               console.log("visual list = ", visualList);
       if (visualList === undefined) {
         setVisualMap({});
       } else {
@@ -283,7 +284,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
 
     function resetAudioMapFromList(audioList) { //TODO9999
-                                          console.log("audio list = ", audioList);
+                           //               console.log("audio list = ", audioList);
         if (audioList === undefined) {
           setAudioMap({});
         } else {
@@ -389,11 +390,13 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
 
                     
-            console.log("\t\t\tgame-maker rendered once.      project = ", projectName, "  usename = ", authEmailName);
+      //      console.log("\t\t\tgame-maker rendered once.      project = ", projectName, "  usename = ", authEmailName);
 
+        if (authEmailName === "_") {
+          let authName = getAuthEmailName();
+          setAuthEmailName(authName);
+        }
 
-        let authName = getAuthEmailName();
-        setAuthEmailName(authName);
 
         
         //load from outer-layer (panel2), regardless of mode
@@ -405,7 +408,8 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
 
           if (projectMetaData === undefined) {
-            let metadataTemp = getProjectMetaData("gameMaker");
+         //   let metadataTemp = getProjectMetaData("gameMaker");
+            let metadataTemp = initialMetadata;
             if (metadataTemp === -1) {
               console.log("...unable to load proejct metadata from panel2.");
             } else {
@@ -500,10 +504,10 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
   });
 
-  useEffect(()=>{
-    update3InObj();
-                            console.log("sending out for these of metadat: currentProjectNav, chapterList, chapterNodeMapAll");
-  }, [currentProjectNav, chapterList, chapterNodeMapAll]);
+  // useEffect(()=>{
+  //   update3InObj();
+  //                           console.log("sending out for these of metadat: currentProjectNav, chapterList, chapterNodeMapAll");
+  // }, [currentProjectNav, chapterList, chapterNodeMapAll]);
 
 
   function goToNotLoggedInPage() {
@@ -1254,6 +1258,8 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
     if (metaDataTemp === undefined || metaDataTemp === -1) {
       return;
     }
+
+    setProjectMetaData(metaDataTemp); //TODO99999 track changed, etc. for other var
 
 //GameDataDesign <map>
     setGameDataDesignList(metaDataTemp["game_data"]);
