@@ -213,24 +213,35 @@ import {
         //each chapter-each node: 
                         // col, display, nextNode, nodeName, nodeType, row, screenSize, 
         let chapNodeMapping = metadataObj["chapterNodeMapping"];
-        Object.keys(chapNodeMapping).map((currKey) => {
-            if (currKey === "placeholder") {
-                return;
-            }
-            let item = chapNodeMapping[currKey];
+        Object.keys(chapNodeMapping).map((chapKey) => {
+            let chapterMap = chapNodeMapping[chapKey];
 
-            if (item["col"] === undefined
-            || item["display"] === undefined
-            || item["nextNode"] === undefined
-            || item["nodeName"] === undefined
-            || item["nodeType"] === undefined
-            || item["row"] === undefined
-            || item["screenSize"] === undefined
-                ) {
-                                            console.log("@@@invalid node mapping");
+                                            console.log("chap = ", chapKey);
 
-                    return false;
-            } 
+            Object.keys(chapterMap).map((nodeKey)=>{
+                if (nodeKey !== "placeholder") {
+                                            console.log("\tnode = ", nodeKey, "\n", chapterMap);
+                    let item = chapNodeMapping[nodeKey];
+
+    
+                    if (item === undefined
+                    || item["col"] === undefined
+                    || item["display"] === undefined
+                    || item["nodeName"] === undefined
+                    || item["nodeType"] === undefined
+                    || item["row"] === undefined
+                    || item["screenSize"] === undefined
+                        ) {
+                                                    console.log("@@@invalid node mapping: ", nodeKey);
+        
+                            return false;
+                    } 
+                }
+
+            })
+      
+
+ 
 
 
         });

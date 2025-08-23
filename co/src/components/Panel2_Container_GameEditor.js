@@ -1023,8 +1023,6 @@ console.log("ui-langauge changed to: ", val);
         });
     }
 
-
-
   }
 
 
@@ -1215,7 +1213,7 @@ return (
         triggerNodeLookChange_panel2={triggerNodeLookChange_panel2}
         triggerChapterListChange_panel2={triggerChapterListChange_panel2}
     /> 
-    
+
     </>}
 
 

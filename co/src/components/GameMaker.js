@@ -86,8 +86,7 @@ export default function GameMaker({
   const navigate = useNavigate();
 
 
-  const [projectMetaData, setProjectMetaData] = useState(undefined); //receive & send-out
-
+  const [isMtdtLoaded, setIsMtdtLoaded] = useState(false);
    //    "offline_half"       "offline_full"        "online_cloud"  
                       //          console.log("game maker, mode = ", editorMode, "\n ... project meta-data = ", projectMetaData);
 
@@ -390,7 +389,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
 
                     
-      //      console.log("\t\t\tgame-maker rendered once.      project = ", projectName, "  usename = ", authEmailName);
+           console.log("\t\t\tgame-maker rendered once.      project = ", projectName, "  usename = ", authEmailName);
 
         if (authEmailName === "_") {
           let authName = getAuthEmailName();
@@ -407,7 +406,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
             //valid username, or local-mode
 
 
-          if (projectMetaData === undefined) {
+          if (isMtdtLoaded === false) {
          //   let metadataTemp = getProjectMetaData("gameMaker");
             let metadataTemp = initialMetadata;
             if (metadataTemp === -1) {
@@ -1254,12 +1253,12 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
   function loadEverythingFromProvidedMetadata(metaDataTemp) { //read-only from the fetched object
                            console.log("game-maker :  prep metadata... ", metaDataTemp);
 
+    setIsMtdtLoaded(true);              
 
     if (metaDataTemp === undefined || metaDataTemp === -1) {
       return;
     }
 
-    setProjectMetaData(metaDataTemp); //TODO99999 track changed, etc. for other var
 
 //GameDataDesign <map>
     setGameDataDesignList(metaDataTemp["game_data"]);
@@ -1389,7 +1388,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
   && editorMode === "online_cloud" && authEmailName !== "_") 
 || (authEmailName === "localUser###")
 )
-&& projectMetaData !== undefined
+&& isMtdtLoaded === true
 && gridBlocksAll !== undefined 
 && chapterNodeMapAll !== undefined
 ) 
