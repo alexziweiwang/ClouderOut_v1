@@ -406,7 +406,12 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
           if (projectMetaData === undefined) {
             let metadataTemp = getProjectMetaData("gameMaker");
-            loadEverythingFromProvidedMetadata(metadataTemp);
+            if (metadataTemp === -1) {
+              console.log("...unable to load proejct metadata from panel2.");
+            } else {
+              loadEverythingFromProvidedMetadata(metadataTemp);
+            }
+            
             
   
           }
@@ -1490,7 +1495,6 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
           getCreatedNewNodeWaitListPending={passInCreatedNewNodeWaitListPending}
 
-          chapterChangingOrExiting={chapterChangingOrExiting}
           triggerNodeDeleted={triggerNodeDeleted}
 
           editorMode={editorMode}

@@ -128,7 +128,10 @@ import {
         || metadataObj["sizeDirection"] === undefined
         || metadataObj["emu4sets"] === undefined
     ) {
-                                            console.log("@@@field incomplete");
+
+
+
+                                            console.log("@@@field incomplete...", metadataObj);
         return false;                                           
     } else {
         let gameDataMap = metadataObj["game_data"];

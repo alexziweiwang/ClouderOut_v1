@@ -44,7 +44,6 @@ export default function NodeManager({projectName, currUser,
   getCreatedNewNodeWaitListPending,
 
 
-  chapterChangingOrExiting,
   triggerNodeDeleted,
 
   editorMode,
@@ -2145,20 +2144,7 @@ chapter-key = {chapterKey}
               style={{"height": "30px",  "width": "100px"}}
               onClick={()=>{
           
-                    // chapterChangingOrExiting().then((ans) => {
-
-
-                    //                   console.log("node-manager, enter-ans", ans);
-
-
-                    //     if (ans === "wait-and-enter") {
-                    //       updateRenderCounter();
-                    //     }
-                    //     if (ans === "wait-and-enter" || ans === "immediate-enter") {
-                    //       enterNodeEditor2();
-                    //     }
-                    //   }
-                    // );    
+                
                     enterNodeEditor2(); //TODO to test
               }}>
 

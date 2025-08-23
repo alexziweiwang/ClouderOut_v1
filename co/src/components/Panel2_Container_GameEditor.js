@@ -610,6 +610,8 @@ export default function Panel2_Container_GameEditor() {
        
                                 console.log("passing in panel2 - metadata = (requested by ", source ,")", projectMetaData);
             return projectMetaData;
+        } else {
+            return -1;
         }
 
     }
@@ -650,7 +652,9 @@ export default function Panel2_Container_GameEditor() {
         //currentChapter
         //currentNode
         //projectAllNodeContent
-                                    console.log("saving a node... ", currentChapter, " - ", currentNode, " \n", projectAllNodeContent, "\n", projectAllNodeContent[longKey]);
+        let longKey = generateNodeLongKeyString_vm({chapterKey: currentChapter, nodeKey: currentNode});
+
+                        console.log("saving a node... ", currentChapter, " - ", currentNode, " \n", projectAllNodeContent, "\n", projectAllNodeContent[longKey]);
 
         let obj = projectAllNodeContent[longKey];
 
@@ -1008,7 +1012,7 @@ console.log("ui-langauge changed to: ", val);
     let res = checkProjectMetaData_vm(projectMetaData);
 
     if (res === true) {
-        await updateProjectAllMetadata({
+        await updateProjectAllMetadataVM({
             projectName: state.selected_project_name, 
             currUser: authEmailName, 
             dataObj: projectMetaData, 
