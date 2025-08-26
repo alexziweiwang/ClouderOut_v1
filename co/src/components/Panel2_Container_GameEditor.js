@@ -902,7 +902,7 @@ console.log("ui-langauge changed to: ", val);
         })
     }
 
-    function triggerCreatedNewNode_panel2(nodeKey, nodeChapter, nodeType) {
+    function triggerCreatedNewNode_panel2(nodeKey, nodeChapter, nodeType, currChapMap) {
         // add this node's content into the project-all-node-content ds
 
         let genObjBothParts = triggerCreatedNewNode_Prep_vm(nodeType);
@@ -930,8 +930,18 @@ console.log("ui-langauge changed to: ", val);
         
                     console.log(" finally... added a new node, now proj-all-node-content is : ", projAllNodeContentTemp);
 
+
+        let currAllChaptersMapping = projectMetaData["chapterNodeMapping"];
+        currAllChaptersMapping[nodeChapter] = currChapMap;
+        
+        setProjectMetaData({...projectMetaData, 
+            "chapterNodeMapping": currAllChaptersMapping
+        });
+
+
+
         //TODO66666
-        //add to  pendingNewNodeList
+        //add to  pendingNewNodeList - for on-cloud-folder-creations
         let listTemp = pendingNewNodeList;
         listTemp.push(genObjBothParts);
         setPendingNewNodeList(listTemp);

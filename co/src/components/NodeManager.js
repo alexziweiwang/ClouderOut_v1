@@ -471,7 +471,7 @@ export default function NodeManager({projectName, currUser,
     triggerNodeLookChangeBothInOut(tempGrid, tempNodeMap);
     
     /* creation of node-content and data-structure-preparation */
-    triggerCreatedNewNode(createNewNodeName, chapterKey, createNewNodeGameType);
+    triggerCreatedNewNode(createNewNodeName, chapterKey, createNewNodeGameType, tempNodeMap);
 
 
     resetCreationArea();
