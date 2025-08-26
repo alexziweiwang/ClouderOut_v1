@@ -124,7 +124,7 @@ export default function Panel2_Container_GameEditor() {
     //TODO99999
     //init here, prepare for emu-manager, and test-viewing
 
- 
+    const [pendingNewNodeList, setPendingNewNodeList] = useState([]);
 
 
     /* testing-emu-data, for test-viewing and emu-manager */
@@ -689,7 +689,7 @@ export default function Panel2_Container_GameEditor() {
 
                     }
             }
-        } else {
+        } else { //node-editor
 
 
 
@@ -930,6 +930,14 @@ console.log("ui-langauge changed to: ", val);
         
                     console.log(" finally... added a new node, now proj-all-node-content is : ", projAllNodeContentTemp);
 
+        //TODO66666
+        //add to  pendingNewNodeList
+        let listTemp = pendingNewNodeList;
+        listTemp.push(genObjBothParts);
+        setPendingNewNodeList(listTemp);
+
+                
+
     }
 
     function passInCurrNodeEntire(longKey) {
@@ -1021,8 +1029,31 @@ console.log("ui-langauge changed to: ", val);
             dataObj: projectMetaData, 
             bkOption: backendOption
         });
+
+        /*
+        if (pendingNewNodeList.length > 0) {
+        TODO66666: add these file-folders to cloud?
+            
+
+            after adding these to cloud: setPendingNewNodeList([]);
+        }
+        */
     }
 
+  }
+
+  async function addPendingNewNodesToCloud() {
+
+    //TODO create folders on cloud ...
+        //each obj contains:
+            // nodeContent - from default template
+            // nodeUISettings - from default template
+
+            // chapterKey
+            // nodeKey
+            // nodeType 
+            
+            
   }
 
 
