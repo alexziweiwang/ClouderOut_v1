@@ -213,7 +213,7 @@ export async function updateProjectMetadataSingleField({projectName, currUser, f
                                 // nav_ui_settings:  {outWindow-Btn-textColor: '#FFFFFF', mainPage-playerProfile-posX: 300, shopPage-bConfWindow-confirmText: 'Confirm', settingPage-sliderColor: '#0373fc', mainPage-shop-isShape: false, …}
                                 // proj_resource_audio:  [] //array
                                 // proj_resource_visual:  [{…}] //array
-                                // sizeDirection:  "h450_800"
+                                // sizeDirection:  "16:9(horizonal)"
                                 // ui_language: "chn"
 
                                 

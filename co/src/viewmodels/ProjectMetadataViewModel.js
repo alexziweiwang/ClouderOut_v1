@@ -48,7 +48,7 @@ export async function updateProjectMetadataSingleFieldVM({projectName, currUser,
                                 // project_name:  "a6_p2"
                                 // project_title:  "a6_p2"
 
-                                // sizeDirection:  "h450_800"
+                                // sizeDirection:  "16:9(horizonal)"
                                 // trashed:  false
                                 // type:  "project"
                                 // ui_language: "chn"

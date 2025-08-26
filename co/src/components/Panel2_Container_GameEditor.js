@@ -116,8 +116,8 @@ export default function Panel2_Container_GameEditor() {
       metadataObj["emu4sets"]
       metadataObj["convNodeUiPlanMap"]
 
+      metadataObj["sizeDirection"]
 
-      //TODO99999 "h450_800"
 */
 
     //emu-data-sets
@@ -425,7 +425,7 @@ export default function Panel2_Container_GameEditor() {
                                 // project_description:  ""
                                 // project_name:  "a6_p2"
                                 // project_title:  "a6_p2"
-                                // sizeDirection:  "h450_800"
+                                // sizeDirection:  "16:9(horizonal)"
                                 // trashed:  false
                                 // type:  "project"
                                 // ui_language: "chn"
@@ -473,7 +473,7 @@ export default function Panel2_Container_GameEditor() {
                                 // project_description:  ""
                                 // project_name:  "a6_p2"
                                 // project_title:  "a6_p2"
-                                // sizeDirection:  "h450_800"
+                                // sizeDirection:  "16:9(horizonal)"
                                 // trashed:  false
                                 // type:  "project"
                                 // ui_language: "chn"

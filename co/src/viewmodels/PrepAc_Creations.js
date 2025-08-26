@@ -163,7 +163,7 @@ export function triggerCreatedNewNode_Prep_vm(nodeTypeTemp) {
       }); //TODO900 default
       
 
-      const default_size_direction = "h450_800"; //TODO900 default
+      const default_size_direction = "16:9(horizonal)"; //TODO900 default
       const default_ui_language = "en";
 
 
