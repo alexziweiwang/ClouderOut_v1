@@ -997,8 +997,6 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
 
   function triggerCreatedNewNode_gmLayer(newNodeKey, chapterKeyTemp, nodeTypeTemp, currChapMap) {
-//TODO66666 add node-mapping related
-
     triggerCreatedNewNode_panel2(newNodeKey, chapterKeyTemp, nodeTypeTemp, currChapMap);
   }
 

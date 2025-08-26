@@ -926,27 +926,29 @@ console.log("ui-langauge changed to: ", val);
         let projAllNodeContentTemp = projectAllNodeContent;
         projAllNodeContentTemp[longKey] = genObjBothParts;
         setProjectAllNodeContent(projAllNodeContentTemp);
-                
+        
+        
+        //TODO66666
+        //add to  pendingNewNodeList - for on-cloud-folder-creations
+        let listTemp = pendingNewNodeList;
+        let pair = {
+            "longKey": longKey,
+            "objContent": genObjBothParts
+        }
+        listTemp.push(pair);
+        setPendingNewNodeList(listTemp);
+        
+        
         
                     console.log(" finally... added a new node, now proj-all-node-content is : ", projAllNodeContentTemp);
 
 
+        // update metadata - node-mapping as well
         let currAllChaptersMapping = projectMetaData["chapterNodeMapping"];
         currAllChaptersMapping[nodeChapter] = currChapMap;
-        
         setProjectMetaData({...projectMetaData, 
             "chapterNodeMapping": currAllChaptersMapping
         });
-
-
-
-        //TODO66666
-        //add to  pendingNewNodeList - for on-cloud-folder-creations
-        let listTemp = pendingNewNodeList;
-        listTemp.push(genObjBothParts);
-        setPendingNewNodeList(listTemp);
-
-                
 
     }
 
@@ -1062,7 +1064,13 @@ console.log("ui-langauge changed to: ", val);
             // chapterKey
             // nodeKey
             // nodeType 
-            
+    // for each item inside pendingNewNodeList:
+    // let pair = {
+    //     "longKey": longKey,
+    //     "objContent": genObjBothParts
+    // }
+
+    
             
   }
 
