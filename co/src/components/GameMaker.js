@@ -1108,20 +1108,20 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
 
 
-  async function genChapterListToOuter(chapterListInfo) {
+  async function genChapterListToOuter(chapterListArr) {
 
     //convert the nested array into map
     let chapterListMap = {};
     let i = 0;
-    let len = chapterListInfo.length;
+    let len = chapterListArr.length;
     while (i < len) {
-      chapterListMap[i] = chapterListInfo[i];
+      chapterListMap[i] = chapterListArr[i];
       i++;
     }
 
 
     //update this to panel2
-    triggerChapterListChange_panel2(chapterListMap);
+    triggerChapterListChange_panel2(chapterListArr, chapterListMap);
     
   }
 

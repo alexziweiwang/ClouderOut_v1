@@ -126,6 +126,10 @@ export default function Panel2_Container_GameEditor() {
 
     const [pendingNewNodeList, setPendingNewNodeList] = useState([]);
 
+    const [chapListNestedArr, setChapListNestedArr] = useState([]);
+//TODO66666
+
+
 
     /* testing-emu-data, for test-viewing and emu-manager */
     const [testPlayerGameDataTracker, setTestPlayerGameDataTracker] = useState({});   //TODO important for holder-in-practice
@@ -1070,7 +1074,7 @@ console.log("ui-langauge changed to: ", val);
     //     "objContent": genObjBothParts
     // }
 
-    
+
             
   }
 
@@ -1081,11 +1085,13 @@ console.log("ui-langauge changed to: ", val);
     });
   }
 
-  function triggerChapterListChange_panel2(chapMapProvided) {
+  function triggerChapterListChange_panel2(chapterListArrs, chapMapProvided) {
 
     setProjectMetaData({...projectMetaData,
         "chapterList": chapMapProvided
     });
+
+    setChapListNestedArr(chapterListArrs);
   }
 
   async function saveConvNodeUiPlanFunc(dataObj) {  
@@ -1098,6 +1104,16 @@ console.log("ui-langauge changed to: ", val);
   function fetchConvNodeUiAllPlansFunc() {
     
     return projectMetaData["convNodeUiPlanMap"];
+  }
+
+  function passInCurrChapterContent(chapterKeyStr) {
+
+        let cntt = projectAllNodeContent[chapterKeyStr];
+        if (cntt === undefined) {
+            //TODO66666 fetch from cloud?
+        } else {
+            return cntt;
+        }
   }
   
   
@@ -1426,41 +1442,42 @@ return (
     <div>
         <div>
 
-        {/* <Viewer_Entire
+         <Viewer_Entire
 
-            initialNavObj={currentProjectNav}
+            initialNavObj={projectMetaData["nav_ui_settings"]}
 
-            initialChapterList={chapterList}
-            initialCurrChapterAllNodeMapping={chapterNodeMapAll}
+            initialChapterList={chapListNestedArr}
+            initialCurrChapterAllNodeMapping={projectMetaData["chapterNodeMapping"]}
 
-            initialPlayerGameDataTracker={testPlayerGameDataTracker}
-            initialPlayerProfile={testPlayerProfile}
-            initialPlayerAccountSettings={testPlayerAccount}
+            initialPlayerGameDataTracker={testPlayerGameDataTracker} //TODo emu-4sets
+            initialPlayerProfile={testPlayerProfile} //TODo emu-4sets
+            initialPlayerAccountSettings={testPlayerAccount} //TODo emu-4sets
         
-            initialPlayerSlRecords={testPlayerSLRecords}
+            initialPlayerSlRecords={testPlayerSLRecords} //TODO emu-4sets
 
-            uiLangOption={languageCodeTextOption}
+            initialShopItemInfo={testShopProducts} //TODO emu-4sets
+            initialPlayerPurchaseInfo={testPlayerPurchaseStatus} //TODO emu-4sets
+
+
+            uiLangOption={projectMetaData["ui_language"]}
 
             username={authEmailName}
-            projectname={projectName}
+            projectname={state.selected_project_name}
             getUsername={passInAuthEmailName}
 
-            initialShopItemInfo={testShopProducts}
-            initialPlayerPurchaseInfo={testPlayerPurchaseStatus}
+            triggerNodeWalk={triggerNodeWalk} //TODO should be inside viewer_entire when viewing?
+            triggerChapterWalk={triggerChapterWalk}  //TODO should be inside viewer_entire when viewing?
+            triggerUpdateCurrentStanding={triggerUpdateCurrentStanding}  //TODO should be inside viewer_entire when viewing?
 
-            triggerNodeWalk={triggerNodeWalk} //update things to this layer
-            triggerChapterWalk={triggerChapterWalk} //update things to this layer
-            triggerUpdateCurrentStanding={triggerUpdateCurrentStanding} //update things to this layer
-
-            visualMap={visualMap}
-            audioMap={audioMap}
-            mutedViewOption={mutedViewOption}
+            visualMap={visualMap} //TODO99999
+            audioMap={audioMap} //TODO99999
+            mutedViewOption={mutedViewOption}//TODO adjust later (remove?)
 
             getCurrChapterContent={passInCurrChapterContent}
 
             backendOption={backendOption}
 
-        /> */}
+        /> 
 
    
     
