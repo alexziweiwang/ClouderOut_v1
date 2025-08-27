@@ -781,6 +781,8 @@
 
 - 2025-Aug-25: Design testing-project plot
 
+- 2025-Aug-26: Improve plans for rendering-optimization for panel2
+
 
 
 
