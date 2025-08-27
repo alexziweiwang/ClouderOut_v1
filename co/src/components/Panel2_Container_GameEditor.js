@@ -145,12 +145,37 @@ export default function Panel2_Container_GameEditor() {
   
 
 
+//for entire-viewing test
+    const [currTestingPageStatus, setCurrTestingPageStatus] = useState("Main Page"); //move to outer-layer
+    const [currTestingChapterKey, setCurrTestingChapterKey] = useState(""); //move to outer-layer
+    const [currTestingChapterTitle, setCurrTestingChapterTitle] = useState(""); //move to outer-layer
+    const [currTestingNodeKey, setCurrTestingNodeKey] = useState(""); //move to outer-layer
+    const [currTestingNodeType, setCurrTestingNodeType] = useState(""); //move to outer-layer
+    const [currPageName, setCurrPageName] = useState("Main Page"); //move to outer-layer
+  
+    function closeEntireGameViewer() {
+        // reset all game-progress
+        setCurrTestingPageStatus("Main Page");
+        setCurrTestingChapterKey("");
+        setCurrTestingChapterTitle("");
+        setCurrTestingNodeKey("");
+        setCurrTestingNodeType("");
+    
+        setDisplayEntireGameViewer(false);
+    }
 
+    function triggerUpdateCurrentStanding(obj) { //fetch from sub-compo
+        setCurrTestingPageStatus(obj["pageStatus"]);
+        setCurrTestingChapterKey(obj["chapterKey"]);
+        setCurrTestingNodeKey(obj["nodeKey"]);
+        setCurrTestingNodeType(obj["nodeType"]);
+        setCurrTestingChapterTitle(obj["chapterTitle"]);
+    }
 
-
-
-
-
+    function triggerNodeWalk(nodeKeyName, nodeTypeName) { //important for viewing //from sub-compo
+        setCurrTestingNodeKey(nodeKeyName);
+        setCurrTestingNodeType(nodeTypeName);
+    }
 
 
 
@@ -1008,10 +1033,10 @@ console.log("ui-langauge changed to: ", val);
 
 
         // --- update displayed info ---
-        // setCurrTestingNodeKey("chapterStart"); //TODO add later
-        // setCurrTestingNodeType("*chapterStart*"); //TODO add later
-        // setCurrTestingChapterKey(chapterKeyName); //TODO add later
-        // setCurrTestingChapterTitle(chapterTitleName); //TODO add later
+        setCurrTestingNodeKey("chapterStart");
+        setCurrTestingNodeType("*chapterStart*");
+        setCurrTestingChapterKey(chapterKeyName);
+        setCurrTestingChapterTitle(chapterTitleName);
 
         let allChaptersContents = {}; //TODO add later!! all nodes
 

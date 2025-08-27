@@ -40,15 +40,14 @@ export default function Viewer_Entire({
     initialChapterContent,
     getCurrChapterContent,
 
-
-
     initialNavObj, //TODO remove
     initialChapterList,  //TODO remove
     initialCurrChapterAllNodeMapping, //single chapter
     visualMap,
     audioMap,
 
-    
+    visualVarPairList,
+    audioVarPairList, 
 
     initialPlayerGameDataTracker,  //TODO remove (emu or in-prac)
     initialPlayerProfile, //TODO remove (emu or in-prac)
