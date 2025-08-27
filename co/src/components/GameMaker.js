@@ -18,6 +18,7 @@ import {
 //node key rule: generateNodeLongKeyString_vm({chapterKey, nodeKey})
 //TODO112: fetch node-contents here, and send into Viewer_Entire and its sub-component [GameScreen_AllNodeTypeContainer]
 import { checkProjectMetaData_vm } from '../viewmodels/PrepAc_ProjectFileInOut';
+import { resourceRawListToUsableMap_vm } from '../viewmodels/PrepAc_Conversion';
 
 
 import langDictionary from './_textDictionary';
@@ -255,57 +256,59 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
     }
 
     function resetVisualMapFromList(visualList) {
+      resourceRawListToUsableMap_vm(visualList, setVisualMap);
 
                  //               console.log("visual list = ", visualList);
-      if (visualList === undefined) {
-        setVisualMap({});
-      } else {
-        let tempMap = {};
-
-        //TODO
-        let len = visualList.length;
-        let i = 0;
-        tempMap[''] = ''; // if empty key - give empty value to prevent undefined issue (temp)
-        tempMap[""] = '';
-        while (i < len) {
-            let item = visualList[i];
-            tempMap[item["var"]] = item["url"];
-            i++;
-        }
+                  // if (visualList === undefined) {
+                  //   setVisualMap({});
+                  // } else {
+                  //   let tempMap = {};
+                  //   let len = visualList.length;
+                  //   let i = 0;
+                  //   tempMap[''] = ''; // if empty key - give empty value to prevent undefined issue (temp)
+                  //   tempMap[""] = '';
+                  //   while (i < len) {
+                  //       let item = visualList[i];
+                  //       tempMap[item["var"]] = item["url"];
+                  //       i++;
+                  //   }
                  //                       console.log("initialized visual map = ", tempMap); //TODO test
 
-        setVisualMap(tempMap);
+                  //setVisualMap(tempMap);
 
-      }
+                  //}
 
       
     }
 
 
     function resetAudioMapFromList(audioList) { //TODO9999
+
+      resourceRawListToUsableMap_vm(audioList, setAudioMap);
+
                            //               console.log("audio list = ", audioList);
-        if (audioList === undefined) {
-          setAudioMap({});
-        } else {
-          let tempMap = {};
+                  // if (audioList === undefined) {
+                  //   setAudioMap({});
+                  // } else {
+                  //   let tempMap = {};
 
-          //TODO
-          let len = audioList.length;
-          let i = 0;
-          tempMap[''] = ''; // if empty key - give empty value to prevent undefined issue (temp)
-          tempMap[""] = '';
-          while (i < len) {
-              let item = audioList[i];
-              tempMap[item["var"]] = item["url"];
-              i++;
-          }
+                  //   //TODO
+                  //   let len = audioList.length;
+                  //   let i = 0;
+                  //   tempMap[''] = ''; // if empty key - give empty value to prevent undefined issue (temp)
+                  //   tempMap[""] = '';
+                  //   while (i < len) {
+                  //       let item = audioList[i];
+                  //       tempMap[item["var"]] = item["url"];
+                  //       i++;
+                  //   }
 
-                //                          console.log("initialized audio map = ", tempMap); //TODO test
-          
+                  //         //                          console.log("initialized audio map = ", tempMap); //TODO test
+                    
 
-          setAudioMap(tempMap);
+                  //   setAudioMap(tempMap);
 
-        }
+                  // }
 
 
        
@@ -637,9 +640,6 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
   //     return val;
   // } //TODO remove unused later
 
-  function passInChapterList() {
-    return chapterList;
-  }
 
   const [developOnCloudData, setDevelopOnCloudData] = useState(false);
 

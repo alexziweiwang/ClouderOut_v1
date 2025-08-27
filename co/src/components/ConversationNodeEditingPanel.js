@@ -19,7 +19,7 @@ import { emptyConvNodeSinglePieceTemplate, gameUIDefaultButtonTemplate, gameUITe
 import { generateNodeLongKeyString_vm } from '../viewmodels/PrepAc_ProjectOperation';
 import { sizeLookupMap } from './_dataStructure_DefaultObjects';
 
-
+import { resourceRawListToUsableMap_vm } from '../viewmodels/PrepAc_Conversion';
 
 //level2
 
@@ -319,49 +319,45 @@ GameDataDesign <map>
         resetAudioMapFromList(obj.audio)
     }
 
-    function resetVisualMapFromList(visualList) {
-        let tempMap = {};
+    function resetVisualMapFromList(visualList) { 
+                            // let tempMap = {};
+                            
+        resourceRawListToUsableMap_vm(visualList, setVisualMap);
 
-        if (visualList === undefined) {
-            return;
-        }
 
-        //TODO
-        let len = visualList.length;
-        let i = 0;
-        tempMap[''] = ''; // if empty key - give empty value to prevent undefined issue (temp)
-        tempMap[""] = '';
-        while (i < len) {
-            let item = visualList[i];
-            tempMap[item["var"]] = item["url"];
-            i++;
-        }
-                                        console.log("initialized visual map = ", tempMap); //TODO test
+                                    // let len = visualList.length;
+                                    // let i = 0;
+                                    // tempMap[''] = ''; // if empty key - give empty value to prevent undefined issue (temp)
+                                    // tempMap[""] = '';
+                                    // while (i < len) {
+                                    //     let item = visualList[i];
+                                    //     tempMap[item["var"]] = item["url"];
+                                    //     i++;
+                                    // }
+                                    //                                 console.log("initialized visual map = ", tempMap); //TODO test
 
-        setVisualMap(tempMap);
+                                    // setVisualMap(tempMap);
     }
 
     function resetAudioMapFromList(audioList) {
-        let tempMap = {};
 
-        if (audioList === undefined) {
-            return;
-        }
+        resourceRawListToUsableMap_vm(audioList, setAudioMap);
 
+        // let tempMap = {};
+
+
+        // let len = audioList.length;
+        // let i = 0;
+        // tempMap[''] = ''; // if empty key - give empty value to prevent undefined issue (temp)
+        // tempMap[""] = '';
+        // while (i < len) {
+        //     let item = audioList[i];
+        //     tempMap[item["var"]] = item["url"];
+        //     i++;
+        // }
+        //                                 console.log("initialized audio map = ", tempMap); //TODO test
         
-        //TODO
-        let len = audioList.length;
-        let i = 0;
-        tempMap[''] = ''; // if empty key - give empty value to prevent undefined issue (temp)
-        tempMap[""] = '';
-        while (i < len) {
-            let item = audioList[i];
-            tempMap[item["var"]] = item["url"];
-            i++;
-        }
-                                        console.log("initialized audio map = ", tempMap); //TODO test
-        
-        setAudioMap(tempMap);
+        // setAudioMap(tempMap);
     }
 
     function passInVisualMap() {

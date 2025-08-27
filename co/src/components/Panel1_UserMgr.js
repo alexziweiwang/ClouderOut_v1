@@ -213,7 +213,7 @@ export default function Panel1_UserMgr({}) {
     }
 
 
-    async function loadProjectListFromCloud() { //TODO22
+    async function loadProjectListFromCloud() { //TODO
         console.log("fetching project list from cloud")
 
         if(authEmailName === "_") {
