@@ -786,7 +786,7 @@
 - 2025-Aug-26: Research on visual effect
 
 - 2025-Aug-27: Design testing-project plot
-
+- 2025-Aug-27: Research on visual effect
 
 
 
