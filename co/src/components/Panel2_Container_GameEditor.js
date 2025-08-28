@@ -105,7 +105,7 @@ export default function Panel2_Container_GameEditor() {
     const [isDisplayEntireGameViewer, setDisplayEntireGameViewer] = useState(false);
 
 /* todo30
-                        metadata format
+                        metadata: format
       metadataObj["game_data"]
       metadataObj["proj_resource_visual"]
       metadataObj["proj_resource_audio"]
@@ -1494,9 +1494,9 @@ return (
             triggerChapterWalk={triggerChapterWalk}  //TODO should be inside viewer_entire when viewing?
             triggerUpdateCurrentStanding={triggerUpdateCurrentStanding}  //TODO should be inside viewer_entire when viewing?
 
-            visualMap={visualMap} //TODO99999
-            audioMap={audioMap} //TODO99999
-            mutedViewOption={mutedViewOption}//TODO adjust later (remove?)
+        
+            visualVarPairList={projectMetaData["proj_resource_visual"]}
+            audioVarPairList={projectMetaData["proj_resource_audio"]}
 
             getCurrChapterContent={passInCurrChapterContent}
 

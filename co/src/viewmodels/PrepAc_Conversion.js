@@ -4,6 +4,8 @@ export function resourceRawListToUsableMap_vm(list, setMapFunc) {
     
     if (list === undefined) {
         setMapFunc({});
+        return {};
+
     } else {
         let tempMap = {};
 
@@ -19,5 +21,7 @@ export function resourceRawListToUsableMap_vm(list, setMapFunc) {
 
         setMapFunc(tempMap);
 
-      }
+        return tempMap;
+
+    }
 }

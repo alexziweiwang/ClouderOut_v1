@@ -6,6 +6,7 @@ import { configureGameProgress_vm } from '../viewmodels/CalcAc_ViewerEntireAc';
 import { initializeGameDataTracker_vm } from '../viewmodels/PrepAc_ViewerEntireAc';
 import { sizeLookupMap } from './_dataStructure_DefaultObjects';
 
+import { resourceRawListToUsableMap_vm } from '../viewmodels/PrepAc_Conversion';
 
 /* //TODO
   This component is a View/"screen" *holder* of game-play (both testing-entire and play-in-practice).
@@ -43,8 +44,6 @@ export default function Viewer_Entire({
     initialNavObj, //TODO remove
     initialChapterList,  //TODO remove
     initialCurrChapterAllNodeMapping, //single chapter
-    visualMap,
-    audioMap,
 
     visualVarPairList,
     audioVarPairList, 
@@ -69,8 +68,6 @@ export default function Viewer_Entire({
     uiLangOption,
 
     backendOption,
-
-    mutedViewOption,
     
 }) { //notes: "initialGameData" is this player's cloud-game-data, 
     // and when updating in this compo, it also updates to outside layer
@@ -79,7 +76,7 @@ export default function Viewer_Entire({
 // if isLocal === true, then use this author's emu-player account
 // if isLocal === false, then load cloud db for the actual player's info?
 
-
+    let mutedViewOption = false;
 
 // getCurrChapterKey
 // getCurrNodeKey
@@ -91,6 +88,13 @@ export default function Viewer_Entire({
 // "chapterKey"
 // "nodeKey"
 // "nodeType"
+
+    function notUsingV(e) {
+        return;
+    }
+
+    let visualMap = resourceRawListToUsableMap_vm(visualVarPairList, notUsingV);
+    let audioMap = resourceRawListToUsableMap_vm(audioVarPairList, notUsingV);
 
 //TODO: for emu, allow the author to setup entering status (game-data) for [each] try of view-testing
 //TODO: for emu, allow the author to "add" one or several "emu-player" for long-term testing (not resetting for every view testing)?
