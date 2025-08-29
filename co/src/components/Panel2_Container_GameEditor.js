@@ -718,7 +718,7 @@ export default function Panel2_Container_GameEditor() {
 
                     }
             }
-        } else { //node-editor
+        } else { //any node-editor
 
 
 
@@ -985,13 +985,16 @@ console.log("ui-langauge changed to: ", val);
         
         console.log("longKey = ", longKey, ", projectAllNodeContent[longKey] = ", projectAllNodeContent[longKey], "\n", projectAllNodeContent);
 
-        if (projectAllNodeContent === undefined 
-            || projectAllNodeContent[longKey] === undefined
-            || projectAllNodeContent[longKey] === null  
-            || projectAllNodeContent[longKey].nodeContent === undefined
-            || projectAllNodeContent[longKey].nodeUISettings === undefined            
+        if (projectAllNodeContent === undefined         
             ) {
             goToGameMakerResetNodeFocus();
+        } else if (projectAllNodeContent[longKey] === undefined
+            || projectAllNodeContent[longKey] === null  
+            || projectAllNodeContent[longKey].nodeContent === undefined
+            || projectAllNodeContent[longKey].nodeUISettings === undefined
+        ) {
+            //TODO33333 fetch from cloud?
+            
         } else {
             return projectAllNodeContent[longKey];
         }
@@ -1002,13 +1005,10 @@ console.log("ui-langauge changed to: ", val);
         if (projectAllNodeContent === undefined) {
             return;
         }
+        //TODO99999 check node-data valid?
 
-
-        let res = checkProjectMetaData_vm(dataObj);
-
-        if (res === true) {
-            projectAllNodeContent[longKey] = dataObj;
-        }
+        projectAllNodeContent[longKey] = dataObj;
+        
     }
 
     function passInCurrChapAllNodes(chapterKeyName) {
@@ -1320,6 +1320,7 @@ return (
             getProjectResourceVarPairs={passInProjectResourceVarPairs}
             getGameDataDesignList={passInGameDataDesignList}
             fetchConvNodeUiAllPlansFunc={fetchConvNodeUiAllPlansFunc}
+            
             saveConvNodeUiPlanFunc={saveConvNodeUiPlanFunc}
 
             clickedNodeKey={currentNode}

@@ -43,6 +43,21 @@ export default function ConversationNodeEditingPanel({
 }
 ) {
 
+
+
+/*
+format
+    nodeData["nodeUISettings"]
+    nodeData["nodeContent"]
+    nodeData["nodeKey"]
+    nodeData["chapterKey"]
+    nodeData["nodeType"]
+
+*/
+
+
+
+
     const authEmailName = userName;
 
     let longKey = generateNodeLongKeyString_vm({chapterKey: chapterKey, nodeKey: clickedNodeKey});
@@ -274,6 +289,7 @@ GameDataDesign <map>
     
     
     useEffect(()=>{
+        //TODO33333
         // saveCurrNodeEntire(dataObj, longKey)
     }, []);
     
@@ -321,7 +337,7 @@ GameDataDesign <map>
 
     function resetVisualMapFromList(visualList) { 
                             // let tempMap = {};
-                            
+
         resourceRawListToUsableMap_vm(visualList, setVisualMap);
 
 
@@ -721,29 +737,22 @@ GameDataDesign <map>
         }; 
         //TODO31
         //gameUIDefaultButton, gameUITextFrame, gameUIBackButton, uiConvNav, logPageUISettings
-
-
         let typeStr = "Conversation";
+ 
+        let nodeObj = {
+            "nodeUISettings": uiObj,
+            "nodeContent": pieceDataStructure,
+            "nodeKey": clickedNodeKey,
+            "chapterKey": chapterKey,
+            "nodeType": typeStr
+        };
+            // nodeData["nodeUISettings"]
+            // nodeData["nodeContent"]
+            // nodeData["nodeKey"]
+            // nodeData["chapterKey"]
+            // nodeData["nodeType"]
 
-        // await singleNodeWriteToCloudVM({
-        //     project: projectName, 
-        //     username: authEmailName,       
-        //     chapterKey: chapterKey, 
-        //     nodeKey: clickedNodeKey, 
-        //     dataObj: pieceDataStructure, 
-        //     uiDataObj: uiObj,
-        //     bkOption: backendOption,
-        //     nodeType: typeStr
-        // })            
-        // .then((res)=>{
-        //         if (res === "node-update-ok") {
-        //             alert("Saved to Cloud!")
-        //         } else {
-        //             alert("Node not exist on cloud!");
-        //         }
-        //     }
-
-        // );
+        saveCurrNodeEntire(nodeObj, longKey);
 
     }
 
@@ -1020,7 +1029,7 @@ GameDataDesign <map>
             
                     <button
                         onClick={()=>{
-                            // saveAllToCloud();
+                            saveAllToCloud();
                         }}
                     >{saveToCloudText}</button>
 
