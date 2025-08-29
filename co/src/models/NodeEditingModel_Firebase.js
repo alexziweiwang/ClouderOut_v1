@@ -51,11 +51,12 @@ export async function createNewNodeFolders({project, username, nodeList}) {
   nodeList.map((item, index) => {
     let keyStr = item["longKey"];
     let obj = item["objContent"];
-                              // for each item inside pendingNewNodeList:
-                                // let pair = {
-                                //     "longKey": longKey,
-                                //     "objContent": genObjBothParts
-                                // }
+                              /* for each item inside pendingNewNodeList:
+                                let pair = {
+                                    "longKey": longKey,
+                                    "objContent": genObjBothParts
+                                }
+                              */
                                 
     let refTemp = doc(docRef, "allNodes", keyStr);
     

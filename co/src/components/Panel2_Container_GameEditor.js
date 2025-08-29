@@ -53,7 +53,7 @@ import { submitFileVM, getRmFileListVM, addToRmFileListVM, fetchUrlByFilenameVM,
   //TODO ------------------------- new vm and model funcs for optimizations
 import { fetchProjectAllMetadataVM, updateProjectMetadataSingleFieldVM, updateProjectAllMetadataVM } from '../viewmodels/ProjectMetadataViewModel'; //TODO60
 import { generateNodeLongKeyString_vm } from '../viewmodels/PrepAc_ProjectOperation';
-import { singleNodeWriteToCloudVM } from '../viewmodels/NodeEditingViewModel';
+import { singleNodeWriteToCloudVM, createNewNodeFoldersVM } from '../viewmodels/NodeEditingViewModel';
 
 
 
@@ -1071,14 +1071,16 @@ console.log("ui-langauge changed to: ", val);
             bkOption: backendOption
         });
 
-        /*
         if (pendingNewNodeList.length > 0) {
-        TODO66666: add these file-folders to cloud?
-            
+            await createNewNodeFoldersVM({
+                project: state.selected_project_name, 
+                username: authEmailName, 
+                nodeList: pendingNewNodeList,
+                bkOption: backendOption
+            });
 
-            after adding these to cloud: setPendingNewNodeList([]);
+            setPendingNewNodeList([]);
         }
-        */
     }
 
   }

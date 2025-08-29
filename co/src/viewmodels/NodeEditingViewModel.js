@@ -1,4 +1,4 @@
-import { singleNodeGetFromCloud, singleNodeWriteToCloud } from '../models/NodeEditingModel_Firebase';
+import { singleNodeGetFromCloud, singleNodeWriteToCloud, createNewNodeFolders } from '../models/NodeEditingModel_Firebase';
 
 
 export async function singleNodeWriteToCloudVM({project, username, chapterKey, nodeKey, dataObj, bkOption}) {
@@ -16,6 +16,19 @@ export async function singleNodeGetFromCloudVM({project, username, chapterKey, n
     }
     
     return res;
+}
+
+export async function createNewNodeFoldersVM({project, username, nodeList, bkOption}) {
+    if (bkOption === "firebase") {
+        await createNewNodeFolders({project, username, nodeList});
+    }
+
+          /* for each item inside pendingNewNodeList:
+                let pair = {
+                    "longKey": longKey,
+                    "objContent": genObjBothParts
+                }
+          */
 }
 
 // export async function addNewNodeFoldersVM({project, username, nodeList, chapterKey, bkOption}) {
