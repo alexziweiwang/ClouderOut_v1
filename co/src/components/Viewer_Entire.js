@@ -261,7 +261,7 @@ export default function Viewer_Entire({
         }
 
         
-        let anc = getCurrChapterContent();
+        let anc = getCurrChapterContent(currentGameStatusProgress["chapterKey"]); //TODO369
         setCurrChapterAllNodesContent(anc);
                                   //         console.log("\t\t*** Viewer-Entire: currChapterAllNodesContent = ", anc);
 

@@ -47,11 +47,27 @@ export default function ConversationNodeEditingPanel({
 
 /*
 format
+
     nodeData["nodeUISettings"]
     nodeData["nodeContent"]
     nodeData["nodeKey"]
     nodeData["chapterKey"]
     nodeData["nodeType"]
+    
+
+*/
+
+
+/*
+node-UI-settings format
+
+    nodeUISettings["defaultButton"]
+    nodeUISettings["textFrame"]
+    nodeUISettings["backButton"]
+    nodeUISettings["convNav"]
+    nodeUISettings["logPage"]
+
+
 
 */
 
@@ -728,12 +744,11 @@ GameDataDesign <map>
 
     async function saveAllToCloud() {
         let uiObj = {
-            defaultButton: gameUIDefaultButton,
-            textFrame: gameUITextFrame,
-            backButton: gameUIBackButton,
-            convNav: uiConvNav,
-            logPage: logPageUISettings
-
+            "defaultButton": gameUIDefaultButton,
+            "textFrame": gameUITextFrame,
+            "backButton": gameUIBackButton,
+            "convNav": uiConvNav,
+            "logPage": logPageUISettings
         }; 
         //TODO31
         //gameUIDefaultButton, gameUITextFrame, gameUIBackButton, uiConvNav, logPageUISettings
@@ -856,7 +871,7 @@ GameDataDesign <map>
         setDisplayNonPmTemp(true);
     }
 
-    function getPmEditingPiece(piece) {
+    function getPmEditingPieceFromSubCompo(piece) {
         setEditingPmPreviewPiece(piece);
     }
 
@@ -1131,7 +1146,7 @@ GameDataDesign <map>
                             getUILanguage={passInUILanguage}
                             triggerPreviewScreenOff={triggerPreviewScreenOff}
                             triggerPreviewScreenOn={triggerPreviewScreenOn}
-                            sendPmEditingPiece={getPmEditingPiece}
+                            sendPmEditingPiece={getPmEditingPieceFromSubCompo}
 
                             triggerPmQuickEditModeOn={triggerPmQuickEditModeOn}
                             triggerPmQuickEditModeOff={triggerPmQuickEditModeOff}
@@ -1251,7 +1266,7 @@ GameDataDesign <map>
 
 {/* *** quick-view modal ***  */}
 
-            {isDisplayQview && 
+            {/* {isDisplayQview && 
             <AllPanels_QuickView_ConvNode
                     initialPieceNum={previewingIndex}
                     isDisplay={isDisplayQview}
@@ -1276,7 +1291,10 @@ GameDataDesign <map>
                     resetViewing={resetQuickView}
                     openSettingPage={openSettingPage}
             />}
-            
+
+            //TODO put on panel2?
+
+             */}
     
     </>}            
 

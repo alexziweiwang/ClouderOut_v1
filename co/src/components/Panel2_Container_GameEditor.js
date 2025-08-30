@@ -127,9 +127,6 @@ export default function Panel2_Container_GameEditor() {
     const [pendingNewNodeList, setPendingNewNodeList] = useState([]);
 
     const [chapListNestedArr, setChapListNestedArr] = useState([]);
-//TODO66666
-
-
 
     /* testing-emu-data, for test-viewing and emu-manager */
     const [testPlayerGameDataTracker, setTestPlayerGameDataTracker] = useState({});   //TODO important for holder-in-practice
@@ -955,9 +952,7 @@ console.log("ui-langauge changed to: ", val);
         let projAllNodeContentTemp = projectAllNodeContent;
         projAllNodeContentTemp[longKey] = genObjBothParts;
         setProjectAllNodeContent(projAllNodeContentTemp);
-        
-        
-        //TODO66666
+                
         //add to  pendingNewNodeList - for on-cloud-folder-creations
         let listTemp = pendingNewNodeList;
         let pair = {
@@ -978,7 +973,6 @@ console.log("ui-langauge changed to: ", val);
         setProjectMetaData({...projectMetaData, 
             "chapterNodeMapping": currAllChaptersMapping
         });
-
     }
 
     function passInCurrNodeEntire(longKey) {
@@ -993,13 +987,31 @@ console.log("ui-langauge changed to: ", val);
             || projectAllNodeContent[longKey].nodeContent === undefined
             || projectAllNodeContent[longKey].nodeUISettings === undefined
         ) {
-            //TODO33333 fetch from cloud?
-            
+            //TODO369 fetch from cloud?
+            //this node (by longKey)
+        
         } else {
             return projectAllNodeContent[longKey];
         }
 
     }
+
+    function passInCurrChapterContent(chapterKeyStr) {
+        if (chapterKeyStr === undefined) {
+            return;
+        }
+
+        let cntt = projectAllNodeContent.filter(e => e.chapterKey === chapterKeyStr);
+                            console.log("filtered all nodes of this chapter:", cntt);
+        if (cntt === undefined) {
+            //TODO369 fetch from cloud?
+            //this chapter...
+        } else {
+            return cntt;
+        }
+    }
+  
+  
 
     function saveCurrNodeEntireFromSubEditor(dataObj, longKey) {
         if (projectAllNodeContent === undefined) {
@@ -1133,17 +1145,7 @@ console.log("ui-langauge changed to: ", val);
     return projectMetaData["convNodeUiPlanMap"];
   }
 
-  function passInCurrChapterContent(chapterKeyStr) {
 
-        let cntt = projectAllNodeContent[chapterKeyStr];
-        if (cntt === undefined) {
-            //TODO66666 fetch from cloud?
-        } else {
-            return cntt;
-        }
-  }
-  
-  
 
 
 
