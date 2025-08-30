@@ -768,7 +768,7 @@ export default function Panel2_Container_GameEditor() {
                 if (emuGdt1Temp[currKey]["current_value"] === undefined) {
                     emuGdt1Temp[currKey]["current_value"] = 
                     gameDataDesignList[currKey]["default_value"] !== undefined ? 
-                    gameDataDesignList[currKey]["default_value"] 
+                        gameDataDesignList[currKey]["default_value"] 
                         : 0;
                 }
                
@@ -1339,6 +1339,12 @@ return (
         loadMetadataFromCloud_panel2={loadMetadataFromCloud}
         triggerNodeLookChange_panel2={triggerNodeLookChange_panel2}
         triggerChapterListChange_panel2={triggerChapterListChange_panel2}
+
+        // handleResourceManagerOpen, //TODO add in panel2
+        // handleGameDataManagerOpen,  //TODO add in panel2
+        // handleEmuManagerOpen, //TODO add in panel2
+
+        triggerUpdateCurrentStanding={triggerUpdateCurrentStanding}
     /> 
 
     </>}

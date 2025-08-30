@@ -80,8 +80,15 @@ export default function GameMaker({
       loadMetadataFromCloud_panel2,
 
       triggerNodeLookChange_panel2,
-      triggerChapterListChange_panel2
+      triggerChapterListChange_panel2,
 
+
+
+      handleResourceManagerOpen, //TODO add in panel2
+      handleGameDataManagerOpen,  //TODO add in panel2
+      handleEmuManagerOpen, //TODO add in panel2
+
+      triggerUpdateCurrentStanding,
     
     }) {
   const navigate = useNavigate();
@@ -186,7 +193,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
   const [currChapterKey, setCurrChapterKey] = useState(""); // local-use
 
 
-  //TODO6
+  //TODO6 move to panel2
   const [currTestingPageStatus, setCurrTestingPageStatus] = useState("Main Page"); //move to outer-layer
   const [currTestingChapterKey, setCurrTestingChapterKey] = useState(""); //move to outer-layer
   const [currTestingChapterTitle, setCurrTestingChapterTitle] = useState(""); //move to outer-layer
@@ -199,9 +206,9 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
   const [chapterList, setChapterList] = useState([]); //receive & send-out
 
-  const [isDisplayRmBool, setDisplayRmModal] = useState(false); //TODO remove
-  const [isDisplayGdmBool, setDisplayGdmBool] = useState(false); //TODO remove
-  const [isDisplayEmBool, setDisplayEmBool] = useState(false); //TODO remove
+              // const [isDisplayRmBool, setDisplayRmModal] = useState(false); //TODO remove
+              // const [isDisplayGdmBool, setDisplayGdmBool] = useState(false); //TODO remove
+              // const [isDisplayEmBool, setDisplayEmBool] = useState(false); //TODO remove
 
 
   const [showChapterMaker, setShowChapterMaker] = useState(true); // local-use
@@ -554,38 +561,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
     // TODO consider data structure to store, balance efficiency and cloud traffic
   }
 
-  function handleResourceManagerCancel() {
-    setDisplayRmModal(false);
-    
-    //TODO3 fetch laterst data from cloud?
-    setRmUpdatedSignal(true);
 
-  }
-
-  function handleResourceManagerSaveChanges() {
-    console.log("modal save changes!");
-    updateRenderCounter();
-    //TODO update to cloud db
-    setDisplayRmModal(false);
-  }
-
-  function handleGameDataManagerCancel() {
-    updateRenderCounter();
-    setDisplayGdmBool(false);
-
-  }
-
-  function handleEmuManagerCancel() {
-    //triger re-render?
-    updateRenderCounter();
-    setDisplayEmBool(false);
-  }  
-
-
-  function handleGameDataManagerSaveChanges() {
-    setDisplayGdmBool(false);
-
-  }
 
   // function fetchCurrChapterNodeList(chapterKey) {
   //   // with chapter key, return the node list from cloud(?)
@@ -608,14 +584,6 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
     return currentProjectNav;
   }
   
-  function handleResourceManagerOpen() {
-    setDisplayRmModal(true);
-  }
-
-  function handleGameDataManagerOpen() {
-    setDisplayGdmBool(true);
-  }
-
   function updateCurrPageName(name) {
     setCurrPageName(name);
   }
@@ -643,16 +611,16 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
   const [developOnCloudData, setDevelopOnCloudData] = useState(false);
 
-  function closeEntireGameViewer() {
-    // reset all game-progress
-    setCurrTestingPageStatus("Main Page");
-    setCurrTestingChapterKey("");
-    setCurrTestingChapterTitle("");
-    setCurrTestingNodeKey("");
-    setCurrTestingNodeType("");
+                                  // function closeEntireGameViewer() {
+                                  //   // reset all game-progress
+                                  //   setCurrTestingPageStatus("Main Page");
+                                  //   setCurrTestingChapterKey("");
+                                  //   setCurrTestingChapterTitle("");
+                                  //   setCurrTestingNodeKey("");
+                                  //   setCurrTestingNodeType("");
 
-    setDisplayEntireGameViewer(false);
-  }
+                                  //   setDisplayEntireGameViewer(false);
+                                  // }
 
   function passInCurrentChapterNodeMap() {
     let nodeMap = currChapterKey !== "" ? chapterNodeMapAll[currChapterKey] : {"invalid_map": "invalid_map"};
@@ -976,14 +944,6 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
     setTestPlayerPurchaseStatus(playerPurchase);
     
   }  
-
-
-
-  function openEmuManager() {
-      setDisplayEmBool(true);
-
-      setIsEmuMgrOpenedOnce(true);
-  }
 
   function passInShopItemInfo() {
   //  console.log("game-maker shop product info", testShopProducts);
@@ -1458,7 +1418,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 {/* chapter-and-node setting tab */}
     {(showChapterMaker && authEmailName !== "_") && <div className="parallelFrame sectionArea">
 
-        {isDisplayRmBool === false && 
+        { 
         <ChapterManager 
 
           getChapterList={passInChapterList}
@@ -1562,7 +1522,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
 
                   intialEmuPlayerProfile={testPlayerProfile}
-                  openEmuManager={openEmuManager}
+                  openEmuManager={handleEmuManagerOpen}
                   fetchEmuPlayerProfile={passInPlayerProfile}
                    
                   getUILanguage={passInUILanguage}
@@ -1627,7 +1587,6 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
 <div>
 
-        <button className="testEntire" onClick={()=>{closeEntireGameViewer();}}>Stop Testing</button>
         <button
           className="testEntire" 
           onClick={()=>{
