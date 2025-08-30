@@ -32,12 +32,14 @@ import { checkProjectMetaData_vm } from '../viewmodels/PrepAc_ProjectFileInOut';
   import { prepareForNewChapterMapping_vm, triggerCreatedNewNode_Prep_vm } from '../viewmodels/PrepAc_Creations';
   
   import { saveConvNodeUiPlanVM, fetchConvNodeUiAllPlansVM } from '../viewmodels/ProjectManagerViewModel';
-
+ 
   
 
   import { 
     fetchAllNodes2VM
   } from '../viewmodels/NodeDataInPlayViewModel';
+
+  import { fetchNodeByChapter2VM } from '../viewmodels/NodeDataInPlayViewModel'
   //TODO112: fetch node-contents here, and send into Viewer_Entire and its sub-component [GameScreen_AllNodeTypeContainer]
   
 
@@ -975,7 +977,7 @@ console.log("ui-langauge changed to: ", val);
         });
     }
 
-    function passInCurrNodeEntire(longKey) {
+    async function passInCurrNodeEntire(longKey) {
         
         console.log("longKey = ", longKey, ", projectAllNodeContent[longKey] = ", projectAllNodeContent[longKey], "\n", projectAllNodeContent);
 
@@ -989,14 +991,25 @@ console.log("ui-langauge changed to: ", val);
         ) {
             //TODO369 fetch from cloud?
             //this node (by longKey)
-        
+
+            await fetchAllNodes2VM({
+                projectName: state.selected_project_name, 
+                uname: authEmailName
+            }).then((chapterContentTemp)=>{
+    
+                            console.log("panel2-everything from cloud: all-node-contents = ", chapterContentTemp); 
+    
+                
+                setProjectAllNodeContent(chapterContentTemp);
+    
+            }); 
         } else {
             return projectAllNodeContent[longKey];
         }
 
     }
 
-    function passInCurrChapterContent(chapterKeyStr) {
+    async function passInCurrChapterContent(chapterKeyStr) {
         if (chapterKeyStr === undefined) {
             return;
         }
@@ -1006,6 +1019,26 @@ console.log("ui-langauge changed to: ", val);
         if (cntt === undefined) {
             //TODO369 fetch from cloud?
             //this chapter...
+
+            await fetchNodeByChapter2VM(
+                {
+                    projectName: state.selected_project_name,
+                    uname: authEmailName, 
+                    chapterKey: chapterKeyStr, 
+                    bkOption: backendOption
+                }
+            ).then((updatedChapterAllNodes) => {
+                                    console.log("from cloud: ", updatedChapterAllNodes);
+                
+                let restOfMap = projectAllNodeContent.filter(e => e.chapterKey !== chapterKeyStr);
+
+                Object.keys(updatedChapterAllNodes).map((currKey) => {
+                    restOfMap[currKey] = updatedChapterAllNodes[currKey];
+                });
+
+                setProjectAllNodeContent(restOfMap);
+
+            });
         } else {
             return cntt;
         }
