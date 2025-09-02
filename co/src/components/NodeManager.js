@@ -422,6 +422,11 @@ export default function NodeManager({projectName, currUser,
       return;
     }
 
+    if (nodeRelationshipMap === -1) {
+        alert("map -1");
+      return;
+    }
+
     if (nodeRelationshipMap[createNewNodeName] !== undefined) {
                                     console.log("2Invalid node name: duplicate");                    //TODO test
       return;

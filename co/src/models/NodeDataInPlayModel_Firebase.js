@@ -35,7 +35,7 @@ export async function fetchAllNodes2({projectName, uname}) {
         }
 
     });
-
+                console.log("\t\tcloud side all-node-contents: ", dataMap);
     return dataMap;
 }
 

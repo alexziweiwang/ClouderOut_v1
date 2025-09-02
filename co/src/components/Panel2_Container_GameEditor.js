@@ -389,17 +389,15 @@ export default function Panel2_Container_GameEditor() {
     }
 
     async function loadEverythingFromCloud() {
+                    console.log("load everything from cloud (At panel2): ", authEmailName, "...", state.selected_project_name);
 
         if (authEmailName === "_" 
-        || state.selected_project_name === undefined 
-        || isPrepFinished === true
+        || state.selected_project_name === undefined
         ) {            
             return;
         }
 
-                            console.log("load everything from cloud (At panel2): ", authEmailName, "...", state.selected_project_name);
-
-
+   
         await loadMetadataFromCloud()
         .then(async()=>{
             await loadProjectAllNodeContentFromCloud();
@@ -408,8 +406,6 @@ export default function Panel2_Container_GameEditor() {
                         console.log("metadata-prep finished!");
             setPrepFinished(true);
         });
-        
-       
 
  
     }
@@ -467,9 +463,10 @@ export default function Panel2_Container_GameEditor() {
     async function loadProjectAllNodeContentFromCloud() {
         await fetchAllNodes2VM({
             projectName: state.selected_project_name, 
-            uname: authEmailName
+            uname: authEmailName,
+            bkOption: backendOption
         }).then((chapterContentTemp)=>{
-
+//TODO improve here
                         console.log("panel2-everything from cloud: all-node-contents = ", chapterContentTemp); 
 
             
@@ -549,42 +546,8 @@ export default function Panel2_Container_GameEditor() {
         let modeName = state.mode;
     
         //TODO when all emu-set-data ready - display the entire-view window
-            
-            // await prepare1Gdt_vm(
-            //   authEmailName, 
-            //   state.selected_project_name, 
-            //   backendOption, 
-            //   setTestPlayerGameDataTracker, 
-            //   getUserConfigFromEmuManager1Gdt, 
-            //   modeName
-            // ).then(async()=>{
-            //   await prepare2Epp_vm(
-            //     authEmailName, 
-            //     state.selected_project_name, 
-            //     backendOption, 
-            //     setTestPlayerProfile,
-            //     getUserConfigFromEmuManager2Epp,
-            //     modeName
-            //   )
-            // }).then(async()=>{
-            //   await prepare3Epa_vm(
-            //     authEmailName, 
-            //     state.selected_project_name, 
-            //     backendOption,  
-            //     setTestPlayerAccount, 
-            //     getUserConfigFromEmuManager3Epa, 
-            //     modeName
-            //   )
-            // })
-            // .then(()=>{
-            //     console.log("\n\n\n\n\n\n\n\n\n\n\n\nopening viewer_entire window...");
-                
-            //     setDisplayEntireGameViewer(true);
-            //   }
-            // ); 
-    
-        
-    
+ 
+     
     
     }
       function getUserConfigFromEmuManager1Gdt(data1) {
@@ -935,6 +898,14 @@ console.log("ui-langauge changed to: ", val);
     }
 
     function triggerCreatedNewNode_panel2(nodeKey, nodeChapter, nodeType, currChapMap) {
+        
+                                    console.log("called triggerCreatedNewNode_panel2 once");
+
+        if (projectAllNodeContent === -1) {
+                                    console.log("projectAllNodeContent -1");
+            return;
+        }
+
         // add this node's content into the project-all-node-content ds
 
         let genObjBothParts = triggerCreatedNewNode_Prep_vm(nodeType);
@@ -998,7 +969,8 @@ console.log("ui-langauge changed to: ", val);
 
             await fetchAllNodes2VM({
                 projectName: state.selected_project_name, 
-                uname: authEmailName
+                uname: authEmailName,
+                bkOption: backendOption
             }).then((chapterContentTemp)=>{
     
                             console.log("panel2-everything from cloud: all-node-contents = ", chapterContentTemp); 
