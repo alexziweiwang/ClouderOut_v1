@@ -74,6 +74,7 @@ export default function Panel1_UserMgr({}) {
 
 
         if (authEmailName !== "_" && firstTimeEnter === true) {
+                                        console.log("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
                                         console.log("\n\n\nPanel1_UserMgr FIRST ENTER.\n\n\n");
 
           

@@ -389,12 +389,16 @@ export default function Panel2_Container_GameEditor() {
     }
 
     async function loadEverythingFromCloud() {
-                        console.log("load everything from cloud (At panel2): ", authEmailName, "...", state.selected_project_name);
 
-        if (authEmailName === "_" || state.selected_project_name === undefined) {
-                    
+        if (authEmailName === "_" 
+        || state.selected_project_name === undefined 
+        || isPrepFinished === true
+        ) {            
             return;
         }
+
+                            console.log("load everything from cloud (At panel2): ", authEmailName, "...", state.selected_project_name);
+
 
         await loadMetadataFromCloud()
         .then(async()=>{
