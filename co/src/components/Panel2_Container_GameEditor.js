@@ -1320,7 +1320,7 @@ return (
         // handleGameDataManagerOpen,  //TODO add in panel2
         // handleEmuManagerOpen, //TODO add in panel2
 
-        triggerUpdateCurrentStanding={triggerUpdateCurrentStanding}
+        triggerUpdateCurrentStanding_panel2={triggerUpdateCurrentStanding}
     /> 
 
     </>}
@@ -1559,7 +1559,11 @@ return (
     
     
     
-            <div>
+            <div style={{
+                "marginLeft": "-850px",
+         //       "height": `${screenHeight}px`, 
+                 
+              }}>
         {/* also :  <Panel_GameDataTest
 
                 note: for test-viewing: keep these: for the [status table]
@@ -1569,6 +1573,27 @@ return (
                 currTestingNodeKey("");
                 currTestingNodeType("");
         */}
+            {/* game data info */}
+            {/* screenWidth > screenHeight means horizontal game-screen */}
+            {/* //TODO current: when testing, "localTest" is temporarily true; later change to "false" */}
+            {/* {(isDisplayEntireGameViewer && showGameDataPanel) */}
+            {/* {isDisplayEntireGameViewer */}
+            {/* //TODO700 recover this later */}
+
+        {/* 
+                <Panel_GameDataTest
+                       localTest={true}
+                       initialGameDataStatus={gameDataTracker}
+
+                       getScreenHeight={passInScreenHeight} 
+                       getScreenWidth={passInScreenWidth}
+                       isQuickView={false}
+
+                       receiveGameDataObj={passInPlayerGameDataTracker}
+
+                       getUILanguage={passInUILanguage}
+                /> 
+         */}
 
             </div>
     

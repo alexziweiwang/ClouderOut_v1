@@ -82,13 +82,12 @@ export default function GameMaker({
       triggerNodeLookChange_panel2,
       triggerChapterListChange_panel2,
 
-
+      triggerUpdateCurrentStanding_panel2,
 
       handleResourceManagerOpen, //TODO add in panel2
       handleGameDataManagerOpen,  //TODO add in panel2
       handleEmuManagerOpen, //TODO add in panel2
 
-      triggerUpdateCurrentStanding,
     
     }) {
   const navigate = useNavigate();
@@ -799,12 +798,8 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
     return currTestingChapterTitle;
   }
 
-  function triggerUpdateCurrentStanding(obj) { //fetch from sub-compo
-    setCurrTestingPageStatus(obj["pageStatus"]);
-    setCurrTestingChapterKey(obj["chapterKey"]);
-    setCurrTestingNodeKey(obj["nodeKey"]);
-    setCurrTestingNodeType(obj["nodeType"]);
-    setCurrTestingChapterTitle(obj["chapterTitle"]);
+  function triggerUpdateCurrentStanding_gm(obj) { //fetch from sub-compo
+    triggerUpdateCurrentStanding_panel2(obj)
   }
 
   
@@ -1544,7 +1539,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
                   chapterData={chapterList} 
 
                   triggerUpdateCurrPageName={updateCurrPageName}
-                  triggerUpdateCurrentStanding={triggerUpdateCurrentStanding}
+                  triggerUpdateCurrentStanding={triggerUpdateCurrentStanding_gm}
 
                   isEditing={true}
                   initialGameDataRefData={emptyValue}
@@ -1609,111 +1604,10 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
       >
 
-{/*          
 
-      <Viewer_Entire
-
-          initialNavObj={currentProjectNav}
-
-          initialChapterList={chapterList}
-          initialCurrChapterAllNodeMapping={chapterNodeMapAll}
-
-          initialPlayerGameDataTracker={testPlayerGameDataTracker}
-          initialPlayerProfile={testPlayerProfile}
-          initialPlayerAccountSettings={testPlayerAccount}
-      
-          initialPlayerSlRecords={testPlayerSLRecords}
-
-          uiLangOption={languageCodeTextOption}
-
-          username={authEmailName}
-          projectname={projectName}
-          getUsername={passInAuthEmailName}
-
-          initialShopItemInfo={testShopProducts}
-          initialPlayerPurchaseInfo={testPlayerPurchaseStatus}
-
-          triggerNodeWalk={triggerNodeWalk} //update things to this layer
-          triggerChapterWalk={triggerChapterWalk} //update things to this layer
-          triggerUpdateCurrentStanding={triggerUpdateCurrentStanding} //update things to this layer
-
-          visualMap={visualMap}
-          audioMap={audioMap}
-          mutedViewOption={mutedViewOption}
-
-          getCurrChapterContent={passInCurrChapterContent}
-
-          backendOption={backendOption}
-
-      /> */}
-
-
-
-    {/* status table */}
-      {/* <table style={{"width": "800px", "marginTop": `${screenHeight+20}px`, "marginLeft": "170px","position": "absolute"}}>
-              <thead>
-                <tr>
-                  <th>Current Page Status</th>
-                  <th>Current Chapter-Key</th>
-                  <th>Current Node-Key</th>
-                  <th>Current Node-Type</th>
-                </tr>
-              </thead>
-
-              <tbody> 
-                <tr>
-                  <td>{currTestingPageStatus}</td>
-                  <td>{currTestingChapterKey}</td>
-                  <td>{currTestingNodeKey}</td>
-                  <td>{currTestingNodeType}</td>         
-                </tr>
-      
-
-              </tbody>
-
-            </table> */}
 
       </div>
 
-
-    {/* game data table panel  */}
-      <div>
-           
-        
-            {/* game data info */}
-            {/* screenWidth > screenHeight means horizontal game-screen */}
-            {/* //TODO current: when testing, "localTest" is temporarily true; later change to "false" */}
-            {/* {(isDisplayEntireGameViewer && showGameDataPanel) */}
-            {/* {isDisplayEntireGameViewer */}
-            {/* //TODO700 recover this later */}
-
-            {false
-           
-            && 
-              <div style={{
-                "marginLeft": "-850px",
-                "height": `${screenHeight}px`, 
-                 
-              }}>
-{/* 
-                <Panel_GameDataTest
-                       localTest={true}
-                       initialGameDataStatus={gameDataTracker}
-
-                       getScreenHeight={passInScreenHeight} 
-                       getScreenWidth={passInScreenWidth}
-                       isQuickView={false}
-
-                       receiveGameDataObj={passInPlayerGameDataTracker}
-
-                       getUILanguage={passInUILanguage}
-                /> 
-         */}
-              </div>
-            }
-
-
-          </div>
 
 
 </div>

@@ -35,7 +35,7 @@ import { resourceRawListToUsableMap_vm } from '../viewmodels/PrepAc_Conversion';
 
 export default function Viewer_Entire({
 
-//TODO99999 fetch metadata and all-node-contents from outer!
+//TODO99999 fetch static-metadata and static-all-node-contents from outer!
 
     initialMetadata,
     initialChapterContent,
