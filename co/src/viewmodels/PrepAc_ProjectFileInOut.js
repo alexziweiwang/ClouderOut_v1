@@ -212,16 +212,16 @@ import {
     // "chapterNodeMapping"
         //each chapter-each node: 
                         // col, display, nextNode, nodeName, nodeType, row, screenSize, 
-        let chapNodeMapping = metadataObj["chapterNodeMapping"];
-        Object.keys(chapNodeMapping).map((chapKey) => {
-            let chapterMap = chapNodeMapping[chapKey];
+        let nodeMappingLargeMap = metadataObj["chapterNodeMapping"];
+        Object.keys(nodeMappingLargeMap).map((chapKey) => {
+            let currChapterSmallMap = nodeMappingLargeMap[chapKey];
 
-                                            console.log("chap = ", chapKey);
+                                          //  console.log("chap = ", chapKey);
 
-            Object.keys(chapterMap).map((nodeKey)=>{
+            Object.keys(currChapterSmallMap).map((nodeKey)=>{
                 if (nodeKey !== "placeholder") {
-                                            console.log("\tnode = ", nodeKey, "\n", chapterMap);
-                    let item = chapNodeMapping[nodeKey];
+                                          //  console.log("\tnode-key = ", nodeKey, "\n chapter-map = ", currChapterSmallMap, "\n item = ", currChapterSmallMap[nodeKey]);
+                    let item = currChapterSmallMap[nodeKey];
 
     
                     if (item === undefined
@@ -232,7 +232,7 @@ import {
                     || item["row"] === undefined
                     || item["screenSize"] === undefined
                         ) {
-                                                    console.log("@@@invalid node mapping: ", nodeKey);
+                                                    console.log("@@@invalid node mapping: ", nodeKey, "\n\t item = ", item);
         
                             return false;
                     } 
