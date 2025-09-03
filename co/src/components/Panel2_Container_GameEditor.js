@@ -215,6 +215,13 @@ export default function Panel2_Container_GameEditor() {
     
         } 
 
+
+        if (firstTimeEnter === true) {
+            setPendingNewNodeList([]);
+
+            setFirstTimeEnter(false);
+        }
+
         window.onbeforeunload = () => {
 
             return "show message";
@@ -664,7 +671,9 @@ export default function Panel2_Container_GameEditor() {
             nodeKey: currentNode, 
             dataObj: obj,
             bkOption: backendOption 
-        })
+        }).then(()=>{
+            alert("node saved!");
+        });
 
     }
 
@@ -952,33 +961,33 @@ console.log("ui-langauge changed to: ", val);
         });
     }
 
-    async function passInCurrNodeEntire(longKey) {
+    function passInCurrNodeEntire(longKey) {
         
         console.log("longKey = ", longKey, ", projectAllNodeContent[longKey] = ", projectAllNodeContent[longKey], "\n", projectAllNodeContent);
 
         if (projectAllNodeContent === undefined         
             ) {
             goToGameMakerResetNodeFocus();
-        } else if (projectAllNodeContent[longKey] === undefined
-            || projectAllNodeContent[longKey] === null  
-            || projectAllNodeContent[longKey].nodeContent === undefined
-            || projectAllNodeContent[longKey].nodeUISettings === undefined
-        ) {
-            //TODO369 fetch from cloud?
-            //this node (by longKey)
+        // } else if (projectAllNodeContent[longKey] === undefined
+        //     || projectAllNodeContent[longKey] === null  
+        //     || projectAllNodeContent[longKey].nodeContent === undefined
+        //     || projectAllNodeContent[longKey].nodeUISettings === undefined
+        // ) {
+        //     //TODO369 fetch from cloud?
+        //     //this node (by longKey)
 
-            await fetchAllNodes2VM({
-                projectName: state.selected_project_name, 
-                uname: authEmailName,
-                bkOption: backendOption
-            }).then((chapterContentTemp)=>{
+        //     await fetchAllNodes2VM({
+        //         projectName: state.selected_project_name, 
+        //         uname: authEmailName,
+        //         bkOption: backendOption
+        //     }).then((chapterContentTemp)=>{
     
-                            console.log("panel2-everything from cloud: all-node-contents = ", chapterContentTemp); 
+        //                     console.log("panel2-everything from cloud: all-node-contents = ", chapterContentTemp); 
     
                 
-                setProjectAllNodeContent(chapterContentTemp);
+        //         setProjectAllNodeContent(chapterContentTemp);
     
-            }); 
+        //     }); 
         } else {
             return projectAllNodeContent[longKey];
         }
@@ -1354,6 +1363,7 @@ return (
             getCurrNodeEntire={passInCurrNodeEntire}
             saveCurrNodeEntire={saveCurrNodeEntireFromSubEditor}
 
+            saveCurrNodeDataToCloud_panel2={saveSingleNodeContentToCloud}
 
         />
 

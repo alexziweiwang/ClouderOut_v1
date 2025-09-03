@@ -39,7 +39,9 @@ export default function ConversationNodeEditingPanel({
 
         getCurrNodeEntire,
         saveCurrNodeEntire,
-        backToGameMaker
+        backToGameMaker,
+
+        saveCurrNodeDataToCloud_panel2
 }
 ) {
 
@@ -307,7 +309,16 @@ GameDataDesign <map>
     useEffect(()=>{
         //TODO33333
         // saveCurrNodeEntire(dataObj, longKey)
-    }, []);
+        updateToOuter();
+    }, [
+        gameUIDefaultButton, 
+        gameUITextFrame, 
+        gameUIBackButton, 
+        uiConvNav, 
+        logPageUISettings, 
+        pieceDataStructure
+
+    ]);
     
     
     
@@ -740,9 +751,7 @@ GameDataDesign <map>
 //TODO5
     } 
 
-
-
-    async function saveAllToCloud() {
+    function updateToOuter() {
         let uiObj = {
             "defaultButton": gameUIDefaultButton,
             "textFrame": gameUITextFrame,
@@ -750,10 +759,10 @@ GameDataDesign <map>
             "convNav": uiConvNav,
             "logPage": logPageUISettings
         }; 
-        //TODO31
+
         //gameUIDefaultButton, gameUITextFrame, gameUIBackButton, uiConvNav, logPageUISettings
         let typeStr = "Conversation";
- 
+
         let nodeObj = {
             "nodeUISettings": uiObj,
             "nodeContent": pieceDataStructure,
@@ -769,6 +778,13 @@ GameDataDesign <map>
 
         saveCurrNodeEntire(nodeObj, longKey);
 
+    }
+
+
+
+    async function saveAllToCloud() {
+        saveCurrNodeDataToCloud_panel2();
+        //TODO improve later
     }
 
     async function initializeNodeBothPartsFromCloud() {
