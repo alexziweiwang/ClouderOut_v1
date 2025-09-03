@@ -6,7 +6,13 @@ import {
     gameUIBackButtonTemplate,
     uiConvNavTemplate,
     logPageUISettingsTemplate,
-    projectNavUiTemplate
+    projectNavUiTemplate,
+    gdt1Template,
+    epp2Template,
+    epa3Template,
+
+
+
 } from '../components/_dataStructure_DefaultObjects';
 
 
@@ -250,6 +256,28 @@ import {
 
         //TODO99999 emu-4-sets
         //"emu4sets"
+        let emu4sets = metadataObj["emu4sets"];
+        if (emu4sets === undefined
+        || emu4sets["gdt1"] === undefined
+        || emu4sets["epp2"] === undefined
+        || emu4sets["epa3"] === undefined) {
+
+                            console.log("@@@invalid emu4sets: ", metadataObj["emu4sets"]);
+
+            return false;
+        }
+        
+        let gdt1Obj = emu4sets["gdt1"];
+        let epp2Obj = emu4sets["epp2"];
+        let epa3Obj = emu4sets["epa3"];
+
+
+        // gdt1Template,
+        // epp2Template,
+        // epa3Template,
+
+
+
     }
 
         return true;
