@@ -649,7 +649,7 @@ export default function Panel2_Container_GameEditor() {
         return authEmailName;
     }
 
-    async function saveSingleNodeContentToCloud() {
+    async function saveSingleNodeContentToCloud(triggerFinishFlag) {
         //chapter is from currchapter
         //nodekey is from currndoe
         //nodeInfoObj is fetched from the large-obj: projectAllNodeContet[longKey]
@@ -672,6 +672,7 @@ export default function Panel2_Container_GameEditor() {
             dataObj: obj,
             bkOption: backendOption 
         }).then(()=>{
+            triggerFinishFlag();
             alert("node saved!");
         });
 
@@ -705,7 +706,7 @@ export default function Panel2_Container_GameEditor() {
 
                 // when inside node-editors
 
-                saveSingleNodeContentToCloud();
+                saveSingleNodeContentToCloud(notUsing);
                 goToGameMakerResetNodeFocus();
 
             }
@@ -1161,6 +1162,10 @@ console.log("ui-langauge changed to: ", val);
   function fetchConvNodeUiAllPlansFunc() {
     
     return projectMetaData["convNodeUiPlanMap"];
+  }
+
+  function notUsing() {
+      console.log();
   }
 
 

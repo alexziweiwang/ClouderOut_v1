@@ -89,6 +89,7 @@ node-UI-settings format
     //TODO     fetch from game-maker & add UI for choosing platform
     const [isBackendOptionCloud, setIsBackendOptionCloud] = useState(true);
 
+    const [isLoading, setIsLoading] = useState(false);
     /**
 used data structures:
 
@@ -780,10 +781,13 @@ GameDataDesign <map>
 
     }
 
-
+    function relieveLoading() {
+        setIsLoading(false);
+    }
 
     async function saveAllToCloud() {
-        saveCurrNodeDataToCloud_panel2();
+        setIsLoading(true);
+        saveCurrNodeDataToCloud_panel2(relieveLoading);
         //TODO improve later
     }
 
@@ -1011,36 +1015,13 @@ GameDataDesign <map>
         <div
             className="textNoSelect"
         >
-                                                {/* <div className="returning_buttons_cloud_mode">
-                                                    <button className="button2" onClick={()=>{goToGameMaker()}}> {returnGameMakerButtonText} </button>
-                                    {projectName !== null &&                
-                                    <>
-
-                                    <div style={{"width": "200px",  "textAlign": "left", "padding": "5px", "marginTop": "5px"}}>
-                                                        <label>Project: {projectName}</label>
-                                                        <br></br>
-                                                        <label>Node: {clickedNodeKey}</label>
-                                                    
-                                                    </div>
-
-                                                    <div style={{"minWidth": "200px", "marginTop": "2px"}}>
-                                                        <button className="button testEntire"
-                                                            onClick={()=>{
-                                                                setIsDisplayQview(true);
-                                                                }}>
-                                                                {quickGameViewText}
-                                                        </button>                    
-                                                    </div>
-
-
-                                        
-                                    </>
-                                    }
-                                                </div> */}
+            
 
 {projectName !== null && 
 <>
             <div className="parallelFrame" style={{"marginTop": "-5px"}}>
+              
+
                 <div className="topParalBarLeftPart">
                 <>
                         <button className="button testEntire"
@@ -1311,10 +1292,24 @@ GameDataDesign <map>
             //TODO put on panel2?
 
              */}
-    
+
+
+{/* loading cover */}
+{isLoading === true 
+        && <div className="displayBlock modalBackboard">
+                    {/* <div className="modalArea"> */}
+
+        isLoading
+                    {/* </div> */}
+        </div>}
+
+
     </>}            
 
         <br></br>
+
+
+
 
 
 {/* {firstEnterButtonPressed === false && 
