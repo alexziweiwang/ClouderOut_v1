@@ -270,11 +270,36 @@ import {
         let gdt1Obj = emu4sets["gdt1"];
         let epp2Obj = emu4sets["epp2"];
         let epa3Obj = emu4sets["epa3"];
+                                console.log("emu: gdt1 = ", gdt1Obj);
+        Object.keys(gdt1Obj).map((itemKey) => {
+            let item = gdt1Obj[itemKey];
+
+            Object.keys(gdt1Template).map((currKey) => {
+                if (item[currKey] === undefined) {
+                                            console.log("@@@invalid emu4sets: gdt1 - ", currKey);
+                    return false;
+                }
+            });
+        });   
+        // gdt1Template
 
 
-        // gdt1Template,
-        // epp2Template,
-        // epa3Template,
+        Object.keys(epp2Template).map((currKey) => {
+            if (epp2Obj[currKey] === undefined) {
+                                        console.log("@@@invalid emu4sets: epp2 - ", currKey);
+                return false;
+            }
+        });
+        // epp2Template
+
+
+        Object.keys(epa3Template).map((currKey) => {
+            if (epa3Obj[currKey] === undefined) {
+                                        console.log("@@@invalid emu4sets: epa3 - ", currKey);
+                return false;
+            }
+        });
+        // epa3Template
 
 
 
