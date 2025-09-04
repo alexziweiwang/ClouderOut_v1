@@ -37,7 +37,7 @@ export default function ConversationNodeEditingPanel({
         saveConvNodeUiPlanFunc,
         fetchConvNodeUiAllPlansFunc,
 
-        getCurrNodeEntire,
+        initialCurrNodeEverything,
         saveCurrNodeEntire,
         backToGameMaker,
 
@@ -308,8 +308,6 @@ GameDataDesign <map>
     
     
     useEffect(()=>{
-        //TODO33333
-        // saveCurrNodeEntire(dataObj, longKey)
         updateToOuter();
     }, [
         gameUIDefaultButton, 
@@ -318,7 +316,6 @@ GameDataDesign <map>
         uiConvNav, 
         logPageUISettings, 
         pieceDataStructure
-
     ]);
     
     
@@ -787,16 +784,17 @@ GameDataDesign <map>
 
     async function saveAllToCloud() {
         setIsLoading(true);
-        saveCurrNodeDataToCloud_panel2(relieveLoading);
-        //TODO improve later
+        updateToOuter();
+        await saveCurrNodeDataToCloud_panel2(relieveLoading);
+        //TODO99999 improve later
     }
 
     async function initializeNodeBothPartsFromCloud() {
-                    console.log("!!!!!!!, init: ",chapterKey, " from ", clickedNodeKey);
+                    console.log("!!!!!!!, init: ",chapterKey, " - ", clickedNodeKey);
         
         let longKey = generateNodeLongKeyString_vm({chapterKey: chapterKey, nodeKey: clickedNodeKey});
 
-        let pieceObjTemp = getCurrNodeEntire(longKey); 
+        let pieceObjTemp = initialCurrNodeEverything; 
 
                                     console.log("!!! conv-editor: initialize piece data... ", pieceObjTemp);
 

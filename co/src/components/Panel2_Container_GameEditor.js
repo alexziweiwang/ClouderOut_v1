@@ -83,13 +83,14 @@ export default function Panel2_Container_GameEditor() {
 
 
     const [isPrepFinished, setPrepFinished] = useState(false);
-
+    const [isSavedToCloud, setSavedToCloud] = useState(false);
 
     /* display option for this large container: which editor is displayed for user */
     const [focusingEditor, setFocusingEditor] = useState("gameMaker");
     const [currentChapter, setCurrentChapter] = useState("");
     const [currentNode, setCurrentNode] = useState("");
     const [currentScreenSz, setCurrentScreenSz] = useState("4:3(horizonal)");
+    const [currentLongKey, setCurrentLongKey] = useState("");
 
     /* 
     entire project-object, ! important
@@ -296,6 +297,27 @@ export default function Panel2_Container_GameEditor() {
 
     });
 
+
+        
+    useEffect(()=>{
+        //TODO33333
+        setSavedToCloud(false);
+        
+        //track if saved to cloud or not?
+    }, [
+        projectAllNodeContent,
+        projectMetaData
+    ]);
+
+    useEffect(()=>{
+        let longKeyTemp = generateNodeLongKeyString_vm({chapterKey: currentChapter, nodeKey: currentNode});
+        setCurrentLongKey(longKeyTemp);
+    }, [
+        currentNode,
+        currentChapter
+    ]);
+
+
     function switchEditor(visitInfoObj) {
         let longKey = generateNodeLongKeyString_vm({chapterKey: visitInfoObj["chapterKey"], nodeKey: visitInfoObj["nodeKey"]});
 
@@ -351,7 +373,7 @@ export default function Panel2_Container_GameEditor() {
         setCurrentNode(visitInfoObj["nodeKey"]);
         setCurrentScreenSz(visitInfoObj["screenSizeStr"]);
 
-        console.log("node-data-obj = ", projectAllNodeContent);
+        console.log("switch-editor:  node-data-obj = ", projectAllNodeContent);
         
 
         switch (visitInfoObj["nodeType"]){
@@ -673,7 +695,8 @@ export default function Panel2_Container_GameEditor() {
             bkOption: backendOption 
         }).then(()=>{
             triggerFinishFlag();
-            alert("node saved!");
+            setSavedToCloud(true);
+                            alert("node saved!");
         });
 
     }
@@ -700,13 +723,17 @@ export default function Panel2_Container_GameEditor() {
 
                             //TODO50: asks if save to cloud? or no?
             let resp = window.confirm("Save and exit?");
+                        console.log("non-game-maker: cloud-saving-flag = ", isSavedToCloud, "... ", projectAllNodeContent);
             if (resp) {
 
                 //TODO50: for node-editing of a newly-created node:  write with setDoc() for either write or overwrite
 
                 // when inside node-editors
+                if (isSavedToCloud === false) {
+          //          saveSingleNodeContentToCloud(notUsing); //TODO99999 should not always pop -- only when unsaved
 
-                saveSingleNodeContentToCloud(notUsing);
+                }
+
                 goToGameMakerResetNodeFocus();
 
             }
@@ -1038,7 +1065,10 @@ console.log("ui-langauge changed to: ", val);
         }
         //TODO99999 check node-data valid?
 
-        projectAllNodeContent[longKey] = dataObj;
+        let objTemp = projectAllNodeContent;
+
+        objTemp[longKey] = dataObj;
+        setProjectAllNodeContent(objTemp);
         
     }
 
@@ -1115,27 +1145,6 @@ console.log("ui-langauge changed to: ", val);
     }
 
   }
-
-  async function addPendingNewNodesToCloud() {
-
-    //TODO create folders on cloud ...
-        //each obj contains:
-            // nodeContent - from default template
-            // nodeUISettings - from default template
-
-            // chapterKey
-            // nodeKey
-            // nodeType 
-    // for each item inside pendingNewNodeList:
-    // let pair = {
-    //     "longKey": longKey,
-    //     "objContent": genObjBothParts
-    // }
-
-
-            
-  }
-
 
   function triggerNodeLookChange_panel2(nodeMapAll) {
     setProjectMetaData({...projectMetaData,
@@ -1365,7 +1374,7 @@ return (
 
             backToGameMaker={goToGameMakerResetNodeFocus}
 
-            getCurrNodeEntire={passInCurrNodeEntire}
+            initialCurrNodeEverything={projectAllNodeContent[currentLongKey]}
             saveCurrNodeEntire={saveCurrNodeEntireFromSubEditor}
 
             saveCurrNodeDataToCloud_panel2={saveSingleNodeContentToCloud}
