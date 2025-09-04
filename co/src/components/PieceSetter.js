@@ -5,7 +5,7 @@ import { GiTrashCan } from "react-icons/gi";
 import langDictionary from './_textDictionary';
 import { characterPictureCurrTemplate } from './_dataStructure_DefaultObjects';
 
-import { resourceVarToUrl_vm } from '../viewmodels/CalcAc_PieceSetting';
+import { resourceVarToUrl_vm, indexedMapToRealArray_vm } from '../viewmodels/CalcAc_PieceSetting';
 
 //TODO refactor: stnd_btn_arr
 
@@ -364,7 +364,7 @@ console.log("audiolist = ", audioList);
         setGameDataListLocal(tempObj);
         
         
-                                                        console.log("!!! piece-setter. getGameDataDesignListFromOuterLayer : ", tempObj);
+                                                     //   console.log("!!! piece-setter. getGameDataDesignListFromOuterLayer : ", tempObj);
 
     }
 
@@ -811,7 +811,9 @@ console.log("audiolist = ", audioList);
     }
 
     function resourceVarToUrl_local(list, varName) {
-        return resourceVarToUrl_vm(list, varName);
+        let convertedList = indexedMapToRealArray_vm(list);
+
+        return resourceVarToUrl_vm(convertedList, varName);
     }
 
 

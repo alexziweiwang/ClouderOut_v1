@@ -270,7 +270,7 @@ GameDataDesign <map>
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
-        console.log("testPlayerGameData = " , testPlayerGameData);
+    //    console.log("testPlayerGameData = " , testPlayerGameData);
 
     
         let uiLangFromOuterCompo = getUiLangOption();
@@ -1299,7 +1299,6 @@ GameDataDesign <map>
         && <div className="displayBlock modalBackboard">
                     {/* <div className="modalArea"> */}
 
-        isLoading
                     {/* </div> */}
         </div>}
 

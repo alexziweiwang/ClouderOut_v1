@@ -15,3 +15,18 @@ export function resourceVarToUrl_vm(list, varName) {
         return "";
     }
 }
+
+export function indexedMapToRealArray_vm(indexedMap) {
+    console.log("indexed map, before: ", indexedMap);
+
+    let len = Object.keys(indexedMap).length;
+    let i = 0;
+
+    let resList = [];
+    for (i = 0; i < len; i++) {
+        resList.push(indexedMap[i]);
+    }
+
+    return resList;
+
+}
