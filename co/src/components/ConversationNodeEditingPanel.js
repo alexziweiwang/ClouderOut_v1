@@ -28,7 +28,11 @@ export default function ConversationNodeEditingPanel({
         chapterKey,  //TODO adjust for display-use
         projectName, //TODO adjust for display-use
         userName,  //TODO adjust for display-use
+
         screenSizeStr,  //TODO to dynamic
+
+        initialCurrNodeEverything,
+
         getUiLangOption,
 
         getProjectResourceVarPairs,
@@ -37,7 +41,6 @@ export default function ConversationNodeEditingPanel({
         saveConvNodeUiPlanFunc,
         fetchConvNodeUiAllPlansFunc,
 
-        initialCurrNodeEverything,
         saveCurrNodeEntire,
         backToGameMaker,
 
@@ -336,7 +339,7 @@ GameDataDesign <map>
     }
 
 
-    async function fetchGameDataDesignList() { 
+    function fetchGameDataDesignList() { 
         let gddList = getGameDataDesignList();
         if (gddList !== -1) {
             setGameDataDesignList(gddList);
@@ -345,7 +348,7 @@ GameDataDesign <map>
     }
 
 
-    async function fetchProjResourceLists() {
+    function fetchProjResourceLists() {
 
 
         /* fetch from cloud db */
@@ -786,35 +789,25 @@ GameDataDesign <map>
         setIsLoading(true);
         updateToOuter();
         await saveCurrNodeDataToCloud_panel2(relieveLoading);
-        //TODO99999 improve later
     }
 
-    async function initializeNodeBothPartsFromCloud() {
-                    console.log("!!!!!!!, init: ",chapterKey, " - ", clickedNodeKey);
+    function initializeNodeBothPartsFromCloud() { //important
+                                    console.log("!!!!!!!, init: ",chapterKey, " - ", clickedNodeKey);
         
-        let longKey = generateNodeLongKeyString_vm({chapterKey: chapterKey, nodeKey: clickedNodeKey});
+                                    console.log("!!! conv-editor: initialize piece data... ", initialCurrNodeEverything);
 
-        let pieceObjTemp = initialCurrNodeEverything; 
-
-                                    console.log("!!! conv-editor: initialize piece data... ", pieceObjTemp);
-
-        if (pieceObjTemp === undefined || pieceObjTemp === null || pieceObjTemp.length === 0
-            || pieceObjTemp.nodeContent === undefined
-            || pieceObjTemp.nodeUISettings === undefined
+        if (initialCurrNodeEverything === undefined || initialCurrNodeEverything === null || initialCurrNodeEverything.length === 0
+            || initialCurrNodeEverything.nodeContent === undefined
+            || initialCurrNodeEverything.nodeUISettings === undefined
             ) {
-            setPiecedataStructure([]);
-
-            alert("Unable to enter for this node: [", clickedNodeKey, "]. ");
-            backToGameMaker();
-            
-            return;
+            returnWithWarning();
         }
 
 
-        let nodeContentTemp = pieceObjTemp.nodeContent;
+        let nodeContentTemp = initialCurrNodeEverything.nodeContent;
         setPiecedataStructure(nodeContentTemp);
 
-        let nodeUITemp = pieceObjTemp.nodeUISettings;
+        let nodeUITemp = initialCurrNodeEverything.nodeUISettings;
 
         if (nodeUITemp !== undefined) {
             setGameUIDefaultButton(nodeUITemp.defaultButton !== undefined ? nodeUITemp.defaultButton : {})
@@ -822,9 +815,22 @@ GameDataDesign <map>
             setGameUIBackButton(nodeUITemp.backButton !== undefined ? nodeUITemp.backButton : {})
             setUIConvNav(nodeUITemp.convNav !== undefined ? nodeUITemp.convNav : {})
             setLogPageUISettings(nodeUITemp.logPage !== undefined ? nodeUITemp.logPage: {})
+        } else {
+            returnWithWarning();
         }
 
     } 
+
+    function returnWithWarning() {
+        setPiecedataStructure([]);
+
+        alert("Unable to enter for this node: [", clickedNodeKey, "]. ");
+        backToGameMaker();
+        
+        return;
+
+
+    }
 
 
     function notifyRmUpdated(data) {
@@ -924,7 +930,7 @@ GameDataDesign <map>
         saveConvNodeUiPlanFunc(allPlansMap);
     }
 
-    async function fetchConvNodeUiPlansFromOuter() {
+    function fetchConvNodeUiPlansFromOuter() {
         let obj = fetchConvNodeUiAllPlansFunc();
 
         if (obj === undefined) {

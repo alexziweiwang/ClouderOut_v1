@@ -123,10 +123,6 @@ export default function Panel2_Container_GameEditor() {
 
 */
 
-    //emu-data-sets
-    //TODO99999
-    //init here, prepare for emu-manager, and test-viewing
-
     const [pendingNewNodeList, setPendingNewNodeList] = useState([]);
 
     const [chapListNestedArr, setChapListNestedArr] = useState([]);
