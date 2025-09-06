@@ -806,6 +806,7 @@
 - 2025-Sept-04: Design testing-project plot
 - 2025-Sept-04: Improve plans for rendering-optimization for panel2
 
+- 2025-Sept-05: Design node-editor ver. testing procedure
 
 
 
