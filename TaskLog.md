@@ -807,7 +807,7 @@
 - 2025-Sept-04: Improve plans for rendering-optimization for panel2
 
 - 2025-Sept-05: Design node-editor ver. testing procedure
-
+- 2025-Sept-05: Design strategies - refresh operations/reactions for user
 
 
 
