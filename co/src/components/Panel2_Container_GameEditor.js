@@ -219,9 +219,18 @@ export default function Panel2_Container_GameEditor() {
             setFirstTimeEnter(false);
         }
 
-        window.onbeforeunload = () => {
+        // window.onbeforeunload = () => { // exit or refresh
 
-            return "show message";
+        //     return "show message";
+        // }
+
+        if (isSavedToCloud === false) {
+            window.onbeforeunload = () => { // exit or refresh
+
+                    return "show message";
+            };
+        } else {
+            window.onbeforeunload = undefined;
         }
         
         let checkMetadataValid = checkProjectMetaData_vm(projectMetaData);
@@ -291,6 +300,8 @@ export default function Panel2_Container_GameEditor() {
 
     //    console.log("\n\n\n\n\n\npanel2 state = ", state);
 
+
+        console.log("isSavedToCloud = ", isSavedToCloud);
     });
 
 
@@ -1138,6 +1149,9 @@ console.log("ui-langauge changed to: ", val);
 
             setPendingNewNodeList([]);
         }
+
+        setSavedToCloud(true);
+
     }
 
   }
