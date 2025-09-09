@@ -84,6 +84,10 @@ export default function Panel2_Container_GameEditor() {
 
     const [isPrepFinished, setPrepFinished] = useState(false);
     const [isSavedToCloud, setSavedToCloud] = useState(true);
+    const [isSavedToCloud_metadata, setSavedToCloud_metadata] = useState(true);
+    const [isSavedToCloud_nodedata, setSavedToCloud_nodedata] = useState(true);
+
+
 
     /* display option for this large container: which editor is displayed for user */
     const [focusingEditor, setFocusingEditor] = useState("gameMaker");
@@ -224,7 +228,10 @@ export default function Panel2_Container_GameEditor() {
         //     return "show message";
         // }
 
-        if (isSavedToCloud === false) {
+        if (isSavedToCloud_metadata === false && isSavedToCloud_nodedata === false) {
+       // if (isSavedToCloud === false) {
+
+        
             window.onbeforeunload = () => { // exit or refresh
 
                     return "show message";
@@ -314,6 +321,25 @@ export default function Panel2_Container_GameEditor() {
         projectAllNodeContent,
         projectMetaData
     ]);
+
+        
+    useEffect(()=>{
+        setSavedToCloud_metadata(false); 
+        
+        //track if either node-content or metadata changed
+    }, [
+        projectMetaData
+    ]);
+        
+    useEffect(()=>{
+        setSavedToCloud_nodedata(false); 
+        
+        //track if either node-content or metadata changed
+    }, [
+        projectAllNodeContent
+    ]);
+
+
 
   
 
@@ -696,7 +722,10 @@ export default function Panel2_Container_GameEditor() {
             bkOption: backendOption 
         }).then(()=>{
             triggerFinishFlag();
+
             setSavedToCloud(true); // save single node to cloud
+            setSavedToCloud_nodedata(true);
+
                             alert("node saved!");
         });
 
@@ -1112,10 +1141,14 @@ console.log("ui-langauge changed to: ", val);
 
   async function saveBothObjToCloud() {
     //
-    if (isSavedToCloud === false) {
+    if (isSavedToCloud_metadata === false) {
         await saveMetadataToCloud_panel2();
         //multipleNodeWriteToCloud-related for projectAllNodeContent
 
+    }
+
+    if (isSavedToCloud_nodedata === false) {
+        //TODO save projectAllNodeContent to cloud
     }
     // projectAllNodeContent,
     // projectMetaData
@@ -1146,6 +1179,7 @@ console.log("ui-langauge changed to: ", val);
         }
 
         setSavedToCloud(true); // save metadata to cloud
+        setSavedToCloud_metadata(true);
 
     }
   }
