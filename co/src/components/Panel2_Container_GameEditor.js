@@ -55,7 +55,7 @@ import { submitFileVM, getRmFileListVM, addToRmFileListVM, fetchUrlByFilenameVM,
   //TODO ------------------------- new vm and model funcs for optimizations
 import { fetchProjectAllMetadataVM, updateProjectMetadataSingleFieldVM, updateProjectAllMetadataVM } from '../viewmodels/ProjectMetadataViewModel'; //TODO60
 import { generateNodeLongKeyString_vm } from '../viewmodels/PrepAc_ProjectOperation';
-import { singleNodeWriteToCloudVM, createNewNodeFoldersVM } from '../viewmodels/NodeEditingViewModel';
+import { singleNodeWriteToCloudVM, createNewNodeFoldersVM, multipleNodeWriteToCloudVM } from '../viewmodels/NodeEditingViewModel';
 
 
 
@@ -1148,11 +1148,28 @@ console.log("ui-langauge changed to: ", val);
     }
 
     if (isSavedToCloud_nodedata === false) {
-        //TODO save projectAllNodeContent to cloud
+        await saveAllNodeDataToCloud_panel2();
+       
     }
     // projectAllNodeContent,
     // projectMetaData
 
+  }
+
+  async function saveAllNodeDataToCloud_panel2() {
+    if (projectAllNodeContent !== -1) {
+        await multipleNodeWriteToCloudVM({
+            project: state.selected_project_name, 
+            username: authEmailName, 
+            nodeCollection: projectAllNodeContent, 
+            bkOption: backendOption
+        });
+
+
+        setSavedToCloud(true); // save metadata to cloud
+        setSavedToCloud_nodedata(true);
+
+    }
   }
 
   async function saveMetadataToCloud_panel2() {
