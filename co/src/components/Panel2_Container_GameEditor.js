@@ -723,21 +723,10 @@ export default function Panel2_Container_GameEditor() {
 
 
                             //TODO50: asks if save to cloud? or no?
-            let resp = window.confirm("Save and exit?");
-                        console.log("non-game-maker: cloud-saving-flag = ", isSavedToCloud, "... ", projectAllNodeContent);
-            if (resp) {
-
-                //TODO50: for node-editing of a newly-created node:  write with setDoc() for either write or overwrite
-
-                // when inside node-editors
-                if (isSavedToCloud === false) {
-          //          saveSingleNodeContentToCloud(notUsing); //TODO99999 should not always pop -- only when unsaved
-
-                }
-
+           
                 goToGameMakerResetNodeFocus();
 
-            }
+            
 
         }
 
@@ -1121,6 +1110,18 @@ console.log("ui-langauge changed to: ", val);
         return chapterContentTemp;
   }
 
+  async function saveBothObjToCloud() {
+    //
+    if (isSavedToCloud === false) {
+        await saveMetadataToCloud_panel2();
+        //multipleNodeWriteToCloud-related for projectAllNodeContent
+
+    }
+    // projectAllNodeContent,
+    // projectMetaData
+
+  }
+
   async function saveMetadataToCloud_panel2() {
 
     let res = checkProjectMetaData_vm(projectMetaData);
@@ -1147,7 +1148,6 @@ console.log("ui-langauge changed to: ", val);
         setSavedToCloud(true); // save metadata to cloud
 
     }
-
   }
 
   function triggerNodeLookChange_panel2(nodeMapAll) {

@@ -43,6 +43,25 @@ export async function singleNodeGetFromCloud({project, username, chapterKey, nod
   return bothObj;
 }
 
+export async function multipleNodeWriteToCloud({project, username, nodeCollection}) {
+  const batch = writeBatch(db);
+
+  const docRef = doc(db, "user_projects", username, "projects", project);
+
+  Object.keys(nodeCollection).map((longNodeKey) => {
+    let item = nodeCollection[longNodeKey];
+    
+    let refTemp = doc(docRef, "allNodes", longNodeKey);
+
+    batch.set(refTemp, item);
+
+  });
+
+  await batch.commit();
+
+
+}
+
 export async function createNewNodeFolders({project, username, nodeList}) {
   const batch = writeBatch(db);
 
@@ -66,54 +85,14 @@ export async function createNewNodeFolders({project, username, nodeList}) {
 
   await batch.commit();
 
-
-    
-
 }
 
 
 
 
-//for locally-added nodes, add these to cloud?  //TODOtest later
-// export async function addNewNodeFolders({project, username, nodeList, chapterKey}) {
-
-//     const ref = doc(db, "user_projects", username, "projects", project, "allNodes");
-//           //TODO199: change sturcture: chapters-level should be the last collection-level: 
-    
-    
-//     const snap = await getDoc(ref);
-
-//     if (!snap.exists()) {
-//       return;
-//     }
-//                                                                                 //TODO group func       group-func
-//     nodeList.map(async (item, i) => {
-//       let longKey = generateNodeLongKeyString_vm({chapterKey: item["chapKey"], nodeKey: item["nodeKey"]});
-
-//       if (item["chapKey"] === chapterKey) {
-//           console.log();
-
-//           await setDoc(
-//               doc(ref, "allNodes", longKey), 
-//               item["detailObj"]
-//           );
-//         //TODO600 test!!
-
-//       }
-//     });
-
-
-//     /*
 //     each elem in nodeKeyList: 
 //         {
 //         "nodeKey": newNodeKey,
 //         "chapKey": chapterKeyTemp,
 //         "detailObj": 
 //         }
-
-//     */
-
-
-
-
-// }
