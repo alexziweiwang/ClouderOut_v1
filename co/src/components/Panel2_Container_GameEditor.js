@@ -83,14 +83,14 @@ export default function Panel2_Container_GameEditor() {
 
 
     const [isPrepFinished, setPrepFinished] = useState(false);
-    const [isSavedToCloud, setSavedToCloud] = useState(false);
+    const [isSavedToCloud, setSavedToCloud] = useState(true);
 
     /* display option for this large container: which editor is displayed for user */
     const [focusingEditor, setFocusingEditor] = useState("gameMaker");
     const [currentChapter, setCurrentChapter] = useState("");
     const [currentNode, setCurrentNode] = useState("");
     const [currentScreenSz, setCurrentScreenSz] = useState("4:3(horizonal)");
-    const [currentLongKey, setCurrentLongKey] = useState("");
+    const [currentNodeEntire, setCurrentNodeEntire] = useState(-1);
 
     /* 
     entire project-object, ! important
@@ -307,22 +307,15 @@ export default function Panel2_Container_GameEditor() {
 
         
     useEffect(()=>{
-        //TODO33333
-        setSavedToCloud(false);
+        setSavedToCloud(false); 
         
-        //track if saved to cloud or not?
+        //track if either node-content or metadata changed
     }, [
         projectAllNodeContent,
         projectMetaData
     ]);
 
-    useEffect(()=>{
-        let longKeyTemp = generateNodeLongKeyString_vm({chapterKey: currentChapter, nodeKey: currentNode});
-        setCurrentLongKey(longKeyTemp);
-    }, [
-        currentNode,
-        currentChapter
-    ]);
+  
 
 
     function switchEditor(visitInfoObj) {
@@ -379,6 +372,7 @@ export default function Panel2_Container_GameEditor() {
         setCurrentChapter(visitInfoObj["chapterKey"]);
         setCurrentNode(visitInfoObj["nodeKey"]);
         setCurrentScreenSz(visitInfoObj["screenSizeStr"]);
+        setCurrentNodeEntire(projectAllNodeContent[longKey]);
 
         console.log("switch-editor:  node-data-obj = ", projectAllNodeContent);
         
@@ -702,7 +696,7 @@ export default function Panel2_Container_GameEditor() {
             bkOption: backendOption 
         }).then(()=>{
             triggerFinishFlag();
-            setSavedToCloud(true);
+            setSavedToCloud(true); // save single node to cloud
                             alert("node saved!");
         });
 
@@ -1150,7 +1144,7 @@ console.log("ui-langauge changed to: ", val);
             setPendingNewNodeList([]);
         }
 
-        setSavedToCloud(true);
+        setSavedToCloud(true); // save metadata to cloud
 
     }
 
@@ -1384,7 +1378,7 @@ return (
 
             backToGameMaker={goToGameMakerResetNodeFocus}
 
-            initialCurrNodeEverything={projectAllNodeContent[currentLongKey]}
+            initialCurrNodeEverything={currentNodeEntire}
             saveCurrNodeEntire={saveCurrNodeEntireFromSubEditor}
 
             saveCurrNodeDataToCloud_panel2={saveSingleNodeContentToCloud}

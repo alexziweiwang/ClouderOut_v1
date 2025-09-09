@@ -791,40 +791,42 @@ GameDataDesign <map>
         await saveCurrNodeDataToCloud_panel2(relieveLoading);
     }
 
-    function initializeNodeBothPartsFromCloud() { //important
+    function initializeNodeBothParts() { //important
                                     console.log("!!!!!!!, init: ",chapterKey, " - ", clickedNodeKey);
         
                                     console.log("!!! conv-editor: initialize piece data... ", initialCurrNodeEverything);
 
-        if (initialCurrNodeEverything === undefined || initialCurrNodeEverything === null || initialCurrNodeEverything.length === 0
+        if (initialCurrNodeEverything === undefined 
+            || initialCurrNodeEverything === null 
+            || initialCurrNodeEverything.length === 0
             || initialCurrNodeEverything.nodeContent === undefined
             || initialCurrNodeEverything.nodeUISettings === undefined
             ) {
             returnWithWarning();
-        }
-
-
-        let nodeContentTemp = initialCurrNodeEverything.nodeContent;
-        setPiecedataStructure(nodeContentTemp);
-
-        let nodeUITemp = initialCurrNodeEverything.nodeUISettings;
-
-        if (nodeUITemp !== undefined) {
+        } else {
+            let nodeContentTemp = initialCurrNodeEverything.nodeContent;
+            setPiecedataStructure(nodeContentTemp);
+    
+            let nodeUITemp = initialCurrNodeEverything.nodeUISettings;
+    
             setGameUIDefaultButton(nodeUITemp.defaultButton !== undefined ? nodeUITemp.defaultButton : {})
             setGameUITextFrame(nodeUITemp.textFrame !== undefined ? nodeUITemp.textFrame : {})
             setGameUIBackButton(nodeUITemp.backButton !== undefined ? nodeUITemp.backButton : {})
             setUIConvNav(nodeUITemp.convNav !== undefined ? nodeUITemp.convNav : {})
             setLogPageUISettings(nodeUITemp.logPage !== undefined ? nodeUITemp.logPage: {})
-        } else {
-            returnWithWarning();
+           
         }
+
+
+
 
     } 
 
     function returnWithWarning() {
-        setPiecedataStructure([]);
+        //setPiecedataStructure([]);
 
-        alert("Unable to enter for this node: [", clickedNodeKey, "]. ");
+        //alert("Unable to enter for this node: [", clickedNodeKey, "]. ");
+        console.log("\t problem at conv-node-editor: ", initialCurrNodeEverything);
         backToGameMaker();
         
         return;
@@ -864,7 +866,7 @@ GameDataDesign <map>
 
     function loadFromOuterLayer() { //resource & pieces
         fetchProjResourceLists();
-        initializeNodeBothPartsFromCloud();
+        initializeNodeBothParts();
         
         fetchGameDataDesignList();
 
