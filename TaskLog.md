@@ -809,6 +809,10 @@
 - 2025-Sept-05: Design node-editor ver. testing procedure
 - 2025-Sept-05: Design strategies - refresh operations/reactions for user
 
+- 2025-Sept-08: Design node-editor ver. testing procedure
+
+
+
 
 
 
