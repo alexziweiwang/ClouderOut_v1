@@ -44,7 +44,7 @@ export default function ConversationNodeEditingPanel({
         saveCurrNodeEntire,
         backToGameMaker,
 
-        saveCurrNodeDataToCloud_panel2
+        saveBothObjToCloud
 }
 ) {
 
@@ -226,9 +226,9 @@ GameDataDesign <map>
     const [displayGameDataWindow, setDisplayGameDataWindow] = useState(false);
     const [needCloudGameData, setNeedCloudGameData] = useState(true);
 
-    const [isDisplayRmBool, setDisplayRmModal] = useState(false);
-    const [isDisplayQview, setIsDisplayQview] = useState(false);
-    const [isDisplayEmBool, setDisplayEmBool] = useState(false);
+    const [isDisplayRmBool, setDisplayRmModal] = useState(false);//TODO99999 remove (Adjust to panel2-level)
+    const [isDisplayQview, setIsDisplayQview] = useState(false);//TODO99999 remove (Adjust to panel2-level)
+    const [isDisplayEmBool, setDisplayEmBool] = useState(false);//TODO99999 remove (Adjust to panel2-level)
 
 
     const [browseList, setBrowseList] = useState(true);
@@ -788,7 +788,7 @@ GameDataDesign <map>
     async function saveAllToCloud() {
         setIsLoading(true);
         updateToOuter();
-        await saveCurrNodeDataToCloud_panel2(relieveLoading);
+        await saveBothObjToCloud(relieveLoading);
     }
 
     function initializeNodeBothParts() { //important

@@ -228,8 +228,10 @@ export default function Panel2_Container_GameEditor() {
         //     return "show message";
         // }
 
-        if (isSavedToCloud_metadata === false && isSavedToCloud_nodedata === false) {
-       // if (isSavedToCloud === false) {
+        if (isSavedToCloud_metadata === false || isSavedToCloud_nodedata === false) {
+                // remind user to check saving-status if ANY of these two unsaved
+
+                                    // if (isSavedToCloud === false) {
 
         
             window.onbeforeunload = () => { // exit or refresh
@@ -1151,8 +1153,6 @@ console.log("ui-langauge changed to: ", val);
         await saveAllNodeDataToCloud_panel2();
        
     }
-    // projectAllNodeContent,
-    // projectMetaData
 
   }
 
@@ -1389,7 +1389,7 @@ return (
         getTestPlayerPurchaseStatus={passInTestPlayerPurchaseStatus}
 
         triggerCreatedNewNode_panel2={triggerCreatedNewNode_panel2}
-        saveMetadataToCloud_panel2={saveMetadataToCloud_panel2}
+        saveBothObjToCloud={saveBothObjToCloud}
         loadMetadataFromCloud_panel2={loadMetadataFromCloud}
         triggerNodeLookChange_panel2={triggerNodeLookChange_panel2}
         triggerChapterListChange_panel2={triggerChapterListChange_panel2}
@@ -1432,7 +1432,7 @@ return (
             initialCurrNodeEverything={currentNodeEntire}
             saveCurrNodeEntire={saveCurrNodeEntireFromSubEditor}
 
-            saveCurrNodeDataToCloud_panel2={saveSingleNodeContentToCloud}
+            saveBothObjToCloud={saveBothObjToCloud}
 
         />
 
@@ -1449,10 +1449,6 @@ return (
 
 
     </>}
-
-
-
-
 
 
 
