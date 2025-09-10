@@ -24,6 +24,20 @@ import { resourceRawListToUsableMap_vm } from '../viewmodels/PrepAc_Conversion';
 import langDictionary from './_textDictionary';
 
 
+/* note:  
+    when contents updated in these managers -- the metadata would change.
+        how to make the updates on display-side for game-maker (node-manager & navigation-setter)
+        -- when making change on managers, trigger re-render of game-maker/conv-node-editor part?
+
+
+
+
+*/
+
+
+
+
+
 /*
               metadata format
 
@@ -76,7 +90,7 @@ export default function GameMaker({
 
       triggerCreatedNewNode_panel2,
       downloadAllInOne,
-      saveMetadataToCloud_panel2,
+      saveBothObjToCloud,
       loadMetadataFromCloud_panel2,
 
       triggerNodeLookChange_panel2,
@@ -84,7 +98,7 @@ export default function GameMaker({
 
       triggerUpdateCurrentStanding_panel2,
 
-      handleResourceManagerOpen, //TODO add in panel2
+      handleResourceManagerOpen, //TODO99999 add in panel2
       handleGameDataManagerOpen,  //TODO add in panel2
       handleEmuManagerOpen, //TODO add in panel2
 
@@ -1370,7 +1384,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
       <button onClick={()=>{
         let ans = window.confirm("Are you sure to save and cover the project on cloud?");
         if (ans) {
-          saveMetadataToCloud_panel2();
+          saveBothObjToCloud();
           
         }
 
@@ -1444,7 +1458,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
           updateNodeMapOfChapter={updateNodeMapOfChapter}
           updateGridBlockOfChapter={updateGridBlockOfChapter}
           getGameData={passInGameDataDesignList}
-          displayGameDataPanel={handleGameDataManagerOpen}
+          displayGameDataPanel={handleGameDataManagerOpen} //TODO99999 remove
           loadChapterInfoFromCaller={passInSelectedChapterInfo_Cloud}
           getGdmUpdatedSignal={passInGdmUpdatedSignal}
           resetGdmUpdateSignal={resetGdmUpdateSignal}
@@ -1504,7 +1518,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
                 <NavigationSetter 
                   initialNavObj={currentProjectNav} 
                   updateNavObj={updateCurrProjectNavObj} 
-                  openRm={handleResourceManagerOpen} 
+                  openRm={handleResourceManagerOpen}  //TODO99999 remove
                   triggerUpdateCurrPageName={updateCurrPageName} 
                   fetchPageName={passInCurrSelectedPage}
                   initialScreenHeight={screenHeight}
@@ -1517,7 +1531,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
 
                   intialEmuPlayerProfile={testPlayerProfile}
-                  openEmuManager={handleEmuManagerOpen}
+                  openEmuManager={handleEmuManagerOpen} //TODO99999 remove?
                   fetchEmuPlayerProfile={passInPlayerProfile}
                    
                   getUILanguage={passInUILanguage}
