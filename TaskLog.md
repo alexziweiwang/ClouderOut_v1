@@ -815,6 +815,7 @@
 - 2025-Sept-09: Design testing-project plot
 - 2025-Sept-09: Design strategies to optimize on-editor-manager interactions
 
+- 2025-Sept-10: Design testing-project plot
 
 
 
