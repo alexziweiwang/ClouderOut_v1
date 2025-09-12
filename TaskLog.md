@@ -820,6 +820,7 @@
 - 2025-Sept-10: Improve plans for rendering-optimization for panel2
 
 
+- 2025-Sept-11: Design testing-project plot
 
 
 
