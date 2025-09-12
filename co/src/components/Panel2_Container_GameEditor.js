@@ -1492,17 +1492,7 @@ return (
               <Modal_GameDataManager 
                 handleGdmCancel={handleGameDataManagerCancel} 
 
-                backendOption={backendOption}
-
-                projName={state.selected_project_name}   
-                username={authEmailName}
-
-                editorMode={state.mode}
-
-                gameDataDesign={projectMetaData["game_data"]}
-
-               // resetNeedCloudData={markNextNeedCloudGameData}  //?
-
+                initialGameDataDesign={projectMetaData["game_data"]}
 
                 updateForEmuGdt1={getUserConfigFromDataMgr1Gdt}
 

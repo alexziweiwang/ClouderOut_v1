@@ -1,10 +1,6 @@
 import { useState, useEffect } from 'react';
 import langDictionary from './_textDictionary';
 
-
-//TODO20 cloud-func
-import { getProjectGameDataDesignVM, updateGameDataDesignVM } from '../viewmodels/GameDataViewModel';
-
 //TODO6000 offline mode prep
 
 //TODO adjust plan: fetch data from cloud-db, and provde display and setup features
@@ -13,13 +9,8 @@ import { getProjectGameDataDesignVM, updateGameDataDesignVM } from '../viewmodel
 //fetch data from cloud, and update to outer-layer when user-changed...
 export default function Modal_GameDataManager ({
         handleGdmCancel, 
-        resetNeedCloudData, //TODO remove
 
-        projName,
-
-        username,
-
-        gameDataDesign,
+        initialGameDataDesign,
         
         
         updateGameDataDesignListToOuterLayer,
@@ -27,10 +18,7 @@ export default function Modal_GameDataManager ({
         updateForEmuGdt1,
         
         languageCodeTextOption,
-
-        editorMode,            //"offline_half"       "offline_full"        "online_cloud"  
         
-        backendOption
     }) {
     
     
@@ -120,83 +108,29 @@ export default function Modal_GameDataManager ({
     const [defaultNewBooleanValue, setDefaultNewBooleanValue] = useState("invalid");
     const [newVarName, setNewVarName] = useState("");
     const [defaultNewValue, setDefaultNewValue] = useState(0);
-    const [usingGameDataDesign, setUsingGameDataDesign] = useState({});
+
     const [editLineDisplay, setEditLineDisplay] = useState("");
     const [editAreaOpen, setEditAreaOpen] = useState(false);
     const [updatedDefaultValue, setUpdatedDefaultValue] = useState("");
 
     const [gdmMapSize, setGdmMapSize] = useState(0);
 
-    function initialization() {
-        let isUpdated = true;
+    const [usingGameDataDesign, setUsingGameDataDesign] = useState({});
 
-
-
-        let tempGameDataDesign = {};
-
-        if (editorMode === "online_cloud") {
-         //TODO99999 get from outer (panel2)
-            setUsingGameDataDesign(gameDataDesign);
-            //TODO setGdmMapSize();
-        }
-
-
-    }
-
-    async function fetchFromCloud(usernameTemp) {
-        // await getProjectGameDataDesignVM({
-        //     projectName: projName, 
-        //     uname: usernameTemp, 
-        //     mostUpdated: true,
-        //     bkOption: backendOption //TODO999
-        
-        // })
-
-        // .then((tempGameDataDesign)=>{
-        //     console.log("2!!! game-data-design-list-from-cloud: ", tempGameDataDesign);
-
-        //     if (tempGameDataDesign !== null && tempGameDataDesign !== undefined) {
-
-        //         let objSize = Object.keys(tempGameDataDesign).length;
-        //         setGdmMapSize(objSize);
-        //             //                        console.log("game-data-manager window initialized: ", tempGameDataDesign, "... size = ", objSize);
-                                        
-        //         setUsingGameDataDesign(tempGameDataDesign);
-    
-        //     } else {
-        //         setGdmMapSize(1);
-        //         setUsingGameDataDesign({"placeholder123456789___###___###___##": "placeholder123456789___###___###___##"});
-    
-        //     }
-        //     console.log("3modal-gd-mgr : fetched \n\t", tempGameDataDesign);
-
-            
-    //    });
-
-    }
 
 
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     
     useEffect(() => {
-   //     console.log("game-data-manager: authname = ", username);
-        if (username === "_") {
 
-            if (username !== "_") {
-                initialization();
+        if (firstTimeEnter === true) {
 
-            } else {
-                setFirstTimeEnter(true);
-            }
-        }
+            setUsingGameDataDesign(initialGameDataDesign);
+            let mapLen = Object.keys(initialGameDataDesign).length;
+            setGdmMapSize(mapLen);
 
-        if (firstTimeEnter === true && username !== "_") {
-        // if (username !== "_" && gdmMapSize === 0) {
-
-        //     initialization(username);
-
-           setFirstTimeEnter(false);
+            setFirstTimeEnter(false);
         }
 
 
@@ -256,11 +190,7 @@ export default function Modal_GameDataManager ({
         setUsingGameDataDesign(gameDataTemp); /* update local  data structure */
     
         //resetNeedCloudData();// TODO remove?
-        
-        // if (editorMode === "online_cloud") {
-        //     await updateGDataDesignToCloud(gameDataTemp); /* update cloud db */
-        // } //TODO remove
-
+ 
         updateGameDataDesignListToOuterLayer(gameDataTemp);
 
         // fetchFromCaller();// TODO remove?
@@ -346,9 +276,8 @@ export default function Modal_GameDataManager ({
 
     async function saveTableChanges() {
         //TODO validation? then save changes? for number & boolean types
-        if (editorMode === "online_cloud") {
-            await updateVarDefaultValue();
-        }
+            updateVarDefaultValue();
+        
 
         setEditAreaOpen(false);
         setEditLineDisplay("");
@@ -357,7 +286,7 @@ export default function Modal_GameDataManager ({
         setUpdatedDefaultValue(event.target.value);
     }
 
-    async function updateVarDefaultValue() {
+    function updateVarDefaultValue() {
         if (editLineDisplay === "") {
             console.log("error: empty editing."); //TODO
             return;
@@ -396,9 +325,6 @@ export default function Modal_GameDataManager ({
                                 console.log("new gdmMap-data size = ", objSize);
         setUsingGameDataDesign(newGameData);
 
-        // if (editorMode === "online_cloud") {
-        //     await updateGDataDesignToCloud(newGameData);
-        // } //TODO remove
 
 
 
@@ -408,20 +334,6 @@ export default function Modal_GameDataManager ({
     async function updateGDataDesignToCloud(gameDataLatest) {
 
 
-        if (projName === "" || projName === undefined || projName.trim() === "") {
-            return;
-        }
-        let currUser = username;
-
-        // if (editorMode === "online_cloud") {
-
-        //     await updateGameDataDesignVM({
-        //         projectName: projName, 
-        //         uname: currUser, 
-        //         gameData: gameDataLatest,
-        //         bkOption: backendOption
-        //     });
-        // } //TODo remove
 
         updateForEmuGdt1(gameDataLatest);
     
