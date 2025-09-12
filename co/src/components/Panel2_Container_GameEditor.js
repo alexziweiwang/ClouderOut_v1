@@ -1489,7 +1489,7 @@ return (
      
           {isDisplayGdmBool === true && <div>
        
-              {/* <Modal_GameDataManager 
+              <Modal_GameDataManager 
                 handleGdmCancel={handleGameDataManagerCancel} 
 
                 backendOption={backendOption}
@@ -1499,21 +1499,20 @@ return (
 
                 editorMode={state.mode}
 
+                gameDataDesign={projectMetaData["game_data"]}
 
-                resetNeedCloudData={markNextNeedCloudGameData}  //?
-
-
+               // resetNeedCloudData={markNextNeedCloudGameData}  //?
 
 
                 updateForEmuGdt1={getUserConfigFromDataMgr1Gdt}
 
                 updateGameDataDesignListToOuterLayer={triggerGameDataDesignListChange}
 
-                getLocalProjectData_GameDataDesign={passInLocalProjectData_GameDataDesign}
+                
 
-                languageCodeTextOption={languageCodeTextOption} //TODO change
-                getUiLanguageOption={passInUiLanguageOption} //TODO to add
-              /> */}
+                languageCodeTextOption={projectMetaData[["ui_language"]]} //TODO change
+              />
+              
 
           </div>}
 

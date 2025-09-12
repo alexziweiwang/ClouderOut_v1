@@ -13,14 +13,17 @@ import { getProjectGameDataDesignVM, updateGameDataDesignVM } from '../viewmodel
 //fetch data from cloud, and update to outer-layer when user-changed...
 export default function Modal_GameDataManager ({
         handleGdmCancel, 
-        resetNeedCloudData, 
+        resetNeedCloudData, //TODO remove
 
         projName,
 
         username,
+
+        gameDataDesign,
         
         
         updateGameDataDesignListToOuterLayer,
+
         updateForEmuGdt1,
         
         languageCodeTextOption,
@@ -110,6 +113,70 @@ export default function Modal_GameDataManager ({
 
 
 
+
+    const [displayNewVarArea, setDisplayNewVarArea] = useState(false);
+    const [newGameDataType, setNewGameDataType] = useState("isNumber");
+    const [isNewGdataTypeBoolean, setIsNewDdataTypeBoolean] = useState(false);
+    const [defaultNewBooleanValue, setDefaultNewBooleanValue] = useState("invalid");
+    const [newVarName, setNewVarName] = useState("");
+    const [defaultNewValue, setDefaultNewValue] = useState(0);
+    const [usingGameDataDesign, setUsingGameDataDesign] = useState({});
+    const [editLineDisplay, setEditLineDisplay] = useState("");
+    const [editAreaOpen, setEditAreaOpen] = useState(false);
+    const [updatedDefaultValue, setUpdatedDefaultValue] = useState("");
+
+    const [gdmMapSize, setGdmMapSize] = useState(0);
+
+    function initialization() {
+        let isUpdated = true;
+
+
+
+        let tempGameDataDesign = {};
+
+        if (editorMode === "online_cloud") {
+         //TODO99999 get from outer (panel2)
+            setUsingGameDataDesign(gameDataDesign);
+            //TODO setGdmMapSize();
+        }
+
+
+    }
+
+    async function fetchFromCloud(usernameTemp) {
+        // await getProjectGameDataDesignVM({
+        //     projectName: projName, 
+        //     uname: usernameTemp, 
+        //     mostUpdated: true,
+        //     bkOption: backendOption //TODO999
+        
+        // })
+
+        // .then((tempGameDataDesign)=>{
+        //     console.log("2!!! game-data-design-list-from-cloud: ", tempGameDataDesign);
+
+        //     if (tempGameDataDesign !== null && tempGameDataDesign !== undefined) {
+
+        //         let objSize = Object.keys(tempGameDataDesign).length;
+        //         setGdmMapSize(objSize);
+        //             //                        console.log("game-data-manager window initialized: ", tempGameDataDesign, "... size = ", objSize);
+                                        
+        //         setUsingGameDataDesign(tempGameDataDesign);
+    
+        //     } else {
+        //         setGdmMapSize(1);
+        //         setUsingGameDataDesign({"placeholder123456789___###___###___##": "placeholder123456789___###___###___##"});
+    
+        //     }
+        //     console.log("3modal-gd-mgr : fetched \n\t", tempGameDataDesign);
+
+            
+    //    });
+
+    }
+
+
+
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     
     useEffect(() => {
@@ -117,7 +184,7 @@ export default function Modal_GameDataManager ({
         if (username === "_") {
 
             if (username !== "_") {
-                initialization(username);
+                initialization();
 
             } else {
                 setFirstTimeEnter(true);
@@ -135,66 +202,6 @@ export default function Modal_GameDataManager ({
 
     });
 
-    const [displayNewVarArea, setDisplayNewVarArea] = useState(false);
-    const [newGameDataType, setNewGameDataType] = useState("isNumber");
-    const [isNewGdataTypeBoolean, setIsNewDdataTypeBoolean] = useState(false);
-    const [defaultNewBooleanValue, setDefaultNewBooleanValue] = useState("invalid");
-    const [newVarName, setNewVarName] = useState("");
-    const [defaultNewValue, setDefaultNewValue] = useState(0);
-    const [usingGameDataDesign, setUsingGameDataDesign] = useState({});
-    const [editLineDisplay, setEditLineDisplay] = useState("");
-    const [editAreaOpen, setEditAreaOpen] = useState(false);
-    const [updatedDefaultValue, setUpdatedDefaultValue] = useState("");
-
-    const [gdmMapSize, setGdmMapSize] = useState(0);
-
-    function initialization(usernameTemp) {
-        let isUpdated = true;
-console.log("initializaed game data manager!!!", usernameTemp);
-
-
-
-        let tempGameDataDesign = {};
-
-        if (editorMode === "online_cloud") {
-            fetchFromCloud(usernameTemp);
-         
-        }
-
-
-    }
-
-    async function fetchFromCloud(usernameTemp) {
-        await getProjectGameDataDesignVM({
-            projectName: projName, 
-            uname: usernameTemp, 
-            mostUpdated: true,
-            bkOption: backendOption //TODO999
-        
-        })
-
-        .then((tempGameDataDesign)=>{
-            console.log("2!!! game-data-design-list-from-cloud: ", tempGameDataDesign);
-
-            if (tempGameDataDesign !== null && tempGameDataDesign !== undefined) {
-
-                let objSize = Object.keys(tempGameDataDesign).length;
-                setGdmMapSize(objSize);
-                    //                        console.log("game-data-manager window initialized: ", tempGameDataDesign, "... size = ", objSize);
-                                        
-                setUsingGameDataDesign(tempGameDataDesign);
-    
-            } else {
-                setGdmMapSize(1);
-                setUsingGameDataDesign({"placeholder123456789___###___###___##": "placeholder123456789___###___###___##"});
-    
-            }
-            console.log("3modal-gd-mgr : fetched \n\t", tempGameDataDesign);
-
-            
-       });
-
-    }
 
     function showNewVarForm() {
         setDisplayNewVarArea(!displayNewVarArea);
@@ -250,9 +257,9 @@ console.log("initializaed game data manager!!!", usernameTemp);
     
         //resetNeedCloudData();// TODO remove?
         
-        if (editorMode === "online_cloud") {
-            await updateGDataDesignToCloud(gameDataTemp); /* update cloud db */
-        }
+        // if (editorMode === "online_cloud") {
+        //     await updateGDataDesignToCloud(gameDataTemp); /* update cloud db */
+        // } //TODO remove
 
         updateGameDataDesignListToOuterLayer(gameDataTemp);
 
@@ -311,9 +318,9 @@ console.log("initializaed game data manager!!!", usernameTemp);
     
                         //TODO changing area
                     
-            resetNeedCloudData();
+         //   resetNeedCloudData();
                                             
-            await updateGDataDesignToCloud(tempMap); /* update cloud db */
+            //TODO remove await updateGDataDesignToCloud(tempMap); /* update cloud db */
     
             //fetchFromCaller();
                         //TODO changing area
@@ -389,9 +396,11 @@ console.log("initializaed game data manager!!!", usernameTemp);
                                 console.log("new gdmMap-data size = ", objSize);
         setUsingGameDataDesign(newGameData);
 
-        if (editorMode === "online_cloud") {
-            await updateGDataDesignToCloud(newGameData);
-        }
+        // if (editorMode === "online_cloud") {
+        //     await updateGDataDesignToCloud(newGameData);
+        // } //TODO remove
+
+
 
         updateGameDataDesignListToOuterLayer(newGameData);
     }
@@ -404,15 +413,15 @@ console.log("initializaed game data manager!!!", usernameTemp);
         }
         let currUser = username;
 
-        if (editorMode === "online_cloud") {
+        // if (editorMode === "online_cloud") {
 
-            await updateGameDataDesignVM({
-                projectName: projName, 
-                uname: currUser, 
-                gameData: gameDataLatest,
-                bkOption: backendOption //TODO999
-            });
-        }
+        //     await updateGameDataDesignVM({
+        //         projectName: projName, 
+        //         uname: currUser, 
+        //         gameData: gameDataLatest,
+        //         bkOption: backendOption
+        //     });
+        // } //TODo remove
 
         updateForEmuGdt1(gameDataLatest);
     
