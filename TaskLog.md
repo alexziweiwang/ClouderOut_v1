@@ -822,7 +822,7 @@
 - 2025-Sept-11: Design testing-project plot
 - 2025-Sept-11: Design manager(gdt) optimization strategies
 
-
+- 2025-Sept-12: Design testing-project plot
 
 
 
