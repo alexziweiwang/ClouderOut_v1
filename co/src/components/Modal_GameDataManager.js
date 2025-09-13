@@ -9,7 +9,6 @@ export default function Modal_GameDataManager ({
         
         updateGameDataDesignListToOuterLayer,
 
-        updateForEmuGdt1,
         
         languageCodeTextOption,
         
@@ -139,7 +138,7 @@ export default function Modal_GameDataManager ({
         setIsNewDdataTypeBoolean(false);
     }
 
-    async function addVarPair() {
+    function addVarPair() {
         if (newVarName === "") {
             window.alert("Variable name can not be empty.");
             return;
@@ -181,9 +180,7 @@ export default function Modal_GameDataManager ({
 
                         console.log("adding new var: ", gameDataTemp, ", size = ", objSize); //TODO test
     
-        setUsingGameDataDesign(gameDataTemp); /* update local data structure */ 
-        setGdmMapSize(objSize);
-        updateGameDataDesignListToOuterLayer(gameDataTemp); /* update for outer-layer */
+        updateToOuterLayer(gameDataTemp, objSize);
 
         setDisplayNewVarArea(false);
     }
@@ -216,7 +213,7 @@ export default function Modal_GameDataManager ({
         setDefaultNewValue(event.target.value);
     }
 
-    async function deleteListItem(obj) {
+    function deleteListItem(obj) {
         //change locally for UI
         let askString = "Are you sure to delete game-data-item " + obj["name"] + " ?";
 
@@ -233,9 +230,7 @@ export default function Modal_GameDataManager ({
             let objSize = Object.keys(tempMap).length;
                                     console.log("new gdm-design size = ", objSize);
 
-            setUsingGameDataDesign(tempMap);
-            setGdmMapSize(objSize);
-            updateGameDataDesignListToOuterLayer(tempMap); /* update for outer-layer */
+            updateToOuterLayer(tempMap, objSize);
 
         }
 
@@ -254,9 +249,9 @@ export default function Modal_GameDataManager ({
         setEditAreaOpen(true);
     }
 
-    async function saveTableChanges() { //TODO33333
+    function saveTableChanges() { //TODO33333
         //TODO validation? then save changes? for number & boolean types
-            updateVarDefaultValue();
+        updateVarDefaultValue();
         
 
         setEditAreaOpen(false);
@@ -304,11 +299,15 @@ export default function Modal_GameDataManager ({
         let objSize = Object.keys(newGameData).length;
                                 console.log("new gdmMap-data size = ", objSize);
 
+        updateToOuterLayer(newGameData, objSize);
+    }
 
+    function updateToOuterLayer(updatedGameDataObj, sizeNum) {
 
-        setUsingGameDataDesign(newGameData);
-        setGdmMapSize(objSize);
-        updateGameDataDesignListToOuterLayer(newGameData);
+        setUsingGameDataDesign(updatedGameDataObj); /* update local data structure */ 
+        setGdmMapSize(sizeNum);
+        updateGameDataDesignListToOuterLayer(updatedGameDataObj); /* update for outer-layer */
+
     }
 
 
