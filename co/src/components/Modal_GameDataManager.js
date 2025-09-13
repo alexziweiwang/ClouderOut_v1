@@ -1,17 +1,11 @@
 import { useState, useEffect } from 'react';
 import langDictionary from './_textDictionary';
 
-//TODO6000 offline mode prep
 
-//TODO adjust plan: fetch data from cloud-db, and provde display and setup features
-
-
-//fetch data from cloud, and update to outer-layer when user-changed...
 export default function Modal_GameDataManager ({
         handleGdmCancel, 
 
         initialGameDataDesign,
-        
         
         updateGameDataDesignListToOuterLayer,
 
@@ -20,7 +14,6 @@ export default function Modal_GameDataManager ({
         languageCodeTextOption,
         
     }) {
-    
     
 
 
@@ -152,13 +145,15 @@ export default function Modal_GameDataManager ({
             return;
         }
 
-        if (newGameDataType === "isBoolean" && (defaultNewBooleanValue === "invalid" || defaultNewBooleanValue.length === 0)) {
+        if (newGameDataType === "isBoolean" 
+            && (defaultNewBooleanValue === "invalid" 
+                || defaultNewBooleanValue.length === 0)) {
             console.log("invalid boolean");
             return;
         }
 
         if (usingGameDataDesign.hasOwnProperty(newVarName)) {
-            console.log("Error: duplicate game-data name."); //TODO test
+            console.log("Error: duplicate game-data-item name."); //TODO test
             return;
         }
 
@@ -183,17 +178,13 @@ export default function Modal_GameDataManager ({
 
 
         let objSize = Object.keys(gameDataTemp).length;
-        setGdmMapSize(objSize);
 
                         console.log("adding new var: ", gameDataTemp, ", size = ", objSize); //TODO test
     
-        setUsingGameDataDesign(gameDataTemp); /* update local  data structure */
-    
-        //resetNeedCloudData();// TODO remove?
- 
-        updateGameDataDesignListToOuterLayer(gameDataTemp);
+        setUsingGameDataDesign(gameDataTemp); /* update local data structure */ 
+        setGdmMapSize(objSize);
+        updateGameDataDesignListToOuterLayer(gameDataTemp); /* update for outer-layer */
 
-        // fetchFromCaller();// TODO remove?
         setDisplayNewVarArea(false);
     }
 
@@ -240,22 +231,11 @@ export default function Modal_GameDataManager ({
                 // return tempMap;
             });
             let objSize = Object.keys(tempMap).length;
-            setGdmMapSize(objSize);
                                     console.log("new gdm-design size = ", objSize);
-            setUsingGameDataDesign(tempMap);
-    
-            //TODO3 later: change to cloud db
-    
-                        //TODO changing area
-                    
-         //   resetNeedCloudData();
-                                            
-            //TODO remove await updateGDataDesignToCloud(tempMap); /* update cloud db */
-    
-            //fetchFromCaller();
-                        //TODO changing area
 
-            updateGameDataDesignListToOuterLayer(tempMap);
+            setUsingGameDataDesign(tempMap);
+            setGdmMapSize(objSize);
+            updateGameDataDesignListToOuterLayer(tempMap); /* update for outer-layer */
 
         }
 
@@ -274,7 +254,7 @@ export default function Modal_GameDataManager ({
         setEditAreaOpen(true);
     }
 
-    async function saveTableChanges() {
+    async function saveTableChanges() { //TODO33333
         //TODO validation? then save changes? for number & boolean types
             updateVarDefaultValue();
         
@@ -282,6 +262,7 @@ export default function Modal_GameDataManager ({
         setEditAreaOpen(false);
         setEditLineDisplay("");
     }
+
     function editVarDefaultValue(event) {
         setUpdatedDefaultValue(event.target.value);
     }
@@ -321,23 +302,15 @@ export default function Modal_GameDataManager ({
             return newGameData;
         });
         let objSize = Object.keys(newGameData).length;
-        setGdmMapSize(objSize);
                                 console.log("new gdmMap-data size = ", objSize);
+
+
+
         setUsingGameDataDesign(newGameData);
-
-
-
-
+        setGdmMapSize(objSize);
         updateGameDataDesignListToOuterLayer(newGameData);
     }
 
-    async function updateGDataDesignToCloud(gameDataLatest) {
-
-
-
-        updateForEmuGdt1(gameDataLatest);
-    
-    }
 
 
     return (

@@ -781,7 +781,7 @@ export default function Panel2_Container_GameEditor() {
     async function getUserConfigFromDataMgr1Gdt(gameDataDesignList) {
         //when game-data-design-list updates, the emu-data prepares with its default value
 
-        let emuGdt1Temp = testPlayerGameDataTracker; //TODO999
+        let emuGdt1Temp = testPlayerGameDataTracker; //TODO99999
       
         Object.keys(gameDataDesignList).map((currKey) => {
             if (currKey === "placeholder123456789___###___###___##") {
