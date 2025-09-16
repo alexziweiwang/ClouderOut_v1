@@ -30,9 +30,7 @@ import langDictionary from './_textDictionary';
 export default function Modal_ResourceManagingWindow ({
     handleRmCancel, 
     initialProjectResourceVarPairs,
-    
-    triggerRmUpdate, 
-    
+        
     languageCodeTextOption,
     projName,
     username,
@@ -41,7 +39,7 @@ export default function Modal_ResourceManagingWindow ({
 
     getLocalProjectDataRsrcMgr,
 
-    updateVarPairToCloud_p2Layer,
+    updateVarPairToOuter_p2Layer,
 
     updateVarPairToPanel2 //TODO update whenever change happens
 
@@ -134,7 +132,7 @@ export default function Modal_ResourceManagingWindow ({
     const [visualVarPairs, setVisualVarPairs] = useState(undefined);
     const [audioVarPairs, setAudioVarPairs] = useState(undefined);
 
-    const [varPairToCloud, setVarPairToCloud] = useState("default");
+    const [varPairToOuter, setVairToOuter] = useState("default");
 
     const [cloudUpdated, setCloudUpdated] = useState(false); //TODO15 
 
@@ -209,7 +207,7 @@ export default function Modal_ResourceManagingWindow ({
             if (userResponse) {
                 console.log("saving to cloud...");
                 
-                setVarPairToCloud(info);
+                setVairToOuter(info);
 //TODO save to cloud-db
 
                 alert("Changes saved to cloud!");
@@ -218,6 +216,7 @@ export default function Modal_ResourceManagingWindow ({
         } else { // not delete (add or edit)
             if (givenContent.length === 0) {
                 console.log("empty input in store_NewVarPairData_FuncGen(), direct return");//TODO 
+                
                 return;
             }
             let updatePart = "";
@@ -275,23 +274,23 @@ export default function Modal_ResourceManagingWindow ({
             if (userResponse) {
                 console.log("saving to cloud... info = ", info);
                 
-                setVarPairToCloud(info);
+                setVairToOuter(info);
             }
         }
 
     }
 
-    async function updateVarPairToCloud_local() { //TODO test and debug
-        if (varPairToCloud !== "default") {
+    async function updatevarPairToOuter_local() { //TODO test and debug
+        if (varPairToOuter !== "default") {
 
             if (editorMode === "online_cloud") {
 
 
-                await updateVarPairToCloud_p2Layer(varPairToCloud);
+                await updateVarPairToOuter_p2Layer(varPairToOuter);
             }
 
 
-            setVarPairToCloud("default");
+            setVairToOuter("default");
         }
 
         resetDataUpdatedFalse();
@@ -557,13 +556,13 @@ export default function Modal_ResourceManagingWindow ({
     }
 
     function handleSaveToCloud() {
-        updateVarPairToCloud_local();
+        updatevarPairToOuter_local();
 
         let temp = {
             "audio": audioVarPairs,
             "visual": visualVarPairs
         }
-        triggerRmUpdate(temp);
+        updateVarPairToPanel2(temp); //TODO60
 
     }
 
@@ -758,7 +757,7 @@ export default function Modal_ResourceManagingWindow ({
                             selectedUrl={clickedFileUrl} 
                             storeNewVarPairDataFunction={storeNewVarPairDataFuncGen} 
                             fileType="visual" 
-                            saveToCloudFunc={updateVarPairToCloud_local}
+                            saveToCloudFunc={updatevarPairToOuter_local}
                         />}
                 
                     {(googleDriveFileId !== "" && clickedFileUrl === "") && <img 
@@ -821,7 +820,7 @@ export default function Modal_ResourceManagingWindow ({
 {/* audio resource-previewing area */}
                 <div className="areaBlue" style={{}}>
                     {clickedFileUrl !== "" && <AudioPreview className="paddings" urlList={audioListFilteredList} selectedUrl={clickedFileUrl}/>}
-                    {clickedFileUrl !== "" && <ItemVarPairManage className="paddings" varPairInfo={audioVarPairs} selectedUrl={clickedFileUrl} storeNewVarPairDataFunction={storeNewVarPairDataFuncGen} fileType="audio" saveToCloudFunc={updateVarPairToCloud_local}/>}
+                    {clickedFileUrl !== "" && <ItemVarPairManage className="paddings" varPairInfo={audioVarPairs} selectedUrl={clickedFileUrl} storeNewVarPairDataFunction={storeNewVarPairDataFuncGen} fileType="audio" saveToCloudFunc={updatevarPairToOuter_local}/>}
                 </div>
 
                 </div>

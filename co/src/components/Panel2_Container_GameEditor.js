@@ -580,21 +580,27 @@ export default function Panel2_Container_GameEditor() {
         });
     }
 
-    async function updateVarPairToCloud_p2Layer(varPairToCloud) {
+    async function updateVarPairToOuter_p2Layer(varPairToOuter) {
         if (state.mode === "online_cloud") {
 
             await storeProjectResourceVarPairsToCloudVM({
                 userName: authEmailName, 
                 projectName: state.selected_project_name, 
-                obj: varPairToCloud,
+                obj: varPairToOuter,
                 bkOption: backendOption //TODO999
             });
+            //TODO99999 update metadata and pairs - local
         }
 
     }
 
     function updateResourcePairFromMgr(varPairObj) {
         setResourcePair(varPairObj);
+        setProjectMetaData({...projectMetaData,
+            "proj_resource_visual": varPairObj.visual,
+            "proj_resource_audio": varPairObj.audio
+        });
+        //TODO 
 
     }
     
@@ -941,11 +947,6 @@ console.log("ui-langauge changed to: ", val);
     function passInTestPlayerPurchaseStatus() {
         return testPlayerPurchaseStatus;
     }
-
-    function notifyRmUpdated() {
-      //  alert("TODO resource-manager should update");
-    }
-    
 
     function handleResourceManagerCancel() {
         setDisplayRmModal(false);
@@ -1474,8 +1475,6 @@ return (
 
                 initialProjectResourceVarPairs={resourcePair}
 
-                triggerRmUpdate={notifyRmUpdated}  //?
-
 
                 projName={state.selected_project_name}   
                 username={authEmailName}
@@ -1488,7 +1487,7 @@ return (
                 languageCodeTextOption={projectMetaData["ui_language"]} //TODO change
                 getUiLanguageOption={passInUiLanguageOption} //TODO to add
 
-                updateVarPairToCloud_p2Layer={updateVarPairToCloud_p2Layer}
+                updateVarPairToOuter_p2Layer={updateVarPairToOuter_p2Layer}
                 updateVarPairToPanel2={updateResourcePairFromMgr}
               />
           
