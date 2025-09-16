@@ -345,7 +345,7 @@ export default function Modal_GameDataManager ({
                             <tr className="textNoSelect tableRow">
                                 <th>{varNameText}</th>
                                 <th>{typeText}</th>
-                                {/* <th>{defaultValueText}</th> */}
+                                <th>{defaultValueText}</th>
                                 <th>{operationsText}</th>
                             </tr>
                         </thead>
@@ -363,24 +363,26 @@ export default function Modal_GameDataManager ({
 
                                     <td>{usingGameDataDesign[key]["data_type"]}</td>
 
-                                {/* {(editLineDisplay !== key) && 
+                                {(editLineDisplay !== key) && 
                                     <td>
-                                        {usingGameDataDesign[key]["default_value"] === true ? "True" : usingGameDataDesign[key]["default_value"] === false ? "False" : usingGameDataDesign[key]["default_value"]}
+                                        <label>{usingGameDataDesign[key]["default_value"] === true ? "True" : usingGameDataDesign[key]["default_value"] === false ? "False" : usingGameDataDesign[key]["default_value"]}</label>
+                                        <button className="cursor_pointer" onClick={()=>{editListItem(usingGameDataDesign[key]);}}>{editText}</button>
                                     </td>}
                                 {(editLineDisplay === key && editAreaOpen === true) && 
-                                    <td><input value={updatedDefaultValue} onChange={editVarDefaultValue} className="editInput"></input></td>}
-                                */}
+                                    <td>
+                                        <input value={updatedDefaultValue} onChange={(event)=>{editVarDefaultValue(event)}} className="editInput"></input>
+                                        <div>
+                                            <button className="cursor_pointer" onClick={()=>{saveTableChanges();}}>{saveText}</button>
+                                            <button className="cursor_pointer" onClick={()=>{setEditLineDisplay("");}}>{cancelText}</button>          
+                                        </div> 
+                                        
+                                    </td>}
+                               
 
-                                {(editLineDisplay !== key) && 
-                                    <td className="parallelFrame">
-                                        {/* <button className="cursor_pointer" onClick={()=>{editListItem(usingGameDataDesign[key]);}}>{editText}</button> */}
+                                {<td className="parallelFrame">
                                         <button className="cursor_pointer" onClick={()=>{deleteListItem(usingGameDataDesign[key]);}}>{deleteText}</button>
                                     </td>} 
-                                {(editLineDisplay === key && editAreaOpen === true) && 
-                                    <td className="parallelFrame">
-                                        <button className="cursor_pointer" onClick={()=>{saveTableChanges();}}>{saveText}</button>
-                                        <button className="cursor_pointer" onClick={()=>{setEditLineDisplay("");}}>{cancelText}</button>
-                                    </td>}
+                        
 
 
                                 </tr>
