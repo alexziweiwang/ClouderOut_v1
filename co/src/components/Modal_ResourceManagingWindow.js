@@ -1,8 +1,14 @@
 import { useState, useEffect } from "react";
 
 //TODO1090 cloud-db related
-import { submitFileVM, getRmFileListVM, addToRmFileListVM, fetchUrlByFilenameVM, removeFromRmFileListVM } from '../viewmodels/ResourceManagerViewModel';
-// import { fetchProjectResourceVarPairsVM, storeProjectResourceVarPairsToCloudVM } from '../viewmodels/ResourceManagerViewModel';
+import { 
+    submitFileVM, 
+    getRmFileListVM, 
+    addToRmFileListVM, 
+    fetchUrlByFilenameVM, 
+    removeFromRmFileListVM 
+
+} from '../viewmodels/ResourceManagerViewModel';
 
 //TODO6000 offline mode prep
 
@@ -23,7 +29,7 @@ import langDictionary from './_textDictionary';
 //fetch data from cloud, and update to outer-layer when user-changed...
 export default function Modal_ResourceManagingWindow ({
     handleRmCancel, 
-    getProjectResourceVarPairs,
+    initialProjectResourceVarPairs,
     
     triggerRmUpdate, 
     
@@ -36,6 +42,8 @@ export default function Modal_ResourceManagingWindow ({
     getLocalProjectDataRsrcMgr,
 
     updateVarPairToCloud_p2Layer,
+
+    updateVarPairToPanel2 //TODO update whenever change happens
 
 
 }) {
@@ -294,7 +302,7 @@ export default function Modal_ResourceManagingWindow ({
         //TODO99999   
 
         let obj = {};
-        obj = getProjectResourceVarPairs(); 
+        obj = initialProjectResourceVarPairs; 
    
         if (obj === undefined || obj === null || obj["visual"] === undefined || obj["audio"] === undefined) {
             return;

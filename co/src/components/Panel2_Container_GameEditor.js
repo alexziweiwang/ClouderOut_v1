@@ -102,7 +102,10 @@ export default function Panel2_Container_GameEditor() {
     node-content (managed by node-editor based on each node's: by chapter-key and node-key) */
     const [projectMetaData, setProjectMetaData] = useState(-1); //TODO99
     const [projectAllNodeContent, setProjectAllNodeContent] = useState(-1); //TODO99
-
+    const [resourcePair, setResourcePair] = useState({
+        "visual": [],
+        "audio": []
+    });
 
     /* display flags for modals: resource-manager, game-data-manager, emu-data-manager */
     const [isDisplayRmBool, setDisplayRmModal] = useState(false);
@@ -587,6 +590,12 @@ export default function Panel2_Container_GameEditor() {
                 bkOption: backendOption //TODO999
             });
         }
+
+    }
+
+    function updateResourcePairFromMgr(varPairObj) {
+        setResourcePair(varPairObj);
+
     }
     
 
@@ -896,7 +905,6 @@ console.log("ui-langauge changed to: ", val);
                                 console.log("panel2-passInProjectResourceVarPairs = ", obj);
 
         return obj;
-        
     }
 
     function passInGameDataDesignList() {
@@ -1464,6 +1472,8 @@ return (
                 handleRmCancel={handleResourceManagerCancel} 
                 editorMode={state.mode}
 
+                initialProjectResourceVarPairs={resourcePair}
+
                 triggerRmUpdate={notifyRmUpdated}  //?
 
 
@@ -1479,8 +1489,7 @@ return (
                 getUiLanguageOption={passInUiLanguageOption} //TODO to add
 
                 updateVarPairToCloud_p2Layer={updateVarPairToCloud_p2Layer}
-                getProjectResourceVarPairs={passInProjectResourceVarPairs}
-
+                updateVarPairToPanel2={updateResourcePairFromMgr}
               />
           
           </div>}
@@ -1512,6 +1521,7 @@ return (
 
             {/* <Modal_EmuManager
               handleEmCancel={handleEmuManagerCancel}
+
 
               update1Gdt={getUserConfigFromEmuManager1Gdt}
               update2Epp={getUserConfigFromEmuManager2Epp}
