@@ -825,6 +825,7 @@
 - 2025-Sept-12: Design testing-project plot
 - 2025-Sept-12: Improve manager(gdt) optimization plan
 
+- 2025-Sept-15: Design testing-project plot
 
 
 
