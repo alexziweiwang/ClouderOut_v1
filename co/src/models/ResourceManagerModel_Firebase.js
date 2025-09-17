@@ -25,7 +25,7 @@ storeProjectResourceVarPairsToCloud({userName, projectName, obj}) // update car-
  * @param {*} filename filename
  * @returns void
  */
-export async function submitFile({file, uname, filename}) {
+export async function uploadFileToCloud({file, uname, filename}) {
     console.log("step2.RM model submitFile ...", filename); //TODO test
     if (filename === "" || filename === undefined) {
 

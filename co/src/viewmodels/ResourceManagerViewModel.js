@@ -1,13 +1,13 @@
-import { submitFile, getRmFileList, addToRmFileList, fetchUrlByFilename, fetchProjectResourceVarPairs, storeProjectResourceVarPairsToCloud, removeFromRmFileList } from "../models/ResourceManagerModel_Firebase";
+import { uploadFileToCloud, getRmFileList, addToRmFileList, fetchUrlByFilename, fetchProjectResourceVarPairs, storeProjectResourceVarPairsToCloud, removeFromRmFileList } from "../models/ResourceManagerModel_Firebase";
 
-export async function submitFileVM({file, uname, filename, bkOption}) {
+export async function uploadFileToCloudVM({file, uname, filename, bkOption}) {
     if (filename === "" || filename === undefined) {
         return;
     }
        
     if (bkOption === "firebase") {
-                                        console.log("step1. submitFileVM ::: ", filename); //TODO test
-        await submitFile({file, uname, filename});
+                                        console.log("step1. uploadFileToCloud-VM ::: ", filename); //TODO test
+        await uploadFileToCloud({file, uname, filename});
     }
 
 

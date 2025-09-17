@@ -2,11 +2,13 @@ import { useState, useEffect } from "react";
 
 //TODO1090 cloud-db related
 import { 
-    submitFileVM, 
+    uploadFileToCloudVM, 
+
     getRmFileListVM, 
     addToRmFileListVM, 
+    removeFromRmFileListVM,
+
     fetchUrlByFilenameVM, 
-    removeFromRmFileListVM 
 
 } from '../viewmodels/ResourceManagerViewModel';
 
@@ -334,8 +336,8 @@ export default function Modal_ResourceManagingWindow ({
         setFileSelected(event.target.files[0]);
     }
 
-    async function submitFile(type, selectedFile) {
-                                                                console.log("rmWindow -- submitFile"); //TODO
+    async function uploadFileToCloud(type, selectedFile) {
+                                                                console.log("rmWindow -- upload File"); //TODO
         if (selectedFile === "") {
                                                                 console.log("\trmWindow --File NOT chosen"); //TODO
             return;
@@ -343,16 +345,17 @@ export default function Modal_ResourceManagingWindow ({
 
         const fileName = `${username}_${selectedFile.name}`;
 
+        //TODO throw this to outer -- panel2?
         if (editorMode === "online_cloud") {
 
-            await submitFileVM({
+            await uploadFileToCloudVM({
                 file: selectedFile , 
                 uname: username, 
                 filename: fileName,
                 bkOption: backendOption //TODO999
             });
             
-            await updateUploadedFileRecords(username, fileName, type);
+            await updateUploadedFileRecords_local(username, fileName, type);
 
         }
     }
@@ -370,7 +373,7 @@ export default function Modal_ResourceManagingWindow ({
         setClickedFileType(item["filetype"]);
     }
 
-    async function updateUploadedFileRecords(fileName, type) {
+    async function updateUploadedFileRecords_local(fileName, type) {
         let url = "";
 
         if (editorMode === "online_cloud") {
@@ -394,10 +397,10 @@ export default function Modal_ResourceManagingWindow ({
                     filetitle: fileName, 
                     fileUrl: url, 
                     fileType: type,
-                    bkOption: backendOption //TODO999
-                });
+                    bkOption: backendOption
+                }); //TODO99999 keep local
         
-                await fetchRmFileList(username);
+                await fetchRmFileList(username); //TODO99999 keep local
         }
 
     }
@@ -426,8 +429,10 @@ export default function Modal_ResourceManagingWindow ({
 
                 fileList = await getRmFileListVM({
                     uname: authUsername,
-                    bkOption: backendOption //TODO999
+                    bkOption: backendOption 
                 });
+//TODO99999 then
+
                 if (fileList === undefined || fileList === null) {
                     return;
                 }
@@ -683,14 +688,14 @@ export default function Modal_ResourceManagingWindow ({
                     
                     {uploadConfirm === false && <button 
                         onClick={()=>{
-                            submitFile("visual", fileSelected); 
+                            uploadFileToCloud("visual", fileSelected); 
                             setUploadConfirm(true);
                         }}
                     > {confirmText} </button>}
                     
                     {uploadConfirm === true && <button 
                         onClick={()=>{
-                            submitFile("visual", fileSelected); 
+                            uploadFileToCloud("visual", fileSelected); 
                             setFileSelected(""); 
                             setUploadConfirm(false);
                         }}
@@ -810,8 +815,8 @@ export default function Modal_ResourceManagingWindow ({
                             /> }
                         {uploadConfirm === true && <label>File Chosen: {fileSelected.name}</label>}
                         {uploadConfirm === true && <button onClick={()=>{setFileSelected(""); setUploadConfirm(false);}}>{cancelText}</button>}
-                        {uploadConfirm === false && <button onClick={()=>{submitFile("audio", fileSelected); setUploadConfirm(true);}}>{confirmText}</button>}
-                        {uploadConfirm === true && <button onClick={()=>{submitFile("audio", fileSelected); setFileSelected(""); setUploadConfirm(false);}}>{submitText}</button>}
+                        {uploadConfirm === false && <button onClick={()=>{uploadFileToCloud("audio", fileSelected); setUploadConfirm(true);}}>{confirmText}</button>}
+                        {uploadConfirm === true && <button onClick={()=>{uploadFileToCloud("audio", fileSelected); setFileSelected(""); setUploadConfirm(false);}}>{submitText}</button>}
                     </div> */}
 
                 </div>
