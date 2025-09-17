@@ -2,8 +2,13 @@ import { useState } from "react";
 
 
 export default function ItemVarPairManage ({
-    varPairInfo, selectedUrl, storeNewVarPairDataFunction, fileType, 
-    saveToCloudFunc}) {
+    varPairInfo, 
+    selectedUrl, 
+    storeNewVarPairDataFunction, 
+    fileType, 
+    saveToCloudFunc
+
+}) {
 
     const displayPart = varPairInfo.filter(elem => elem["url"] === selectedUrl);
     const displayItem = displayPart[0];

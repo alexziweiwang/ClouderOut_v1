@@ -163,7 +163,7 @@ export default function Modal_ResourceManagingWindow ({
     async function initFetchPrep(usernameTemp) {
 
             console.log("init ... ");
-            await fetchRmFileList(usernameTemp);
+            await fetchRmFileList_local(usernameTemp);
         
     }
 
@@ -177,7 +177,7 @@ export default function Modal_ResourceManagingWindow ({
     }
 
     //TODO22 for all operations on resource: 
-    function storeNewVarPairDataFuncGen(action, url, givenContent, fileType) {
+    function storeNewVarPairDataFuncGen_rmLayer(action, url, givenContent, fileType) {
         markDataChanged();
 
         if (action === "delete") {
@@ -400,7 +400,8 @@ export default function Modal_ResourceManagingWindow ({
                     bkOption: backendOption
                 }); //TODO99999 keep local
         
-                await fetchRmFileList(username); //TODO99999 keep local
+                await fetchRmFileList_local(username); //TODO99999 keep local
+        
         }
 
     }
@@ -417,12 +418,12 @@ export default function Modal_ResourceManagingWindow ({
                 bkOption: backendOption //TODO999
             });
             
-            await fetchRmFileList(username);
+            await fetchRmFileList_local(username);
 
         }
     }
 
-    async function fetchRmFileList(authUsername) { //TODO temp debugging
+    async function fetchRmFileList_local(authUsername) { //TODO temp debugging
         let fileList = {};
 
         if (editorMode === "online_cloud") {
@@ -548,11 +549,11 @@ export default function Modal_ResourceManagingWindow ({
                     filetitle: clickedFileName,
                     bkOption: backendOption //TODO999
                 });
-                await fetchRmFileList(username);
+                await fetchRmFileList_local(username);
             }
             //update resource's var-pair list
             let emptyObj = {};
-            storeNewVarPairDataFuncGen("delete", clickedFileUrl, emptyObj, clickedFileType);
+            storeNewVarPairDataFuncGen_rmLayer("delete", clickedFileUrl, emptyObj, clickedFileType);
             setClickedFileName("");
             setClickedFileType("");
             setClickedFileUrl("");
@@ -602,7 +603,7 @@ export default function Modal_ResourceManagingWindow ({
                                 setClickedFileType("");
                     }}>{audioResourceText}</button>
 
-                    <button className="" 
+                    {/* <button className="" 
                         onClick={()=>{
                          
                             handleSaveToCloud();
@@ -610,7 +611,7 @@ export default function Modal_ResourceManagingWindow ({
                         }}
                     >
                             {saveToCloudText}
-                    </button>
+                    </button> */}
                     <button className="buttonRight cursor_pointer modalClose" onClick={()=>{
                             if (cloudUpdated === true) { //TODO15 
                                 let resp = window.confirm("Are you sure you would like to exit without saving to cloud?");
@@ -633,7 +634,7 @@ export default function Modal_ResourceManagingWindow ({
                 <div className="modalContent parallelFrame">
          
                 <div className="areaNote1">
-                <button className="loadResourceBtn" onClick={fetchRmFileList}> 
+                <button className="loadResourceBtn" onClick={()=>{fetchRmFileList_local(username)}}> 
                     {loadResourceListText}
                 </button>
                 
@@ -755,12 +756,13 @@ export default function Modal_ResourceManagingWindow ({
                         <PicturePreview className="paddings" 
                             urlList={visualListFilteredList} 
                             selectedUrl={clickedFileUrl} 
-                            removeFileFromAll={removeOneResource}/>}
+//  removeFileFromAll={removeOneResource}
+                        />}
                     {clickedFileUrl !== "" && 
                         <ItemVarPairManage className="paddings" 
                             varPairInfo={visualVarPairs} 
                             selectedUrl={clickedFileUrl} 
-                            storeNewVarPairDataFunction={storeNewVarPairDataFuncGen} 
+                            storeNewVarPairDataFunction={storeNewVarPairDataFuncGen_rmLayer} 
                             fileType="visual" 
                             saveToCloudFunc={updatevarPairToOuter_local}
                         />}
@@ -783,7 +785,7 @@ export default function Modal_ResourceManagingWindow ({
 {/* audio resource-selecting area */}
             
                 <div className="areaNote2">
-                    <button className="loadResourceBtn" onClick={fetchRmFileList}> 
+                    <button className="loadResourceBtn" onClick={()=>{fetchRmFileList_local(username)}}> 
                         {loadResourceListText}
                     </button>
                     
@@ -825,7 +827,14 @@ export default function Modal_ResourceManagingWindow ({
 {/* audio resource-previewing area */}
                 <div className="areaBlue" style={{}}>
                     {clickedFileUrl !== "" && <AudioPreview className="paddings" urlList={audioListFilteredList} selectedUrl={clickedFileUrl}/>}
-                    {clickedFileUrl !== "" && <ItemVarPairManage className="paddings" varPairInfo={audioVarPairs} selectedUrl={clickedFileUrl} storeNewVarPairDataFunction={storeNewVarPairDataFuncGen} fileType="audio" saveToCloudFunc={updatevarPairToOuter_local}/>}
+                    {clickedFileUrl !== "" && 
+                    <ItemVarPairManage 
+                        className="paddings" 
+                        varPairInfo={audioVarPairs} 
+                        selectedUrl={clickedFileUrl} 
+                        storeNewVarPairDataFunction={storeNewVarPairDataFuncGen_rmLayer} 
+                        fileType="audio" saveToCloudFunc={updatevarPairToOuter_local}
+                    />}
                 </div>
 
                 </div>

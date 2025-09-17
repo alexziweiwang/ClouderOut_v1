@@ -1,14 +1,19 @@
-export default function PicturePreview ({urlList, selectedUrl, removeFileFromAll}) {
+export default function PicturePreview ({
+    urlList, 
+    selectedUrl, 
+ //   removeFileFromAll
+
+}) {
     return (
         <div className="rsrcPrevArea" style={{"overflow": "scroll"}}>
             {urlList.map((item, index) => {
                 return(
                 <div key={index} style={{display: item["fileurl"] === selectedUrl ? 'inline' : 'none',}}>
                     <label>{item["filename"]}</label>
-                    <button onClick={()=>{
+                    {/* <button onClick={()=>{
                         removeFileFromAll();
                     }}> Delete (from all projects)
-                    </button>
+                    </button> */}
 
 
                     <br></br><br></br>
