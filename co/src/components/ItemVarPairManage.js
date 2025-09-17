@@ -23,7 +23,10 @@ export default function ItemVarPairManage ({
         <div className="resourceVarPairWindow">            
             <label>Variable Name: </label>
             {isInVarPair == true && <><label>{displayItem["var"]}</label>
-                <button onClick={()=>{ setInputContent(""); storeNewVarPairDataFunction("delete", selectedUrl, inputContent, fileType);}}>Delete this Naming</button>
+                <button onClick={()=>{ 
+                    setInputContent(""); 
+                    storeNewVarPairDataFunction("delete", selectedUrl, inputContent, fileType);
+                }}>Delete this Naming</button>
             <br></br>
             <label>Rename: </label></>}
             

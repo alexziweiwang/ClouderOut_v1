@@ -4,9 +4,9 @@ import { useState, useEffect } from "react";
 import { 
     uploadFileToCloudVM, 
 
-    getRmFileListVM, 
-    addToRmFileListVM, 
-    removeFromRmFileListVM,
+    getRmFileListVM, // all file-records for this USER (all projects)
+    addToRmFileListVM, // all file-records for this USER (all projects)
+    removeFromRmFileListVM, // all file-records for this USER (all projects)
 
     fetchUrlByFilenameVM, 
 
@@ -23,7 +23,6 @@ import langDictionary from './_textDictionary';
 
 //TODO: some operations in this component aim to change these lists: visual-list and audio-list (for this project)!
 //TODO consider update-operation here or in the outer-component
-//TODO99999
 
 //operations aim to do file-pair-matching in this compo (either shared link or storage-upload): rm-file-list (for all projects)
 
@@ -163,7 +162,7 @@ export default function Modal_ResourceManagingWindow ({
     async function initFetchPrep(usernameTemp) {
 
             console.log("init ... ");
-            await fetchRmFileList_local(usernameTemp);
+            await fetchRmFileList_currLayer(usernameTemp);
         
     }
 
@@ -177,7 +176,7 @@ export default function Modal_ResourceManagingWindow ({
     }
 
     //TODO22 for all operations on resource: 
-    function storeNewVarPairDataFuncGen_rmLayer(action, url, givenContent, fileType) {
+    function storeNewVarPairDataFunction_rmLayer(action, url, givenContent, fileType) {
         markDataChanged();
 
         if (action === "delete") {
@@ -202,20 +201,11 @@ export default function Modal_ResourceManagingWindow ({
             info["userName"] = username;
             info["projectName"] = projName;
             info["obj"] = object;
-    
-            
+        
+            setVairToOuter(info);
 
-            let userResponse = window.confirm("Save to cloud?"); //TODO15 
-            if (userResponse) {
-                console.log("saving to cloud...");
-                
-                setVairToOuter(info);
-//TODO save to cloud-db
+        } else { // (add or edit) (not delete)
 
-                alert("Changes saved to cloud!");
-            } //TODO15 
-
-        } else { // not delete (add or edit)
             if (givenContent.length === 0) {
                 console.log("empty input in store_NewVarPairData_FuncGen(), direct return");//TODO 
                 
@@ -228,6 +218,7 @@ export default function Modal_ResourceManagingWindow ({
                 updatePart = {};
                 updatePart["url"] = url;
                 updatePart["var"] = givenContent;
+
             } else if (action === "edit") {
     
                 if (fileType === "visual") {
@@ -300,10 +291,10 @@ export default function Modal_ResourceManagingWindow ({
 
     function prepProjResourceVarPairLists() {
         /* fetch from cloud db */
-        //TODO99999   
 
         let obj = {};
         obj = initialProjectResourceVarPairs; 
+        console.log("initial-project-resource-var-pairs: ", obj);
    
         if (obj === undefined || obj === null || obj["visual"] === undefined || obj["audio"] === undefined) {
             return;
@@ -315,17 +306,17 @@ export default function Modal_ResourceManagingWindow ({
             setAudioVarPairs([]);
 
         } else{
-                if (obj.visual !== undefined) {
-                    setVisualVarPairs(obj.visual);
-                } else {
-                    setVisualVarPairs([]);
-                }
+            if (obj.visual !== undefined) {
+                setVisualVarPairs(obj.visual);
+            } else {
+                setVisualVarPairs([]);
+            }
 
-                if (obj.audio !== undefined) {
-                    setAudioVarPairs(obj.audio);
-                } else {
-                    setAudioVarPairs([]);
-                }
+            if (obj.audio !== undefined) {
+                setAudioVarPairs(obj.audio);
+            } else {
+                setAudioVarPairs([]);
+            }
         }
 
 
@@ -400,7 +391,7 @@ export default function Modal_ResourceManagingWindow ({
                     bkOption: backendOption
                 }); //TODO99999 keep local
         
-                await fetchRmFileList_local(username); //TODO99999 keep local
+                await fetchRmFileList_currLayer(username); //TODO99999 keep local
         
         }
 
@@ -418,12 +409,12 @@ export default function Modal_ResourceManagingWindow ({
                 bkOption: backendOption //TODO999
             });
             
-            await fetchRmFileList_local(username);
+            await fetchRmFileList_currLayer(username);
 
         }
     }
 
-    async function fetchRmFileList_local(authUsername) { //TODO temp debugging
+    async function fetchRmFileList_currLayer(authUsername) { //TODO temp debugging
         let fileList = {};
 
         if (editorMode === "online_cloud") {
@@ -454,7 +445,7 @@ export default function Modal_ResourceManagingWindow ({
                                         console.log("rmWindow --raw-rsrc vlist = ", vList); //TODO test
                                         console.log("rmWindow --raw-rsrc alist = ", aList); //TODO test
 
-            }
+        }
     }
 
     function changeVisFilter(type) {
@@ -549,11 +540,11 @@ export default function Modal_ResourceManagingWindow ({
                     filetitle: clickedFileName,
                     bkOption: backendOption //TODO999
                 });
-                await fetchRmFileList_local(username);
+                await fetchRmFileList_currLayer(username);
             }
             //update resource's var-pair list
             let emptyObj = {};
-            storeNewVarPairDataFuncGen_rmLayer("delete", clickedFileUrl, emptyObj, clickedFileType);
+            storeNewVarPairDataFunction_rmLayer("delete", clickedFileUrl, emptyObj, clickedFileType);
             setClickedFileName("");
             setClickedFileType("");
             setClickedFileUrl("");
@@ -614,10 +605,8 @@ export default function Modal_ResourceManagingWindow ({
                     </button> */}
                     <button className="buttonRight cursor_pointer modalClose" onClick={()=>{
                             if (cloudUpdated === true) { //TODO15 
-                                let resp = window.confirm("Are you sure you would like to exit without saving to cloud?");
-                                if (!resp) {
-                                    return;
-                                }
+                                //TODO99999 update to outer?
+
                             }
                             handleRmCancel();
                             setClickedFileUrl("");
@@ -634,7 +623,7 @@ export default function Modal_ResourceManagingWindow ({
                 <div className="modalContent parallelFrame">
          
                 <div className="areaNote1">
-                <button className="loadResourceBtn" onClick={()=>{fetchRmFileList_local(username)}}> 
+                <button className="loadResourceBtn" onClick={()=>{fetchRmFileList_currLayer(username)}}> 
                     {loadResourceListText}
                 </button>
                 
@@ -762,7 +751,7 @@ export default function Modal_ResourceManagingWindow ({
                         <ItemVarPairManage className="paddings" 
                             varPairInfo={visualVarPairs} 
                             selectedUrl={clickedFileUrl} 
-                            storeNewVarPairDataFunction={storeNewVarPairDataFuncGen_rmLayer} 
+                            storeNewVarPairDataFunction={storeNewVarPairDataFunction_rmLayer} 
                             fileType="visual" 
                             saveToCloudFunc={updatevarPairToOuter_local}
                         />}
@@ -785,7 +774,7 @@ export default function Modal_ResourceManagingWindow ({
 {/* audio resource-selecting area */}
             
                 <div className="areaNote2">
-                    <button className="loadResourceBtn" onClick={()=>{fetchRmFileList_local(username)}}> 
+                    <button className="loadResourceBtn" onClick={()=>{fetchRmFileList_currLayer(username)}}> 
                         {loadResourceListText}
                     </button>
                     
@@ -832,7 +821,7 @@ export default function Modal_ResourceManagingWindow ({
                         className="paddings" 
                         varPairInfo={audioVarPairs} 
                         selectedUrl={clickedFileUrl} 
-                        storeNewVarPairDataFunction={storeNewVarPairDataFuncGen_rmLayer} 
+                        storeNewVarPairDataFunction={storeNewVarPairDataFunction_rmLayer} 
                         fileType="audio" saveToCloudFunc={updatevarPairToOuter_local}
                     />}
                 </div>

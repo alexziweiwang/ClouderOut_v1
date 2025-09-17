@@ -49,17 +49,7 @@ export async function fetchUrlByFilenameVM({fullFilename, bkOption}) {
 }
 
 export async function fetchProjectResourceVarPairsVM({userName, projectName, bkOption}) {
-    let res = {}; 
-
-    if (bkOption === "firebase") {
-        res = await fetchProjectResourceVarPairs({userName, projectName});
-    } else if (bkOption === "offline_half") {
-        //TODO
-
-        
-    }
-    
-    return res;
+    alert("should remove this func!");
 }
 
 export async function storeProjectResourceVarPairsToCloudVM({userName, projectName, obj, bkOption}) {

@@ -11,7 +11,6 @@ submitFile({file, uname, filename}) //upload a file
 getRmFileList({uname}) // get rm list in db (not in storage)
 addToRmFileList({uname, filetitle, fileUrl, fileType}) // add tp rm list in db (not in storage)
 fetchUrlByFilename({fullFilename}) // fetch url by filename, in storage
-fetchProjectResourceVarPairs({userName, projectName}) // fetch var-pair lists
 storeProjectResourceVarPairsToCloud({userName, projectName, obj}) // update car-pair lists
 
 */
@@ -103,10 +102,10 @@ export async function removeFromRmFileList({uname, filetitle}) { // in database
 //TODO10 test later
 
 
-const ref = doc(db, "user_projects", uname); //new
+  const ref = doc(db, "user_projects", uname); //new
 
- //     let currFileData = await getDoc(ref, "fileRecord");
-let currFileData = await getDoc(ref, "filename_records"); //new
+  //     let currFileData = await getDoc(ref, "fileRecord");
+  let currFileData = await getDoc(ref, "filename_records"); //new
 
 
 
@@ -158,7 +157,6 @@ export async function fetchUrlByFilename({fullFilename}) {
 export async function fetchProjectResourceVarPairs({userName, projectName}) {
   /* fetch lists of project-resource pairs, by given user-name and project-name */
   if (userName === undefined || projectName === undefined) {
-                                    console.log("~fetchProjectResourceVarPairs() uname/projName undefined.");
     return;
   }
 
@@ -168,23 +166,6 @@ export async function fetchProjectResourceVarPairs({userName, projectName}) {
     return;
   }
 
-  // let visualListSnap = await getDoc(ref, "proj_resource_visual");
-
-  
-  // if (visualListSnap === undefined || visualListSnap.data() === undefined) {
-  //                                                       console.log("~~visualListSnap undefined");
-  //   return;
-  // }
-  //                                                       // console.log(visualListSnap.data());
-  // let visualList = visualListSnap.data().proj_resource_visual;
-
-  // let audioListSnap = await getDoc(ref, "proj_resource_audio");
-  //                                                       // console.log(audioListSnap.data());
-  // if (audioListSnap === undefined || audioListSnap.data() === undefined) {
-  //                                                       console.log("~~audioListSnap undefined");
-  //   return;
-  // }
-  // let audioList = audioListSnap.data().proj_resource_audio;
 
   let dataObj = await getDoc(ref);
 

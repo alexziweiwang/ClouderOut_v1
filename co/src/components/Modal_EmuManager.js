@@ -538,7 +538,7 @@ export default function Modal_EmuManager({
                         userName: providedUname, 
                         projectName: projName,
                         bkOption: backendOption //TODO999
-                    });
+                    });//TODO99999 remove this cloud-func!!
 
         } else {
                     obj = getLocalProjectDataEmu();
