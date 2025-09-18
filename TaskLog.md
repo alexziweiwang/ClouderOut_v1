@@ -832,6 +832,7 @@
 - 2025-Sept-16: Improve plans for rendering-optimization for panel2
 
 - 2025-Sept-17: Design manager(rsrc) optimization plan
+- 2025-Sept-17: Design testing-project plot
 
 
 
