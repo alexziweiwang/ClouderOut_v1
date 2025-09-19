@@ -58,15 +58,20 @@ export async function getRmFileList({uname}) {
     
 //TODO10 test later
 
-    const projRef = doc(db, "user_projects", uname); //new
-    if (projRef === undefined) {
-      window.alert("projRef does not exist."); //TODO
+    const docRef = doc(db, "user_projects", uname); //new
+    if (docRef === undefined) {
+      window.alert("docRef does not exist."); //TODO
     }
   
-    const docItem = await getDoc(projRef, "filename_records");
+    const docItem = await getDoc(docRef, "filename_records");
 
+    console.log("getRmFileList returning:", docItem.data());
     return docItem.data();
+
+
 }
+
+
 
 
 /**

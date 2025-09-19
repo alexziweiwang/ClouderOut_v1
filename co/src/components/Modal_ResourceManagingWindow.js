@@ -365,35 +365,57 @@ export default function Modal_ResourceManagingWindow ({
     }
 
     async function updateUploadedFileRecords_local(fileName, type) {
-        let url = "";
 
         if (editorMode === "online_cloud") {
 
 
-                url = await fetchUrlByFilenameVM({
+                await fetchUrlByFilenameVM({
                     fullFilename: fileName,
                     bkOption: backendOption //TODO999
+                }).then(async (url)=>{
+
+                    if (url === undefined || url === "") {
+                                                        console.log("\trmWindow -- Error: empty url"); //TODO test
+                        return;
+                    }
+
+                    console.log("rmWindow -- 1 uploaded url in window: ", url); //TODO test
+                    
+                    await addToRmFileListVM({
+                        uname: username, 
+                        filetitle: fileName, 
+                        fileUrl: url, 
+                        fileType: type,
+                        bkOption: backendOption
+                    }); //cloud edit of the list
+                    addFileToList_local(url);//local edit of the list
+
                 });
 
                 
-                                                    console.log("rmWindow -- 1 uploaded url in window: ", url); //TODO test
-                if (url === undefined || url === "") {
-                                                    console.log("\trmWindow -- Error: empty url"); //TODO test
-                    return;
-                }
-
-
-                await addToRmFileListVM({
-                    uname: username, 
-                    filetitle: fileName, 
-                    fileUrl: url, 
-                    fileType: type,
-                    bkOption: backendOption
-                }); //TODO99999 keep local
-        
-                await fetchRmFileList_currLayer(username); //TODO99999 keep local
         
         }
+
+    }
+
+    function addFileToList_local(url) {
+
+
+        //await fetchRmFileList_currLayer(username); //TODO99999 keep local
+        //locally add this to lists
+
+        // setCloudFileList(fileList.filename_records);
+        // const vList = fileList.filename_records.filter((item)=>(item.filetype === "visual"));
+        // setUsersAllFileListVisual(vList);
+        // if (visualListFilter !== "allVis") {
+        //     setVisualListFilteredList(vList);
+        // }
+        // const aList = fileList.filename_records.filter((item)=>(item.filetype === "audio"));
+        // setUsersAllFileListAudio(aList);
+        // if (audioListFilter !== "allAu") {
+        //     setAudioListFilteredList(aList);
+        // }
+
 
     }
 
@@ -415,7 +437,6 @@ export default function Modal_ResourceManagingWindow ({
     }
 
     async function fetchRmFileList_currLayer(authUsername) { //TODO temp debugging
-        let fileList = {};
 
         if (editorMode === "online_cloud") {
 
