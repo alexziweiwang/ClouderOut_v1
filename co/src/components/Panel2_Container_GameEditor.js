@@ -580,27 +580,38 @@ export default function Panel2_Container_GameEditor() {
         });
     }
 
-    async function updateVarPairToOuter_p2Layer(varPairToOuter) {
+    async function updateVarPairToOuter_p2Layer(obj) {
         if (state.mode === "online_cloud") {
 
-            await storeProjectResourceVarPairsToCloudVM({
-                userName: authEmailName, 
-                projectName: state.selected_project_name, 
-                obj: varPairToOuter,
-                bkOption: backendOption //TODO999
-            });
+            // await storeProjectResourceVarPairsToCloudVM({
+            //     userName: authEmailName, 
+            //     projectName: state.selected_project_name, 
+            //     obj: varPairToOuter,
+            //     bkOption: backendOption //TODO999
+            // });
+
+            let visualInfo = obj.visual;
+            let audioInfo = obj.audio;
+
+            setProjectMetaData({...projectMetaData,
+                ""
+            
+            })
             //TODO99999 update metadata and pairs - local
         }
 
     }
 
     function updateResourcePairFromMgr(varPairObj) {
-        setResourcePair(varPairObj);
-        setProjectMetaData({...projectMetaData,
-            "proj_resource_visual": varPairObj.visual,
-            "proj_resource_audio": varPairObj.audio
-        });
-        //TODO 
+        if (varPairObj !== "default") {
+            setResourcePair(varPairObj);
+            setProjectMetaData({...projectMetaData,
+                "proj_resource_visual": varPairObj.visual,
+                "proj_resource_audio": varPairObj.audio
+            });
+            //TODO test
+        }
+
 
     }
     
@@ -1487,7 +1498,6 @@ return (
                 languageCodeTextOption={projectMetaData["ui_language"]} //TODO change
                 getUiLanguageOption={passInUiLanguageOption} //TODO to add
 
-                updateVarPairToOuter_p2Layer={updateVarPairToOuter_p2Layer}
                 updateVarPairToPanel2={updateResourcePairFromMgr}
               />
           

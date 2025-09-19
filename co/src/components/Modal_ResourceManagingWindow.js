@@ -40,8 +40,6 @@ export default function Modal_ResourceManagingWindow ({
 
     getLocalProjectDataRsrcMgr,
 
-    updateVarPairToOuter_p2Layer,
-
     updateVarPairToPanel2 //TODO update whenever change happens
 
 
@@ -118,22 +116,25 @@ export default function Modal_ResourceManagingWindow ({
     const [cloudFileList, setCloudFileList] = useState([]);
     const [isTabVisual, setIsTabVisual] = useState(true);
 
-    const [usersAllFileListVisual, setUsersAllFileListVisual] = useState(undefined); // all of this user's files(visual)
-    const [usersAllFileListAudio, setUsersAllFileListAudio] = useState(undefined); // all of this user's files(audio)
 
     const [clickedFileUrl, setClickedFileUrl] = useState(""); //TODO refactor
     const [clickedFileName, setClickedFileName] = useState("");
     const [clickedFileType, setClickedFileType] = useState("");
-    
+
+
+
+    const [usersAllFileListVisual, setUsersAllFileListVisual] = useState(undefined); // all of this user's files(visual)
+    const [usersAllFileListAudio, setUsersAllFileListAudio] = useState(undefined); // all of this user's files(audio)
     const [visualListFilter, setVisualListFilter] = useState("all");
     const [audioListFilter, setAudioListFilter] = useState("all");
     const [visualListFilteredList, setVisualListFilteredList] = useState([]);
     const [audioListFilteredList, setAudioListFilteredList] = useState([]);
-
+    
     const [visualVarPairs, setVisualVarPairs] = useState(undefined);
     const [audioVarPairs, setAudioVarPairs] = useState(undefined);
 
-    const [varPairToOuter, setVairToOuter] = useState("default");
+    
+    const [varPairForOuter, setVarPairForOuter] = useState("default");
 
     const [cloudUpdated, setCloudUpdated] = useState(false); //TODO15 
 
@@ -203,7 +204,7 @@ export default function Modal_ResourceManagingWindow ({
             info["projectName"] = projName;
             info["obj"] = object;
         
-            setVairToOuter(info);
+            setVarPairForOuter(info);
 
         } else { // (add or edit) (not delete)
 
@@ -259,32 +260,22 @@ export default function Modal_ResourceManagingWindow ({
                 return;
             }
     
-            const info = {};
-            info["userName"] = username;
-            info["projectName"] = projName;
-            info["obj"] = object;
-
-            let userResponse = window.confirm("Save to cloud?"); //TODO15 
-            if (userResponse) {
-                console.log("saving to cloud... info = ", info);
-                
-                setVairToOuter(info);
-            }
+          
+            setVarPairForOuter(object);
         }
 
     }
 
     async function updatevarPairToOuter_local() { //TODO test and debug
-        if (varPairToOuter !== "default") {
+        if (varPairForOuter !== "default") {
 
             if (editorMode === "online_cloud") {
 
-
-                await updateVarPairToOuter_p2Layer(varPairToOuter);
+                updateVarPairToPanel2(varPairForOuter);
             }
 
 
-            setVairToOuter("default");
+            setVarPairForOuter("default");
         }
 
         resetDataUpdatedFalse();
@@ -456,21 +447,7 @@ console.log("before adding one-new-item to local list: ", usersAllFileListVisual
                                             console.log("finished -- get-rm-filelist-vm");
 
                     organizeAllLists(fileList.filename_records);
-                    // if (fileList === undefined || fileList === null) {
-                    //     return;
-                    // }
-    
-                    // setCloudFileList(fileList.filename_records);
-                    // const vList = fileList.filename_records.filter((item)=>(item.filetype === "visual"));
-                    // setUsersAllFileListVisual(vList);
-                    // if (visualListFilter !== "allVis") {
-                    //     setVisualListFilteredList(vList);
-                    // }
-                    // const aList = fileList.filename_records.filter((item)=>(item.filetype === "audio"));
-                    // setUsersAllFileListAudio(aList);
-                    // if (audioListFilter !== "allAu") {
-                    //     setAudioListFilteredList(aList);
-                    // }
+            
                                             console.log("rmWindow --raw-rsrc ...gen list = ", cloudFileList); //TODO test
     
                                             console.log("rmWindow --raw-rsrc vlist = ", vList); //TODO test
@@ -591,16 +568,7 @@ console.log("before adding one-new-item to local list: ", usersAllFileListVisual
 
     }
 
-    function handleSaveToCloud() {
-        updatevarPairToOuter_local();
 
-        let temp = {
-            "audio": audioVarPairs,
-            "visual": visualVarPairs
-        }
-        updateVarPairToPanel2(temp); //TODO60
-
-    }
 
 
     return (
@@ -682,7 +650,11 @@ console.log("before adding one-new-item to local list: ", usersAllFileListVisual
                 {visualListFilteredList.length > 0 && <div className="rsrcListArea">
                     <ul>
                         {visualListFilteredList.map((item, index) => (
-                        <li className="clickableListItem6" key={index} onClick={()=>{itemClicked(item);}}>
+                        <li 
+                            className="clickableListItem6" 
+                            key={index} 
+                            onClick={()=>{itemClicked(item);
+                        }}>
                             {item["filename"]}</li>
                         ))}
                     </ul>
