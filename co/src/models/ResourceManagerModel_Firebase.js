@@ -15,6 +15,8 @@ storeProjectResourceVarPairsToCloud({userName, projectName, obj}) // update car-
 
 */
 
+const dir = "/rm001test/";
+
 
 /**
  * Upload a file to storage
@@ -32,7 +34,9 @@ export async function uploadFileToCloud({file, uname, filename}) {
 
       return;
     } else {
-      const storageRef = ref(storage, `rm001test/${filename}`);
+      let filepath = dir + filename;
+
+      const storageRef = ref(storage, filepath);
 //TODO900
 //TODO3000 change to formal storage path later!!!
 
@@ -130,11 +134,11 @@ export async function removeFromRmFileList({uname, filetitle}) { // in database
 export async function fetchUrlByFilename({fullFilename}) {
 
 
-                                  console.log("model-fetchUrlByFilename(): ", fullFilename); //TODO test
+                                  console.log("model-fetchUrl By Filename(): ", fullFilename); //TODO test
   
 
   const storageG = getStorage();
-  const dir = "/rm001test/";
+
   const filePath = dir + fullFilename;
   const fileRef = ref(storageG, filePath);
 
@@ -191,7 +195,7 @@ export async function fetchProjectResourceVarPairs({userName, projectName}) {
  * @returns void
  */
 export async function storeProjectResourceVarPairsToCloud({userName, projectName, obj}) {
-
+//!important, do not remove this function now
                                     console.log("model - storeProjectResourceVarPairsToCloud()");
                                     console.log("userName: ", userName);
                                     console.log("projectName:", projectName);
@@ -204,7 +208,7 @@ export async function storeProjectResourceVarPairsToCloud({userName, projectName
     return;
   }
 
-                                    console.log("VM - before updating to cloud db: ", obj); //TODO test
+                                    console.log("model - before updating to cloud db: ", obj); //TODO test
   
   let objContent = obj["obj"];
 

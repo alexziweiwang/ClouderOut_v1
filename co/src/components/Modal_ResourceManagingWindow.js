@@ -142,14 +142,15 @@ export default function Modal_ResourceManagingWindow ({
     useEffect(() => {
         if (firstTimeEnter === true) {
                                         console.log("ResourceManager-ModalWindow: First Enter!");
-            if (usersAllFileListVisual === undefined || usersAllFileListAudio === undefined) {
-                initFetchPrep(username);
-
-            }
-
 
             setFirstTimeEnter(false);
         }
+
+        if (usersAllFileListVisual === undefined || usersAllFileListAudio === undefined) {
+            initFetchPrep(username);
+
+        }
+
 
         if (visualVarPairs === undefined || audioVarPairs === undefined) {
             prepProjResourceVarPairLists();
@@ -290,7 +291,6 @@ export default function Modal_ResourceManagingWindow ({
     }
 
     function prepProjResourceVarPairLists() {
-        /* fetch from cloud db */
 
         let obj = {};
         obj = initialProjectResourceVarPairs; 
@@ -419,32 +419,40 @@ export default function Modal_ResourceManagingWindow ({
 
         if (editorMode === "online_cloud") {
 
-                fileList = await getRmFileListVM({
+                await getRmFileListVM({
                     uname: authUsername,
                     bkOption: backendOption 
-                });
+                }).then((fileList)=>{
+                                            console.log("finished -- get-rm-filelist-vm");
+
+
+                    if (fileList === undefined || fileList === null) {
+                        return;
+                    }
+    
+                    setCloudFileList(fileList.filename_records);
+                    const vList = fileList.filename_records.filter((item)=>(item.filetype === "visual"));
+                    setUsersAllFileListVisual(vList);
+                    if (visualListFilter !== "allVis") {
+                        setVisualListFilteredList(vList);
+                    }
+                    const aList = fileList.filename_records.filter((item)=>(item.filetype === "audio"));
+                    setUsersAllFileListAudio(aList);
+                    if (audioListFilter !== "allAu") {
+                        setAudioListFilteredList(aList);
+                    }
+                                            console.log("rmWindow --raw-rsrc ...gen list = ", cloudFileList); //TODO test
+    
+                                            console.log("rmWindow --raw-rsrc vlist = ", vList); //TODO test
+                                            console.log("rmWindow --raw-rsrc alist = ", aList); //TODO test
+    
+
+                })
+                
+                ;
 //TODO99999 then
 
-                if (fileList === undefined || fileList === null) {
-                    return;
-                }
-
-                setCloudFileList(fileList.filename_records);
-                const vList = fileList.filename_records.filter((item)=>(item.filetype === "visual"));
-                setUsersAllFileListVisual(vList);
-                if (visualListFilter !== "allVis") {
-                    setVisualListFilteredList(vList);
-                }
-                const aList = fileList.filename_records.filter((item)=>(item.filetype === "audio"));
-                setUsersAllFileListAudio(aList);
-                if (audioListFilter !== "allAu") {
-                    setAudioListFilteredList(aList);
-                }
-                                        console.log("rmWindow --raw-rsrc ...gen list = ", cloudFileList); //TODO test
-
-                                        console.log("rmWindow --raw-rsrc vlist = ", vList); //TODO test
-                                        console.log("rmWindow --raw-rsrc alist = ", aList); //TODO test
-
+            
         }
     }
 
@@ -623,7 +631,10 @@ export default function Modal_ResourceManagingWindow ({
                 <div className="modalContent parallelFrame">
          
                 <div className="areaNote1">
-                <button className="loadResourceBtn" onClick={()=>{fetchRmFileList_currLayer(username)}}> 
+                <button className="loadResourceBtn" onClick={()=>{
+                    fetchRmFileList_currLayer(username);
+                
+                }}> 
                     {loadResourceListText}
                 </button>
                 
@@ -774,7 +785,9 @@ export default function Modal_ResourceManagingWindow ({
 {/* audio resource-selecting area */}
             
                 <div className="areaNote2">
-                    <button className="loadResourceBtn" onClick={()=>{fetchRmFileList_currLayer(username)}}> 
+                    <button className="loadResourceBtn" onClick={()=>{
+                        fetchRmFileList_currLayer(username);
+                    }}> 
                         {loadResourceListText}
                     </button>
                     
