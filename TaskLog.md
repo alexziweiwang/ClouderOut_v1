@@ -837,7 +837,7 @@
 - 2025-Sept-18: Design testing-project plot
 - 2025-Sept-18: Design manager(rsrc) optimization plan
 
-
+- 2025-Sept-19: Improve manager(rsrc) optimization plan
 
 
 
