@@ -327,14 +327,14 @@ export default function Modal_ResourceManagingWindow ({
         setFileSelected(event.target.files[0]);
     }
 
-    async function uploadFileToCloud(type, selectedFile) {
+    async function submitFiletocloud(type, selectedFile) {
                                                                 console.log("rmWindow -- upload File"); //TODO
         if (selectedFile === "") {
                                                                 console.log("\trmWindow --File NOT chosen"); //TODO
             return;
         }
 
-        const fileName = `${username}_${selectedFile.name}`;
+        const synthFileName = `${username}_${selectedFile.name}`;
 
         //TODO throw this to outer -- panel2?
         if (editorMode === "online_cloud") {
@@ -342,7 +342,7 @@ export default function Modal_ResourceManagingWindow ({
             await uploadFileToCloudVM({
                 file: selectedFile , 
                 uname: username, 
-                filename: fileName,
+                filename: synthFileName,
                 bkOption: backendOption //TODO999
             });
             
@@ -400,23 +400,32 @@ export default function Modal_ResourceManagingWindow ({
 
     function addFileToList_local(url) {
 
-
+console.log("before adding one-new-item to local list: ", usersAllFileListVisual, "\n", usersAllFileListVisual);
         //await fetchRmFileList_currLayer(username); //TODO99999 keep local
-        //locally add this to lists
-
-        // setCloudFileList(fileList.filename_records);
-        // const vList = fileList.filename_records.filter((item)=>(item.filetype === "visual"));
-        // setUsersAllFileListVisual(vList);
-        // if (visualListFilter !== "allVis") {
-        //     setVisualListFilteredList(vList);
-        // }
-        // const aList = fileList.filename_records.filter((item)=>(item.filetype === "audio"));
-        // setUsersAllFileListAudio(aList);
-        // if (audioListFilter !== "allAu") {
-        //     setAudioListFilteredList(aList);
-        // }
+        //TODO locally add this to lists
 
 
+        //TODO organizeAllLists(list);
+
+
+    }
+
+    function organizeAllLists(fileList) {
+        if (fileList === undefined || fileList === null) {
+            return;
+        }
+
+        setCloudFileList(fileList);
+        const vList = fileList.filter((item)=>(item.filetype === "visual"));
+        setUsersAllFileListVisual(vList);
+        if (visualListFilter !== "allVis") {
+            setVisualListFilteredList(vList);
+        }
+        const aList = fileList.filter((item)=>(item.filetype === "audio"));
+        setUsersAllFileListAudio(aList);
+        if (audioListFilter !== "allAu") {
+            setAudioListFilteredList(aList);
+        }
     }
 
     async function updateGoogleDriveFileRecords(type, addedFileName) {
@@ -446,22 +455,22 @@ export default function Modal_ResourceManagingWindow ({
                 }).then((fileList)=>{
                                             console.log("finished -- get-rm-filelist-vm");
 
-
-                    if (fileList === undefined || fileList === null) {
-                        return;
-                    }
+                    organizeAllLists(fileList.filename_records);
+                    // if (fileList === undefined || fileList === null) {
+                    //     return;
+                    // }
     
-                    setCloudFileList(fileList.filename_records);
-                    const vList = fileList.filename_records.filter((item)=>(item.filetype === "visual"));
-                    setUsersAllFileListVisual(vList);
-                    if (visualListFilter !== "allVis") {
-                        setVisualListFilteredList(vList);
-                    }
-                    const aList = fileList.filename_records.filter((item)=>(item.filetype === "audio"));
-                    setUsersAllFileListAudio(aList);
-                    if (audioListFilter !== "allAu") {
-                        setAudioListFilteredList(aList);
-                    }
+                    // setCloudFileList(fileList.filename_records);
+                    // const vList = fileList.filename_records.filter((item)=>(item.filetype === "visual"));
+                    // setUsersAllFileListVisual(vList);
+                    // if (visualListFilter !== "allVis") {
+                    //     setVisualListFilteredList(vList);
+                    // }
+                    // const aList = fileList.filename_records.filter((item)=>(item.filetype === "audio"));
+                    // setUsersAllFileListAudio(aList);
+                    // if (audioListFilter !== "allAu") {
+                    //     setAudioListFilteredList(aList);
+                    // }
                                             console.log("rmWindow --raw-rsrc ...gen list = ", cloudFileList); //TODO test
     
                                             console.log("rmWindow --raw-rsrc vlist = ", vList); //TODO test
@@ -476,6 +485,7 @@ export default function Modal_ResourceManagingWindow ({
             
         }
     }
+
 
     function changeVisFilter(type) {
         if (type === "all") {
@@ -710,14 +720,14 @@ export default function Modal_ResourceManagingWindow ({
                     
                     {uploadConfirm === false && <button 
                         onClick={()=>{
-                            uploadFileToCloud("visual", fileSelected); 
+                            submitFiletocloud("visual", fileSelected); 
                             setUploadConfirm(true);
                         }}
                     > {confirmText} </button>}
                     
                     {uploadConfirm === true && <button 
                         onClick={()=>{
-                            uploadFileToCloud("visual", fileSelected); 
+                            submitFiletocloud("visual", fileSelected); 
                             setFileSelected(""); 
                             setUploadConfirm(false);
                         }}
@@ -840,8 +850,8 @@ export default function Modal_ResourceManagingWindow ({
                             /> }
                         {uploadConfirm === true && <label>File Chosen: {fileSelected.name}</label>}
                         {uploadConfirm === true && <button onClick={()=>{setFileSelected(""); setUploadConfirm(false);}}>{cancelText}</button>}
-                        {uploadConfirm === false && <button onClick={()=>{uploadFileToCloud("audio", fileSelected); setUploadConfirm(true);}}>{confirmText}</button>}
-                        {uploadConfirm === true && <button onClick={()=>{uploadFileToCloud("audio", fileSelected); setFileSelected(""); setUploadConfirm(false);}}>{submitText}</button>}
+                        {uploadConfirm === false && <button onClick={()=>{submitFiletocloud("audio", fileSelected); setUploadConfirm(true);}}>{confirmText}</button>}
+                        {uploadConfirm === true && <button onClick={()=>{submitFiletocloud("audio", fileSelected); setFileSelected(""); setUploadConfirm(false);}}>{submitText}</button>}
                     </div> */}
 
                 </div>
