@@ -337,7 +337,7 @@ export default function Modal_ResourceManagingWindow ({
                 bkOption: backendOption //TODO999
             });
             
-            await updateUploadedFileRecords_local(username, fileName, type);
+            await updateUploadedFileRecords_local(username, synthFileName, type);
 
         }
     }
@@ -448,12 +448,7 @@ console.log("before adding one-new-item to local list: ", usersAllFileListVisual
 
                     organizeAllLists(fileList.filename_records);
             
-                                            console.log("rmWindow --raw-rsrc ...gen list = ", cloudFileList); //TODO test
-    
-                                            console.log("rmWindow --raw-rsrc vlist = ", vList); //TODO test
-                                            console.log("rmWindow --raw-rsrc alist = ", aList); //TODO test
-    
-
+                                
                 })
                 
                 ;
