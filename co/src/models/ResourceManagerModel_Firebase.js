@@ -84,15 +84,16 @@ export async function getRmFileList({uname}) {
  */
 export async function addToRmFileList({uname, filetitle, fileUrl, fileType}) {
 
+    const ref = doc(db, "user_projects", uname); //new
 
-const ref = doc(db, "user_projects", uname); //new
-
-let currFileData = await getDoc(ref, "filename_records"); //new
-
-    
+    let currFileData = await getDoc(ref, "filename_records"); //new
     
     let currFileList = currFileData.data().filename_records;
-    const obj = {"filename": filetitle, "fileurl": fileUrl, "filetype": fileType};
+    const obj = {
+      "filename": filetitle, 
+      "fileurl": fileUrl, 
+      "filetype": fileType
+    };
 
     const duplicatePart = currFileList.filter(item => item.filename === filetitle && item.fileurl === fileUrl);
     
@@ -103,7 +104,9 @@ let currFileData = await getDoc(ref, "filename_records"); //new
                                         console.log("update file list:", currFileList);//TODO test
 
 
-    await updateDoc(ref, {filename_records: currFileList});
+    await updateDoc(ref, {
+      filename_records: currFileList
+    });
 }
 
 export async function removeFromRmFileList({uname, filetitle}) { // in database

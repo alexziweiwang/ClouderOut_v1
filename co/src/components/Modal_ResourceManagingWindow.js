@@ -376,17 +376,18 @@ export default function Modal_ResourceManagingWindow ({
 
                             console.log("rmWindow -- 1 uploaded url in window: ", url); //TODO test
                     
-                await addToRmFileListVM({
-                        uname: username, 
-                        filetitle: fileName, 
-                        fileUrl: url, 
-                        fileType: type,
-                        bkOption: backendOption
-                }); //cloud edit of the list
-                
-            addFileToList_local(url);//local edit of the list
+            await addToRmFileListVM({
 
-            });
+                uname: username, 
+                filetitle: fileName, 
+                fileUrl: url, 
+                fileType: type,
+                bkOption: backendOption
+            }); //cloud edit of the list
+                
+            addFileToList_local(fileName, url, type);//local edit of the list
+
+        });
 
                 
         
@@ -394,14 +395,26 @@ export default function Modal_ResourceManagingWindow ({
 
     }
 
-    function addFileToList_local(url) {
+    function addFileToList_local(filename, url, type) {
 
 console.log("before adding one-new-item to local list: ", usersAllFileListVisual, "\n", usersAllFileListVisual);
         //await fetchRmFileList_currLayer(username); //TODO99999 keep local
-        //TODO locally add this to lists
+        //TODO locally add this [item]: to the file-list, then update the list for all/au/vis
+        let item = {
+            "filename": filename,
+            "fileurl": url,
+            "filetype": type
+        };
+
+        let listTemp = cloudFileList;
+        listTemp.push(item);
 
 
-        //TODO organizeAllLists(list);
+
+//TODO33333
+//TODO99999
+
+        organizeAllLists(listTemp);
 
 
     }
@@ -412,11 +425,13 @@ console.log("before adding one-new-item to local list: ", usersAllFileListVisual
         }
 
         setCloudFileList(fileList);
+
         const vList = fileList.filter((item)=>(item.filetype === "visual"));
         setUsersAllFileListVisual(vList);
         if (visualListFilter !== "allVis") {
             setVisualListFilteredList(vList);
         }
+
         const aList = fileList.filter((item)=>(item.filetype === "audio"));
         setUsersAllFileListAudio(aList);
         if (audioListFilter !== "allAu") {
