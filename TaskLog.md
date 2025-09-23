@@ -839,6 +839,14 @@
 
 - 2025-Sept-19: Improve manager(rsrc) optimization plan
 
+- 2025-Sept-22: Improve manager(rsrc) optimization steps
+
+
+
+
+
+
+
 
 
 
