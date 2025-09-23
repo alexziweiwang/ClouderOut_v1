@@ -26,20 +26,19 @@ const dir = "/rm001test/";
  * @param {*} filename filename
  * @returns void
  */
-export async function uploadFileToCloud({file, uname, filename}) {
+export async function uploadFileToCloud({file, filename}) {
     console.log("step2.RM model submitFile ...", filename); //TODO test
     if (filename === "" || filename === undefined) {
 
-                                    console.log("returned");//TODO test
+                                    console.log("returned: invalid filename");//TODO test
 
       return;
+
     } else {
+
       let filepath = dir + filename;
 
       const storageRef = ref(storage, filepath);
-//TODO900
-//TODO3000 change to formal storage path later!!!
-
 
       uploadBytes(storageRef, file);
 

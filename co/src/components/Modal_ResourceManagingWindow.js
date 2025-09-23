@@ -177,6 +177,21 @@ export default function Modal_ResourceManagingWindow ({
         setCloudUpdated(false);
     }
 
+
+
+    async function itemClicked(item) {
+        if (clickedFileName === item["filename"]) { /* reset */
+            setClickedFileUrl("");
+            setClickedFileName("");
+            setClickedFileType("");
+            return;
+        }
+        setClickedFileUrl(item["fileurl"]);
+        setClickedFileName(item["filename"]);
+        setClickedFileType(item["filetype"]);
+    }
+
+
     //TODO22 for all operations on resource: 
     function storeNewVarPairDataFunction_rmLayer(action, url, givenContent, fileType) {
         markDataChanged();
@@ -320,7 +335,7 @@ export default function Modal_ResourceManagingWindow ({
 
     async function submitFiletocloud(type, selectedFile) {
                                                                 console.log("rmWindow -- upload File"); //TODO
-        if (selectedFile === "") {
+        if (selectedFile === "" || selectedFile === undefined) {
                                                                 console.log("\trmWindow --File NOT chosen"); //TODO
             return;
         }
@@ -335,57 +350,47 @@ export default function Modal_ResourceManagingWindow ({
                 uname: username, 
                 filename: synthFileName,
                 bkOption: backendOption //TODO999
+            })
+            .then(async()=>{
+                await updateUploadedFileRecords_local(username, synthFileName, type);
+
             });
             
-            await updateUploadedFileRecords_local(username, synthFileName, type);
+            
 
         }
-    }
-
-
-    async function itemClicked(item) {
-        if (clickedFileName === item["filename"]) { /* reset */
-            setClickedFileUrl("");
-            setClickedFileName("");
-            setClickedFileType("");
-            return;
-        }
-        setClickedFileUrl(item["fileurl"]);
-        setClickedFileName(item["filename"]);
-        setClickedFileType(item["filetype"]);
     }
 
     async function updateUploadedFileRecords_local(fileName, type) {
 
-        if (editorMode === "online_cloud") {
 
+        await fetchUrlByFilenameVM({
+            fullFilename: fileName,
+            bkOption: backendOption //TODO999
+        }).then(async (url)=>{
 
-                await fetchUrlByFilenameVM({
-                    fullFilename: fileName,
-                    bkOption: backendOption //TODO999
-                }).then(async (url)=>{
+            if (url === undefined || url === "") {
+                            console.log("\trmWindow -- Error: empty url"); //TODO test
+                return;
+            }
 
-                    if (url === undefined || url === "") {
-                                                        console.log("\trmWindow -- Error: empty url"); //TODO test
-                        return;
-                    }
-
-                    console.log("rmWindow -- 1 uploaded url in window: ", url); //TODO test
+                            console.log("rmWindow -- 1 uploaded url in window: ", url); //TODO test
                     
-                    await addToRmFileListVM({
+                await addToRmFileListVM({
                         uname: username, 
                         filetitle: fileName, 
                         fileUrl: url, 
                         fileType: type,
                         bkOption: backendOption
-                    }); //cloud edit of the list
-                    addFileToList_local(url);//local edit of the list
+                }); //cloud edit of the list
+                
+            addFileToList_local(url);//local edit of the list
 
-                });
+            });
 
                 
         
-        }
+        
 
     }
 
@@ -449,11 +454,7 @@ console.log("before adding one-new-item to local list: ", usersAllFileListVisual
                     organizeAllLists(fileList.filename_records);
             
                                 
-                })
-                
-                ;
-//TODO99999 then
-
+                });
             
         }
     }
