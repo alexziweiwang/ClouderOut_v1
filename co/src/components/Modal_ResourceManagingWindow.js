@@ -148,7 +148,8 @@ export default function Modal_ResourceManagingWindow ({
         }
 
         if (usersAllFileListVisual === undefined || usersAllFileListAudio === undefined) {
-            initFetchPrep(username);
+            console.log("init ... ");
+            fetchRmFileList_currLayer(username);
 
         }
 
@@ -161,12 +162,6 @@ export default function Modal_ResourceManagingWindow ({
 
     });
 
-    async function initFetchPrep(usernameTemp) {
-
-            console.log("init ... ");
-            await fetchRmFileList_currLayer(usernameTemp);
-        
-    }
 
     function markDataChanged() {
         setCloudUpdated(true)  // when add, delete, edit
@@ -398,8 +393,8 @@ export default function Modal_ResourceManagingWindow ({
     function addFileToList_local(filename, url, type) {
 
 console.log("before adding one-new-item to local list: ", usersAllFileListVisual, "\n", usersAllFileListVisual);
-        //await fetchRmFileList_currLayer(username); //TODO99999 keep local
-        //TODO locally add this [item]: to the file-list, then update the list for all/au/vis
+
+//TODO locally add this [item]: to the file-list, then update the list for all/au/vis
         let item = {
             "filename": filename,
             "fileurl": url,
@@ -415,8 +410,24 @@ console.log("before adding one-new-item to local list: ", usersAllFileListVisual
 //TODO99999
 
         organizeAllLists(listTemp);
+    }
+
+    function removeFromList_local(filename, url, type) {
+        let listTemp = cloudFileList;
+
+        //TODO handle removal
+
+        organizeAllLists(listTemp);
 
 
+    }
+
+    function editAtList_local(filename, url, type) {
+        let listTemp = cloudFileList;
+
+        //TODO handle editing
+
+        organizeAllLists(listTemp);
     }
 
     function organizeAllLists(fileList) {
@@ -451,7 +462,7 @@ console.log("before adding one-new-item to local list: ", usersAllFileListVisual
                 bkOption: backendOption //TODO999
             });
             
-            await fetchRmFileList_currLayer(username);
+     //editAtList_local(filename, url, type)
 
         }
     }
@@ -466,9 +477,7 @@ console.log("before adding one-new-item to local list: ", usersAllFileListVisual
                 }).then((fileList)=>{
                                             console.log("finished -- get-rm-filelist-vm");
 
-                    organizeAllLists(fileList.filename_records);
-            
-                                
+                    organizeAllLists(fileList.filename_records);            
                 });
             
         }
@@ -567,7 +576,7 @@ console.log("before adding one-new-item to local list: ", usersAllFileListVisual
                     filetitle: clickedFileName,
                     bkOption: backendOption //TODO999
                 });
-                await fetchRmFileList_currLayer(username);
+            //removeFromList_local(filename, url, type)
             }
             //update resource's var-pair list
             let emptyObj = {};
