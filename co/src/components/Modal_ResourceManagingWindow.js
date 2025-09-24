@@ -7,6 +7,7 @@ import {
     getRmFileListVM, // all file-records for this USER (all projects)
     addToRmFileListVM, // all file-records for this USER (all projects)
     removeFromRmFileListVM, // all file-records for this USER (all projects)
+    //TODO changeRmFileListVM, //TODO60
 
     fetchUrlByFilenameVM, 
 
@@ -370,7 +371,9 @@ export default function Modal_ResourceManagingWindow ({
             }
 
                             console.log("rmWindow -- 1 uploaded url in window: ", url); //TODO test
-                    
+
+
+//TODO60                    
             await addToRmFileListVM({
 
                 uname: username, 
@@ -453,7 +456,7 @@ console.log("before adding one-new-item to local list: ", usersAllFileListVisual
     async function updateGoogleDriveFileRecords(type, addedFileName) {
 
         if (editorMode === "online_cloud") {
-
+//TODO60
             await addToRmFileListVM({
                 uname: username, 
                 filetitle: addedFileName, 
@@ -571,7 +574,7 @@ console.log("before adding one-new-item to local list: ", usersAllFileListVisual
 
             if (editorMode === "online_cloud") {
 
-                await removeFromRmFileListVM({
+                await removeFromRmFileListVM({ //TODO60
                     uname: username, 
                     filetitle: clickedFileName,
                     bkOption: backendOption //TODO999

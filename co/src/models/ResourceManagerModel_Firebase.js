@@ -70,7 +70,16 @@ export async function getRmFileList({uname}) {
 
 }
 
+export async function changeRmFileList({uname, fileList}) {
+  const ref = doc(db, "user_projects", uname); //new
+  
 
+  await setDoc(ref, {
+    "filename_records": fileList
+  });
+
+
+}
 
 
 /**
@@ -105,7 +114,7 @@ export async function addToRmFileList({uname, filetitle, fileUrl, fileType}) {
 
 
     await updateDoc(ref, {
-      filename_records: currFileList
+      "filename_records": currFileList
     });
 }
 
@@ -126,7 +135,7 @@ export async function removeFromRmFileList({uname, filetitle}) { // in database
 
   const otherPart = currFileList.filter(item => item.filename !== filetitle);
 
-  await updateDoc(ref, {filenames: otherPart});
+  await updateDoc(ref, {"filename_records": otherPart});
 }
 
 

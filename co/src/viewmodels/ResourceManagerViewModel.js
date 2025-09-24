@@ -1,4 +1,13 @@
-import { uploadFileToCloud, getRmFileList, addToRmFileList, fetchUrlByFilename, fetchProjectResourceVarPairs, storeProjectResourceVarPairsToCloud, removeFromRmFileList } from "../models/ResourceManagerModel_Firebase";
+import { 
+    uploadFileToCloud, 
+    getRmFileList, 
+    changeRmFileList,
+    addToRmFileList, 
+    fetchUrlByFilename, 
+    fetchProjectResourceVarPairs, 
+    storeProjectResourceVarPairsToCloud, 
+    removeFromRmFileList 
+} from "../models/ResourceManagerModel_Firebase";
 
 export async function uploadFileToCloudVM({file, uname, filename, bkOption}) {
     if (filename === "" || filename === undefined) {
@@ -22,6 +31,13 @@ export async function getRmFileListVM({uname, bkOption}) {
     }
 
     return arr;
+}
+
+export async function changeRmFileListVM({uname, fileList, bkOption}) {
+    if (bkOption === "firebase") {
+        await changeRmFileList({uname, fileList});
+    }
+
 }
 
 export async function addToRmFileListVM({uname, filetitle, fileUrl, fileType, bkOption}) {
