@@ -7,7 +7,7 @@ import {
     getRmFileListVM, // all file-records for this USER (all projects)
     addToRmFileListVM, // all file-records for this USER (all projects)
     removeFromRmFileListVM, // all file-records for this USER (all projects)
-    //TODO changeRmFileListVM, //TODO60
+    changeRmFileListVM, //TODO60
 
     fetchUrlByFilenameVM, 
 
@@ -374,16 +374,17 @@ export default function Modal_ResourceManagingWindow ({
 
 
 //TODO60                    
-            await addToRmFileListVM({
+            // await addToRmFileListVM({
 
-                uname: username, 
-                filetitle: fileName, 
-                fileUrl: url, 
-                fileType: type,
-                bkOption: backendOption
-            }); //cloud edit of the list
-                
-            addFileToList_local(fileName, url, type);//local edit of the list
+            //     uname: username, 
+            //     filetitle: fileName, 
+            //     fileUrl: url, 
+            //     fileType: type,
+            //     bkOption: backendOption
+            // }); //cloud edit of the list
+
+  
+            await addFileToList_local(fileName, url, type);//local edit of the list
 
         });
 
@@ -393,7 +394,7 @@ export default function Modal_ResourceManagingWindow ({
 
     }
 
-    function addFileToList_local(filename, url, type) {
+    async function addFileToList_local(filename, url, type) {
 
 console.log("before adding one-new-item to local list: ", usersAllFileListVisual, "\n", usersAllFileListVisual);
 
@@ -407,7 +408,12 @@ console.log("before adding one-new-item to local list: ", usersAllFileListVisual
         let listTemp = cloudFileList;
         listTemp.push(item);
 
-
+        await changeRmFileListVM({
+            uname: username, 
+            fileList: listTemp, 
+            bkOption: backendOption
+        }); //TODO60
+            
 
 //TODO33333
 //TODO99999
@@ -415,21 +421,35 @@ console.log("before adding one-new-item to local list: ", usersAllFileListVisual
         organizeAllLists(listTemp);
     }
 
-    function removeFromList_local(filename, url, type) {
+    async function removeFromList_local(filename, url, type) {
         let listTemp = cloudFileList;
 
-        //TODO handle removal
+        //TODO handle removal: based on filename?
 
+        await changeRmFileListVM({
+            uname: username, 
+            fileList: listTemp, 
+            bkOption: backendOption
+        }); //TODO60
+
+        //TODO after the handling above
         organizeAllLists(listTemp);
 
 
     }
 
-    function editAtList_local(filename, url, type) {
+    async function editAtList_local(filename, url, type) {
         let listTemp = cloudFileList;
 
-        //TODO handle editing
+        //TODO handle editing: based on filename...
 
+        await changeRmFileListVM({
+            uname: username, 
+            fileList: listTemp, 
+            bkOption: backendOption
+        }); //TODO60
+
+        //TODO after the handling above
         organizeAllLists(listTemp);
     }
 
@@ -456,14 +476,16 @@ console.log("before adding one-new-item to local list: ", usersAllFileListVisual
     async function updateGoogleDriveFileRecords(type, addedFileName) {
 
         if (editorMode === "online_cloud") {
-//TODO60
-            await addToRmFileListVM({
-                uname: username, 
-                filetitle: addedFileName, 
-                fileUrl: googleDriveFileDisplayLink, 
-                fileType: type,
-                bkOption: backendOption //TODO999
-            });
+//TODO60    
+            await addFileToList_local(addedFileName, googleDriveFileDisplayLink, type);
+
+            // await addToRmFileListVM({
+            //     uname: username, 
+            //     filetitle: addedFileName, 
+            //     fileUrl: googleDriveFileDisplayLink, 
+            //     fileType: type,
+            //     bkOption: backendOption //TODO999
+            // });
             
      //editAtList_local(filename, url, type)
 
@@ -574,11 +596,14 @@ console.log("before adding one-new-item to local list: ", usersAllFileListVisual
 
             if (editorMode === "online_cloud") {
 
-                await removeFromRmFileListVM({ //TODO60
-                    uname: username, 
-                    filetitle: clickedFileName,
-                    bkOption: backendOption //TODO999
-                });
+                                                    // await removeFromRmFileListVM({ //TODO60
+                                                    //     uname: username, 
+                                                    //     filetitle: clickedFileName,
+                                                    //     bkOption: backendOption //TODO999
+                                                    // });
+
+                //TODO add this: removeFromList_local(clickedFileName, url, type);
+
             //removeFromList_local(filename, url, type)
             }
             //update resource's var-pair list
