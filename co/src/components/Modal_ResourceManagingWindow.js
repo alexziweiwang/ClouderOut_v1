@@ -382,6 +382,14 @@ export default function Modal_ResourceManagingWindow ({
 
     }
 
+
+    async function updateGoogleDriveFileRecords_local(type, addedFileName) {
+
+        await addFileToList_local(addedFileName, googleDriveFileDisplayLink, type);
+
+        
+    }
+
     async function addFileToList_local(filename, url, type) {
 
 console.log("before adding one-new-item to local list: ", usersAllFileListVisual, "\n", usersAllFileListVisual);
@@ -426,21 +434,6 @@ console.log("before adding one-new-item to local list: ", usersAllFileListVisual
 
     }
 
-    async function editAtList_local(filename, url, type) {
-        let listTemp = cloudFileList;
-
-        //TODO handle editing: based on filename...
-    
-
-        await changeRmFileListVM({
-            uname: username, 
-            fileList: listTemp, 
-            bkOption: backendOption
-        }); //TODO60
-
-        //TODO after the handling above
-        organizeAllLists(listTemp);
-    }
 
     function organizeAllLists(fileList) {
         if (fileList === undefined || fileList === null) {
@@ -462,14 +455,6 @@ console.log("before adding one-new-item to local list: ", usersAllFileListVisual
         }
     }
 
-    async function updateGoogleDriveFileRecords(type, addedFileName) {
-
-        if (editorMode === "online_cloud") {
-//TODO60    
-            await editAtList_local(addedFileName, googleDriveFileDisplayLink, type);
-
-        }
-    }
 
     async function fetchRmFileList_currLayer(authUsername) { //TODO temp debugging
 
@@ -770,7 +755,7 @@ console.log("before adding one-new-item to local list: ", usersAllFileListVisual
                     }}>{previewText}</button>
 
                     <br></br><button onClick={()=>{
-                        updateGoogleDriveFileRecords("visual", googleDriveFileId);
+                        updateGoogleDriveFileRecords_local("visual", googleDriveFileId);
                         setGoogleDriveFileId("");
                         setGoogleDriveFileSharedLink("");
                     }}>{addText}</button>
