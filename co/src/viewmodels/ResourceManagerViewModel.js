@@ -23,11 +23,11 @@ export async function uploadFileToCloudVM({file, uname, filename, bkOption}) {
 
 }
 
-export async function getRmFileListVM({uname, bkOption}) {
+export async function fetchRmFileListVM({uname, bkOption}) {
     let arr = [];
 
     if (bkOption === "firebase") {
-        arr = await getRmFileList({uname});
+        arr = await fetchRmFileList({uname});
     }
 
     return arr;

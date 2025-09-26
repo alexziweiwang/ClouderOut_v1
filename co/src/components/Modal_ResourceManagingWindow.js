@@ -4,9 +4,11 @@ import { useState, useEffect } from "react";
 import { 
     uploadFileToCloudVM, 
 
-    getRmFileListVM, // all file-records for this USER (all projects)
-    addToRmFileListVM, // all file-records for this USER (all projects)
-    removeFromRmFileListVM, // all file-records for this USER (all projects)
+    fetchRmFileListVM, // all file-records for this USER (all projects)
+    
+                        addToRmFileListVM, // all file-records for this USER (all projects)
+                        removeFromRmFileListVM, // all file-records for this USER (all projects)
+                        
     changeRmFileListVM, //TODO60
 
     fetchUrlByFilenameVM, 
@@ -373,23 +375,9 @@ export default function Modal_ResourceManagingWindow ({
                             console.log("rmWindow -- 1 uploaded url in window: ", url); //TODO test
 
 
-//TODO60                    
-            // await addToRmFileListVM({
-
-            //     uname: username, 
-            //     filetitle: fileName, 
-            //     fileUrl: url, 
-            //     fileType: type,
-            //     bkOption: backendOption
-            // }); //cloud edit of the list
-
-  
             await addFileToList_local(fileName, url, type);//local edit of the list
 
         });
-
-                
-        
         
 
     }
@@ -422,9 +410,9 @@ console.log("before adding one-new-item to local list: ", usersAllFileListVisual
     }
 
     async function removeFromList_local(filename, url, type) {
-        let listTemp = cloudFileList;
-
-        //TODO handle removal: based on filename?
+        let listTemp = cloudFileList.filter(
+            e => e["filename"] !== filename
+        );
 
         await changeRmFileListVM({
             uname: username, 
@@ -442,6 +430,7 @@ console.log("before adding one-new-item to local list: ", usersAllFileListVisual
         let listTemp = cloudFileList;
 
         //TODO handle editing: based on filename...
+    
 
         await changeRmFileListVM({
             uname: username, 
@@ -477,17 +466,7 @@ console.log("before adding one-new-item to local list: ", usersAllFileListVisual
 
         if (editorMode === "online_cloud") {
 //TODO60    
-            await addFileToList_local(addedFileName, googleDriveFileDisplayLink, type);
-
-            // await addToRmFileListVM({
-            //     uname: username, 
-            //     filetitle: addedFileName, 
-            //     fileUrl: googleDriveFileDisplayLink, 
-            //     fileType: type,
-            //     bkOption: backendOption //TODO999
-            // });
-            
-     //editAtList_local(filename, url, type)
+            await editAtList_local(addedFileName, googleDriveFileDisplayLink, type);
 
         }
     }
@@ -496,7 +475,7 @@ console.log("before adding one-new-item to local list: ", usersAllFileListVisual
 
         if (editorMode === "online_cloud") {
 
-                await getRmFileListVM({
+                await fetchRmFileListVM({
                     uname: authUsername,
                     bkOption: backendOption 
                 }).then((fileList)=>{

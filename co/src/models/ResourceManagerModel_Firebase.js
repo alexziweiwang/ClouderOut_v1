@@ -8,7 +8,7 @@ import { doc, getDoc, getDocs, collection, query, where, updateDoc, deleteField,
 List of functions:
 
 submitFile({file, uname, filename}) //upload a file
-getRmFileList({uname}) // get rm list in db (not in storage)
+fetchRmFileList({uname}) // get rm list in db (not in storage)
 addToRmFileList({uname, filetitle, fileUrl, fileType}) // add tp rm list in db (not in storage)
 fetchUrlByFilename({fullFilename}) // fetch url by filename, in storage
 storeProjectResourceVarPairsToCloud({userName, projectName, obj}) // update car-pair lists
@@ -53,7 +53,7 @@ export async function uploadFileToCloud({file, filename}) {
  * @param {*} uname username
  * @returns list of uploaded files
  */
-export async function getRmFileList({uname}) {
+export async function fetchRmFileList({uname}) {
     
 //TODO10 test later
 

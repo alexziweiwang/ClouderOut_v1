@@ -47,7 +47,7 @@ import { checkProjectMetaData_vm } from '../viewmodels/PrepAc_ProjectFileInOut';
 import { storeProjectResourceVarPairsToCloudVM } from '../viewmodels/ResourceManagerViewModel';
 
 
-import { submitFileVM, getRmFileListVM, addToRmFileListVM, fetchUrlByFilenameVM, removeFromRmFileListVM } from '../viewmodels/ResourceManagerViewModel';
+import { submitFileVM, fetchRmFileListVM, addToRmFileListVM, fetchUrlByFilenameVM, removeFromRmFileListVM } from '../viewmodels/ResourceManagerViewModel';
 
 
 
