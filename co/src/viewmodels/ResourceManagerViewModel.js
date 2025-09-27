@@ -1,6 +1,6 @@
 import { 
     uploadFileToCloud, 
-    getRmFileList, 
+    fetchRmFileList, 
     changeRmFileList,
     addToRmFileList, 
     fetchUrlByFilename, 

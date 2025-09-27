@@ -350,7 +350,7 @@ export default function Modal_ResourceManagingWindow ({
                 bkOption: backendOption //TODO999
             })
             .then(async()=>{
-                await updateUploadedFileRecords_local(username, synthFileName, type);
+                await updateUploadedFileRecords_local(synthFileName, type);
 
             });
             
@@ -677,7 +677,7 @@ console.log("before adding one-new-item to local list: ", usersAllFileListVisual
                 <div  style={{"textAlign": "left", "padding": "3px"}}>
                 
                 
-                {/* <input 
+                <input 
                     type="radio" 
                     value={isSourceByUpload} 
                     checked={isSourceByUpload} 
@@ -685,7 +685,7 @@ console.log("before adding one-new-item to local list: ", usersAllFileListVisual
                     <label onClick={()=>{setIsSourceByUpload(true);}}>
                         {newFileUploadText}
                     </label>
-                     */}
+                    
                 <br></br>
                 {isSourceByUpload && <div className="uploadArea">
                     {uploadConfirm === false && <input 
@@ -718,11 +718,11 @@ console.log("before adding one-new-item to local list: ", usersAllFileListVisual
                     > {submitText} </button>}
                 </div>}
                 
-                {/* <input type="radio" 
+                <input type="radio" 
                     value={isSourceByUpload} 
                     checked={!isSourceByUpload} 
                     onChange={()=>{setIsSourceByUpload(false);}}></input>  
-                 */}
+                
                     <label 
                         onClick={()=>{setIsSourceByUpload(false);}}>
                         From Google Drive
