@@ -663,7 +663,7 @@ console.log("before adding one-new-item to local list: ", usersAllFileListVisual
                     <ul>
                         {visualListFilteredList.map((item, index) => (
                         <li 
-                            className="clickableListItem6" 
+                            className={item["filename"] === clickedFileName ? "clickableListItem6Clicked" : "clickableListItem6"}
                             key={index} 
                             onClick={()=>{itemClicked(item);
                         }}>
@@ -816,7 +816,10 @@ console.log("before adding one-new-item to local list: ", usersAllFileListVisual
                     {audioListFilteredList.length > 0&& <div className="rsrcListArea">
                         <ul>
                             {audioListFilteredList.map((item, index) => (
-                            <li className="clickableListItem6" key={index} onClick={()=>{
+                            <li 
+                                className={item["filename"] === clickedFileName ? "clickableListItem6Clicked" : "clickableListItem6"}
+                                key={index} 
+                                onClick={()=>{
                                                                 console.log("rmWindow --list clicked.", cloudFileList[index]["filename"]); //TODO 
                                 itemClicked(item);
                             
