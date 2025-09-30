@@ -217,7 +217,7 @@ export default function Modal_ResourceManagingWindow ({
             info["projectName"] = projName;
             info["obj"] = object;
         
-            setVarPairForOuter(info);
+            setVarPairForOuter(object);
 
         } else { // (add or edit) (not delete)
 
@@ -281,6 +281,7 @@ export default function Modal_ResourceManagingWindow ({
 
     async function updatevarPairToOuter_local() { //TODO test and debug
         if (varPairForOuter !== "default") {
+console.log("saving to panel2 -- ", varPairForOuter);
 
             updateVarPairToPanel2(varPairForOuter);
         
@@ -619,10 +620,8 @@ console.log("before adding one-new-item to local list: ", usersAllFileListVisual
                             {saveToCloudText}
                     </button> */}
                     <button className="buttonRight cursor_pointer modalClose" onClick={()=>{
-                            if (cloudUpdated === true) { //TODO15 
-                                //TODO99999 update to outer?
+                            updatevarPairToOuter_local();
 
-                            }
                             handleRmCancel();
                             setClickedFileUrl("");
                             resetDataUpdatedFalse(); //TODO15 
