@@ -38,7 +38,7 @@ Related sub-compo:
 Keeps the layout of sidebar + content formatted pages
 */
 export default function Panel1_UserMgr({}) {
-    const onlineMode = "online_cloud"; // this is settled because entering from panel_1
+    const onlineMode = "online_cloud"; // this is settled -- because entering from panel_1
 
     const navigate = useNavigate();
 
@@ -154,10 +154,9 @@ export default function Panel1_UserMgr({}) {
         navigate('/editorcontainer', { 
           replace: true, 
           state: { 
-            selected_project_name: selected_project_name, 
-            mode: onlineMode,
-            providedImptProj: importedProjFileContent,
-            //TODO99999
+            "selected_project_name": selected_project_name, 
+            "mode": onlineMode,
+            "providedImptProj": importedProjFileContent,
           } });
   
     }

@@ -6,7 +6,6 @@ export default function ItemVarPairManage ({
     selectedUrl, 
     storeNewVarPairDataFunction, 
     fileType, 
-    saveToCloudFunc
 
 }) {
 

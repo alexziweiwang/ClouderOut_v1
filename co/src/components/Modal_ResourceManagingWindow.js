@@ -282,12 +282,8 @@ export default function Modal_ResourceManagingWindow ({
     async function updatevarPairToOuter_local() { //TODO test and debug
         if (varPairForOuter !== "default") {
 
-            if (editorMode === "online_cloud") {
-
-                updateVarPairToPanel2(varPairForOuter);
-            }
-
-
+            updateVarPairToPanel2(varPairForOuter);
+        
             setVarPairForOuter("default");
         }
 
@@ -779,7 +775,6 @@ console.log("before adding one-new-item to local list: ", usersAllFileListVisual
                             selectedUrl={clickedFileUrl} 
                             storeNewVarPairDataFunction={storeNewVarPairDataFunction_rmLayer} 
                             fileType="visual" 
-                            saveToCloudFunc={updatevarPairToOuter_local}
                         />}
                 
                     {(googleDriveFileId !== "" && clickedFileUrl === "") && <img 
@@ -828,7 +823,7 @@ console.log("before adding one-new-item to local list: ", usersAllFileListVisual
                         </ul>
                     </div>
                     }
-                    {/* <div className="uploadArea"> {newFileUploadText} <br></br>
+                    <div className="uploadArea"> {newFileUploadText} <br></br>
                         {uploadConfirm === false &&  
                         <input 
                             type="file"
@@ -839,7 +834,7 @@ console.log("before adding one-new-item to local list: ", usersAllFileListVisual
                         {uploadConfirm === true && <button onClick={()=>{setFileSelected(""); setUploadConfirm(false);}}>{cancelText}</button>}
                         {uploadConfirm === false && <button onClick={()=>{submitFiletocloud("audio", fileSelected); setUploadConfirm(true);}}>{confirmText}</button>}
                         {uploadConfirm === true && <button onClick={()=>{submitFiletocloud("audio", fileSelected); setFileSelected(""); setUploadConfirm(false);}}>{submitText}</button>}
-                    </div> */}
+                    </div>
 
                 </div>
                 
@@ -853,7 +848,7 @@ console.log("before adding one-new-item to local list: ", usersAllFileListVisual
                         varPairInfo={audioVarPairs} 
                         selectedUrl={clickedFileUrl} 
                         storeNewVarPairDataFunction={storeNewVarPairDataFunction_rmLayer} 
-                        fileType="audio" saveToCloudFunc={updatevarPairToOuter_local}
+                        fileType="audio"
                     />}
                 </div>
 
