@@ -4,7 +4,6 @@ import langDictionary from './_textDictionary';
 //TODO1090 cloud-db related
 import { fetchEmuData1GdtVM, fetchEmuData2EppVM, fetchEmuData3EpaVM, fetchEmuData4EssVM, fetchEmuData5ShpVM, updateAllSetsVM } from '../viewmodels/EmuManagingViewModel';
 import { getProjectGameDataDesignVM } from '../viewmodels/GameDataViewModel';
-import { fetchProjectResourceVarPairsVM } from '../viewmodels/ResourceManagerViewModel';
 //TODO6000 offline mode prep
 
 import { prepare1Gdt_vm, prepare2Epp_vm, prepare3Epa_vm, 
@@ -16,23 +15,20 @@ import { prepare1Gdt_vm, prepare2Epp_vm, prepare3Epa_vm,
 //fetch data from cloud, and update to outer-layer when user-changed...
 export default function Modal_EmuManager({
     handleEmCancel,
-    getUILanguage,
-    
+
+    languageCodeTextOption,
+    projName,
+    username,
+    backendOption,
+    editorMode,            //"offline_half"       "offline_full"        "online_cloud"  
+    getVisualPairs,
+
     update1Gdt, update2Epp, update3Epa, update4Ess, update5Shp,
     
     isForGameMaker,
-    projName,
-    getUsername,
     
-    editorMode,            //"offline_half"       "offline_full"        "online_cloud"  
-    getBackendOption,
-
-    getLocalProjectDataEmu,
-
     
 }) {
-
-    const [backendOption, setBackendOption] = useState("firebase");    
 
 
 //allows user to setup emu-data for testing
@@ -50,7 +46,6 @@ export default function Modal_EmuManager({
     let modalStyleName = "displayBlock modalBackboard"; //TODO temp, fixing
 
 
-    const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en');
     let textDictItem = langDictionary[languageCodeTextOption];
     let textDictItemDefault = langDictionary["en"];
 
@@ -157,8 +152,6 @@ export default function Modal_EmuManager({
 
 //TODO15
 
-
-    const [username, setUsername] = useState("_");    
 
     const [visualMap, setVisualMap] = useState({});
 
@@ -454,10 +447,9 @@ export default function Modal_EmuManager({
 
     useEffect(() => {
 
-        let uname = getUsername();
+        let uname = username;
      
         if (uname !== "_" && firstTimeEnter === true) {
-            setUsername(uname);
 
 
             console.log("\t\temu-mgr........ username = ", uname, "... projectname = ", projName);
@@ -469,7 +461,7 @@ export default function Modal_EmuManager({
             // prepare4Ess(uname);                                   //TODO later
             // prepare5Shp(uname);
     
-            fetchVisualListFromCloud(uname);
+            fetchVisualListFromOuter(uname);
     
     
             update1GdtToOuterLayer(); 
@@ -481,17 +473,9 @@ export default function Modal_EmuManager({
         }
 
 
-
-        let backendOptionTemp = getBackendOption(); //future: different backend-option (firebase, etc.)
-        setBackendOption(backendOptionTemp);
-
-        let UILang = getUILanguage();
-        prepUILange(UILang);
     });
 
-    function prepUILange(langOption) {
-        setLanguageCodeTextOption(langOption);
-    }
+
 
     async function saveAllChangesToCloud() {
 
@@ -529,21 +513,10 @@ export default function Modal_EmuManager({
 
     }
 
-    async function fetchVisualListFromCloud(providedUname) { //TODO6000 can fetch resource-list from outer-game-maker, change later
+    async function fetchVisualListFromOuter(providedUname) { //TODO6000 can fetch resource-list from outer-game-maker, change later
 
         
-        let obj = {};
-        if (editorMode === "online_cloud") {
-                    obj = await fetchProjectResourceVarPairsVM({
-                        userName: providedUname, 
-                        projectName: projName,
-                        bkOption: backendOption //TODO999
-                    });//TODO99999 remove this cloud-func!!
-
-        } else {
-                    obj = getLocalProjectDataEmu();
-
-        }
+        let obj = getVisualPairs();
 
 
         if (obj === undefined || obj === null || obj.visual === undefined) {
@@ -630,7 +603,9 @@ return (<div className={modalStyleName}>
                 "marginLeft": "20%",
                 "borderRadius": "0px"
             }}>
-{isForGameMaker === true && <div className="someGrey parallelFrame"
+{isForGameMaker === true 
+    && 
+    <div className="someGrey parallelFrame"
                     style={{
                         "borderRadius": "0px"
                     }}

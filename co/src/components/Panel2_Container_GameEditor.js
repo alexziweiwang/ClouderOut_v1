@@ -701,6 +701,13 @@ export default function Panel2_Container_GameEditor() {
         return nodeObject;
     }
 
+    function passInVisualPairs() {
+        let visualVarPairs = projectMetaData["proj_resource_visual"];
+
+        return visualVarPairs !== undefined ? visualVarPairs : {};
+
+    }
+
     function receiveUpdateForCurrNodeObject(nodeKeyTemp, nodeObjectUpdated) {
         let allNodeTemp = projectAllNodeContent;
         allNodeTemp[nodeKeyTemp] = nodeObjectUpdated;
@@ -1528,17 +1535,14 @@ return (
 
               isForGameMaker={true}
 
+              getVisualPairs={passInVisualPairs}
+
 
             //   update1Gdt={getUserConfigFromEmuManager1Gdt}
             //   update2Epp={getUserConfigFromEmuManager2Epp}
             //   update3Epa={getUserConfigFromEmuManager3Epa}
             //   update4Ess={getUserConfigFromEmuManager4Ess}
             //   update5Shp={getUserConfigFromEmuManager5Shp}
-
-
-
-            //   getLocalProjectDataEmu={passInLocalProjectData_Emu}
-
 
             />
           </div>}
