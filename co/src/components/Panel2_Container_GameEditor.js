@@ -952,6 +952,10 @@ console.log("ui-langauge changed to: ", val);
         setDisplayGdmBool(false);
     }
 
+    function handleEmuManagerCancel() {
+        setDisplayEmBool(false);
+    }
+
 
     function triggerGameDataDesignListChange(data) {
         //TODO999 update game-data-design-list
@@ -1326,7 +1330,7 @@ return (
                     <button 
                     className="rmTab" 
                     onClick={()=>{
-                //       setDisplayEmBool(true);
+                       setDisplayEmBool(true);
                         }}>
                         {emuManagerText}
                     </button>
@@ -1513,29 +1517,30 @@ return (
 
           {isDisplayEmBool === true && <div>
 
-            {/* <Modal_EmuManager
+            <Modal_EmuManager
               handleEmCancel={handleEmuManagerCancel}
+              languageCodeTextOption={projectMetaData[["ui_language"]]} //TODO change
 
-
-              update1Gdt={getUserConfigFromEmuManager1Gdt}
-              update2Epp={getUserConfigFromEmuManager2Epp}
-              update3Epa={getUserConfigFromEmuManager3Epa}
-              update4Ess={getUserConfigFromEmuManager4Ess}
-              update5Shp={getUserConfigFromEmuManager5Shp}
+              projName={state.selected_project_name}   
+              username={authEmailName}
+              backendOption={backendOption}
+              editorMode={state.mode}
 
               isForGameMaker={true}
 
-              projName={projectName}  
-              getUsername={passInAuthEmailName}
 
-              getBackendOption={passInBackendOption}
-              editorMode={editorMode}
+            //   update1Gdt={getUserConfigFromEmuManager1Gdt}
+            //   update2Epp={getUserConfigFromEmuManager2Epp}
+            //   update3Epa={getUserConfigFromEmuManager3Epa}
+            //   update4Ess={getUserConfigFromEmuManager4Ess}
+            //   update5Shp={getUserConfigFromEmuManager5Shp}
 
-              getLocalProjectDataEmu={passInLocalProjectData_Emu}
 
-              getUILanguage={passInUiLanguageOption} //TODO keep this
 
-            /> */}
+            //   getLocalProjectDataEmu={passInLocalProjectData_Emu}
+
+
+            />
           </div>}
 
 
