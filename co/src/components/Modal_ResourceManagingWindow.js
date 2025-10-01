@@ -139,6 +139,8 @@ export default function Modal_ResourceManagingWindow ({
     
     const [varPairForOuter, setVarPairForOuter] = useState("default");
 
+    const [nowFetchingRmList, setNowFetchingRmList] = useState(false);
+
     const [cloudUpdated, setCloudUpdated] = useState(false); //TODO15 
 
 
@@ -151,8 +153,10 @@ export default function Modal_ResourceManagingWindow ({
         }
 
         if (usersAllFileListVisual === undefined || usersAllFileListAudio === undefined) {
-            console.log("init ... ");
-            fetchRmFileList_currLayer(username);
+            
+                fetchRmFileList_currLayer(username);  
+            
+            
 
         }
 
@@ -455,17 +459,26 @@ console.log("before adding one-new-item to local list: ", usersAllFileListVisual
 
     async function fetchRmFileList_currLayer(authUsername) { //TODO temp debugging
 
+
         if (editorMode === "online_cloud") {
+
+
+            console.log("starting -- fetchRmFileList_currLayer !");
+            if (nowFetchingRmList === false) {
+                setNowFetchingRmList(true);
 
                 await fetchRmFileListVM({
                     uname: authUsername,
                     bkOption: backendOption 
                 }).then((fileList)=>{
-                                            console.log("finished -- get-rm-filelist-vm");
 
-                    organizeAllLists(fileList.filename_records);            
+                    organizeAllLists(fileList.filename_records);
+                    setNowFetchingRmList(false);
+                                console.log("finished -- get-rm-filelist-vm");
+
                 });
-            
+            }
+
         }
     }
 

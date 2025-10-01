@@ -330,7 +330,12 @@ export default function Panel2_Container_GameEditor() {
         
     useEffect(()=>{
         setSavedToCloud_metadata(false); 
-        
+        let varPairObj = {
+            "visual": projectMetaData["proj_resource_visual"],
+            "audio": projectMetaData["proj_resource_audio"]
+        }
+        setResourcePair(varPairObj);
+
         //track if either node-content or metadata changed
     }, [
         projectMetaData
