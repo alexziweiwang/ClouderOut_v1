@@ -619,56 +619,69 @@ export default function Panel2_Container_GameEditor() {
      
     
     }
-      function getUserConfigFromEmuManager1Gdt(data1) {
-    //update data1 to be the new Game-Data-Tracker
-    //TODO  //recreate emu data object
-    setTestPlayerGameDataTracker(data1);
-  }
 
-  function getUserConfigFromEmuManager2Epp(data2) {
-    //update data2 to be the new Emu-Player-Profile
-    //TODO  //recreate emu data object
+    function updateUserConfigFromEmuManager1Gdt(data1) {
+        //update data1 to be the new Game-Data-Tracker
+        //TODO  //recreate emu data object
+        let entireEmuD = projectMetaData["emu4sets"];
+        entireEmuD["gdt1"] = data1;
 
-    setTestPlayerProfile(data2);
-  }
-
-  function getUserConfigFromEmuManager3Epa(data3) {
-    //update data3 to be the new Emu Player Account
-    //TODO  //recreate emu data object
-
-    setTestPlayerAccount(data3);
-  }
-
-  function getUserConfigFromEmuManager4Ess(data4) {
-    //TODO update data4 to be the new Emu SL slots
-    //TODO  //recreate emu data object
-    
-    //TODO temp: not using
-  }
-
-  function getUserConfigFromEmuManager5Shp(data5) {
-    //TODO update data5 to be emu-shop-product-list data
-    //TODO  //recreate emu data object
-
-    let obj5 = data5;
-                              //console.log("game-maker recevied 5 shp = " , data5);
-    if (obj5 === undefined) {
-      return;
+        setTestPlayerGameDataTracker(data1);
     }
 
-    let shopStock = obj5["shopStock"];
-    let playerPurchase = obj5["playerPurchaseStatus"];
+    function updateUserConfigFromEmuManager2Epp(data2) {
+        //update data2 to be the new Emu-Player-Profile
+        //TODO  //recreate emu data object
+        let entireEmuD = projectMetaData["emu4sets"];
+        entireEmuD["epp2"] = data2;
 
-    if (shopStock === undefined || playerPurchase === undefined) {
-      return;
+        setTestPlayerProfile(data2);
     }
-                              // console.log("game-maker recevied 5 shp - stock = " , shopStock);
-                              // console.log("game-maker recevied 5 shp - player-purchase = " , playerPurchase);
 
-    setTestShopProducts(shopStock);
-    setTestPlayerPurchaseStatus(playerPurchase);
-    
-  }  
+    function updateUserConfigFromEmuManager3Epa(data3) {
+        //update data3 to be the new Emu Player Account
+        //TODO  //recreate emu data object
+
+        let entireEmuD = projectMetaData["emu4sets"];
+        entireEmuD["epa3"] = data3;
+
+        setTestPlayerAccount(data3);
+    }
+
+    function updateUserConfigFromEmuManager4Ess(data4) {
+        //TODO update data4 to be the new Emu SL slots
+        //TODO  //recreate emu data object
+        let entireEmuD = projectMetaData["emu4sets"];
+        entireEmuD["ess4"] = data4;
+        
+        //TODO temp: not using
+    }
+
+    function updateUserConfigFromEmuManager5Shp(data5) {
+        //TODO update data5 to be emu-shop-product-list data
+        //TODO  //recreate emu data object
+        let entireEmuD = projectMetaData["emu4sets"];
+        entireEmuD["shp5"] = data5;
+        
+        let obj5 = data5;
+                                //console.log("game-maker recevied 5 shp = " , data5);
+        if (obj5 === undefined) {
+        return;
+        }
+
+        let shopStock = obj5["shopStock"];
+        let playerPurchase = obj5["playerPurchaseStatus"];
+
+        if (shopStock === undefined || playerPurchase === undefined) {
+        return;
+        }
+                                // console.log("game-maker recevied 5 shp - stock = " , shopStock);
+                                // console.log("game-maker recevied 5 shp - player-purchase = " , playerPurchase);
+
+        setTestShopProducts(shopStock);
+        setTestPlayerPurchaseStatus(playerPurchase);
+        
+    }  
 
 
 
@@ -796,7 +809,7 @@ export default function Panel2_Container_GameEditor() {
 
     }
 
-    async function getUserConfigFromDataMgr1Gdt(gameDataDesignList) {
+    async function updateUserConfigFromDataMgr1Gdt(gameDataDesignList) {
         //when game-data-design-list updates, the emu-data prepares with its default value
 
         let emuGdt1Temp = testPlayerGameDataTracker; //TODO99999
@@ -840,13 +853,13 @@ export default function Panel2_Container_GameEditor() {
                                                     //     bkOption: backendOption
                                                     // });
 
-        await updateProjectMetadataSingleFieldVM({
-            projectName: state.selected_project_name, 
-            currUser: authEmailName, 
-            fieldName: "emu4sets", 
-            contentValue: resObj, 
-            bkOption: backendOption 
-        });
+        // await updateProjectMetadataSingleFieldVM({
+        //     projectName: state.selected_project_name, 
+        //     currUser: authEmailName, 
+        //     fieldName: "emu4sets", 
+        //     contentValue: resObj, 
+        //     bkOption: backendOption 
+        // });
 
 //TODO300
     
@@ -1508,7 +1521,7 @@ return (
 
                 initialGameDataDesign={projectMetaData["game_data"]}
 
-                updateForEmuGdt1={getUserConfigFromDataMgr1Gdt}
+                updateForEmuGdt1={updateUserConfigFromDataMgr1Gdt}
 
                 updateGameDataDesignListToOuterLayer={triggerGameDataDesignListChange}
 
@@ -1538,11 +1551,11 @@ return (
               getVisualPairs={passInVisualPairs}
 
 
-            //   update1Gdt={getUserConfigFromEmuManager1Gdt}
-            //   update2Epp={getUserConfigFromEmuManager2Epp}
-            //   update3Epa={getUserConfigFromEmuManager3Epa}
-            //   update4Ess={getUserConfigFromEmuManager4Ess}
-            //   update5Shp={getUserConfigFromEmuManager5Shp}
+              update1Gdt={updateUserConfigFromEmuManager1Gdt}
+              update2Epp={updateUserConfigFromEmuManager2Epp}
+              update3Epa={updateUserConfigFromEmuManager3Epa}
+              update4Ess={updateUserConfigFromEmuManager4Ess}
+              update5Shp={updateUserConfigFromEmuManager5Shp}
 
             />
           </div>}
