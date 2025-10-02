@@ -135,16 +135,16 @@ export default function Panel2_Container_GameEditor() {
     const [chapListNestedArr, setChapListNestedArr] = useState([]);
 
     /* testing-emu-data, for test-viewing and emu-manager */
-    const [testPlayerGameDataTracker, setTestPlayerGameDataTracker] = useState({});   //TODO important for holder-in-practice
-    const [testPlayerProfile, setTestPlayerProfile] = useState({});                                                       //TODO important for holder-in-practice
-    const [testPlayerAccount, setTestPlayerAccount] = useState({});                                                       //TODO important for holder-in-practice
-    const [testPlayerSLRecords, setTestPlayerSLRecords] = useState({
-        "playername": "playerA",
-        "itemStatus": [{}, {}, {}]
-    });
+    //1 const [testPlayerGameDataTracker, setTestPlayerGameDataTracker] = useState({});   //TODO important for holder-in-practice
+    //1 const [testPlayerProfile, setTestPlayerProfile] = useState({});                                                       //TODO important for holder-in-practice
+    //1 const [testPlayerAccount, setTestPlayerAccount] = useState({});                                                       //TODO important for holder-in-practice
+    //1 const [testPlayerSLRecords, setTestPlayerSLRecords] = useState({
+    //     "playername": "playerA",
+    //     "itemStatus": [{}, {}, {}]
+    // });
     
-    const [testShopProducts, setTestShopProducts] = useState({});
-    const [testPlayerPurchaseStatus, setTestPlayerPurchaseStatus] = useState({});
+    //1 const [testShopProducts, setTestShopProducts] = useState({});
+    //1 const [testPlayerPurchaseStatus, setTestPlayerPurchaseStatus] = useState({});
   
 
 
@@ -625,8 +625,11 @@ export default function Panel2_Container_GameEditor() {
         //TODO  //recreate emu data object
         let entireEmuD = projectMetaData["emu4sets"];
         entireEmuD["gdt1"] = data1;
+        setProjectMetaData({...projectMetaData,
+            "emu4sets": entireEmuD
+        });
 
-        setTestPlayerGameDataTracker(data1);
+    //1    setTestPlayerGameDataTracker(data1);
     }
 
     function updateUserConfigFromEmuManager2Epp(data2) {
@@ -634,8 +637,11 @@ export default function Panel2_Container_GameEditor() {
         //TODO  //recreate emu data object
         let entireEmuD = projectMetaData["emu4sets"];
         entireEmuD["epp2"] = data2;
+        setProjectMetaData({...projectMetaData,
+            "emu4sets": entireEmuD
+        });
 
-        setTestPlayerProfile(data2);
+    //1    setTestPlayerProfile(data2);
     }
 
     function updateUserConfigFromEmuManager3Epa(data3) {
@@ -644,8 +650,11 @@ export default function Panel2_Container_GameEditor() {
 
         let entireEmuD = projectMetaData["emu4sets"];
         entireEmuD["epa3"] = data3;
+        setProjectMetaData({...projectMetaData,
+            "emu4sets": entireEmuD
+        });
 
-        setTestPlayerAccount(data3);
+    //1    setTestPlayerAccount(data3);
     }
 
     function updateUserConfigFromEmuManager4Ess(data4) {
@@ -653,6 +662,9 @@ export default function Panel2_Container_GameEditor() {
         //TODO  //recreate emu data object
         let entireEmuD = projectMetaData["emu4sets"];
         entireEmuD["ess4"] = data4;
+        setProjectMetaData({...projectMetaData,
+            "emu4sets": entireEmuD
+        });
         
         //TODO temp: not using
     }
@@ -662,6 +674,9 @@ export default function Panel2_Container_GameEditor() {
         //TODO  //recreate emu data object
         let entireEmuD = projectMetaData["emu4sets"];
         entireEmuD["shp5"] = data5;
+        setProjectMetaData({...projectMetaData,
+            "emu4sets": entireEmuD
+        });
         
         let obj5 = data5;
                                 //console.log("game-maker recevied 5 shp = " , data5);
@@ -678,8 +693,8 @@ export default function Panel2_Container_GameEditor() {
                                 // console.log("game-maker recevied 5 shp - stock = " , shopStock);
                                 // console.log("game-maker recevied 5 shp - player-purchase = " , playerPurchase);
 
-        setTestShopProducts(shopStock);
-        setTestPlayerPurchaseStatus(playerPurchase);
+   //1     setTestShopProducts(shopStock);
+   //1     setTestPlayerPurchaseStatus(playerPurchase);
         
     }  
 
@@ -812,7 +827,7 @@ export default function Panel2_Container_GameEditor() {
     async function updateUserConfigFromDataMgr1Gdt(gameDataDesignList) {
         //when game-data-design-list updates, the emu-data prepares with its default value
 
-        let emuGdt1Temp = testPlayerGameDataTracker; //TODO99999
+        let emuGdt1Temp = projectMetaData["emu4sets"]["gdt1"]; //TODO99999
       
         Object.keys(gameDataDesignList).map((currKey) => {
             if (currKey === "placeholder123456789___###___###___##") {
@@ -837,12 +852,12 @@ export default function Panel2_Container_GameEditor() {
     
         });
     
-        setTestPlayerGameDataTracker(emuGdt1Temp);
+  //1  setTestPlayerGameDataTracker(emuGdt1Temp);
     
         let resObj = {};
         resObj["gdt1"] = emuGdt1Temp;
-        resObj["epp2"] = testPlayerProfile;
-        resObj["epa3"] = testPlayerAccount;
+        resObj["epp2"] = projectMetaData["emu4sets"]["epp2"];
+        resObj["epa3"] = projectMetaData["emu4sets"]["epa3"];
         resObj["ess4"] = {"placeholder": "placerholder"};
         resObj["shp5"] = {"placeholder": "placerholder"};
     
@@ -941,27 +956,27 @@ console.log("ui-langauge changed to: ", val);
     }
 
     function passInTestPlayerGameDataTracker() {
-        return testPlayerGameDataTracker;
+        return projectMetaData["emu4sets"]["gdt1"];
     }
 
     function passInTestPlayerProfile() {
-        return testPlayerProfile;
+        return projectMetaData["emu4sets"]["epp2"];
     }
 
     function passInTestPlayerAccount() {
-        return testPlayerAccount;
+        return projectMetaData["emu4sets"]["epa3"];
     }
 
     function passInTestPlayerSLRecords() {
-        return testPlayerSLRecords;
+        return projectMetaData["emu4sets"]["ess4"];
     }
 
     function passInTestShopProducts() {
-        return testShopProducts;
+        return projectMetaData["emu4sets"]["shp5"]["shopStock"];
     }
 
     function passInTestPlayerPurchaseStatus() {
-        return testPlayerPurchaseStatus;
+        return projectMetaData["emu4sets"]["shp5"]["playerPurchaseStatus"];
     }
 
     function handleResourceManagerCancel() {
@@ -1584,14 +1599,14 @@ return (
             initialChapterList={chapListNestedArr}
             initialCurrChapterAllNodeMapping={projectMetaData["chapterNodeMapping"]}
 
-            initialPlayerGameDataTracker={testPlayerGameDataTracker} //TODo emu-4sets
-            initialPlayerProfile={testPlayerProfile} //TODo emu-4sets
-            initialPlayerAccountSettings={testPlayerAccount} //TODo emu-4sets
+            initialPlayerGameDataTracker={projectMetaData["emu4sets"]["gdt1"]} //TODo emu-4sets
+            initialPlayerProfile={projectMetaData["emu4sets"]["epp2"]} //TODo emu-4sets
+            initialPlayerAccountSettings={projectMetaData["emu4sets"]["epa3"]} //TODo emu-4sets
         
-            initialPlayerSlRecords={testPlayerSLRecords} //TODO emu-4sets
+            initialPlayerSlRecords={projectMetaData["emu4sets"]["ess4"]} //TODO emu-4sets
 
-            initialShopItemInfo={testShopProducts} //TODO emu-4sets
-            initialPlayerPurchaseInfo={testPlayerPurchaseStatus} //TODO emu-4sets
+            initialShopItemInfo={projectMetaData["emu4sets"]["shp5"]["shopStock"]} //TODO emu-4sets
+            initialPlayerPurchaseInfo={projectMetaData["emu4sets"]["shp5"]["playerPurchaseStatus"]} //TODO emu-4sets
 
 
             uiLangOption={projectMetaData["ui_language"]}
