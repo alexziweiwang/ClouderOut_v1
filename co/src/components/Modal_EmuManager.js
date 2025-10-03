@@ -276,7 +276,6 @@ export default function Modal_EmuManager({
         update1Gdt(outputVer);
     }
 
-
     function update2EppToOuterLayer() {
         let outputVer = makeDupEpp2_vm(epp2);
         update2Epp(outputVer);
@@ -303,14 +302,19 @@ export default function Modal_EmuManager({
  
     async function prepare1Gdt_local(providedUname) {
         await prepare1Gdt_vm(providedUname, projName, backendOption, setGdt1, update1Gdt, editorMode);
+    //TODO99999 for local-change
     }
 
     async function prepare2Epp_local(providedUname) {
         await prepare2Epp_vm(providedUname, projName, backendOption, setEpp2, update2Epp, editorMode);
+    //TODO99999 for local-change
+
     }          
     
     async function prepare3Epa_local(providedUname) {
         await prepare3Epa_vm(providedUname, projName, backendOption, setEpa3, update3Epa, editorMode);
+    //TODO99999 for local-change
+
     }
 
     async function prepare4Ess(providedUname) {
@@ -461,13 +465,8 @@ export default function Modal_EmuManager({
             // prepare4Ess(uname);                                   //TODO later
             // prepare5Shp(uname);
     
-            fetchVisualListFromOuter(uname);
+            fetchVisualListFromOuter();
     
-    
-            update1GdtToOuterLayer(); 
-            update2EppToOuterLayer(); 
-            update3EpaToOuterLayer();
-
             setFirstTimeEnter(false);
 
         }
@@ -475,45 +474,57 @@ export default function Modal_EmuManager({
 
     });
 
-
-
-    async function saveAllChangesToCloud() {
-
+          
+    useEffect(()=>{
+        
+    
         update1GdtToOuterLayer(); 
         update2EppToOuterLayer(); 
         update3EpaToOuterLayer();
-        // update 4
-        // update5ShpToOuterLayer();
+
+    }, [
+        gdt1, epp2, epa3, 
+        //ess4, shp5
+    ]);
+
+
+    // async function saveAllChangesToCloud() {
+
+    //     // u pdate1GdtToOuterLayer(); 
+    //     // u pdate2EppToOuterLayer(); 
+    //     // u pdate3EpaToOuterLayer();
+    //     // u pdate 4
+    //     // u pdate5ShpToOuterLayer();
 
         
+    //     //TODO send all 4 sets to cloud
+    //     let resObj = {};
+    //     resObj["gdt1"] = gdt1;
+    //     resObj["epp2"] = epp2;
+    //     resObj["epa3"] = epa3;
+    //     resObj["ess4"] = ess4;
+    //     resObj["shp5"] = shp5;
+
+    //     //TODO trigger change?
+
+    //             // if (editorMode === "online_cloud") {
+
+    //             //     await updateAllSetsVM({
+    //             //         projectName: projName, 
+    //             //         currUser: username, 
+    //             //         dataObj: resObj,
+    //             //         bkOption: backendOption
+    //             //     });
+
+    //             // }
+                
+    //             // alert("Changes updated!");
+    //             // setCloudUpdated(true);
 
 
-        //TODO send all 4 sets to cloud
-        let resObj = {};
-        resObj["gdt1"] = gdt1;
-        resObj["epp2"] = epp2;
-        resObj["epa3"] = epa3;
-        resObj["ess4"] = ess4;
-        resObj["shp5"] = shp5;
+    // }
 
-        if (editorMode === "online_cloud") {
-
-            await updateAllSetsVM({
-                projectName: projName, 
-                currUser: username, 
-                dataObj: resObj,
-                bkOption: backendOption //TODO999
-            });
-
-        }
-        
-        alert("Changes updated!");
-        setCloudUpdated(true);
-
-
-    }
-
-    async function fetchVisualListFromOuter(providedUname) { //TODO6000 can fetch resource-list from outer-game-maker, change later
+    async function fetchVisualListFromOuter() { //TODO6000 can fetch resource-list from outer-game-maker, change later
 
         
         let obj = getVisualPairs();
@@ -571,13 +582,13 @@ return (<div className={modalStyleName}>
             <div
                 style={{"display": "flex", "left": "60%"}}
             >                
-                <button
+                {/* <button
                     className="cursor_pointer"
                     style={{"position": "relative", "left": "30%"}}
                     onClick={()=>{
                         saveAllChangesToCloud(); //TODO impl later
                     }}
-                >{saveToCloudText}</button>
+                >{saveToCloudText}</button> */}
             
 
             <button className="cursor_pointer modalClose" 
