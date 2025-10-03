@@ -1564,7 +1564,8 @@ return (
               isForGameMaker={true}
 
               getVisualPairs={passInVisualPairs}
-
+              gameDataDesign={projectMetaData["game_data"]}
+              emuDataSets={projectMetaData["emu4sets"]}
 
               update1Gdt={updateUserConfigFromEmuManager1Gdt}
               update2Epp={updateUserConfigFromEmuManager2Epp}

@@ -3,8 +3,7 @@ import langDictionary from './_textDictionary';
 
 //TODO1090 cloud-db related
 import { fetchEmuData1GdtVM, fetchEmuData2EppVM, fetchEmuData3EpaVM, fetchEmuData4EssVM, fetchEmuData5ShpVM, updateAllSetsVM } from '../viewmodels/EmuManagingViewModel';
-import { getProjectGameDataDesignVM } from '../viewmodels/GameDataViewModel';
-//TODO6000 offline mode prep
+
 
 import { prepare1Gdt_vm, prepare2Epp_vm, prepare3Epa_vm, 
     makeDupGdt1_vm, makeDupEpp2_vm, makeDupEpa3_vm, makeDupShp5_vm
@@ -22,6 +21,8 @@ export default function Modal_EmuManager({
     backendOption,
     editorMode,            //"offline_half"       "offline_full"        "online_cloud"  
     getVisualPairs,
+    gameDataDesign,
+    emuDataSets,
 
     update1Gdt, update2Epp, update3Epa, update4Ess, update5Shp,
     
@@ -300,9 +301,20 @@ export default function Modal_EmuManager({
     }
 
  
-    async function prepare1Gdt_local(providedUname) {
-        await prepare1Gdt_vm(providedUname, projName, backendOption, setGdt1, update1Gdt, editorMode);
-    //TODO99999 for local-change
+    function prepare1Gdt_local(providedUname) {
+        //TODO99999 have the EmuData1Gdt and gameDataDesign ready here
+        let gdt1Item = emuDataSets["gdt1"];
+
+        prepare1Gdt_vm(
+            gdt1Item,
+
+            setGdt1, 
+            update1Gdt, 
+
+            gameDataDesign
+            
+        );
+
     }
 
     async function prepare2Epp_local(providedUname) {
@@ -524,7 +536,7 @@ export default function Modal_EmuManager({
 
     // }
 
-    async function fetchVisualListFromOuter() { //TODO6000 can fetch resource-list from outer-game-maker, change later
+    function fetchVisualListFromOuter() { //TODO6000 can fetch resource-list from outer-game-maker, change later
 
         
         let obj = getVisualPairs();
