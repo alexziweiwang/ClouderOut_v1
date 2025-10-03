@@ -71,24 +71,25 @@ export function prepare1Gdt_vm(
 
 
 
-export async function prepare2Epp_vm(providedUname, projName, backendOption, setEpp2, update2Epp, offlineModeName) {
+export async function prepare2Epp_vm(
+    epp2Item,
     
-    let tempObj2 = {}; //TODO template-epp2
+    setEpp2, 
+    update2Epp, 
     
-    if (offlineModeName === "online_cloud") {
-        tempObj2 = await fetchEmuData2EppVM({
-            projectName: projName, 
-            currUser: providedUname,
-            bkOption: backendOption
-        });
-    }
+) {
+    
+    let tempObj2 = epp2Item;
+    
 
     let objSize = 0;
     if (tempObj2 !== undefined) {
         objSize = Object.keys(tempObj2).length;
-    } 
-
-    if (objSize === 0 || tempObj2 === undefined || tempObj2 === null) {
+    } else if (
+        objSize === 0 
+        || tempObj2 === undefined 
+        || tempObj2 === null
+    ) {
         // initialize
 
         tempObj2 = { 

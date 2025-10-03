@@ -301,7 +301,7 @@ export default function Modal_EmuManager({
     }
 
  
-    function prepare1Gdt_local(providedUname) {
+    function prepare1Gdt_local() {
         //TODO99999 have the EmuData1Gdt and gameDataDesign ready here
         let gdt1Item = emuDataSets["gdt1"];
 
@@ -311,14 +311,23 @@ export default function Modal_EmuManager({
             setGdt1, 
             update1Gdt, 
 
-            gameDataDesign
-            
+            gameDataDesign            
         );
 
     }
 
-    async function prepare2Epp_local(providedUname) {
-        await prepare2Epp_vm(providedUname, projName, backendOption, setEpp2, update2Epp, editorMode);
+    function prepare2Epp_local(providedUname) {
+
+        let epp2Item = emuDataSets["epp2"];
+
+        prepare2Epp_vm(
+            epp2Item,
+            
+            setEpp2, 
+            update2Epp, 
+            
+            
+        );
     //TODO99999 for local-change
 
     }          
@@ -470,7 +479,7 @@ export default function Modal_EmuManager({
 
             console.log("\t\temu-mgr........ username = ", uname, "... projectname = ", projName);
     
-            prepare1Gdt_local(uname);
+            prepare1Gdt_local();
             prepare2Epp_local(uname);
             prepare3Epa_local(uname);
 
