@@ -71,7 +71,7 @@ export function prepare1Gdt_vm(
 
 
 
-export async function prepare2Epp_vm(
+export function prepare2Epp_vm(
     epp2Item,
     
     setEpp2, 
@@ -108,25 +108,19 @@ export async function prepare2Epp_vm(
 }  
 
 
-export async function prepare3Epa_vm(providedUname, projName, backendOption, setEpa3, update3Epa, offlineModeName) {
-    let tempObj3 = {}; //TODO temp3
-    
-    if (offlineModeName === "online_cloud") {
+export function prepare3Epa_vm(
+    epa3Item, 
 
-        tempObj3 = await fetchEmuData3EpaVM({
-            projectName: projName, 
-            currUser: providedUname,
-            bkOption: backendOption
-        });
-    }
-
+    setEpa3, 
+    update3Epa, 
+        
+) {
+    let tempObj3 = epa3Item;
 
     let objSize = 0;
     if (tempObj3 !== undefined) {
         objSize = Object.keys(tempObj3).length;
-    } 
-
-    if (objSize === 0 || tempObj3 === undefined || tempObj3 === null) {
+    } else if (objSize === 0 || tempObj3 === undefined || tempObj3 === null) {
         tempObj3 = {
             "playername": "playerA",
             "email": "example@email.com",
