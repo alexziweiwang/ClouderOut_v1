@@ -859,6 +859,7 @@
 
 - 2025-Oct-02: Design testing-project plot
 
+- 2025-Oct-03: Improve manager(emu-data) optimization action items
 
 
 
