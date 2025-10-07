@@ -150,34 +150,36 @@ export function makeDupGdt1_vm(data1) {
     }
 
     let largeMap = {};
-    {Object.keys(data1).map((currKey) => {
-        let dataItemSource = data1[currKey];
-        let dataItemDest = duplicateObject(dataItemSource);
 
+    Object.keys(data1).map((currKey) => {
+            let dataItemSource = data1[currKey];
 
+            let dataItemDest = duplicateObject(dataItemSource);
 
-                // let name = data1[currKey]["name"];
-                // let defaultVal = data1[currKey]["default_value"];
-                // let dataType =data1[currKey]["data_type"];
-                // let currVal = data1[currKey]["current_value"];
+                    // let name = data1[currKey]["name"];
+                    // let defaultVal = data1[currKey]["default_value"];
+                    // let dataType =data1[currKey]["data_type"];
+                    // let currVal = data1[currKey]["current_value"];
 
-                // let obj = {
-                //     "name": name,
-                //     "default_value": defaultVal,
-                //     "data_type": dataType,
-                //     "current_value": currVal
-                // }
-                // let keyStr = currKey;
-                // largeMap[keyStr] = obj;
+                    // let obj = {
+                    //     "name": name,
+                    //     "default_value": defaultVal,
+                    //     "data_type": dataType,
+                    //     "current_value": currVal
+                    // }
+                    // let keyStr = currKey;
+                    // largeMap[keyStr] = obj;
 
-        largeMap[currKey] = dataItemDest;
-    })} 
+            largeMap[currKey] = dataItemDest;
+        }
+    );
+    
 
     return largeMap;
 }
 
 export function makeDupEpp2_vm(data2) {
-    let tempObj = duplicateObject(data2);
+    return duplicateObject(data2);
 
                                 // let pn = data2["playername"];
                                 // let ut = data2["userTitle"];
@@ -193,11 +195,10 @@ export function makeDupEpp2_vm(data2) {
                                 //     "membership": mbsp,
                                 // };
 
-    return tempObj;
 }
 
 export function makeDupEpa3_vm(data3) {
-    let tempObj = duplicateObject(data3);
+    return duplicateObject(data3);
                                 // let pn = data3["playername"];
                                 // let eml = data3["email"];
 
@@ -206,13 +207,10 @@ export function makeDupEpa3_vm(data3) {
                                 //     "email": eml,            
                                 // }
 
-    return tempObj;
 }
 
 export function makeDupEss4_vm(data4) {
-    let tempObj = duplicateObject(data4);
-
-    return tempObj;
+    return duplicateObject(data4);
 
 }
 
@@ -221,39 +219,43 @@ export function makeDupEss4_vm(data4) {
 export function makeDupShp5_vm(data) {
     //TODO200 make-dup first, and send only the dup-ver.
 
+
+
+    let shopStockItemSource = data["shopStock"];
+    let playerPurcSttSource = data["playerPurchaseStatus"];
+
+    let shopStockItemDest= duplicateObject(shopStockItemSource);
+    let playerPurcDest = duplicateObject(playerPurcSttSource);
+
     let tempObj = {
-        "shopStock": [],
-        "playerPurchaseStatus":  []
+        "shopStock": shopStockItemDest,
+        "playerPurchaseStatus":  playerPurcDest
     };
-
-
     
 //TODO900 fix later
 
-    data["shopStock"].map((item, index) => {
-        tempObj["shopStock"]["productKey"] = item["productKey"];
-        tempObj["shopStock"]["productName"] = item["productName"];
-        tempObj["shopStock"]["productPrice"] = item["productPrice"];
-        tempObj["shopStock"]["productInfo"] = item["productInfo"];
-        tempObj["shopStock"]["hidden"] = item["hidden"];
+                                    // data["shopStock"].map((item, index) => {
+                                    //     tempObj["shopStock"]["productKey"] = item["productKey"];
+                                    //     tempObj["shopStock"]["productName"] = item["productName"];
+                                    //     tempObj["shopStock"]["productPrice"] = item["productPrice"];
+                                    //     tempObj["shopStock"]["productInfo"] = item["productInfo"];
+                                    //     tempObj["shopStock"]["hidden"] = item["hidden"];
 
-    });
+                                    // });
 
-    data["playerPurchaseStatus"].map((item, index) => {
-        tempObj["playerPurchaseStatus"]["productKey"] 
-            = item["productKey"];
+                                    // data["playerPurchaseStatus"].map((item, index) => {
+                                    //     tempObj["playerPurchaseStatus"]["productKey"] 
+                                    //         = item["productKey"];
 
-        tempObj["playerPurchaseStatus"]["acquired"] 
-            = item["acquired"];
+                                    //     tempObj["playerPurchaseStatus"]["acquired"] 
+                                    //         = item["acquired"];
 
-        tempObj["playerPurchaseStatus"]["acquiredTimeStamp"] 
-            = item["acquiredTimeStamp"];
-        
-    });
+                                    //     tempObj["playerPurchaseStatus"]["acquiredTimeStamp"] 
+                                    //         = item["acquiredTimeStamp"];
+                                        
+                                    // });
 
 
-
-                                // VM func for shop-product-items
 
 
     return tempObj;
