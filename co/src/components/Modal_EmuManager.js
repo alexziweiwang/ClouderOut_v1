@@ -314,10 +314,10 @@ export default function Modal_EmuManager({
     }
     
 
-    // function update4EssToOuterLayer(data4) {
-    //     //ess4
-    //     update4Ess(data4);
-    // } //TODO temp: not using
+    function update4EssToOuterLayer(data4) {
+        //ess4
+        update4Ess(data4);
+    } //TODO temp: not using
 
 
     function update5ShpToOuterLayer() { 
