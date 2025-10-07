@@ -1,11 +1,9 @@
 import { useState, useEffect } from 'react';
 import langDictionary from './_textDictionary';
 
-//TODO1090 cloud-db related
-import { fetchEmuData1GdtVM, fetchEmuData2EppVM, fetchEmuData3EpaVM, fetchEmuData4EssVM, fetchEmuData5ShpVM, updateAllSetsVM } from '../viewmodels/EmuManagingViewModel';
 
-
-import { prepare1Gdt_vm, prepare2Epp_vm, prepare3Epa_vm, 
+import { 
+    prepare1Gdt_vm, prepare2Epp_vm, prepare3Epa_vm, 
     makeDupGdt1_vm, makeDupEpp2_vm, makeDupEpa3_vm, makeDupShp5_vm
 
 } from '../viewmodels/PrepAc_EmuData';
@@ -24,7 +22,11 @@ export default function Modal_EmuManager({
     gameDataDesign,
     emuDataSets,
 
-    update1Gdt, update2Epp, update3Epa, update4Ess, update5Shp,
+    update1Gdt, 
+    update2Epp, 
+    update3Epa, 
+    update4Ess, 
+    update5Shp,
     
     isForGameMaker,
     
@@ -44,7 +46,7 @@ export default function Modal_EmuManager({
 //4.Save/Load slot (emu)
 
 
-    let modalStyleName = "displayBlock modalBackboard"; //TODO temp, fixing
+    let modalStyleName = "displayBlock modalBackboard";
 
 
     let textDictItem = langDictionary[languageCodeTextOption];
@@ -276,6 +278,25 @@ export default function Modal_EmuManager({
         update1Gdt(obj);
     }
 
+    function update2Epp_local(obj) {
+        update2Epp(obj);
+    }
+
+    function update3Epa_local(obj) {
+        update3Epa(obj);
+    }
+
+    function update4Ess_local(obj) {
+        update4Ess(obj);
+    }
+
+    function update5Shp_local(obj) {
+        update5Shp(obj);
+    }
+
+
+
+
 
     function update1GdtToOuterLayer() {
         let outputVer = makeDupGdt1_vm(gdt1)
@@ -307,7 +328,7 @@ export default function Modal_EmuManager({
 
  
     function prepare1Gdt_local() {
-        //TODO99999 have the EmuData1Gdt and gameDataDesign ready here
+
         let gdt1Item = emuDataSets["gdt1"];
 
         prepare1Gdt_vm(
@@ -329,7 +350,7 @@ export default function Modal_EmuManager({
             epp2Item,
             
             setEpp2, 
-            update2Epp,   //TODO3
+            update2Epp_local,   //TODO3
             
             
         );
@@ -345,7 +366,7 @@ export default function Modal_EmuManager({
             epa3Item, 
             
             setEpa3, 
-            update3Epa,  //TODO3
+            update3Epa_local,  //TODO3
             
         );
     //TODO99999 for local-change
@@ -366,7 +387,7 @@ export default function Modal_EmuManager({
 
     //                                        console.log("... ess4 prep: ", tempObj4); //TODO test
         // setEss4(tempObj4);
-        // update4Ess(tempObj4);
+        // update4Ess_local(tempObj4);
 
     }
 
@@ -458,7 +479,7 @@ export default function Modal_EmuManager({
 
 
         // setShp5(tempObject5);
-        // update5Shp(tempObject5);
+        // update5Shp_local(tempObject5);
 
     }
 
@@ -476,8 +497,8 @@ export default function Modal_EmuManager({
             prepare2Epp_local();
             prepare3Epa_local();
 
-            // prepare4Ess(uname);                                   //TODO later
-            // prepare5Shp(uname);
+            // prepare4Ess();                                   //TODO later
+            // prepare5Shp();
     
             fetchVisualListFromOuter();
     
@@ -511,15 +532,12 @@ export default function Modal_EmuManager({
     //     // u pdate5ShpToOuterLayer();
 
         
-    //     //TODO send all 4 sets to cloud
     //     let resObj = {};
     //     resObj["gdt1"] = gdt1;
     //     resObj["epp2"] = epp2;
     //     resObj["epa3"] = epa3;
     //     resObj["ess4"] = ess4;
     //     resObj["shp5"] = shp5;
-
-    //     //TODO trigger change?
 
     //             // if (editorMode === "online_cloud") {
 
@@ -538,7 +556,7 @@ export default function Modal_EmuManager({
 
     // }
 
-    function fetchVisualListFromOuter() { //TODO6000 can fetch resource-list from outer-game-maker, change later
+    function fetchVisualListFromOuter() {
 
         
         let obj = getVisualPairs();
@@ -548,7 +566,7 @@ export default function Modal_EmuManager({
             return;
         }
 
-   //     console.log("fetched obj = ", obj.visual);
+                                    console.log("fetched obj = ", obj.visual);
 
         let tempMap = {};
         let resVis = obj.visual;
@@ -563,7 +581,7 @@ export default function Modal_EmuManager({
 
         setVisualMap(tempMap);
 
-                   //                 console.log("emu-mgr, resource -- visual map  = =", tempMap);
+                                    console.log("emu-mgr, resource -- visual map  = =", tempMap);
       }
 
       function deleteShopProduct(index) {
@@ -596,14 +614,6 @@ return (<div className={modalStyleName}>
             <div
                 style={{"display": "flex", "left": "60%"}}
             >                
-                {/* <button
-                    className="cursor_pointer"
-                    style={{"position": "relative", "left": "30%"}}
-                    onClick={()=>{
-                        saveAllChangesToCloud(); //TODO impl later
-                    }}
-                >{saveToCloudText}</button> */}
-            
 
             <button className="cursor_pointer modalClose" 
                 style={{"position": "relative", "left": "60%"}}
