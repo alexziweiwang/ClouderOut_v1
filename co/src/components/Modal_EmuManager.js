@@ -272,6 +272,11 @@ export default function Modal_EmuManager({
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
 
+    function update1Gdt_local(obj) {
+        update1Gdt(obj);
+    }
+
+
     function update1GdtToOuterLayer() {
         let outputVer = makeDupGdt1_vm(gdt1)
         update1Gdt(outputVer);
@@ -309,7 +314,7 @@ export default function Modal_EmuManager({
             gdt1Item,
 
             setGdt1, 
-            update1Gdt,   //TODO3
+            update1Gdt_local,   //TODO3
 
             gameDataDesign            
         );
@@ -349,132 +354,111 @@ export default function Modal_EmuManager({
 
     async function prepare4Ess(providedUname) {
         // if local is not ready, from cloud
-        let tempObj4 = {}; //TODO temp4
         
-        if (editorMode === "online_cloud") {
-
-            tempObj4 = await fetchEmuData4EssVM({
-                projectName: projName, 
-                currUser: providedUname,
-                bkOption: backendOption //TODO999
-            });
-        } else {
-
-            //TODO99
-
-        }
+        let ess4Item = emuDataSets["ess4"];
+ 
 
 
-        let objSize = Object.keys(tempObj4).length;
-        if (objSize === 0 || tempObj4 === undefined || tempObj4 === null) {
-            return;
-        }
+                // let objSize = Object.keys(tempObj4).length;
+                // if (objSize === 0 || tempObj4 === undefined || tempObj4 === null) {
+                //     return;
+                // }
 
     //                                        console.log("... ess4 prep: ", tempObj4); //TODO test
-        setEss4(tempObj4);
-        update4Ess(tempObj4);
+        // setEss4(tempObj4);
+        // update4Ess(tempObj4);
 
     }
 
     async function prepare5Shp(providedUname) {
-        "5shp"
-        let tempObject5 = {}; //TODO temp5
         
+        let shp54Item = emuDataSets["5shp"];
 
-        if (editorMode === "online_cloud") {
 
-            tempObject5 = await fetchEmuData5ShpVM({
-                projectName: projName, 
-                currUser: providedUname,
-                bkOption: backendOption //TODO999
-            });
-        } else {
-            //TODO99
-        }
-
+     
 
                //                             console.log("!!!!! prepare-5shp: ", tempObject5);
 
 
-        if (tempObject5 === undefined || tempObject5 === null || Object.keys(tempObject5).length === 0) {
+        // if (tempObject5 === undefined || tempObject5 === null || Object.keys(tempObject5).length === 0) {
 
-            let stockArrTemp = [
-                {productKey: "pdt1",
-                productName: "product1",
-                productPrice: 30,
-                productInfo: "product1-description",
-                hidden: false,
-               },
-               {productKey: "pdt2",
-                productName: "product2",
-                productPrice: 50,
-                productInfo: "product2-description",
-                hidden: false,
-            },
-               {productKey: "pdt3",
-                productName: "product3",
-                productPrice: 10,
-                productInfo: "product3-description",
-                hidden: false,
-            },
-               {productKey: "pdt4",
-                productName: "product4",
-                productPrice: 30,
-                productInfo: "product4-description",
-                hidden: false,
-            },
-               {productKey: "pdt5",
-                productName: "product5",
-                productPrice: 50,
-                productInfo: "product5-description",
-                hidden: false,
-            },
-               {productKey: "pdt6",
-                productName: "product6",
-                productPrice: 10,
-                productInfo: "product6-description",
-                hidden: false,
-            },
-            ];
+        //     let stockArrTemp = [
+        //         {productKey: "pdt1",
+        //         productName: "product1",
+        //         productPrice: 30,
+        //         productInfo: "product1-description",
+        //         hidden: false,
+        //        },
+        //        {productKey: "pdt2",
+        //         productName: "product2",
+        //         productPrice: 50,
+        //         productInfo: "product2-description",
+        //         hidden: false,
+        //     },
+        //        {productKey: "pdt3",
+        //         productName: "product3",
+        //         productPrice: 10,
+        //         productInfo: "product3-description",
+        //         hidden: false,
+        //     },
+        //        {productKey: "pdt4",
+        //         productName: "product4",
+        //         productPrice: 30,
+        //         productInfo: "product4-description",
+        //         hidden: false,
+        //     },
+        //        {productKey: "pdt5",
+        //         productName: "product5",
+        //         productPrice: 50,
+        //         productInfo: "product5-description",
+        //         hidden: false,
+        //     },
+        //        {productKey: "pdt6",
+        //         productName: "product6",
+        //         productPrice: 10,
+        //         productInfo: "product6-description",
+        //         hidden: false,
+        //     },
+        //     ];
 
-            let emuPlayerShopStatusTemp = [  {productKey: "pdt1",
-                acquired: true,
-                acquiredTimeStamp: "timestamp1",
-            },
-            {productKey: "pdt2",
-                acquired: false,
-                acquiredTimeStamp: "timestamp2",
-            },
-            {productKey: "pdt3",
-                acquired: true,
-                acquiredTimeStamp: "timestamp3",
-            },
-            {productKey: "pdt4",
-                acquired: false,
-                acquiredTimeStamp: "timestamp4",
-            },
-            {productKey: "pdt5",
-                acquired: true,
-                acquiredTimeStamp: "timestamp5",
-            },
-            {productKey: "pdt6",
-                acquired: false,
-                acquiredTimeStamp: "timestamp6",
-            },  ];
+        //     let emuPlayerShopStatusTemp = [  {productKey: "pdt1",
+        //         acquired: true,
+        //         acquiredTimeStamp: "timestamp1",
+        //     },
+        //     {productKey: "pdt2",
+        //         acquired: false,
+        //         acquiredTimeStamp: "timestamp2",
+        //     },
+        //     {productKey: "pdt3",
+        //         acquired: true,
+        //         acquiredTimeStamp: "timestamp3",
+        //     },
+        //     {productKey: "pdt4",
+        //         acquired: false,
+        //         acquiredTimeStamp: "timestamp4",
+        //     },
+        //     {productKey: "pdt5",
+        //         acquired: true,
+        //         acquiredTimeStamp: "timestamp5",
+        //     },
+        //     {productKey: "pdt6",
+        //         acquired: false,
+        //         acquiredTimeStamp: "timestamp6",
+        //     },  ];
 
 
-            tempObject5 = {
-                "shopStock": stockArrTemp,
-                "playerPurchaseStatus":  emuPlayerShopStatusTemp
-            }
+        //     tempObject5 = {
+        //         "shopStock": stockArrTemp,
+        //         "playerPurchaseStatus":  emuPlayerShopStatusTemp
+        //     }
 
-        }
+        // }
       //                                      console.log("... shp5 prep: ", tempObject5);
         // VM func for shop-product-items
 
 
-        setShp5(tempObject5);
-        update5Shp(tempObject5);
+        // setShp5(tempObject5);
+        // update5Shp(tempObject5);
 
     }
 
