@@ -615,13 +615,17 @@ export default function Panel2_Container_GameEditor() {
 
 
 
-    async function startViewerEntireTest() {
+    function startViewerEntireTest() {
             
         let modeName = state.mode;
     
-        //TODO when all emu-set-data ready - display the entire-view window
- 
-     
+        //TODO when all emu-set-data ready
+        
+        //TODO prep: either emu-set-data or in-prac-user data?
+
+        
+
+        setDisplayEntireGameViewer(true);
     
     }
 
@@ -823,9 +827,6 @@ export default function Panel2_Container_GameEditor() {
             //any node-editor
 
 
-
-                            //TODO50: asks if save to cloud? or no?
-
             if (savedToCloud_nodedata === false) {
                 let askStr = "Are you sure to exit without saving the progress?";
 
@@ -862,7 +863,7 @@ export default function Panel2_Container_GameEditor() {
 
     }
 
-    async function updateUserConfigFromDataMgr1Gdt(gameDataDesignList) {
+    function updateUserConfigFromDataMgr1Gdt(gameDataDesignList) {
         //when game-data-design-list updates, the emu-data prepares with its default value
 
         let emuGdt1Temp = projectMetaData["emu4sets"]["gdt1"]; //TODO99999
@@ -1298,7 +1299,7 @@ console.log("ui-langauge changed to: ", val);
     setChapListNestedArr(chapterListArrs);
   }
 
-  async function saveConvNodeUiPlanFunc(dataObj) {  
+  function saveConvNodeUiPlanFunc(dataObj) {  
     setProjectMetaData({...projectMetaData,
         "convNodeUiPlanMap": dataObj,
     })
@@ -1310,9 +1311,7 @@ console.log("ui-langauge changed to: ", val);
     return projectMetaData["convNodeUiPlanMap"];
   }
 
-  function notUsing() {
-      console.log();
-  }
+
 
   function openEmuMgr() {
     setDisplayEmBool(true);
@@ -1320,9 +1319,24 @@ console.log("ui-langauge changed to: ", val);
     //TODO prepare visualMap?
   }
 
+  function openTestWindow() {
+    if (focusingEditor === "gameMaker") {
+ 
+        startViewerEntireTest(); 
+    } else {
+        //any node-editor
+ 
+        //TODO open quick-view window for node-editor
+
+    }
+
+  }
+
   
 
-
+  function notUsing() {
+      console.log();
+  }
 
 
 
@@ -1377,10 +1391,9 @@ return (
       </div>
             <button
                 onClick={()=>{
-                    //fetchcurrChapterContentFromCloud();
-                    //TODO700: fetch the very first chapter's data?
 
-                    // startViewerEntireTest(); //TODO temp
+                    openTestWindow();
+
                     console.log("LATER: entire_viewer should pop");
                     
                 }}
