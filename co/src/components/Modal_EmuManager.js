@@ -315,10 +315,12 @@ export default function Modal_EmuManager({
     }
     
 
-    function update4EssToOuterLayer(data4) {
+    function update4EssToOuterLayer() {
         //ess4
-        update4Ess(data4);
-    } //TODO temp: not using
+        let outputVer = makeDupEss4_vm(ess4);
+
+        update4Ess(outputVer);
+    } //temp: not using
 
 
     function update5ShpToOuterLayer() { 
@@ -372,7 +374,7 @@ export default function Modal_EmuManager({
 
     }
 
-    async function prepare4Ess(providedUname) {
+    async function prepare4Ess_local(providedUname) {
         // if local is not ready, from cloud
         
         let ess4Item = emuDataSets["ess4"];
@@ -390,7 +392,7 @@ export default function Modal_EmuManager({
 
     }
 
-    async function prepare5Shp(providedUname) {
+    async function prepare5Shp_local(providedUname) {
         
         let shp54Item = emuDataSets["5shp"];
 
@@ -493,8 +495,8 @@ export default function Modal_EmuManager({
             prepare2Epp_local();
             prepare3Epa_local();
 
-            // prepare4Ess();                                   //TODO later
-            // prepare5Shp();
+            // prepare4Ess_local();                                   //TODO later
+            // prepare5Shp_local();
     
             fetchVisualListFromOuter();
     
@@ -529,24 +531,6 @@ export default function Modal_EmuManager({
 
       }
 
-    //   function organizeVisMap(obj) {
-
-    //     let tempMap = {};
-    //     let resVis = obj;
-    //     if (resVis !== undefined && resVis !== null) {
-    //         resVis.map((item, index) => {  
-    //             let varName = item["var"];
-    //             let urlName = item["url"];
-    //             tempMap[varName] = urlName;
-    //         });
-    //     }
-
-    //     setVisualMap(tempMap);
-
-    //                                 console.log("emu-mgr, resource -- visual map  = =", tempMap);
-
-    //   }
-
       function deleteShopProduct(index) {
                 
         let tempShopStock = [];
@@ -562,6 +546,8 @@ export default function Modal_EmuManager({
 
         setShp5({... shp5, 
                 "shopStock": tempShopStock});
+
+        //TODO send out change to panel2
                 
       }
 

@@ -231,7 +231,9 @@ export default function Panel2_Container_GameEditor() {
         //     return "show message";
         // }
 
-        if (isSavedToCloud_metadata === false || isSavedToCloud_nodedata === false) {
+        if (isSavedToCloud_metadata === false 
+         || isSavedToCloud_nodedata === false
+        ) {
                 // remind user to check saving-status if ANY of these two unsaved
 
                                     // if (isSavedToCloud === false) {
@@ -318,33 +320,36 @@ export default function Panel2_Container_GameEditor() {
 
 
         
-    useEffect(()=>{
-        setSavedToCloud(false); 
-        
-        //track if either node-content or metadata changed
-    }, [
-        projectAllNodeContent,
-        projectMetaData
-    ]);
+                    // useEffect(()=>{
+                    //     setSavedToCloud(false); 
+                        
+                    //     //track if either node-content or metadata changed
+                    // }, [
+                    //     projectAllNodeContent,
+                    //     projectMetaData
+                    // ]);
 
         
     useEffect(()=>{
+        setSavedToCloud(false); //both-flag
         setSavedToCloud_metadata(false); 
+
         let varPairObj = {
             "visual": projectMetaData["proj_resource_visual"],
             "audio": projectMetaData["proj_resource_audio"]
         }
         setResourcePair(varPairObj);
 
-        //track if either node-content or metadata changed
+        //track if metadata changed
     }, [
         projectMetaData
     ]);
         
     useEffect(()=>{
+        setSavedToCloud(false); //both-flag
         setSavedToCloud_nodedata(false); 
         
-        //track if either node-content or metadata changed
+        //track if node-content changed
     }, [
         projectAllNodeContent
     ]);
@@ -797,8 +802,10 @@ export default function Panel2_Container_GameEditor() {
     }
 
     function handleBannerGoBack() {
+
         // according to current focusing panel, go to different panels
-        if (focusingEditor === "gameMaker") {
+
+        if (focusingEditor === "gameMaker") { // from game-maker to main-panel(panel1 or lo-out)
             let askStr = "Are you sure to exit?";
 
             let resp = window.confirm(askStr);
@@ -812,14 +819,28 @@ export default function Panel2_Container_GameEditor() {
 
                     }
             }
-        } else { //any node-editor
+        } else { 
+            //any node-editor
 
 
 
                             //TODO50: asks if save to cloud? or no?
-           
+
+            if (savedToCloud_nodedata === false) {
+                let askStr = "Are you sure to exit without saving the progress?";
+
+                let ans = window.confirm(askStr);
+                if (ans) {
+                    goToGameMakerResetNodeFocus();
+    
+                }
+
+            } else { // already saved the node-data
                 goToGameMakerResetNodeFocus();
 
+            }
+
+           
             
 
         }
