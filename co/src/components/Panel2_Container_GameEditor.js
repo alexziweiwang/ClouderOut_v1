@@ -736,6 +736,23 @@ export default function Panel2_Container_GameEditor() {
 
     }
 
+    function passInVisualMap() {
+        let visualVarPairs = projectMetaData["proj_resource_visual"];
+
+        let resMap = {};
+
+        if (visualVarPairs !== undefined && visualVarPairs !== null) {
+            visualVarPairs.map((item, index) => {  
+                let varName = item["var"];
+                let urlName = item["url"];
+                resMap[varName] = urlName;
+            });
+        }
+
+        return resMap;
+
+    }
+
     function receiveUpdateForCurrNodeObject(nodeKeyTemp, nodeObjectUpdated) {
         let allNodeTemp = projectAllNodeContent;
         allNodeTemp[nodeKeyTemp] = nodeObjectUpdated;
@@ -1276,6 +1293,14 @@ console.log("ui-langauge changed to: ", val);
       console.log();
   }
 
+  function openEmuMgr() {
+    setDisplayEmBool(true);
+
+    //TODO prepare visualMap?
+  }
+
+  
+
 
 
 
@@ -1365,7 +1390,7 @@ return (
                     <button 
                     className="rmTab" 
                     onClick={()=>{
-                       setDisplayEmBool(true);
+                       openEmuMgr();
                         }}>
                         {emuManagerText}
                     </button>
@@ -1563,7 +1588,8 @@ return (
 
               isForGameMaker={true}
 
-              getVisualPairs={passInVisualPairs}
+            //   getVisualPairs={passInVisualPairs}
+              getVisualMap={passInVisualMap}
               gameDataDesign={projectMetaData["game_data"]}
               emuDataSets={projectMetaData["emu4sets"]}
 

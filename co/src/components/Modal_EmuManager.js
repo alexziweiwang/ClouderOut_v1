@@ -14,11 +14,12 @@ export default function Modal_EmuManager({
     handleEmCancel,
 
     languageCodeTextOption,
-    projName,
+
     username,
     backendOption,
     editorMode,            //"offline_half"       "offline_full"        "online_cloud"  
-    getVisualPairs,
+
+    getVisualMap,
     gameDataDesign,
     emuDataSets,
 
@@ -335,7 +336,7 @@ export default function Modal_EmuManager({
             gdt1Item,
 
             setGdt1, 
-            update1Gdt_local,   //TODO3
+            update1Gdt_local,  
 
             gameDataDesign            
         );
@@ -350,11 +351,10 @@ export default function Modal_EmuManager({
             epp2Item,
             
             setEpp2, 
-            update2Epp_local,   //TODO3
+            update2Epp_local,  
             
             
         );
-    //TODO99999 for local-change
 
     }          
     
@@ -366,10 +366,9 @@ export default function Modal_EmuManager({
             epa3Item, 
             
             setEpa3, 
-            update3Epa_local,  //TODO3
+            update3Epa_local, 
             
         );
-    //TODO99999 for local-change
 
     }
 
@@ -489,9 +488,6 @@ export default function Modal_EmuManager({
         let uname = username;
      
         if (uname !== "_" && firstTimeEnter === true) {
-
-
-            console.log("\t\temu-mgr........ username = ", uname, "... projectname = ", projName);
     
             prepare1Gdt_local();
             prepare2Epp_local();
@@ -522,67 +518,34 @@ export default function Modal_EmuManager({
         //ess4, shp5
     ]);
 
-
-    // async function saveAllChangesToCloud() {
-
-    //     // u pdate1GdtToOuterLayer(); 
-    //     // u pdate2EppToOuterLayer(); 
-    //     // u pdate3EpaToOuterLayer();
-    //     // u pdate 4
-    //     // u pdate5ShpToOuterLayer();
-
-        
-    //     let resObj = {};
-    //     resObj["gdt1"] = gdt1;
-    //     resObj["epp2"] = epp2;
-    //     resObj["epa3"] = epa3;
-    //     resObj["ess4"] = ess4;
-    //     resObj["shp5"] = shp5;
-
-    //             // if (editorMode === "online_cloud") {
-
-    //             //     await updateAllSetsVM({
-    //             //         projectName: projName, 
-    //             //         currUser: username, 
-    //             //         dataObj: resObj,
-    //             //         bkOption: backendOption
-    //             //     });
-
-    //             // }
-                
-    //             // alert("Changes updated!");
-    //             // setCloudUpdated(true);
-
-
-    // }
-
     function fetchVisualListFromOuter() {
 
         
-        let obj = getVisualPairs();
+        let tempMap = getVisualMap();
 
-
-        if (obj === undefined || obj === null || obj.visual === undefined) {
-            return;
-        }
-
-                                    console.log("fetched obj = ", obj.visual);
-
-        let tempMap = {};
-        let resVis = obj.visual;
-        if (resVis !== undefined && resVis !== null) {
-            resVis.map((item, index) => {  
-                let varName = item["var"];
-                let urlName = item["url"];
-                tempMap[varName] = urlName;
-            });
-        }
-//TODO22
+                            console.log("fetched obj (fetchVisualListFromOuter): ", tempMap);
 
         setVisualMap(tempMap);
 
-                                    console.log("emu-mgr, resource -- visual map  = =", tempMap);
       }
+
+    //   function organizeVisMap(obj) {
+
+    //     let tempMap = {};
+    //     let resVis = obj;
+    //     if (resVis !== undefined && resVis !== null) {
+    //         resVis.map((item, index) => {  
+    //             let varName = item["var"];
+    //             let urlName = item["url"];
+    //             tempMap[varName] = urlName;
+    //         });
+    //     }
+
+    //     setVisualMap(tempMap);
+
+    //                                 console.log("emu-mgr, resource -- visual map  = =", tempMap);
+
+    //   }
 
       function deleteShopProduct(index) {
                 
