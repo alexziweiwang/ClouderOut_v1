@@ -870,6 +870,9 @@
 
 - 2025-Oct-09: Design panel2-window-view-improvement action items
 
+- 2025-Oct-10: Design testing-project structure
+
+
 
 
 
