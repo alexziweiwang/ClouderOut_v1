@@ -983,20 +983,12 @@ GameDataDesign <map>
 
     }
 
-    function passInBackendOption() {
-        return backendOption;
-    }
 
-    function passInLocalProjectData_Emu() {
-        return {}; //TODO1000
-    }
 
-    function passInLocalProjectData_RsrcMgr() {
-        return {}; //TODO1000
-    }
+    function startQuickViewing() {
+//TODO99999 reflect to panel2!
+        setIsDisplayQview(true);
 
-    function passInLocalProjectData_GameDataDesign() {
-        return {}; //TODO1000
     }
     
           
@@ -1031,10 +1023,10 @@ GameDataDesign <map>
                 <div className="topParalBarLeftPart">
                 <>
                         <button className="button testEntire"
-                                                            onClick={()=>{
-                                                                setIsDisplayQview(true);
-                                                                }}>
-                                                                {quickGameViewText}
+                            onClick={()=>{
+                                startQuickViewing();
+                            }}>
+                                {quickGameViewText}
                         </button>      
                     </>
 

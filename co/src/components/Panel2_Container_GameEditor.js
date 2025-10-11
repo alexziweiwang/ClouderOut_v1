@@ -16,6 +16,7 @@ import ConversationNodeEditingPanel from './ConversationNodeEditingPanel';
 import CardGameNodeEditingPanel from './CardGameNodeEditingPanel';
 
 import Viewer_Entire from './Viewer_Entire';
+import AllPanels_QuickView_ConvNode from './AllPanels_QuickView_ConvNode';
 
 
 import Modal_ResourceManagingWindow from './Modal_ResourceManagingWindow';
@@ -627,6 +628,11 @@ export default function Panel2_Container_GameEditor() {
 
         setDisplayEntireGameViewer(true);
     
+    }
+
+    function startViewerNodeTest(nodeType) {
+//TODO999999
+
     }
 
     function updateUserConfigFromEmuManager1Gdt(data1) {
@@ -1327,7 +1333,7 @@ console.log("ui-langauge changed to: ", val);
         //any node-editor
  
         //TODO open quick-view window for node-editor
-
+        //startViewerNodeTest(nodeType);
     }
 
   }
@@ -1771,6 +1777,36 @@ return (
     </>}
 
 
+    {isDisplayQview && 
+    <><div>
+        <AllPanels_QuickView_ConvNode
+
+            // initialPieceNum={previewingIndex}
+            // isDisplay={isDisplayQview}
+            // handleQViewCancel={handleqvCancel}
+            // allPieceContent={pieceDataStructure}
+            // uiData1_textframe={gameUITextFrame} 
+            // uiData2_defaultButtonOption={gameUIDefaultButton} 
+            // uiData3_ConvNavigation={uiConvNav} 
+            // uiData4_logPageSettings={logPageUISettings}
+            // screenWidth={screenWidth}
+            // screenHeight={screenHeight}
+
+            // getAudioMap={passInAudioMap}
+            // getVisualMap={passInVisualMap}
+        
+            // getUILanguage={passInUILanguage}
+
+            // initialEmuGameDataTracker={testPlayerGameDataDup}
+                    
+            // resetViewing={resetQuickView}
+            // openSettingPage={openSettingPage}
+
+        />
+
+        </div>
+    </>
+    }
 
 </div>
 

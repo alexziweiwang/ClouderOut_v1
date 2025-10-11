@@ -3,18 +3,26 @@ import GameScreen_QuickView_ConvNode from './GameScreen_QuickView_ConvNode';
 import Panel_GameDataTest from './Panel_GameDataTest';
 import langDictionary from './_textDictionary';
    
+
 //level3 (container of conversation-node, for quick view, along with panel)
-
-
 import { buttonConsequenceByStatementEntireArray } from '../viewmodels/CalcAc_QuickView';
 
-export default function AllPanels_QuickView_ConvNode ({initialPieceNum, handleQViewCancel, 
-    isDisplay, screenWidth, screenHeight, allPieceContent, uiData1_textframe, 
-    uiData2_defaultButtonOption, uiData3_ConvNavigation, 
+export default function AllPanels_QuickView_ConvNode ({
+    initialPieceNum, 
+    handleQViewCancel, 
+    screenWidth, 
+    screenHeight, 
+    allPieceContent, 
+
+    uiData1_textframe, 
+    uiData2_defaultButtonOption, 
+    uiData3_ConvNavigation, 
     uiData4_logPageSettings,
-    getVisualMap, getAudioMap,
+
+    getVisualMap, 
+    getAudioMap,
     getUILanguage,
-    username, projName,
+    
     initialEmuGameDataTracker,
     resetViewing,
     openSettingPage
@@ -27,13 +35,8 @@ export default function AllPanels_QuickView_ConvNode ({initialPieceNum, handleQV
 
     
 
-    let modalStyleName = "modalBackboard";
-
-    if (isDisplay === true) {
-        modalStyleName = "displayBlock modalBackboard";
-    } else {
-        modalStyleName = "displayNone modalBackboard";
-    }
+    let modalStyleName = "displayBlock modalBackboard";
+    
 
 
 
@@ -313,7 +316,7 @@ console.log("qv__initialEmuGameDataTracker  = ", initialEmuGameDataTracker);
 
                 <GameScreen_QuickView_ConvNode
                     isPreview={true}
-                    isDisplay={isDisplay} 
+                    isDisplay={true} 
                     screenWidth={screenWidth}
                     screenHeight={screenHeight}
                     notifyNodeFinish={notUsing}
