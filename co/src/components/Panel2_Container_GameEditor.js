@@ -114,7 +114,7 @@ export default function Panel2_Container_GameEditor() {
     const [isDisplayEmBool, setDisplayEmBool] = useState(false); 
 
     const [isDisplayEntireGameViewer, setDisplayEntireGameViewer] = useState(false);
-
+    const [isDisplayQuickview, setDisplayQuickview] = useState(false);
 /* todo30
                         metadata: format
       metadataObj["game_data"]
@@ -166,6 +166,15 @@ export default function Panel2_Container_GameEditor() {
         setCurrTestingNodeType("");
     
         setDisplayEntireGameViewer(false);
+    }
+    
+
+    function closeNodeTestViewer() {
+//TODO reset things like:
+//initialPieceNum
+
+
+        setDisplayQuickview(false);
     }
 
     function triggerUpdateCurrentStanding(obj) { //fetch from sub-compo
@@ -630,9 +639,13 @@ export default function Panel2_Container_GameEditor() {
     
     }
 
-    function startViewerNodeTest(nodeType) {
+    function startViewerNodeTest(obj) {
 //TODO999999
+//obj includes: node-type, and detailed info:
+//previewingIndex
 
+
+        setDisplayQuickview(true);
     }
 
     function updateUserConfigFromEmuManager1Gdt(data1) {
@@ -1338,6 +1351,10 @@ console.log("ui-langauge changed to: ", val);
 
   }
 
+  function hintNodeEditorOnly() {
+        window.alert("This button pops the \"Settings Page\" during an actual game-play.");
+  }
+
   
 
   function notUsing() {
@@ -1542,6 +1559,8 @@ return (
             saveCurrNodeEntire={saveCurrNodeEntireFromSubEditor}
 
             saveBothObjToCloud={saveBothObjToCloud}
+
+            startQuickView_panel2={startViewerNodeTest}
 
         />
 
@@ -1777,30 +1796,33 @@ return (
     </>}
 
 
-    {isDisplayQview && 
+    {isDisplayQuickview && 
     <><div>
         <AllPanels_QuickView_ConvNode
 
-            // initialPieceNum={previewingIndex}
-            // isDisplay={isDisplayQview}
+            // initialPieceNum={previewingIndex} //from conv-node-editor-triggering
+
             // handleQViewCancel={handleqvCancel}
-            // allPieceContent={pieceDataStructure}
-            // uiData1_textframe={gameUITextFrame} 
-            // uiData2_defaultButtonOption={gameUIDefaultButton} 
-            // uiData3_ConvNavigation={uiConvNav} 
-            // uiData4_logPageSettings={logPageUISettings}
-            // screenWidth={screenWidth}
-            // screenHeight={screenHeight}
+
+            // allPieceContent={pieceDataStructure}  //from node's obj (data-structure)
+
+            // uiData1_textframe={gameUITextFrame}  //from node's obj (data-structure)
+            // uiData2_defaultButtonOption={gameUIDefaultButton}  //from node's obj (data-structure) 
+            // uiData3_ConvNavigation={uiConvNav}  //from node's obj (data-structure)
+            // uiData4_logPageSettings={logPageUISettings}  //from node's obj (data-structure)
+
+            // screenWidth={screenWidth}  //from node's obj (data-structure)
+            // screenHeight={screenHeight}  //from node's obj (data-structure)
 
             // getAudioMap={passInAudioMap}
             // getVisualMap={passInVisualMap}
         
-            // getUILanguage={passInUILanguage}
+            getUILanguage={passInUiLanguageOption}
 
             // initialEmuGameDataTracker={testPlayerGameDataDup}
                     
             // resetViewing={resetQuickView}
-            // openSettingPage={openSettingPage}
+            openSettingPage={hintNodeEditorOnly}
 
         />
 

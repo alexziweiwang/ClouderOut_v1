@@ -44,7 +44,8 @@ export default function ConversationNodeEditingPanel({
         saveCurrNodeEntire,
         backToGameMaker,
 
-        saveBothObjToCloud
+        saveBothObjToCloud,
+        startQuickView_panel2,
 }
 ) {
 
@@ -986,6 +987,36 @@ GameDataDesign <map>
 
 
     function startQuickViewing() {
+        let obj = {};
+        obj["nodeType"] = "Conversation";
+
+        //TODO add needed info for q-viewing
+            // initialPieceNum
+
+            // handleQViewCancel={handleqvCancel}
+
+            // allPieceContent={pieceDataStructure}
+
+            // uiData1_textframe={gameUITextFrame} 
+            // uiData2_defaultButtonOption={gameUIDefaultButton} 
+            // uiData3_ConvNavigation={uiConvNav} 
+            // uiData4_logPageSettings={logPageUISettings}
+            
+            // screenWidth={screenWidth}
+            // screenHeight={screenHeight}
+
+            // getAudioMap={passInAudioMap}
+            // getVisualMap={passInVisualMap}
+        
+            // getUILanguage={passInUILanguage}
+
+            // initialEmuGameDataTracker={testPlayerGameDataDup}
+                    
+            // resetViewing={resetQuickView}
+            // openSettingPage={openSettingPage}
+
+
+        startQuickView_panel2(obj);
 //TODO99999 reflect to panel2!
         setIsDisplayQview(true);
 

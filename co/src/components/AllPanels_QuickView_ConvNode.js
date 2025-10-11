@@ -305,8 +305,8 @@ console.log("qv__initialEmuGameDataTracker  = ", initialEmuGameDataTracker);
                             setMutedViewOption(!mutedViewOption);
                         }}
                     >
-                        {mutedViewOption === true && <label>Unmute</label>}
-                        {mutedViewOption === false && <label>Mute</label>}
+                        {/* {mutedViewOption === true && <label>Unmute</label>}
+                        {mutedViewOption === false && <label>Mute</label>} */}
 
                     </button>
             </div>
@@ -328,8 +328,7 @@ console.log("qv__initialEmuGameDataTracker  = ", initialEmuGameDataTracker);
                     uiData2_defaultButtonOption={uiData2_defaultButtonOption}
                     uiData3_ConvNavigation={uiData3_ConvNavigation} 
                     uiData4_logPageSettings={uiData4_logPageSettings}
-                    
-                  
+                       
                     visualMap={visualMap}
                     audioMap={audioMap}
 
