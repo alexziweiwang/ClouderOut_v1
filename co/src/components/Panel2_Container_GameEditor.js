@@ -161,6 +161,10 @@ export default function Panel2_Container_GameEditor() {
     const [currTestingScrnW, setCcurrTestingScrnW] = useState(800);
     const [currTestingScrnH, setCcurrTestingScrnH] = useState(800);
 
+    const [nodeViewingEntryNum, setNodeViewingEntryNum] = useState(0);
+
+
+
     function closeEntireGameViewer() {
         // reset all game-progress
         setCurrTestingPageStatus("Main Page");
@@ -650,6 +654,18 @@ export default function Panel2_Container_GameEditor() {
         let typeVal = obj.nodeType;
         let nodeKeyName = obj.nodeKey;
 
+
+        setCurrTestingPageStatus("During Game"); 
+        setCurrTestingPageName("During Game");
+
+        setCurrTestingChapterKey(currentEditingChapter); 
+        setCurrTestingChapterTitle(""); //TODO
+
+        setCurrTestingNodeKey(nodeKeyName); 
+        setCurrTestingNodeType(typeVal);
+
+
+        //projectAllNodeContent[currTestingNodeKey]
         let testingNodeErt= projectAllNodeContent[nodeKeyName];
         if (testingNodeErt === undefined) {
                             console.log("unnable to find the view-testing node");
@@ -666,15 +682,8 @@ export default function Panel2_Container_GameEditor() {
 //TODO100
 
                 //TODO assign previewingIndex with:    obj.entryPointNum
+                setNodeViewingEntryNum(obj.entryPointNum);
 
-                //TODO pieceDataStructure from testingNodeErt
-
-                //TODO uiObj from testingNodeErt
-
-                    //TODO uiObj.gameUITextFrame
-                    //TODO uiObj.gameUIDefaultButton
-                    //TODO uiObj.uiConvNav
-                    //TODO uiObj.logPageUISettings
 
                 // setCcurrTestingScrnW(?) //TODO set from node's info: testingNodeErt
                 // setCcurrTestingScrnH(?) //TODO set from node's info: testingNodeErt
@@ -1863,16 +1872,16 @@ return (
     <><div>
         <AllPanels_QuickView_ConvNode
 
-            // initialPieceNum={previewingIndex} //from conv-node-editor-triggering
+            initialPieceNum={nodeViewingEntryNum} //from conv-node-editor-triggering
 
             handleQViewCancel={closeNodeTestViewer}
 
-            // allPieceContent={pieceDataStructure}  //from node's obj (data-structure)
+            allPieceContent={projectAllNodeContent[currTestingNodeKey].nodeContent}  //from node's obj (data-structure)
 
-            // uiData1_textframe={gameUITextFrame}  //from node's obj (data-structure)
-            // uiData2_defaultButtonOption={gameUIDefaultButton}  //from node's obj (data-structure) 
-            // uiData3_ConvNavigation={uiConvNav}  //from node's obj (data-structure)
-            // uiData4_logPageSettings={logPageUISettings}  //from node's obj (data-structure)
+            uiData1_textframe={projectAllNodeContent[currTestingNodeKey]["nodeUISettings"].TextFrame}  //from node's obj (data-structure)
+            uiData2_defaultButtonOption={projectAllNodeContent[currTestingNodeKey]["nodeUISettings"].defaultButton}  //from node's obj (data-structure) 
+            uiData3_ConvNavigation={projectAllNodeContent[currTestingNodeKey]["nodeUISettings"].convNav}  //from node's obj (data-structure)
+            uiData4_logPageSettings={projectAllNodeContent[currTestingNodeKey]["nodeUISettings"].logPage}  //from node's obj (data-structure)
 
             screenWidth={currTestingScrnW}  //from node's obj (data-structure)
             screenHeight={currTestingScrnH}  //from node's obj (data-structure)

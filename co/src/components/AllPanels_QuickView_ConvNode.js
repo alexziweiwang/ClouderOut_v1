@@ -359,7 +359,7 @@ console.log("qv__initialEmuGameDataTracker  = ", initialEmuGameDataTracker);
 
                 />
                 
-
+{/* 
                 <Panel_GameDataTest
                        localTest={true}
                        initialGameDataStatus={gameDataTracker}
@@ -371,7 +371,7 @@ console.log("qv__initialEmuGameDataTracker  = ", initialEmuGameDataTracker);
                        receiveGameDataObj={passInGameDataFromScreen}
 
                        getUILanguage={getUILanguage}
-                />
+                /> */}
 {/* //TODO fetch original game-data from cloud, present changes through quick-view */}
          
 

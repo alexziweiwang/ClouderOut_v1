@@ -333,7 +333,8 @@ console.log("game-screen quick-view conv-node ... render once");
 
     return (   
 <>      
-{allPieceContent.length > 0 &&
+{(allPieceContent !== undefined && allPieceContent.length > 0) 
+&&
 <div   
 style={{
     "position": "relative", 
