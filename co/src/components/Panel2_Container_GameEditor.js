@@ -92,10 +92,10 @@ export default function Panel2_Container_GameEditor() {
 
     /* display option for this large container: which editor is displayed for user */
     const [focusingEditor, setFocusingEditor] = useState("gameMaker");
-    const [currentChapter, setCurrentChapter] = useState("");
-    const [currentNode, setCurrentNode] = useState("");
-    const [currentScreenSz, setCurrentScreenSz] = useState("4:3(horizonal)");
-    const [currentNodeEntire, setCurrentNodeEntire] = useState(-1);
+    const [currentEditingChapter, setCurrentEditingChapter] = useState("");
+    const [currentEditingNode, setCurrentEditingNode] = useState("");
+    const [currentEditingScreenSz, setCurrentEditingScreenSz] = useState("4:3(horizonal)");
+    const [currentEditingNodeEntire, setCurrentEditingNodeEntire] = useState(-1);
 
     /* 
     entire project-object, ! important
@@ -155,8 +155,13 @@ export default function Panel2_Container_GameEditor() {
     const [currTestingChapterTitle, setCurrTestingChapterTitle] = useState(""); //move to outer-layer
     const [currTestingNodeKey, setCurrTestingNodeKey] = useState(""); //move to outer-layer
     const [currTestingNodeType, setCurrTestingNodeType] = useState(""); //move to outer-layer
-    const [currPageName, setCurrPageName] = useState("Main Page"); //move to outer-layer
-  
+    
+    const [currTestingPageName, setCurrTestingPageName] = useState("Main Page"); //move to outer-layer
+    
+    const [currTestingScrnW, setCcurrTestingScrnW] = useState(800);
+    const [currTestingScrnH, setCcurrTestingScrnH] = useState(800);
+
+
     function closeEntireGameViewer() {
         // reset all game-progress
         setCurrTestingPageStatus("Main Page");
@@ -419,10 +424,10 @@ export default function Panel2_Container_GameEditor() {
         //TODO check if this node exists in the ds !!!
 
      
-        setCurrentChapter(visitInfoObj["chapterKey"]);
-        setCurrentNode(visitInfoObj["nodeKey"]);
-        setCurrentScreenSz(visitInfoObj["screenSizeStr"]);
-        setCurrentNodeEntire(projectAllNodeContent[longKey]);
+        setCurrentEditingChapter(visitInfoObj["chapterKey"]);
+        setCurrentEditingNode(visitInfoObj["nodeKey"]);
+        setCurrentEditingScreenSz(visitInfoObj["screenSizeStr"]);
+        setCurrentEditingNodeEntire(projectAllNodeContent[longKey]);
 
         console.log("switch-editor:  node-data-obj = ", projectAllNodeContent);
         
@@ -617,8 +622,8 @@ export default function Panel2_Container_GameEditor() {
 
     function goToGameMakerResetNodeFocus() {
         setFocusingEditor("gameMaker");
-        setCurrentChapter("");
-        setCurrentNode("");
+        setCurrentEditingChapter("");
+        setCurrentEditingNode("");
   
     }
 
@@ -656,7 +661,9 @@ export default function Panel2_Container_GameEditor() {
                     //TODO uiObj.uiConvNav
                     //TODO uiObj.logPageUISettings
 
-          
+                // setCcurrTestingScrnW(?) //TODO set from node's info
+                // setCcurrTestingScrnH(?) //TODO set from node's info
+                 
 
 //TODO-------------------------
                 break;
@@ -807,6 +814,23 @@ export default function Panel2_Container_GameEditor() {
 
     }
 
+    function passInAudioMap() {
+        let audioVarPairs =  projectMetaData["proj_resource_audio"];
+
+        let resMap = {};
+
+        if (audioVarPairs !== undefined && audioVarPairs !== null) {
+            audioVarPairs.map((item, index) => {  
+                let varName = item["var"];
+                let urlName = item["url"];
+                resMap[varName] = urlName;
+            });
+        }
+
+        return resMap;
+
+    }
+
     function receiveUpdateForCurrNodeObject(nodeKeyTemp, nodeObjectUpdated) {
         let allNodeTemp = projectAllNodeContent;
         allNodeTemp[nodeKeyTemp] = nodeObjectUpdated;
@@ -822,12 +846,12 @@ export default function Panel2_Container_GameEditor() {
         //nodekey is from currndoe
         //nodeInfoObj is fetched from the large-obj: projectAllNodeContet[longKey]
                         //TODO50: for node-editing of a newly-created node: if the cloud does not have it ... write with setDoc() for it
-        //currentChapter
-        //currentNode
+        //currentEditingChapter
+        //currentEditingNode
         //projectAllNodeContent
-        let longKey = generateNodeLongKeyString_vm({chapterKey: currentChapter, nodeKey: currentNode});
+        let longKey = generateNodeLongKeyString_vm({chapterKey: currentEditingChapter, nodeKey: currentEditingNode});
 
-                        console.log("saving a node... ", currentChapter, " - ", currentNode, " \n", projectAllNodeContent, "\n", projectAllNodeContent[longKey]);
+                        console.log("saving a node... ", currentEditingChapter, " - ", currentEditingNode, " \n", projectAllNodeContent, "\n", projectAllNodeContent[longKey]);
 
         let obj = projectAllNodeContent[longKey];
 
@@ -835,8 +859,8 @@ export default function Panel2_Container_GameEditor() {
         await singleNodeWriteToCloudVM({
             project: state.selected_project_name, 
             username: authEmailName, 
-            chapterKey: currentChapter, 
-            nodeKey: currentNode, 
+            chapterKey: currentEditingChapter, 
+            nodeKey: currentEditingNode, 
             dataObj: obj,
             bkOption: backendOption 
         }).then(()=>{
@@ -1570,18 +1594,18 @@ return (
             
             saveConvNodeUiPlanFunc={saveConvNodeUiPlanFunc}
 
-            clickedNodeKey={currentNode}
+            clickedNodeKey={currentEditingNode}
             projectName={state.selected_project_name}
             userName={authEmailName}
-            screenSizeStr={currentScreenSz}
-            chapterKey={currentChapter}
+            screenSizeStr={currentEditingScreenSz}
+            chapterKey={currentEditingChapter}
             editorMode={state.mode}
             
             getUiLangOption={passInUiLanguageOption}
 
             backToGameMaker={goToGameMakerResetNodeFocus}
 
-            initialCurrNodeEverything={currentNodeEntire}
+            initialCurrNodeEverything={currentEditingNodeEntire}
             saveCurrNodeEntire={saveCurrNodeEntireFromSubEditor}
 
             saveBothObjToCloud={saveBothObjToCloud}
@@ -1837,11 +1861,11 @@ return (
             // uiData3_ConvNavigation={uiConvNav}  //from node's obj (data-structure)
             // uiData4_logPageSettings={logPageUISettings}  //from node's obj (data-structure)
 
-            // screenWidth={screenWidth}  //from node's obj (data-structure)
-            // screenHeight={screenHeight}  //from node's obj (data-structure)
+            screenWidth={currTestingScrnW}  //from node's obj (data-structure)
+            screenHeight={currTestingScrnH}  //from node's obj (data-structure)
 
-            // getAudioMap={passInAudioMap}
-            // getVisualMap={passInVisualMap}
+            getAudioMap={passInAudioMap}
+            getVisualMap={passInVisualMap}
         
             getUILanguage={passInUiLanguageOption}
 
