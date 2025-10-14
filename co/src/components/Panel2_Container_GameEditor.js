@@ -161,7 +161,6 @@ export default function Panel2_Container_GameEditor() {
     const [currTestingScrnW, setCcurrTestingScrnW] = useState(800);
     const [currTestingScrnH, setCcurrTestingScrnH] = useState(800);
 
-
     function closeEntireGameViewer() {
         // reset all game-progress
         setCurrTestingPageStatus("Main Page");
@@ -176,7 +175,7 @@ export default function Panel2_Container_GameEditor() {
 
     function closeNodeTestViewer() {
 //TODO reset things like:
-//initialPieceNum
+        //initialPieceNum
 
 
         setDisplayQuickview(false);
@@ -647,23 +646,40 @@ export default function Panel2_Container_GameEditor() {
 //TODO999999
 //obj includes: node-type, and detailed info:
         let typeVal = obj.nodeType;
+        let nodeKeyName = obj.nodeKey;
+
+        let testingNodeErt= projectAllNodeContent[nodeKeyName];
+        if (testingNodeErt === undefined) {
+                            console.log("unnable to find the view-testing node");
+            return;
+        }
+
+                            console.log("view-testing node: ", testingNodeErt);
+
 
         switch (typeVal){
         
             case "Conversation":
 //TODO-------------------------
+//TODO100
 
                 //TODO assign previewingIndex with:    obj.entryPointNum
-                //TODO pieceDataStructure with:       obj.nodeDs
-                //TODO uiObj with:      obj.UiObj
+
+                //TODO pieceDataStructure from testingNodeErt
+
+                //TODO uiObj from testingNodeErt
+
                     //TODO uiObj.gameUITextFrame
                     //TODO uiObj.gameUIDefaultButton
                     //TODO uiObj.uiConvNav
                     //TODO uiObj.logPageUISettings
 
-                // setCcurrTestingScrnW(?) //TODO set from node's info
-                // setCcurrTestingScrnH(?) //TODO set from node's info
+                // setCcurrTestingScrnW(?) //TODO set from node's info: testingNodeErt
+                // setCcurrTestingScrnH(?) //TODO set from node's info: testingNodeErt
                  
+                //TODO fetch GameDataTracker from emu-mgr
+
+                //TODO reset-func
 
 //TODO-------------------------
                 break;
@@ -1236,11 +1252,12 @@ console.log("ui-langauge changed to: ", val);
         if (projectAllNodeContent === undefined) {
             return;
         }
-        //TODO99999 check node-data valid?
+        //TODO99999 check node-data valid before saving to the large-node-content?
 
-        let objTemp = projectAllNodeContent;
 
-        objTemp[longKey] = dataObj;
+        let allNodeContentTemp = projectAllNodeContent;
+
+        allNodeContentTemp[longKey] = dataObj;
         setProjectAllNodeContent(objTemp);
         
     }
@@ -1852,7 +1869,7 @@ return (
 
             // initialPieceNum={previewingIndex} //from conv-node-editor-triggering
 
-            // handleQViewCancel={handleqvCancel}
+            handleQViewCancel={closeNodeTestViewer}
 
             // allPieceContent={pieceDataStructure}  //from node's obj (data-structure)
 

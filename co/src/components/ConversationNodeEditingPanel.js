@@ -753,7 +753,8 @@ GameDataDesign <map>
 //TODO5
     } 
 
-    function updateToOuter() {
+    function updateToOuter() { //TODO100 important
+
         let uiObj = {
             "defaultButton": gameUIDefaultButton,
             "textFrame": gameUITextFrame,
@@ -772,11 +773,7 @@ GameDataDesign <map>
             "chapterKey": chapterKey,
             "nodeType": typeStr
         };
-            // nodeData["nodeUISettings"]
-            // nodeData["nodeContent"]
-            // nodeData["nodeKey"]
-            // nodeData["chapterKey"]
-            // nodeData["nodeType"]
+ 
 
         saveCurrNodeEntire(nodeObj, longKey);
 
@@ -988,20 +985,18 @@ GameDataDesign <map>
 
     function startQuickViewing() {
         let obj = {};
+        obj["nodeKey"] = nodeKey;
         obj["nodeType"] = "Conversation";
+        obj["entryPointNum"] = initialPieceNum;
+
+
 
         //TODO add needed info for q-viewing
-            // initialPieceNum
 
-            // handleQViewCancel={handleqvCancel}
 
             // allPieceContent={pieceDataStructure}
 
-            // uiData1_textframe={gameUITextFrame} 
-            // uiData2_defaultButtonOption={gameUIDefaultButton} 
-            // uiData3_ConvNavigation={uiConvNav} 
-            // uiData4_logPageSettings={logPageUISettings}
-            
+         
             // screenWidth={screenWidth}
             // screenHeight={screenHeight}
 
@@ -1017,6 +1012,7 @@ GameDataDesign <map>
 
 
         startQuickView_panel2(obj);
+
 //TODO99999 reflect to panel2!
         setIsDisplayQview(true);
 
