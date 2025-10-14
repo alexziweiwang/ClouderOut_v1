@@ -4,7 +4,7 @@ import langDictionary from './_textDictionary';
 
 import { 
     prepare1Gdt_vm, prepare2Epp_vm, prepare3Epa_vm, 
-    makeDupGdt1_vm, makeDupEpp2_vm, makeDupEpa3_vm, makeDupShp5_vm
+    makeDupGdt1_vm, makeDupEpp2_vm, makeDupEpa3_vm, makeDupEss4_vm, makeDupShp5_vm
 
 } from '../viewmodels/PrepAc_EmuData';
 

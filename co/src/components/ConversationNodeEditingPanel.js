@@ -985,9 +985,9 @@ GameDataDesign <map>
 
     function startQuickViewing() {
         let obj = {};
-        obj["nodeKey"] = nodeKey;
+        obj["nodeKey"] = longKey;
         obj["nodeType"] = "Conversation";
-        obj["entryPointNum"] = initialPieceNum;
+        obj["entryPointNum"] = previewingIndex;
 
 
 

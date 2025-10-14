@@ -643,6 +643,8 @@ export default function Panel2_Container_GameEditor() {
     }
 
     function startViewerNodeTest(obj) {
+                            console.log("starting viewer-node-test!", obj);
+
 //TODO999999
 //obj includes: node-type, and detailed info:
         let typeVal = obj.nodeType;
@@ -912,7 +914,7 @@ export default function Panel2_Container_GameEditor() {
             //any node-editor
 
 
-            if (savedToCloud_nodedata === false) {
+            if (isSavedToCloud_nodedata === false) {
                 let askStr = "Are you sure to exit without saving the progress?";
 
                 let ans = window.confirm(askStr);
@@ -1258,7 +1260,7 @@ console.log("ui-langauge changed to: ", val);
         let allNodeContentTemp = projectAllNodeContent;
 
         allNodeContentTemp[longKey] = dataObj;
-        setProjectAllNodeContent(objTemp);
+        setProjectAllNodeContent(allNodeContentTemp);
         
     }
 
@@ -1409,12 +1411,7 @@ console.log("ui-langauge changed to: ", val);
     if (focusingEditor === "gameMaker") {
  
         startViewerEntireTest(); 
-    } else {
-        //any node-editor
- 
-        //TODO open quick-view window for node-editor
-        //startViewerNodeTest(nodeType);
-    }
+    } 
 
   }
 
@@ -1479,16 +1476,15 @@ return (
       >
 
       </div>
-            <button
+            {focusingEditor === "gameMaker"
+            && <button
                 onClick={()=>{
 
                     openTestWindow();
-
-                    console.log("LATER: entire_viewer should pop");
                     
                 }}
                 className="button testEntire"
-                >Test ▶︎ </button>       
+                >Test ▶︎ </button>}       
 
 
                 <div className="parallelFrame buttonRight30px" style={{"width": "600px"}}>

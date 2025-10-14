@@ -10,8 +10,10 @@ import { buttonConsequenceByStatementEntireArray } from '../viewmodels/CalcAc_Qu
 export default function AllPanels_QuickView_ConvNode ({
     initialPieceNum, 
     handleQViewCancel, 
+
     screenWidth, 
     screenHeight, 
+
     allPieceContent, 
 
     uiData1_textframe, 
@@ -103,6 +105,10 @@ console.log("qv__initialEmuGameDataTracker  = ", initialEmuGameDataTracker);
         }
 
         console.log("all-panels-QuickView: ", allPieceContent, " with piece-num: ", currPieceNum);
+        if (allPieceContent === undefined) {
+            handleQViewCancel();
+        }
+
 
         if (allPieceContent[currPieceNum]["isContentNotClkb"] === false) {
                                                                 
