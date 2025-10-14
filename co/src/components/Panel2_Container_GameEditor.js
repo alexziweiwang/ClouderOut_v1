@@ -296,7 +296,6 @@ export default function Panel2_Container_GameEditor() {
             //TODO fetch from cloud...
           
             //prepare for project-content map, and fetch when user reached that chapter?
-                //TODO99999
             if (authEmailName !== "_") {
           
                 if ((projectMetaData === -1 || projectAllNodeContent === -1)) {
@@ -642,7 +641,34 @@ export default function Panel2_Container_GameEditor() {
     function startViewerNodeTest(obj) {
 //TODO999999
 //obj includes: node-type, and detailed info:
-//previewingIndex
+        let typeVal = obj.nodeType;
+
+        switch (typeVal){
+        
+            case "Conversation":
+//TODO-------------------------
+
+                //TODO assign previewingIndex with:    obj.entryPointNum
+                //TODO pieceDataStructure with:       obj.nodeDs
+                //TODO uiObj with:      obj.UiObj
+                    //TODO uiObj.gameUITextFrame
+                    //TODO uiObj.gameUIDefaultButton
+                    //TODO uiObj.uiConvNav
+                    //TODO uiObj.logPageUISettings
+
+          
+
+//TODO-------------------------
+                break;
+            case "Card Game":
+
+                //TODO
+                break;
+          
+            default:
+                console.log("default in startViewerNodeTest");
+    }
+
 
 
         setDisplayQuickview(true);
