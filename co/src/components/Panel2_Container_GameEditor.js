@@ -136,16 +136,16 @@ export default function Panel2_Container_GameEditor() {
     const [chapListNestedArr, setChapListNestedArr] = useState([]);
 
     /* testing-emu-data, for test-viewing and emu-manager */
-    //1 const [testPlayerGameDataTracker, setTestPlayerGameDataTracker] = useState({});   //TODO important for holder-in-practice
-    //1 const [testPlayerProfile, setTestPlayerProfile] = useState({});                                                       //TODO important for holder-in-practice
-    //1 const [testPlayerAccount, setTestPlayerAccount] = useState({});                                                       //TODO important for holder-in-practice
-    //1 const [testPlayerSLRecords, setTestPlayerSLRecords] = useState({
-    //     "playername": "playerA",
-    //     "itemStatus": [{}, {}, {}]
-    // });
+    const [testPlayerGameDataTracker, setTestPlayerGameDataTracker] = useState({});   //TODO important for holder-in-practice
+    const [testPlayerProfile, setTestPlayerProfile] = useState({});                                                       //TODO important for holder-in-practice
+    const [testPlayerAccount, setTestPlayerAccount] = useState({});                                                       //TODO important for holder-in-practice
+    const [testPlayerSLRecords, setTestPlayerSLRecords] = useState({
+        "playername": "playerA",
+        "itemStatus": [{}, {}, {}]
+    });
     
-    //1 const [testShopProducts, setTestShopProducts] = useState({});
-    //1 const [testPlayerPurchaseStatus, setTestPlayerPurchaseStatus] = useState({});
+    const [testShopProducts, setTestShopProducts] = useState({});
+    const [testPlayerPurchaseStatus, setTestPlayerPurchaseStatus] = useState({});
   
 
 
@@ -607,6 +607,18 @@ export default function Panel2_Container_GameEditor() {
         });
     }
 
+    function configureTestEmuDup() {
+        //setup 
+        let emuObj = projectMetaData["emu4sets"];
+        
+        setTestPlayerGameDataTracker();
+        setTestPlayerProfile();
+        setTestPlayerAccount();
+        setTestPlayerSLRecords();
+        setTestShopProducts();
+        setTestPlayerPurchaseStatus();
+    }
+
 
 
     function updateResourcePairFromMgr(varPairObj) {
@@ -654,6 +666,8 @@ export default function Panel2_Container_GameEditor() {
         let typeVal = obj.nodeType;
         let nodeKeyName = obj.nodeKey;
 
+
+        configureTestEmuDup();
 
         setCurrTestingPageStatus("During Game"); 
         setCurrTestingPageName("During Game");

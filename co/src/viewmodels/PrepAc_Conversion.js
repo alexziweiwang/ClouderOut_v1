@@ -25,3 +25,18 @@ export function resourceRawListToUsableMap_vm(list, setMapFunc) {
 
     }
 }
+
+export function dupObject(sourceObj) {
+    let destObj = {};
+
+    if (sourceObj !== undefined) {
+
+        Object.keys(sourceObj).map((currKey) => {
+            destObj[currKey] = sourceObj[currKey];
+
+        });
+    }
+
+    return destObj;
+
+}
