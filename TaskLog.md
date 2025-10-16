@@ -874,6 +874,8 @@
 
 - 2025-Oct-14: Improve panel2-window-view action items
 
+- 2025-Oct-15: Design testing-project structure
+
 
 
 
