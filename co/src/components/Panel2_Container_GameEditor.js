@@ -1249,31 +1249,45 @@ console.log("ui-langauge changed to: ", val);
             return;
         }
 
-        let cntt = projectAllNodeContent.filter(e => e.chapterKey === chapterKeyStr);
-                            console.log("filtered all nodes of this chapter:", cntt);
+        let cntt = {};
+        
+        Object.keys(projectAllNodeContent).map((currKey) => {
+            let item = projectAllNodeContent[currKey];
+            if (item["chapterKey"] === chapterKeyStr) {
+                cntt[currKey] = item;
+            }
+
+        }
+        );
+        
+                        console.log("projectAllNodeContent = ", projectAllNodeContent);
+                        console.log("filtered all nodes of this chapter:", cntt);
+
         if (cntt === undefined) {
             //TODO369 fetch from cloud?
             //this chapter...
+                        console.log("can't find curr-chapter - ", chapterKeyStr, " ... checking on-cloud");
 
-            await fetchNodeByChapter2VM(
-                {
-                    projectName: state.selected_project_name,
-                    uname: authEmailName, 
-                    chapterKey: chapterKeyStr, 
-                    bkOption: backendOption
-                }
-            ).then((updatedChapterAllNodes) => {
-                                    console.log("from cloud: ", updatedChapterAllNodes);
+
+            // await fetchNodeByChapter2VM(
+            //     {
+            //         projectName: state.selected_project_name,
+            //         uname: authEmailName, 
+            //         chapterKey: chapterKeyStr, 
+            //         bkOption: backendOption
+            //     }
+            // ).then((updatedChapterAllNodes) => {
+            //                         console.log("from cloud: ", updatedChapterAllNodes);
                 
-                let restOfMap = projectAllNodeContent.filter(e => e.chapterKey !== chapterKeyStr);
+            //     let restOfMap = projectAllNodeContent.filter(e => e.chapterKey !== chapterKeyStr);
 
-                Object.keys(updatedChapterAllNodes).map((currKey) => {
-                    restOfMap[currKey] = updatedChapterAllNodes[currKey];
-                });
+            //     Object.keys(updatedChapterAllNodes).map((currKey) => {
+            //         restOfMap[currKey] = updatedChapterAllNodes[currKey];
+            //     });
 
-                setProjectAllNodeContent(restOfMap);
+            //     setProjectAllNodeContent(restOfMap);
 
-            });
+            // });
         } else {
             return cntt;
         }
@@ -1793,13 +1807,11 @@ return (
 
             username={authEmailName}
             projectname={state.selected_project_name}
-            getUsername={passInAuthEmailName}
 
             triggerNodeWalk={triggerNodeWalk} //TODO should be inside viewer_entire when viewing?
             triggerChapterWalk={triggerChapterWalk}  //TODO should be inside viewer_entire when viewing?
             triggerUpdateCurrentStanding={triggerUpdateCurrentStanding}  //TODO should be inside viewer_entire when viewing?
 
-        
             visualVarPairList={projectMetaData["proj_resource_visual"]}
             audioVarPairList={projectMetaData["proj_resource_audio"]}
 
@@ -1816,7 +1828,7 @@ return (
     
     
       {/* status table */}
-      {/* <table style={{"width": "800px", "marginTop": `${screenHeight+20}px`, "marginLeft": "170px","position": "absolute"}}>
+      <table style={{"width": "800px", "marginTop": `${currTestingScrnH+20}px`, "marginLeft": "170px","position": "absolute"}}>
               <thead>
                 <tr>
                   <th>Current Page Status</th>
@@ -1837,7 +1849,7 @@ return (
 
               </tbody>
 
-            </table> */}
+            </table>
     
     
             </div>

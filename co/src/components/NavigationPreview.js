@@ -168,7 +168,7 @@ const tempFontSize = 12;
 
         }
 
-        console.log("nav-obj = ", navObj);
+    //    console.log("nav-obj = ", navObj);
 
         let gameSettingWinOpenBool = getOpenSettingSignal();
         setOpenSettingsPage(gameSettingWinOpenBool);
