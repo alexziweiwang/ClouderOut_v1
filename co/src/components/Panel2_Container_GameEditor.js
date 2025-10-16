@@ -57,7 +57,7 @@ import { submitFileVM, fetchRmFileListVM, addToRmFileListVM, fetchUrlByFilenameV
 import { fetchProjectAllMetadataVM, updateProjectMetadataSingleFieldVM, updateProjectAllMetadataVM } from '../viewmodels/ProjectMetadataViewModel'; //TODO60
 import { generateNodeLongKeyString_vm } from '../viewmodels/PrepAc_ProjectOperation';
 import { singleNodeWriteToCloudVM, createNewNodeFoldersVM, multipleNodeWriteToCloudVM } from '../viewmodels/NodeEditingViewModel';
-
+import { dupObject } from '../viewmodels/PrepAc_Conversion';
 
 
 
@@ -610,13 +610,21 @@ export default function Panel2_Container_GameEditor() {
     function configureTestEmuDup() {
         //setup 
         let emuObj = projectMetaData["emu4sets"];
-        
-        setTestPlayerGameDataTracker();
-        setTestPlayerProfile();
-        setTestPlayerAccount();
-        setTestPlayerSLRecords();
-        setTestShopProducts();
-        setTestPlayerPurchaseStatus();
+        let dup1 = dupObject(emuObj["gdt1"]);
+        setTestPlayerGameDataTracker(dup1);
+
+        let dup2 = dupObject(emuObj["epp2"]);
+        setTestPlayerProfile(dup2);
+
+        let dup3 = dupObject(emuObj["epa3"]);
+        setTestPlayerAccount(dup3);
+
+        //"ess4"
+        //"shp5"
+        //TODO
+        // setTestPlayerSLRecords();
+        // setTestShopProducts();
+        // setTestPlayerPurchaseStatus();
     }
 
 
@@ -1892,7 +1900,7 @@ return (
 
             allPieceContent={projectAllNodeContent[currTestingNodeKey].nodeContent}  //from node's obj (data-structure)
 
-            uiData1_textframe={projectAllNodeContent[currTestingNodeKey]["nodeUISettings"].TextFrame}  //from node's obj (data-structure)
+            uiData1_textframe={projectAllNodeContent[currTestingNodeKey]["nodeUISettings"].textFrame}  //from node's obj (data-structure)
             uiData2_defaultButtonOption={projectAllNodeContent[currTestingNodeKey]["nodeUISettings"].defaultButton}  //from node's obj (data-structure) 
             uiData3_ConvNavigation={projectAllNodeContent[currTestingNodeKey]["nodeUISettings"].convNav}  //from node's obj (data-structure)
             uiData4_logPageSettings={projectAllNodeContent[currTestingNodeKey]["nodeUISettings"].logPage}  //from node's obj (data-structure)
@@ -1905,7 +1913,7 @@ return (
         
             getUILanguage={passInUiLanguageOption}
 
-            // initialEmuGameDataTracker={testPlayerGameDataDup}
+            initialEmuGameDataTracker={testPlayerGameDataTracker}
                     
             // resetViewing={resetQuickView}
             openSettingPage={hintNodeEditorOnly}
