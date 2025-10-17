@@ -1244,7 +1244,7 @@ console.log("ui-langauge changed to: ", val);
 
     }
 
-    async function passInCurrChapterContent(chapterKeyStr) {
+    function passInCurrChapterContent(chapterKeyStr) {
         if (chapterKeyStr === undefined) {
             return;
         }
@@ -1261,7 +1261,7 @@ console.log("ui-langauge changed to: ", val);
         );
         
                         console.log("projectAllNodeContent = ", projectAllNodeContent);
-                        console.log("filtered all nodes of this chapter:", cntt);
+                        console.log("filtered all nodes of this chapter: [", chapterKeyStr , "] are: ", cntt);
 
         if (cntt === undefined) {
             //TODO369 fetch from cloud?
@@ -1347,7 +1347,7 @@ console.log("ui-langauge changed to: ", val);
         || allChaptersContents[chapterKeyName] === null
         ) {
 
-            alert("chapter-walk: need to fetch from cloud?");
+            alert("chapter-walk: need to fetch from cloud!");
 
                                         //allChaptersContents, setAllChaptersContents
         }

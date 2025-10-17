@@ -186,6 +186,11 @@ export default function Viewer_Entire({
 
 
     const [currentGameStatusProgress, setCurrentGameStatusProgress] = useState({
+        "pageStatus": "Main Page",
+        "chapterKey": "",
+        "nodeKey": "",
+        "nodeType": "",
+        "chapterTitle": "",
     }); // important - for game-progress
 
 
@@ -401,7 +406,7 @@ export default function Viewer_Entire({
         triggerNodeWalk(nodeKeyName, nodeTypeName);
     }
 
-    async function triggerWalkToCurrChapterLocalViewer(chapterKeyName, chapterTitleName) {
+    function triggerWalkToCurrChapterLocalViewer(chapterKeyName, chapterTitleName) {
 
         // for viewer_entire's local data-records
         let temp = currentGameStatusProgress;
@@ -415,7 +420,7 @@ export default function Viewer_Entire({
 
 
         // trigger for actual progress-walking (by outer-layer)
-        let chpContent = await triggerChapterWalk(chapterKeyName, chapterTitleName); // cloud related (outer layer)
+        let chpContent = triggerChapterWalk(chapterKeyName, chapterTitleName); // cloud related (outer layer)
 
 
         //TODO900 fetch chapter-content?
@@ -545,10 +550,13 @@ game-screen (specific node) layer */}
 
 //TODO30: for fetching single-node-data from cloud - when doing the play-view
                                           <GameScreen_AllNodeTypeContainer
+
                                                 getNodeType={passInNodeType}
                                                 getChapterKey={passInChapterKey} 
                                                 getNodeKey={passInNodeKey}
                                                 getChapterTitle={passInChapterTitle}
+                                                getCurrChapterDataContainer={passInCurrChapterAllNodesContent}
+
 
                                                 triggerWalkToCurrNode={triggerWalkToCurrNodeLocalViewer}     
                                                 triggerWalkToCurrChapter={triggerWalkToCurrChapterLocalViewer}
@@ -572,7 +580,6 @@ game-screen (specific node) layer */}
                                                 mutedViewOption={mutedViewOption}
                                                 fetchGameSettings={passInGameSettingsScaleObj}
 
-                                                getCurrChapterDataContainer={passInCurrChapterAllNodesContent}
                                           
                                                 openSettingPage={setOpenSettingsPageSignalTrue}
                                                 sendOutBgmSettings={getBgmSettingsFromSubCompo}

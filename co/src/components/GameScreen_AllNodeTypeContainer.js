@@ -24,6 +24,9 @@ export default function GameScreen_AllNodeTypeContainer({
     getChapterKey, 
     getNodeKey,
     getChapterTitle,
+    getCurrChapterDataContainer,
+
+
     initialNodeType, 
     initialChapterKey, 
     initialNodeKey,
@@ -46,7 +49,6 @@ export default function GameScreen_AllNodeTypeContainer({
     mutedViewOption,
     fetchGameSettings,
 
-    getCurrChapterDataContainer,
     openSettingPage,
 
     sendOutBgmSettings,
@@ -184,7 +186,7 @@ export default function GameScreen_AllNodeTypeContainer({
     }
 
     //TODO21 refactor to VM
-    async function initializeAllNodeDataContainer(chapterKeyTemp) {//TODO99999
+    function initializeAllNodeDataContainer(chapterKeyTemp) {//TODO99999
         if (chapterKeyTemp.length === 0) {
             return;
         }
@@ -235,7 +237,7 @@ export default function GameScreen_AllNodeTypeContainer({
     }
 
     //TODO21 refactor to VM
-    async function fetchOrFindNodeData(chapterKeyTemp, nodeKeyTemp) {
+    function fetchOrFindNodeData(chapterKeyTemp, nodeKeyTemp) {
 //allNodeDataContainer, setAllNodeDataContainer
 //getCurrChapterDataContainer!!!
 
@@ -532,7 +534,7 @@ export default function GameScreen_AllNodeTypeContainer({
 
 
     //TODO21 refactor to VM
-    async function walkToNextChapter() {
+    function walkToNextChapter() {
         console.log("walk-to-next-chapter:     current chapter = ", currChapterKey);
 
         let i = 1;
@@ -560,7 +562,7 @@ export default function GameScreen_AllNodeTypeContainer({
 
                     walkToNodeAfterStartNode();
 
-                    await triggerWalkToCurrChapter(nextChapterItem[0], nextChapterItem[1]);
+                    triggerWalkToCurrChapter(nextChapterItem[0], nextChapterItem[1]);
 
 
 
