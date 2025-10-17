@@ -134,7 +134,7 @@ export default function Viewer_Entire({
 
 
 
-    const [currChapterAllNodesContent, setCurrChapterAllNodesContent] = useState([]); //TODO200
+    const [currChapterAllNodesContent, setCurrChapterAllNodesContent] = useState(-1); //TODO200
 
 
     const [chapterList, setChapterList] = useState(initialChapterList);  
@@ -260,12 +260,16 @@ export default function Viewer_Entire({
             setFirstTimeEnter(false);
         }
 
+        if (currChapterAllNodesContent === -1 && currentGameStatusProgress["nodeType"] !== "LogicSplitter") {
+            let anc = getCurrChapterContent(currentGameStatusProgress["chapterKey"]); //TODO369
+            setCurrChapterAllNodesContent(anc);
+                                              console.log("\t\t*** Viewer-Entire: currChapterAllNodesContent = ", anc, " with chap-key: ", currentGameStatusProgress["chapterKey"]);
         
-        let anc = getCurrChapterContent(currentGameStatusProgress["chapterKey"]); //TODO369
-        setCurrChapterAllNodesContent(anc);
-                                  //         console.log("\t\t*** Viewer-Entire: currChapterAllNodesContent = ", anc);
+        } else {
+            setCurrChapterAllNodesContent(-1);
 
-
+        }
+ 
 
 
 
@@ -490,7 +494,7 @@ export default function Viewer_Entire({
     }
 
 
-    function passIncurrChapterAllNodesContent() {
+    function passInCurrChapterAllNodesContent() {
         return currChapterAllNodesContent;
     }
 
@@ -567,9 +571,9 @@ game-screen (specific node) layer */}
                                                 audioMap={audioMap}
                                                 mutedViewOption={mutedViewOption}
                                                 fetchGameSettings={passInGameSettingsScaleObj}
-                                          
-                                                getCurrChapterDataContainer={passIncurrChapterAllNodesContent}
 
+                                                getCurrChapterDataContainer={passInCurrChapterAllNodesContent}
+                                          
                                                 openSettingPage={setOpenSettingsPageSignalTrue}
                                                 sendOutBgmSettings={getBgmSettingsFromSubCompo}
                                                 backendOption={backendOption}

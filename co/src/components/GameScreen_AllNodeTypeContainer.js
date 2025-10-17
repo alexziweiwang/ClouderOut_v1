@@ -196,7 +196,7 @@ export default function GameScreen_AllNodeTypeContainer({
 
      //   Object.keys(nodeMappingTemp).map(async (chapterKey) => {
  
-            let entireChapter = {};
+            let entireChapter = getCurrChapterDataContainer();
             //TODO99999 use all-node-content data object from panel2 !!!
                                     // await fetchNodeDataEachChapterVM({
                                     //     projectName: projectname, 
