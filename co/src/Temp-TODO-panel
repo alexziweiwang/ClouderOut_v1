@@ -13,7 +13,7 @@ parent-compo that uses < GameScreen_QuickView_ConvNode > :
             < AllPanels_QuickView_ConvNode >
             < GameScreen_InPracShell_ConvNode >
     and outer-layer
-            < GameScreen_AllNodeTypeContainer >
+            < DuringGameScreen_AllNodeTypeContainer >
     and outer-layer
             < Viewer_Entire >
     and outer-layer

@@ -16,7 +16,7 @@ import {
 } from '../viewmodels/PrepAc_Creations';
 
 //node key rule: generateNodeLongKeyString_vm({chapterKey, nodeKey})
-//TODO112: fetch node-contents here, and send into Viewer_Entire and its sub-component [GameScreen_AllNodeTypeContainer]
+//TODO112: fetch node-contents here, and send into Viewer_Entire and its sub-component [DuringGameScreen_AllNodeTypeContainer]
 import { checkProjectMetaData_vm } from '../viewmodels/PrepAc_ProjectFileInOut';
 import { resourceRawListToUsableMap_vm } from '../viewmodels/PrepAc_Conversion';
 

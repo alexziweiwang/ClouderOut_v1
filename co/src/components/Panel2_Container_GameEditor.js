@@ -41,7 +41,7 @@ import { checkProjectMetaData_vm } from '../viewmodels/PrepAc_ProjectFileInOut';
   } from '../viewmodels/NodeDataInPlayViewModel';
 
   import { fetchNodeByChapter2VM } from '../viewmodels/NodeDataInPlayViewModel'
-  //TODO112: fetch node-contents here, and send into Viewer_Entire and its sub-component [GameScreen_AllNodeTypeContainer]
+  //TODO112: fetch node-contents here, and send into Viewer_Entire and its sub-component [DuringGameScreen_AllNodeTypeContainer]
   
 
 //keep this
@@ -163,7 +163,13 @@ export default function Panel2_Container_GameEditor() {
 
     const [nodeViewingEntryNum, setNodeViewingEntryNum] = useState(0);
 
-
+    const [viewerEntireGameProgressObj, setViewerEntireGameProgressObj] = useState({
+        "pageStatus": "Main Page",
+        "chapterKey": "",
+        "nodeKey": "",
+        "nodeType": "",
+        "chapterTitle": "",
+    });
 
     function closeEntireGameViewer() {
         // reset all game-progress
@@ -660,6 +666,14 @@ export default function Panel2_Container_GameEditor() {
         
         //TODO prep: either emu-set-data or in-prac-user data?
 
+        //TODO99999
+
+        let chapterKey = projectMetaData["chapterList"][1];
+        
+
+        setViewerEntireGameProgressObj(
+
+        );
         
 
         setDisplayEntireGameViewer(true);
@@ -1260,8 +1274,8 @@ console.log("ui-langauge changed to: ", val);
         }
         );
         
-                        console.log("projectAllNodeContent = ", projectAllNodeContent);
-                        console.log("filtered all nodes of this chapter: [", chapterKeyStr , "] are: ", cntt);
+              //          console.log("projectAllNodeContent = ", projectAllNodeContent);
+             //           console.log("filtered all nodes of this chapter: [", chapterKeyStr , "] are: ", cntt);
 
         if (cntt === undefined) {
             //TODO369 fetch from cloud?
@@ -1784,7 +1798,7 @@ return (
     {isDisplayEntireGameViewer === true 
     &&<>
     <div>
-        <div>
+        <div>???
 
          <Viewer_Entire
 
@@ -1793,6 +1807,7 @@ return (
             initialChapterList={chapListNestedArr}
             initialCurrChapterAllNodeMapping={projectMetaData["chapterNodeMapping"]}
 
+            initialGameProgress={viewerEntireGameProgressObj}
             initialPlayerGameDataTracker={projectMetaData["emu4sets"]["gdt1"]} //TODo emu-4sets
             initialPlayerProfile={projectMetaData["emu4sets"]["epp2"]} //TODo emu-4sets
             initialPlayerAccountSettings={projectMetaData["emu4sets"]["epa3"]} //TODo emu-4sets

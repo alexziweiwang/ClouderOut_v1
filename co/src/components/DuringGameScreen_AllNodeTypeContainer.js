@@ -19,7 +19,7 @@ import { generateNodeLongKeyString_vm } from '../viewmodels/PrepAc_ProjectOperat
 
 //level2 (includes all types of nodes)
 
-export default function GameScreen_AllNodeTypeContainer({
+export default function DuringGameScreen_AllNodeTypeContainer({
     getNodeType, 
     getChapterKey, 
     getNodeKey,

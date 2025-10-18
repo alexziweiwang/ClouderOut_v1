@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import NavigationPreview from './NavigationPreview';
-import GameScreen_AllNodeTypeContainer from './GameScreen_AllNodeTypeContainer';
+import DuringGameScreen_AllNodeTypeContainer from './DuringGameScreen_AllNodeTypeContainer';
 
 import { configureGameProgress_vm } from '../viewmodels/CalcAc_ViewerEntireAc';
 import { initializeGameDataTracker_vm } from '../viewmodels/PrepAc_ViewerEntireAc';
@@ -43,6 +43,9 @@ export default function Viewer_Entire({
 
     initialNavObj, //TODO remove
     initialChapterList,  //TODO remove
+    
+    initialCurrChapterAllNodeMapping,
+
     initialCurrChapterAllNodeMapping, //single chapter
 
     visualVarPairList,
@@ -185,13 +188,7 @@ export default function Viewer_Entire({
 
 
 
-    const [currentGameStatusProgress, setCurrentGameStatusProgress] = useState({
-        "pageStatus": "Main Page",
-        "chapterKey": "",
-        "nodeKey": "",
-        "nodeType": "",
-        "chapterTitle": "",
-    }); // important - for game-progress
+    const [currentGameStatusProgress, setCurrentGameStatusProgress] = useState(initialCurrChapterAllNodeMapping); // important - for game-progress
 
 
 
@@ -266,10 +263,19 @@ export default function Viewer_Entire({
         }
 
         if (currChapterAllNodesContent === -1 && currentGameStatusProgress["nodeType"] !== "LogicSplitter") {
-            let anc = getCurrChapterContent(currentGameStatusProgress["chapterKey"]); //TODO369
-            setCurrChapterAllNodesContent(anc);
-                                              console.log("\t\t*** Viewer-Entire: currChapterAllNodesContent = ", anc, " with chap-key: ", currentGameStatusProgress["chapterKey"]);
-        
+            if (currentGameStatusProgress["chapterKey"].length > 0) {
+                let anc = getCurrChapterContent(currentGameStatusProgress["chapterKey"]); //TODO369
+                setCurrChapterAllNodesContent(anc);
+
+                                                    console.log("\t\t*** Viewer-Entire: currChapterAllNodesContent = ", anc, " with chap-key: ", currentGameStatusProgress["chapterKey"]);
+            
+            } else {
+
+                                                    console.log("\t\t empty currentGameStatusProgress chapter-key: ", currentGameStatusProgress);
+
+            }
+            
+
         } else {
             setCurrChapterAllNodesContent(-1);
 
@@ -549,7 +555,7 @@ game-screen (specific node) layer */}
                                           */}
 
 //TODO30: for fetching single-node-data from cloud - when doing the play-view
-                                          <GameScreen_AllNodeTypeContainer
+                                          <DuringGameScreen_AllNodeTypeContainer
 
                                                 getNodeType={passInNodeType}
                                                 getChapterKey={passInChapterKey} 
