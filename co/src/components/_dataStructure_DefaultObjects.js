@@ -1,3 +1,21 @@
+/*
+    metadata - chapter list 
+        [0] chp-key
+        [1] chp-title
+        [2] "display" or "delete"
+        [3] note]
+*/
+
+
+/*
+    Viewer Entire - Game Progress
+        "pageStatus": "Main Page",
+        "chapterKey": "",
+        "nodeKey": "",
+        "nodeType": "",
+        "chapterTitle": "",
+
+*/
 export const sizeLookupMap = { 
     "16:9(horizonal)": [800, 450],
     "16:9(vertical)": [450, 800],
@@ -455,7 +473,7 @@ export const epa3Template = {
 }
 
 export const ess4Template = {
-    
+
 }
 
 export const shp5Template = {

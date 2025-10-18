@@ -43,8 +43,8 @@ export default function Viewer_Entire({
 
     initialNavObj, //TODO remove
     initialChapterList,  //TODO remove
-    
-    initialCurrChapterAllNodeMapping,
+
+    initialGameProgress,
 
     initialCurrChapterAllNodeMapping, //single chapter
 
@@ -80,6 +80,8 @@ export default function Viewer_Entire({
 // if isLocal === false, then load cloud db for the actual player's info?
 
     let mutedViewOption = false;
+
+    let modalStyleName = "displayBlock modalBackboard";
 
 // getCurrChapterKey
 // getCurrNodeKey
@@ -140,7 +142,7 @@ export default function Viewer_Entire({
     const [currChapterAllNodesContent, setCurrChapterAllNodesContent] = useState(-1); //TODO200
 
 
-    const [chapterList, setChapterList] = useState(initialChapterList);  
+    // const [chapterList, setChapterList] = useState(initialChapterList);  
         //TODO change chapter-list to non-dynamic-data later - directly from outer-layer is ok
 
 
@@ -188,7 +190,7 @@ export default function Viewer_Entire({
 
 
 
-    const [currentGameStatusProgress, setCurrentGameStatusProgress] = useState(initialCurrChapterAllNodeMapping); // important - for game-progress
+    const [currentGameStatusProgress, setCurrentGameStatusProgress] = useState(initialGameProgress); // important - for game-progress
 
 
 
@@ -213,6 +215,7 @@ export default function Viewer_Entire({
 
                                
             //chapterList[0]
+            let chapterList = initialChapterList;
             if (chapterList.length > 0) {
 
 
@@ -262,7 +265,9 @@ export default function Viewer_Entire({
             setFirstTimeEnter(false);
         }
 
-        if (currChapterAllNodesContent === -1 && currentGameStatusProgress["nodeType"] !== "LogicSplitter") {
+        if (currentGameStatusProgress["pageStatus"] === "During Game" 
+        && currChapterAllNodesContent === -1 
+        && currentGameStatusProgress["nodeType"] !== "LogicSplitter") {
             if (currentGameStatusProgress["chapterKey"].length > 0) {
                 let anc = getCurrChapterContent(currentGameStatusProgress["chapterKey"]); //TODO369
                 setCurrChapterAllNodesContent(anc);
@@ -270,7 +275,6 @@ export default function Viewer_Entire({
                                                     console.log("\t\t*** Viewer-Entire: currChapterAllNodesContent = ", anc, " with chap-key: ", currentGameStatusProgress["chapterKey"]);
             
             } else {
-
                                                     console.log("\t\t empty currentGameStatusProgress chapter-key: ", currentGameStatusProgress);
 
             }
@@ -528,11 +532,12 @@ export default function Viewer_Entire({
 
 return ( <>
 
-<div>
+<div className={modalStyleName}>
     <div>
 
       
-        <div style={{"position": "relative", "marginLeft": (screenWidth > screenHeight) ? "170px" : "320px"}}>
+        <div 
+            style={{"position": "relative", "marginLeft": (screenWidth > screenHeight) ? "170px" : "320px"}}>
       
 
 
@@ -614,7 +619,7 @@ shop layer
                     <NavigationPreview 
                         fetchNavObj={passInNavObj} 
 
-                        chapterData={chapterList} 
+                        chapterData={initialChapterList} 
                         fetchPageName={passInNavPageName} 
 
                         triggerUpdateCurrPageName={updateNavPageName}

@@ -668,12 +668,14 @@ export default function Panel2_Container_GameEditor() {
 
         //TODO99999
 
-        let chapterKey = projectMetaData["chapterList"][1];
-        
 
-        setViewerEntireGameProgressObj(
-
-        );
+        setViewerEntireGameProgressObj({
+            "pageStatus": "Main Page",
+            "chapterKey": "",
+            "nodeKey": "",
+            "nodeType": "",
+            "chapterTitle": "",
+        });
         
 
         setDisplayEntireGameViewer(true);
@@ -1798,7 +1800,7 @@ return (
     {isDisplayEntireGameViewer === true 
     &&<>
     <div>
-        <div>???
+        <div>
 
          <Viewer_Entire
 
@@ -1808,6 +1810,7 @@ return (
             initialCurrChapterAllNodeMapping={projectMetaData["chapterNodeMapping"]}
 
             initialGameProgress={viewerEntireGameProgressObj}
+            
             initialPlayerGameDataTracker={projectMetaData["emu4sets"]["gdt1"]} //TODo emu-4sets
             initialPlayerProfile={projectMetaData["emu4sets"]["epp2"]} //TODo emu-4sets
             initialPlayerAccountSettings={projectMetaData["emu4sets"]["epa3"]} //TODo emu-4sets
