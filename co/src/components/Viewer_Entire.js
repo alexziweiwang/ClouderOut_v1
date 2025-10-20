@@ -83,8 +83,6 @@ export default function Viewer_Entire({
 
     let mutedViewOption = false;
 
-    let modalStyleName = "displayBlock modalBackboard";
-
 // getCurrChapterKey
 // getCurrNodeKey
 // getCurrNodeType //TODO
@@ -532,21 +530,11 @@ export default function Viewer_Entire({
 
 
 
-return ( <>
+return ( 
+/*{ <> 
 
-<div className={modalStyleName}>
-    <div>
-        <div>
-
-            <button
-                onClick={()=>{
-                    handleViewerCancel();
-                }}
-            > close </button>
-
-
-        </div>
-
+<div>
+    <div> }*/
       
         <div 
             style={{"position": "relative", "marginLeft": (screenWidth > screenHeight) ? "170px" : "320px"}}>
@@ -686,14 +674,15 @@ shop layer
 
  
 
-    </div>
+/*    </div>
 
 
 
 </div>
 
     
-</>);
+ </> */
+);
 
 }
 

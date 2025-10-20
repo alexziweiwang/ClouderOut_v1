@@ -82,6 +82,8 @@ export default function Panel2_Container_GameEditor() {
     
     let backendOption = "firebase";
 
+    let modalStyleName = "displayBlock modalBackboard";
+
 
     const [isPrepFinished, setPrepFinished] = useState(false);
     const [isSavedToCloud, setSavedToCloud] = useState(true);
@@ -159,7 +161,7 @@ export default function Panel2_Container_GameEditor() {
     const [currTestingPageName, setCurrTestingPageName] = useState("Main Page"); //move to outer-layer
     
     const [currTestingScrnW, setCcurrTestingScrnW] = useState(800);
-    const [currTestingScrnH, setCcurrTestingScrnH] = useState(800);
+    const [currTestingScrnH, setCcurrTestingScrnH] = useState(600);
 
     const [nodeViewingEntryNum, setNodeViewingEntryNum] = useState(0);
 
@@ -1799,10 +1801,19 @@ return (
             
     {isDisplayEntireGameViewer === true 
     &&<>
-    <div style={{"display": "flex"}}>
+    <div className={modalStyleName}>
+
+        <button
+                onClick={()=>{
+                    handleCancelEntireViewer();
+                }}
+        > close </button>
+
+        <div         
+            style={{"display": "flex"}}
+        >
 
 
-        <div>
 
          <Viewer_Entire
 
@@ -1843,14 +1854,14 @@ return (
 
         /> 
 
-   
-    
-    
-    
-    
     
       {/* status table */}
-      <table style={{"width": "800px", "marginTop": `${currTestingScrnH+20}px`, "marginLeft": "170px","position": "absolute"}}>
+      <table style={{
+          "width": "800px", 
+          "marginTop": `${currTestingScrnH+10}px`, 
+          "marginLeft": "170px","position": "absolute"
+          }}
+        >
               <thead>
                 <tr>
                   <th>Current Page Status</th>
