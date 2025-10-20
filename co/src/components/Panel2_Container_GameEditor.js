@@ -171,24 +171,24 @@ export default function Panel2_Container_GameEditor() {
         "chapterTitle": "",
     });
 
-    function closeEntireGameViewer() {
+
+    function handleCancelNodeTestViewer() {
+//TODO reset things like:
+        //initialPieceNum
+
+
+        setDisplayQuickview(false);
+    }
+
+    function handleCancelEntireViewer() {
         // reset all game-progress
         setCurrTestingPageStatus("Main Page");
         setCurrTestingChapterKey("");
         setCurrTestingChapterTitle("");
         setCurrTestingNodeKey("");
         setCurrTestingNodeType("");
-    
+
         setDisplayEntireGameViewer(false);
-    }
-    
-
-    function closeNodeTestViewer() {
-//TODO reset things like:
-        //initialPieceNum
-
-
-        setDisplayQuickview(false);
     }
 
     function triggerUpdateCurrentStanding(obj) { //fetch from sub-compo
@@ -1799,7 +1799,9 @@ return (
             
     {isDisplayEntireGameViewer === true 
     &&<>
-    <div>
+    <div style={{"display": "flex"}}>
+
+
         <div>
 
          <Viewer_Entire
@@ -1836,6 +1838,8 @@ return (
             getCurrChapterContent={passInCurrChapterContent}
 
             backendOption={backendOption}
+
+            handleViewerCancel={handleCancelEntireViewer}
 
         /> 
 
@@ -1926,7 +1930,7 @@ return (
 
             initialPieceNum={nodeViewingEntryNum} //from conv-node-editor-triggering
 
-            handleQViewCancel={closeNodeTestViewer}
+            handleQViewCancel={handleCancelNodeTestViewer}
 
             allPieceContent={projectAllNodeContent[currTestingNodeKey].nodeContent}  //from node's obj (data-structure)
 

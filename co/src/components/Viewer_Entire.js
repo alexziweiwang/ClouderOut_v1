@@ -71,6 +71,8 @@ export default function Viewer_Entire({
     uiLangOption,
 
     backendOption,
+
+    handleViewerCancel,
     
 }) { //notes: "initialGameData" is this player's cloud-game-data, 
     // and when updating in this compo, it also updates to outside layer
@@ -534,6 +536,16 @@ return ( <>
 
 <div className={modalStyleName}>
     <div>
+        <div>
+
+            <button
+                onClick={()=>{
+                    handleViewerCancel();
+                }}
+            > close </button>
+
+
+        </div>
 
       
         <div 
