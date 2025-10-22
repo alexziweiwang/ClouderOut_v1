@@ -179,8 +179,10 @@ export default function ChapterManager({
       if (chapterInfo[i][2] === "delete") {
         tempList.push(chapterInfo[i]);
       }
-
     }
+    //TODO50
+
+
 //console.log("make deleted list: after = ", tempList);
 
     setDeletedLocalList(tempList);    

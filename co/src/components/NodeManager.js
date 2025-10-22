@@ -601,15 +601,17 @@ export default function NodeManager({projectName, currUser,
         let i = 0;
         let len = arr.length;
         let updatedArr = [];
-        for(; i < len; i++) {
-          let item = arr[i];
-          //{"internalStmt":"else", "nextNode": "", "displayStmt": "else"}
 
-          if (item["nextNode"] !== clickedNodeKey) {
-            //add to new array if not this to-be-deleted node
-            updatedArr.push(item);
-          }
+        for(; i < len; i++) {
+            let item = arr[i];
+            //{"internalStmt":"else", "nextNode": "", "displayStmt": "else"}
+
+            if (item["nextNode"] !== clickedNodeKey) {
+              //add to new array if not this to-be-deleted node
+              updatedArr.push(item);
+            }
         }
+        
         tempNodeMap[nodeKey].spltLogicPairs = updatedArr; //deleteNodeFunc-2() 
        
       } else {

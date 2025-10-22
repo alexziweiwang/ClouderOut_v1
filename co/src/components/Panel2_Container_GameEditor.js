@@ -365,8 +365,6 @@ export default function Panel2_Container_GameEditor() {
         }
         setResourcePair(varPairObj);
 
-        //setChapListNestedArr
-
         //track if metadata changed
     }, [
         projectMetaData
@@ -476,6 +474,15 @@ export default function Panel2_Container_GameEditor() {
         if (res === true) {
             setProjectMetaData(metadataTemp);
             //TODO99999 setup visual-var-pair and audio-var-pair maps
+            
+
+            //TODO50 conversion
+            //setChapListNestedArr();
+
+            
+
+
+
 
             setProjectAllNodeContent(chapterContentTemp);
         } else {
@@ -528,6 +535,9 @@ export default function Panel2_Container_GameEditor() {
                     alert("Data for this project file is broken.");
                 }
             }
+
+            //TODO50 conversion
+            //setChapListNestedArr();
 
 
 

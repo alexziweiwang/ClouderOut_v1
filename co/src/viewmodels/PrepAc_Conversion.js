@@ -40,3 +40,21 @@ export function dupObject(sourceObj) {
     return destObj;
 
 }
+
+export function fromListToIndexedMap(list1) {
+    let map1 = {};
+    list1.map((item, index) => {
+        map1[index] = item;
+    });
+
+    return map1;
+}
+
+export function fromIndexedMapToList(map1) {
+    let list1 = [];
+    Object.keys(map1).map((currKey) => {
+        list1.push(map1[currKey]);
+    });
+
+    return list1;
+}

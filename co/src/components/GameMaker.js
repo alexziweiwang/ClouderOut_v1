@@ -18,7 +18,11 @@ import {
 //node key rule: generateNodeLongKeyString_vm({chapterKey, nodeKey})
 //TODO112: fetch node-contents here, and send into Viewer_Entire and its sub-component [DuringGameScreen_AllNodeTypeContainer]
 import { checkProjectMetaData_vm } from '../viewmodels/PrepAc_ProjectFileInOut';
-import { resourceRawListToUsableMap_vm } from '../viewmodels/PrepAc_Conversion';
+import { resourceRawListToUsableMap_vm,
+  fromListToIndexedMap,
+  fromIndexedMapToList
+
+} from '../viewmodels/PrepAc_Conversion';
 
 
 import langDictionary from './_textDictionary';
@@ -1080,15 +1084,18 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
   async function genChapterListAndMapOuter(chapterListArr) {
 
-    //convert the nested array into map
-    let chapterListMap = {};
-    let i = 0;
-    let len = chapterListArr.length;
-    while (i < len) {
-      chapterListMap[i] = chapterListArr[i];
-      i++;
-    }
-    //TODo50 conversion
+                                                //convert the nested array into map
+                                  // let chapterListMap = {};
+                                  // let i = 0;
+                                  // let len = chapterListArr.length;
+
+                                  // while (i < len) {
+                                  //   chapterListMap[i] = chapterListArr[i];
+                                  //   i++;
+                                  // }
+
+    let chapterListMap = fromListToIndexedMap(chapterListArr);
+    //TODo50 conversion, to test?
 
 
     //update this to panel2
@@ -1254,12 +1261,14 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
     setCurrentProjectNav(metaDataTemp["nav_ui_settings"]);
           
 // AllChapterList (used in chapter-manager) <map/2d_array>
-    let chapterArr = [];
     let chapMap = metaDataTemp["chapterList"];
-        Object.keys(chapMap).map((currKey) => {
-            let item = chapMap[currKey];
-            chapterArr.push(item);
-        }); //todo50 conversion
+    
+    let chapterArr = fromIndexedMapToList(chapMap);
+
+                            // Object.keys(chapMap).map((currKey) => {
+                            //     let item = chapMap[currKey];
+                            //     chapterArr.push(item);
+                            // }); //todo50 conversion, to test
 
 
     setChapterList(chapterArr);

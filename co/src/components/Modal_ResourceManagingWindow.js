@@ -497,15 +497,15 @@ console.log("before adding one-new-item to local list: ", usersAllFileListVisual
             for(; i < visualVarPairs.length; i++) {
                 if (visualVarPairs[i]["url"] === item["fileurl"]) {
 
-                    inList.push(item);  
+                    inList.push(item);   //TODO50
                 }
             }
-        });
+        });//TODO50
 
         let j = 0;
         for (; j < usersAllFileListVisual.length; j++) {
             if (!inList.includes(usersAllFileListVisual[j])) {
-                notInList.push(usersAllFileListVisual[j]);
+                notInList.push(usersAllFileListVisual[j]); //TODO50
             }
         }
   
@@ -534,7 +534,7 @@ console.log("before adding one-new-item to local list: ", usersAllFileListVisual
             let i = 0;
             for(; i < audioVarPairs.length; i++) {
                 if (audioVarPairs[i]["url"] === item["fileurl"]) {
-                    inList.push(item);  
+                    inList.push(item);  //TODO50
                 }
             }
         });
@@ -542,7 +542,7 @@ console.log("before adding one-new-item to local list: ", usersAllFileListVisual
         let j = 0;
         for (; j < usersAllFileListAudio.length; j++) {
             if (!inList.includes(usersAllFileListAudio[j])) {
-                notInList.push(usersAllFileListAudio[j]);
+                notInList.push(usersAllFileListAudio[j]); //TODO50
             }
         }
 
