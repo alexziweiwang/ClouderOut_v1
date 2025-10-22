@@ -740,9 +740,10 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
         }
   } 
   
-  function updateChapterList(chapterData) { // game-maker local
-    genChapterListToOuter(chapterData);
-    setChapterList(chapterData);
+  function updateChapterList_local(chapterListTemp) { // game-maker local
+    genChapterListAndMapOuter(chapterListTemp);
+
+    setChapterList(chapterListTemp);
   }
 
   
@@ -1077,7 +1078,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
 
 
-  async function genChapterListToOuter(chapterListArr) {
+  async function genChapterListAndMapOuter(chapterListArr) {
 
     //convert the nested array into map
     let chapterListMap = {};
@@ -1087,6 +1088,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
       chapterListMap[i] = chapterListArr[i];
       i++;
     }
+    //TODo50 conversion
 
 
     //update this to panel2
@@ -1257,7 +1259,9 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
         Object.keys(chapMap).map((currKey) => {
             let item = chapMap[currKey];
             chapterArr.push(item);
-    }) //todo50 conversion
+        }); //todo50 conversion
+
+
     setChapterList(chapterArr);
 
 // ChapterNodeMapping (used in node-manager) <map>
@@ -1441,7 +1445,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
           
           triggerCreatedNewChapter={triggerCreatedNewChapter}
-          updateChapterData={updateChapterList} 
+          updateChapterList_gm={updateChapterList_local} 
              
         />}
 

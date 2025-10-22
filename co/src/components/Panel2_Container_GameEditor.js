@@ -365,6 +365,8 @@ export default function Panel2_Container_GameEditor() {
         }
         setResourcePair(varPairObj);
 
+        //setChapListNestedArr
+
         //track if metadata changed
     }, [
         projectMetaData

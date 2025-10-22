@@ -3,14 +3,17 @@ import { useState, useEffect } from 'react';
 import langDictionary from './_textDictionary';
 
 export default function ChapterManager({
-  updateChapterData, 
+  updateChapterList_gm, 
+  
   updateChosenChapterItem, 
+ 
   prepareForNewChapterMapping, 
   
   getChapterList,
 
 
   triggerCreatedNewChapter,
+  
   sendOutIsCollapsed,
 
   getUILanguage,
@@ -26,7 +29,7 @@ export default function ChapterManager({
 
 
 //TODO3: game-maker level: all chapter's data (each chapter's node list)
-//TODO3: add getChapterData (from caller) : "getChapterList()"
+//TODO3: add getchapterList (from caller) : "getChapterList()"
 
   const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en'); //TODO16
 
@@ -131,7 +134,7 @@ export default function ChapterManager({
 
   const [createdNewChapterList, setCreatedNewChapterList] = useState([]);
 
-  const [chapterData, setChapterData] = useState(undefined);
+  const [chapterList, setchapterList] = useState(undefined);
 
   const [firstTimeEnter, setFirstTimeEnter] = useState(true);
   useEffect(() => {
@@ -139,7 +142,7 @@ export default function ChapterManager({
                   console.log("\t\t\t\tchapter-manager rendered once.");
 
     if (firstTimeEnter === true) {
-      if (chapterData === undefined) {
+      if (chapterList === undefined) {
 
         loadListFromOuter();
         
@@ -157,11 +160,11 @@ export default function ChapterManager({
   function loadListFromOuter() {
         let chapterListTemp = getChapterList(); // current-version(not necessarily newest from cloud)
         //   console.log("chp-mgr, chapter list  = ", chapterListTemp);
-        setChapterData(chapterListTemp);
+        setchapterList(chapterListTemp);
         
         
         //prepare for deleted-list as well
-        if (chapterListTemp != chapterData) {
+        if (chapterListTemp != chapterList) {
           makeDeletedList(chapterListTemp);
         } 
 
@@ -184,27 +187,27 @@ export default function ChapterManager({
 
   }
   
-  function triggerChapterChangeBothInOut(tempChapterData) {
-    updateChapterData(tempChapterData);
-    setChapterData(tempChapterData);
+  function triggerChapterChangeBothInOut(tempchapterList) {
+    updateChapterList_gm(tempchapterList);
+    setchapterList(tempchapterList);
   }
 
   function changeChapterTitle(index, newTitle) {
     //action 03
-    let tempChapterData = chapterData;
-    tempChapterData[index][1] = newTitle;
+    let tempchapterList = chapterList;
+    tempchapterList[index][1] = newTitle;
 
-    triggerChapterChangeBothInOut(tempChapterData);
+    triggerChapterChangeBothInOut(tempchapterList);
 
     setEditingChapterTitle("");
   }
 
   function changeChapterNote(index, note) {
     //action 03
-    let tempChapterData = chapterData;
-    tempChapterData[index][3] = note;
+    let tempchapterList = chapterList;
+    tempchapterList[index][3] = note;
 
-    triggerChapterChangeBothInOut(tempChapterData);
+    triggerChapterChangeBothInOut(tempchapterList);
 
     setEditingChapterNote("");
   }
@@ -226,26 +229,26 @@ export default function ChapterManager({
 
     //2. not allowing duplicate chapter key
     let i = 0;
-    for (; i < chapterData.length; i++) {
-      let tempKey = chapterData[i][0];
+    for (; i < chapterList.length; i++) {
+      let tempKey = chapterList[i][0];
       if (userInputChpKey === tempKey) {
         alert("Can not use duplicate chapter unique-ID.");
         return;
       }
     }
 
-    let tempChapterData = chapterData;
-                      console.log("\t\tadding a new chapter: ", chapterData);
+    let tempchapterList = chapterList;
+                      console.log("\t\tadding a new chapter: ", chapterList);
 
     let line = [userInputChpKey, newChapterTitleInput, "display", newChapterNoteInput]; //TODO3
-    tempChapterData.push(line);
+    tempchapterList.push(line);
 
     // add current chapter-key into created-key-list
     triggerCreatedNewChapter(line);
 
 
-    triggerChapterChangeBothInOut(tempChapterData);
-    makeDeletedList(tempChapterData);
+    triggerChapterChangeBothInOut(tempchapterList);
+    makeDeletedList(tempchapterList);
 
     prepareForNewChapterMapping(userInputChpKey);
 
@@ -253,25 +256,25 @@ export default function ChapterManager({
     setNewChapterTitleInput("");
 
     let newListTemp = getChapterList();
-    setChapterData(newListTemp);
+    setchapterList(newListTemp);
 
   }
 
   function hideChapter(index) {
     //action 04
-    let askStr = "Are you sure to delete the chapter " + chapterData[index][1] + "?";
+    let askStr = "Are you sure to delete the chapter " + chapterList[index][1] + "?";
     let response = window.confirm(askStr);
     if (response) {
       let deleteListTemp = deletedLocalList;
-      deleteListTemp.push(chapterData[index]);
+      deleteListTemp.push(chapterList[index]);
   
-      let tempChapterData = chapterData;
-      tempChapterData[index][2] = "delete";
+      let tempchapterList = chapterList;
+      tempchapterList[index][2] = "delete";
 
 
-      triggerChapterChangeBothInOut(tempChapterData);
+      triggerChapterChangeBothInOut(tempchapterList);
 
-      makeDeletedList(tempChapterData);
+      makeDeletedList(tempchapterList);
 
       setSelectedChpt("");
     }
@@ -290,16 +293,16 @@ export default function ChapterManager({
   function revertChapter(keyStr) {
     //action 02
     let i = 0;
-    let tempChapterData = chapterData;
+    let tempchapterList = chapterList;
     let tempDeletedLocalList = [];
 
-    for (; i < tempChapterData.length; i++) {
-      if (tempChapterData[i][0] === keyStr) {
-        tempChapterData[i][2] = "display"; //not including this in the updated-deleted-list
+    for (; i < tempchapterList.length; i++) {
+      if (tempchapterList[i][0] === keyStr) {
+        tempchapterList[i][2] = "display"; //not including this in the updated-deleted-list
         setSelectedChpt(i);
       } else {
-        if (tempChapterData[i][2] === "delete") {
-          tempDeletedLocalList.push(tempChapterData[i]);
+        if (tempchapterList[i][2] === "delete") {
+          tempDeletedLocalList.push(tempchapterList[i]);
         }
       }
     }
@@ -307,7 +310,7 @@ export default function ChapterManager({
     // update deletedLocalList
     setDeletedLocalList(tempDeletedLocalList);
 
-    triggerChapterChangeBothInOut(tempChapterData);
+    triggerChapterChangeBothInOut(tempchapterList);
 
     setIsRevertingChapter(false);
 
@@ -328,15 +331,15 @@ export default function ChapterManager({
                 
                   <ul>
                     {
-                    (chapterData !== undefined && chapterData.length > 0)
+                    (chapterList !== undefined && chapterList.length > 0)
                     &&   <>
-                        {chapterData.map((item, index) => {
+                        {chapterList.map((item, index) => {
                           if (item[0] === "chapter_placeholder") {
                             return;
                           }
 
                           let hide = "display";
-                          if (chapterData[index][2] === "delete") {
+                          if (chapterList[index][2] === "delete") {
                             hide = "hide";
                           }
                           let divKey = "div"+index;
@@ -413,7 +416,7 @@ export default function ChapterManager({
                           setIsAddNewChapter(!isAddNewChpater);
                           setSelectedChpt("");
                           updateChosenChapterItem("");
-console.log("chapterData: ", chapterData); //TODO testing
+console.log("chapterList: ", chapterList); //TODO testing
                         }}>
                         + {newWordText}{chapterText}
                       </li>

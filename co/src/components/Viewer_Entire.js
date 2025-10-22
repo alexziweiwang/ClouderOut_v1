@@ -208,7 +208,7 @@ export default function Viewer_Entire({
                                                 console.log("init-game-data = ", initialPlayerGameDataTracker); //for each test-run
                                                 console.log("init-player-profile = ", initialPlayerProfile);
                                                 console.log("init-player-account = ", initialPlayerAccountSettings);
-                    
+                                                console.log("initial chapter list: ", initialChapterList);
                                                 
             
             initializeGameDataTracker_local(initialPlayerGameDataTracker);
