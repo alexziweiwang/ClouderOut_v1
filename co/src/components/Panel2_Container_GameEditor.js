@@ -57,7 +57,7 @@ import { submitFileVM, fetchRmFileListVM, addToRmFileListVM, fetchUrlByFilenameV
 import { fetchProjectAllMetadataVM, updateProjectMetadataSingleFieldVM, updateProjectAllMetadataVM } from '../viewmodels/ProjectMetadataViewModel'; //TODO60
 import { generateNodeLongKeyString_vm } from '../viewmodels/PrepAc_ProjectOperation';
 import { singleNodeWriteToCloudVM, createNewNodeFoldersVM, multipleNodeWriteToCloudVM } from '../viewmodels/NodeEditingViewModel';
-import { dupObject } from '../viewmodels/PrepAc_Conversion';
+import { dupObject, fromIndexedMapToList } from '../viewmodels/PrepAc_Conversion';
 
 
 
@@ -280,8 +280,10 @@ export default function Panel2_Container_GameEditor() {
                                                             "\n focusing on: ", focusingEditor, 
                                                             "\n username = ", authEmailName,
                                                             "\n\t metadata = ", projectMetaData,
+                                                            "\n\t ChapListNestedArr = ", chapListNestedArr,
                                                             "\n\tmetadata valid ? ", checkMetadataValid,
-                                                            "\n\n\t all-node-content = ", projectAllNodeContent);
+                                                            "\n\n\t all-node-content = ", projectAllNodeContent,
+                                                            );
 
 
 
@@ -472,18 +474,12 @@ export default function Panel2_Container_GameEditor() {
     
         let res = checkProjectMetaData_vm(metadataTemp);
         if (res === true) {
+
             setProjectMetaData(metadataTemp);
             //TODO99999 setup visual-var-pair and audio-var-pair maps
-            
 
-            //TODO50 conversion
-            //setChapListNestedArr();
-
-            
-
-
-
-
+            chapterListConversionPrep(metadataTemp["chapterList"]);
+  
             setProjectAllNodeContent(chapterContentTemp);
         } else {
             alert("Data for this project file is broken.");
@@ -527,6 +523,7 @@ export default function Panel2_Container_GameEditor() {
             if (metadataTemp !== undefined) {
                 let res = checkProjectMetaData_vm(metadataTemp);
                 if (res === true) {
+                    chapterListConversionPrep(metadataTemp["chapterList"]);
 
                     //!important
                     setProjectMetaData(metadataTemp);
@@ -535,9 +532,6 @@ export default function Panel2_Container_GameEditor() {
                     alert("Data for this project file is broken.");
                 }
             }
-
-            //TODO50 conversion
-            //setChapListNestedArr();
 
 
 
@@ -583,6 +577,11 @@ export default function Panel2_Container_GameEditor() {
         }); 
         //TODO99999 fetch from cloud --- path: user-projects-<project key>-folder
      
+    }
+
+    function chapterListConversionPrep(clistmap) {
+        let listTemp = fromIndexedMapToList(clistmap);
+        setChapListNestedArr(listTemp);
     }
 
     function updateLargeMetadataObjForChanges() {
@@ -1290,8 +1289,8 @@ console.log("ui-langauge changed to: ", val);
         }
         );
         
-              //          console.log("projectAllNodeContent = ", projectAllNodeContent);
-             //           console.log("filtered all nodes of this chapter: [", chapterKeyStr , "] are: ", cntt);
+                       console.log("projectAllNodeContent = ", projectAllNodeContent);
+                       console.log("filtered all nodes of this chapter: [", chapterKeyStr , "] are: ", cntt);
 
         if (cntt === undefined) {
             //TODO369 fetch from cloud?
@@ -1358,7 +1357,7 @@ console.log("ui-langauge changed to: ", val);
     function triggerChapterWalk(chapterKeyName, chapterTitleName) { //important for viewing //from sub-compo
         // as a container outside of viewer-entire, here it uses cloud functions and ds-container for all-chapters' data
 
-
+        console.log("trigger chapter walk ... [", chapterKeyName, "] with [", chapterTitleName, "]");
 
         // --- update displayed info ---
         setCurrTestingNodeKey("chapterStart");
@@ -1366,7 +1365,7 @@ console.log("ui-langauge changed to: ", val);
         setCurrTestingChapterKey(chapterKeyName);
         setCurrTestingChapterTitle(chapterTitleName);
 
-        let allChaptersContents = {}; //TODO add later!! all nodes
+        let allChaptersContents = projectAllNodeContent; //TODO add later!! all nodes
 
 
         // --- data-fetching as outer-layer container of viewer-entire ---
@@ -1377,7 +1376,7 @@ console.log("ui-langauge changed to: ", val);
         || allChaptersContents[chapterKeyName] === null
         ) {
 
-            alert("chapter-walk: need to fetch from cloud!");
+            console.log("!!! chapter-walk: need to fetch from cloud! for chapter - ", chapterKeyName);
 
                                         //allChaptersContents, setAllChaptersContents
         }

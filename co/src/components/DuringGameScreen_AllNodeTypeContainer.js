@@ -132,14 +132,20 @@ export default function DuringGameScreen_AllNodeTypeContainer({
         } else {
 
             if (currNodeType === "LogicSplitter") {
+                                                console.log("LogicSplitter");
+                        
                 atLogicSplitterBehaviour();
                 walkToNextNode(holdingNextNodeKey);
                 resetJumpNodeSignalToFalse();
             
             } else if (currNodeType === "*chapterEnd*") {
+                                                console.log("*chapterEnd*");
+
                 walkToNextChapter();
 
             } else if (jumpNodeSignal == true) { //game-content-node
+                                                console.log("game-content-node");
+
                 walkToNextNode(holdingNextNodeKey);
                                                 
                 resetJumpNodeSignalToFalse();
@@ -248,7 +254,9 @@ export default function DuringGameScreen_AllNodeTypeContainer({
         });
         
 
-        if (allNodeDataContainer[keyStr] !== undefined && allNodeDataContainer[keyStr] !== null) {
+        if (allNodeDataContainer[keyStr] !== undefined 
+            && allNodeDataContainer[keyStr] !== null
+        ) {
                                                                 console.log(" \t\t... already in map, node-data = ", allNodeDataContainer[keyStr], "\n\t\t for key - ", keyStr);
       
 
@@ -283,7 +291,7 @@ export default function DuringGameScreen_AllNodeTypeContainer({
     //TODO21 refactor to VM
     function locateHoldingNextNode(nodeKeyInfo, nodeTypeInfo) {//TODO35
 
-                                                  console.log("\n\n\n\n\n\nlocateHoldingNextNode(jump node)! \nchapterNodeMapping = ", chapterNodeMapping);
+                                                  console.log("\n\n\n\n\n\nlocateHoldingNextNode(jump node)! \n\tchapterNodeMapping = ", chapterNodeMapping);
 
         let chapterDataTemp = chapterNodeMapping[currChapterKey];
                                     //            console.log("curr-chapter data = ", chapterDataTemp);

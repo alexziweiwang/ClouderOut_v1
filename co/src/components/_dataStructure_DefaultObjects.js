@@ -16,6 +16,23 @@
         "chapterTitle": "",
 
 */
+
+/* Navigation - Pages:
+    "Main Page"
+    "Game Progress Strategy"
+    "Story Page"
+    "Settings Page"
+    "Player Profile Page"
+    "Game Status Data Page"
+    "Shop Page"
+
+    "During Game"
+
+*/
+
+
+
+
 export const sizeLookupMap = { 
     "16:9(horizonal)": [800, 450],
     "16:9(vertical)": [450, 800],

@@ -216,11 +216,10 @@ export default function Viewer_Entire({
                                
             //chapterList[0]
             let chapterList = initialChapterList;
-            if (chapterList.length > 0) {
+            if (chapterList.length > 1) {
 
 
                 let firstChapterInfo = chapterList[1]; // the first one is placeholder_chapter
-
 
                 let firstChapterKey = firstChapterInfo[0];
                 let firstChapterTitle = firstChapterInfo[1];
@@ -272,7 +271,7 @@ export default function Viewer_Entire({
                 let anc = getCurrChapterContent(currentGameStatusProgress["chapterKey"]); //TODO369
                 setCurrChapterAllNodesContent(anc);
 
-                                                    console.log("\t\t*** Viewer-Entire: currChapterAllNodesContent = ", anc, " with chap-key: ", currentGameStatusProgress["chapterKey"]);
+                         //                           console.log("\t\t*** Viewer-Entire: currChapterAllNodesContent = ", anc, " with chap-key: ", currentGameStatusProgress["chapterKey"]);
             
             } else {
                                                     console.log("\t\t empty currentGameStatusProgress chapter-key: ", currentGameStatusProgress);
@@ -280,7 +279,8 @@ export default function Viewer_Entire({
             }
             
 
-        } else {
+        } else if (currentGameStatusProgress["pageStatus"] === "Main Page"
+            || currentGameStatusProgress["pageStatus"] === "Story Page") {
             setCurrChapterAllNodesContent(-1);
 
         }
