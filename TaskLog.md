@@ -882,6 +882,14 @@
 
 - 2025-Oct-21: Improve panel2-window-view action items
 
+- 2025-Oct-22: Organize entire-viewing procedure optimizaiton
+
+
+
+
+
+
+
 
 
 
