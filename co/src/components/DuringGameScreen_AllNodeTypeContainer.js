@@ -129,7 +129,7 @@ export default function DuringGameScreen_AllNodeTypeContainer({
 
                 setFirstTimeEnter(false);
 
-        } else {
+        } else { //in useEffect
 
             if (currNodeType === "LogicSplitter") {
                                                 console.log("LogicSplitter");
@@ -291,7 +291,7 @@ export default function DuringGameScreen_AllNodeTypeContainer({
     //TODO21 refactor to VM
     function locateHoldingNextNode(nodeKeyInfo, nodeTypeInfo) {//TODO35
 
-                                                  console.log("\n\n\n\n\n\nlocateHoldingNextNode(jump node)! \n\tchapterNodeMapping = ", chapterNodeMapping);
+                                                  console.log("\n\n\n\n\n\nlocate-Holding-NextNode(jump node)! \n\tchapterNodeMapping = ", chapterNodeMapping);
 
         let chapterDataTemp = chapterNodeMapping[currChapterKey];
                                     //            console.log("curr-chapter data = ", chapterDataTemp);
@@ -301,6 +301,8 @@ export default function DuringGameScreen_AllNodeTypeContainer({
         if (nodeDataTemp === undefined || nodeDataTemp === null) {
             return;
         }
+
+        let nextNodeKeyInfo = -1;
 
         if (nodeTypeInfo !== "LogicSplitter") { // all other nodes
             /*
@@ -320,7 +322,7 @@ export default function DuringGameScreen_AllNodeTypeContainer({
 
 
             if (nextNodeKey.length > 0) {
-                setHoldingNextNodeKey(nextNodeKey);
+                nextNodeKeyInfo = nextNodeKey;
 
             } else {
 
@@ -340,8 +342,11 @@ export default function DuringGameScreen_AllNodeTypeContainer({
 
                                                         console.log("end of locateHolding... l-splitter_result = ", resultKey);
 
-            setHoldingNextNodeKey(resultKey);
+            nextNodeKeyInfo = resultKey;
         }
+
+        setHoldingNextNodeKey(nextNodeKeyInfo);
+
 
         console.log("\n\n\n\n\n\n");
     }
@@ -498,12 +503,20 @@ export default function DuringGameScreen_AllNodeTypeContainer({
                                                     console.log("#chapterNodeMapping = ", chapterNodeMapping);
                                                     console.log("\t#holdingNextNode-Key targetNextKey = ", targetNextKey);
 
-        if (chapterNodeMapping[currChapterKey][targetNextKey] === undefined) {
+        if (targetNextKey == -1
+            || chapterNodeMapping[currChapterKey] === undefined
+            || chapterNodeMapping[currChapterKey][targetNextKey] === undefined
+
+        ) {
             return;
         }
 
         // get nextNode's type
         let upcomingNodeType = chapterNodeMapping[currChapterKey][targetNextKey]["nodeType"];
+
+        if (upcomingNodeType === undefined) {
+            return;
+        }
 
         // set new holding-next
         locateHoldingNextNode(targetNextKey, upcomingNodeType);
@@ -530,7 +543,7 @@ export default function DuringGameScreen_AllNodeTypeContainer({
     }
 
 
-    function walkToNodeAfterStartNode() {
+    function prepNodeAfterStartNode() {
                                                     // let nextStartNodeKey = "chapterStart"; //"chapterStart"      "chapterEnd"
                                                     // setCurrNodeKey(nextStartNodeKey);
                                                     // setCurrNodeType("*chapterStart*");
@@ -569,7 +582,7 @@ export default function DuringGameScreen_AllNodeTypeContainer({
                     setCurrChapterTitle(nextChapterItem[1]);
 
 
-                    walkToNodeAfterStartNode();
+                    prepNodeAfterStartNode();
 
                     triggerWalkToCurrChapter(nextChapterItem[0], nextChapterItem[1]);
 
