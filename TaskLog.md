@@ -886,7 +886,7 @@
 - 2025-Oct-22: Design testing-project plot
 
 - 2025-Oct-23: Design testing-project structure
-
+- 2025-Oct-23: Organize entire-viewing procedure optimizaiton
 
 
 
