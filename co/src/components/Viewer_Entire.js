@@ -61,7 +61,7 @@ export default function Viewer_Entire({
 
 
     triggerUpdateCurrentStanding, //game-progress related, send to outer-layer
-    triggerNodeWalk, //game-progress related, send to outer-layer
+    notifyNodeWalk, //game-progress related, send to outer-layer
     triggerChapterWalk, //game-progress related, send to outer-layer
 
 
@@ -265,13 +265,15 @@ export default function Viewer_Entire({
         }
 
         if (currentGameStatusProgress["pageStatus"] === "During Game" 
-        && currChapterAllNodesContent === -1 
-        && currentGameStatusProgress["nodeType"] !== "LogicSplitter") {
+            && currChapterAllNodesContent === -1
+        ) {
             if (currentGameStatusProgress["chapterKey"].length > 0) {
+                                                    console.log("\t\t non-empty currentGameStatusProgress chapter-key: ", currentGameStatusProgress);
+
                 let anc = getCurrChapterContent(currentGameStatusProgress["chapterKey"]); //TODO369
                 setCurrChapterAllNodesContent(anc);
 
-                         //                           console.log("\t\t*** Viewer-Entire: currChapterAllNodesContent = ", anc, " with chap-key: ", currentGameStatusProgress["chapterKey"]);
+                                                   console.log("\t\t*** Viewer-Entire: currChapterAllNodesContent = ", anc, " with chap-key: ", currentGameStatusProgress["chapterKey"]);
             
             } else {
                                                     console.log("\t\t empty currentGameStatusProgress chapter-key: ", currentGameStatusProgress);
@@ -412,7 +414,7 @@ export default function Viewer_Entire({
         temp["nodeType"] = nodeTypeName;
         setCurrentGameStatusProgress(temp);
 
-        triggerNodeWalk(nodeKeyName, nodeTypeName);
+        notifyNodeWalk(nodeKeyName, nodeTypeName);
     }
 
     function triggerWalkToCurrChapterLocalViewer(chapterKeyName, chapterTitleName) {
@@ -553,6 +555,7 @@ game-screen (specific node) layer */}
                         "height": `${screenHeight}px`,
                     }}
                     >
+                        ?<br></br>
 
                                           {/*      
                                                     //important: setup entry-gameData-set (if multiple) 

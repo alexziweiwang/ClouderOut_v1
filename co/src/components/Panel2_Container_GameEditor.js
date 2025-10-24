@@ -1277,6 +1277,7 @@ console.log("ui-langauge changed to: ", val);
         if (chapterKeyStr === undefined) {
             return;
         }
+                        console.log("panel2__pass-in-curr-chapter-content, for [", chapterKeyStr, "]");
 
         let cntt = {};
         
@@ -1317,6 +1318,8 @@ console.log("ui-langauge changed to: ", val);
             //     setProjectAllNodeContent(restOfMap);
 
             // });
+
+            return -1;
         } else {
             return cntt;
         }

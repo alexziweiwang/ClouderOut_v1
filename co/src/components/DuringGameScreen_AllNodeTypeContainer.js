@@ -252,7 +252,10 @@ export default function DuringGameScreen_AllNodeTypeContainer({
             chapterKey: chapterKeyTemp, 
             nodeKey:nodeKeyTemp
         });
-        
+                        console.log("%%% allNodeDataContainer: ", allNodeDataContainer);
+                        console.log("keyStr", keyStr);
+                        console.log("allNodeDataContainer[keyStr]", allNodeDataContainer[keyStr]);
+
 
         if (allNodeDataContainer[keyStr] !== undefined 
             && allNodeDataContainer[keyStr] !== null
@@ -640,6 +643,7 @@ return (
     }}
 >
 
+currNodeType === {currNodeType}, focusedNodeData = {focusedNodeData}
 
     {currNodeType === "*chapterStart*" && <div 
         style={{
@@ -705,11 +709,12 @@ return (
 
 
 
-    {currNodeType === "Conversation" && 
-
+    {(currNodeType === "Conversation" 
+        && focusedNodeData !== -1) 
+    && 
     <div 
         style={{
-            "backgroundColor": "blue", 
+            "backgroundColor": "green", 
             "borderRadius": "0px", 
             "width": `${screenWidth}px`, 
             "height": `${screenHeight}px`,
