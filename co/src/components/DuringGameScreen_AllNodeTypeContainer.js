@@ -32,7 +32,7 @@ export default function DuringGameScreen_AllNodeTypeContainer({
     initialNodeKey,
     initialChapterTitle,
 
-    triggerWalkToCurrNode,
+    notifyNodeWalk,
     triggerWalkToCurrChapter,
 
     getInitGameDataTracker,
@@ -84,7 +84,7 @@ export default function DuringGameScreen_AllNodeTypeContainer({
 
 
     const [allNodeDataContainer, setAllNodeDataContainer] = useState({});
-    const [focusedNodeData, setFocusedNodeData] = useState([]);
+    const [focusedNodeData, setFocusedNodeData] = useState(-1);
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
 
@@ -135,7 +135,7 @@ export default function DuringGameScreen_AllNodeTypeContainer({
                                                 console.log("LogicSplitter");
                         
                 atLogicSplitterBehaviour();
-                walkToNextNode(holdingNextNodeKey);
+                walkToNextNode();
                 resetJumpNodeSignalToFalse();
             
             } else if (currNodeType === "*chapterEnd*") {
@@ -146,7 +146,7 @@ export default function DuringGameScreen_AllNodeTypeContainer({
             } else if (jumpNodeSignal == true) { //game-content-node
                                                 console.log("game-content-node");
 
-                walkToNextNode(holdingNextNodeKey);
+                walkToNextNode();
                                                 
                 resetJumpNodeSignalToFalse();
             }
@@ -266,6 +266,7 @@ export default function DuringGameScreen_AllNodeTypeContainer({
 
 
         } else {
+                                                                console.log(" \t\t fetch-or-find-func: node not found in ds");
             //cloud func
 // use : chapterKeyTemp     nodeKeyTemp       
 
@@ -304,8 +305,14 @@ export default function DuringGameScreen_AllNodeTypeContainer({
 
         let nextNodeKeyInfo = -1;
 
-        if (nodeTypeInfo !== "LogicSplitter") { // all other nodes
-            /*
+        if (nodeTypeInfo !== "LogicSplitter") { 
+                                // all other nodes:
+                                    // "*chapterStart*"
+                                    // "*chapterEnd*"
+                                    // "Conversation"
+                                    // "CardGame"
+
+            /* k-v Format
                 col: 0
                 display: true
                 nextNode: "A1-key"
@@ -323,13 +330,14 @@ export default function DuringGameScreen_AllNodeTypeContainer({
 
             if (nextNodeKey.length > 0) {
                 nextNodeKeyInfo = nextNodeKey;
+                                console.log("\t\tnext-node info:", nextNodeKeyInfo);
+            } 
+            
+                                    if (nextNodeKey.length === 0) { //TODO remove later
 
-            } else {
-
-                //TODO show user-in-game-warning... and exit normally?
-                
-                                                        console.log("\tnon-ls: no next-node!!");
-            }
+                                        //TODO exit normally? 
+                                        console.log("\tnon-ls: no next-node!!");
+                                    }
 
 
         } else { //LogicSplitter
@@ -499,46 +507,52 @@ export default function DuringGameScreen_AllNodeTypeContainer({
 
 
     //TODO21 refactor to VM 
-    function walkToNextNode(targetNextKey) {
+    function walkToNextNode() {
                                                     console.log("#chapterNodeMapping = ", chapterNodeMapping);
-                                                    console.log("\t#holdingNextNode-Key targetNextKey = ", targetNextKey);
+                                                    console.log("\t#holdingNextNode-Key = ", holdingNextNodeKey);
 
-        if (targetNextKey == -1
+        if (holdingNextNodeKey == -1
             || chapterNodeMapping[currChapterKey] === undefined
-            || chapterNodeMapping[currChapterKey][targetNextKey] === undefined
+            || chapterNodeMapping[currChapterKey][holdingNextNodeKey] === undefined
 
         ) {
             return;
         }
+                                                    console.log("\tvalid 1!");
+
 
         // get nextNode's type
-        let upcomingNodeType = chapterNodeMapping[currChapterKey][targetNextKey]["nodeType"];
+        let holdingNextNodeType = chapterNodeMapping[currChapterKey][holdingNextNodeKey]["nodeType"];
 
-        if (upcomingNodeType === undefined) {
+        if (holdingNextNodeType === undefined) {
             return;
         }
+                                                    console.log("\tvalid 2!");
+
 
         // set new holding-next
-        locateHoldingNextNode(targetNextKey, upcomingNodeType);
+        locateHoldingNextNode(holdingNextNodeKey, holdingNextNodeType);
 
 
-        setCurrNodeType(upcomingNodeType);
-        setCurrNodeKey(targetNextKey);
+        setCurrNodeType(holdingNextNodeType);
+        setCurrNodeKey(holdingNextNodeKey);
 
         //set upcoming-node's actual data
-        if (upcomingNodeType !== "*chapterStart*" 
-            && upcomingNodeType !== "*chapterEnd*"
-            && upcomingNodeType !== "LogicSplitter"
+        if (holdingNextNodeType !== "*chapterStart*" 
+            && holdingNextNodeType !== "*chapterEnd*"
+            && holdingNextNodeType !== "LogicSplitter"
         ){ // game-content-nodes
 
-            fetchOrFindNodeData(currChapterKey, targetNextKey);
+            fetchOrFindNodeData(currChapterKey, holdingNextNodeKey);
 
-        //TODO700
+            //TODO700
 
-
-        } 
+        } else {
+            //TODO non-data nodes
+            setFocusedNodeData(-1);
+        }
     
-        triggerWalkToCurrNode(targetNextKey, upcomingNodeType);
+        notifyNodeWalk(holdingNextNodeKey, holdingNextNodeType);
         resetNextNodeSignal();
     }
 
@@ -647,7 +661,7 @@ return (
         <div>
             <label style={{"fontSize": "20px"}}>{currChapterTitle}</label>
             <br></br>
-            press to continue
+            press to continue (chapter-start-node)
         </div>
         
     </div>}
@@ -692,6 +706,7 @@ return (
 
 
     {currNodeType === "Conversation" && 
+
     <div 
         style={{
             "backgroundColor": "blue", 
@@ -716,37 +731,38 @@ return (
         }}
     >
         {/* //TODO change to bgm for each node's piece... */}
+        {focusedNodeData !== -1 &&
+            <GameScreen_InPracShell_ConvNode
+                allPieceData={focusedNodeData["nodeContent"]}
+                nodeUIConvNav={focusedNodeData["nodeUISettings"]["convNav"]}
+                nodeUIDefaultButton={focusedNodeData["nodeUISettings"]["defaultButton"]}
+                nodeUILogPage={focusedNodeData["nodeUISettings"]["logPage"]}
+                nodeUITextFrame={focusedNodeData["nodeUISettings"]["textFrame"]}
 
-        <GameScreen_InPracShell_ConvNode
-            allPieceData={focusedNodeData["nodeContent"]}
-            nodeUIConvNav={focusedNodeData["nodeUISettings"]["convNav"]}
-            nodeUIDefaultButton={focusedNodeData["nodeUISettings"]["defaultButton"]}
-            nodeUILogPage={focusedNodeData["nodeUISettings"]["logPage"]}
-            nodeUITextFrame={focusedNodeData["nodeUISettings"]["textFrame"]}
-
-            notifyNodeFinish={markNextNodeSignalTrue}
-            
-            screenWidth={screenWidth}
-            screenHeight={screenHeight}
+                notifyNodeFinish={markNextNodeSignalTrue}
                 
-            uiLanguage={uiLanguage}
-            
-            username={username}
-            projectname={projectname}
-            
-            enteringEmuGameDataTracker={currGameDataTracker} //TODO change to dynamic fetching?
+                screenWidth={screenWidth}
+                screenHeight={screenHeight}
+                    
+                uiLanguage={uiLanguage}
+                
+                username={username}
+                projectname={projectname}
+                
+                enteringEmuGameDataTracker={currGameDataTracker} //TODO change to dynamic fetching?
 
-            updatedGameDataTracker={receiveUpdatedGameDataTracker}
+                updatedGameDataTracker={receiveUpdatedGameDataTracker}
 
-            visualMap={visualMap} //TODO empty so far
-            audioMap={audioMap} //TODO empty so far
-            mutedViewOption={mutedViewOption}
-            fetchGameSettings={fetchGameSettings}
+                visualMap={visualMap} //TODO empty so far
+                audioMap={audioMap} //TODO empty so far
+                mutedViewOption={mutedViewOption}
+                fetchGameSettings={fetchGameSettings}
 
-            openSettingPage={openSettingPage}
-            sendOutBgmSettings={sendOutBgmSettings}
+                openSettingPage={openSettingPage}
+                sendOutBgmSettings={sendOutBgmSettings}
 
-       />
+            />
+       }
 
 {/*
   allNodeDataContainer[currNodeKey]["nodeContent"]

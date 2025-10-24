@@ -249,7 +249,7 @@ export default function Viewer_Entire({
                                                             // chapterEndTitleStr = "Chapter End";
                                                         //nodeType:"*chapterEnd*", 
 
-                triggerWalkToCurrNodeLocalViewer("chapterStart", "*chapterStart*")
+                notifyNodeWalkLocalViewer("chapterStart", "*chapterStart*")
 
 
             }
@@ -406,11 +406,10 @@ export default function Viewer_Entire({
 
     }
 
-    function triggerWalkToCurrNodeLocalViewer(nodeKeyName, nodeTypeName) {
+    function notifyNodeWalkLocalViewer(nodeKeyName, nodeTypeName) {
         let temp = currentGameStatusProgress;
         temp["nodeKey"] = nodeKeyName;
         temp["nodeType"] = nodeTypeName;
-
         setCurrentGameStatusProgress(temp);
 
         triggerNodeWalk(nodeKeyName, nodeTypeName);
@@ -559,7 +558,7 @@ game-screen (specific node) layer */}
                                                     //important: setup entry-gameData-set (if multiple) 
                                           */}
 
-//TODO30: for fetching single-node-data from cloud - when doing the play-view
+//TODO30: DuringGameScreen_AllNodeTypeContainer: for fetching single-node-data from cloud - when doing the play-view
                                           <DuringGameScreen_AllNodeTypeContainer
 
                                                 getNodeType={passInNodeType}
@@ -569,7 +568,7 @@ game-screen (specific node) layer */}
                                                 getCurrChapterDataContainer={passInCurrChapterAllNodesContent}
 
 
-                                                triggerWalkToCurrNode={triggerWalkToCurrNodeLocalViewer}     
+                                                notifyNodeWalk={notifyNodeWalkLocalViewer}     
                                                 triggerWalkToCurrChapter={triggerWalkToCurrChapterLocalViewer}
 
 //TODO31

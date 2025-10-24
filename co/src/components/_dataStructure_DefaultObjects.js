@@ -30,6 +30,17 @@
 
 */
 
+/* Node Types:
+        "*chapterStart*"
+        "*chapterEnd*"
+
+        "LogicSplitter"
+
+        "Conversation"
+        "CardGame"
+
+*/
+
 
 
 

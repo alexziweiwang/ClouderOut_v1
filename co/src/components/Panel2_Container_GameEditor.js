@@ -201,7 +201,7 @@ export default function Panel2_Container_GameEditor() {
         setCurrTestingChapterTitle(obj["chapterTitle"]);
     }
 
-    function triggerNodeWalk(nodeKeyName, nodeTypeName) { //important for viewing //from sub-compo
+    function notifyNodeWalk(nodeKeyName, nodeTypeName) { //important for viewing //from sub-compo
         setCurrTestingNodeKey(nodeKeyName);
         setCurrTestingNodeType(nodeTypeName);
     }
@@ -1850,7 +1850,7 @@ return (
             username={authEmailName}
             projectname={state.selected_project_name}
 
-            triggerNodeWalk={triggerNodeWalk} //TODO should be inside viewer_entire when viewing?
+            notifyNodeWalk={notifyNodeWalk} //TODO should be inside viewer_entire when viewing?
             triggerChapterWalk={triggerChapterWalk}  //TODO should be inside viewer_entire when viewing?
             triggerUpdateCurrentStanding={triggerUpdateCurrentStanding}  //TODO should be inside viewer_entire when viewing?
 
