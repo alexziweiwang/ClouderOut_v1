@@ -47,6 +47,8 @@ export default function Viewer_Entire({
     initialGameProgress,
 
     initialCurrChapterAllNodeMapping, //single chapter
+    
+    firstChapterData,
 
     visualVarPairList,
     audioVarPairList, 
@@ -139,7 +141,7 @@ export default function Viewer_Entire({
 
 
 
-    const [currChapterAllNodesContent, setCurrChapterAllNodesContent] = useState(-1); //TODO200
+    const [currChapterAllNodesContent, setCurrChapterAllNodesContent] = useState(firstChapterData); //TODO200
 
 
     // const [chapterList, setChapterList] = useState(initialChapterList);  
@@ -209,7 +211,7 @@ export default function Viewer_Entire({
                                                 console.log("init-player-profile = ", initialPlayerProfile);
                                                 console.log("init-player-account = ", initialPlayerAccountSettings);
                                                 console.log("initial chapter list: ", initialChapterList);
-                                                
+                                                console.log("firstChapterData = ", firstChapterData);
             
             initializeGameDataTracker_local(initialPlayerGameDataTracker);
 
@@ -219,17 +221,17 @@ export default function Viewer_Entire({
             if (chapterList.length > 1) {
 
 
-                let firstChapterInfo = chapterList[1]; // the first one is placeholder_chapter
+                // let firstChapterInfo = chapterList[1]; // the first one is placeholder_chapter
 
-                let firstChapterKey = firstChapterInfo[0];
-                let firstChapterTitle = firstChapterInfo[1];
+                // let firstChapterKey = firstChapterInfo[0];
+                // let firstChapterTitle = firstChapterInfo[1];
 
-                let chpContent = triggerChapterWalk(firstChapterKey, firstChapterTitle); // cloud related (outer layer)
+                // let chpContent = triggerChapterWalk(firstChapterKey, firstChapterTitle); // cloud related (outer layer)
                 
                 
-                setCurrChapterAllNodesContent(chpContent);
+                // setCurrChapterAllNodesContent(chpContent);
 
-                console.log("\t\tchapter-list not empty, FIRST CHAPTER = ", firstChapterInfo, "\t\tentering this chapter: ", chpContent, "\t\tnode mapping = ", initialCurrChapterAllNodeMapping);
+                //console.log("\t\tchapter-list not empty, FIRST CHAPTER = ", firstChapterInfo, "\t\tentering this chapter: ", chpContent, "\t\tnode mapping = ", initialCurrChapterAllNodeMapping);
 
 
 
@@ -238,7 +240,7 @@ export default function Viewer_Entire({
                 //initialCurrChapterAllNodeMapping
 
                 
-                let currChapterAllNodes = initialCurrChapterAllNodeMapping[firstChapterKey];
+             //   let currChapterAllNodes = initialCurrChapterAllNodeMapping[firstChapterKey];
                 //TODO900 change node-start and node-end key names when chapter being created...
                                                             // chapterStartKeyStr = "chapterStart";
                                                             // chapterStartTitleStr = "Chapter Start"
@@ -589,7 +591,6 @@ game-screen (specific node) layer */}
                                                 initialChapterKey={currentGameStatusProgress["chapterKey"]}
                                                 initialNodeKey={currentGameStatusProgress["nodeKey"]}
                                                 initialChapterTitle={currentGameStatusProgress["chapterTitle"]}
-                                                initialAllNodeDataContainer={currChapterAllNodesContent}
 
                                                 getInitGameDataTracker={passInViewerContainerGameDataTracker}
                                                 getCurrChapterAllNodeMapping={passInCurrChapterAllNodeMapping}

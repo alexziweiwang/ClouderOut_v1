@@ -173,6 +173,9 @@ export default function Panel2_Container_GameEditor() {
         "chapterTitle": "",
     });
 
+    const [viewingFirstChapterKey, setViewingFirstChapterKey] = useState(-1);
+    const [viewerEntireFirstChapterData, setViewerEntireFirstChapterData] = useState(-1);
+
 
     function handleCancelNodeTestViewer() {
 //TODO reset things like:
@@ -309,7 +312,10 @@ export default function Panel2_Container_GameEditor() {
         if (state.mode !== "online_cloud") {
             if (projectMetaData === -1 || projectAllNodeContent === -1) {
                 loadEverythingFromLocalProjFile();
+            } else {
+                prepFirstViewingChapter();
             }
+            
         } else if (state.mode === "online_cloud") {
             //TODO fetch from cloud...
           
@@ -318,6 +324,8 @@ export default function Panel2_Container_GameEditor() {
           
                 if ((projectMetaData === -1 || projectAllNodeContent === -1)) {
                     loadEverythingFromCloud();
+                } else {
+                    prepFirstViewingChapter();
                 }
    
             }
@@ -357,7 +365,7 @@ export default function Panel2_Container_GameEditor() {
                     // ]);
 
         
-    useEffect(()=>{
+    useEffect(()=>{ //track if metadata changed
         setSavedToCloud(false); //both-flag
         setSavedToCloud_metadata(false); 
 
@@ -366,17 +374,15 @@ export default function Panel2_Container_GameEditor() {
             "audio": projectMetaData["proj_resource_audio"]
         }
         setResourcePair(varPairObj);
-
-        //track if metadata changed
+        
     }, [
         projectMetaData
     ]);
         
-    useEffect(()=>{
+    useEffect(()=>{ //track if node-content changed
         setSavedToCloud(false); //both-flag
         setSavedToCloud_nodedata(false); 
-        
-        //track if node-content changed
+                
     }, [
         projectAllNodeContent
     ]);
@@ -486,6 +492,7 @@ export default function Panel2_Container_GameEditor() {
 
         }
 
+
         
     }
 
@@ -532,8 +539,6 @@ export default function Panel2_Container_GameEditor() {
                     alert("Data for this project file is broken.");
                 }
             }
-
-
 
         })
 
@@ -990,8 +995,8 @@ export default function Panel2_Container_GameEditor() {
 
             }
 
-           
-            
+            prepFirstViewingChapter();
+
 
         }
 
@@ -1375,11 +1380,9 @@ console.log("ui-langauge changed to: ", val);
 
         // --- data-fetching as outer-layer container of viewer-entire ---
 
-        let chapterContentTemp = {}; //TODO add later!! all nodes
+        let chapterContentTemp = passInCurrChapterContent(chapterKeyName); //TODO add later!! all nodes
 
-        if (allChaptersContents[chapterKeyName] === undefined
-        || allChaptersContents[chapterKeyName] === null
-        ) {
+        if (chapterContentTemp === -1) {
 
             console.log("!!! chapter-walk: need to fetch from cloud! for chapter - ", chapterKeyName);
 
@@ -1387,7 +1390,7 @@ console.log("ui-langauge changed to: ", val);
         }
 
         //setCurrChapterContent(chapterContentTemp); //TODO add later
-
+                            console.log("walking into chapter [", chapterKeyName, "]: ", chapterContentTemp);
         return chapterContentTemp;
   }
 
@@ -1403,6 +1406,8 @@ console.log("ui-langauge changed to: ", val);
         await saveAllNodeDataToCloud_panel2();
        
     }
+
+    prepFirstViewingChapter();
 
   }
 
@@ -1476,6 +1481,36 @@ console.log("ui-langauge changed to: ", val);
   function fetchConvNodeUiAllPlansFunc() {
     
     return projectMetaData["convNodeUiPlanMap"];
+  }
+
+  function prepFirstViewingChapter() { 
+                //TODO: also, return from game-maker, if chapter-deletion happens...
+
+      let firstChapItem = projectMetaData["chapterList"][1];
+      let firstChapKey = firstChapItem[0];
+      
+      if (firstChapKey !== viewingFirstChapterKey) {
+                        console.log("prep first chapter for viewer-entire... "); 
+
+                        console.log("\tupdating: ", firstChapKey);
+
+            let filteredMap = {};
+            Object.keys(projectAllNodeContent).map((currKey) => {
+                let item = projectAllNodeContent[currKey];
+                if (item["chapterKey"] === firstChapKey) {
+                    filteredMap[currKey] = item;
+                }
+            }
+            );
+                        console.log("\tfilteredMap: ", filteredMap);
+
+            setViewerEntireFirstChapterData(filteredMap);
+
+            setViewingFirstChapterKey(firstChapKey);
+      }
+
+
+  
   }
 
 
@@ -1642,7 +1677,6 @@ return (
         initialMetadata={projectMetaData}
         getProjectMetaData={passInProjectMetaData}
         updateMetaDataToOuter={receiveMetaDataFromSubCompo}
-
 
         backendOption={backendOption}
 
@@ -1837,6 +1871,7 @@ return (
 
             initialChapterList={chapListNestedArr}
             initialCurrChapterAllNodeMapping={projectMetaData["chapterNodeMapping"]}
+            firstChapterData={viewerEntireFirstChapterData}
 
             initialGameProgress={viewerEntireGameProgressObj}
             

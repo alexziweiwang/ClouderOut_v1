@@ -26,12 +26,11 @@ export default function DuringGameScreen_AllNodeTypeContainer({
     getChapterTitle,
     getCurrChapterDataContainer,
 
-
     initialNodeType, 
     initialChapterKey, 
     initialNodeKey,
     initialChapterTitle,
-    initialAllNodeDataContainer,
+    // initialAllNodeDataContainer,
 
     notifyNodeWalk,
     triggerWalkToCurrChapter,
@@ -83,7 +82,7 @@ export default function DuringGameScreen_AllNodeTypeContainer({
                                                 // const [visualMapSize, setVisualMapSize] = useState(0);
 
 
-    const [allNodeDataContainer, setAllNodeDataContainer] = useState(initialAllNodeDataContainer === undefined ? {} : initialAllNodeDataContainer);
+    const [allNodeDataContainer, setAllNodeDataContainer] = useState({});
     const [focusedNodeData, setFocusedNodeData] = useState(-1);
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
@@ -96,7 +95,7 @@ export default function DuringGameScreen_AllNodeTypeContainer({
             console.log("...................................");
             console.log("...................................");
             console.log("...................................");
-                                                                console.log("!!!!!!!!!!!!! game-screen-all-node-container FIRST ENTER , ");
+                                                                console.log("!!!!!!!!!!!!! game-screen-all-node-container FIRST ENTER");
                                         
 
                 let gDataTemp = getInitGameDataTracker();
@@ -121,7 +120,7 @@ export default function DuringGameScreen_AllNodeTypeContainer({
                 let nodeMappingTemp = getCurrChapterAllNodeMapping(); //entering-data only
                 setChapterNodeMapping(nodeMappingTemp);
                                                                 console.log("use-effect, initial-chapter-key = ", initialChapterKey);
-                                        // initializeAllNodeDataContainer(chapterKeyTemp);
+                initializeAllNodeDataContainer(chapterKeyTemp);
                                                                 console.log("ChapterAllNodeMapping = ", nodeMappingTemp);
 
                 let chapterListTemp = getAllChapterList(); //entering-data only
