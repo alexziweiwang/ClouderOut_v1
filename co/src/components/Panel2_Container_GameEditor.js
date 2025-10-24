@@ -681,6 +681,8 @@ export default function Panel2_Container_GameEditor() {
 
         //TODO99999
 
+        //TODO intialize first-chapter!
+
 
         setViewerEntireGameProgressObj({
             "pageStatus": "Main Page",

@@ -264,6 +264,8 @@ export default function Viewer_Entire({
             setFirstTimeEnter(false);
         }
 
+
+        //in useEffect
         if (currentGameStatusProgress["pageStatus"] === "During Game" 
             && currChapterAllNodesContent === -1
         ) {
@@ -271,6 +273,7 @@ export default function Viewer_Entire({
                                                     console.log("\t\t non-empty currentGameStatusProgress chapter-key: ", currentGameStatusProgress);
 
                 let anc = getCurrChapterContent(currentGameStatusProgress["chapterKey"]); //TODO369
+
                 setCurrChapterAllNodesContent(anc);
 
                                                    console.log("\t\t*** Viewer-Entire: currChapterAllNodesContent = ", anc, " with chap-key: ", currentGameStatusProgress["chapterKey"]);
@@ -293,6 +296,13 @@ export default function Viewer_Entire({
 //console.log("viewer-entire ... currentGameStatusProgress = ", currentGameStatusProgress);
 
     });
+
+            
+    useEffect(()=>{
+        console.log("changed currChapterAllNodesContent:", currChapterAllNodesContent);
+    }, [
+        currChapterAllNodesContent
+    ]);
 
     function changeBgmVolume(volumeValue) {
         if (audioElem !== null && audioElem !== undefined) {
@@ -579,6 +589,7 @@ game-screen (specific node) layer */}
                                                 initialChapterKey={currentGameStatusProgress["chapterKey"]}
                                                 initialNodeKey={currentGameStatusProgress["nodeKey"]}
                                                 initialChapterTitle={currentGameStatusProgress["chapterTitle"]}
+                                                initialAllNodeDataContainer={currChapterAllNodesContent}
 
                                                 getInitGameDataTracker={passInViewerContainerGameDataTracker}
                                                 getCurrChapterAllNodeMapping={passInCurrChapterAllNodeMapping}

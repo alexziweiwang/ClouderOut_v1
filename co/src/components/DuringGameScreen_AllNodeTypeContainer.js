@@ -31,6 +31,7 @@ export default function DuringGameScreen_AllNodeTypeContainer({
     initialChapterKey, 
     initialNodeKey,
     initialChapterTitle,
+    initialAllNodeDataContainer,
 
     notifyNodeWalk,
     triggerWalkToCurrChapter,
@@ -42,7 +43,6 @@ export default function DuringGameScreen_AllNodeTypeContainer({
     username,
     projectname,
     uiLanguage,
-
 
     visualMap,
     audioMap,
@@ -83,7 +83,7 @@ export default function DuringGameScreen_AllNodeTypeContainer({
                                                 // const [visualMapSize, setVisualMapSize] = useState(0);
 
 
-    const [allNodeDataContainer, setAllNodeDataContainer] = useState({});
+    const [allNodeDataContainer, setAllNodeDataContainer] = useState(initialAllNodeDataContainer === undefined ? {} : initialAllNodeDataContainer);
     const [focusedNodeData, setFocusedNodeData] = useState(-1);
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
@@ -121,7 +121,7 @@ export default function DuringGameScreen_AllNodeTypeContainer({
                 let nodeMappingTemp = getCurrChapterAllNodeMapping(); //entering-data only
                 setChapterNodeMapping(nodeMappingTemp);
                                                                 console.log("use-effect, initial-chapter-key = ", initialChapterKey);
-                initializeAllNodeDataContainer(chapterKeyTemp);
+                                        // initializeAllNodeDataContainer(chapterKeyTemp);
                                                                 console.log("ChapterAllNodeMapping = ", nodeMappingTemp);
 
                 let chapterListTemp = getAllChapterList(); //entering-data only
@@ -220,13 +220,14 @@ export default function DuringGameScreen_AllNodeTypeContainer({
 
 
             Object.keys(entireChapter).map((nodeKey) => {
-               let longKey = generateNodeLongKeyString_vm({
-                    chapterKey: chapterKeyTemp, 
-                    nodeKey: nodeKey
-                });
+                                                //    let longKey = generateNodeLongKeyString_vm({
+                                                //         chapterKey: chapterKeyTemp, 
+                                                //         nodeKey: nodeKey
+                                                //     });
+                                                //    containerTemp[longKey] = entireChapter[nodeKey];
 
 
-               containerTemp[longKey] = entireChapter[nodeKey];
+                containerTemp[nodeKey] = entireChapter[nodeKey];
 
             });
         
@@ -260,7 +261,7 @@ export default function DuringGameScreen_AllNodeTypeContainer({
         if (allNodeDataContainer[keyStr] !== undefined 
             && allNodeDataContainer[keyStr] !== null
         ) {
-                                                                console.log(" \t\t... already in map, node-data = ", allNodeDataContainer[keyStr], "\n\t\t for key - ", keyStr);
+                                                                console.log(" \t\t... fetch-or-find-func: already in map, node-data = ", allNodeDataContainer[keyStr], "\n\t\t for key - ", keyStr);
       
 
             setFocusedNodeData(allNodeDataContainer[keyStr])
@@ -269,7 +270,7 @@ export default function DuringGameScreen_AllNodeTypeContainer({
 
 
         } else {
-                                                                console.log(" \t\t fetch-or-find-func: node not found in ds");
+                                                                console.log(" \t\t... fetch-or-find-func: node not found in ds");
             //cloud func
 // use : chapterKeyTemp     nodeKeyTemp       
 
