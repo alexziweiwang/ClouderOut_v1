@@ -88,7 +88,6 @@ export default function DuringGameScreen_AllNodeTypeContainer({
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
 
     useEffect(() => {
-     //   console.log("### game-screen-all-node-type-container...\n\tanct___game-data-tracker.. ", currGameDataTracker);
  
         if (firstTimeEnter === true) {
             //TODO

@@ -40,6 +40,7 @@ export default function Viewer_Entire({
     initialMetadata,
     initialChapterContent,
     getCurrChapterContent,
+    getAllChaptersContent,
 
     initialNavObj, //TODO remove
     initialChapterList,  //TODO remove
@@ -142,7 +143,7 @@ export default function Viewer_Entire({
 
 
     const [currChapterAllNodesContent, setCurrChapterAllNodesContent] = useState(firstChapterData); //TODO200
-
+    const [allContent, setAllContent] = useState(-3);
 
     // const [chapterList, setChapterList] = useState(initialChapterList);  
         //TODO change chapter-list to non-dynamic-data later - directly from outer-layer is ok
@@ -215,6 +216,8 @@ export default function Viewer_Entire({
             
             initializeGameDataTracker_local(initialPlayerGameDataTracker);
 
+            let allCnt = getAllChaptersContent();
+            setAllContent(allCnt);
                                
             //chapterList[0]
             let chapterList = initialChapterList;
@@ -275,14 +278,14 @@ export default function Viewer_Entire({
             if (currentGameStatusProgress["chapterKey"].length > 0) {
                                                     console.log("\t\t non-empty currentGameStatusProgress chapter-key: ", currentGameStatusProgress);
 
-                let anc = getCurrChapterContent(currentGameStatusProgress["chapterKey"]); //TODO369
+                let anc = allContent["chapterKey"]; //TODO369
 
                 setCurrChapterAllNodesContent(anc);
 
-                                                   console.log("\t\t*** Viewer-Entire: currChapterAllNodesContent = ", anc, " with chap-key: ", currentGameStatusProgress["chapterKey"]);
+                                                    console.log("\t\t*** Viewer-Entire: currChapterAllNodesContent = ", anc, " with chap-key: ", currentGameStatusProgress["chapterKey"]);
             
             } else {
-                                                    console.log("\t\t empty currentGameStatusProgress chapter-key: ", currentGameStatusProgress);
+                                                    console.log("\t\t*** empty currentGameStatusProgress chapter-key: ", currentGameStatusProgress);
 
             }
             
@@ -302,7 +305,7 @@ export default function Viewer_Entire({
 
             
     useEffect(()=>{
-        console.log("changed currChapterAllNodesContent:", currChapterAllNodesContent);
+        console.log("changed currChapterAllNodesContent:", currChapterAllNodesContent, "\n at ", currentGameStatusProgress["pageStatus"]);
     }, [
         currChapterAllNodesContent
     ]);

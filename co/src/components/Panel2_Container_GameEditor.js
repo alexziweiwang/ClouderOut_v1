@@ -1280,11 +1280,16 @@ console.log("ui-langauge changed to: ", val);
 
     }
 
+    function passInAllChaptersContent() {
+        return projectAllNodeContent;
+    }
+
     function passInCurrChapterContent(chapterKeyStr) {
-        if (chapterKeyStr === undefined) {
-            return;
+                            console.log("panel2__pass-in-curr-chapter-content, for [", chapterKeyStr, "]");
+
+        if (chapterKeyStr === undefined || chapterKeyStr.length === 0) {
+            return -2;
         }
-                        console.log("panel2__pass-in-curr-chapter-content, for [", chapterKeyStr, "]");
 
         let cntt = {};
         
@@ -1326,12 +1331,8 @@ console.log("ui-langauge changed to: ", val);
 
             // });
 
-            return -1;
+            return -2;
         } else {
-            let len = Object.keys(projectAllNodeContent).length;
-            if (len === 0) {
-                return -1;
-            }
 
             return cntt;
         }
@@ -1903,6 +1904,7 @@ return (
             audioVarPairList={projectMetaData["proj_resource_audio"]}
 
             getCurrChapterContent={passInCurrChapterContent}
+            getAllChaptersContent={passInAllChaptersContent}
 
             backendOption={backendOption}
 
