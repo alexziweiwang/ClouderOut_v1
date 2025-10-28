@@ -562,7 +562,10 @@ export default function Viewer_Entire({
         setCurrChapterAllNodesContent(cntt);
 
         return cntt;
+   }
 
+   function passInAllContent() {
+       return allContent;
    }
     
     
@@ -607,7 +610,7 @@ game-screen (specific node) layer */}
                                                 getNodeKey={passInNodeKey}
                                                 getChapterTitle={passInChapterTitle}
                                                 getCurrChapterDataContainer={passInCurrChapterAllNodesContent}
-
+                                                getAllContent={passInAllContent}
 
                                                 notifyNodeWalk={notifyNodeWalkLocalViewer}     
                                                 triggerWalkToCurrChapter={triggerWalkToCurrChapterLocalViewer}

@@ -24,13 +24,12 @@ export default function DuringGameScreen_AllNodeTypeContainer({
     getChapterKey, 
     getNodeKey,
     getChapterTitle,
-    getCurrChapterDataContainer,
+    getAllContent,
 
     initialNodeType, 
     initialChapterKey, 
     initialNodeKey,
     initialChapterTitle,
-    // initialAllNodeDataContainer,
 
     notifyNodeWalk,
     triggerWalkToCurrChapter,
@@ -82,7 +81,7 @@ export default function DuringGameScreen_AllNodeTypeContainer({
                                                 // const [visualMapSize, setVisualMapSize] = useState(0);
 
 
-    const [allNodeDataContainer, setAllNodeDataContainer] = useState({});
+    const [entireContainer, setEntireContainer] = useState({});
     const [focusedNodeData, setFocusedNodeData] = useState(-1);
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
@@ -119,7 +118,7 @@ export default function DuringGameScreen_AllNodeTypeContainer({
                 let nodeMappingTemp = getCurrChapterAllNodeMapping(); //entering-data only
                 setChapterNodeMapping(nodeMappingTemp);
                                                             //    console.log("use-effect, initial-chapter-key = ", initialChapterKey);
-                initializeAllNodeDataContainer(chapterKeyTemp);
+                fetchentireContainer(chapterKeyTemp);
                                                             //    console.log("ChapterAllNodeMapping = ", nodeMappingTemp);
 
                 let chapterListTemp = getAllChapterList(); //entering-data only
@@ -131,9 +130,9 @@ export default function DuringGameScreen_AllNodeTypeContainer({
 
             let chapterKeyTemp = getChapterKey();
             if (currChapterKey !== chapterKeyTemp
-                || allNodeDataContainer === -1 
+                || entireContainer === -1 
                 ) {
-                initializeAllNodeDataContainer(chapterKeyTemp);
+                fetchentireContainer(chapterKeyTemp);
             }
 
             if (currNodeType === "LogicSplitter") {
@@ -198,81 +197,40 @@ export default function DuringGameScreen_AllNodeTypeContainer({
     }
 
     //TODO21 refactor to VM
-    function initializeAllNodeDataContainer(chapterKeyTemp) {//TODO99999
-        if (chapterKeyTemp.length === 0) {
-                console.log("\t\t\t ??? empty chapter key...");
-            return;
+    function fetchentireContainer() {//TODO99999
+ 
+        let anc = getAllContent();
+
+        if (anc !== -1) {
+            setEntireContainer(anc);
         }
 
-        fetchChapterDataFromOuter(chapterKeyTemp);
-
-    }
-
-    function fetchChapterDataFromOuter(chapterKeyTemp) {
-        let containerTemp = {};
-                console.log("%%% chpterKey is [", chapterKeyTemp , "]");
-
-        let entireChapter = getCurrChapterDataContainer();
-        //TODO99999 use all-node-content data object from panel2 !!!
-                    // await fetchNodeDataEachChapterVM({
-                    //     projectName: projectname, 
-                    //     uname: username, 
-                    //     chapterKey: chapterKeyTemp,
-                    //     bkOption: backendOption
-                    // });
-
-                    //await fetchNodeByNodeKey2VM
-
-                console.log("### fetch-Chapter-Data-From-Outer", chapterKeyTemp, ": node-data by each chapter: ", entireChapter);
-
-
-        Object.keys(entireChapter).map((nodeKey) => {
-                                //    let longKey = generateNodeLongKeyString_vm({
-                                //         chapterKey: chapterKeyTemp, 
-                                //         nodeKey: nodeKey
-                                //     });
-                                //    containerTemp[longKey] = entireChapter[nodeKey];
-
-
-        containerTemp[nodeKey] = entireChapter[nodeKey];
-
-        });
-
-        //   });
-
-
-                console.log("!!!!! initialized all-container: ", containerTemp);
-
-
-        setAllNodeDataContainer(containerTemp);
-
-
-        
+  
     }
 
     //TODO21 refactor to VM
     function fetchOrFindNodeData(chapterKeyTemp, nodeKeyTemp) {
-//allNodeDataContainer, setAllNodeDataContainer
+//entireContainer, setentireContainer
 //getCurrChapterDataContainer!!!
 
         let keyStr = generateNodeLongKeyString_vm({
             chapterKey: chapterKeyTemp, 
             nodeKey:nodeKeyTemp
         });
-                        console.log("%%% allNodeDataContainer: ", allNodeDataContainer);
+                        console.log("%%% entireContainer: ", entireContainer);
                         console.log("keyStr", keyStr);
-                        console.log("allNodeDataContainer[keyStr]", allNodeDataContainer[keyStr]);
+                        console.log("entireContainer[keyStr]", entireContainer[keyStr]);
 
 
-        if (allNodeDataContainer[keyStr] !== undefined 
-            && allNodeDataContainer[keyStr] !== null
+        if (entireContainer[keyStr] !== undefined 
+            && entireContainer[keyStr] !== null
         ) {
-                                                                console.log(" \t\t... fetch-or-find-func: already in map, node-data = ", allNodeDataContainer[keyStr], "\n\t\t for key - ", keyStr);
+                                                                console.log(" \t\t... fetch-or-find-func: already in map, node-data = ", entireContainer[keyStr], "\n\t\t for key - ", keyStr);
       
 
-            setFocusedNodeData(allNodeDataContainer[keyStr])
+            setFocusedNodeData(entireContainer[keyStr])
             
-            return allNodeDataContainer[keyStr];
+            return entireContainer[keyStr];
 
 
         } else {
@@ -287,9 +245,9 @@ export default function DuringGameScreen_AllNodeTypeContainer({
                                                                 //     nodeKey: nodeKeyTemp,
                                                                 //     bkOption: backendOption
                                                                 // });
-                                                                // let tempMap = allNodeDataContainer;
+                                                                // let tempMap = entireContainer;
                                                                 // tempMap[keyStr] = dataObj;
-                                                                // setAllNodeDataContainer(tempMap);
+                                                                // setentireContainer(tempMap);
                                                                 
                                                                 // setFocusedNodeData(dataObj)
                                                     
@@ -650,7 +608,7 @@ return (
     }}
 >
 
-currNodeType === {currNodeType}, focusedNodeData = {focusedNodeData}
+currNodeType === {currNodeType}, focusedNodeData is -1? {focusedNodeData === -1 ? "t" : "f"}
 
     {currNodeType === "*chapterStart*" && <div 
         style={{
@@ -777,8 +735,8 @@ currNodeType === {currNodeType}, focusedNodeData = {focusedNodeData}
        }
 
 {/*
-  allNodeDataContainer[currNodeKey]["nodeContent"]
-  allNodeDataContainer[currNodeKey]["nodeUISettings"][]
+  entireContainer[currNodeKey]["nodeContent"]
+  entireContainer[currNodeKey]["nodeUISettings"][]
 
 
       nodeContent  // array

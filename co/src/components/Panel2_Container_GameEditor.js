@@ -1916,7 +1916,7 @@ return (
       {/* status table */}
       <table style={{
           "width": "800px", 
-          "marginTop": `${currTestingScrnH+10}px`, 
+          "marginTop": `${currTestingScrnH+100}px`, 
           "marginLeft": "170px","position": "absolute"
           }}
         >
