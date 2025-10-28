@@ -1328,6 +1328,11 @@ console.log("ui-langauge changed to: ", val);
 
             return -1;
         } else {
+            let len = Object.keys(projectAllNodeContent).length;
+            if (len === 0) {
+                return -1;
+            }
+
             return cntt;
         }
     }

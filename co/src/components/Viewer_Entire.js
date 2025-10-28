@@ -269,7 +269,8 @@ export default function Viewer_Entire({
 
         //in useEffect
         if (currentGameStatusProgress["pageStatus"] === "During Game" 
-            && currChapterAllNodesContent === -1
+            && 
+            (currChapterAllNodesContent === -1)
         ) {
             if (currentGameStatusProgress["chapterKey"].length > 0) {
                                                     console.log("\t\t non-empty currentGameStatusProgress chapter-key: ", currentGameStatusProgress);

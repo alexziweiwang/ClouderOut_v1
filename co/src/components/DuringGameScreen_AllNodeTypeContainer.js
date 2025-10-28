@@ -100,7 +100,7 @@ export default function DuringGameScreen_AllNodeTypeContainer({
 
                 let gDataTemp = getInitGameDataTracker();
                 setCurrGameDataTracker(gDataTemp); //initialize
-                                                                console.log("\t\tgame-data = ", gDataTemp);
+                                                           //     console.log("\t\tgame-data = ", gDataTemp);
 
                 let nodeTypeTemp = getNodeType(); //entering-data only
                 setCurrNodeType(nodeTypeTemp); 
@@ -119,9 +119,9 @@ export default function DuringGameScreen_AllNodeTypeContainer({
 
                 let nodeMappingTemp = getCurrChapterAllNodeMapping(); //entering-data only
                 setChapterNodeMapping(nodeMappingTemp);
-                                                                console.log("use-effect, initial-chapter-key = ", initialChapterKey);
+                                                            //    console.log("use-effect, initial-chapter-key = ", initialChapterKey);
                 initializeAllNodeDataContainer(chapterKeyTemp);
-                                                                console.log("ChapterAllNodeMapping = ", nodeMappingTemp);
+                                                            //    console.log("ChapterAllNodeMapping = ", nodeMappingTemp);
 
                 let chapterListTemp = getAllChapterList(); //entering-data only
                 initializeChapterArray(chapterListTemp);
@@ -129,6 +129,13 @@ export default function DuringGameScreen_AllNodeTypeContainer({
                 setFirstTimeEnter(false);
 
         } else { //in useEffect
+
+            let chapterKeyTemp = getChapterKey();
+            if (currChapterKey !== chapterKeyTemp
+                || allNodeDataContainer === -1 
+                ) {
+                initializeAllNodeDataContainer(chapterKeyTemp);
+            }
 
             if (currNodeType === "LogicSplitter") {
                                                 console.log("LogicSplitter");
@@ -194,53 +201,54 @@ export default function DuringGameScreen_AllNodeTypeContainer({
     //TODO21 refactor to VM
     function initializeAllNodeDataContainer(chapterKeyTemp) {//TODO99999
         if (chapterKeyTemp.length === 0) {
+                console.log("\t\t\t ??? empty chapter key...");
             return;
         }
 
-        //TODO51 by node-list, pre-fetch node(s) data and store into allNodeDataContainer
+        fetchChapterDataFromOuter(chapterKeyTemp);
+
+    }
+
+    function fetchChapterDataFromOuter(chapterKeyTemp) {
         let containerTemp = {};
-                                console.log("%%% chpterKey is [", chapterKeyTemp , "]");
+                console.log("%%% chpterKey is [", chapterKeyTemp , "]");
+
+        let entireChapter = getCurrChapterDataContainer();
+        //TODO99999 use all-node-content data object from panel2 !!!
+                    // await fetchNodeDataEachChapterVM({
+                    //     projectName: projectname, 
+                    //     uname: username, 
+                    //     chapterKey: chapterKeyTemp,
+                    //     bkOption: backendOption
+                    // });
+
+                    //await fetchNodeByNodeKey2VM
+
+                console.log("### fetch-Chapter-Data-From-Outer", chapterKeyTemp, ": node-data by each chapter: ", entireChapter);
 
 
-     //   Object.keys(nodeMappingTemp).map(async (chapterKey) => {
- 
-            let entireChapter = getCurrChapterDataContainer();
-            //TODO99999 use all-node-content data object from panel2 !!!
-                                    // await fetchNodeDataEachChapterVM({
-                                    //     projectName: projectname, 
-                                    //     uname: username, 
-                                    //     chapterKey: chapterKeyTemp,
-                                    //     bkOption: backendOption
-                                    // });
-
-                                    //await fetchNodeByNodeKey2VM
-
-                                console.log("### ", chapterKeyTemp, ": node-data by each chapter: ", entireChapter);
+        Object.keys(entireChapter).map((nodeKey) => {
+                                //    let longKey = generateNodeLongKeyString_vm({
+                                //         chapterKey: chapterKeyTemp, 
+                                //         nodeKey: nodeKey
+                                //     });
+                                //    containerTemp[longKey] = entireChapter[nodeKey];
 
 
-            Object.keys(entireChapter).map((nodeKey) => {
-                                                //    let longKey = generateNodeLongKeyString_vm({
-                                                //         chapterKey: chapterKeyTemp, 
-                                                //         nodeKey: nodeKey
-                                                //     });
-                                                //    containerTemp[longKey] = entireChapter[nodeKey];
+        containerTemp[nodeKey] = entireChapter[nodeKey];
+
+        });
+
+        //   });
 
 
-                containerTemp[nodeKey] = entireChapter[nodeKey];
-
-            });
-        
-     //   });
-
-
-                                console.log("!!!!! initialized all-container: ", containerTemp);
+                console.log("!!!!! initialized all-container: ", containerTemp);
 
 
         setAllNodeDataContainer(containerTemp);
+
+
         
-
-                        
-
     }
 
     //TODO21 refactor to VM
