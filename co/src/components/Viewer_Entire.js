@@ -35,11 +35,7 @@ import { resourceRawListToUsableMap_vm } from '../viewmodels/PrepAc_Conversion';
 
 export default function Viewer_Entire({
 
-//TODO99999 fetch static-metadata and static-all-node-contents from outer!
-
-    initialMetadata,
-    initialChapterContent,
-    getCurrChapterContent,
+//TODO99999 fetch static-metadata and static-all-node-contents from oute
     getAllChaptersContent,
 
     initialNavObj, //TODO remove
@@ -218,6 +214,7 @@ export default function Viewer_Entire({
 
             let allCnt = getAllChaptersContent();
             setAllContent(allCnt);
+                                                console.log("fetched(init) all-chapter-nodes: ", allCnt);
                                
             //chapterList[0]
             let chapterList = initialChapterList;
@@ -267,34 +264,34 @@ export default function Viewer_Entire({
 
 
             setFirstTimeEnter(false);
+        } else {
+
+
+                //in useEffect
+                if (currentGameStatusProgress["pageStatus"] === "During Game" 
+                    && 
+                    (currChapterAllNodesContent === -1)
+                ) {
+                    if (currentGameStatusProgress["chapterKey"].length > 0) {
+                                                            console.log("\t\t non-empty currentGameStatusProgress chapter-key: ", currentGameStatusProgress);
+                        let keyStrTemp = currentGameStatusProgress["chapterKey"];
+                        let ftd = filterChapterNode(keyStrTemp);
+                                                            console.log("allContent = ", allContent, "\n filtered: ", ftd);
+                    
+                    } else {
+                                                            console.log("\t\t*** empty currentGameStatusProgress chapter-key: ", currentGameStatusProgress);
+
+                    }
+                    
+
+                } else if (currentGameStatusProgress["pageStatus"] === "Main Page"
+                    || currentGameStatusProgress["pageStatus"] === "Story Page") {
+                                                            console.log("@@@ reset all-nodes-content");
+                    setCurrChapterAllNodesContent(-1);
+
+                }
         }
 
-
-        //in useEffect
-        if (currentGameStatusProgress["pageStatus"] === "During Game" 
-            && 
-            (currChapterAllNodesContent === -1)
-        ) {
-            if (currentGameStatusProgress["chapterKey"].length > 0) {
-                                                    console.log("\t\t non-empty currentGameStatusProgress chapter-key: ", currentGameStatusProgress);
-
-                let anc = allContent["chapterKey"]; //TODO369
-
-                setCurrChapterAllNodesContent(anc);
-
-                                                    console.log("\t\t*** Viewer-Entire: currChapterAllNodesContent = ", anc, " with chap-key: ", currentGameStatusProgress["chapterKey"]);
-            
-            } else {
-                                                    console.log("\t\t*** empty currentGameStatusProgress chapter-key: ", currentGameStatusProgress);
-
-            }
-            
-
-        } else if (currentGameStatusProgress["pageStatus"] === "Main Page"
-            || currentGameStatusProgress["pageStatus"] === "Story Page") {
-            setCurrChapterAllNodesContent(-1);
-
-        }
  
 
 
@@ -451,7 +448,7 @@ export default function Viewer_Entire({
 
 
         //TODO900 fetch chapter-content?
-                                console.log("view-entire level - triggerWalkToCurrChapterLocalViewer called... chpContent = ", chpContent);
+                                console.log("@@@ view-entire level - triggerWalkToCurrChapterLocalViewer called... chpContent = ", chpContent);
 
         setCurrChapterAllNodesContent(chpContent);
 
@@ -542,6 +539,31 @@ export default function Viewer_Entire({
         setOpenSettingsPage(false);
     }
 
+    function filterChapterNode(chapterKeyStr) {
+        if (chapterKeyStr === undefined || chapterKeyStr.length === 0) {
+            return -2;
+        }
+
+        let cntt = {};
+        
+        Object.keys(allContent).map((currKey) => {
+            let item = allContent[currKey];
+            if (item["chapterKey"] === chapterKeyStr) {
+                cntt[currKey] = item;
+            }
+
+        }
+        );
+
+        if (cntt === undefined) {
+            cntt = -1;
+
+        }
+        setCurrChapterAllNodesContent(cntt);
+
+        return cntt;
+
+   }
     
     
 
