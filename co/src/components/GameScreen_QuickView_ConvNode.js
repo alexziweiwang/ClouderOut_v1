@@ -409,16 +409,18 @@ style={{
             && <GameUI_Play_1TextFrame
                     initialPieceNum={initialPieceNum}
                     allPieceContent={allPieceContent}
-                    getCurrentPieceNum={passInCurrentPieceNum}
+
                     txtFrameUISettings={uiData1_textframe}
-                    getIsDirectNextPiece={passInDirectNextPieceBool}
-                    triggerNextPieceFunc={triggerToDirectNextPiece} 
-                    
-                    
+
+                                        
                     speedLevel={gameSettingScaleObj["settingPage-playSpeed"] !== undefined ? gameSettingScaleObj["settingPage-playSpeed"] : uiData3_ConvNavigation["textDisplaySpeed"]}
                     // TODO109 eventual speed
 
 
+                    getCurrentPieceNum={passInCurrentPieceNum}
+                    getIsDirectNextPiece={passInDirectNextPieceBool}
+                    triggerNextPieceFunc={triggerToDirectNextPiece} 
+                    
                     notifyFinished={notifyFinished}
                     notifyNotYet={notifyNotYet}
                     getInImmedaiteFinishSignal={passInImmedaiteFinishSignal}

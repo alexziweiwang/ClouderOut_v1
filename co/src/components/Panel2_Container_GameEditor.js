@@ -1425,9 +1425,46 @@ console.log("ui-langauge changed to: ", val);
        
     }
 
-    prepFirstViewingChapter();
+   // prepFirstViewingChapter();
+   //TODO then: para-func for loading screen...
 
   }
+
+  async function saveBothObjToCloud_release(releaseFunc) {
+    //
+
+    if (isSavedToCloud_metadata === false && isSavedToCloud_nodedata === false) {
+
+        await saveMetadataToCloud_panel2()
+        .then(async()=>{
+            await saveAllNodeDataToCloud_panel2()
+            .then(() => {
+                    releaseFunc();
+            });
+        })
+
+    } else {
+        if (isSavedToCloud_metadata === false) {
+            await saveMetadataToCloud_panel2();
+            //multipleNodeWriteToCloud-related for projectAllNodeContent
+    
+        }
+    
+        if (isSavedToCloud_nodedata === false) {
+            await saveAllNodeDataToCloud_panel2();
+           
+        }
+
+    }
+
+
+
+   // prepFirstViewingChapter();
+   //TODO then: para-func for loading screen...
+
+  }
+
+
 
   async function saveAllNodeDataToCloud_panel2() {
     if (projectAllNodeContent !== -1) {
@@ -1752,7 +1789,7 @@ return (
             initialCurrNodeEverything={currentEditingNodeEntire}
             saveCurrNodeEntire={saveCurrNodeEntireFromSubEditor}
 
-            saveBothObjToCloud={saveBothObjToCloud}
+            saveBothObjToCloud_release={saveBothObjToCloud_release}
 
             startQuickView_panel2={startViewerSingleNodeTest}
 

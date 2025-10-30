@@ -353,6 +353,10 @@ export default function AllPanels_QuickView_ConvNode ({
                     audioMap={audioMap}
 
                     gameData={gameDataTracker}
+            
+                    isViewMuted={mutedViewOption}
+                    openSettingPage={openSettingPage}
+                    
                     getCurrPieceNum={passInCurrPieceNum}
 
                     getResetSignal={passInResetSignal}
@@ -364,11 +368,10 @@ export default function AllPanels_QuickView_ConvNode ({
                     receiveGameDataObj={passInGameDataFromScreen}
                     
                     buttonConsequenceByStatementEntireArray_QVC={buttonConsequenceByStatementEntireArray_QV}
-                    
-                    isViewMuted={mutedViewOption}
+        
+
                     fetchGameSettingsForPlaying={passInDefulatGameSettings}
-                    openSettingPage={openSettingPage}
-                    
+
                     sendOutBgmSettings={notUsingThreeParam}
 
                 />

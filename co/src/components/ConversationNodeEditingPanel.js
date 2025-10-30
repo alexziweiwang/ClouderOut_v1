@@ -44,7 +44,7 @@ export default function ConversationNodeEditingPanel({
         saveCurrNodeEntire,
         backToGameMaker,
 
-        saveBothObjToCloud,
+        saveBothObjToCloud_release,
         startQuickView_panel2,
 }
 ) {
@@ -786,7 +786,7 @@ GameDataDesign <map>
     async function saveAllToCloud() {
         setIsLoading(true);
         updateToOuter();
-        await saveBothObjToCloud(relieveLoading);
+        await saveBothObjToCloud_release(relieveLoading);
     }
 
     function initializeNodeBothParts() { //important
