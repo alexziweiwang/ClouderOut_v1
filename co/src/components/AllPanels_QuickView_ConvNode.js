@@ -100,11 +100,11 @@ export default function AllPanels_QuickView_ConvNode ({
 
 
 
-    console.log("all-panels entered:",     
-    uiData1_textframe, 
-    uiData2_defaultButtonOption, 
-    uiData3_ConvNavigation, 
-    uiData4_logPageSettings);
+            console.log("all-panels entered:",     
+            uiData1_textframe, 
+            uiData2_defaultButtonOption, 
+            uiData3_ConvNavigation, 
+            uiData4_logPageSettings);
 
 
             makeDupGdt();
@@ -114,7 +114,7 @@ export default function AllPanels_QuickView_ConvNode ({
             setFirstTimeEnter(false);
         }
 
-        console.log("all-panels-QuickView: ", allPieceContent, " with piece-num: ", currPieceNum);
+                            //    console.log("all-panels-QuickView: ", allPieceContent, " with piece-num: ", currPieceNum);
         
         if (allPieceContent === undefined) {
             handleQViewCancel();
@@ -141,7 +141,7 @@ export default function AllPanels_QuickView_ConvNode ({
         setAudioMap(auMap);
         let visMap = getVisualMap();
         setVisualMap(visMap);
-        console.log("vis-map = ", visMap);
+                                        //  console.log("vis-map = ", visMap);
 
 
         

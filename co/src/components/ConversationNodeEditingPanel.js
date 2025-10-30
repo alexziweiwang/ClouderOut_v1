@@ -1062,7 +1062,7 @@ GameDataDesign <map>
 
 
 
-                <div className="" style={{"height": "45px"}}>
+                <div style={{"height": "45px", "width": "900px"}}>
             
                     <button
                         onClick={()=>{
@@ -1084,7 +1084,7 @@ GameDataDesign <map>
                     }}>
                         {gameUIsetupText}</button>
 
-
+                
                     <>
                         <select value={selectedGameScreenSize} onChange={changeselectedGameScreenSizeSetting}>
                             <option value="" key=""> ----- Select Size and Direction ----- </option>

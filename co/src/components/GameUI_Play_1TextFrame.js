@@ -5,9 +5,13 @@ import ConvTextContent_quickGameView from './ConvTextContent_quickGameView';
 //level5 (a part of a node)
 
 
-export default function GameUI_Play_1TextFrame({allPieceContent, getCurrentPieceNum, 
-    txtFrameUISettings, getIsDirectNextPiece, triggerNextPieceFunc, speedLevel,
-    notifyFinished, notifyNotYet, getInImmedaiteFinishSignal,
+export default function GameUI_Play_1TextFrame({
+    allPieceContent, getCurrentPieceNum, 
+    txtFrameUISettings, 
+    getIsDirectNextPiece, triggerNextPieceFunc, 
+    speedLevel,
+    notifyFinished, notifyNotYet, 
+    getInImmedaiteFinishSignal,
     visualMap, getAutoModeStatus
 }) {
 //TODO: playView setup:
@@ -35,7 +39,7 @@ export default function GameUI_Play_1TextFrame({allPieceContent, getCurrentPiece
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
-        console.log("### game-ui-play-1_textframe...   speed = ", speedLevel);
+    //    console.log("### game-ui-play-1_textframe...   speed = ", speedLevel);
 
         if (firstTimeEnter === true) {
     
@@ -52,6 +56,31 @@ export default function GameUI_Play_1TextFrame({allPieceContent, getCurrentPiece
         setIsDirectNext(tempDirectNext);
 
     });
+
+
+    function getCurrentPieceNum_local() {
+        return getCurrentPieceNum();
+    }
+
+    function notifyFinished_local() {
+        notifyFinished();
+    }
+
+    function notifyNotYet_local() {
+        notifyNotYet()
+
+    }
+    function getInImmedaiteFinishSignal_local() {
+        return getInImmedaiteFinishSignal();
+    }
+
+    function getAutoModeStatus_local() {
+        return getAutoModeStatus();
+    }
+
+    function triggerNextPieceFunc_local() {
+        triggerNextPieceFunc();
+    }
 
     return (<div 
         style={txtFrameUISettings["isShape"] === true ? {
@@ -138,12 +167,14 @@ export default function GameUI_Play_1TextFrame({allPieceContent, getCurrentPiece
                             allPieceContent={allPieceContent}
                             initialPieceNum={currPieceNum}
                             displaySpeed={typingSpeedValue}
-                            getCurrentPieceNum={getCurrentPieceNum}
-                            notifyFinished={notifyFinished}
-                            notifyNotYet={notifyNotYet}
-                            getInImmedaiteFinishSignal={getInImmedaiteFinishSignal}
-                            getAutoModeStatus={getAutoModeStatus}
-                            triggerNextPiece={triggerNextPieceFunc}
+
+                            getCurrentPieceNum={getCurrentPieceNum_local}
+                            notifyFinished={notifyFinished_local}
+                            notifyNotYet={notifyNotYet_local}
+                            getInImmedaiteFinishSignal={getInImmedaiteFinishSignal_local}
+                            getAutoModeStatus={getAutoModeStatus_local}
+                            triggerNextPiece={triggerNextPieceFunc_local}
+
                         /> 
                  
 
