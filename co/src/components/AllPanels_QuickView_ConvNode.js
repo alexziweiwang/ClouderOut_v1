@@ -30,11 +30,6 @@ export default function AllPanels_QuickView_ConvNode ({
     openSettingPage
 }) {
 
-    console.log("all-panels entered:",     
-    uiData1_textframe, 
-    uiData2_defaultButtonOption, 
-    uiData3_ConvNavigation, 
-    uiData4_logPageSettings);
 
 
     const tempPlaceholder = []; //TODO temp for "initialGameDataDesignList"
@@ -101,7 +96,16 @@ export default function AllPanels_QuickView_ConvNode ({
  
         if (firstTimeEnter === true) {
 
-console.log("qv__initialEmuGameDataTracker  = ", initialEmuGameDataTracker);
+//console.log("qv__initialEmuGameDataTracker  = ", initialEmuGameDataTracker);
+
+
+
+    console.log("all-panels entered:",     
+    uiData1_textframe, 
+    uiData2_defaultButtonOption, 
+    uiData3_ConvNavigation, 
+    uiData4_logPageSettings);
+
 
             makeDupGdt();
 
@@ -111,6 +115,7 @@ console.log("qv__initialEmuGameDataTracker  = ", initialEmuGameDataTracker);
         }
 
         console.log("all-panels-QuickView: ", allPieceContent, " with piece-num: ", currPieceNum);
+        
         if (allPieceContent === undefined) {
             handleQViewCancel();
         }

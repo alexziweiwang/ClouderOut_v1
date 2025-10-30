@@ -126,7 +126,9 @@ export default function DuringGameScreen_AllNodeTypeContainer({
 
                 setFirstTimeEnter(false);
 
-        } else { //in useEffect
+        } else { 
+            //after first-entry
+            //in useEffect
 
             let chapterKeyTemp = getChapterKey();
             if (currChapterKey !== chapterKeyTemp
@@ -260,7 +262,8 @@ export default function DuringGameScreen_AllNodeTypeContainer({
     //TODO21 refactor to VM
     function locateHoldingNextNode(nodeKeyInfo, nodeTypeInfo) {//TODO35
 
-                                                  console.log("\n\n\n\n\n\nlocate-Holding-NextNode(jump node)! \n\tchapterNodeMapping = ", chapterNodeMapping);
+                                                console.log("#locateHoldingNextNode start! [", nodeKeyInfo, "]");    
+                                                console.log("\n\n\n\n\n\nlocate-Holding-NextNode(jump node)! \n\tchapterNodeMapping = ", chapterNodeMapping);
 
         let chapterDataTemp = chapterNodeMapping[currChapterKey];
                                     //            console.log("curr-chapter data = ", chapterDataTemp);
@@ -323,6 +326,7 @@ export default function DuringGameScreen_AllNodeTypeContainer({
 
         setHoldingNextNodeKey(nextNodeKeyInfo);
 
+        console.log("#locateHoldingNextNode finish! ");                                    console.log("\n\n\n\n\n\nlocate-Holding-NextNode(jump node)! \n\tchapterNodeMapping = ", chapterNodeMapping);
 
         console.log("\n\n\n\n\n\n");
     }

@@ -702,7 +702,7 @@ export default function Panel2_Container_GameEditor() {
     
     }
 
-    function startViewerNodeTest(obj) {
+    function startViewerSingleNodeTest(obj) {
                             console.log("starting viewer-node-test!", obj);
 
 //TODO999999
@@ -724,13 +724,25 @@ export default function Panel2_Container_GameEditor() {
 
 
         //projectAllNodeContent[currTestingNodeKey]
-        let testingNodeErt= projectAllNodeContent[nodeKeyName];
-        if (testingNodeErt === undefined) {
+        let testingNodeEvrt= projectAllNodeContent[nodeKeyName];
+        if (testingNodeEvrt === undefined) {
                             console.log("unnable to find the view-testing node");
             return;
         }
 
-                            console.log("view-testing node: ", testingNodeErt);
+                            console.log("view-testing node: ", testingNodeEvrt);
+
+
+                        //TODO99999 prepare for < AllPanels_QuickView_ConvNode />
+                            // allPieceContent={projectAllNodeContent[currTestingNodeKey].nodeContent}  //from node's obj (data-structure)
+
+                            // uiData1_textframe={projectAllNodeContent[currTestingNodeKey]["nodeUISettings"].textFrame}  //from node's obj (data-structure)
+                            // uiData2_defaultButtonOption={projectAllNodeContent[currTestingNodeKey]["nodeUISettings"].defaultButton}  //from node's obj (data-structure) 
+                            // uiData3_ConvNavigation={projectAllNodeContent[currTestingNodeKey]["nodeUISettings"].convNav}  //from node's obj (data-structure)
+                            // uiData4_logPageSettings={projectAllNodeContent[currTestingNodeKey]["nodeUISettings"].logPage}  //from node's obj (data-structure)
+                            // initialEmuGameDataTracker={testPlayerGameDataTracker}
+
+
 
 
         switch (typeVal){
@@ -743,8 +755,8 @@ export default function Panel2_Container_GameEditor() {
                 setNodeViewingEntryNum(obj.entryPointNum);
 
 
-                // setCcurrTestingScrnW(?) //TODO set from node's info: testingNodeErt
-                // setCcurrTestingScrnH(?) //TODO set from node's info: testingNodeErt
+                // setCcurrTestingScrnW(?) //TODO set from node's info: testingNodeEvrt
+                // setCcurrTestingScrnH(?) //TODO set from node's info: testingNodeEvrt
                  
                 //TODO fetch GameDataTracker from emu-mgr
 
@@ -758,7 +770,7 @@ export default function Panel2_Container_GameEditor() {
                 break;
           
             default:
-                console.log("default in startViewerNodeTest");
+                console.log("default in startViewerSingleNodeTest");
     }
 
 
@@ -1742,7 +1754,7 @@ return (
 
             saveBothObjToCloud={saveBothObjToCloud}
 
-            startQuickView_panel2={startViewerNodeTest}
+            startQuickView_panel2={startViewerSingleNodeTest}
 
         />
 
@@ -1993,7 +2005,7 @@ return (
     </>}
 
 
-    {isDisplayQuickview && 
+    {isDisplayQuickview === true && 
     <><div>
         <AllPanels_QuickView_ConvNode
 
@@ -2001,12 +2013,12 @@ return (
 
             handleQViewCancel={handleCancelNodeTestViewer}
 
-            allPieceContent={projectAllNodeContent[currTestingNodeKey].nodeContent}  //from node's obj (data-structure)
+            allPieceContent={projectAllNodeContent[currTestingNodeKey].nodeContent}  //from node's obj (data-structure) //TODO change
 
-            uiData1_textframe={projectAllNodeContent[currTestingNodeKey]["nodeUISettings"].textFrame}  //from node's obj (data-structure)
-            uiData2_defaultButtonOption={projectAllNodeContent[currTestingNodeKey]["nodeUISettings"].defaultButton}  //from node's obj (data-structure) 
-            uiData3_ConvNavigation={projectAllNodeContent[currTestingNodeKey]["nodeUISettings"].convNav}  //from node's obj (data-structure)
-            uiData4_logPageSettings={projectAllNodeContent[currTestingNodeKey]["nodeUISettings"].logPage}  //from node's obj (data-structure)
+            uiData1_textframe={projectAllNodeContent[currTestingNodeKey]["nodeUISettings"].textFrame}  //from node's obj (data-structure) //TODO change
+            uiData2_defaultButtonOption={projectAllNodeContent[currTestingNodeKey]["nodeUISettings"].defaultButton}  //from node's obj (data-structure)  //TODO change
+            uiData3_ConvNavigation={projectAllNodeContent[currTestingNodeKey]["nodeUISettings"].convNav}  //from node's obj (data-structure) //TODO change
+            uiData4_logPageSettings={projectAllNodeContent[currTestingNodeKey]["nodeUISettings"].logPage}  //from node's obj (data-structure) //TODO change
 
             screenWidth={currTestingScrnW}  //from node's obj (data-structure)
             screenHeight={currTestingScrnH}  //from node's obj (data-structure)
@@ -2016,7 +2028,7 @@ return (
         
             getUILanguage={passInUiLanguageOption}
 
-            initialEmuGameDataTracker={testPlayerGameDataTracker}
+            initialEmuGameDataTracker={testPlayerGameDataTracker} //TODO change
                     
             // resetViewing={resetQuickView}
             openSettingPage={hintNodeEditorOnly}
