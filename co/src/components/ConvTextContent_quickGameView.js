@@ -18,11 +18,16 @@ export default function ConvTextContent_quickGameView({
     const [fullContent, setFullContent] = useState(allPieceContent[initialPieceNum]["content"]);
     const [receivedImmediateFinishSignal, setReceivedImmediateFinishSignal] = useState(false);
 
+    const [notifyNotYetMarked, setNotifyNotYetMarked] = useState(false);
+    
+
     useEffect(() => {
         let displayedContentTemp = displayedContent;
 
         let immFinSignal = getInImmedaiteFinishSignal();
-        setReceivedImmediateFinishSignal(immFinSignal);
+        if (receivedImmediateFinishSignal !== immFinSignal) {
+            setReceivedImmediateFinishSignal(immFinSignal);
+        }
 
         let currPieceNumTemp = getCurrentPieceNum();
         if (currPieceNumTemp !== currentPieceNum) { //only update when different pieceNum chosen
@@ -36,7 +41,6 @@ export default function ConvTextContent_quickGameView({
 
 
         let wordContent = allPieceContent[currPieceNumTemp]["content"];
-
         if (wordContent !== fullContent) {
             setFullContent(wordContent);
             setContinueRefreshing(true);
@@ -46,12 +50,16 @@ export default function ConvTextContent_quickGameView({
         }
 
         let autoStatus = getAutoModeStatus();
-
+        
         if (continueRefreshing === true || wordContent !== fullContent) {
             
                 if (displayedContentTemp.length < wordContent.length) {
                     //TODO notify not finished
-                    notifyNotYet();
+
+                    if (notifyNotYetMarked === false) {
+                        notifyNotYet();
+                        setNotifyNotYetMarked(true);
+                    }
 
                     if (immFinSignal === true) {
                         setDisplayedContent(wordContent);
@@ -73,6 +81,8 @@ export default function ConvTextContent_quickGameView({
                
                     notifyFinished();
                     setContinueRefreshing(false);
+
+                    setNotifyNotYetMarked(false);
                     
                
                 }

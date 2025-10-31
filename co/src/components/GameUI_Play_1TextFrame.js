@@ -53,7 +53,10 @@ export default function GameUI_Play_1TextFrame({
         }
 
         let tempDirectNext = getIsDirectNextPiece();
-        setIsDirectNext(tempDirectNext);
+        if (isDirectNext !== tempDirectNext) {
+            setIsDirectNext(tempDirectNext);
+
+        }
 
     });
 
@@ -67,7 +70,7 @@ export default function GameUI_Play_1TextFrame({
     }
 
     function notifyNotYet_local() {
-        notifyNotYet()
+        notifyNotYet();
 
     }
     function getInImmedaiteFinishSignal_local() {

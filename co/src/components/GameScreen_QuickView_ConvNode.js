@@ -124,12 +124,19 @@ export default function GameScreen_QuickView_ConvNode ({
 
 
 
-            if ((allPieceContent[currPieceNum]["stnd_btn_arr"] !== undefined && allPieceContent[currPieceNum]["stnd_btn_arr"].length > 0)
+            if ((allPieceContent[currPieceNum]["stnd_btn_arr"] !== undefined 
+                && allPieceContent[currPieceNum]["stnd_btn_arr"].length > 0)
             ) {
                                                 // TODO LATER: || (allPieceContent[currPieceNum]["clkb_arr"] !== undefined && allPieceContent[currPieceNum]["clkb_arr"].length > 0) 
-                setDirectNextPieceBool(false);
+                
+                if (directNextPieceBool === true) {
+                    setDirectNextPieceBool(false);
+                }
+                
             } else {
-                setDirectNextPieceBool(true);
+                if (directNextPieceBool === false) {
+                    setDirectNextPieceBool(true);
+                }
             }
     
             
