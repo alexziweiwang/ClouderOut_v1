@@ -107,6 +107,16 @@ export default function AllPanels_QuickView_ConvNode ({
             uiData4_logPageSettings);
 
 
+            let auMap = getAudioMap();
+            setAudioMap(auMap);
+            
+            let visMap = getVisualMap();
+            setVisualMap(visMap);
+                                                //  console.log("vis-map = ", visMap);            
+            
+    
+
+            
             makeDupGdt();
 
                             //            console.log("first entry quick-view, gdt = ", initialEmuGameDataTracker);
@@ -122,26 +132,27 @@ export default function AllPanels_QuickView_ConvNode ({
 
 
         if (allPieceContent[currPieceNum]["isContentNotClkb"] === false) {
-                                                                
-            setDirectNextPieceBool(false);
+            if (directNextPieceBool === true) {
+               setDirectNextPieceBool(false); 
+            }                    
+            
 
         } else { //content only, no clicking interaction
-
-            setDirectNextPieceBool(true);
+            if (directNextPieceBool === false) {
+               setDirectNextPieceBool(true); 
+            }
+            
         }
 
         let UILang = getUILanguage();
-        setLanguageCodeTextOption(UILang);
+        if (UILang !== languageCodeTextOption) {
+            setLanguageCodeTextOption(UILang);
+        }
 
       
         updateBgmSource();
         updateBgpSource();
 
-        let auMap = getAudioMap();
-        setAudioMap(auMap);
-        let visMap = getVisualMap();
-        setVisualMap(visMap);
-                                        //  console.log("vis-map = ", visMap);
 
 
         
@@ -356,7 +367,7 @@ export default function AllPanels_QuickView_ConvNode ({
             
                     isViewMuted={mutedViewOption}
                     openSettingPage={openSettingPage}
-                    
+
                     getCurrPieceNum={passInCurrPieceNum}
 
                     getResetSignal={passInResetSignal}
