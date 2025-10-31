@@ -567,6 +567,19 @@ export default function Viewer_Entire({
    function passInAllContent() {
        return allContent;
    }
+
+   function returnToStoryPage() {
+        setNavPageStatus("Story Page");
+        setCurrentGameStatusProgress({
+            ...currentGameStatusProgress,
+            
+            "pageStatus": "Story Page",
+            "chapterKey": "",
+            "nodeKey": "",
+            "nodeType": "",
+            "chapterTitle": "",
+       });
+   }
     
     
 
@@ -637,7 +650,10 @@ game-screen (specific node) layer */}
                                           
                                                 openSettingPage={setOpenSettingsPageSignalTrue}
                                                 sendOutBgmSettings={getBgmSettingsFromSubCompo}
-                                                backendOption={backendOption}
+                                                
+                                                returnToStoryPage={returnToStoryPage}
+
+
                                 />
 
                                 

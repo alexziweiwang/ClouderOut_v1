@@ -42,15 +42,17 @@ export default function DuringGameScreen_AllNodeTypeContainer({
     projectname,
     uiLanguage,
 
-    visualMap,
-    audioMap,
+    visualMap, //TODO change to dynamic
+    audioMap, //TODO change to dynamic
+
     mutedViewOption,
     fetchGameSettings,
 
     openSettingPage,
 
     sendOutBgmSettings,
-    backendOption
+
+    returnToStoryPage
 
 }) {
 
@@ -723,16 +725,18 @@ currNodeType === {currNodeType}, focusedNodeData is -1? {focusedNodeData === -1 
                 username={username}
                 projectname={projectname}
                 
-                enteringEmuGameDataTracker={currGameDataTracker} //TODO change to dynamic fetching?
+                enteringEmuGameDataTracker={currGameDataTracker} //TODO change to dynamic fetching
 
                 updatedGameDataTracker={receiveUpdatedGameDataTracker}
 
-                visualMap={visualMap} //TODO empty so far
-                audioMap={audioMap} //TODO empty so far
+                visualMap={visualMap} //TODO change to dynamic fetching
+                audioMap={audioMap} //TODO change to dynamic fetching
+
                 mutedViewOption={mutedViewOption}
                 fetchGameSettings={fetchGameSettings}
 
                 openSettingPage={openSettingPage}
+                
                 sendOutBgmSettings={sendOutBgmSettings}
 
             />

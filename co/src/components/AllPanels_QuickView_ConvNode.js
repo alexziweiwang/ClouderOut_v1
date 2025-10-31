@@ -300,6 +300,11 @@ export default function AllPanels_QuickView_ConvNode ({
         return defaultObj;
     }
 
+    function resetViewing() {
+        setCurrPieceNum(initialPieceNum);
+        
+    }
+
     return ( <div className={modalStyleName}>
         <div className="modalArea  textNoSelect">
 
@@ -318,28 +323,28 @@ export default function AllPanels_QuickView_ConvNode ({
                         }}> {closeText} 
                     </button>
                     
-                    <button 
-                        className="cursor_pointer modalClose" 
-                        onClick={()=>{
-                            let resArr = resetViewing();
-                                                                        console.log("reset clicked: ", resArr);
+                                                    {/* <button 
+                                                        className="cursor_pointer modalClose" 
+                                                        onClick={()=>{
+                                                            let resArr = resetViewing();
+                                                                                                        console.log("reset clicked: ", resArr);
 
-                            setGameDataTracker(resArr[1]);
-                            setResetSignal(true);
-                            setResetInfo(resArr);
-                        }}
-                    > {resetText} </button>
+                                                            setGameDataTracker(resArr[1]);
+                                                            setResetSignal(true);
+                                                            setResetInfo(resArr);
+                                                        }}
+                                                    > {resetText} </button> */}
 
-                    <button
-                        className="cursor_pointer modalClose" 
-                        onClick={()=>{
-                            setMutedViewOption(!mutedViewOption);
-                        }}
-                    >
-                        {/* {mutedViewOption === true && <label>Unmute</label>}
-                        {mutedViewOption === false && <label>Mute</label>} */}
+                                                    {/* <button
+                                                        className="cursor_pointer modalClose" 
+                                                        onClick={()=>{
+                                                            setMutedViewOption(!mutedViewOption);
+                                                        }}
+                                                    >
+                                                        {mutedViewOption === true && <label>Unmute</label>}
+                                                        {mutedViewOption === false && <label>Mute</label>} 
 
-                    </button>
+                                                    </button> */}
             </div>
 
 
