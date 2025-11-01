@@ -19,12 +19,7 @@ export default function GameScreen_InPracShell_ConvNode ({
 
     notifyNodeFinish,
         
-    uiLanguage,
-    
-    username,
-    projectname,
-    
-    enteringEmuGameDataTracker,
+    getEnteringEmuGdt,
     updatedGameDataTracker,
 
     visualMap,
@@ -42,19 +37,22 @@ export default function GameScreen_InPracShell_ConvNode ({
 
     const initialPieceNum = 0;
 
+    const [enteringGdt, setEnteringGdt] = useState({});
+
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);   //TODO temp
     useEffect(() => {
  
         if (firstTimeEnter === true) {
                                                                       // initializeDataFromCloud(); //TODO remove
-
+            let eGdt = getEnteringEmuGdt();
+            setEnteringGdt(eGdt);
             setFirstTimeEnter(false);
         }
 
                          //          console.log("in-prac-shell, allPieceData = ", allPieceData);
 
 
-console.log("conv-node(from in-prac, enteringEmuGameDataTracker = ", enteringEmuGameDataTracker);
+console.log("conv-node(from in-prac, enteringGdt = ", enteringGdt);
 
 
     }); //-- end of useEffect --
@@ -73,7 +71,7 @@ console.log("conv-node(from in-prac, enteringEmuGameDataTracker = ", enteringEmu
     function buttonConsequenceByStatementEntireArray_QV(pieceNum, item) {
         console.log("game-screen-in-prac : buttonConsequenceByStatementEntireArray_QV");
 
-        buttonConsequenceByStatementEntireArray(pieceNum, item, allPieceData, enteringEmuGameDataTracker, updatedGameDataTracker, notUsing);
+        buttonConsequenceByStatementEntireArray(pieceNum, item, allPieceData, enteringGdt, updatedGameDataTracker, notUsing);
     }
 
 return (<div>
@@ -106,7 +104,7 @@ return (<div>
                     visualMap={visualMap} //TODO empty so far
                     audioMap={audioMap} //TODO empty so far
 
-                    gameData={enteringEmuGameDataTracker}
+                    gameData={enteringGdt}
 
                     getResetSignal={passInResetSignalFalse} 
                     getResetInfoSets={notUsing} 

@@ -559,7 +559,7 @@ export default function DuringGameScreen_AllNodeTypeContainer({
                 if (i+1 === len) {
                     console.log("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nlast chapter")
                     returnToStoryPage();
-                    
+
                     return;
 
                 } else { // (i+1 < len): more chapters to go
@@ -596,6 +596,10 @@ export default function DuringGameScreen_AllNodeTypeContainer({
     function receiveUpdatedGameDataTracker(data) {
         console.log("\t\t\t\t\t current game-data: ", data);
         setCurrGameDataTracker(data); //updating during the game
+    }
+
+    function passInEnteringEmuGdt() {
+        return currGameDataTracker;
     }
 
 
@@ -717,30 +721,23 @@ currNodeType === {currNodeType}, focusedNodeData is -1? {focusedNodeData === -1 
                 nodeUILogPage={focusedNodeData["nodeUISettings"]["logPage"]}
                 nodeUITextFrame={focusedNodeData["nodeUISettings"]["textFrame"]}
 
-                notifyNodeFinish={markNextNodeSignalTrue}
                 
                 screenWidth={screenWidth}
                 screenHeight={screenHeight}
-                    
-                uiLanguage={uiLanguage}
                 
-                username={username}
-                projectname={projectname}
-                
+                mutedViewOption={mutedViewOption}
+
                 enteringEmuGameDataTracker={currGameDataTracker} //TODO change to dynamic fetching
-
-                updatedGameDataTracker={receiveUpdatedGameDataTracker}
-
+                getEnteringEmuGdt={passInEnteringEmuGdt}
                 visualMap={visualMap} //TODO change to dynamic fetching
                 audioMap={audioMap} //TODO change to dynamic fetching
 
-                mutedViewOption={mutedViewOption}
-                fetchGameSettings={fetchGameSettings}
+                fetchGameSettings={fetchGameSettings} //TODO change func
+                openSettingPage={openSettingPage} //TODO change func
+                sendOutBgmSettings={sendOutBgmSettings} //TODO change func
 
-                openSettingPage={openSettingPage}
-                
-                sendOutBgmSettings={sendOutBgmSettings}
-
+                notifyNodeFinish={markNextNodeSignalTrue}
+                updatedGameDataTracker={receiveUpdatedGameDataTracker}
             />
        }
 
