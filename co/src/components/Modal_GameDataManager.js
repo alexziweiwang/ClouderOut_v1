@@ -178,8 +178,9 @@ export default function Modal_GameDataManager ({
         let objSize = Object.keys(gameDataTemp).length;
 
                         console.log("adding new var: ", gameDataTemp, ", size = ", objSize); //TODO test
-    
-        updateToOuterLayer(gameDataTemp, objSize);
+        
+        let actionName = "addVarPair"
+        updateToOuterLayer(gameDataTemp, objSize, actionName, newObj);
 
         setDisplayNewVarArea(false);
     }
@@ -212,16 +213,16 @@ export default function Modal_GameDataManager ({
         setDefaultNewValue(event.target.value);
     }
 
-    function deleteListItem(obj) {
+    function deleteListItem(singleObj) {
         //change locally for UI
-        let askString = "Are you sure to delete game-data-item " + obj["name"] + " ?";
+        let askString = "Are you sure to delete game-data-item " + singleObj["name"] + " ?";
 
         let response = window.confirm(askString);
         if (response === true) {
 
             let tempMap = {};
             Object.keys(usingGameDataDesign).map((key) => {
-                if (key !== obj["name"]) {
+                if (key !== singleObj["name"]) {
                     tempMap[key] = usingGameDataDesign[key];
                 }
                 // return tempMap;
@@ -229,7 +230,8 @@ export default function Modal_GameDataManager ({
             let objSize = Object.keys(tempMap).length;
                                     console.log("new gdm-design size = ", objSize);
 
-            updateToOuterLayer(tempMap, objSize);
+            let actionName = "removeVarPair";
+            updateToOuterLayer(tempMap, objSize, actionName, singleObj);
 
         }
 
@@ -298,15 +300,19 @@ export default function Modal_GameDataManager ({
         let objSize = Object.keys(newGameData).length;
                                 console.log("new gdmMap-data size = ", objSize);
 
-        updateToOuterLayer(newGameData, objSize);
+        let actionName = "";
+        let emptyObj = {};
+        updateToOuterLayer(newGameData, objSize, actionName, emptyObj);
     }
 
-    function updateToOuterLayer(updatedGameDataObj, sizeNum) {
+    function updateToOuterLayer(updatedGameDataObj, sizeNum, emuAction, singleObj) {
 
         setUsingGameDataDesign(updatedGameDataObj); /* update local data structure */ 
         setGdmMapSize(sizeNum);
-        updateGameDataDesignListToOuterLayer(updatedGameDataObj); /* update for outer-layer */
 
+        updateGameDataDesignListToOuterLayer(updatedGameDataObj, emuAction, singleObj); /* update for outer-layer */
+ 
+            //+++ emuAction ("addVarPair" or "removeVarPair"), singleObj
     }
 
 

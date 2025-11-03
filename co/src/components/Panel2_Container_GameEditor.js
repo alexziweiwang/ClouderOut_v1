@@ -1202,11 +1202,34 @@ console.log("ui-langauge changed to: ", val);
     }
 
 
-    function triggerGameDataDesignListChange(data) {
+    function triggerGameDataDesignListChange(data, emuAction, singleObj) {
         //TODO999 update game-data-design-list
-        setProjectMetaData({...projectMetaData, 
-            "game_data": data
-        })
+
+  
+            let emu4SetsTemp = projectMetaData["emu4sets"]["gdt1"];
+                     
+            let keyStr = singleObj["name"]
+
+            if (emuAction === "addVarPair") {
+                emu4SetsTemp[keyStr] = {
+                    "current_value": singleObj["current_value"],
+                    "data_type": singleObj["data_type"],
+                    "default_value": singleObj["default_value"],
+                    "name": keyStr,
+                };       
+            } else if (emuAction === "removeVarPair") {
+                emu4SetsTemp.delete(keyStr);
+            }
+
+            setProjectMetaData({...projectMetaData, 
+                "game_data": data,
+                "emu4sets": emu4SetsTemp
+            });   
+
+
+        
+
+
     }
 
     function triggerCreatedNewNode_panel2(nodeKey, nodeChapter, nodeType, currChapMap) {
@@ -1859,9 +1882,7 @@ return (
                 updateForEmuGdt1={updateUserConfigFromDataMgr1Gdt}
 
                 updateGameDataDesignListToOuterLayer={triggerGameDataDesignListChange}
-
                 
-
                 languageCodeTextOption={projectMetaData[["ui_language"]]} //TODO change
               />
               

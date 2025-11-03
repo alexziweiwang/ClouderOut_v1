@@ -16,10 +16,12 @@ export default function Modal_EmuManager({
     languageCodeTextOption,
 
     username,
+
     backendOption,
     editorMode,            //"offline_half"       "offline_full"        "online_cloud"  
 
     getVisualMap,
+    
     gameDataDesign,
     emuDataSets,
 
@@ -362,7 +364,6 @@ export default function Modal_EmuManager({
     
     function prepare3Epa_local() {
         let epa3Item = emuDataSets["epa3"];
-
 
         prepare3Epa_vm(
             epa3Item, 
