@@ -44,7 +44,10 @@ export default function GameScreen_InPracShell_ConvNode ({
  
         if (firstTimeEnter === true) {
                                                                       // initializeDataFromCloud(); //TODO remove
+                        console.log("conv-node(from in-prac) FIRST TIME ENTER");
+   
             let eGdt = getEnteringEmuGdt();
+                    console.log("\t\t eGdt = ", eGdt);
             setEnteringGdt(eGdt);
             setFirstTimeEnter(false);
         }

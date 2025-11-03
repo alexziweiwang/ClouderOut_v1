@@ -300,7 +300,7 @@ export default function Panel2_Container_GameEditor() {
                                                             "\n\t ChapListNestedArr = ", chapListNestedArr,
                                                             "\n\tmetadata valid ? ", checkMetadataValid,
                                                             "\n\n\t all-node-content = ", projectAllNodeContent,
-                                                            );
+                                                        );
 
  
         if (state === null && state.mode === "online_cloud") {

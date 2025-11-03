@@ -895,6 +895,9 @@
 - 2025-Oct-31: Test and adjust
 - 2025-Oct-31: Design testing-project
 
+- 2025-Nov-03: Explore and debug emu-prep for optimized panel
+
+
 
 
 

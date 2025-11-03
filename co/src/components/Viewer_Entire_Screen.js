@@ -297,11 +297,11 @@ export default function Viewer_Entire_Screen({
     });
 
             
-    useEffect(()=>{
-        console.log("changed currChapterAllNodesContent:", currChapterAllNodesContent, "\n at ", currentGameStatusProgress["pageStatus"]);
-    }, [
-        currChapterAllNodesContent
-    ]);
+    // useEffect(()=>{
+    //     console.log("changed currChapterAllNodesContent:", currChapterAllNodesContent, "\n at ", currentGameStatusProgress["pageStatus"]);
+    // }, [
+    //     currChapterAllNodesContent
+    // ]);
 
     function changeBgmVolume(volumeValue) {
         if (audioElem !== null && audioElem !== undefined) {

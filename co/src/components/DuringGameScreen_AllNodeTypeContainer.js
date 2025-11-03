@@ -38,14 +38,11 @@ export default function DuringGameScreen_AllNodeTypeContainer({
     getCurrChapterAllNodeMapping,
     getAllChapterList,
 
-    username,
-    projectname,
-    uiLanguage,
-
     visualMap, //TODO change to dynamic
     audioMap, //TODO change to dynamic
 
     mutedViewOption,
+
     fetchGameSettings,
 
     openSettingPage,
@@ -100,7 +97,7 @@ export default function DuringGameScreen_AllNodeTypeContainer({
 
                 let gDataTemp = getInitGameDataTracker();
                 setCurrGameDataTracker(gDataTemp); //initialize
-                                                           //     console.log("\t\tgame-data = ", gDataTemp);
+                                                               console.log("\t\tgame-data = ", gDataTemp);
 
                 let nodeTypeTemp = getNodeType(); //entering-data only
                 setCurrNodeType(nodeTypeTemp); 
@@ -173,7 +170,8 @@ export default function DuringGameScreen_AllNodeTypeContainer({
 
     function initializeChapterArray(list) {
         let arr = [];
-                console.log("initializeChapterArray-func, input list = ", list);
+
+                // console.log("initializeChapterArray-func, input list = ", list);
 
         let limit = Object.keys(list).length;
         let i = 0;
