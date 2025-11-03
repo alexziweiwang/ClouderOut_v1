@@ -10,9 +10,6 @@ import ConvNodeUISetter from './ConvNodeUISetter';
 import PreviewWindow_convNodeGameContent from './PreviewWindow_convNodeGameContent';
 import PreviewWindow_convNodeUiSetup from './PreviewWindow_convNodeUiSetup';
 
-import AllPanels_QuickView_ConvNode from './AllPanels_QuickView_ConvNode';
-
-
 import langDictionary from './_textDictionary';
 
 import { emptyConvNodeSinglePieceTemplate, gameUIDefaultButtonTemplate, gameUITextFrameTemplate, gameUIBackButtonTemplate, uiConvNavTemplate, logPageUISettingsTemplate } from './_dataStructure_DefaultObjects';
@@ -1282,41 +1279,6 @@ GameDataDesign <map>
             </div>
 }
 
-
-
-
-
-{/* *** quick-view modal ***  */}
-
-            {/* {isDisplayQview && 
-            <AllPanels_QuickView_ConvNode
-                    initialPieceNum={previewingIndex}
-                    isDisplay={isDisplayQview}
-                    handleQViewCancel={handleqvCancel}
-                    allPieceContent={pieceDataStructure}
-                    uiData1_textframe={gameUITextFrame} 
-                    uiData2_defaultButtonOption={gameUIDefaultButton} 
-                    uiData3_ConvNavigation={uiConvNav} 
-                    uiData4_logPageSettings={logPageUISettings}
-                    screenWidth={screenWidth}
-                    screenHeight={screenHeight}
-
-                    getAudioMap={passInAudioMap}
-                    getVisualMap={passInVisualMap}
-        
-                    getUILanguage={passInUILanguage}
-                    username={userName} 
-                    projName={projectName} 
-
-                    initialEmuGameDataTracker={testPlayerGameDataDup}
-                    
-                    resetViewing={resetQuickView}
-                    openSettingPage={openSettingPage}
-            />}
-
-            //TODO put on panel2?
-
-             */}
 
 
 {/* loading cover */}

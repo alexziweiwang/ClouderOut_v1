@@ -5,6 +5,7 @@ import langDictionary from './_textDictionary';
    
 
 //level3 (container of conversation-node, for quick view, along with panel)
+//same layer with duing-game-screen_all-node-type-container
 import { buttonConsequenceByStatementEntireArray } from '../viewmodels/CalcAc_QuickView';
 
 export default function AllPanels_QuickView_ConvNode ({
@@ -305,8 +306,9 @@ export default function AllPanels_QuickView_ConvNode ({
         
     }
 
-    return ( <div className={modalStyleName}>
-        <div className="modalArea  textNoSelect">
+    return ( 
+<div className={modalStyleName}>
+        <div className="modalArea textNoSelect">
 
             <div style={{
                 "width": "2000px", 
@@ -392,21 +394,21 @@ export default function AllPanels_QuickView_ConvNode ({
 
                 />
                 
-{/* 
-                <Panel_GameDataTest
-                       localTest={true}
-                       initialGameDataStatus={gameDataTracker}
+                                                            {/* 
+                                                                            <Panel_GameDataTest
+                                                                                localTest={true}
+                                                                                initialGameDataStatus={gameDataTracker}
 
-                       getScreenHeight={passInScreenHeight} 
-                       getScreenWidth={passInScreenWidth}
-                       isQuickView={true}
+                                                                                getScreenHeight={passInScreenHeight} 
+                                                                                getScreenWidth={passInScreenWidth}
+                                                                                isQuickView={true}
 
-                       receiveGameDataObj={passInGameDataFromScreen}
+                                                                                receiveGameDataObj={passInGameDataFromScreen}
 
-                       getUILanguage={getUILanguage}
-                /> */}
-{/* //TODO fetch original game-data from cloud, present changes through quick-view */}
-         
+                                                                                getUILanguage={getUILanguage}
+                                                                            /> */}
+                                                            {/* //TODO fetch original game-data from cloud, present changes through quick-view */}
+                                                                    
 
                 </div>
 

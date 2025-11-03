@@ -33,7 +33,7 @@ import { resourceRawListToUsableMap_vm } from '../viewmodels/PrepAc_Conversion';
 
 //level1 (receives static entry-data and starts running)
 
-export default function Viewer_Entire({
+export default function Viewer_Entire_Screen({
 
 //TODO99999 fetch static-metadata and static-all-node-contents from oute
     getAllChaptersContent,
@@ -68,10 +68,6 @@ export default function Viewer_Entire({
     username,
 
     uiLangOption,
-
-    backendOption,
-
-    handleViewerCancel,
     
 }) { //notes: "initialGameData" is this player's cloud-game-data, 
     // and when updating in this compo, it also updates to outside layer
@@ -432,7 +428,7 @@ export default function Viewer_Entire({
 
     function triggerWalkToCurrChapterLocalViewer(chapterKeyName, chapterTitleName) {
 
-        // for viewer_entire's local data-records
+        // for Viewer_Entire_Screen's local data-records
         let temp = currentGameStatusProgress;
         temp["nodeKey"] = "chapterStart";
         temp["nodeType"] = "*chapterStart*";

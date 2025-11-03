@@ -15,8 +15,9 @@ import GameMaker from './GameMaker';
 import ConversationNodeEditingPanel from './ConversationNodeEditingPanel';
 import CardGameNodeEditingPanel from './CardGameNodeEditingPanel';
 
-import Viewer_Entire from './Viewer_Entire';
+import Viewer_Entire_Screen from './Viewer_Entire_Screen';
 import AllPanels_QuickView_ConvNode from './AllPanels_QuickView_ConvNode';
+import GameScreen_QuickView_ConvNode from './GameScreen_QuickView_ConvNode';
 
 
 import Modal_ResourceManagingWindow from './Modal_ResourceManagingWindow';
@@ -41,7 +42,7 @@ import { checkProjectMetaData_vm } from '../viewmodels/PrepAc_ProjectFileInOut';
   } from '../viewmodels/NodeDataInPlayViewModel';
 
   import { fetchNodeByChapter2VM } from '../viewmodels/NodeDataInPlayViewModel'
-  //TODO112: fetch node-contents here, and send into Viewer_Entire and its sub-component [DuringGameScreen_AllNodeTypeContainer]
+  //TODO112: fetch node-contents here, and send into Viewer_Entire_Screen and its sub-component [DuringGameScreen_AllNodeTypeContainer]
   
 
 //keep this
@@ -115,6 +116,7 @@ export default function Panel2_Container_GameEditor() {
     const [isDisplayGdmBool, setDisplayGdmBool] = useState(false);
     const [isDisplayEmBool, setDisplayEmBool] = useState(false); 
 
+    const [isDisplayViewingAny, setDisplayViewingAny] = useState(false);
     const [isDisplayEntireGameViewer, setDisplayEntireGameViewer] = useState(false);
     const [isDisplayQuickview, setDisplayQuickview] = useState(false);
 /* todo30
@@ -181,7 +183,7 @@ export default function Panel2_Container_GameEditor() {
 //TODO reset things like:
         //initialPieceNum
 
-
+        setDisplayViewingAny(false);
         setDisplayQuickview(false);
     }
 
@@ -194,6 +196,7 @@ export default function Panel2_Container_GameEditor() {
         setCurrTestingNodeType("");
 
         setDisplayEntireGameViewer(false);
+        setDisplayViewingAny(false);
     }
 
     function triggerUpdateCurrentStanding(obj) { //fetch from sub-compo
@@ -219,8 +222,15 @@ export default function Panel2_Container_GameEditor() {
 
     }
 
-    let textDictItem = langDictionary[(projectMetaData === -1 || projectMetaData === undefined || projectMetaData["ui_language"] === undefined) ? "en" : projectMetaData["ui_language"]];
-    let textDictItemDefault = langDictionary["en"];
+    const textDictItem = langDictionary[
+            (projectMetaData === -1 
+            || projectMetaData === undefined 
+            || projectMetaData["ui_language"] === undefined) 
+                    ? "en" 
+                    : projectMetaData["ui_language"]
+            ];
+
+    const textDictItemDefault = langDictionary["en"];
   
     const resourceManagerButtonText = textDictItem.resourceManagerButtonText !== undefined ?
             textDictItem.resourceManagerButtonText
@@ -232,7 +242,11 @@ export default function Panel2_Container_GameEditor() {
 
     const emuManagerText = textDictItem.emuManagerText !== undefined ?
             textDictItem.emuManagerText
-            : textDictItemDefault.emuManagerText;    
+            : textDictItemDefault.emuManagerText;  
+            
+    const closeText = textDictItem.closeText !== undefined ?
+            textDictItem.closeText
+            : textDictItemDefault.closeText;
 
     function goToNotLoggedInPage() {
         navigate('/notloggedin', { replace: true });
@@ -288,8 +302,7 @@ export default function Panel2_Container_GameEditor() {
                                                             "\n\n\t all-node-content = ", projectAllNodeContent,
                                                             );
 
-
-
+ 
         if (state === null && state.mode === "online_cloud") {
                                     console.log("!!! not logged in - going to -login_page......");
             goToNotLoggedInPage();
@@ -353,16 +366,6 @@ export default function Panel2_Container_GameEditor() {
         console.log("isSavedToCloud = ", isSavedToCloud);
     });
 
-
-        
-                    // useEffect(()=>{
-                    //     setSavedToCloud(false); 
-                        
-                    //     //track if either node-content or metadata changed
-                    // }, [
-                    //     projectAllNodeContent,
-                    //     projectMetaData
-                    // ]);
 
         
     useEffect(()=>{ //track if metadata changed
@@ -677,9 +680,10 @@ export default function Panel2_Container_GameEditor() {
 
 
     function startViewerEntireTest() {
-            
-        let modeName = state.mode;
-    
+        
+        
+                                    console.log("startViewerEntireTest ! ");
+
         //TODO when all emu-set-data ready
         
         //TODO prep: either emu-set-data or in-prac-user data?
@@ -699,6 +703,7 @@ export default function Panel2_Container_GameEditor() {
         
 
         setDisplayEntireGameViewer(true);
+        setDisplayViewingAny(true);
     
     }
 
@@ -774,7 +779,7 @@ export default function Panel2_Container_GameEditor() {
     }
 
 
-
+        setDisplayViewingAny(true);
         setDisplayQuickview(true);
     }
 
@@ -1578,7 +1583,7 @@ console.log("ui-langauge changed to: ", val);
 
   function openTestWindow() {
     if (focusingEditor === "gameMaker") {
- 
+        
         startViewerEntireTest(); 
     } 
 
@@ -1901,18 +1906,32 @@ return (
 
 
 
-{/* test-viewing floating window */}
+{/* 00 . test-viewing floating window */}
 <div>
-            
+{isDisplayViewingAny === true
+    && 
+<div className={modalStyleName}>
+        <button
+            onClick={()=>{
+                if (focusingEditor === "gameMaker") {
+                    handleCancelEntireViewer(); 
+                } else { //any node-editor
+                    handleCancelNodeTestViewer();
+                }                
+            }}
+        > {closeText} </button>
+         
     {isDisplayEntireGameViewer === true 
     &&<>
-    <div className={modalStyleName}>
+    {/* 01 . Entire-Viewing */}
+    <div>
+                                            {/* <div className={modalStyleName}> */}
 
-        <button
-                onClick={()=>{
-                    handleCancelEntireViewer();
-                }}
-        > close </button>
+                                            {/* <button
+                                                    onClick={()=>{
+                                                        handleCancelEntireViewer();
+                                                    }}
+                                            > {closeText} </button> */}
 
         <div         
             style={{"display": "flex"}}
@@ -1920,88 +1939,180 @@ return (
 
 
 
-         <Viewer_Entire
+                <Viewer_Entire_Screen
 
-            initialNavObj={projectMetaData["nav_ui_settings"]}
+                    initialNavObj={projectMetaData["nav_ui_settings"]}
 
-            initialChapterList={chapListNestedArr}
-            initialCurrChapterAllNodeMapping={projectMetaData["chapterNodeMapping"]}
-            firstChapterData={viewerEntireFirstChapterData}
+                    initialChapterList={chapListNestedArr}
+                    initialCurrChapterAllNodeMapping={projectMetaData["chapterNodeMapping"]}
+                    firstChapterData={viewerEntireFirstChapterData}
 
-            initialGameProgress={viewerEntireGameProgressObj}
+                    initialGameProgress={viewerEntireGameProgressObj}
+                    
+                    initialPlayerGameDataTracker={projectMetaData["emu4sets"]["gdt1"]} //TODo emu-4sets
+                    initialPlayerProfile={projectMetaData["emu4sets"]["epp2"]} //TODo emu-4sets
+                    initialPlayerAccountSettings={projectMetaData["emu4sets"]["epa3"]} //TODo emu-4sets
+                
+                    initialPlayerSlRecords={projectMetaData["emu4sets"]["ess4"]} //TODO emu-4sets
+
+                    initialShopItemInfo={projectMetaData["emu4sets"]["shp5"]["shopStock"]} //TODO emu-4sets
+                    initialPlayerPurchaseInfo={projectMetaData["emu4sets"]["shp5"]["playerPurchaseStatus"]} //TODO emu-4sets
+
+
+                    uiLangOption={projectMetaData["ui_language"]}
+
+                    username={authEmailName}
+                    projectname={state.selected_project_name}
+
+                    visualVarPairList={projectMetaData["proj_resource_visual"]}
+                    audioVarPairList={projectMetaData["proj_resource_audio"]}
+
+                    notifyNodeWalk={notifyNodeWalk} //TODO should be inside Viewer_Entire_Screen when viewing?
+                    triggerChapterWalk={triggerChapterWalk}  //TODO should be inside Viewer_Entire_Screen when viewing?
+                    triggerUpdateCurrentStanding={triggerUpdateCurrentStanding}  //TODO should be inside Viewer_Entire_Screen when viewing?
+
+                    getCurrChapterContent={passInCurrChapterContent}
+                    getAllChaptersContent={passInAllChaptersContent}
+
+                /> 
+
             
-            initialPlayerGameDataTracker={projectMetaData["emu4sets"]["gdt1"]} //TODo emu-4sets
-            initialPlayerProfile={projectMetaData["emu4sets"]["epp2"]} //TODo emu-4sets
-            initialPlayerAccountSettings={projectMetaData["emu4sets"]["epa3"]} //TODo emu-4sets
-        
-            initialPlayerSlRecords={projectMetaData["emu4sets"]["ess4"]} //TODO emu-4sets
+                {/* status table */}
+                <table style={{
+                    "width": "800px", 
+                    "marginTop": `${currTestingScrnH+100}px`, 
+                    "marginLeft": "170px","position": "absolute"
+                }}
+                >
+                    <thead>
+                        <tr>
+                        <th>Current Page Status</th>
+                        <th>Current Chapter-Key</th>
+                        <th>Current Node-Key</th>
+                        <th>Current Node-Type</th>
+                        </tr>
+                    </thead>
 
-            initialShopItemInfo={projectMetaData["emu4sets"]["shp5"]["shopStock"]} //TODO emu-4sets
-            initialPlayerPurchaseInfo={projectMetaData["emu4sets"]["shp5"]["playerPurchaseStatus"]} //TODO emu-4sets
+                    <tbody> 
+                        <tr>
+                        <td>{currTestingPageStatus}</td>
+                        <td>{currTestingChapterKey}</td>
+                        <td>{currTestingNodeKey}</td>
+                        <td>{currTestingNodeType}</td>         
+                        </tr>
+            
+
+                    </tbody>
+
+                    </table>
+            
+            
+        </div>
+    
+
+    </div>
+    </>}
 
 
-            uiLangOption={projectMetaData["ui_language"]}
+    {isDisplayQuickview === true && 
+    <>
+    {/* 02 . Quick-View for Conversation-Node */}    
+    <div>
+            <AllPanels_QuickView_ConvNode
 
-            username={authEmailName}
-            projectname={state.selected_project_name}
+                    initialPieceNum={nodeViewingEntryNum} //from conv-node-editor-triggering
 
-            notifyNodeWalk={notifyNodeWalk} //TODO should be inside viewer_entire when viewing?
-            triggerChapterWalk={triggerChapterWalk}  //TODO should be inside viewer_entire when viewing?
-            triggerUpdateCurrentStanding={triggerUpdateCurrentStanding}  //TODO should be inside viewer_entire when viewing?
+                    handleQViewCancel={handleCancelNodeTestViewer}
 
-            visualVarPairList={projectMetaData["proj_resource_visual"]}
-            audioVarPairList={projectMetaData["proj_resource_audio"]}
+                    allPieceContent={projectAllNodeContent[currTestingNodeKey].nodeContent}  //from node's obj (data-structure) //TODO change
 
-            getCurrChapterContent={passInCurrChapterContent}
-            getAllChaptersContent={passInAllChaptersContent}
+                    uiData1_textframe={projectAllNodeContent[currTestingNodeKey]["nodeUISettings"].textFrame}  //from node's obj (data-structure) //TODO change
+                    uiData2_defaultButtonOption={projectAllNodeContent[currTestingNodeKey]["nodeUISettings"].defaultButton}  //from node's obj (data-structure)  //TODO change
+                    uiData3_ConvNavigation={projectAllNodeContent[currTestingNodeKey]["nodeUISettings"].convNav}  //from node's obj (data-structure) //TODO change
+                    uiData4_logPageSettings={projectAllNodeContent[currTestingNodeKey]["nodeUISettings"].logPage}  //from node's obj (data-structure) //TODO change
 
-            backendOption={backendOption}
+                    screenWidth={currTestingScrnW}  //from node's obj (data-structure)
+                    screenHeight={currTestingScrnH}  //from node's obj (data-structure)
 
-            handleViewerCancel={handleCancelEntireViewer}
+                    getAudioMap={passInAudioMap}
+                    getVisualMap={passInVisualMap}
+                            
+                    getUILanguage={passInUiLanguageOption}
 
-        /> 
+                    initialEmuGameDataTracker={testPlayerGameDataTracker} //TODO change
+                                        
+                    // resetViewing={resetQuickView}
+                    openSettingPage={hintNodeEditorOnly}
+
+            /> 
 
     
-      {/* status table */}
-      <table style={{
-          "width": "800px", 
-          "marginTop": `${currTestingScrnH+100}px`, 
-          "marginLeft": "170px","position": "absolute"
-          }}
-        >
-              <thead>
-                <tr>
-                  <th>Current Page Status</th>
-                  <th>Current Chapter-Key</th>
-                  <th>Current Node-Key</th>
-                  <th>Current Node-Type</th>
-                </tr>
-              </thead>
+    </div>
 
-              <tbody> 
-                <tr>
-                  <td>{currTestingPageStatus}</td>
-                  <td>{currTestingChapterKey}</td>
-                  <td>{currTestingNodeKey}</td>
-                  <td>{currTestingNodeType}</td>         
-                </tr>
-      
 
-              </tbody>
+    
+    </>
+    }
 
-            </table>
-    
-    
-            </div>
-    
-    
-    
-            <div style={{
+
+
+    <div style={{
                 "marginLeft": "-850px",
          //       "height": `${screenHeight}px`, 
                  
               }}>
-        {/* also :  <Panel_GameDataTest
+{/* game-data-tracker */}
+  (game-data-tracker)
+        <table>
+                            <thead className="textNoSelect">
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Value</th>
+                                    <th>Default Value</th>
+                                </tr>
+                            </thead>  
+            
+            <tbody> 
+{/* //TODO: list all emu-game-data-status here */}
+{/* 
+                        {Object.keys(gameDataTrackerMap).map((currKey) => {
+                            let keyName = "gmdt" + currKey;
+                            let val = gameDataTrackerMap[currKey]["data_type"] === "boolean" ? 
+                                    ((gameDataTrackerMap[currKey]["current_value"] === true 
+                                        || gameDataTrackerMap[currKey]["current_value"] === "true") ? 
+                                        "true" : "false") 
+                                : gameDataTrackerMap[currKey]["current_value"];
+
+                            let inputId = keyName+"-input";
+
+                            return (
+                                <tr value={currKey} key={keyName} id={inputId}>
+                                    <td>{gameDataTrackerMap[currKey]["name"]}</td>
+                                    
+                                    <td>
+                                        <label>{gameDataTrackerMap[currKey]["data_type"] !== "boolean" ? 
+                                            gameDataTrackerMap[currKey]["current_value"] 
+                                            : (gameDataTrackerMap[currKey]["current_value"] === true ? 
+                                                "True" 
+                                                : "False")}</label><br></br>
+
+                                    </td>   
+
+                                    <td>
+                                    <label>{gameDataTrackerMap[currKey]["data_type"] !== "boolean" ? gameDataTrackerMap[currKey]["default_value"] : (gameDataTrackerMap[currKey]["default_value"] == "true" ? "True" : "False")}</label>
+                                    
+                                    </td>            
+                                </tr>
+                            
+                            );
+                        })}
+ */}
+
+                        
+            </tbody>  
+        </table>
+        
+        {/* also : 
 
                 note: for test-viewing: keep these: for the [status table]
                 currTestingPageStatus("Main Page");
@@ -2017,67 +2128,13 @@ return (
             {/* {isDisplayEntireGameViewer */}
             {/* //TODO700 recover this later */}
 
-        {/* 
-                <Panel_GameDataTest
-                       localTest={true}
-                       initialGameDataStatus={gameDataTracker}
 
-                       getScreenHeight={passInScreenHeight} 
-                       getScreenWidth={passInScreenWidth}
-                       isQuickView={false}
-
-                       receiveGameDataObj={passInPlayerGameDataTracker}
-
-                       getUILanguage={passInUILanguage}
-                /> 
-         */}
-
-            </div>
-    
     </div>
-    
-    
-    
-    
-    </>}
-
-
-    {isDisplayQuickview === true && 
-    <><div>
-        <AllPanels_QuickView_ConvNode
-
-            initialPieceNum={nodeViewingEntryNum} //from conv-node-editor-triggering
-
-            handleQViewCancel={handleCancelNodeTestViewer}
-
-            allPieceContent={projectAllNodeContent[currTestingNodeKey].nodeContent}  //from node's obj (data-structure) //TODO change
-
-            uiData1_textframe={projectAllNodeContent[currTestingNodeKey]["nodeUISettings"].textFrame}  //from node's obj (data-structure) //TODO change
-            uiData2_defaultButtonOption={projectAllNodeContent[currTestingNodeKey]["nodeUISettings"].defaultButton}  //from node's obj (data-structure)  //TODO change
-            uiData3_ConvNavigation={projectAllNodeContent[currTestingNodeKey]["nodeUISettings"].convNav}  //from node's obj (data-structure) //TODO change
-            uiData4_logPageSettings={projectAllNodeContent[currTestingNodeKey]["nodeUISettings"].logPage}  //from node's obj (data-structure) //TODO change
-
-            screenWidth={currTestingScrnW}  //from node's obj (data-structure)
-            screenHeight={currTestingScrnH}  //from node's obj (data-structure)
-
-            getAudioMap={passInAudioMap}
-            getVisualMap={passInVisualMap}
-        
-            getUILanguage={passInUiLanguageOption}
-
-            initialEmuGameDataTracker={testPlayerGameDataTracker} //TODO change
-                    
-            // resetViewing={resetQuickView}
-            openSettingPage={hintNodeEditorOnly}
-
-        />
-
-        </div>
-    </>
-    }
-
+    </div>
+}
 </div>
 
+{/* end of test-viewing floating window */}
 
 </>}
 </div>}

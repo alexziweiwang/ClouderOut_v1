@@ -15,7 +15,7 @@ parent-compo that uses < GameScreen_QuickView_ConvNode > :
     and outer-layer
             < DuringGameScreen_AllNodeTypeContainer >
     and outer-layer
-            < Viewer_Entire >
+            < Viewer_Entire_Screen >
     and outer-layer
             < GameMaker >
 

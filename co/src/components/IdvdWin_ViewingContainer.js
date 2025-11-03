@@ -1,8 +1,8 @@
-import Viewer_Entire from './Viewer_Entire';
+import Viewer_Entire_Screen from './Viewer_Entire_Screen';
 
 //level0
 
-//the outer-shell of viewer_entire for *** in-pracitce playing *** of a game-project
+//the outer-shell of Viewer_Entire_Screen for *** in-pracitce playing *** of a game-project
 export default function IdvdWin_ViewingContainer({username, projectName}) {
 
     //feature-design: for each "published-version", saved separately from the "currently edit"? 
@@ -67,7 +67,7 @@ export default function IdvdWin_ViewingContainer({username, projectName}) {
         <div>
 
 
-             <Viewer_Entire
+             <Viewer_Entire_Screen
 
                     // initialNavObj={currentProjectNav}
 

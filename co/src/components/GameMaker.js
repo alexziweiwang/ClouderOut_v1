@@ -16,7 +16,7 @@ import {
 } from '../viewmodels/PrepAc_Creations';
 
 //node key rule: generateNodeLongKeyString_vm({chapterKey, nodeKey})
-//TODO112: fetch node-contents here, and send into Viewer_Entire and its sub-component [DuringGameScreen_AllNodeTypeContainer]
+//TODO112: fetch node-contents here, and send into Viewer_Entire_Screen and its sub-component [DuringGameScreen_AllNodeTypeContainer]
 import { checkProjectMetaData_vm } from '../viewmodels/PrepAc_ProjectFileInOut';
 import { resourceRawListToUsableMap_vm,
   fromListToIndexedMap,
@@ -767,7 +767,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
 
   function viewerSourceGameDataUpdate() {
-    return {"default": "impl for viewer_entire later"}; //TODO5 later
+    return {"default": "impl for Viewer_Entire_Screen later"}; //TODO5 later
   }
 
   function passInPlayerGameDataTracker() {//used in panel-game-data
@@ -1344,7 +1344,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
       
       1. editors - [ChapterManager> +  <NodeManager> 
       2. editors - [NavigationSetter> + <NavigationPreview>
-      3. entire_view - [Viewer_Entire>
+      3. entire_view - [Viewer_Entire_Screen>
       4. modal_resource_manager - [Modal_ResourceManagingWindow>
       5. modal_game_data_manager - [Modal_GameDataManager >
       6. modal_emu_manager - [Modal_EmuManager>
