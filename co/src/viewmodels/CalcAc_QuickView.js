@@ -1,16 +1,16 @@
 
 
-function changeGameDataTracker(ds, name, value) {
+function changeGameDataTracker(ds, itemName, value) {
     let gmdtObj = ds;
-    gmdtObj[name].current_value = value;
+    gmdtObj[itemName].current_value = value;
     
     return gmdtObj;
 }  
 
 
-function changeGameDataTrackerByStatement(ds, name, action, newVal, type) { //TODO later
+function changeGameDataTrackerByStatement(ds, itemName, action, newVal, type) { //TODO later
         //TODO check if valid
-        if (ds[name] === undefined) {
+        if (ds[itemName] === undefined) {
             return;
         }
         //TODO check if valid
@@ -21,24 +21,38 @@ function changeGameDataTrackerByStatement(ds, name, action, newVal, type) { //TO
             // type - boolean 
                 // action is "becomes"
             let boolVal = (newVal === "true" || newVal === true) ? true : false;
-            res = changeGameDataTracker(ds, name, boolVal);
+            res = changeGameDataTracker(ds, itemName, boolVal);
         } else if (type === "string") {
             // type - string
                 // action is "becomes"
-                res = changeGameDataTracker(ds, name, newVal);
+                res = changeGameDataTracker(ds, itemName, newVal);
         } else if (type === "number") {
             // type - number
-            let currVal = ds[name]["current_value"];
+            let currVal = ds[itemName]["current_value"];
 
             let result = 0;
-            if (action === "plus") {
-                result = currVal - (-1 * newVal); //important, not directly adding
-                res = changeGameDataTracker(ds, name, result);
-            } else if (action === "minus") {   
-                result = currVal - newVal;
-                res = changeGameDataTracker(ds, name, result);
-            } else if (action === "becomes") {
-                res = changeGameDataTracker(ds, name, newVal);
+            let newValNum = newVal * 1;
+
+            if (action === "becomes") {
+                res = changeGameDataTracker(ds, itemName, newValNum);
+            } else {
+                // plus or minus
+                    //TODO99999 
+                                        console.log("ds = ", ds);
+                                        console.log("currVal = ", currVal, ", type is ", typeof currVal, "\n newVal = ", newVal, " type is ", typeof newVal);
+
+
+
+
+                if (action === "plus") {
+                    result = currVal - (-1 * newValNum); //important, not directly adding
+                    res = changeGameDataTracker(ds, itemName, result);
+                } else if (action === "minus") {   
+                    result = currVal - newValNum;
+                    res = changeGameDataTracker(ds, itemName, result);
+                }
+
+
             }
         }
 
@@ -46,11 +60,11 @@ function changeGameDataTrackerByStatement(ds, name, action, newVal, type) { //TO
     }
 
 
-export function buttonConsequenceByStatementEntireArray(pieceNum, item, allPieceContent, gameDataTracker, setGameDataTracker, refreshCompo) {
+export function buttonConsequenceByStatementEntireArray(pieceNum, buttonInfo, allPieceContent, gameDataTracker, setGameDataTracker, refreshCompo) {
 //called by level-3
+            console.log("$button pressed: ", buttonInfo);
 
-
-    let stndButtonThisButtonInfo = allPieceContent[pieceNum]["stnd_btn_arr"].filter(e=>e["buttonText"] === item["buttonText"]);
+    let stndButtonThisButtonInfo = allPieceContent[pieceNum]["stnd_btn_arr"].filter(e=>e["buttonText"] === buttonInfo["buttonText"]);
     
     let conseqMap = stndButtonThisButtonInfo[0]["conseq"]; 
     if (conseqMap === undefined) {
@@ -63,18 +77,17 @@ export function buttonConsequenceByStatementEntireArray(pieceNum, item, allPiece
         res = {};
         setGameDataTracker(res);
         refreshCompo();
-        return;
 
     } else {
         Object.keys(conseqMap).map((currKey) => {
 
-            let name = conseqMap[currKey]["name"];  
+            let itemName = conseqMap[currKey]["name"];  
             let action = conseqMap[currKey]["action"];  
             let newVal = conseqMap[currKey]["newVal"];  
             let type = conseqMap[currKey]["type"];  
-                                                            console.log("calling change-by-stmt, ", conseqMap[currKey]);
+                                                            console.log("calling change-by-stmt, ", conseqMap[currKey], "\n curr-gdt = ", gameDataTracker);
                                 
-            res = changeGameDataTrackerByStatement(res, name, action, newVal, type);
+            res = changeGameDataTrackerByStatement(res, itemName, action, newVal, type);
 
         });
         if (res === undefined) {
@@ -85,9 +98,11 @@ export function buttonConsequenceByStatementEntireArray(pieceNum, item, allPiece
         setGameDataTracker(res);
 
         refreshCompo();
+
+        
     }
 
-
+    return res;
 
 
    

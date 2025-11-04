@@ -48,6 +48,7 @@ export default function DuringGameScreen_AllNodeTypeContainer({
     openSettingPage,
 
     sendOutBgmSettings,
+    sendOutGdt,
 
     returnToStoryPage
 
@@ -592,8 +593,11 @@ export default function DuringGameScreen_AllNodeTypeContainer({
     }
 
     function receiveUpdatedGameDataTracker(data) {
-        console.log("\t\t\t\t\t current game-data: ", data);
+                            console.log("\t\t\t\t\t ### changed, current game-data: ", data);
+
+
         setCurrGameDataTracker(data); //updating during the game
+        sendOutGdt(data); // send out to viewer-entire layer
     }
 
     function passInEnteringEmuGdt() {
@@ -726,6 +730,7 @@ currNodeType === {currNodeType}, focusedNodeData is -1? {focusedNodeData === -1 
                 mutedViewOption={mutedViewOption}
 
                 enteringEmuGameDataTracker={currGameDataTracker} //TODO change to dynamic fetching
+                
                 getEnteringEmuGdt={passInEnteringEmuGdt}
                 visualMap={visualMap} //TODO change to dynamic fetching
                 audioMap={audioMap} //TODO change to dynamic fetching

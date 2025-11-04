@@ -352,6 +352,8 @@ export default function Viewer_Entire_Screen({
         initializeGameDataTracker_vm(dataObj, setPlayerGameDataTracker);
     }
 
+
+
     
 
     function notUsing() {
@@ -514,6 +516,11 @@ export default function Viewer_Entire_Screen({
 
     }
 
+    function getGameDataTrackerFromSubCompo(gdtObj) {
+                                            console.log("viewing: gdt now is : ", gdtObj);
+        setPlayerGameDataTracker(gdtObj);
+    }
+
     function passInGameSettingsScaleObj() {
         return gameSettingsScaleObj;
     }
@@ -646,6 +653,7 @@ game-screen (specific node) layer */}
                                           
                                                 openSettingPage={setOpenSettingsPageSignalTrue}
                                                 sendOutBgmSettings={getBgmSettingsFromSubCompo}
+                                                sendOutGdt={getGameDataTrackerFromSubCompo}
                                                 
                                                 returnToStoryPage={returnToStoryPage}
 

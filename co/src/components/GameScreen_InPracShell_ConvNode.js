@@ -74,7 +74,9 @@ console.log("conv-node(from in-prac, enteringGdt = ", enteringGdt);
     function buttonConsequenceByStatementEntireArray_QV(pieceNum, item) {
         console.log("game-screen-in-prac : buttonConsequenceByStatementEntireArray_QV");
 
-        buttonConsequenceByStatementEntireArray(pieceNum, item, allPieceData, enteringGdt, updatedGameDataTracker, notUsing);
+        let result = buttonConsequenceByStatementEntireArray(pieceNum, item, allPieceData, enteringGdt, notUsing, notUsing);
+        //pieceNum, item, allPieceContent, gameDataTracker, setGameDataTracker, refreshCompo
+        updatedGameDataTracker(result);
     }
 
 return (<div>
@@ -88,7 +90,8 @@ return (<div>
 
 */}
 
-   {allPieceData.length > 0 &&   <GameScreen_QuickView_ConvNode
+   {allPieceData.length > 0 &&  
+   <GameScreen_QuickView_ConvNode
                     isPreview={false}
                     isDisplay={true}  //ok (non-dynamic)
                     screenWidth={screenWidth}   //ok (non-dynamic)
