@@ -1205,30 +1205,35 @@ console.log("ui-langauge changed to: ", val);
     function triggerGameDataDesignListChange(data, emuAction, singleObj) {
         //TODO999 update game-data-design-list
 
-  
-            let emu4SetsTemp = projectMetaData["emu4sets"]["gdt1"];
+            let emu4SetsEntireTemp = projectMetaData["emu4sets"];
+            let emu4SetsGdtTemp = projectMetaData["emu4sets"]["gdt1"];
                      
             let keyStr = singleObj["name"]
 
             if (emuAction === "addVarPair") {
-                emu4SetsTemp[keyStr] = {
+                emu4SetsGdtTemp[keyStr] = {
                     "current_value": singleObj["current_value"],
                     "data_type": singleObj["data_type"],
                     "default_value": singleObj["default_value"],
                     "name": keyStr,
                 };       
             } else if (emuAction === "removeVarPair") {
-                emu4SetsTemp.delete(keyStr);
+                let emu4SetsGdtTemp2 = {};
+                Object.keys(emu4SetsGdtTemp).map((currKey) => {
+                    if (currKey !== keyStr) {
+                        emu4SetsGdtTemp2[currKey] = emu4SetsGdtTemp[currKey];
+                    }
+                });
+
+                emu4SetsGdtTemp = emu4SetsGdtTemp2;
             }
+
+            emu4SetsEntireTemp["gdt1"] = emu4SetsGdtTemp;
 
             setProjectMetaData({...projectMetaData, 
                 "game_data": data,
-                "emu4sets": emu4SetsTemp
+                "emu4sets": emu4SetsEntireTemp
             });   
-
-
-        
-
 
     }
 

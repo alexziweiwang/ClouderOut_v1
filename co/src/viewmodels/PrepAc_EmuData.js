@@ -122,7 +122,7 @@ export function prepare3Epa_vm(
         objSize = Object.keys(tempObj3).length;
     } else if (objSize === 0 || tempObj3 === undefined || tempObj3 === null) {
         tempObj3 = {
-            "playername": "playerA",
+            "playername": "default_player",
             "email": "example@email.com",
         }
     }

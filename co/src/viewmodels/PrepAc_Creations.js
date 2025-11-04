@@ -185,8 +185,6 @@ export function triggerCreatedNewNode_Prep_vm(nodeTypeTemp) {
         project_description: projDedscription,
         project_title: addedNewProjName,
         project_name: addedNewProjName,
-
-
       };
 
     return projectObj;

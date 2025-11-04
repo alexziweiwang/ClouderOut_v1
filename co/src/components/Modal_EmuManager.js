@@ -9,6 +9,14 @@ import {
 } from '../viewmodels/PrepAc_EmuData';
 
 
+import { 
+    epp2Template, 
+    epa3Template, 
+    ess4Template, 
+    shp5Template 
+} from './_dataStructure_DefaultObjects';
+
+
 //fetch data from cloud, and update to outer-layer when user-changed...
 export default function Modal_EmuManager({
     handleEmCancel,
@@ -21,7 +29,7 @@ export default function Modal_EmuManager({
     editorMode,            //"offline_half"       "offline_full"        "online_cloud"  
 
     getVisualMap,
-    
+
     gameDataDesign,
     emuDataSets,
 
@@ -350,6 +358,10 @@ export default function Modal_EmuManager({
     function prepare2Epp_local() {
 
         let epp2Item = emuDataSets["epp2"];
+        let itemSize = Object.keys(epp2Item);
+        if (itemSize === 0) {
+            epp2Item = epp2Template;
+        }
 
         prepare2Epp_vm(
             epp2Item,
@@ -364,6 +376,10 @@ export default function Modal_EmuManager({
     
     function prepare3Epa_local() {
         let epa3Item = emuDataSets["epa3"];
+        let itemSize = Object.keys(epa3Item);
+        if (itemSize === 0) {
+            epa3Item = epa3Template;
+        }
 
         prepare3Epa_vm(
             epa3Item, 
@@ -379,7 +395,10 @@ export default function Modal_EmuManager({
         // if local is not ready, from cloud
         
         let ess4Item = emuDataSets["ess4"];
- 
+        let itemSize = Object.keys(ess4Item);
+        if (itemSize === 0) {
+            ess4Item = ess4Template;
+        }
 
 
                 // let objSize = Object.keys(tempObj4).length;
@@ -395,8 +414,11 @@ export default function Modal_EmuManager({
 
     async function prepare5Shp_local(providedUname) {
         
-        let shp54Item = emuDataSets["5shp"];
-
+        let shp5Item = emuDataSets["5shp"];
+        let itemSize = Object.keys(shp5Item);
+        if (itemSize === 0) {
+            shp5Item = shp5Template;
+        }
 
      
 
