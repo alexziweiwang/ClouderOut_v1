@@ -358,10 +358,14 @@ export default function Modal_EmuManager({
     function prepare2Epp_local() {
 
         let epp2Item = emuDataSets["epp2"];
-        let itemSize = Object.keys(epp2Item);
+                                console.log("!!! emudatasets = ", emuDataSets);
+        let itemSize = Object.keys(epp2Item).length;
         if (itemSize === 0) {
             epp2Item = epp2Template;
-        }
+        }   
+                    console.log("\t\tepp2-size = ", itemSize);
+                    console.log("\t\t\tepp2 = ", epp2Item);
+                    //TODO9999999
 
         prepare2Epp_vm(
             epp2Item,
@@ -376,7 +380,7 @@ export default function Modal_EmuManager({
     
     function prepare3Epa_local() {
         let epa3Item = emuDataSets["epa3"];
-        let itemSize = Object.keys(epa3Item);
+        let itemSize = Object.keys(epa3Item).length;
         if (itemSize === 0) {
             epa3Item = epa3Template;
         }
@@ -395,7 +399,7 @@ export default function Modal_EmuManager({
         // if local is not ready, from cloud
         
         let ess4Item = emuDataSets["ess4"];
-        let itemSize = Object.keys(ess4Item);
+        let itemSize = Object.keys(ess4Item).length;
         if (itemSize === 0) {
             ess4Item = ess4Template;
         }
@@ -415,7 +419,7 @@ export default function Modal_EmuManager({
     async function prepare5Shp_local(providedUname) {
         
         let shp5Item = emuDataSets["5shp"];
-        let itemSize = Object.keys(shp5Item);
+        let itemSize = Object.keys(shp5Item).length;
         if (itemSize === 0) {
             shp5Item = shp5Template;
         }

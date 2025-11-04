@@ -1,7 +1,3 @@
-import { fetchEmuData1GdtVM, fetchEmuData2EppVM, fetchEmuData3EpaVM, fetchEmuData4EssVM, fetchEmuData5ShpVM, updateAllSetsVM } from './EmuManagingViewModel';
-import { getProjectGameDataDesignVM } from './GameDataViewModel';
-import { fetchProjectResourceVarPairsVM } from './ResourceManagerViewModel';
-
 
 export function prepare1Gdt_vm(
     gdt1Item,
@@ -80,7 +76,8 @@ export function prepare2Epp_vm(
 ) {
     
     let tempObj2 = epp2Item;
-    
+                                            console.log("... epp2 prep1: ", epp2Item); //TODO test
+
 
     let objSize = 0;
     if (tempObj2 !== undefined) {
@@ -100,7 +97,7 @@ export function prepare2Epp_vm(
             "membership": 1,
         };
     }
-                                            console.log("... epp2 prep: ", tempObj2); //TODO test
+                                            console.log("... epp2 prep2: ", tempObj2); //TODO test
 
     setEpp2(tempObj2);
     update2Epp(tempObj2);
