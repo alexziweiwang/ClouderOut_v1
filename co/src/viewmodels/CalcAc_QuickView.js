@@ -62,7 +62,7 @@ function changeGameDataTrackerByStatement(ds, itemName, action, newVal, type) { 
 
 export function buttonConsequenceByStatementEntireArray(pieceNum, buttonInfo, allPieceContent, gameDataTracker, setGameDataTracker, refreshCompo) {
 //called by level-3
-            console.log("$button pressed: ", buttonInfo);
+                                        //      console.log("$button pressed: ", buttonInfo);
 
     let stndButtonThisButtonInfo = allPieceContent[pieceNum]["stnd_btn_arr"].filter(e=>e["buttonText"] === buttonInfo["buttonText"]);
     

@@ -897,7 +897,7 @@
 
 - 2025-Nov-03: Explore and debug emu-prep for optimized panel
 
-
+- 2025-Nov-05: Design sl-system and single-exp system separation
 
 
 
