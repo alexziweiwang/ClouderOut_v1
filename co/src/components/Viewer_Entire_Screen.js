@@ -59,10 +59,10 @@ export default function Viewer_Entire_Screen({
 
 
 
-    triggerUpdateCurrentStanding, //game-progress related, send to outer-layer
+    notifyUpdateCurrentStanding, //game-progress related, send to outer-layer
     notifyNodeWalk, //game-progress related, send to outer-layer
-    triggerChapterWalk, //game-progress related, send to outer-layer
-
+    notifyChapterWalk, //game-progress related, send to outer-layer
+    notifyCurrGdt,
 
     projectname,
     username,
@@ -222,7 +222,7 @@ export default function Viewer_Entire_Screen({
                 // let firstChapterKey = firstChapterInfo[0];
                 // let firstChapterTitle = firstChapterInfo[1];
 
-                // let chpContent = triggerChapterWalk(firstChapterKey, firstChapterTitle); // cloud related (outer layer)
+                // let chpContent = notifyChapterWalk(firstChapterKey, firstChapterTitle); // cloud related (outer layer)
                 
                 
                 // setCurrChapterAllNodesContent(chpContent);
@@ -378,7 +378,7 @@ export default function Viewer_Entire_Screen({
         obj["nodeType"] = currentGameStatusProgress["nodeType"];
         obj["chapterTitle"] = currentGameStatusProgress["chapterTitle"];
 
-        triggerUpdateCurrentStanding(obj);
+        notifyUpdateCurrentStanding(obj);
     }
 
     
@@ -442,7 +442,7 @@ export default function Viewer_Entire_Screen({
 
 
         // trigger for actual progress-walking (by outer-layer)
-        let chpContent = triggerChapterWalk(chapterKeyName, chapterTitleName); // cloud related (outer layer)
+        let chpContent = notifyChapterWalk(chapterKeyName, chapterTitleName); // cloud related (outer layer)
 
 
         //TODO900 fetch chapter-content?
@@ -502,7 +502,7 @@ export default function Viewer_Entire_Screen({
         );
 
         // send to outer-layer
-        triggerUpdateCurrentStanding(obj);
+        notifyUpdateCurrentStanding(obj);
     }
 
     function getGameSettingScaleObjFromSubCompoViewer(data) {
@@ -519,6 +519,7 @@ export default function Viewer_Entire_Screen({
     function getGameDataTrackerFromSubCompo(gdtObj) {
                                             console.log("viewing: gdt now is : ", gdtObj);
         setPlayerGameDataTracker(gdtObj);
+        notifyCurrGdt(gdtObj);
     }
 
     function passInGameSettingsScaleObj() {
@@ -612,13 +613,11 @@ game-screen (specific node) layer */}
                         "height": `${screenHeight}px`,
                     }}
                     >
-                        ?<br></br>
-
+                      
                                           {/*      
                                                     //important: setup entry-gameData-set (if multiple) 
                                           */}
 
-//TODO30: DuringGameScreen_AllNodeTypeContainer: for fetching single-node-data from cloud - when doing the play-view
                                           <DuringGameScreen_AllNodeTypeContainer
 
                                                 getNodeType={passInNodeType}

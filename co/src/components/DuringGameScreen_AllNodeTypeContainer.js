@@ -622,7 +622,7 @@ return (
     }}
 >
 
-currNodeType === {currNodeType}, focusedNodeData is -1? {focusedNodeData === -1 ? "t" : "f"}
+                            {/* currNodeType === {currNodeType}, focusedNodeData is -1? {focusedNodeData === -1 ? "t" : "f"} */}
 
     {currNodeType === "*chapterStart*" && <div 
         style={{

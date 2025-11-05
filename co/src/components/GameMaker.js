@@ -100,7 +100,7 @@ export default function GameMaker({
       triggerNodeLookChange_panel2,
       triggerChapterListChange_panel2,
 
-      triggerUpdateCurrentStanding_panel2,
+      notifyUpdateCurrentStanding_panel2,
 
       handleResourceManagerOpen, //TODO99999 add in panel2
       handleGameDataManagerOpen,  //TODO add in panel2
@@ -601,7 +601,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
     return currentProjectNav;
   }
   
-  function updateCurrPageName(name) {
+  function notifyCurrPageName(name) {
     setCurrPageName(name);
   }
 
@@ -817,8 +817,8 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
     return currTestingChapterTitle;
   }
 
-  function triggerUpdateCurrentStanding_gm(obj) { //fetch from sub-compo
-    triggerUpdateCurrentStanding_panel2(obj)
+  function notifyUpdateCurrentStanding_gm(obj) { //fetch from sub-compo
+    notifyUpdateCurrentStanding_panel2(obj)
   }
 
   
@@ -1532,7 +1532,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
                   initialNavObj={currentProjectNav} 
                   updateNavObj={updateCurrProjectNavObj} 
                   openRm={handleResourceManagerOpen}  //TODO99999 remove
-                  triggerUpdateCurrPageName={updateCurrPageName} 
+                  triggerUpdateCurrPageName={notifyCurrPageName} 
                   fetchPageName={passInCurrSelectedPage}
                   initialScreenHeight={screenHeight}
                   getScreenheight={passInScreenHeight}
@@ -1565,8 +1565,8 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
                   fetchPageName={passInCurrSelectedPage} 
                   chapterData={chapterList} 
 
-                  triggerUpdateCurrPageName={updateCurrPageName}
-                  triggerUpdateCurrentStanding={triggerUpdateCurrentStanding_gm}
+                  triggerUpdateCurrPageName={notifyCurrPageName}
+                  triggerUpdateCurrentStanding={notifyUpdateCurrentStanding_gm}
 
                   isEditing={true}
                   initialGameDataRefData={emptyValue}

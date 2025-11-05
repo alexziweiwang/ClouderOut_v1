@@ -199,7 +199,7 @@ export default function Panel2_Container_GameEditor() {
         setDisplayViewingAny(false);
     }
 
-    function triggerUpdateCurrentStanding(obj) { //fetch from sub-compo
+    function notifyUpdateCurrentStanding(obj) { //fetch from sub-compo
         setCurrTestingPageStatus(obj["pageStatus"]);
         setCurrTestingChapterKey(obj["chapterKey"]);
         setCurrTestingNodeKey(obj["nodeKey"]);
@@ -210,6 +210,11 @@ export default function Panel2_Container_GameEditor() {
     function notifyNodeWalk(nodeKeyName, nodeTypeName) { //important for viewing //from sub-compo
         setCurrTestingNodeKey(nodeKeyName);
         setCurrTestingNodeType(nodeTypeName);
+    }
+
+    function notifyCurrGdt(gdtObj) {
+                    console.log("panel2-received gdt = ", gdtObj);
+        setTestPlayerGameDataTracker(gdtObj);
     }
 
 
@@ -701,6 +706,7 @@ export default function Panel2_Container_GameEditor() {
             "chapterTitle": "",
         });
         
+        setCurrTestingPageStatus("Main Page");
 
         setDisplayEntireGameViewer(true);
         setDisplayViewingAny(true);
@@ -1415,7 +1421,7 @@ console.log("ui-langauge changed to: ", val);
     }
 
 
-    function triggerChapterWalk(chapterKeyName, chapterTitleName) { //important for viewing //from sub-compo
+    function notifyChapterWalk(chapterKeyName, chapterTitleName) { //important for viewing //from sub-compo
         // as a container outside of viewer-entire, here it uses cloud functions and ds-container for all-chapters' data
 
         console.log("trigger chapter walk ... [", chapterKeyName, "] with [", chapterTitleName, "]");
@@ -1426,7 +1432,7 @@ console.log("ui-langauge changed to: ", val);
         setCurrTestingChapterKey(chapterKeyName);
         setCurrTestingChapterTitle(chapterTitleName);
 
-        let allChaptersContents = projectAllNodeContent; //TODO add later!! all nodes
+                                // let allChaptersContents = projectAllNodeContent; //TODO add later!! all nodes
 
 
         // --- data-fetching as outer-layer container of viewer-entire ---
@@ -1788,7 +1794,7 @@ return (
         // handleGameDataManagerOpen,  //TODO add in panel2
         // handleEmuManagerOpen, //TODO add in panel2
 
-        triggerUpdateCurrentStanding_panel2={triggerUpdateCurrentStanding}
+        notifyUpdateCurrentStanding_panel2={notifyUpdateCurrentStanding}
     /> 
 
     </>}
@@ -1994,8 +2000,9 @@ return (
                     audioVarPairList={projectMetaData["proj_resource_audio"]}
 
                     notifyNodeWalk={notifyNodeWalk} //TODO should be inside Viewer_Entire_Screen when viewing?
-                    triggerChapterWalk={triggerChapterWalk}  //TODO should be inside Viewer_Entire_Screen when viewing?
-                    triggerUpdateCurrentStanding={triggerUpdateCurrentStanding}  //TODO should be inside Viewer_Entire_Screen when viewing?
+                    notifyChapterWalk={notifyChapterWalk}  //TODO should be inside Viewer_Entire_Screen when viewing?
+                    notifyUpdateCurrentStanding={notifyUpdateCurrentStanding}  //TODO should be inside Viewer_Entire_Screen when viewing?
+                    notifyCurrGdt={notifyCurrGdt}
 
                     getCurrChapterContent={passInCurrChapterContent}
                     getAllChaptersContent={passInAllChaptersContent}
@@ -2083,7 +2090,9 @@ return (
 
 
     <div style={{
-                "marginLeft": "-850px",
+                "backgroundColor": "grey",
+                "marginLeft": "1000px",
+                "width": "350px"
          //       "height": `${screenHeight}px`, 
                  
               }}>
@@ -2100,39 +2109,41 @@ return (
             
             <tbody> 
 {/* //TODO: list all emu-game-data-status here */}
-{/* 
-                        {Object.keys(gameDataTrackerMap).map((currKey) => {
+
+                        {Object.keys(testPlayerGameDataTracker).map((currKey) => {
                             let keyName = "gmdt" + currKey;
-                            let val = gameDataTrackerMap[currKey]["data_type"] === "boolean" ? 
-                                    ((gameDataTrackerMap[currKey]["current_value"] === true 
-                                        || gameDataTrackerMap[currKey]["current_value"] === "true") ? 
+                            let val = testPlayerGameDataTracker[currKey]["data_type"] === "boolean" ? 
+                                    ((testPlayerGameDataTracker[currKey]["current_value"] === true 
+                                        || testPlayerGameDataTracker[currKey]["current_value"] === "true") ? 
                                         "true" : "false") 
-                                : gameDataTrackerMap[currKey]["current_value"];
+                                : testPlayerGameDataTracker[currKey]["current_value"];
 
                             let inputId = keyName+"-input";
 
                             return (
                                 <tr value={currKey} key={keyName} id={inputId}>
-                                    <td>{gameDataTrackerMap[currKey]["name"]}</td>
+                                    <td>{testPlayerGameDataTracker[currKey]["name"]}</td>
                                     
                                     <td>
-                                        <label>{gameDataTrackerMap[currKey]["data_type"] !== "boolean" ? 
-                                            gameDataTrackerMap[currKey]["current_value"] 
-                                            : (gameDataTrackerMap[currKey]["current_value"] === true ? 
+                                        <label>{testPlayerGameDataTracker[currKey]["data_type"] !== "boolean" ? 
+                                            testPlayerGameDataTracker[currKey]["current_value"] 
+                                            : (testPlayerGameDataTracker[currKey]["current_value"] === true ? 
                                                 "True" 
                                                 : "False")}</label><br></br>
 
                                     </td>   
 
                                     <td>
-                                    <label>{gameDataTrackerMap[currKey]["data_type"] !== "boolean" ? gameDataTrackerMap[currKey]["default_value"] : (gameDataTrackerMap[currKey]["default_value"] == "true" ? "True" : "False")}</label>
+                                    <label>{testPlayerGameDataTracker[currKey]["data_type"] !== "boolean" 
+                                    ? testPlayerGameDataTracker[currKey]["default_value"] 
+                                    : (testPlayerGameDataTracker[currKey]["default_value"] == "true" ? "True" : "False")}</label>
                                     
                                     </td>            
                                 </tr>
                             
                             );
                         })}
- */}
+
 
                         
             </tbody>  
