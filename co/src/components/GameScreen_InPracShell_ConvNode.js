@@ -5,7 +5,7 @@ import GameScreen_QuickView_ConvNode from './GameScreen_QuickView_ConvNode';
 import { buttonConsequenceByStatementEntireArray } from '../viewmodels/CalcAc_QuickView';
 
 //level3 (container of conversation-node, for in-practice)
-
+//TODO consider remove this layer -- directly use gamescreen_quickview_convnode in duinggamescreen_allnodetyoecontainer??
 export default function GameScreen_InPracShell_ConvNode ({
 
     allPieceData,
@@ -92,41 +92,42 @@ return (<div>
 
    {allPieceData.length > 0 &&  
    <GameScreen_QuickView_ConvNode
-                    isPreview={false}
-                    isDisplay={true}  //ok (non-dynamic)
-                    screenWidth={screenWidth}   //ok (non-dynamic)
-                    screenHeight={screenHeight}   //ok (non-dynamic)
+        isPreview={false}
+        isDisplay={true}  //ok (non-dynamic)
 
-                    initialPieceNum={initialPieceNum}   //ok (non-dynamic)
-                    allPieceContent={allPieceData} // ok (non-dynamic)
+        screenWidth={screenWidth}   //ok (non-dynamic)
+        screenHeight={screenHeight}   //ok (non-dynamic)
 
-                    notifyNodeFinish={notifyNodeFinish}
+        initialPieceNum={initialPieceNum}   //ok (non-dynamic)
+        allPieceContent={allPieceData} // ok (non-dynamic)
+
+        notifyNodeFinish={notifyNodeFinish}
                     
-                    uiData1_textframe={nodeUITextFrame}
-                    uiData2_defaultButtonOption={nodeUIDefaultButton}
-                    uiData3_ConvNavigation={nodeUIConvNav}
-                    uiData4_logPageSettings={nodeUILogPage}
+        uiData1_textframe={nodeUITextFrame}
+        uiData2_defaultButtonOption={nodeUIDefaultButton}
+        uiData3_ConvNavigation={nodeUIConvNav}
+        uiData4_logPageSettings={nodeUILogPage}
 
-                    visualMap={visualMap} //TODO empty so far
-                    audioMap={audioMap} //TODO empty so far
+        visualMap={visualMap} //TODO empty so far
+        audioMap={audioMap} //TODO empty so far
 
-                    gameData={enteringGdt}
+        gameData={enteringGdt}
 
-                    getResetSignal={passInResetSignalFalse} 
-                    getResetInfoSets={notUsing} 
+        getResetSignal={passInResetSignalFalse} 
+        getResetInfoSets={notUsing} 
 
-                    notifyAfterReset={notUsing}
+        notifyAfterReset={notUsing}
 
 
-                    buttonConsequenceByStatementEntireArray_QVC={buttonConsequenceByStatementEntireArray_QV}  //TODO 
+        buttonConsequenceByStatementEntireArray_QVC={buttonConsequenceByStatementEntireArray_QV}  //TODO 
                     
-                    isViewMuted={mutedViewOption}
-                    fetchGameSettingsForPlaying={fetchGameSettings}
+        isViewMuted={mutedViewOption}
+        fetchGameSettingsForPlaying={fetchGameSettings}
 
-                    openSettingPage={openSettingPage}
+        openSettingPage={openSettingPage}
 
-                    sendOutBgmSettings={sendOutBgmSettings}
-                />
+        sendOutBgmSettings={sendOutBgmSettings}
+    />
     }            
 
 </div>);

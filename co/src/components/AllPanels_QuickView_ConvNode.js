@@ -4,8 +4,8 @@ import Panel_GameDataTest from './Panel_GameDataTest';
 import langDictionary from './_textDictionary';
    
 
-//level3 (container of conversation-node, for quick view, along with panel)
-//same layer with duing-game-screen_all-node-type-container
+//level3 (container of conversation-node, for quick view, along with panel attached)
+//the same layer with duing-game-screen_all-node-type-container
 import { buttonConsequenceByStatementEntireArray } from '../viewmodels/CalcAc_QuickView';
 
 export default function AllPanels_QuickView_ConvNode ({
@@ -222,17 +222,6 @@ export default function AllPanels_QuickView_ConvNode ({
         } 
     } 
     
-    function triggerClickOnGameScreen() {
-        setClickOnGameScreen(true);
-    }
-
-
-    function passInIsGameScreenClicked() {
-        return clickOnGameScreen;
-    }
-
-
-    
     // refactored to VM - already put in vm-part
     // function changeGameDataTrackerByStatement__
 
@@ -241,8 +230,6 @@ export default function AllPanels_QuickView_ConvNode ({
         console.log("quick-view-conv-node : buttonConsequenceByStatementEntireArray_QV");
         buttonConsequenceByStatementEntireArray(pieceNum, item, allPieceContent, gameDataTracker, setGameDataTracker, updateRenderCounter);
     }
-
-
 
     function passInCurrPieceNum() {
         return currPieceNum;
@@ -307,7 +294,7 @@ export default function AllPanels_QuickView_ConvNode ({
     }
 
     return ( 
-<div className={modalStyleName}>
+<div>
         <div className="modalArea textNoSelect">
 
             <div style={{
@@ -316,14 +303,7 @@ export default function AllPanels_QuickView_ConvNode ({
             }}>
 
             <div style={{"marginLeft": "-700px", "marginTop": "-30px", "paddingBottom": "20px"}}>
-                    <button 
-                        className="cursor_pointer modalClose" 
-                        onClick={()=>{
-                            setGameDataTracker(initGdtRecord)
-                            handleQViewCancel();
-                            
-                        }}> {closeText} 
-                    </button>
+          
                     
                                                     {/* <button 
                                                         className="cursor_pointer modalClose" 
@@ -353,13 +333,10 @@ export default function AllPanels_QuickView_ConvNode ({
                 <div  style={{ "display": "flex"}}>
 
                 <GameScreen_QuickView_ConvNode
-                    isPreview={true}
-                    isDisplay={true} 
+
                     screenWidth={screenWidth}
                     screenHeight={screenHeight}
-                    notifyNodeFinish={notUsing}
 
-                    initialPieceNum={initialPieceNum}
                     allPieceContent={allPieceContent}
                     
                     uiData1_textframe={uiData1_textframe}
@@ -370,10 +347,15 @@ export default function AllPanels_QuickView_ConvNode ({
                     visualMap={visualMap}
                     audioMap={audioMap}
 
+                    initialPieceNum={initialPieceNum}
+
                     gameData={gameDataTracker}
             
                     isViewMuted={mutedViewOption}
                     openSettingPage={openSettingPage}
+
+                    isPreview={true}
+                    isDisplay={true}
 
                     getCurrPieceNum={passInCurrPieceNum}
 
@@ -392,6 +374,7 @@ export default function AllPanels_QuickView_ConvNode ({
 
                     sendOutBgmSettings={notUsingThreeParam}
 
+                    notifyNodeFinish={notUsing}
                 />
                 
                                                             {/* 

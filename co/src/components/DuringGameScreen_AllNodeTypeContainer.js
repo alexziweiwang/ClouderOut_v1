@@ -3,10 +3,15 @@ import { useState, useEffect } from 'react';
 import langDictionary from './_textDictionary';
 
 import GameScreen_InPracShell_ConvNode from './GameScreen_InPracShell_ConvNode';
+
+import GameScreen_QuickView_ConvNode from './GameScreen_QuickView_ConvNode';
+
 //TODO fetch-and-updte data for conv-node-game-screen
 
 //TODO1090 cloud-db related
 import { generateNodeLongKeyString_vm } from '../viewmodels/PrepAc_ProjectOperation';
+
+import { buttonConsequenceByStatementEntireArray } from '../viewmodels/CalcAc_QuickView';
 
 //TODO6000 offline mode prep
 
@@ -73,7 +78,8 @@ export default function DuringGameScreen_AllNodeTypeContainer({
 
     const [jumpNodeSignal, setJumpNodeSignal] = useState(false);
 
-    const[currGameDataTracker, setCurrGameDataTracker] = useState({});
+    const [enteringGdt, setEnteringGdt] = useState({});
+    const [currGameDataTracker, setCurrGameDataTracker] = useState({});
 
                                                 // const [audioMap, setAudioMap] = useState({});
                                                 // const [visualMap, setVisualMap] = useState({}); 
@@ -97,6 +103,7 @@ export default function DuringGameScreen_AllNodeTypeContainer({
                                         
 
                 let gDataTemp = getInitGameDataTracker();
+                setEnteringGdt(gDataTemp); //make record for this
                 setCurrGameDataTracker(gDataTemp); //initialize
                                                                console.log("\t\tgame-data = ", gDataTemp);
 
@@ -604,6 +611,17 @@ export default function DuringGameScreen_AllNodeTypeContainer({
         return currGameDataTracker;
     }
 
+    function buttonConsequenceByStatementEntireArray_QV(pieceNum, item) {
+        //     console.log("game-screen-in-prac : buttonConsequenceByStatementEntireArray_QV");
+
+        let result = buttonConsequenceByStatementEntireArray(pieceNum, item, focusedNodeData["nodeContent"], enteringGdt, notUsing, notUsing);
+        //pieceNum, item, allPieceContent, gameDataTracker, setGameDataTracker, refreshCompo
+        receiveUpdatedGameDataTracker(result);
+    }
+
+    function notUsing() {
+        return;
+    }
 
 
 
@@ -716,33 +734,81 @@ return (
     >
         {/* //TODO change to bgm for each node's piece... */}
         {focusedNodeData !== -1 &&
-            <GameScreen_InPracShell_ConvNode
-                allPieceData={focusedNodeData["nodeContent"]}
-                nodeUIConvNav={focusedNodeData["nodeUISettings"]["convNav"]}
-                nodeUIDefaultButton={focusedNodeData["nodeUISettings"]["defaultButton"]}
-                nodeUILogPage={focusedNodeData["nodeUISettings"]["logPage"]}
-                nodeUITextFrame={focusedNodeData["nodeUISettings"]["textFrame"]}
 
-                
-                screenWidth={screenWidth}
-                screenHeight={screenHeight}
-                
-                mutedViewOption={mutedViewOption}
+        <>
+                                                        {/* <GameScreen_InPracShell_ConvNode
+                                                            
+                                                            screenWidth={screenWidth}
+                                                            screenHeight={screenHeight}
 
-                enteringEmuGameDataTracker={currGameDataTracker} //TODO change to dynamic fetching
-                
-                getEnteringEmuGdt={passInEnteringEmuGdt}
-                visualMap={visualMap} //TODO change to dynamic fetching
-                audioMap={audioMap} //TODO change to dynamic fetching
+                                                            allPieceData={focusedNodeData["nodeContent"]}
+                                                            
+                                                            nodeUIConvNav={focusedNodeData["nodeUISettings"]["convNav"]}
+                                                            nodeUIDefaultButton={focusedNodeData["nodeUISettings"]["defaultButton"]}
+                                                            nodeUILogPage={focusedNodeData["nodeUISettings"]["logPage"]}
+                                                            nodeUITextFrame={focusedNodeData["nodeUISettings"]["textFrame"]}
 
-                fetchGameSettings={fetchGameSettings} //TODO change func
-                openSettingPage={openSettingPage} //TODO change func
-                sendOutBgmSettings={sendOutBgmSettings} //TODO change func
+                                                            visualMap={visualMap} //TODO change to dynamic fetching
+                                                            audioMap={audioMap} //TODO change to dynamic fetching
+                                                            
+
+                                                            enteringEmuGameDataTracker={currGameDataTracker} //TODO change to dynamic fetching
+
+                                                            mutedViewOption={mutedViewOption}
+                                                            openSettingPage={openSettingPage} //TODO change func
+
+
+                                                            fetchGameSettings={fetchGameSettings} //TODO change func
+                                                            sendOutBgmSettings={sendOutBgmSettings} //TODO change func
+
+
+                                                            getEnteringEmuGdt={passInEnteringEmuGdt}
+
+                                                            updatedGameDataTracker={receiveUpdatedGameDataTracker}
+
+                                                            notifyNodeFinish={markNextNodeSignalTrue}
+
+                                                        /> */}
+
+            <GameScreen_QuickView_ConvNode
+                isPreview={false}
+                isDisplay={true}  //ok (non-dynamic)
+
+                screenWidth={screenWidth}   //ok (non-dynamic)
+                screenHeight={screenHeight}   //ok (non-dynamic)
+
+                initialPieceNum={0}   //ok (non-dynamic)
+                
+                allPieceContent={focusedNodeData["nodeContent"]} // ok (non-dynamic)
 
                 notifyNodeFinish={markNextNodeSignalTrue}
-                updatedGameDataTracker={receiveUpdatedGameDataTracker}
-            />
-       }
+                            
+                uiData1_textframe={focusedNodeData["nodeUISettings"]["textFrame"]}
+                uiData2_defaultButtonOption={focusedNodeData["nodeUISettings"]["defaultButton"]}
+                uiData3_ConvNavigation={focusedNodeData["nodeUISettings"]["convNav"]}
+                uiData4_logPageSettings={focusedNodeData["nodeUISettings"]["logPage"]}
+
+                visualMap={visualMap} //TODO empty so far
+                audioMap={audioMap} //TODO empty so far
+
+                gameData={currGameDataTracker}
+
+                getResetSignal={notUsing} 
+                getResetInfoSets={notUsing} 
+                notifyAfterReset={notUsing}
+
+
+                buttonConsequenceByStatementEntireArray_QVC={buttonConsequenceByStatementEntireArray_QV}  //TODO 
+                            
+                isViewMuted={mutedViewOption}
+                fetchGameSettingsForPlaying={fetchGameSettings}
+
+                openSettingPage={openSettingPage}
+
+                sendOutBgmSettings={sendOutBgmSettings}
+        />
+            
+       </>}
 
 {/*
   entireContainer[currNodeKey]["nodeContent"]
