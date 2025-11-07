@@ -10,13 +10,17 @@ import Modal_ConvNode_Log from './Modal_ConvNode_Log';
 export default function GameScreen_QuickView_ConvNode ({
     isPreview,
     initialPieceNum, 
+
     getResetSignal, getResetInfoSets, notifyAfterReset,
-    isDisplay, screenWidth, screenHeight, 
+
+    isDisplay, 
+    screenWidth, screenHeight, 
 
     notifyNodeFinish,
     
     gameData,
     allPieceContent, 
+
     uiData1_textframe, uiData2_defaultButtonOption, uiData3_ConvNavigation, uiData4_logPageSettings,
 
     visualMap, audioMap,
@@ -28,8 +32,6 @@ export default function GameScreen_QuickView_ConvNode ({
     openSettingPage,
 
     sendOutBgmSettings
-
-
     
                                 //triggerClickOnGameScreen, getIsGameScreenClicked, //TODO test before removing these two
 

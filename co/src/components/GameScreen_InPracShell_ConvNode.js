@@ -90,8 +90,8 @@ return (<div>
 
 */}
 
-   {allPieceData.length > 0 &&  
-   <GameScreen_QuickView_ConvNode
+   {/* {allPieceData.length > 0 &&  
+   < GameScreen _ QuickView _ ConvNode
         isPreview={false}
         isDisplay={true}  //ok (non-dynamic)
 
@@ -128,7 +128,7 @@ return (<div>
 
         sendOutBgmSettings={sendOutBgmSettings}
     />
-    }            
+    }             */}
 
 </div>);
 

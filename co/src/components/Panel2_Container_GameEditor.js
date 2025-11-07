@@ -7,6 +7,7 @@ import { getAuthFirebase } from '../authtools/firebaseAuthOperations';
 
 import langDictionary from './_textDictionary';
 import uiLangMap from './uiLangMap';
+import { defaultScreenWidth, defaultScreenHeight } from './_dataStructure_DefaultObjects';
 
 
 //level(-1)
@@ -162,8 +163,8 @@ export default function Panel2_Container_GameEditor() {
     
     const [currTestingPageName, setCurrTestingPageName] = useState("Main Page"); //move to outer-layer
     
-    const [currTestingScrnW, setCcurrTestingScrnW] = useState(800);
-    const [currTestingScrnH, setCcurrTestingScrnH] = useState(600);
+    const [currTestingScrnW, setCcurrTestingScrnW] = useState(defaultScreenWidth);
+    const [currTestingScrnH, setCcurrTestingScrnH] = useState(defaultScreenHeight);
 
     const [nodeViewingEntryNum, setNodeViewingEntryNum] = useState(0);
 
@@ -1943,6 +1944,8 @@ return (
 {isDisplayViewingAny === true
     && 
 <div className={modalStyleName}>
+
+
         <button
             onClick={()=>{
                 if (focusingEditor === "gameMaker") {
@@ -1952,6 +1955,8 @@ return (
                 }                
             }}
         > {closeText} </button>
+
+
          
     {isDisplayEntireGameViewer === true 
     &&<>
@@ -1965,9 +1970,12 @@ return (
                                                     }}
                                             > {closeText} </button> */}
 
+
+        {/* this layer of div is important! do not simplify */}
         <div         
             style={{"display": "flex"}}
         >
+            
 
 
 
@@ -2010,9 +2018,9 @@ return (
                 /> 
 
             
-                {/* status table */}
+                {/* status table for entire-viewing*/}
                 <table style={{
-                    "width": "800px", 
+                    "width": `${currTestingScrnW}px`, 
                     "marginTop": `${currTestingScrnH+100}px`, 
                     "marginLeft": "170px","position": "absolute"
                 }}
@@ -2040,7 +2048,7 @@ return (
                     </table>
             
             
-        </div>
+        </div>{/* this layer of div is important! do not simplify */}
     
 
     </div>
@@ -2049,8 +2057,12 @@ return (
 
     {isDisplayQuickview === true && 
     <>
-    {/* 02 . Quick-View for Conversation-Node */}    
     <div>
+
+        
+    {/* 02 . Quick-View for Conversation-Node */}    
+        {focusingEditor === "Conversation"
+        &&
             <AllPanels_QuickView_ConvNode
 
                     initialPieceNum={nodeViewingEntryNum} //from conv-node-editor-triggering
@@ -2078,7 +2090,7 @@ return (
                     openSettingPage={hintNodeEditorOnly}
 
             /> 
-
+        }
     
     </div>
 
@@ -2088,7 +2100,7 @@ return (
     }
 
 
-
+{/* game-data-tracker table */}
     <div style={{
                 "backgroundColor": "grey",
                 "marginLeft": "1000px",
@@ -2096,8 +2108,7 @@ return (
          //       "height": `${screenHeight}px`, 
                  
               }}>
-{/* game-data-tracker */}
-  (game-data-tracker)
+    Game Data Status [{focusingEditor}]
         <table>
                             <thead className="textNoSelect">
                                 <tr>

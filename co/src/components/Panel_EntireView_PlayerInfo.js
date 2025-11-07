@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-
+import { defaultScreenWidth, defaultScreenHeight } from './_dataStructure_DefaultObjects';
 
 export default function Panel_EntireView_PlayerInfo({
     getScreenHeight, getScreenWidth,
@@ -12,8 +12,8 @@ export default function Panel_EntireView_PlayerInfo({
     updateProjectNavData
 }) {
 
-    const [screenHeight, setScreenHeight] = useState(600);
-    const [screenWidth, setScreenWidth] = useState(800); //TODO
+    const [screenHeight, setScreenHeight] = useState(defaultScreenHeight);
+    const [screenWidth, setScreenWidth] = useState(defaultScreenWidth); //TODO
 
     const [playerProfile, setPlayerProfile] = useState(-1);
     const [userAccountData, setUserAccountData] = useState(-1);

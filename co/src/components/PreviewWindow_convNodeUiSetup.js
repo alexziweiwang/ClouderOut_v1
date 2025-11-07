@@ -4,6 +4,7 @@ import GameUI_2ButtonsPreview from './GameUI_2ButtonsPreview';
 import GameUI_1TextFramePreview from './GameUI_1TextFramePreview';
 import GameUI_3ConvNavPreview from './GameUI_3ConvNavPreview';
 import Modal_ConvNode_Log from './Modal_ConvNode_Log';
+import { defaultScreenWidth, defaultScreenHeight } from './_dataStructure_DefaultObjects';
 
 
 export default function PreviewWindow_convNodeUiSetup({dataObj, initialAllPieceData, getAllPieceContent, 
@@ -21,8 +22,8 @@ export default function PreviewWindow_convNodeUiSetup({dataObj, initialAllPieceD
 }) {
     const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en');
 
-    const [screenWidth, setScreenWidth] = useState(800);
-    const [screenHeight, setScreenHeight] = useState(600);
+    const [screenWidth, setScreenWidth] = useState(defaultScreenWidth);
+    const [screenHeight, setScreenHeight] = useState(defaultScreenHeight);
 
     const initialPieceNum = getCurrentPieceNum();
 

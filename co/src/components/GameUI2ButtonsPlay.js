@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { defaultScreenWidth, defaultScreenHeight } from './_dataStructure_DefaultObjects';
 
 //currently not used
 
@@ -20,8 +21,8 @@ export default function GameUI2ButtonsPlay({isSettingUpUI, initialAllPieceData, 
 
 
 
-    const [screenWidth, setScreenWidth] = useState(800); //TODO: first element
-    const [screenHeight, setScreenHeight] = useState(600); //TODO: second element
+    const [screenWidth, setScreenWidth] = useState(defaultScreenWidth); //TODO: first element
+    const [screenHeight, setScreenHeight] = useState(defaultScreenHeight); //TODO: second element
 
 
 //settled data:

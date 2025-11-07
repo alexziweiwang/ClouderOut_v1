@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-
+import { defaultScreenWidth, defaultScreenHeight } from './_dataStructure_DefaultObjects';
 
 //level5 (a part of a node)
 
@@ -20,8 +20,8 @@ export default function GameUI_3ConvNavPreview({isSettingUpUI, initialAllPieceDa
 
     const [autoOn, setAutoOn] = useState(false);
 
-    const [screenWidth, setScreenWidth] = useState(800);
-    const [screenHeight, setScreenHeight] = useState(600);
+    const [screenWidth, setScreenWidth] = useState(defaultScreenWidth);
+    const [screenHeight, setScreenHeight] = useState(defaultScreenHeight);
 
     //TODO fetch resource-list and generate resource-map here, for dynamic pic-var-matching
     const [visualMap, setVisualMap] = useState([]); 

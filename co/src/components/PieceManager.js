@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import langDictionary from './_textDictionary';
 import { emptyConvNodeSinglePieceTemplate } from './_dataStructure_DefaultObjects';
+import { defaultScreenWidth, defaultScreenHeight } from './_dataStructure_DefaultObjects';
 
 export default function PieceManager({
     allPieceData, assignPieceNum, assignPreviewIndex, 
@@ -19,8 +20,8 @@ export default function PieceManager({
     getUILanguage,
     
 }) {
-    const [screenWidth, setScreenWidth] = useState(800);
-    const [screenHeight, setScreenHeight] = useState(600);
+    const [screenWidth, setScreenWidth] = useState(defaultScreenWidth);
+    const [screenHeight, setScreenHeight] = useState(defaultScreenHeight);
 
     const [groupEditModeOn, setGroupEditModeOn] = useState(false);
     const [groupMoving, setGroupMoving] = useState(false);

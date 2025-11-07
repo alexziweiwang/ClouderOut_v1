@@ -377,21 +377,7 @@ export default function AllPanels_QuickView_ConvNode ({
                     notifyNodeFinish={notUsing}
                 />
                 
-                                                            {/* 
-                                                                            <Panel_GameDataTest
-                                                                                localTest={true}
-                                                                                initialGameDataStatus={gameDataTracker}
-
-                                                                                getScreenHeight={passInScreenHeight} 
-                                                                                getScreenWidth={passInScreenWidth}
-                                                                                isQuickView={true}
-
-                                                                                receiveGameDataObj={passInGameDataFromScreen}
-
-                                                                                getUILanguage={getUILanguage}
-                                                                            /> */}
-                                                            {/* //TODO fetch original game-data from cloud, present changes through quick-view */}
-                                                                    
+                                                        
 
                 </div>
 

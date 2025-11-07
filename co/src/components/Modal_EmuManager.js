@@ -1445,7 +1445,7 @@ return (<div className={modalStyleName}>
                         {(shp5["shopStock"].length >= 4)
                             && <div style={{
                             "backgroundColor": "grey",
-                            "width": "800px",
+                            "width": "8 0 0px",
                             "height": "17px",
                             "borderRadius": "0px",
                         }}>

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { defaultScreenWidth, defaultScreenHeight } from './_dataStructure_DefaultObjects';
 
 /*
 Keeps a set of creator's preferred configuration data of game-data
@@ -18,8 +19,8 @@ export default function Panel_GameDataTest({
     const trueBoolean = true;
     const falseBoolean = false;
 
-    const [screenHeight, setScreenHeight] = useState(600);
-    const [screenWidth, setScreenWidth] = useState(800); //TODO
+    const [screenHeight, setScreenHeight] = useState(defaultScreenHeight);
+    const [screenWidth, setScreenWidth] = useState(defaultScreenWidth); //TODO
 
 
 

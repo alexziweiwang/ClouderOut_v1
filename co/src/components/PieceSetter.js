@@ -6,6 +6,8 @@ import langDictionary from './_textDictionary';
 import { characterPictureCurrTemplate } from './_dataStructure_DefaultObjects';
 
 import { resourceVarToUrl_vm, indexedMapToRealArray_vm } from '../viewmodels/CalcAc_PieceSetting';
+import { defaultScreenWidth, defaultScreenHeight } from './_dataStructure_DefaultObjects';
+
 
 //TODO refactor: stnd_btn_arr
 
@@ -230,8 +232,8 @@ export default function PieceSetter({
             "speaker_name": "", 
             "bgp_pos_x": 0, 
             "bgp_pos_y": 0, 
-            "bgp_width": 800, 
-            "bgp_height": 600, 
+            "bgp_width": defaultScreenWidth, 
+            "bgp_height": defaultScreenHeight, 
             "bgp_source_varname": "",
             "chp_map": [], 
             "stnd_btn_arr": [], 

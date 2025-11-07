@@ -566,7 +566,7 @@ export default function DuringGameScreen_AllNodeTypeContainer({
 
                 if (i+1 === len) {
                     console.log("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nlast chapter")
-                    returnToStoryPage();
+                    //returnToStoryPage();
 
                     return;
 

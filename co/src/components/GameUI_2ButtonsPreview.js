@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { defaultScreenWidth, defaultScreenHeight } from './_dataStructure_DefaultObjects';
 
 //level5 (a part of a node)
 
@@ -7,8 +8,8 @@ export default function GameUI_2ButtonsPreview({isSettingUpUI, initialAllPieceDa
     getCurrentPieceNum, getIsDisplayDefaultButton, getDefaultButtonUISettings, getBackButtonUISettings, 
     getScreenSize, triggerNextPiece, getAudioMap, getVisualMap
 }) {
-    const [screenWidth, setScreenWidth] = useState(800);
-    const [screenHeight, setScreenHeight] = useState(600);
+    const [screenWidth, setScreenWidth] = useState(defaultScreenWidth);
+    const [screenHeight, setScreenHeight] = useState(defaultScreenHeight);
 
     const [currentPieceNum, setCurrentPieceNum] = useState(0);
     const [allPieceData, setAllPieceData] = useState(initialAllPieceData);

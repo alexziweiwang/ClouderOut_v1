@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import langDictionary from './_textDictionary';
+import { defaultScreenWidth, defaultScreenHeight } from './_dataStructure_DefaultObjects';
 
 
 export default function NavigationSetter({initialNavObj, 
@@ -285,7 +286,7 @@ export default function NavigationSetter({initialNavObj,
         
     const [screenHeight, setScreenHeight] = useState(initialScreenHeight);
 
-    const screenWidth = 800; //TODO temp  
+    const screenWidth = defaultScreenWidth; //TODO temp  
 
     const [currentSettingPage, setCurrentSettingPage] = useState("Main Page");
     const [openBackButtonSettingArea, setOpenBackButtonSettingArea] = useState(true);
@@ -3660,7 +3661,7 @@ export default function NavigationSetter({initialNavObj,
                <br></br>
                {groupPositionXText}:
                  <input type="range"
-                  min="0" max="800" step="1"
+                  min="0" max={screenWidth} step="1"
                   value={currentProjectNav["settingPage-listItemGroupX"]}
                   onChange={(event)=>{
                     let tempObj = currentProjectNav;
@@ -3672,7 +3673,7 @@ export default function NavigationSetter({initialNavObj,
                   }}
                  ></input>
                  <input type="number"
-                  min="0" max="800" step="1"
+                  min="0" max={screenWidth} step="1"
                   value={currentProjectNav["settingPage-listItemGroupX"]}
                   onChange={(event)=>{
                     let tempObj = currentProjectNav;
@@ -3712,7 +3713,7 @@ export default function NavigationSetter({initialNavObj,
                <br></br>
                {groupsText}{widthText}:
                <input type="range"
-                  min="1" max="800" step="1"
+                  min="1" max={screenWidth} step="1"
                   value={currentProjectNav["settingPage-listItemGroupWidth"]}
                   onChange={(event)=>{
                     let tempObj = currentProjectNav;
@@ -3724,7 +3725,7 @@ export default function NavigationSetter({initialNavObj,
                   }}
                  ></input>
                  <input type="number"
-                  min="1" max="800" step="1"
+                  min="1" max={screenWidth} step="1"
                   value={currentProjectNav["settingPage-listItemGroupWidth"]}
                   onChange={(event)=>{
                     let tempObj = currentProjectNav;

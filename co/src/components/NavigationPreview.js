@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { sizeLookupMap } from './_dataStructure_DefaultObjects';
+import { sizeLookupMap, defaultScreenWidth, defaultScreenHeight } from './_dataStructure_DefaultObjects';
 
 
 export default function NavigationPreview ({
@@ -41,8 +41,8 @@ const tempFontSize = 12;
     const [languageCodeTextOption, setLanguageCodeTextOption] = useState(initialUILanguage); //TODO16
 
 
-    const [screenWidth, setScreenWidth] = useState(800);
-    const [screenHeight, setScreenHeight] = useState(600);
+    const [screenWidth, setScreenWidth] = useState(defaultScreenWidth);
+    const [screenHeight, setScreenHeight] = useState(defaultScreenHeight);
 
     const [editingSignal, setEditingSignal] = useState(true);
     
