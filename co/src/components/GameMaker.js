@@ -24,6 +24,7 @@ import { resourceRawListToUsableMap_vm,
 
 } from '../viewmodels/PrepAc_Conversion';
 
+import { defaultScreenWidth, defaultScreenHeight, sizeLookupMap } from './_dataStructure_DefaultObjects';
 
 import langDictionary from './_textDictionary';
 
@@ -136,8 +137,8 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
   const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en'); // receive
 
-  const [screenHeight, setScreenHeight] = useState(600); // receive
-  const [screenWidth, setScreenWidth] = useState(800); // receive
+  const [screenHeight, setScreenHeight] = useState(defaultScreenHeight); // receive
+  const [screenWidth, setScreenWidth] = useState(defaultScreenWidth); // receive
 
   const [cloudDbConnOk, setCloudDbConnOk] = useState(true);
 
@@ -509,16 +510,23 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
         //   setCurrentChapterNodeMap(chapterNodeMapAll[currChapterKey]);
         //   setGridBlocks(gridBlocksAll[currChapterKey]);
         // }
-
-        if (currentProjectNav["screenSize"] === "16:9(horizonal)") {
-          setScreenHeight(450);
-        } else if (currentProjectNav["screenSize"] === "16:9(vertical)" 
-          || currentProjectNav["screenSize"] === "4:3(vertical)") {
-          setScreenHeight(800);
-        } else if (currentProjectNav["screenSize"] === "4:3(horizonal)") {
-          setScreenHeight(600);
+        let pairByMap = sizeLookupMap[currentProjectNav["screenSize"]];
+        if (pairByMap !== undefined) {
+          let heightByMap = pairByMap[1];
+          if (heightByMap !== undefined) {
+            setScreenHeight(heightByMap);                          
+                          // if (currentProjectNav["screenSize"] === "16:9(horizonal)") {
+                          //   setScreenHeight(4 5 0);
+                          // } else if (currentProjectNav["screenSize"] === "16:9(vertical)" 
+                          //   || currentProjectNav["screenSize"] === "4:3(vertical)") {
+                          //   setScreenHeight(8 0 0);
+                          // } else if (currentProjectNav["screenSize"] === "4:3(horizonal)") {
+                          //   setScreenHeight(6 0 0);
+                          // }
+          }
+          
         }
-
+        
         setTestPlayerGameDataTracker(getTestPlayerGameDataTracker());
         setTestPlayerProfile(getTestPlayerProfile());
         setTestPlayerAccount(getTestPlayerAccount());

@@ -42,7 +42,8 @@
 */
 
 
-
+export const defaultScreenWidth = 800;
+export const defaultScreenHeight = 600;
 
 export const sizeLookupMap = { 
     "16:9(horizonal)": [800, 450],
@@ -466,8 +467,8 @@ export const emptyConvNodeSinglePieceTemplate = {
     "speaker_name": "", 
     "bgp_pos_x": 0, 
     "bgp_pos_y": 0, 
-    "bgp_width": 800, 
-    "bgp_height": 600, 
+    "bgp_width": defaultScreenWidth, 
+    "bgp_height": defaultScreenHeight, 
     "bgp_source_varname": "",
     "chp_map": [], 
     "stnd_btn_arr": [], 

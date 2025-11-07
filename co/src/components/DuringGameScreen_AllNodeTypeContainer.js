@@ -6,10 +6,12 @@ import GameScreen_InPracShell_ConvNode from './GameScreen_InPracShell_ConvNode';
 
 import GameScreen_QuickView_ConvNode from './GameScreen_QuickView_ConvNode';
 
+
 //TODO fetch-and-updte data for conv-node-game-screen
 
 //TODO1090 cloud-db related
 import { generateNodeLongKeyString_vm } from '../viewmodels/PrepAc_ProjectOperation';
+import { defaultScreenWidth, defaultScreenHeight } from './_dataStructure_DefaultObjects';
 
 import { buttonConsequenceByStatementEntireArray } from '../viewmodels/CalcAc_QuickView';
 
@@ -59,8 +61,8 @@ export default function DuringGameScreen_AllNodeTypeContainer({
 
 }) {
 
-    const [screenWidth, setScreenWidth] = useState(800); //TODO /* according to current node's size */
-    const [screenHeight, setScreenHeight] = useState(600); //TODO /* according to current node's size */
+    const [screenWidth, setScreenWidth] = useState(defaultScreenWidth); //TODO /* according to current node's size */
+    const [screenHeight, setScreenHeight] = useState(defaultScreenHeight); //TODO /* according to current node's size */
 
 
     const [currNodeType, setCurrNodeType] = useState(initialNodeType);

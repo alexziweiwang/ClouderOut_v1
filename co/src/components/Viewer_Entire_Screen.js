@@ -4,8 +4,7 @@ import DuringGameScreen_AllNodeTypeContainer from './DuringGameScreen_AllNodeTyp
 
 import { configureGameProgress_vm } from '../viewmodels/CalcAc_ViewerEntireAc';
 import { initializeGameDataTracker_vm } from '../viewmodels/PrepAc_ViewerEntireAc';
-import { sizeLookupMap } from './_dataStructure_DefaultObjects';
-
+import { defaultScreenWidth, defaultScreenHeight, sizeLookupMap } from './_dataStructure_DefaultObjects';
 import { resourceRawListToUsableMap_vm } from '../viewmodels/PrepAc_Conversion';
 
 /* //TODO
@@ -111,7 +110,7 @@ export default function Viewer_Entire_Screen({
                 || initialNavObj["screenSize"] === "4:3(horizonal)"
                 || initialNavObj["screenSize"] === "4:3(vertical)")) 
         ? sizeLookupMap[initialNavObj["screenSize"]][0] 
-        : 800;
+        : defaultScreenWidth;
 
     const screenHeight = ((initialNavObj !== undefined && Object.keys(initialNavObj).length > 0) 
             &&
@@ -120,7 +119,7 @@ export default function Viewer_Entire_Screen({
                 || initialNavObj["screenSize"] === "4:3(horizonal)"
                 || initialNavObj["screenSize"] === "4:3(vertical)")) 
         ? sizeLookupMap[initialNavObj["screenSize"]][1] 
-        : 600;
+        : defaultScreenHeight;
     
     const [gameSettingsScaleObj, setGameSettingsScaleObj] = useState({});
     //"settingPage-playSpeed"

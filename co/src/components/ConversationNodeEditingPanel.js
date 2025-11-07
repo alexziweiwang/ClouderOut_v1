@@ -14,7 +14,7 @@ import langDictionary from './_textDictionary';
 
 import { emptyConvNodeSinglePieceTemplate, gameUIDefaultButtonTemplate, gameUITextFrameTemplate, gameUIBackButtonTemplate, uiConvNavTemplate, logPageUISettingsTemplate } from './_dataStructure_DefaultObjects';
 import { generateNodeLongKeyString_vm } from '../viewmodels/PrepAc_ProjectOperation';
-import { sizeLookupMap } from './_dataStructure_DefaultObjects';
+import { sizeLookupMap, defaultScreenWidth, defaultScreenHeight } from './_dataStructure_DefaultObjects';
 
 import { resourceRawListToUsableMap_vm } from '../viewmodels/PrepAc_Conversion';
 
@@ -250,8 +250,8 @@ GameDataDesign <map>
     const [testPlayerAccount, setTestPlayerAccount] = useState({});        
 
     const [selectedGameScreenSize, setSelectedGameScreenSize] = useState("");
-    const [screenWidth, setScreenWidth] = useState(800);
-    const [screenHeight, setScreenHeight] = useState(600);
+    const [screenWidth, setScreenWidth] = useState(defaultScreenWidth);
+    const [screenHeight, setScreenHeight] = useState(defaultScreenHeight);
 
     //TODO100
     const [audioMap, setAudioMap] = useState({}); //TODO for bgm on each nav-page -- future feature

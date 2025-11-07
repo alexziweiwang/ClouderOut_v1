@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import langDictionary from './_textDictionary';
 import { GiTrashCan } from "react-icons/gi";
-
+import { defaultScreenWidth, defaultScreenHeight } from './_dataStructure_DefaultObjects';
 
 export default function ConvNodeUISetter({
     openRm, iniDefaultButtonObj, 
@@ -32,8 +32,9 @@ export default function ConvNodeUISetter({
 
 
 
-    const screenWidth = 800;
-    const screenHeight = 600;
+    const screenWidth = defaultScreenWidth;
+    const screenHeight = defaultScreenHeight;
+
     const [languageCodeTextOption, setLanguageCodeTextOption] = useState('en');
 
     let textDictItem = langDictionary[languageCodeTextOption];
@@ -1194,24 +1195,24 @@ export default function ConvNodeUISetter({
    
         <div className="indentOne">
                 <label>{groupPositionXText}:</label>
-                <input type="range" max="800" min="0" step="1" value={convNav["groupX"]}
+                <input type="range" max={screenWidth} min="0" step="1" value={convNav["groupX"]}
                     onChange={(event)=>{
                         setConvNav({...convNav, "groupX": event.target.value});    
                     }}
                 ></input>
-                <input type="number" max="800" min="0" step="1" value={convNav["groupX"]}
+                <input type="number" max={screenWidth} min="0" step="1" value={convNav["groupX"]}
                     onChange={(event)=>{
                         setConvNav({...convNav, "groupX": event.target.value});    
                     }}
                 ></input>
 
                 <br></br><label>{groupPositionYText}:</label>
-                <input type="range" max="600" min="0" step="1" value={convNav["groupY"]}
+                <input type="range" max={screenHeight} min="0" step="1" value={convNav["groupY"]}
                     onChange={(event)=>{
                         setConvNav({...convNav, "groupY": event.target.value});    
                     }}
                 ></input>
-                <input type="number" max="600" min="0" step="1" value={convNav["groupY"]}
+                <input type="number" max={screenHeight} min="0" step="1" value={convNav["groupY"]}
                     onChange={(event)=>{
                         setConvNav({...convNav, "groupY": event.target.value});    
                     }}        
