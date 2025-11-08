@@ -902,7 +902,7 @@
 - 2025-Nov-06: Design sl-system and single-exp system separation
 
 - 2025-Nov-07: Design sl-system and single-exp system separation: player-data-managing strategies
-
+- 2025-Nov-07: Design testing-project
 
 
 
