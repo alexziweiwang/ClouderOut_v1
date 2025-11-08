@@ -397,6 +397,13 @@ export default function Panel2_Container_GameEditor() {
     ]);
 
 
+    useEffect(()=>{ 
+        console.log("$$$ testPlayerGameDataTracker changed: ", testPlayerGameDataTracker);
+                
+    }, [
+        testPlayerGameDataTracker
+    ]);
+
 
   
 
@@ -1778,12 +1785,12 @@ return (
         getUiLangOption={passInUiLanguageOption}
         getProjectResourceVarPairs={passInProjectResourceVarPairs}
 
-        getTestPlayerGameDataTracker={passInTestPlayerGameDataTracker}
-        getTestPlayerProfile={passInTestPlayerProfile}
-        getTestPlayerAccount={passInTestPlayerAccount}
-        getTestPlayerSLRecords={passInTestPlayerSLRecords}
-        getTestShopProducts={passInTestShopProducts}
-        getTestPlayerPurchaseStatus={passInTestPlayerPurchaseStatus}
+        getTestPlayerGameDataTracker={passInTestPlayerGameDataTracker} //TODO change to: using metadata, also trigger changes from sub-compo
+        getTestPlayerProfile={passInTestPlayerProfile} //TODO change to: using metadata, also trigger changes from sub-compo
+        getTestPlayerAccount={passInTestPlayerAccount} //TODO change to: using metadata, also trigger changes from sub-compo
+        getTestPlayerSLRecords={passInTestPlayerSLRecords} //TODO change to: using metadata, also trigger changes from sub-compo
+        getTestShopProducts={passInTestShopProducts} //TODO change to: using metadata, also trigger changes from sub-compo
+        getTestPlayerPurchaseStatus={passInTestPlayerPurchaseStatus} //TODO change to: using metadata, also trigger changes from sub-compo
 
         triggerCreatedNewNode_panel2={triggerCreatedNewNode_panel2}
         saveBothObjToCloud={saveBothObjToCloud}
@@ -2071,6 +2078,8 @@ return (
 
                     allPieceContent={projectAllNodeContent[currTestingNodeKey].nodeContent}  //from node's obj (data-structure) //TODO change
 
+                    initialEmuGameDataTracker={testPlayerGameDataTracker} //TODO change
+
                     uiData1_textframe={projectAllNodeContent[currTestingNodeKey]["nodeUISettings"].textFrame}  //from node's obj (data-structure) //TODO change
                     uiData2_defaultButtonOption={projectAllNodeContent[currTestingNodeKey]["nodeUISettings"].defaultButton}  //from node's obj (data-structure)  //TODO change
                     uiData3_ConvNavigation={projectAllNodeContent[currTestingNodeKey]["nodeUISettings"].convNav}  //from node's obj (data-structure) //TODO change
@@ -2083,12 +2092,10 @@ return (
                     getVisualMap={passInVisualMap}
                             
                     getUILanguage={passInUiLanguageOption}
-
-                    initialEmuGameDataTracker={testPlayerGameDataTracker} //TODO change
                                         
                     // resetViewing={resetQuickView}
                     openSettingPage={hintNodeEditorOnly}
-
+                    notifyCurrGdt={notifyCurrGdt}
             /> 
         }
     
@@ -2101,6 +2108,8 @@ return (
 
 
 {/* game-data-tracker table */}
+
+{focusingEditor === "gameMaker" &&
     <div style={{
                 "backgroundColor": "grey",
                 "marginLeft": "1000px",
@@ -2178,7 +2187,10 @@ return (
 
 
     </div>
-    </div>
+}    
+
+</div>
+
 }
 </div>
 

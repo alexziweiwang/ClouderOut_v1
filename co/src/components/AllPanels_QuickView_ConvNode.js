@@ -28,7 +28,8 @@ export default function AllPanels_QuickView_ConvNode ({
     
     initialEmuGameDataTracker,
     resetViewing,
-    openSettingPage
+    openSettingPage,
+    notifyCurrGdt
 }) {
 
 
@@ -228,7 +229,14 @@ export default function AllPanels_QuickView_ConvNode ({
     // refactored to VM - already put in vm-part
     function buttonConsequenceByStatementEntireArray_QV(pieceNum, item) {
         console.log("quick-view-conv-node : buttonConsequenceByStatementEntireArray_QV");
-        buttonConsequenceByStatementEntireArray(pieceNum, item, allPieceContent, gameDataTracker, setGameDataTracker, updateRenderCounter);
+        buttonConsequenceByStatementEntireArray(
+                pieceNum, 
+                item, 
+                allPieceContent, 
+                gameDataTracker, 
+                notifyNewGameData, 
+                updateRenderCounter
+        );
     }
 
     function passInCurrPieceNum() {
@@ -246,6 +254,9 @@ export default function AllPanels_QuickView_ConvNode ({
     function notifyNewGameData(data) {
                                                     console.log("quickview-allpanel... new-gdt  = ", data);
         setGameDataTracker(data);
+
+        //TODO to panel2:
+        notifyCurrGdt(data);
     }
 
     function passInScreenHeight() {
@@ -385,7 +396,57 @@ export default function AllPanels_QuickView_ConvNode ({
          
 
 
+                <table>
+                            <thead className="textNoSelect">
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Value</th>
+                                    <th>Default Value</th>
+                                </tr>
+                            </thead>  
+            
+            <tbody> 
+{/* //TODO: list all emu-game-data-status here */}
 
+                        {Object.keys(gameDataTracker).map((currKey) => {
+                            let keyName = "gmdt" + currKey;
+                            let val = gameDataTracker[currKey]["data_type"] === "boolean" ? 
+                                    ((gameDataTracker[currKey]["current_value"] === true 
+                                        || gameDataTracker[currKey]["current_value"] === "true") ? 
+                                        "true" : "false") 
+                                : gameDataTracker[currKey]["current_value"];
+
+                            let inputId = keyName+"-input";
+
+                            return (
+                                <tr value={currKey} key={keyName} id={inputId}>
+                                    <td>{gameDataTracker[currKey]["name"]}</td>
+                                    
+                                    <td>
+                                        <label>{gameDataTracker[currKey]["data_type"] !== "boolean" ? 
+                                            gameDataTracker[currKey]["current_value"] 
+                                            : (gameDataTracker[currKey]["current_value"] === true ? 
+                                                "True" 
+                                                : "False")}</label><br></br>
+
+                                    </td>   
+
+                                    <td>
+                                    <label>{gameDataTracker[currKey]["data_type"] !== "boolean" 
+                                    ? gameDataTracker[currKey]["default_value"] 
+                                    : (gameDataTracker[currKey]["default_value"] == "true" ? "True" : "False")}</label>
+                                    
+                                    </td>            
+                                </tr>
+                            
+                            );
+                        })}
+
+
+                        
+            </tbody>  
+        </table>
+        
 
 
 
