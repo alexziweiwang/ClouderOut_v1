@@ -905,7 +905,7 @@
 - 2025-Nov-07: Design testing-project
 
 - 2025-Nov-10: Design testing-project
-
+- 2025-Nov-10: Design sl-system and single-exp system separation: player-data-managing strategies
 
 
 
