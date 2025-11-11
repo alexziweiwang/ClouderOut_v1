@@ -343,112 +343,112 @@ export default function AllPanels_QuickView_ConvNode ({
 
                 <div  style={{ "display": "flex"}}>
 
-                <GameScreen_QuickView_ConvNode
+                    <GameScreen_QuickView_ConvNode
 
-                    screenWidth={screenWidth}
-                    screenHeight={screenHeight}
+                        screenWidth={screenWidth}
+                        screenHeight={screenHeight}
 
-                    allPieceContent={allPieceContent}
-                    
-                    uiData1_textframe={uiData1_textframe}
-                    uiData2_defaultButtonOption={uiData2_defaultButtonOption}
-                    uiData3_ConvNavigation={uiData3_ConvNavigation} 
-                    uiData4_logPageSettings={uiData4_logPageSettings}
-                       
-                    visualMap={visualMap}
-                    audioMap={audioMap}
+                        allPieceContent={allPieceContent}
+                        
+                        uiData1_textframe={uiData1_textframe}
+                        uiData2_defaultButtonOption={uiData2_defaultButtonOption}
+                        uiData3_ConvNavigation={uiData3_ConvNavigation} 
+                        uiData4_logPageSettings={uiData4_logPageSettings}
+                        
+                        visualMap={visualMap}
+                        audioMap={audioMap}
 
-                    initialPieceNum={initialPieceNum}
+                        initialPieceNum={initialPieceNum}
 
-                    gameData={gameDataTracker}
-            
-                    isViewMuted={mutedViewOption}
-                    openSettingPage={openSettingPage}
-
-                    isPreview={true}
-                    isDisplay={true}
-
-                    getCurrPieceNum={passInCurrPieceNum}
-
-                    getResetSignal={passInResetSignal}
-                    getResetInfoSets={passInResetInfoSets}
-
-                    notifyNewGameData={notifyNewGameData}
-                    notifyAfterReset={notifyAfterReset}
-
-                    receiveGameDataObj={passInGameDataFromScreen}
-                    
-                    buttonConsequenceByStatementEntireArray_QVC={buttonConsequenceByStatementEntireArray_QV}
-        
-
-                    fetchGameSettingsForPlaying={passInDefulatGameSettings}
-
-                    sendOutBgmSettings={notUsingThreeParam}
-
-                    notifyNodeFinish={notUsing}
-                />
+                        gameData={gameDataTracker}
                 
-                                                        
+                        isViewMuted={mutedViewOption}
+                        openSettingPage={openSettingPage}
+
+                        isPreview={true}
+                        isDisplay={true}
+
+                        getCurrPieceNum={passInCurrPieceNum}
+
+                        getResetSignal={passInResetSignal}
+                        getResetInfoSets={passInResetInfoSets}
+
+                        notifyNewGameData={notifyNewGameData}
+                        notifyAfterReset={notifyAfterReset}
+
+                        receiveGameDataObj={passInGameDataFromScreen}
+                        
+                        buttonConsequenceByStatementEntireArray_QVC={buttonConsequenceByStatementEntireArray_QV}
+            
+
+                        fetchGameSettingsForPlaying={passInDefulatGameSettings}
+
+                        sendOutBgmSettings={notUsingThreeParam}
+
+                        notifyNodeFinish={notUsing}
+                    />
+                    
+    
+                    <div style={{"marginLeft": "20px"}}>
+                        <table>
+                                <thead className="textNoSelect">
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Value</th>
+                                        <th>Default Value</th>
+                                    </tr>
+                                </thead>  
+                
+                <tbody> 
+    {/* //TODO: list all emu-game-data-status here */}
+
+                            {Object.keys(gameDataTracker).map((currKey) => {
+                                let keyName = "gmdt" + currKey;
+                                let val = gameDataTracker[currKey]["data_type"] === "boolean" ? 
+                                        ((gameDataTracker[currKey]["current_value"] === true 
+                                            || gameDataTracker[currKey]["current_value"] === "true") ? 
+                                            "true" : "false") 
+                                    : gameDataTracker[currKey]["current_value"];
+
+                                let inputId = keyName+"-input";
+
+                                return (
+                                    <tr value={currKey} key={keyName} id={inputId}>
+                                        <td>{gameDataTracker[currKey]["name"]}</td>
+                                        
+                                        <td>
+                                            <label>{gameDataTracker[currKey]["data_type"] !== "boolean" ? 
+                                                gameDataTracker[currKey]["current_value"] 
+                                                : (gameDataTracker[currKey]["current_value"] === true ? 
+                                                    "True" 
+                                                    : "False")}</label><br></br>
+
+                                        </td>   
+
+                                        <td>
+                                        <label>{gameDataTracker[currKey]["data_type"] !== "boolean" 
+                                        ? gameDataTracker[currKey]["default_value"] 
+                                        : (gameDataTracker[currKey]["default_value"] == "true" ? "True" : "False")}</label>
+                                        
+                                        </td>            
+                                    </tr>
+                                
+                                );
+                            })}
+
+
+                            
+                </tbody>  
+            </table>
+                    </div>
+
+
+                                                    
 
                 </div>
 
 
          
-
-
-                <table>
-                            <thead className="textNoSelect">
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Value</th>
-                                    <th>Default Value</th>
-                                </tr>
-                            </thead>  
-            
-            <tbody> 
-{/* //TODO: list all emu-game-data-status here */}
-
-                        {Object.keys(gameDataTracker).map((currKey) => {
-                            let keyName = "gmdt" + currKey;
-                            let val = gameDataTracker[currKey]["data_type"] === "boolean" ? 
-                                    ((gameDataTracker[currKey]["current_value"] === true 
-                                        || gameDataTracker[currKey]["current_value"] === "true") ? 
-                                        "true" : "false") 
-                                : gameDataTracker[currKey]["current_value"];
-
-                            let inputId = keyName+"-input";
-
-                            return (
-                                <tr value={currKey} key={keyName} id={inputId}>
-                                    <td>{gameDataTracker[currKey]["name"]}</td>
-                                    
-                                    <td>
-                                        <label>{gameDataTracker[currKey]["data_type"] !== "boolean" ? 
-                                            gameDataTracker[currKey]["current_value"] 
-                                            : (gameDataTracker[currKey]["current_value"] === true ? 
-                                                "True" 
-                                                : "False")}</label><br></br>
-
-                                    </td>   
-
-                                    <td>
-                                    <label>{gameDataTracker[currKey]["data_type"] !== "boolean" 
-                                    ? gameDataTracker[currKey]["default_value"] 
-                                    : (gameDataTracker[currKey]["default_value"] == "true" ? "True" : "False")}</label>
-                                    
-                                    </td>            
-                                </tr>
-                            
-                            );
-                        })}
-
-
-                        
-            </tbody>  
-        </table>
-        
-
-
 
                 
 

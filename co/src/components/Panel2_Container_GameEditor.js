@@ -647,7 +647,7 @@ export default function Panel2_Container_GameEditor() {
         });
     }
 
-    function configureTestEmuDup() {
+    function prepareTestEmuDup() {
         //setup 
         let emuObj = projectMetaData["emu4sets"];
         let dup1 = dupObject(emuObj["gdt1"]);
@@ -716,6 +716,8 @@ export default function Panel2_Container_GameEditor() {
         
         setCurrTestingPageStatus("Main Page");
 
+        prepareTestEmuDup();
+
         setDisplayEntireGameViewer(true);
         setDisplayViewingAny(true);
     
@@ -730,7 +732,7 @@ export default function Panel2_Container_GameEditor() {
         let nodeKeyName = obj.nodeKey;
 
 
-        configureTestEmuDup();
+        prepareTestEmuDup();
 
         setCurrTestingPageStatus("During Game"); 
         setCurrTestingPageName("During Game");
@@ -806,7 +808,7 @@ export default function Panel2_Container_GameEditor() {
             "emu4sets": entireEmuD
         });
 
-    //1    setTestPlayerGameDataTracker(data1);
+    //1    setTestPlayerGameDataTracker(data1); //prep before start-viewing
     }
 
     function updateUserConfigFromEmuManager2Epp(data2) {
@@ -818,7 +820,7 @@ export default function Panel2_Container_GameEditor() {
             "emu4sets": entireEmuD
         });
 
-    //1    setTestPlayerProfile(data2);
+    //1    setTestPlayerProfile(data2);  //prep before start-viewing
     }
 
     function updateUserConfigFromEmuManager3Epa(data3) {
@@ -831,7 +833,7 @@ export default function Panel2_Container_GameEditor() {
             "emu4sets": entireEmuD
         });
 
-    //1    setTestPlayerAccount(data3);
+    //1    setTestPlayerAccount(data3);  //prep before start-viewing
     }
 
     function updateUserConfigFromEmuManager4Ess(data4) {
@@ -1075,9 +1077,7 @@ export default function Panel2_Container_GameEditor() {
     
     
         });
-    
-  //1  setTestPlayerGameDataTracker(emuGdt1Temp);
-    
+        
         let resObj = {};
         resObj["gdt1"] = emuGdt1Temp;
         resObj["epp2"] = projectMetaData["emu4sets"]["epp2"];
@@ -1983,8 +1983,6 @@ return (
             style={{"display": "flex"}}
         >
             
-
-
 
                 <Viewer_Entire_Screen
 
