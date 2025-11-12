@@ -183,6 +183,8 @@ export default function Panel2_Container_GameEditor() {
     function handleCancelNodeTestViewer() {
 //TODO reset things like:
         //initialPieceNum
+        setTestPlayerGameDataTracker(projectMetaData["emu4sets"]["gdt1"]);
+
 
         setDisplayViewingAny(false);
         setDisplayQuickview(false);
@@ -195,6 +197,8 @@ export default function Panel2_Container_GameEditor() {
         setCurrTestingChapterTitle("");
         setCurrTestingNodeKey("");
         setCurrTestingNodeType("");
+
+        setTestPlayerGameDataTracker(projectMetaData["emu4sets"]["gdt1"]);
 
         setDisplayEntireGameViewer(false);
         setDisplayViewingAny(false);
@@ -214,8 +218,8 @@ export default function Panel2_Container_GameEditor() {
     }
 
     function notifyCurrGdt(gdtObj) {
-                    console.log("panel2-received gdt = ", gdtObj);
-        setTestPlayerGameDataTracker(gdtObj);
+                   console.log("panel2-received gdt = ", gdtObj);
+       setTestPlayerGameDataTracker(gdtObj);
     }
 
 
@@ -2076,7 +2080,7 @@ return (
 
                     allPieceContent={projectAllNodeContent[currTestingNodeKey].nodeContent}  //from node's obj (data-structure) //TODO change
 
-                    initialEmuGameDataTracker={testPlayerGameDataTracker} //TODO change
+                    initialEmuGameDataTracker={projectMetaData["emu4sets"]["gdt1"]} //TODO change
 
                     uiData1_textframe={projectAllNodeContent[currTestingNodeKey]["nodeUISettings"].textFrame}  //from node's obj (data-structure) //TODO change
                     uiData2_defaultButtonOption={projectAllNodeContent[currTestingNodeKey]["nodeUISettings"].defaultButton}  //from node's obj (data-structure)  //TODO change

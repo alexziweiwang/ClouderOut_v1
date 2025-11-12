@@ -103,10 +103,12 @@ export default function AllPanels_QuickView_ConvNode ({
 
 
             console.log("all-panels entered:",     
-            uiData1_textframe, 
-            uiData2_defaultButtonOption, 
-            uiData3_ConvNavigation, 
-            uiData4_logPageSettings);
+            // uiData1_textframe, 
+            // uiData2_defaultButtonOption, 
+            // uiData3_ConvNavigation, 
+            // uiData4_logPageSettings
+                initialEmuGameDataTracker
+            );
 
 
             let auMap = getAudioMap();
@@ -314,7 +316,9 @@ export default function AllPanels_QuickView_ConvNode ({
             }}>
 
             <div style={{"marginLeft": "-700px", "marginTop": "-30px", "paddingBottom": "20px"}}>
-          
+
+
+
                     
                                                     {/* <button 
                                                         className="cursor_pointer modalClose" 
