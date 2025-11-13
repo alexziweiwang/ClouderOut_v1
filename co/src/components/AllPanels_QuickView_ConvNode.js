@@ -258,7 +258,7 @@ export default function AllPanels_QuickView_ConvNode ({
         setGameDataTracker(data);
 
         //TODO to panel2:
-        notifyCurrGdt(data);
+      //  notifyCurrGdt(data);
     }
 
     function passInScreenHeight() {

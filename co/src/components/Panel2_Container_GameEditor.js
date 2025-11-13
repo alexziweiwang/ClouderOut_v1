@@ -59,7 +59,7 @@ import { submitFileVM, fetchRmFileListVM, addToRmFileListVM, fetchUrlByFilenameV
 import { fetchProjectAllMetadataVM, updateProjectMetadataSingleFieldVM, updateProjectAllMetadataVM } from '../viewmodels/ProjectMetadataViewModel'; //TODO60
 import { generateNodeLongKeyString_vm } from '../viewmodels/PrepAc_ProjectOperation';
 import { singleNodeWriteToCloudVM, createNewNodeFoldersVM, multipleNodeWriteToCloudVM } from '../viewmodels/NodeEditingViewModel';
-import { dupObject, fromIndexedMapToList } from '../viewmodels/PrepAc_Conversion';
+import { dupObject, dupNestedObject, fromIndexedMapToList } from '../viewmodels/PrepAc_Conversion';
 
 
 
@@ -182,9 +182,10 @@ export default function Panel2_Container_GameEditor() {
 
     function handleCancelNodeTestViewer() {
 //TODO reset things like:
+console.log("handle Cancel NodeTest Viewer:", projectMetaData["emu4sets"]["gdt1"]);
+
         //initialPieceNum
         setTestPlayerGameDataTracker(projectMetaData["emu4sets"]["gdt1"]);
-
 
         setDisplayViewingAny(false);
         setDisplayQuickview(false);
@@ -303,13 +304,17 @@ export default function Panel2_Container_GameEditor() {
         let checkMetadataValid = checkProjectMetaData_vm(projectMetaData);
 
                                                         console.log("panel2 (render once) - mode = ", state.mode, 
-                                                            "... isPrepFinished = ", isPrepFinished, 
-                                                            "\n focusing on: ", focusingEditor, 
-                                                            "\n username = ", authEmailName,
-                                                            "\n\t metadata = ", projectMetaData,
-                                                            "\n\t ChapListNestedArr = ", chapListNestedArr,
-                                                            "\n\tmetadata valid ? ", checkMetadataValid,
-                                                            "\n\n\t all-node-content = ", projectAllNodeContent,
+                                                            // "... isPrepFinished = ", isPrepFinished, 
+                                                            // "\n focusing on: ", focusingEditor, 
+                                                            // "\n username = ", authEmailName,
+                                                           // "\n\t metadata = ", projectMetaData,
+                                                            // "\n\t ChapListNestedArr = ", chapListNestedArr,
+                                                            // "\n\tmetadata valid ? ", checkMetadataValid,
+                                                            // "\n\n\t all-node-content = ", projectAllNodeContent,
+
+                                                            "\nprojectMetaData[emu4sets][gdt1] = ", checkMetadataValid === true ? projectMetaData["emu4sets"].gdt1 : "invlid",
+                                                            "\ntestPlayerGameDataTracker = ", testPlayerGameDataTracker,
+                                                            
                                                         );
 
  
@@ -373,7 +378,7 @@ export default function Panel2_Container_GameEditor() {
     //    console.log("\n\n\n\n\n\npanel2 state = ", state);
 
 
-        console.log("isSavedToCloud = ", isSavedToCloud);
+  //      console.log("isSavedToCloud = ", isSavedToCloud);
     });
 
 
@@ -387,6 +392,10 @@ export default function Panel2_Container_GameEditor() {
             "audio": projectMetaData["proj_resource_audio"]
         }
         setResourcePair(varPairObj);
+
+
+                        console.log("\n$$$$$$ projectMetaData[emu4sets][gdt1] = ", 
+                        projectMetaData["emu4sets"] !== undefined ? projectMetaData["emu4sets"].gdt1 : "invalid",);
         
     }, [
         projectMetaData
@@ -654,8 +663,10 @@ export default function Panel2_Container_GameEditor() {
     function prepareTestEmuDup() {
         //setup 
         let emuObj = projectMetaData["emu4sets"];
-        let dup1 = dupObject(emuObj["gdt1"]);
+        let dup1 = dupNestedObject(emuObj["gdt1"]);
         setTestPlayerGameDataTracker(dup1);
+
+        console.log("when starting viewing -- gdt1 = ", dup1, "\nemuObj = ", emuObj);
 
         let dup2 = dupObject(emuObj["epp2"]);
         setTestPlayerProfile(dup2);
@@ -2097,7 +2108,7 @@ return (
                                         
                     // resetViewing={resetQuickView}
                     openSettingPage={hintNodeEditorOnly}
-                    notifyCurrGdt={notifyCurrGdt}
+                    // notifyCurrGdt={notifyCurrGdt}
             /> 
         }
     

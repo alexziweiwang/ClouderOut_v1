@@ -41,6 +41,31 @@ export function dupObject(sourceObj) {
 
 }
 
+export function dupNestedObject(sourceObj) {
+    let destObj = {};
+
+    if (sourceObj !== undefined) {
+
+        Object.keys(sourceObj).map((currKey) => {
+            let sourceItem = sourceObj[currKey];
+
+            let destItem = {}
+            Object.keys(sourceItem).map((itemKey) => {
+                destItem[itemKey] = sourceItem[itemKey];
+            });
+
+            destObj[currKey] = destItem;
+
+                    console.log("\t\t sourceItem === destItem ? ", sourceItem === destItem);
+
+                    
+        });
+    }
+
+    return destObj;
+
+}
+
 export function fromListToIndexedMap(list1) {
     let map1 = {};
     list1.map((item, index) => {
