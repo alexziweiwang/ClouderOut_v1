@@ -911,7 +911,7 @@
 - 2025-Nov-11: Design sl-system and single-exp system separation: player-data-managing strategies
 
 - 2025-Nov-12: Design testing-project
-
+- 2025-Nov-12: Design emu-data-layer optimization
 
 
 
