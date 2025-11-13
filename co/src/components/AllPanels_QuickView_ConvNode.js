@@ -7,6 +7,7 @@ import langDictionary from './_textDictionary';
 //level3 (container of conversation-node, for quick view, along with panel attached)
 //the same layer with duing-game-screen_all-node-type-container
 import { buttonConsequenceByStatementEntireArray } from '../viewmodels/CalcAc_QuickView';
+import { initializeGameDataTracker_vm } from '../viewmodels/PrepAc_ViewerEntireAc';
 
 export default function AllPanels_QuickView_ConvNode ({
     initialPieceNum, 
@@ -98,8 +99,8 @@ export default function AllPanels_QuickView_ConvNode ({
  
         if (firstTimeEnter === true) {
 
-//console.log("qv__initialEmuGameDataTracker  = ", initialEmuGameDataTracker);
 
+            initializeGameDataTracker_local(initialEmuGameDataTracker);
 
 
             console.log("all-panels entered:",     
@@ -164,6 +165,11 @@ export default function AllPanels_QuickView_ConvNode ({
 
 
     });
+
+    function initializeGameDataTracker_local(dataObj) {
+        initializeGameDataTracker_vm(dataObj, setGameDataTracker);
+    }
+
 
     function updateRenderCounter() {
         console.log("updateRenderCounter!");

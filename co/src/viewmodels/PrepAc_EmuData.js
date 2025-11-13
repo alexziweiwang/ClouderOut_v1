@@ -1,3 +1,5 @@
+import { dupObject, dupNestedObject } from './PrepAc_Conversion';
+
 
 export function prepare1Gdt_vm(
     gdt1Item,
@@ -130,17 +132,6 @@ export function prepare3Epa_vm(
     update3Epa(tempObj3);
 }
 
-function duplicateObject(objSource) {
-    let objDest = {};
-
-    Object.keys(objSource).map((currKey) => {
-        objDest[currKey] = objSource[currKey];
-    });
-
-    
-    return objDest;
-}
-
 export function makeDupGdt1_vm(data1) {
     if (data1 === undefined) {
         return {};
@@ -151,21 +142,7 @@ export function makeDupGdt1_vm(data1) {
     Object.keys(data1).map((currKey) => {
             let dataItemSource = data1[currKey];
 
-            let dataItemDest = duplicateObject(dataItemSource);
-
-                    // let name = data1[currKey]["name"];
-                    // let defaultVal = data1[currKey]["default_value"];
-                    // let dataType =data1[currKey]["data_type"];
-                    // let currVal = data1[currKey]["current_value"];
-
-                    // let obj = {
-                    //     "name": name,
-                    //     "default_value": defaultVal,
-                    //     "data_type": dataType,
-                    //     "current_value": currVal
-                    // }
-                    // let keyStr = currKey;
-                    // largeMap[keyStr] = obj;
+            let dataItemDest = dupObject(dataItemSource);
 
             largeMap[currKey] = dataItemDest;
         }
@@ -176,7 +153,7 @@ export function makeDupGdt1_vm(data1) {
 }
 
 export function makeDupEpp2_vm(data2) {
-    return duplicateObject(data2);
+    return dupObject(data2);
 
                                 // let pn = data2["playername"];
                                 // let ut = data2["userTitle"];
@@ -195,7 +172,7 @@ export function makeDupEpp2_vm(data2) {
 }
 
 export function makeDupEpa3_vm(data3) {
-    return duplicateObject(data3);
+    return dupObject(data3);
                                 // let pn = data3["playername"];
                                 // let eml = data3["email"];
 
@@ -207,7 +184,7 @@ export function makeDupEpa3_vm(data3) {
 }
 
 export function makeDupEss4_vm(data4) {
-    return duplicateObject(data4);
+    return dupObject(data4);
 
 }
 
@@ -221,8 +198,8 @@ export function makeDupShp5_vm(data) {
     let shopStockItemSource = data["shopStock"];
     let playerPurcSttSource = data["playerPurchaseStatus"];
 
-    let shopStockItemDest= duplicateObject(shopStockItemSource);
-    let playerPurcDest = duplicateObject(playerPurcSttSource);
+    let shopStockItemDest= dupObject(shopStockItemSource);
+    let playerPurcDest = dupObject(playerPurcSttSource);
 
     let tempObj = {
         "shopStock": shopStockItemDest,

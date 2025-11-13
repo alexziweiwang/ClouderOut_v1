@@ -270,7 +270,7 @@ import {
         let gdt1Obj = emu4sets["gdt1"];
         let epp2Obj = emu4sets["epp2"];
         let epa3Obj = emu4sets["epa3"];
-                                console.log("emu: gdt1 = ", gdt1Obj);
+                                console.log("check-metadata -- emu: gdt1 = ", gdt1Obj);
         Object.keys(gdt1Obj).map((itemKey) => {
             let item = gdt1Obj[itemKey];
 
