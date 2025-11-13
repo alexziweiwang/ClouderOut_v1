@@ -215,6 +215,9 @@ export default function NodeManager({projectName, currUser,
     textDictItem.pleaseSelectOrSetupChaptersInChapterMngText
     : textDictItemDefault.pleaseSelectOrSetupChaptersInChapterMngText;
 
+  let editText = textDictItem.editText !== undefined ?
+    textDictItem.editText
+    : textDictItemDefault.editText
 
 
 //TODO important note: node data is operated in this component (and level).
@@ -1589,26 +1592,32 @@ chapter-key = {chapterKey}
                 {nextNodeText} </p>
                     {/* next node : */}
 
-                    {nextNodeTitleText}: <br></br>
+                    {nextNodeTitleText}:
                
-                    <div>
+                    <div className="indentOne">
+
+                     
+
                     {(nodeRelationshipMap[clickedNodeKey].nextNode !== "" 
                       && nodeRelationshipMap[clickedNodeKey].nextNode !== "-") && <>
                         
                         
-                      <label>{nodeRelationshipMap[nodeRelationshipMap[clickedNodeKey].nextNode]["nodeName"]}</label><br></br>
+                      <label>
+                        {nodeRelationshipMap[nodeRelationshipMap[clickedNodeKey].nextNode]["nodeName"]}
+                      </label><br></br>
                       </>}
                     </div>
                     
                 
-                    <div style={{"marginLeft": "135px"}}> {/* options: update next-node or detach */}
+                    <div className="indentOne"> {/* options: update next-node or detach */}
                   
                   
                   
                   {/* option1: update the next-node */}
+
                 <button onClick={()=>{setAskUpdateNextNodeFlag(!askUpdateNextNodeFlag);}}>
                   {askUpdateNextNodeFlag === false 
-                  ? updateText 
+                  ? editText 
                   : cancelText}
                   </button>
                 {askUpdateNextNodeFlag === true
