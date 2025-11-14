@@ -1493,7 +1493,6 @@ console.log("ui-langauge changed to: ", val);
   }
 
   async function saveBothObjToCloud_release(releaseFunc) {
-    //
 
     if (isSavedToCloud_metadata === false && isSavedToCloud_nodedata === false) {
 
@@ -1501,21 +1500,28 @@ console.log("ui-langauge changed to: ", val);
         .then(async()=>{
             await saveAllNodeDataToCloud_panel2()
             .then(() => {
-                    releaseFunc();
+                releaseFunc();
             });
         })
 
     } else {
-        if (isSavedToCloud_metadata === false) {
-            await saveMetadataToCloud_panel2();
+        if (isSavedToCloud_metadata === false && isSavedToCloud_nodedata === true) {
+            await saveMetadataToCloud_panel2()
+            .then(()=>{
+                releaseFunc();
+            });
             //multipleNodeWriteToCloud-related for projectAllNodeContent
     
+        } else if (isSavedToCloud_metadata === true && isSavedToCloud_nodedata === false) {
+            await saveAllNodeDataToCloud_panel2()
+            .then(()=>{
+                releaseFunc();
+            });
+
+        } else { //both flags true
+            releaseFunc();
         }
-    
-        if (isSavedToCloud_nodedata === false) {
-            await saveAllNodeDataToCloud_panel2();
-           
-        }
+   
 
     }
 

@@ -1303,10 +1303,14 @@ chapter-key = {chapterKey}
                                 }
                                   
                                 onClick={()=>{
-                                  if (crd === clickedNode2) { //cancel if already clicked
+
+                                  //user select the node to edit or operate...
+                                  
+                                  if (crd === clickedNode2) { //already clicked? cancel the highlight
                                     setClickedNode2(-1);
-                                  } else {//setup clicked node
+                                  } else {//setup clicked node -- changing
                                     setClickedNode2(crd);
+                                    setAskUpdateNextNodeFlag(false);
                                   }       
                             
                                   if (clickedNode2 !== "" && content === "") {//get clicked & grid not empty
