@@ -154,9 +154,9 @@ export default function DuringGameScreen_AllNodeTypeContainer({
                 resetJumpNodeSignalToFalse();
             
             } else if (currNodeType === "*chapterEnd*") {
-                                                console.log("*chapterEnd*");
+                                              //  console.log("*chapterEnd*");
 
-                walkToNextChapter();
+           //    walkToNextChapter();
 
             } else if (jumpNodeSignal == true) { //game-content-node
                                                 console.log("game-content-node");
@@ -336,9 +336,10 @@ export default function DuringGameScreen_AllNodeTypeContainer({
 
         setHoldingNextNodeKey(nextNodeKeyInfo);
 
-        console.log("#locateHoldingNextNode finish! ");                                    console.log("\n\n\n\n\n\nlocate-Holding-NextNode(jump node)! \n\tchapterNodeMapping = ", chapterNodeMapping);
+                                                                                        console.log("#locateHoldingNextNode finish! ");                                    
+                                                                                        console.log("\n\n\n\n\n\nlocate-Holding-NextNode(jump node)! \n\tchapterNodeMapping = ", chapterNodeMapping);
 
-        console.log("\n\n\n\n\n\n");
+                                                                                        console.log("\n\n\n\n\n\n");
     }
 
 
@@ -544,10 +545,9 @@ export default function DuringGameScreen_AllNodeTypeContainer({
                                                     // setCurrNodeKey(nextStartNodeKey);
                                                     // setCurrNodeType("*chapterStart*");
 
-
-
-        locateHoldingNextNode("chapterStart", "*chapterStart*");
         markJumpNodeSignalTrue();
+        setCurrNodeType("*chapterStart*");
+        setCurrNodeKey("chapterStart");
     }
 
 
@@ -559,20 +559,20 @@ export default function DuringGameScreen_AllNodeTypeContainer({
         let len = allChapterList.length;
         while (i < len) {
             let item = allChapterList[i];
-                               console.log("allChapterList[",i,"] = ", item);
+                               console.log("allChapterList[",i,"] = ", item, "\n\tnext-chap = ", i+1<len? allChapterList[i+1] : "none");
 
             if (item[0] === currChapterKey) {
                 //next chapter is the next key
 
                 if (i+1 === len) {
-                    console.log("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nlast chapter")
-                    //returnToStoryPage();
-
+                                                    console.log("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nthis is the last chapter")
+                    //change to next-chapter's chapter-start node
+                    
                     return;
 
                 } else { // (i+1 < len): more chapters to go
 
-                                                    console.log("\t\t more chapters to go");
+                     //                               console.log("\t\t more chapters to go");
 
 
                     let nextChapterItem = allChapterList[i+1];
@@ -580,11 +580,12 @@ export default function DuringGameScreen_AllNodeTypeContainer({
                     setCurrChapterTitle(nextChapterItem[1]);
 
 
-                    prepNodeAfterStartNode();
+                    
 
                     triggerWalkToCurrChapter(nextChapterItem[0], nextChapterItem[1]);
 
 
+                    prepNodeAfterStartNode();
 
                     console.log("next chapter!! \n", nextChapterItem);
                     break;
@@ -670,8 +671,7 @@ return (
     </div>}
 
 
-    {/* 
-    //TODO can remove later, here for testing only
+    
     {currNodeType === "*chapterEnd*" && 
     <div style={{
         "backgroundColor": "#000000", 
@@ -680,17 +680,16 @@ return (
         "height": `${screenHeight}px`,
         "color": "pink"
     }}
-        o n C l i ck ={()=>{
+        onClick ={()=>{
 
             //TODO switch to next chapter!
             walkToNextChapter();
         }}
     >
     *chapterEnd*<br></br>
-    chapter = {currChapterKey}, node-key = {currNodeKey}        
+    next-chapter = {currChapterKey}, node-key = {currNodeKey}        
     </div>} 
-    //TODO can remove later, here for testing only
-    */}
+   
 
 
     {/* just for transition - no content for logic-splitter */}
