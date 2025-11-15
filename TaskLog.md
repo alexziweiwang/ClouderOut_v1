@@ -915,6 +915,7 @@
 
 - 2025-Nov-13: Design entire-user-flow-test
 
+- 2025-Nov-14: Design sl-system and single-exp system separation: player-data-managing strategies
 
 
 
