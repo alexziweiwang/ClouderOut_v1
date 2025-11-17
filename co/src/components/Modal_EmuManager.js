@@ -135,6 +135,10 @@ export default function Modal_EmuManager({
         textDictItem.emuPlayerAccount
         : textDictItemDefault.emuPlayerAccount;
 
+    const emuSlSlots = textDictItem.emuSlSlots !== undefined ?
+        textDictItem.emuSlSlots
+        : textDictItemDefault.emuSlSlots;
+
     const emuShopInfo = textDictItem.emuShopInfo !== undefined ?
         textDictItem.emuShopInfo
         : textDictItemDefault.emuShopInfo;
@@ -190,6 +194,9 @@ export default function Modal_EmuManager({
 
     const [epa3EditItemName, setEpa3EditItemName] = useState("");
     const [epa3Input, setEpa3Input] = useState("");
+
+    const [ess4SlSlotsOption, setEss4SlSlotsOption] = useState(true);
+
 
     const [addEmuProductItem, setAddEmuProductItem] = useState(false);
                                 // product key, name, price, info
@@ -279,7 +286,7 @@ export default function Modal_EmuManager({
         "1gdt": "1.Game Data to Test",
         "2epp": "2.Emu Player Profile",
         "3epa": "3.Emu Player Account",
-        "4ess": "4.Emu SL slots",
+        "4ess": "4.Emu Save and Load",
         "5shp": "5.Emu Shop Product Items",
     }
 
@@ -618,7 +625,7 @@ return (<div className={modalStyleName}>
     && 
     <div className="someGrey parallelFrame"
                     style={{
-                        "borderRadius": "0px"
+                        "borderRadius": "0px",
                     }}
                 >
                     <button 
@@ -642,13 +649,13 @@ return (<div className={modalStyleName}>
                             setFocusingPanelName("3epa");
                         }}             
                     >3.{emuPlayerAccount} </button>
-                    {/* <br></br>
+                    <br></br>
                     <button
                         className={focusingPanelName === "4ess" ? "selectedTab" : ""}
                         onClick={()=>{
                             setFocusingPanelName("4ess");
                         }}             
-                    >4.Emu SL slots</button> */}
+                    >4. {emuSlSlots}</button>
                     {/* <br></br>
                     <button
                         className={focusingPanelName === "5shp" ? "selectedTab" : ""}
@@ -1212,12 +1219,103 @@ return (<div className={modalStyleName}>
 
 
                 {/* "4.Emu SL slots" */}
-
-                {/* {focusingPanelName === "4ess" && 
+                {focusingPanelName === "4ess" && 
                 <div>
-4   SL slots settings
+                        4   SL slots settings
 
-                   </div>} */}
+                        <br></br>
+
+                    <div
+                        style={{
+                            "borderRadius": "0px",
+                            
+                            "paddingLeft": "15%"
+                        }}
+                    >
+
+                        <div className="darkerGrey"
+                             style={{
+                                "borderRadius": "0px",
+            
+                                "width": "613px",
+                                "textAlign": "left"
+                                }}
+                    >
+                        <div
+                            style={{
+
+                                "textAlign": "left"
+                            }}
+                        
+                        >
+                        SL mode: 
+                            <div className="indentOne">
+                                <input 
+                                    className="cursor_pointer"
+                                    type="radio"
+                                    value={ess4SlSlotsOption}
+                                    checked={!ess4SlSlotsOption}
+                                    onChange={()=>{
+                                        setEss4SlSlotsOption(false);
+                                    }}
+                                ></input>
+                                <label
+                                    className="cursor_pointer"
+                                    onClick={()=>{
+                                        setEss4SlSlotsOption(false);
+                                    }}
+                                >Chapter Experience (data resets after a chapter ends)</label>
+
+                                <br></br>
+
+                                <input 
+                                    className="cursor_pointer"
+                                    type="radio"
+                                    value={ess4SlSlotsOption}
+                                    checked={ess4SlSlotsOption}
+                                    onChange={()=>{
+                                        setEss4SlSlotsOption(true);
+                                    }}
+                                ></input>
+                                <label
+                                    className="cursor_pointer"
+                                    onClick={()=>{
+                                        setEss4SlSlotsOption(true);
+                                    }}
+                                >SL Slots (data does not reset in chapter transition, with SL slots)</label>
+                            </div> 
+
+
+                            <button>
+                                {updateText}
+                            </button>
+
+                        </div>
+                        
+                        
+
+                        <table>
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                    </tr>
+
+                                </thead>
+
+                                <tbody>
+                                    <tr>
+                                        <td>
+
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+
+                        </table>
+
+                    </div>
+                    </div>
+                   </div>}
 {/* Note: each sl-slot:
   creation timestamp [key?]
 + customized title

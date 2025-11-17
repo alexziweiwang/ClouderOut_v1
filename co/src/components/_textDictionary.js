@@ -197,6 +197,7 @@ const _textDictionary = {
         emuPlayerProfile: "Emu Player Profile",
         emuPlayerAccount: "Emu Player Account",
         emuManagerText: "Emu Data Manager",
+        emuSlSlots: "Emu Save & Load",
         productItemListText: "Product Item List",
         emuShopInfo: "Emu Shop Info",
         
@@ -411,6 +412,7 @@ const _textDictionary = {
         emuGameDataText: "模拟/测试用 游戏数据",
         emuPlayerProfile: "模拟/测试用 玩家资料",
         emuPlayerAccount: "模拟/测试用 玩家帐户",
+        emuSlSlots: "模拟/测试用 存档读档",
         emuManagerText: "模拟数据-管理",
         productItemListText: "产品单项列表",
         emuShopInfo: "模拟/测试用 商店信息",
