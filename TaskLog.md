@@ -917,6 +917,7 @@
 
 - 2025-Nov-14: Design sl-system and single-exp system separation: player-data-managing strategies
 
+- 2025-Nov-17: Design sl-system and single-exp system separation: player-data-managing strategies
 
 
 
