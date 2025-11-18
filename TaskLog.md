@@ -919,6 +919,15 @@
 
 - 2025-Nov-17: Design sl-system and single-exp system separation: player-data-managing strategies
 
+- 2025-Nov-18: Design sl-setting option and system for project-makers
+
+
+
+
+
+
+
+
 
 
 
