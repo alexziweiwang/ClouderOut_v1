@@ -307,13 +307,13 @@ console.log("handle Cancel NodeTest Viewer:", projectMetaData["emu4sets"]["gdt1"
                                                             // "... isPrepFinished = ", isPrepFinished, 
                                                             // "\n focusing on: ", focusingEditor, 
                                                             // "\n username = ", authEmailName,
-                                                           // "\n\t metadata = ", projectMetaData,
+                                                            "\n\t metadata = ", projectMetaData,
                                                             // "\n\t ChapListNestedArr = ", chapListNestedArr,
                                                             // "\n\tmetadata valid ? ", checkMetadataValid,
                                                             // "\n\n\t all-node-content = ", projectAllNodeContent,
 
-                                                            "\nprojectMetaData[emu4sets][gdt1] = ", checkMetadataValid === true ? projectMetaData["emu4sets"].gdt1 : "invlid",
-                                                            "\ntestPlayerGameDataTracker = ", testPlayerGameDataTracker,
+                                                            // "\nprojectMetaData[emu4sets][gdt1] = ", checkMetadataValid === true ? projectMetaData["emu4sets"].gdt1 : "invlid",
+                                                            // "\ntestPlayerGameDataTracker = ", testPlayerGameDataTracker,
                                                             
                                                         );
 

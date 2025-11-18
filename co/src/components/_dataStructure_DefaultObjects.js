@@ -1,10 +1,11 @@
 /*
-    metadata - chapter list 
+    metadata - chapter list fields
         [0] chp-key
         [1] chp-title
         [2] "display" or "delete"
         [3] note]
 */
+
 
 
 /*
@@ -510,3 +511,26 @@ export const shp5Template = {
     "playerPurchaseStatus":  []
 }
 
+export const metadataTemplate = {
+    "author_info": "",
+    "chapterList": {},
+    "chapterNodeMapping": {},
+    "convNodeUiPlanMap": {},
+    "emu4sets": {
+        "gdt1": {}, 
+        "epp2": {}, 
+        "epa3": {},
+        "ess4": {}, 
+        "shp5": {}, 
+    },
+    "game_data": {},
+    "proj_resource_audio": [],
+    "proj_resource_visual": [],
+    "project_description": "",
+    "project_name": "",
+    "project_title": "",
+    "sizeDirection": "16:9(vertical)",
+    "trashed": false,
+    "type": "project",
+    "ui_language": "en"
+}

@@ -262,7 +262,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
 
       /* fetch from cloud db */
-      //TODO500     
+      //TODO900     
       let obj = {};
 
       obj = getProjectResourceVarPairs();
@@ -366,12 +366,13 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
                                                            //TODO important for holder-in-practice
 //TODO ------------------------------------------------------ testing data area
 
-    const [selectedGameDataPanelBetween2, setSelectedGameDataPanelBetween2] = useState(true);
+  const [selectedGameDataPanelBetween2, setSelectedGameDataPanelBetween2] = useState(true);
 
   const [gameDataDesignList, setGameDataDesignList] = useState({}); //TODO90 receive only
   const [gameDataArray, setGameDataArray] = useState([]);
 
 
+  const [slAreSlots, setSkAreSlots] = useState(false);
 
   const [needCloudGameData, setNeedCloudGameData] = useState(true); //TODO remove
 
@@ -1424,6 +1425,8 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
         }}
       >Download Project File</button>
 
+
+          {/* tab */}
       <button 
         className={(showChapterMaker&&!showSlTab) ? "tabBarGMSelected" : "tabBarGM"} 
         onClick={()=>{
@@ -1433,6 +1436,9 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
         }}>
           {contentChaptersTabText}</button>
+
+
+          {/* tab */}
       <button 
         className={(!showChapterMaker&&!showSlTab) ? "tabBarGMSelected" : "tabBarGM"} 
         onClick={()=>{
@@ -1447,6 +1453,9 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
         }}>
           {menuNavigationsTabText}</button>
     
+
+
+          {/* tab */}
       <button 
         className={showSlTab ? "tabBarGMSelected" : "tabBarGM"} 
         onClick={()=>{
@@ -1454,10 +1463,15 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
               setShowSLTab(true);
 
         }}>
-          SL saving
+          Save & Load System
           
-          </button>
+      </button>
     
+
+
+
+
+
         
 
     
@@ -1638,6 +1652,48 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
     {showSlTab === true
     && <div>
       sl settings
+      
+      <div style={{"textAlign": "left"}}>
+          SL mode:
+
+                            <div className="indentOne">
+                                <input 
+                                    className="cursor_pointer"
+                                    type="radio"
+                                    value={slAreSlots}
+                                    checked={!slAreSlots}
+                                    onChange={()=>{
+                                        setSkAreSlots(false);
+                                    }}
+                                ></input>
+                                <label
+                                    className="cursor_pointer"
+                                    onClick={()=>{
+                                      setSkAreSlots(false);
+                                    }}
+                                >Chapter Experience (data resets after a chapter ends)</label>
+
+                                <br></br>
+
+                                <input 
+                                    className="cursor_pointer"
+                                    type="radio"
+                                    value={slAreSlots}
+                                    checked={slAreSlots}
+                                    onChange={()=>{
+                                      setSkAreSlots(true);
+                                    }}
+                                ></input>
+                                <label
+                                    className="cursor_pointer"
+                                    onClick={()=>{
+                                      setSkAreSlots(true);
+                                    }}
+                                >SL Slots (data does not reset in chapter transition, with SL slots)</label>
+                            </div> 
+
+
+          </div>
       </div>}
 
 {/*  Entire Viewing -- all parts NOT-USING */}
