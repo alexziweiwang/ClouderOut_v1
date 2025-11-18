@@ -230,6 +230,8 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
 
   const [showChapterMaker, setShowChapterMaker] = useState(true); // local-use
+  const [showSlTab, setShowSLTab] = useState(false);
+
 
   const [createNodeFolderSignal, setCreateNodeFolderSignal] = useState(false); // local-use
   const [createdNewNodeWaitlist, setCreatedNewNodeWaitlist] = useState([]); // local-use
@@ -1423,22 +1425,40 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
       >Download Project File</button>
 
       <button 
-        className={showChapterMaker ? "tabBarGMSelected" : "tabBarGM"} 
+        className={(showChapterMaker&&!showSlTab) ? "tabBarGMSelected" : "tabBarGM"} 
         onClick={()=>{
           setShowChapterMaker(true);
+
+          setShowSLTab(false);
+
         }}>
           {contentChaptersTabText}</button>
       <button 
-        className={showChapterMaker? "tabBarGM" : "tabBarGMSelected"} 
+        className={(!showChapterMaker&&!showSlTab) ? "tabBarGMSelected" : "tabBarGM"} 
         onClick={()=>{
-        setShowChapterMaker(false);
-        if (firstTimeSwitchTabNavPanel === true) {
-          setFirstTimeSwitchTabNavPanel(false);
-        }
+          setShowChapterMaker(false);
+          
+          if (firstTimeSwitchTabNavPanel === true) {
+            setFirstTimeSwitchTabNavPanel(false);
+          }
+
+          setShowSLTab(false);
+
         }}>
           {menuNavigationsTabText}</button>
     
+      <button 
+        className={showSlTab ? "tabBarGMSelected" : "tabBarGM"} 
+        onClick={()=>{
 
+              setShowSLTab(true);
+
+        }}>
+          SL saving
+          
+          </button>
+    
+        
 
     
     </div>
@@ -1446,7 +1466,10 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
 
 {/* chapter-and-node setting tab */}
-    {(showChapterMaker && authEmailName !== "_") && <div className="parallelFrame sectionArea">
+    {((showChapterMaker === true && showSlTab === false) 
+      && authEmailName !== "_") && 
+      
+    <div className="parallelFrame sectionArea">
 
         { 
         <ChapterManager 
@@ -1507,7 +1530,9 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
 
 {/* project-nagivation setting tab */}
-    {!showChapterMaker && 
+    {(showChapterMaker === false && showSlTab === false)
+    
+    && 
     <>
       
 
@@ -1609,8 +1634,11 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
     }
 
 
-
-
+    {/* project-sl-tab */}
+    {showSlTab === true
+    && <div>
+      sl settings
+      </div>}
 
 {/*  Entire Viewing -- all parts NOT-USING */}
     {false && 
