@@ -138,6 +138,7 @@ import {
         || metadataObj["convNodeUiPlanMap"] === undefined
         || metadataObj["sizeDirection"] === undefined
         || metadataObj["emu4sets"] === undefined
+        || metadataObj["slInfo"] === undefined
     ) {
 
 
@@ -302,6 +303,23 @@ import {
         });
         // epa3Template
 
+
+        //slInfo //TODO9001
+            //option: slSlots / chapterExpr
+            //sl slot settings: 
+                    //page-shape: row, col, page
+                    //sl-page-ui (setup in nav-setter, preview in nav-preview):
+                        // item-w, item-h, text-position, title-text, timestamp, etc.
+
+        let slObj = metadataObj["slInfo"];
+        let slPageInfo = slObj.slPage;
+        if (slObj["format"] === "slSlots") {
+            if (slPageInfo === undefined) {
+                return false;
+            }
+
+            //TODO check each field in slPageInfo this obj
+        }
 
 
     }

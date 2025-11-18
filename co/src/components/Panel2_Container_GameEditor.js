@@ -133,6 +133,7 @@ export default function Panel2_Container_GameEditor() {
       metadataObj["convNodeUiPlanMap"]
 
       metadataObj["sizeDirection"]
+      metadataObj["slInfo"]
 
 */
 

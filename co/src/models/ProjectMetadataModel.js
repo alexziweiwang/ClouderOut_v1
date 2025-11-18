@@ -34,6 +34,9 @@ export async function fetchProjectMetadataSingleField({projectName, currUser, fi
             item = projectData.author_info;
             break;
 
+        case "slInfo":
+            item = projectData.slInfo;
+
         case "chapterList":
             item = projectData.chapterList;
             break;
