@@ -921,7 +921,7 @@
 
 - 2025-Nov-18: Design sl-setting option and system for project-makers
 
-
+- 2025-Nov-19: Improve sl-setting option and system for project-makers
 
 
 
