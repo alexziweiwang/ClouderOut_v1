@@ -511,7 +511,7 @@ export const shp5Template = {
     "playerPurchaseStatus":  []
 }
 
-//TODO9001
+
 export const metadataTemplate = {
     "author_info": "",
     "chapterList": {},
@@ -535,6 +535,8 @@ export const metadataTemplate = {
     "type": "project",
     "ui_language": "en",
     "slInfo": {
+        //TODO9001
+
         "format": "chapterExpr",
         "slPage": {
             "row": 2,
@@ -542,6 +544,13 @@ export const metadataTemplate = {
             "page": 3,
             "item_w": 100,
             "item_h": 70,
+            "itemTitleStamp": true,
+            "bgPicName": "",
+            "groupPosX": 0,
+            "groupPoxY": 0,
+            "groupItemGapX": 5,
+            "groupItemGapY": 5,
+
             //TODO more fields...
         }
 

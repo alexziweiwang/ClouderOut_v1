@@ -10,6 +10,7 @@ import {
     gdt1Template,
     epp2Template,
     epa3Template,
+    metadataTemplate,
 
 
 
@@ -128,24 +129,47 @@ import {
             return false;
         }
 
-        if (metadataObj["game_data"] === undefined 
-        || metadataObj["proj_resource_visual"] === undefined 
-        || metadataObj["proj_resource_audio"] === undefined 
-        || metadataObj["ui_language"] === undefined 
-        || metadataObj["nav_ui_settings"] === undefined 
-        || metadataObj["chapterList"] === undefined 
-        || metadataObj["chapterNodeMapping"] === undefined 
-        || metadataObj["convNodeUiPlanMap"] === undefined
-        || metadataObj["sizeDirection"] === undefined
-        || metadataObj["emu4sets"] === undefined
-        || metadataObj["slInfo"] === undefined
-    ) {
+        let importantFields = [
+            "game_data",
+            "proj_resource_visual",
+            "proj_resource_audio",
+            "ui_language",
+            "nav_ui_settings",
+            "chapterList",
+            "chapterNodeMapping",
+            "convNodeUiPlanMap",
+            "sizeDirection",
+            "emu4sets",
+            "slInfo",
+        ];
+
+        importantFields.map((item, index)=>{
+            if (metadataObj[item] === undefined) {
+                console.log("@@@field incomplete...", item, " \n", metadataObj);
+                return false;    
+            }
+        })
+
+
+                            //     if (metadataObj["game_data"] === undefined 
+                            //     || metadataObj["proj_resource_visual"] === undefined 
+                            //     || metadataObj["proj_resource_audio"] === undefined 
+                            //     || metadataObj["ui_language"] === undefined 
+                            //     || metadataObj["nav_ui_settings"] === undefined 
+                            //     || metadataObj["chapterList"] === undefined 
+                            //     || metadataObj["chapterNodeMapping"] === undefined 
+                            //     || metadataObj["convNodeUiPlanMap"] === undefined
+                            //     || metadataObj["sizeDirection"] === undefined
+                            //     || metadataObj["emu4sets"] === undefined
+                            //     || metadataObj["slInfo"] === undefined
+                            // ) {
+
+                            //                                         console.log("@@@field incomplete...", metadataObj);
+                            //     return false;                                           
+                            // } 
 
 
 
-                                            console.log("@@@field incomplete...", metadataObj);
-        return false;                                           
-    } else {
         let gameDataMap = metadataObj["game_data"];
         // "game_data"
                     //"data_type"
@@ -317,12 +341,26 @@ import {
             if (slPageInfo === undefined) {
                 return false;
             }
+            if (slPageInfo["row"] === undefined
+                || slPageInfo["col"] === undefined    
+                || slPageInfo["page"] === undefined  
+                || slPageInfo["item_w"] === undefined              
+                || slPageInfo["item_h"] === undefined              
+                || slPageInfo["itemTitleStamp"] === undefined  
+                || slPageInfo["bgPicName"] === undefined  
+                || slPageInfo["groupPosX"] === undefined  
+                || slPageInfo["groupPoxY"] === undefined  
+                || slPageInfo["groupItemGapX"] === undefined  
+                || slPageInfo["groupItemGapY"] === undefined  
+            ) {
+                return false;
+            }
 
             //TODO check each field in slPageInfo this obj
         }
 
 
-    }
+    
 
         return true;
     }
