@@ -255,19 +255,33 @@ import {
                                           //  console.log("\tnode-key = ", nodeKey, "\n chapter-map = ", currChapterSmallMap, "\n item = ", currChapterSmallMap[nodeKey]);
                     let item = currChapterSmallMap[nodeKey];
 
-    
-                    if (item === undefined
-                    || item["col"] === undefined
-                    || item["display"] === undefined
-                    || item["nodeName"] === undefined
-                    || item["nodeType"] === undefined
-                    || item["row"] === undefined
-                    || item["screenSize"] === undefined
-                        ) {
-                                                    console.log("@@@invalid node mapping: ", nodeKey, "\n\t item = ", item);
-        
-                            return false;
-                    } 
+                    let nodeMappingFields = [
+                        "row",
+                        "col",
+                        "display",
+                        "nodeName",
+                        "nodeType",
+                        "screenSize"
+                    ];
+
+                    nodeMappingFields.map((fieldItem, fieldIndex)=>{
+                        if (item[fieldItem] === undefined) {
+                            return false;    
+                        }
+                    })
+                            
+                                            // if (item === undefined
+                                            // || item["col"] === undefined
+                                            // || item["display"] === undefined
+                                            // || item["nodeName"] === undefined
+                                            // || item["nodeType"] === undefined
+                                            // || item["row"] === undefined
+                                            // || item["screenSize"] === undefined
+                                            //     ) {
+                                            //                                 console.log("@@@invalid node mapping: ", nodeKey, "\n\t item = ", item);
+                                
+                                            //         return false;
+                                            // } 
                 }
 
             })
@@ -337,26 +351,46 @@ import {
 
         let slObj = metadataObj["slInfo"];
         let slPageInfo = slObj.slPage;
+
+        let slPageInfoFields = [
+            "row",
+            "col",
+            "page",
+            "item_w",
+            "item_h",
+            "itemTitleStamp",
+            "bgPicName",
+            "groupPosX",
+            "groupPoxY",
+            "groupItemGapX",
+            "groupItemGapY"
+        ];
+
         if (slObj["format"] === "slSlots") {
             if (slPageInfo === undefined) {
                 return false;
             }
-            if (slPageInfo["row"] === undefined
-                || slPageInfo["col"] === undefined    
-                || slPageInfo["page"] === undefined  
-                || slPageInfo["item_w"] === undefined              
-                || slPageInfo["item_h"] === undefined              
-                || slPageInfo["itemTitleStamp"] === undefined  
-                || slPageInfo["bgPicName"] === undefined  
-                || slPageInfo["groupPosX"] === undefined  
-                || slPageInfo["groupPoxY"] === undefined  
-                || slPageInfo["groupItemGapX"] === undefined  
-                || slPageInfo["groupItemGapY"] === undefined  
-            ) {
-                return false;
-            }
 
-            //TODO check each field in slPageInfo this obj
+            slPageInfoFields.map((item, index)=>{
+                if (slPageInfo[item] === undefined) {
+                    return false;    
+                }
+            })
+                                                        // if (slPageInfo["row"] === undefined
+                                                        //     || slPageInfo["col"] === undefined    
+                                                        //     || slPageInfo["page"] === undefined  
+                                                        //     || slPageInfo["item_w"] === undefined              
+                                                        //     || slPageInfo["item_h"] === undefined              
+                                                        //     || slPageInfo["itemTitleStamp"] === undefined  
+                                                        //     || slPageInfo["bgPicName"] === undefined  
+                                                        //     || slPageInfo["groupPosX"] === undefined  
+                                                        //     || slPageInfo["groupPoxY"] === undefined  
+                                                        //     || slPageInfo["groupItemGapX"] === undefined  
+                                                        //     || slPageInfo["groupItemGapY"] === undefined  
+                                                        // ) {
+                                                        //     return false;
+                                                        // }
+
         }
 
 
