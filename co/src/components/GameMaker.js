@@ -74,6 +74,7 @@ export default function GameMaker({
       projectName, 
       editorMode, 
       backendOption,
+      
       getUiLangOption,      
       getAuthEmailName,
 
@@ -84,7 +85,6 @@ export default function GameMaker({
       switchEditor,
 
       getProjectResourceVarPairs,
-      getUiLanguageOption,
       
       getTestPlayerGameDataTracker,
       getTestPlayerProfile,
@@ -107,6 +107,11 @@ export default function GameMaker({
       handleGameDataManagerOpen,  //TODO add in panel2
       handleEmuManagerOpen, //TODO add in panel2
 
+    //TODO func: fetch sl-info from metadata: "slInfo" - "format"
+      fetchSLInfoOption,
+
+    //TODO func: update sl-info of metadata: "slInfo" - "format"
+      updateSLInfoOption
     
     }) {
   const navigate = useNavigate();
@@ -363,6 +368,10 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
   const [isEmuMgrOpenedOnce, setIsEmuMgrOpenedOnce] = useState(false); //TODO remove
 
+
+
+
+
                                                            //TODO important for holder-in-practice
 //TODO ------------------------------------------------------ testing data area
 
@@ -372,7 +381,10 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
   const [gameDataArray, setGameDataArray] = useState([]);
 
 
-  const [slAreSlots, setSkAreSlots] = useState(false);
+  const [slAreSlots, setSlAreSlots] = useState(false); //"chapterExpr"(f) or "slSlots"(t)
+  const [slAllInfo, setAlAllInfo] = useState(-1); //including "format" and "slPage"-obj
+  //TODO9001 in use
+
 
   const [needCloudGameData, setNeedCloudGameData] = useState(true); //TODO remove
 
@@ -551,13 +563,6 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
    // navigate('/notloggedin', { replace: true });
 
   }
-
-
-  function firstSetupUILanguage() {
-    return getUiLanguageOption();
-  }
-
-
 
   function pureNavigateToProjectManagingPanel() {
     navigate('/mainpanel', { replace: true });
@@ -1301,10 +1306,6 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
     return authEmailName;
   }
 
-               
-  function passInBackendOption() {
-    return backendOption;
-  }
 
   function passInLocalProjectData_Emu() {
     return {}; //TODO1000
@@ -1648,6 +1649,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
     }
 
 
+                            {/* sl tab */}
     {/* project-sl-tab */}
     {showSlTab === true
     && <div>
@@ -1663,13 +1665,13 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
                                     value={slAreSlots}
                                     checked={!slAreSlots}
                                     onChange={()=>{
-                                        setSkAreSlots(false);
+                                        setSlAreSlots(false);
                                     }}
                                 ></input>
                                 <label
                                     className="cursor_pointer"
                                     onClick={()=>{
-                                      setSkAreSlots(false);
+                                      setSlAreSlots(false);
                                     }}
                                 >Chapter Experience (data resets after a chapter ends)</label>
 
@@ -1681,16 +1683,29 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
                                     value={slAreSlots}
                                     checked={slAreSlots}
                                     onChange={()=>{
-                                      setSkAreSlots(true);
+                                      setSlAreSlots(true);
                                     }}
                                 ></input>
                                 <label
                                     className="cursor_pointer"
                                     onClick={()=>{
-                                      setSkAreSlots(true);
+                                      setSlAreSlots(true);
                                     }}
                                 >SL Slots (data does not reset in chapter transition, with SL slots)</label>
                             </div> 
+
+                            <button
+                              onClick={()=>{
+
+                                //format : use [slAreSlots](boolean) to change the sl-info-obj
+
+                                //TODO setAlAllInfo() for local
+                                
+                                //TODO call updateSLInfoOption (for outer)
+                              }}
+                            >
+                              Update
+                            </button>
 
 
           </div>

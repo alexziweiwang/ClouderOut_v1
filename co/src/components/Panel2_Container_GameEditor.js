@@ -1664,6 +1664,21 @@ console.log("ui-langauge changed to: ", val);
   }
 
 
+  function passInSLInfoOption() {
+    return projectMetaData["slInfo"];
+  }
+
+
+  function updateSLInfoOption_gmk(infoObj) {
+    //TODO validate infoObj
+
+    setProjectMetaData({
+        ...projectMetaData,
+        "slInfo": infoObj
+    });
+
+  }
+
 
 return (
 <div>
@@ -1820,11 +1835,10 @@ return (
         triggerNodeLookChange_panel2={triggerNodeLookChange_panel2}
         triggerChapterListChange_panel2={triggerChapterListChange_panel2}
 
-        // handleResourceManagerOpen, //TODO add in panel2
-        // handleGameDataManagerOpen,  //TODO add in panel2
-        // handleEmuManagerOpen, //TODO add in panel2
-
         notifyUpdateCurrentStanding_panel2={notifyUpdateCurrentStanding}
+
+        fetchSLInfoOption={passInSLInfoOption}
+        updateSLInfoOption={updateSLInfoOption_gmk}
     /> 
 
     </>}

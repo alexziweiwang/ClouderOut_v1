@@ -537,7 +537,7 @@ export const metadataTemplate = {
     "slInfo": {
         //TODO9001
 
-        "format": "chapterExpr",
+        "format": "chapterExpr", //or "slSlots"
         "slPage": {
             "row": 2,
             "col": 3,
