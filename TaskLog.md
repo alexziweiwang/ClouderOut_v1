@@ -924,6 +924,7 @@
 - 2025-Nov-19: Improve sl-setting option and system for project-makers
 - 2025-Nov-19: Design testing-project
 
+- 2025-Nov-20: Design testing-project
 
 
 
