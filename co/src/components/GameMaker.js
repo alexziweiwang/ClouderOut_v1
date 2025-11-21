@@ -111,7 +111,7 @@ export default function GameMaker({
       fetchSLInfoOption,
 
     //TODO func: update sl-info of metadata: "slInfo" - "format"
-      updateSLInfoOption
+      updateSLAllInfoOption
     
     }) {
   const navigate = useNavigate();
@@ -382,7 +382,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
 
   const [slAreSlots, setSlAreSlots] = useState(false); //"chapterExpr"(f) or "slSlots"(t)
-  const [slAllInfo, setAlAllInfo] = useState(-1); //including "format" and "slPage"-obj
+  const [slAllInfo, setSlAllInfo] = useState(-1); //including "format" and "slPage"-obj
   //TODO9001 in use
 
 
@@ -1255,6 +1255,14 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
       return;
     }
 
+    let slObj = metaDataTemp["slInfo"];
+    setSlAllInfo(slObj);
+
+    if (slObj["format"] === "slSlots") {
+      setSlAreSlots(true);
+    } else {
+      setSlAreSlots(false);
+    }
 
 //GameDataDesign <map>
     setGameDataDesignList(metaDataTemp["game_data"]);
@@ -1348,6 +1356,21 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
     }
     
+
+  }
+
+  function updateSlRelated(boolVal) {
+
+    let outObj = {
+      "slPage": slAllInfo["slpage"],
+      "format": boolVal === true ? "slSlots" : "chapterExpr"
+    };
+
+    setSlAllInfo(outObj); //for local
+  
+    updateSLAllInfoOption(outObj); // out outer (panel2)
+
+    //TODO9001 ask when switching tab or exit?
 
   }
 
@@ -1665,12 +1688,21 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
                                     value={slAreSlots}
                                     checked={!slAreSlots}
                                     onChange={()=>{
-                                        setSlAreSlots(false);
+                                      if (slAreSlots === true) {
+                                        //TODO ask confirm
+
+                                        updateSlRelated(false);
+                                      }
+                                      setSlAreSlots(false);
                                     }}
                                 ></input>
                                 <label
                                     className="cursor_pointer"
                                     onClick={()=>{
+                                      if (slAreSlots === true) {
+                                        //TODO ask confirm
+                                        updateSlRelated(false);
+                                      }
                                       setSlAreSlots(false);
                                     }}
                                 >Chapter Experience (data resets after a chapter ends)</label>
@@ -1683,30 +1715,26 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
                                     value={slAreSlots}
                                     checked={slAreSlots}
                                     onChange={()=>{
+                                      if (slAreSlots === false) {
+                                        //TODO ask confirm
+                                        updateSlRelated(true);
+                                      }
                                       setSlAreSlots(true);
                                     }}
                                 ></input>
                                 <label
                                     className="cursor_pointer"
                                     onClick={()=>{
+                                      if (slAreSlots === false) {
+                                        //TODO ask confirm
+                                        updateSlRelated(true);
+                                      }
                                       setSlAreSlots(true);
                                     }}
                                 >SL Slots (data does not reset in chapter transition, with SL slots)</label>
                             </div> 
 
-                            <button
-                              onClick={()=>{
-
-                                //format : use [slAreSlots](boolean) to change the sl-info-obj
-
-                                //TODO setAlAllInfo() for local
-                                
-                                //TODO call updateSLInfoOption (for outer)
-                              }}
-                            >
-                              Update
-                            </button>
-
+              
 
           </div>
       </div>}

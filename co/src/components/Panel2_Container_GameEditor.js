@@ -1669,7 +1669,7 @@ console.log("ui-langauge changed to: ", val);
   }
 
 
-  function updateSLInfoOption_gmk(infoObj) {
+  function updateSLAllInfoOption_gmk(infoObj) {
     //TODO validate infoObj
 
     setProjectMetaData({
@@ -1838,7 +1838,7 @@ return (
         notifyUpdateCurrentStanding_panel2={notifyUpdateCurrentStanding}
 
         fetchSLInfoOption={passInSLInfoOption}
-        updateSLInfoOption={updateSLInfoOption_gmk}
+        updateSLAllInfoOption={updateSLAllInfoOption_gmk}
     /> 
 
     </>}
