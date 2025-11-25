@@ -540,10 +540,10 @@ export const metadataTemplate = {
         //TODO9001
 
         "format": "chapterExpr", //or "slSlots"
-        "slPage": {
+        
             "row": 2,
             "col": 3,
-            "page": 3,
+            "pageCount": 3,
             "item_w": 100,
             "item_h": 70,
             "itemTitleStamp": true,
@@ -554,7 +554,7 @@ export const metadataTemplate = {
             "groupItemGapY": 5,
 
             //TODO more fields...
-        }
+        
 
     }
 }

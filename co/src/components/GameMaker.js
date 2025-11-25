@@ -1367,7 +1367,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
   function updateSlRelated(boolVal) {
 
     let outObj = {
-      "slPage": slAllInfo["slpage"],
+      "slPage": slAllInfo,
       "format": boolVal === true ? "slSlots" : "chapterExpr"
     };
 
@@ -1375,6 +1375,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
   
     updateSLAllInfoOption(outObj); // out outer (panel2)
     //TODO9001 ask when switching tab or exit?
+    console.log("!!! updated sl-obj: ", outObj);
 
   }
 
@@ -1742,13 +1743,17 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
           <div style={{"display": "flex"}}>    
                 <div style={{"backgroundColor": "orange"}} className="guiSettings">
                     Settings???
+                   {/*  slAllInfo= {slAllInfo}
+                    slAllInfo = [{slAllInfo}] */}
 
-                    {slAllInfo["slPage"] !== undefined && 
+
+
+                    {slAllInfo !== undefined && 
                     <div>
-                    //TODO: apply metadata-["slInfo"]["slPage"] for sl slots
+                    {/* //TODO: apply metadata-["slInfo"] for sl slots */}
                             <label>row</label>
                             <input
-                              value={slAllInfo["slPage"]["row"]}
+                              value={slAllInfo["row"]}
                               onChange={(event)=>{
                                 setSlAllInfo({
                                   ...slAllInfo,
@@ -1761,7 +1766,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
                             <label>col</label>
                             <input
-                              value={slAllInfo["slPage"]["col"]}
+                              value={slAllInfo["col"]}
                               onChange={(event)=>{
                                 setSlAllInfo({
                                   ...slAllInfo,
@@ -1773,11 +1778,11 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
                             <label>page</label>
                             <input
-                              value={slAllInfo["slPage"]["page"]}
+                              value={slAllInfo["pageCount"]}
                               onChange={(event)=>{
                                 setSlAllInfo({
                                   ...slAllInfo,
-                                  "page": event.target.value
+                                  "pagepageCount": event.target.value
                                 })
                               }}
                             ></input>
@@ -1785,7 +1790,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
                             <label>Item Width</label>
                             <input
-                                value={slAllInfo["slPage"]["item_w"]}
+                                value={slAllInfo["item_w"]}
                                 onChange={(event)=>{
                                   setSlAllInfo({
                                     ...slAllInfo,
@@ -1797,7 +1802,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
                             <label>Item Height</label>
                             <input
-                                value={slAllInfo["slPage"]["item_h"]}
+                                value={slAllInfo["item_h"]}
                                 onChange={(event)=>{
                                   setSlAllInfo({
                                     ...slAllInfo,
@@ -1809,7 +1814,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
                             <label>Item Label</label>
                             <input
-                                value={slAllInfo["slPage"]["itemTitleStamp"]}
+                                value={slAllInfo["itemTitleStamp"]}
                                 onChange={(event)=>{
                                   setSlAllInfo({
                                     ...slAllInfo,
@@ -1821,7 +1826,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
                             <label>Background Picture</label>
                             <input
-                                value={slAllInfo["slPage"]["bgPicName"]}
+                                value={slAllInfo["bgPicName"]}
                                 onChange={(event)=>{
                                   setSlAllInfo({
                                     ...slAllInfo,
@@ -1833,7 +1838,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
                             <label>Group Position X</label>
                             <input
-                                value={slAllInfo["slPage"]["groupPosX"]}
+                                value={slAllInfo["groupPosX"]}
                                 onChange={(event)=>{
                                   setSlAllInfo({
                                     ...slAllInfo,
@@ -1845,7 +1850,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
                             <label>Group Position Y</label>
                             <input
-                                value={slAllInfo["slPage"]["groupPosY"]}
+                                value={slAllInfo["groupPosY"]}
                                 onChange={(event)=>{
                                   setSlAllInfo({
                                     ...slAllInfo,
@@ -1857,7 +1862,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
                             <label>Group Gap Horizontal</label>
                             <input
-                                value={slAllInfo["slPage"]["groupItemGapX"]}
+                                value={slAllInfo["groupItemGapX"]}
                                 onChange={(event)=>{
                                   setSlAllInfo({
                                     ...slAllInfo,
@@ -1869,7 +1874,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
                             <label>Group Gap Vertical</label>
                             <input
-                                value={slAllInfo["slPage"]["groupItemGapY"]}
+                                value={slAllInfo["groupItemGapY"]}
                                 onChange={(event)=>{
                                   setSlAllInfo({
                                     ...slAllInfo,
@@ -1880,7 +1885,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
                             <br></br>
             "row": 2,
             "col": 3,
-            "page": 3,
+            "pagepageCount": 3,
             "item_w": 100,
             "item_h": 70,
             "itemTitleStamp": true,

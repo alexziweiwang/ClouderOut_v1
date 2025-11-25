@@ -350,12 +350,12 @@ import {
                         // item-w, item-h, text-position, title-text, timestamp, etc.
 
         let slObj = metadataObj["slInfo"];
-        let slPageInfo = slObj.slPage;
+        let slPageInfo = slObj;
 
         let slPageInfoFields = [
             "row",
             "col",
-            "page",
+            "pagepageCount",
             "item_w",
             "item_h",
             "itemTitleStamp",
