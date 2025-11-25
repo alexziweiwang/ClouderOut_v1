@@ -1745,7 +1745,88 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
                     <div>
                     //TODO: apply metadata-["slInfo"]["slPage"] for sl slots
+                            <label>row</label>
+                            <input
+                              value={slAllInfo["slPage"]["row"]}
 
+                            ></input>
+                            <br></br>
+
+                            <label>col</label>
+                            <input
+                              value={slAllInfo["slPage"]["col"]}
+
+                            ></input>
+                            <br></br>
+
+                            <label>page</label>
+                            <input
+                              value={slAllInfo["slPage"]["page"]}
+
+                            ></input>
+                            <br></br>                         
+
+                            <label>Item Width</label>
+                            <input
+                                value={slAllInfo["slPage"]["item_w"]}
+
+                            ></input>
+                            <br></br>
+
+                            <label>Item Height</label>
+                            <input
+                                value={slAllInfo["slPage"]["item_h"]}
+
+                            ></input>
+                            <br></br>
+
+                            <label>Item Label</label>
+                            <input
+                                value={slAllInfo["slPage"]["itemTitleStamp"]}
+
+                            ></input>
+                            <br></br>
+
+                            <label>Background Picture</label>
+                            <input
+                            
+                            ></input>
+                            <br></br>
+
+                            <label>Group Position X</label>
+                            <input
+                            
+                            ></input>
+                            <br></br>
+
+                            <label>Group Position X</label>
+                            <input
+                            
+                            ></input>
+                            <br></br>
+
+                            <label>Group Gap Horizontal</label>
+                            <input
+                            
+                            ></input>
+                            <br></br>
+
+                            <label>Group Gap Vertical</label>
+                            <input
+                            
+                            ></input>
+                            <br></br>
+            "row": 2,
+            "col": 3,
+            "page": 3,
+            "item_w": 100,
+            "item_h": 70,
+            "itemTitleStamp": true,
+            "bgPicName": "",
+            "groupPosX": 0,
+            "groupPoxY": 0,
+            "groupItemGapX": 5,
+            "groupItemGapY": 5,
                     </div>
                 </div>
 
