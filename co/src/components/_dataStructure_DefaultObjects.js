@@ -18,7 +18,7 @@
 
 */
 
-/* Navigation - Pages:
+/* Navigation - Pages: pagename
     "Main Page"
     "Game Progress Strategy"
     "Story Page"
@@ -28,6 +28,8 @@
     "Shop Page"
 
     "During Game"
+
+    "SL Records"
 
 */
 

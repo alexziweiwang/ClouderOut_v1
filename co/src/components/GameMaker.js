@@ -625,6 +625,10 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
     return currPageName;
   }
 
+  function passInSLPageName() {
+    return "SL Records";
+  }
+
   function triggerRefreshFetchCloudData() {
     getResourceVarPairsLocal();
     
@@ -1735,8 +1739,66 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
                             </div> 
 
               
+          <div style={{"display": "flex"}}>    
+                <div style={{"backgroundColor": "orange"}} className="guiSettings">
+                    Settings???
 
+                    <div>
+                    //TODO: apply metadata-["slInfo"]["slPage"] for sl slots
+
+                    </div>
+                </div>
+
+
+                <div>
+          
+
+
+
+                  <NavigationPreview
+                    fetchNavObj={passInNavObj} 
+
+                    fetchPageName={passInSLPageName}  //special
+                    chapterData={chapterList} 
+
+                    triggerUpdateCurrPageName={notUsing}  //special
+                    triggerUpdateCurrentStanding={notUsing}  //special
+
+                    isEditing={true}
+                    initialGameDataRefData={emptyValue}
+                    initialPlayerProfileRefData={testPlayerProfile}
+                    initialPlayerAccountRefData={testPlayerAccount}
+
+                    fetchPlayerInfoSets={passInPlayerInfoSets}
+                    fetchCurrentGameData={passInCurrentGameDataList}
+
+  
+                    getUILanguage={passInUILanguage}
+                    initialUILanguage={languageCodeTextOption}
+
+                    fetchShopItemInfo={passInShopItemInfo}
+                    fetchPlayerPurchaseInfo={passInPlayerPurchaseStatus}
+
+                    visualMap={visualMap}
+                    audioMap={audioMap}
+                    sendOutGameSettingScaleObjFromSubCompo={notUsing}
+
+                    getOpenSettingSignal={passInFalseBool}
+                    closeSettingsPage={notUsing} 
+
+                  />
+
+
+
+
+
+
+                </div>
+          
           </div>
+          </div>
+
+
       </div>}
 
 {/*  Entire Viewing -- all parts NOT-USING */}

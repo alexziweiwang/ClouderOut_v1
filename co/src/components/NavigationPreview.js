@@ -1389,6 +1389,25 @@ return (
         </div>
      
         }
+
+
+        {page === "SL Records" &&
+            <div style={{
+                "width": `${screenWidth}px`, 
+                "height": `${screenHeight}px`,
+                "backgroundColor": "rgb(222, 222, 235)",
+                "borderRadius": "0px",
+            }}
+            >
+
+
+{/* sl page content */}
+//TODO: apply metadata-["slInfo"]["slPage"] for sl slots
+
+
+            </div>
+
+        }
   
         {/* {page === "Shop Page" &&  */}
         {false && 
