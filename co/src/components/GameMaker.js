@@ -1261,6 +1261,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
     let slObj = metaDataTemp["slInfo"];
     setSlAllInfo(slObj);
+    console.log("load!!!", slObj);
 
     if (slObj["format"] === "slSlots") {
       setSlAreSlots(true);
@@ -1373,7 +1374,6 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
     setSlAllInfo(outObj); //for local
   
     updateSLAllInfoOption(outObj); // out outer (panel2)
-
     //TODO9001 ask when switching tab or exit?
 
   }
@@ -1743,11 +1743,18 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
                 <div style={{"backgroundColor": "orange"}} className="guiSettings">
                     Settings???
 
+                    {slAllInfo["slPage"] !== undefined && 
                     <div>
                     //TODO: apply metadata-["slInfo"]["slPage"] for sl slots
                             <label>row</label>
                             <input
                               value={slAllInfo["slPage"]["row"]}
+                              onChange={(event)=>{
+                                setSlAllInfo({
+                                  ...slAllInfo,
+                                  "row": event.target.value
+                                })
+                              }}
 
                             ></input>
                             <br></br>
@@ -1755,65 +1762,120 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
                             <label>col</label>
                             <input
                               value={slAllInfo["slPage"]["col"]}
-
+                              onChange={(event)=>{
+                                setSlAllInfo({
+                                  ...slAllInfo,
+                                  "col": event.target.value
+                                })
+                              }}
                             ></input>
                             <br></br>
 
                             <label>page</label>
                             <input
                               value={slAllInfo["slPage"]["page"]}
-
+                              onChange={(event)=>{
+                                setSlAllInfo({
+                                  ...slAllInfo,
+                                  "page": event.target.value
+                                })
+                              }}
                             ></input>
                             <br></br>                         
 
                             <label>Item Width</label>
                             <input
                                 value={slAllInfo["slPage"]["item_w"]}
-
+                                onChange={(event)=>{
+                                  setSlAllInfo({
+                                    ...slAllInfo,
+                                    "item_w": event.target.value
+                                  })
+                                }}
                             ></input>
                             <br></br>
 
                             <label>Item Height</label>
                             <input
                                 value={slAllInfo["slPage"]["item_h"]}
-
+                                onChange={(event)=>{
+                                  setSlAllInfo({
+                                    ...slAllInfo,
+                                    "item_h": event.target.value
+                                  })
+                                }}
                             ></input>
                             <br></br>
 
                             <label>Item Label</label>
                             <input
                                 value={slAllInfo["slPage"]["itemTitleStamp"]}
-
+                                onChange={(event)=>{
+                                  setSlAllInfo({
+                                    ...slAllInfo,
+                                    "itemTitleStamp": event.target.value
+                                  })
+                                }}
                             ></input>
                             <br></br>
 
                             <label>Background Picture</label>
                             <input
-                            
+                                value={slAllInfo["slPage"]["bgPicName"]}
+                                onChange={(event)=>{
+                                  setSlAllInfo({
+                                    ...slAllInfo,
+                                    "bgPicName": event.target.value
+                                  })
+                                }}
                             ></input>
                             <br></br>
 
                             <label>Group Position X</label>
                             <input
-                            
+                                value={slAllInfo["slPage"]["groupPosX"]}
+                                onChange={(event)=>{
+                                  setSlAllInfo({
+                                    ...slAllInfo,
+                                    "groupPosX": event.target.value
+                                  })
+                                }}
                             ></input>
                             <br></br>
 
-                            <label>Group Position X</label>
+                            <label>Group Position Y</label>
                             <input
-                            
+                                value={slAllInfo["slPage"]["groupPosY"]}
+                                onChange={(event)=>{
+                                  setSlAllInfo({
+                                    ...slAllInfo,
+                                    "groupPosY": event.target.value
+                                  })
+                                }}
                             ></input>
                             <br></br>
 
                             <label>Group Gap Horizontal</label>
                             <input
-                            
+                                value={slAllInfo["slPage"]["groupItemGapX"]}
+                                onChange={(event)=>{
+                                  setSlAllInfo({
+                                    ...slAllInfo,
+                                    "groupItemGapX": event.target.value
+                                  })
+                                }}
                             ></input>
                             <br></br>
 
                             <label>Group Gap Vertical</label>
                             <input
-                            
+                                value={slAllInfo["slPage"]["groupItemGapY"]}
+                                onChange={(event)=>{
+                                  setSlAllInfo({
+                                    ...slAllInfo,
+                                    "groupItemGapY": event.target.value
+                                  })
+                                }}
                             ></input>
                             <br></br>
             "row": 2,
@@ -1828,6 +1890,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
             "groupItemGapX": 5,
             "groupItemGapY": 5,
                     </div>
+                    }            
                 </div>
 
 
