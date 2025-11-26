@@ -1753,6 +1753,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
                     {/* //TODO: apply metadata-["slInfo"] for sl slots */}
                             <label>row</label>
                             <input
+                              type="range"
                               value={slAllInfo["row"]}
                               onChange={(event)=>{
                                 setSlAllInfo({
@@ -1762,10 +1763,33 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
                               }}
 
                             ></input>
+                            <input
+                              type="number"
+                              value={slAllInfo["row"]}
+                              onChange={(event)=>{
+                                setSlAllInfo({
+                                  ...slAllInfo,
+                                  "row": event.target.value
+                                })
+                              }}
+
+                            ></input>
+
                             <br></br>
 
                             <label>col</label>
                             <input
+                              type="range"
+                              value={slAllInfo["col"]}
+                              onChange={(event)=>{
+                                setSlAllInfo({
+                                  ...slAllInfo,
+                                  "col": event.target.value
+                                })
+                              }}
+                            ></input>
+                            <input
+                              type="number"
                               value={slAllInfo["col"]}
                               onChange={(event)=>{
                                 setSlAllInfo({
@@ -1778,6 +1802,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
                             <label>page</label>
                             <input
+                              type="range"
                               value={slAllInfo["pageCount"]}
                               onChange={(event)=>{
                                 setSlAllInfo({
@@ -1786,10 +1811,31 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
                                 })
                               }}
                             ></input>
+                            <input
+                              type="number"
+                              value={slAllInfo["pageCount"]}
+                              onChange={(event)=>{
+                                setSlAllInfo({
+                                  ...slAllInfo,
+                                  "pagepageCount": event.target.value
+                                })
+                              }}
+                            ></input>                            
                             <br></br>                         
 
                             <label>Item Width</label>
                             <input
+                                type="range"
+                                value={slAllInfo["item_w"]}
+                                onChange={(event)=>{
+                                  setSlAllInfo({
+                                    ...slAllInfo,
+                                    "item_w": event.target.value
+                                  })
+                                }}
+                            ></input>
+                            <input
+                                type="number"
                                 value={slAllInfo["item_w"]}
                                 onChange={(event)=>{
                                   setSlAllInfo({
@@ -1802,6 +1848,17 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
                             <label>Item Height</label>
                             <input
+                                type="range"
+                                value={slAllInfo["item_h"]}
+                                onChange={(event)=>{
+                                  setSlAllInfo({
+                                    ...slAllInfo,
+                                    "item_h": event.target.value
+                                  })
+                                }}
+                            ></input>
+                            <input
+                                type="number"
                                 value={slAllInfo["item_h"]}
                                 onChange={(event)=>{
                                   setSlAllInfo({
@@ -1813,27 +1870,48 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
                             <br></br>
 
                             <label>Item Label</label>
-                            <input
-                                value={slAllInfo["itemTitleStamp"]}
-                                onChange={(event)=>{
-                                  setSlAllInfo({
-                                    ...slAllInfo,
-                                    "itemTitleStamp": event.target.value
-                                  })
-                                }}
-                            ></input>
+                            {/* slAllInfo["itemTitleStamp"] */}
+                            <select
+                              value={slAllInfo["itemTitleStamp"]}
+                              onChange={(event)=>{
+                                setSlAllInfo({
+                                  ...slAllInfo,
+                                  "itemTitleStamp": event.target.value
+                                })
+                              }}
+                            >
+                              <option
+                                value={false}
+                              >hide title/stamp</option>
+
+                              <option
+                                value={true}
+                              >show title/stamp</option>
+
+                            </select>
                             <br></br>
 
                             <label>Background Picture</label>
-                            <input
+                            <select
                                 value={slAllInfo["bgPicName"]}
                                 onChange={(event)=>{
                                   setSlAllInfo({
                                     ...slAllInfo,
                                     "bgPicName": event.target.value
                                   })
-                                }}
-                            ></input>
+                                }}                              
+                            >
+                              {Object.keys(visualMap).map((currKey) => {
+                                let keyStr = "slPage-bgPic-" + currKey;
+                                
+                                  return (
+                                    <option key={keyStr} value={currKey}>{currKey}</option>);
+                              })}
+                             
+                            </select>
+
+                  
+
                             <br></br>
 
                             <label>Group Position X</label>
