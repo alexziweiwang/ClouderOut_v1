@@ -933,6 +933,8 @@
 
 - 2025-Nov-25: Design sl-system setting area
 
+- 2025-Nov-26: Design testing-project
+
 
 
 
