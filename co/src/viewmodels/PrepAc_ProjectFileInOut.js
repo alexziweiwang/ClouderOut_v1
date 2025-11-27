@@ -355,7 +355,7 @@ import {
         let slPageInfoFields = [
             "row",
             "col",
-            "pagepageCount",
+            "pageCount",
             "item_w",
             "item_h",
             "itemTitleStamp",

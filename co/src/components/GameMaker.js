@@ -1741,7 +1741,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
               
           <div style={{"display": "flex"}}>    
-                <div style={{"backgroundColor": "orange"}} className="guiSettings">
+                <div style={{"backgroundColor": "orange", "marginRight": "10px"}} className="guiSettings">
                     Settings???
                    {/*  slAllInfo= {slAllInfo}
                     slAllInfo = [{slAllInfo}] */}
@@ -1761,6 +1761,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
                                   "row": event.target.value
                                 })
                               }}
+                              //TODO max min
 
                             ></input>
                             <input
@@ -1772,6 +1773,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
                                   "row": event.target.value
                                 })
                               }}
+                              //TODO max min
 
                             ></input>
 
@@ -1787,6 +1789,9 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
                                   "col": event.target.value
                                 })
                               }}
+
+                              //TODO max min
+
                             ></input>
                             <input
                               type="number"
@@ -1797,6 +1802,8 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
                                   "col": event.target.value
                                 })
                               }}
+                              //TODO max min
+
                             ></input>
                             <br></br>
 
@@ -1807,9 +1814,11 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
                               onChange={(event)=>{
                                 setSlAllInfo({
                                   ...slAllInfo,
-                                  "pagepageCount": event.target.value
+                                  "pageCount": event.target.value
                                 })
                               }}
+                              //TODO max min
+
                             ></input>
                             <input
                               type="number"
@@ -1817,9 +1826,11 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
                               onChange={(event)=>{
                                 setSlAllInfo({
                                   ...slAllInfo,
-                                  "pagepageCount": event.target.value
+                                  "pageCount": event.target.value
                                 })
                               }}
+                              //TODO max min
+
                             ></input>                            
                             <br></br>                         
 
@@ -1833,6 +1844,8 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
                                     "item_w": event.target.value
                                   })
                                 }}
+                              //TODO max min
+
                             ></input>
                             <input
                                 type="number"
@@ -1843,6 +1856,8 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
                                     "item_w": event.target.value
                                   })
                                 }}
+                              //TODO max min
+
                             ></input>
                             <br></br>
 
@@ -1856,6 +1871,8 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
                                     "item_h": event.target.value
                                   })
                                 }}
+                              //TODO max min
+
                             ></input>
                             <input
                                 type="number"
@@ -1866,6 +1883,8 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
                                     "item_h": event.target.value
                                   })
                                 }}
+                              //TODO max min
+
                             ></input>
                             <br></br>
 
@@ -1916,6 +1935,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
                             <label>Group Position X</label>
                             <input
+                                type="range"
                                 value={slAllInfo["groupPosX"]}
                                 onChange={(event)=>{
                                   setSlAllInfo({
@@ -1923,11 +1943,26 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
                                     "groupPosX": event.target.value
                                   })
                                 }}
+                              //TODO max min
+
+                            ></input>
+                            <input
+                                type="number"
+                                value={slAllInfo["groupPosX"]}
+                                onChange={(event)=>{
+                                  setSlAllInfo({
+                                    ...slAllInfo,
+                                    "groupPosX": event.target.value
+                                  })
+                                }}
+                              //TODO max min
+
                             ></input>
                             <br></br>
 
                             <label>Group Position Y</label>
                             <input
+                                type="range"
                                 value={slAllInfo["groupPosY"]}
                                 onChange={(event)=>{
                                   setSlAllInfo({
@@ -1935,11 +1970,26 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
                                     "groupPosY": event.target.value
                                   })
                                 }}
+                              //TODO max min
+
                             ></input>
+                            <input
+                                type="number"
+                                value={slAllInfo["groupPosY"]}
+                                onChange={(event)=>{
+                                  setSlAllInfo({
+                                    ...slAllInfo,
+                                    "groupPosY": event.target.value
+                                  })
+                                }}
+                              //TODO max min
+
+                            ></input>                            
                             <br></br>
 
                             <label>Group Gap Horizontal</label>
                             <input
+                                type="range"
                                 value={slAllInfo["groupItemGapX"]}
                                 onChange={(event)=>{
                                   setSlAllInfo({
@@ -1947,11 +1997,26 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
                                     "groupItemGapX": event.target.value
                                   })
                                 }}
+                              //TODO max min
+
                             ></input>
+                            <input
+                                type="number"
+                                value={slAllInfo["groupItemGapX"]}
+                                onChange={(event)=>{
+                                  setSlAllInfo({
+                                    ...slAllInfo,
+                                    "groupItemGapX": event.target.value
+                                  })
+                                }}
+                              //TODO max min
+
+                            ></input>                            
                             <br></br>
 
                             <label>Group Gap Vertical</label>
                             <input
+                                type="range"
                                 value={slAllInfo["groupItemGapY"]}
                                 onChange={(event)=>{
                                   setSlAllInfo({
@@ -1960,10 +2025,20 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
                                   })
                                 }}
                             ></input>
+                            <input
+                                type="number"
+                                value={slAllInfo["groupItemGapY"]}
+                                onChange={(event)=>{
+                                  setSlAllInfo({
+                                    ...slAllInfo,
+                                    "groupItemGapY": event.target.value
+                                  })
+                                }}
+                            ></input>                            
                             <br></br>
             "row": 2,
             "col": 3,
-            "pagepageCount": 3,
+            "pageCount": 3,
             "item_w": 100,
             "item_h": 70,
             "itemTitleStamp": true,
