@@ -553,10 +553,19 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
   });
 
-  // useEffect(()=>{
-  //   update3InObj();
-  //                           console.log("sending out for these of metadat: currentProjectNav, chapterList, chapterNodeMapAll");
-  // }, [currentProjectNav, chapterList, chapterNodeMapAll]);
+  useEffect(()=>{
+    if (isMtdtLoaded === true) {
+      update3InObj();
+                    console.log("sending out for these of metadat: currentProjectNav, chapterList, chapterNodeMapAll");
+
+    }
+  }, [currentProjectNav, chapterList, chapterNodeMapAll]);
+
+
+  useEffect(()=>{
+    updateSLAllInfoOption(slAllInfo);
+        console.log("use-effect - sl_update", slAllInfo);
+  }, [slAllInfo]);
 
 
   function goToNotLoggedInPage() {
@@ -1338,7 +1347,10 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
   }
 
   function update3InObj() {
-    // 3+1 fields: currentProjectNav, chapterList->chapListMap, chapterNodeMapAll
+    // 3+1 fields: 
+    // currentProjectNav, 
+    // chapterList->chapListMap, 
+    // chapterNodeMapAll
 
     let metadataObj = getProjectMetaData();
     let resBool = checkProjectMetaData_vm(metadataObj);
@@ -1356,7 +1368,6 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
         metadataObj["sizeDirection"] = currentProjectNav["screenSize"];
 
-
         updateMetaDataToOuter(metadataObj);
 
     }
@@ -1373,337 +1384,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
     setSlAllInfo(outObj); //for local
   
-    updateSLAllInfoOption(outObj); // out outer (panel2)
-    //TODO9001 ask when switching tab or exit?
-    console.log("!!! updated sl-obj: ", outObj);
-
-  }
-
-  function SlSettingEditor() { //TODO9002
-    return (
-      <div>
-      {/* //TODO: apply metadata-["slInfo"] for sl slots */}
-              <label>row</label>
-              <input
-                type="range"
-                value={slAllInfo["row"]}
-                onChange={(event)=>{
-                  setSlAllInfo({
-                    ...slAllInfo,
-                    "row": event.target.value
-                  })
-                }}
-                max={3}
-                min={1}
-              ></input>
-              <input
-                type="number"
-                value={slAllInfo["row"]}
-                onChange={(event)=>{
-                  setSlAllInfo({
-                    ...slAllInfo,
-                    "row": event.target.value
-                  })
-                }}
-                max={3}
-                min={1}
-              ></input>
-
-              <br></br>
-
-              <label>col</label>
-              <input
-                type="range"
-                value={slAllInfo["col"]}
-                onChange={(event)=>{
-                  setSlAllInfo({
-                    ...slAllInfo,
-                    "col": event.target.value
-                  })
-                }}
-                max={5}
-                min={1}
-              ></input>
-              <input
-                type="number"
-                value={slAllInfo["col"]}
-                onChange={(event)=>{
-                  setSlAllInfo({
-                    ...slAllInfo,
-                    "col": event.target.value
-                  })
-                }}
-                max={5}
-                min={1}
-              ></input>
-              <br></br>
-
-              <label>page</label>
-              <input
-                type="range"
-                value={slAllInfo["pageCount"]}
-                onChange={(event)=>{
-                  setSlAllInfo({
-                    ...slAllInfo,
-                    "pageCount": event.target.value
-                  })
-                }}
-                max={10}
-                min={1}
-              ></input>
-              <input
-                type="number"
-                value={slAllInfo["pageCount"]}
-                onChange={(event)=>{
-                  setSlAllInfo({
-                    ...slAllInfo,
-                    "pageCount": event.target.value
-                  })
-                }}
-                max={10}
-                min={1}
-              ></input>                            
-              <br></br>                         
-
-              <label>Item Width</label>
-              <input
-                  type="range"
-                  value={slAllInfo["item_w"]}
-                  onChange={(event)=>{
-                    setSlAllInfo({
-                      ...slAllInfo,
-                      "item_w": event.target.value
-                    })
-                  }}
-                  max={150}
-                  min={10}
-              ></input>
-              <input
-                  type="number"
-                  value={slAllInfo["item_w"]}
-                  onChange={(event)=>{
-                    setSlAllInfo({
-                      ...slAllInfo,
-                      "item_w": event.target.value
-                    })
-                  }}
-                  max={150}
-                  min={10}
-
-              ></input>
-              <br></br>
-
-              <label>Item Height</label>
-              <input
-                  type="range"
-                  value={slAllInfo["item_h"]}
-                  onChange={(event)=>{
-                    setSlAllInfo({
-                      ...slAllInfo,
-                      "item_h": event.target.value
-                    })
-                  }}
-                  max={90}
-                  min={10}
-
-              ></input>
-              <input
-                  type="number"
-                  value={slAllInfo["item_h"]}
-                  onChange={(event)=>{
-                    setSlAllInfo({
-                      ...slAllInfo,
-                      "item_h": event.target.value
-                    })
-                  }}
-                  max={90}
-                  min={10}
-
-              ></input>
-              <br></br>
-
-              <label>Item Label</label>
-              {/* slAllInfo["itemTitleStamp"] */}
-              <select
-                value={slAllInfo["itemTitleStamp"]}
-                onChange={(event)=>{
-                  setSlAllInfo({
-                    ...slAllInfo,
-                    "itemTitleStamp": event.target.value
-                  })
-                }}
-              >
-                <option
-                  value={false}
-                >hide title/stamp</option>
-
-                <option
-                  value={true}
-                >show title/stamp</option>
-
-              </select>
-              <br></br>
-
-              <label>Background Picture</label>
-              <select
-                  value={slAllInfo["bgPicName"]}
-                  onChange={(event)=>{
-                    setSlAllInfo({
-                      ...slAllInfo,
-                      "bgPicName": event.target.value
-                    })
-                  }}                              
-              >
-                <option key="default-slPage-no-bg-pic" value="">No Picture</option>
-                
-                {Object.keys(visualMap).map((currKey) => {
-                  let keyStr = "slPage-bgPic-" + currKey;
-                  
-                    return (
-                      <option key={keyStr} value={currKey}>{currKey}</option>);
-                })}
-               
-              </select>
-
-    
-
-              <br></br>
-
-              <label>Group Position X</label>
-              <input
-                  type="range"
-                  value={slAllInfo["groupPosX"]}
-                  onChange={(event)=>{
-                    setSlAllInfo({
-                      ...slAllInfo,
-                      "groupPosX": event.target.value
-                    })
-                  }}
-                  max={screenWidth-10}
-                  min={0}
-
-              ></input>
-              <input
-                  type="number"
-                  value={slAllInfo["groupPosX"]}
-                  onChange={(event)=>{
-                    setSlAllInfo({
-                      ...slAllInfo,
-                      "groupPosX": event.target.value
-                    })
-                  }}
-                  max={screenWidth-10}
-                  min={0}
-
-              ></input>
-              <br></br>
-
-              <label>Group Position Y</label>
-              <input
-                  type="range"
-                  value={slAllInfo["groupPosY"]}
-                  onChange={(event)=>{
-                    setSlAllInfo({
-                      ...slAllInfo,
-                      "groupPosY": event.target.value
-                    })
-                  }}
-                  max={screenHeight-10}
-                  min={0}
-
-              ></input>
-              <input
-                  type="number"
-                  value={slAllInfo["groupPosY"]}
-                  onChange={(event)=>{
-                    setSlAllInfo({
-                      ...slAllInfo,
-                      "groupPosY": event.target.value
-                    })
-                  }}
-                  max={screenHeight-10}
-                  min={0}
-
-              ></input>                            
-              <br></br>
-
-              <label>Group Gap Horizontal</label>
-              <input
-                  type="range"
-                  value={slAllInfo["groupItemGapX"]}
-                  onChange={(event)=>{
-                    setSlAllInfo({
-                      ...slAllInfo,
-                      "groupItemGapX": event.target.value
-                    })
-                  }}
-                  max={30}
-                  min={2}
-
-              ></input>
-              <input
-                  type="number"
-                  value={slAllInfo["groupItemGapX"]}
-                  onChange={(event)=>{
-                    setSlAllInfo({
-                      ...slAllInfo,
-                      "groupItemGapX": event.target.value
-                    })
-                  }}
-                  max={30}
-                  min={2}
-
-              ></input>                            
-              <br></br>
-
-              <label>Group Gap Vertical</label>
-              <input
-                  type="range"
-                  value={slAllInfo["groupItemGapY"]}
-                  onChange={(event)=>{
-                    setSlAllInfo({
-                      ...slAllInfo,
-                      "groupItemGapY": event.target.value
-                    })
-                  }}
-                  max={30}
-                  min={2}
-              ></input>
-              <input
-                  type="number"
-                  value={slAllInfo["groupItemGapY"]}
-                  onChange={(event)=>{
-                    setSlAllInfo({
-                      ...slAllInfo,
-                      "groupItemGapY": event.target.value
-                    })
-                  }}
-                  max={30}
-                  min={2}
-              ></input>                            
-              <br></br>
-"row": 2,
-"col": 3,
-"pageCount": 3,
-"item_w": 100,
-"item_h": 70,
-"itemTitleStamp": true,
-"bgPicName": "",
-"groupPosX": 0,
-"groupPoxY": 0,
-"groupItemGapX": 5,
-"groupItemGapY": 5,
-
-<br></br>
-
-?????????
-      </div>
-    
-
-
-    );
-
-
+                                          // updateSLAllInfoOption(outObj); // out outer (panel2) // this is done in use-effect instead
   }
 
 
@@ -2076,8 +1757,325 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
 {/* //TODO9002 */}
                     {slAllInfo !== undefined && 
-                    <SlSettingEditor/>
+    <div>
+    {/* //TODO: apply metadata-["slInfo"] for sl slots */}
+            <label>row</label>
+            <input
+              type="range"
+              value={slAllInfo["row"]}
+              onChange={(event)=>{
+                setSlAllInfo({
+                  ...slAllInfo,
+                  "row": event.target.value
+                })
+              }}
+              max={3}
+              min={1}
+            ></input>
+            <input
+              type="number"
+              value={slAllInfo["row"]}
+              onChange={(event)=>{
+                setSlAllInfo({
+                  ...slAllInfo,
+                  "row": event.target.value
+                })
+              }}
+              max={3}
+              min={1}
+            ></input>
+
+            <br></br>
+
+            <label>col</label>
+            <input
+              type="range"
+              value={slAllInfo["col"]}
+              onChange={(event)=>{
+                setSlAllInfo({
+                  ...slAllInfo,
+                  "col": event.target.value
+                })
+              }}
+              max={5}
+              min={1}
+            ></input>
+            <input
+              type="number"
+              value={slAllInfo["col"]}
+              onChange={(event)=>{
+                setSlAllInfo({
+                  ...slAllInfo,
+                  "col": event.target.value
+                })
+              }}
+              max={5}
+              min={1}
+            ></input>
+            <br></br>
+
+            <label>page</label>
+            <input
+              type="range"
+              value={slAllInfo["pageCount"]}
+              onChange={(event)=>{
+                setSlAllInfo({
+                  ...slAllInfo,
+                  "pageCount": event.target.value
+                })
+              }}
+              max={10}
+              min={1}
+            ></input>
+            <input
+              type="number"
+              value={slAllInfo["pageCount"]}
+              onChange={(event)=>{
+                setSlAllInfo({
+                  ...slAllInfo,
+                  "pageCount": event.target.value
+                })
+              }}
+              max={10}
+              min={1}
+            ></input>                            
+            <br></br>                         
+
+            <label>Item Width</label>
+            <input
+                type="range"
+                value={slAllInfo["item_w"]}
+                onChange={(event)=>{
+                  setSlAllInfo({
+                    ...slAllInfo,
+                    "item_w": event.target.value
+                  })
+                }}
+                max={150}
+                min={10}
+            ></input>
+            <input
+                type="number"
+                value={slAllInfo["item_w"]}
+                onChange={(event)=>{
+                  setSlAllInfo({
+                    ...slAllInfo,
+                    "item_w": event.target.value
+                  })
+                }}
+                max={150}
+                min={10}
+
+            ></input>
+            <br></br>
+
+            <label>Item Height</label>
+            <input
+                type="range"
+                value={slAllInfo["item_h"]}
+                onChange={(event)=>{
+                  setSlAllInfo({
+                    ...slAllInfo,
+                    "item_h": event.target.value
+                  })
+                }}
+                max={90}
+                min={10}
+
+            ></input>
+            <input
+                type="number"
+                value={slAllInfo["item_h"]}
+                onChange={(event)=>{
+                  setSlAllInfo({
+                    ...slAllInfo,
+                    "item_h": event.target.value
+                  })
+                }}
+                max={90}
+                min={10}
+
+            ></input>
+            <br></br>
+
+            <label>Item Label</label>
+            {/* slAllInfo["itemTitleStamp"] */}
+            <select
+              value={slAllInfo["itemTitleStamp"]}
+              onChange={(event)=>{
+                setSlAllInfo({
+                  ...slAllInfo,
+                  "itemTitleStamp": event.target.value
+                })
+              }}
+            >
+              <option
+                value={false}
+              >hide title/stamp</option>
+
+              <option
+                value={true}
+              >show title/stamp</option>
+
+            </select>
+            <br></br>
+
+            <label>Background Picture</label>
+            <select
+                value={slAllInfo["bgPicName"]}
+                onChange={(event)=>{
+                  setSlAllInfo({
+                    ...slAllInfo,
+                    "bgPicName": event.target.value
+                  })
+                }}                              
+            >
+              <option key="default-slPage-no-bg-pic" value="">No Picture</option>
+              
+              {Object.keys(visualMap).map((currKey) => {
+                let keyStr = "slPage-bgPic-" + currKey;
+                
+                  return (
+                    <option key={keyStr} value={currKey}>{currKey}</option>);
+              })}
+             
+            </select>
+
   
+
+            <br></br>
+
+            <label>Group Position X</label>
+            <input
+                type="range"
+                value={slAllInfo["groupPosX"]}
+                onChange={(event)=>{
+                  setSlAllInfo({
+                    ...slAllInfo,
+                    "groupPosX": event.target.value
+                  })
+                }}
+                max={screenWidth-10}
+                min={0}
+
+            ></input>
+            <input
+                type="number"
+                value={slAllInfo["groupPosX"]}
+                onChange={(event)=>{
+                  setSlAllInfo({
+                    ...slAllInfo,
+                    "groupPosX": event.target.value
+                  })
+                }}
+                max={screenWidth-10}
+                min={0}
+
+            ></input>
+            <br></br>
+
+            <label>Group Position Y</label>
+            <input
+                type="range"
+                value={slAllInfo["groupPosY"]}
+                onChange={(event)=>{
+                  setSlAllInfo({
+                    ...slAllInfo,
+                    "groupPosY": event.target.value
+                  })
+                }}
+                max={screenHeight-10}
+                min={0}
+
+            ></input>
+            <input
+                type="number"
+                value={slAllInfo["groupPosY"]}
+                onChange={(event)=>{
+                  setSlAllInfo({
+                    ...slAllInfo,
+                    "groupPosY": event.target.value
+                  })
+                }}
+                max={screenHeight-10}
+                min={0}
+
+            ></input>                            
+            <br></br>
+
+            <label>Group Gap Horizontal</label>
+            <input
+                type="range"
+                value={slAllInfo["groupItemGapX"]}
+                onChange={(event)=>{
+                  setSlAllInfo({
+                    ...slAllInfo,
+                    "groupItemGapX": event.target.value
+                  })
+                }}
+                max={30}
+                min={2}
+
+            ></input>
+            <input
+                type="number"
+                value={slAllInfo["groupItemGapX"]}
+                onChange={(event)=>{
+                  setSlAllInfo({
+                    ...slAllInfo,
+                    "groupItemGapX": event.target.value
+                  })
+                }}
+                max={30}
+                min={2}
+
+            ></input>                            
+            <br></br>
+
+            <label>Group Gap Vertical</label>
+            <input
+                type="range"
+                value={slAllInfo["groupItemGapY"]}
+                onChange={(event)=>{
+                  setSlAllInfo({
+                    ...slAllInfo,
+                    "groupItemGapY": event.target.value
+                  })
+                }}
+                max={30}
+                min={2}
+            ></input>
+            <input
+                type="number"
+                value={slAllInfo["groupItemGapY"]}
+                onChange={(event)=>{
+                  setSlAllInfo({
+                    ...slAllInfo,
+                    "groupItemGapY": event.target.value
+                  })
+                }}
+                max={30}
+                min={2}
+            ></input>                            
+            <br></br>
+"row": 2,
+"col": 3,
+"pageCount": 3,
+"item_w": 100,
+"item_h": 70,
+"itemTitleStamp": true,
+"bgPicName": "",
+"groupPosX": 0,
+"groupPoxY": 0,
+"groupItemGapX": 5,
+"groupItemGapY": 5,
+
+<br></br>
+
+!!!
+    </div>
+  
+
                     }            
                 </div>
 

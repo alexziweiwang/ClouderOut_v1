@@ -1676,7 +1676,7 @@ console.log("ui-langauge changed to: ", val);
         ...projectMetaData,
         "slInfo": infoObj
     });
-
+        console.log("sl-info updated");
   }
 
 
