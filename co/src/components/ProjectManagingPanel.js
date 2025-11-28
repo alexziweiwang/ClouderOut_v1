@@ -6,6 +6,7 @@ import langDictionary from './_textDictionary';
 
 //TODO700 feature: latest edited project ... (create or save)
 import { makeDeletionLists_vm, makeReversionLists_vm } from '../viewmodels/PrepAc_ProjectOperation';
+import { placeholderNameDefault } from './_dataStructure_DefaultObjects';
 
 
 export default function ProjectManagingPanel(
@@ -537,8 +538,10 @@ export default function ProjectManagingPanel(
                     <><select className="dropdownList" value={selectedTrashedProj} onChange={handleTrashedProjectSelectionChange}>
                       <option value="" key="">-- {trashedProjectSelectListDefaultText} --</option>
                       {
-                        //TODO9003
                         trashedProjList.map((item, index) => {
+                          if (item === placeholderNameDefault) {
+                            return;
+                          }
                           return (
                             <option value={trashedProjList[index].project_name} key={trashedProjList[index]}> {trashedProjList[index]}</option>
                           );

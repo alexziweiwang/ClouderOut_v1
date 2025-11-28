@@ -78,22 +78,23 @@ export default function ProjectManageNew({
 
     /* Create and setup the default set for a new project */
     async function createNewProjectToCloud() {
-      await createNewProjectToCloud_vm(
-          projList, 
-          addedNewProjKey, 
-          epp2Template, 
-          epa3Template, 
-          projectNavUiTemplate, 
-          addedAuthorInfo,
-          projDedscription,
-        
-          username,
-          backendOption,
-        
-          triggerCreationNew_local,
-          clearForm,
-        
-          addedNewProjName,
+      //TODO9005
+      
+      await createNewProjectToCloud_vm({
+        projList: projList, 
+        addedNewProjKey: addedNewProjKey, 
+      
+        addedAuthorInfo: addedAuthorInfo,
+        projDedscription: projDedscription,
+      
+        username: username,
+        backendOption: backendOption,
+      
+        triggerCreationSubmit: triggerCreationNew_local,
+        clearForm: clearForm,
+      
+        addedNewProjName: addedNewProjName,
+        }
       );
 
     }

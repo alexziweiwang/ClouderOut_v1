@@ -1,4 +1,11 @@
-import { emptyConvNodeSinglePieceTemplate, emptyConvNodeUiAllTemplate } from '../components/_dataStructure_DefaultObjects';
+import { emptyConvNodeSinglePieceTemplate, 
+  emptyConvNodeUiAllTemplate, 
+  slInfoTemplate,  
+  epp2Template, 
+  epa3Template, 
+  projectNavUiTemplate, 
+
+} from '../components/_dataStructure_DefaultObjects';
 import { createProjectVM } from './ProjectManagerViewModel';
 
 
@@ -93,17 +100,14 @@ export function triggerCreatedNewNode_Prep_vm(nodeTypeTemp) {
 
 
 
-  export function prepareForNewProject_vm(
-      projList, 
-      addedNewProjKey, 
-      epp2Template, 
-      epa3Template, 
-      projectNavUiTemplate, 
+  export function generateNewProjectEntireObj_vm( //either offline or online mode calls this
+ 
       addedAuthorInfo,
       projDedscription,
       addedNewProjName,
 
     ) {
+      //9005
 
    // TODO gather list:
       /* 
@@ -116,16 +120,8 @@ export function triggerCreatedNewNode_Prep_vm(nodeTypeTemp) {
                 genre field (later) */
       
 
-      const result = projList.filter((name) => name === addedNewProjKey);
-      if (result.length > 0) {
-        console.log("warning: duplicate name");
-        alert("Project Name already taken ...");
-        //if already contains this name
-        //don't navigate
-        return;
-      }
-      
-
+  
+//------------------------------------------------------------------------------------------------------------------------------
                                                           //TODO: author name default: current user-name, then allow adding others
       
       const empty_game_data = {};
@@ -154,48 +150,51 @@ export function triggerCreatedNewNode_Prep_vm(nodeTypeTemp) {
       Object.keys(epa3Template).map((currKey) => {
         empty_emu_4sets["epa3"][currKey] = epa3Template[currKey];
       })
-      
 
-
-      let empty_nav_ui_settings = {};
+      let default_nav_ui_settings = {};
       Object.keys(projectNavUiTemplate).map((currKey) => {
-        empty_nav_ui_settings[currKey] = projectNavUiTemplate[currKey];
-      }); //TODO900 default
+        default_nav_ui_settings[currKey] = projectNavUiTemplate[currKey];
+      });
       
+      const defaultSlAllObj = {}; //TODO9005
+      Object.keys(slInfoTemplate).map((currKey) => {
+        defaultSlAllObj[currKey] = slInfoTemplate[currKey];
+      }); 
 
-      const default_size_direction = "16:9(horizonal)"; //TODO900 default
+      const default_size_direction = "16:9(horizonal)";
       const default_ui_language = "en";
 
 
       const projectObj = {
-        chapterList: empty_chapter_list,
-        chapterNodeMapping: empty_chapter_node_mapping,
-        convNodeUiPlanMap: empty_node_ui_plan,
-        emu4sets: empty_emu_4sets,
-        game_data: empty_game_data,
-        nav_ui_settings: empty_nav_ui_settings,
-        proj_resource_audio: empty_rm_audio,
-        proj_resource_visual: empty_rm_visual,
-        sizeDirection: default_size_direction,
-        type: "project",
-        trashed: false,
-        ui_language: default_ui_language,
+        "chapterList": empty_chapter_list,
+        "chapterNodeMapping": empty_chapter_node_mapping,
+        "convNodeUiPlanMap": empty_node_ui_plan,
+        "emu4sets": empty_emu_4sets,
+        "game_data": empty_game_data,
+        "nav_ui_settings": default_nav_ui_settings,
+        "proj_resource_audio": empty_rm_audio,
+        "proj_resource_visual": empty_rm_visual,
+        "sizeDirection": default_size_direction,
+        "type": "project",
+        "trashed": false,
+        "ui_language": default_ui_language,
 
-        author_info: addedAuthorInfo,
-        project_description: projDedscription,
-        project_title: addedNewProjName,
-        project_name: addedNewProjName,
+        "author_info": addedAuthorInfo,
+        "project_description": projDedscription,
+        "project_title": addedNewProjName,
+        "project_name": addedNewProjName,
+
+        "slInfo": defaultSlAllObj
       };
 
     return projectObj;
   }
 
-export async function createNewProjectToCloud_vm(
-  projList, 
+export async function createNewProjectToCloud_vm( // called in front-end of online-mode
+  {
+    projList, 
   addedNewProjKey, 
-  epp2Template, 
-  epa3Template, 
-  projectNavUiTemplate, 
+
   addedAuthorInfo,
   projDedscription,
 
@@ -206,23 +205,25 @@ export async function createNewProjectToCloud_vm(
   clearForm,
 
   addedNewProjName,
-
-
-
-
-  
-  ) {
+  }
+) {
    
 
       //TODO900 emu-data-sets
     //TODO900 screen size
 
-      let projectObj = prepareForNewProject_vm(
-        projList, 
-        addedNewProjKey, 
-        epp2Template, 
-        epa3Template, 
-        projectNavUiTemplate, 
+      const result = projList.filter((projName) => projName === addedNewProjKey);
+      if (result.length > 0) {
+                        console.log("warning: duplicate name");
+        alert("Project Name already taken ...");
+        //if already contains this name
+        //don't navigate
+        return;
+      }
+      
+
+      let projectObj = generateNewProjectEntireObj_vm(
+       
         addedAuthorInfo,
         projDedscription,
         addedNewProjName,

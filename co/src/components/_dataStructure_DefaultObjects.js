@@ -513,34 +513,62 @@ export const shp5Template = {
     "playerPurchaseStatus":  []
 }
 
+export const slInfoTemplate = {
+    "format": "chapterExpr", //or "slSlots"
+    "row": 2,
+    "col": 3,
+    "pageCount": 3,
+    "item_w": 100,
+    "item_h": 70,
+    "itemTitleStamp": true,
+    "bgPicName": "",
+    "groupPosX": 0,
+    "groupPoxY": 0,
+    "groupItemGapX": 5,
+    "groupItemGapY": 5,
+}
 
+//9005
 export const metadataTemplate = {
     "author_info": "",
-    "chapterList": {},
-    "chapterNodeMapping": {},
+    "chapterList": {
+        0: ["chapter_placeholder","chapter_placeholder","chapter_placeholder","chapter_placeholder"]},
+    "chapterNodeMapping": {
+        "placeholder": {}
+    },
     "convNodeUiPlanMap": {},
     "emu4sets": {
         "gdt1": {}, 
-        "epp2": {}, 
-        "epa3": {},
+        "epp2": {
+            "playername": "",
+            "userTitle": "",
+            "iconPicName": "",
+            "level": 1,
+            "membership": "",
+        }, 
+        "epa3": {
+            "playername": "",
+            "email": "",  
+        },
         "ess4": {}, 
-        "shp5": {}, 
+        "shp5": {
+            "shopStock": [],
+            "playerPurchaseStatus":  []
+        }, 
     },
     "game_data": {},
+    "nav_ui_settings": {
+
+    },
     "proj_resource_audio": [],
     "proj_resource_visual": [],
     "project_description": "",
     "project_name": "",
     "project_title": "",
     "sizeDirection": "16:9(vertical)",
-    "trashed": false,
-    "type": "project",
-    "ui_language": "en",
-    "slInfo": {
-        //TODO9001
 
-        "format": "chapterExpr", //or "slSlots"
-        
+    "slInfo": {
+            "format": "chapterExpr", //or "slSlots"
             "row": 2,
             "col": 3,
             "pageCount": 3,
@@ -552,11 +580,11 @@ export const metadataTemplate = {
             "groupPoxY": 0,
             "groupItemGapX": 5,
             "groupItemGapY": 5,
+    },
 
-            //TODO more fields...
-        
-
-    }
+    "trashed": false,
+    "type": "project",
+    "ui_language": "en",
 }
 
 

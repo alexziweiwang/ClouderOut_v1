@@ -1,6 +1,6 @@
 import  {db} from '../GoogleCloudConnections'; //TODO23 database
 import { doc, getDoc, getDocs, addDoc, setDoc, collection, query, where, updateDoc } from "firebase/firestore"; 
-import { placeholderNameDefault } from './_dataStructure_DefaultObjects';
+import { placeholderNameDefault } from '../components/_dataStructure_DefaultObjects';
 
 /*
 List of functions:
