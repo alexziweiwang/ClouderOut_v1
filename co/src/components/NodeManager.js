@@ -10,7 +10,7 @@ important operations:
 
 (locally)
 [ ] 1.create a node
-[ ] 2.revert a delieted node
+[ ] 2.revert a deleted node
 [ ] 3.change node title/note
 [ ] 4.delete a node
 [ ] 5.detach linking of a node
@@ -509,7 +509,7 @@ export default function NodeManager({projectName, currUser,
 
 
   // [ ] 1.create a node
-  // [ ] 2.revert a delieted node
+  // [ ] 2.revert a deleted node
   // [ ] 3.change node title/note
   // [ ] 4.delete a node
   // [ ] 5.detach linking of a node

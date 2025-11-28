@@ -3,6 +3,7 @@ import { doc, getDoc, getDocs, addDoc, setDoc, collection, query, where, updateD
 
 import { generateNodeLongKeyString_vm } from '../viewmodels/PrepAc_ProjectOperation';
 
+import { placeholderNameDefault } from './_dataStructure_DefaultObjects';
 
 
 
@@ -29,11 +30,14 @@ export async function fetchAllNodes2({projectName, uname}) {
     querySnapshot.forEach((doc) => {
 
                                       //  console.log("\t\t\tid = ", doc.id, " ... data  = ", doc.data());
-        if (doc.id !== "placeholder123456789___###___###___##") {
+                                                  // if (doc.id !== "p laceholder123456789___###___###___##") {
+                                                  //   dataMap[doc.id] = doc.data();
+                                                        
+                                                  // }
+        if (doc.id !== placeholderNameDefault) {
           dataMap[doc.id] = doc.data();
               
         }
-
     });
                 console.log("\t\tcloud side all-node-contents: ", dataMap);
     return dataMap;
@@ -53,11 +57,14 @@ export async function fetchNodeByChapter2({projectName, uname, chapterKey}) {
     querySnapshot.forEach((doc) => {
 
                                       //  console.log("\t\t\tid = ", doc.id, " ... data  = ", doc.data());
-        if (doc.id !== "placeholder123456789___###___###___##") {
+                                            // if (doc.id !== "p laceholder123456789___###___###___##") {
+                                            //   dataMap[doc.id] = doc.data();
+                                                  
+                                            // }
+        if (doc.id !== placeholderNameDefault) {
           dataMap[doc.id] = doc.data();
               
         }
-
     });
 
     return dataMap;

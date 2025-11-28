@@ -558,3 +558,6 @@ export const metadataTemplate = {
 
     }
 }
+
+
+export const placeholderNameDefault = "placeholder123456789___###___###___##";

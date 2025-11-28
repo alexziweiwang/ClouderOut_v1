@@ -20,6 +20,7 @@ import { fetchProjectListVM, revertProjectVM, deleteProjectVM } from '../viewmod
 
 
 import { parseFromFile_vm } from '../viewmodels/PrepAc_ProjectFileInOut';
+import { placeholderNameDefault } from './_dataStructure_DefaultObjects';
 
 
 /*
@@ -233,7 +234,8 @@ export default function Panel1_UserMgr({}) {
             let pureTrashedProjList = groupList.trashed;
             if (pureTrashedProjList !== undefined) {
                 pureTrashedProjList = pureTrashedProjList.filter(
-                    (name) => name !== "placeholder123456789___###___###___##"
+                                                                            //(name) => name !== "p laceholder123456789___###___###___##"
+                    (nameStr) => nameStr !== placeholderNameDefault
                 )
 
             }

@@ -1,5 +1,6 @@
 import  {db} from '../GoogleCloudConnections'; //TODO23 database
 import { doc, getDoc, getDocs, addDoc, setDoc, collection, query, where, updateDoc } from "firebase/firestore"; 
+import { placeholderNameDefault } from './_dataStructure_DefaultObjects';
 
 /*
 List of functions:
@@ -95,10 +96,10 @@ export async function createProject({currUser, projectName, projectObj}) {
   await setDoc(projRef, projectObj);
 
 //TODO199
-  const placeholder = "placeholder123456789___###___###___##";
+                                                                    //const placeholder = "p laceholder123456789___###___###___##";
   const placeholderContent = {};
   await setDoc(projRef, projectObj).then(() => {
-    setDoc(doc(db, "user_projects", currUser, "projects", projectName, "allNodes", placeholder), 
+    setDoc(doc(db, "user_projects", currUser, "projects", projectName, "allNodes", placeholderNameDefault), 
     placeholderContent)
   }).catch((e) => {
     console.log(e)
@@ -224,9 +225,9 @@ export async function addNewAccountFolder({userId, username, userEmailAddr}) {
         });
 
 
-      let proj_folder_placeholder = "placeholder123456789___###___###___##";
+                                            //  let proj_folder_placeholder = "p laceholder123456789___###___###___##";
       await setDoc(
-        doc(db, "user_projects", userId, 'projects', proj_folder_placeholder), 
+        doc(db, "user_projects", userId, 'projects', placeholderNameDefault), 
         {}
       );
         

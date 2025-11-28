@@ -83,3 +83,9 @@ export function fromIndexedMapToList(map1) {
 
     return list1;
 }
+
+
+export function replaceSpaceForNames(strProvided) {
+    return strProvided.replaceAll(" ", "-");
+
+}

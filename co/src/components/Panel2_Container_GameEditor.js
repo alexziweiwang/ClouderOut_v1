@@ -61,6 +61,7 @@ import { generateNodeLongKeyString_vm } from '../viewmodels/PrepAc_ProjectOperat
 import { singleNodeWriteToCloudVM, createNewNodeFoldersVM, multipleNodeWriteToCloudVM } from '../viewmodels/NodeEditingViewModel';
 import { dupObject, dupNestedObject, fromIndexedMapToList } from '../viewmodels/PrepAc_Conversion';
 
+import { placeholderNameDefault } from './_dataStructure_DefaultObjects';
 
 
 
@@ -1072,10 +1073,13 @@ console.log("handle Cancel NodeTest Viewer:", projectMetaData["emu4sets"]["gdt1"
         let emuGdt1Temp = projectMetaData["emu4sets"]["gdt1"]; //TODO99999
       
         Object.keys(gameDataDesignList).map((currKey) => {
-            if (currKey === "placeholder123456789___###___###___##") {
-              return;
+                                                                        // if (currKey === "p laceholder123456789___###___###___##") {
+                                                                        //   return;
+                                                                        // }
+            if (currKey === placeholderNameDefault) {
+                return;
             }
-    
+          
             if (emuGdt1Temp[currKey] !== undefined) {
     
                 if (emuGdt1Temp[currKey]["current_value"] === undefined) {

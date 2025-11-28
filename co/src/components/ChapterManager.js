@@ -23,7 +23,7 @@ export default function ChapterManager({
 
 
   // [ ] 1.create a chapter
-  // [ ] 2.revert a delieted chapter
+  // [ ] 2.revert a deleted chapter
   // [ ] 3.change chapter title/note
   // [ ] 4.delete a node
 

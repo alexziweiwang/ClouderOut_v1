@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import langDictionary from './_textDictionary';
-
+import { placeholderNameDefault } from './_dataStructure_DefaultObjects';
 
 export default function Modal_GameDataManager ({
         handleGdmCancel, 
@@ -358,10 +358,15 @@ export default function Modal_GameDataManager ({
                         <tbody>       
                         {Object.keys(usingGameDataDesign).map((key) => {
 
-                            if (key === "placeholder123456789___###___###___##") {
+                                                                                // if (key === "p laceholder123456789___###___###___##") {
+                                                                                //     return;
+                                                                                // }
+                  
+                            if (key === placeholderNameDefault) {
                                 return;
                             }
-                        
+
+
                             return (
                                 <tr key={key} className="tableItem tableRow">
                                     <td>{key}</td>

@@ -537,6 +537,7 @@ export default function ProjectManagingPanel(
                     <><select className="dropdownList" value={selectedTrashedProj} onChange={handleTrashedProjectSelectionChange}>
                       <option value="" key="">-- {trashedProjectSelectListDefaultText} --</option>
                       {
+                        //TODO9003
                         trashedProjList.map((item, index) => {
                           return (
                             <option value={trashedProjList[index].project_name} key={trashedProjList[index]}> {trashedProjList[index]}</option>

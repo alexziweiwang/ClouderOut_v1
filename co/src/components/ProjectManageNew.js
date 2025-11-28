@@ -14,7 +14,7 @@ import {
 } from './_dataStructure_DefaultObjects';
 
 import { createNewProjectToCloud_vm } from '../viewmodels/PrepAc_Creations';
-
+import { replaceSpaceForNames } from '../viewmodels/PrepAc_Conversion';
 //TODO115 collection of cloud-related
 
 
@@ -175,7 +175,7 @@ export default function ProjectManageNew({
                         onChange={(event)=>{
                           changeProjNameInput(event);
                           let val = event.target.value;
-                          let str = val.replaceAll(" ", "-");
+                          let str = replaceSpaceForNames(val);
 
                           setAddedNewProjKey(str);
 
@@ -193,7 +193,7 @@ export default function ProjectManageNew({
                         value={addedNewProjKey} 
                         onChange={(event)=>{
                           let val = event.target.value;
-                          let str = val.replaceAll(" ", "-");
+                          let str = replaceSpaceForNames(val);
 
                           setAddedNewProjKey(str);
 
@@ -201,7 +201,7 @@ export default function ProjectManageNew({
                         onFocus={()=>{
                           //TODO 
                           let val = addedNewProjName;
-                          let str = val.replaceAll(" ", "-");
+                          let str = replaceSpaceForNames(val);
 
                           setAddedNewProjKey(str);
                         }}
