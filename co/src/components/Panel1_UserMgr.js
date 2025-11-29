@@ -15,7 +15,7 @@ import { makeDeletionLists_vm, makeReversionLists_vm } from '../viewmodels/PrepA
 
 
 //TODO1090 cloud-db related
-import { fetchProjectListVM, revertProjectVM, deleteProjectVM } from '../viewmodels/ProjectManagerViewModel';
+import { fetchProjectListVM, revertProjectVM, markTrashProjectVM } from '../viewmodels/ProjectManagerViewModel';
 //TODO1090 collection of cloud-related
 
 
@@ -270,10 +270,10 @@ export default function Panel1_UserMgr({}) {
     //TODO30
     }
 
-    async function deleteProjectOuter(selectedDeletedProj) {
-        await deleteProjectVM( 
+    async function markTrashProjectOuter(selectedMarkedTrashProj) {
+        await markTrashProjectVM( 
           { 
-            projectToDelete: selectedDeletedProj, 
+            projectToMarkTrash: selectedMarkedTrashProj, 
             currUser: authEmailName,
             bkOption: backendOption
           }
@@ -287,7 +287,7 @@ export default function Panel1_UserMgr({}) {
             trashedProjList, 
             setTrashedProjList, 
             setProjList, 
-            selectedDeletedProj
+            selectedMarkedTrashProj
         );
   
         //TODO30 operate on projList and trashedProjList
@@ -344,7 +344,7 @@ export default function Panel1_UserMgr({}) {
                             getUsername={passInUsername}
 
                             revertProjectOuter={revertProjectOuter}
-                            deleteProjectOuter={deleteProjectOuter}
+                            markTrashProjectOuter={markTrashProjectOuter}
                             parseFromFile_vm={parseFromFile_vm}
 
                             getValidProjList={passInValidProjectList}

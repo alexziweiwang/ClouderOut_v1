@@ -1,6 +1,11 @@
-import {fetchProjectList, revertProject, 
-    deleteProject, createProject, 
-    initializeChaptersCollection, updateProjectUILang,
+import {
+    fetchProjectList, 
+    revertProject, 
+    markTrashProject, 
+    createProject, 
+
+    initializeChaptersCollection, 
+    updateProjectUILang,
     fetchProjectUILang,
     updateProjectNavigationSettings,
     fetchProjectNavigationSettings,
@@ -55,10 +60,10 @@ export async function revertProjectVM({projectToRevert, currUser, bkOption}) {
 
 }
 
-export async function deleteProjectVM({projectToDelete, currUser, bkOption}) {
+export async function markTrashProjectVM({projectToMarkTrash, currUser, bkOption}) {
 
     if (bkOption === "firebase") {
-        await deleteProject({projectToDelete, currUser});
+        await markTrashProject({projectToMarkTrash, currUser});
     }
 
 }

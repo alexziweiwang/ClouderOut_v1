@@ -8,7 +8,7 @@ List of functions:
 
 function fetchProjectList(currUser
 function revertProject(projectToRevert, currUser)
-function deleteProject(projectToDelete, currUser)
+function markTrashProject(projectToMarkTrash, currUser)
 function createProject(currUser, projectName, projectObj)
 function updateProjectUILang({projectName, currUser, selectedUILang})
 function fetchProjectUILang({projectName, currUser})
@@ -57,7 +57,7 @@ export async function fetchProjectList(currUser) {
 
 
 /**
- * Revert deleted proejct to using
+ * Revert trash-marked proejct to using
  * 
  * @param {*} projectToRevert project name
  * @param {*} currUser username
@@ -71,15 +71,15 @@ export async function revertProject({projectToRevert, currUser}) {
 }
 
 /**
- * Set specified project to deleted
+ * Set specified project to mark-trash
  * 
- * @param {*} projectToDelete project name
+ * @param {*} projectToMarkTrash project name
  * @param {*} currUser username
  * @returns void
  */
-export async function deleteProject({projectToDelete, currUser}) {
+export async function markTrashProject({projectToMarkTrash, currUser}) {
 //firebase
-  const projRef = doc(db, "user_projects", currUser, "projects", projectToDelete);
+  const projRef = doc(db, "user_projects", currUser, "projects", projectToMarkTrash);
 
   await updateDoc(projRef, {trashed: true});
   

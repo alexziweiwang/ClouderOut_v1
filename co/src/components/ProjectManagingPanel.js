@@ -15,7 +15,7 @@ export default function ProjectManagingPanel(
     getUsername,
 
     revertProjectOuter, 
-    deleteProjectOuter,
+    markTrashProjectOuter,
     parseFromFile_vm,
 
     getValidProjList,
@@ -164,15 +164,15 @@ export default function ProjectManagingPanel(
       
     }
 
-    async function handleDeleteProject() {
-      let response = window.confirm("Are you sure to delete this project? (it can be revert from trash-area)?");
+    async function handlemarkTrashProject() {
+      let response = window.confirm("Are you sure to delete this project? (it can be reverted from the area below)?");
         if (response === true) {
-          await deleteProject();
+          await markTrashProject();
         }  
     }
 
-    async function deleteProject() {
-      await deleteProjectOuter(selected_project_name); 
+    async function markTrashProject() {
+      await markTrashProjectOuter(selected_project_name); 
        
       setSelectedProjectName("");
 
@@ -233,6 +233,24 @@ export default function ProjectManagingPanel(
 
 
 
+    function handlePermanentlyRemove() {
+      //remove this 
+
+      //TODO ask
+      let askStr = "Are you sure to permanently remove this project [" + selectedTrashedProj + "]?";
+      let ans = window.confirm(askStr);
+      if (ans) {
+        //TODO
+
+        //remove this proejct from trashed-list
+        //TODO notify outer layer (panel1) for new trashed-list
+        //TODO setTrashedProjList() // for local
+
+        //provide a download file of this project
+
+        // selectedTrashedProj
+      }
+    } 
 
 
 
@@ -345,7 +363,7 @@ export default function ProjectManagingPanel(
 
                           {(selected_project_name === item) && 
                           <div style={{"display": "flex", "justifyContent": "start", "alignContent": "end"}}>
-                            <button className="elemPosLeftBottom" onClick={()=>{handleDeleteProject();}}>
+                            <button className="elemPosLeftBottom" onClick={()=>{handlemarkTrashProject();}}>
                               <GiTrashCan/>
                             </button>
                           </div>}
@@ -516,7 +534,7 @@ export default function ProjectManagingPanel(
               <label 
                 className="cursor_pointer"
                 style={{"justifyContent": "start", "display": "flex", "padding": "10px"}}
-              >Revert a Deleted Project ...</label>
+              >Deleted Project ...</label>
             </div>
 
         
@@ -549,11 +567,25 @@ export default function ProjectManagingPanel(
                       }
                     </select>
                   
-
+                  
+                  {selectedTrashedProj !== "" &&
+                  <>
                   <button onClick={()=>{
                     revertTrashedProject();
                     
-                  }}>{revertProjectButtonText}</button></>}
+                  }}>{revertProjectButtonText}</button>
+                  
+                  
+                  
+                  <button 
+                  className="warningButton"
+                  onClick={()=>{
+                    handlePermanentlyRemove();
+                  }}
+                  >Permanently Remove
+                  </button></>}
+                  
+                  </>}
 
 
                   
