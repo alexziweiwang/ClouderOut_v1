@@ -1612,30 +1612,39 @@ console.log("ui-langauge changed to: ", val);
   }
 
   function prepFirstViewingChapter() { 
+      if (projectMetaData === -1) {
+          return;
+      }
+
+      console.log("prep FirstViewingChapter: ", projectMetaData); 
                 //TODO: also, return from game-maker, if chapter-deletion happens...
 
-      let firstChapItem = projectMetaData["chapterList"][1];
-      let firstChapKey = firstChapItem[0];
+      let firstChapItem = projectMetaData["chapterList"].length > 0 ? projectMetaData["chapterList"][1] : "";
+      if (projectMetaData["chapterList"].length > 0) {
+        let firstChapKey = firstChapItem[0];
       
-      if (firstChapKey !== viewingFirstChapterKey) {
-                        console.log("prep first chapter for viewer-entire... "); 
+        if (firstChapKey !== viewingFirstChapterKey) {
+                          console.log("prep first chapter for viewer-entire... "); 
+  
+                          console.log("\tupdating: ", firstChapKey);
+  
+              let filteredMap = {};
+              Object.keys(projectAllNodeContent).map((currKey) => {
+                  let item = projectAllNodeContent[currKey];
+                  if (item["chapterKey"] === firstChapKey) {
+                      filteredMap[currKey] = item;
+                  }
+              }
+              );
+                          console.log("\tfilteredMap: ", filteredMap);
+  
+              setViewerEntireFirstChapterData(filteredMap);
+  
+              setViewingFirstChapterKey(firstChapKey);
+        }
 
-                        console.log("\tupdating: ", firstChapKey);
-
-            let filteredMap = {};
-            Object.keys(projectAllNodeContent).map((currKey) => {
-                let item = projectAllNodeContent[currKey];
-                if (item["chapterKey"] === firstChapKey) {
-                    filteredMap[currKey] = item;
-                }
-            }
-            );
-                        console.log("\tfilteredMap: ", filteredMap);
-
-            setViewerEntireFirstChapterData(filteredMap);
-
-            setViewingFirstChapterKey(firstChapKey);
       }
+
 
 
   
