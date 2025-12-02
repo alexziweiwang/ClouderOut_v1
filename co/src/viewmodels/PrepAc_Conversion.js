@@ -84,6 +84,15 @@ export function fromIndexedMapToList(map1) {
     return list1;
 }
 
+export function fromList1ToList2({list1, list2, item, saveList1Func, saveList2Func}) {
+    let list1Temp = list1.filter(e => e !== item);
+    saveList1Func(list1Temp);
+
+    let list2Temp = list2;
+    list2Temp.push(item);
+    saveList2Func(list2Temp);
+
+}
 
 export function replaceSpaceForNames(strProvided) {
     return strProvided.replaceAll(" ", "-");

@@ -8,6 +8,7 @@ import langDictionary from './_textDictionary';
 import { makeDeletionLists_vm, makeReversionLists_vm } from '../viewmodels/PrepAc_ProjectOperation';
 import { placeholderNameDefault } from './_dataStructure_DefaultObjects';
 import { downloadProjectEntireFromCloudVM } from '../viewmodels/PrepAc_ProjectFileInOut';
+import { fromList1ToList2 } from '../viewmodels/PrepAc_Conversion';
 
 
 export default function ProjectManagingPanel(
@@ -21,8 +22,10 @@ export default function ProjectManagingPanel(
     removeProjectPermanentlyOuter,
     parseFromFile_vm,
 
-    getValidProjList,
-    getTrashedProjList,
+
+    getBothLists,
+
+    getProjectListMap,
 
     sendOutImportedProject,
 
@@ -46,15 +49,14 @@ export default function ProjectManagingPanel(
         textDictItem.trashedProjectSelectListDefaultText
         : textDictItemDefault.trashedProjectSelectListDefaultText;
     
-
-
-
-
-
+        
     const [selected_project_name, setSelectedProjectName] = useState("");     //important !!!!!!
 
-    const [projList, setProjList] = useState(undefined);                     //important !!!!!!
-    const [trashedProjList, setTrashedProjList] = useState(undefined);       //important !!!!!!
+
+
+    const [usingProjList, setUsingProjList] = useState(-1);                     //important !!!!!!
+    const [trashedProjList, setTrashedProjList] = useState(-1);       //important !!!!!!
+
 
 
     const [selectedTrashedProj, setSelectedTrashedProj] = useState("");
@@ -80,17 +82,14 @@ export default function ProjectManagingPanel(
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
 
-      if (authEmailName !== "_" && firstTimeEnter === true) {
-
+      if (authEmailName !== "_") {
+          
         if (
-          projList === undefined 
-          || trashedProjList === undefined
+          usingProjList === -1 || trashedProjList === -1
         ) { // condition of init-status of var...
     
-          let resBool = fetchListsFromOuter(); 
-          if (resBool === true) { //TODO99999
-            setFirstTimeEnter(false);
-          }
+          fetchProjectListMapFromOuter(); 
+    
         }
       }
 
@@ -100,34 +99,44 @@ export default function ProjectManagingPanel(
           setAuthEmailName(unameTemp);
       }
 
-                                  console.log("pmp - proj-list = ", projList);
-                                  console.log("pmp - trashed-proj-list = ", trashedProjList);
+                                  console.log("pmp - proj-lists = \nulist=", usingProjList, "\n\tt-list=", trashedProjList);
 
     });
 
-    function fetchListsFromOuter() {
-      let validList = getValidProjList();
-      let trashedList = getTrashedProjList();
-
-                        console.log("\t\tproj-mgr-panel ... valid-list = ", validList);
-                        console.log("\t\tproj-mgr-panel ... trashed-list = ", trashedList);
-
-      if (validList !== undefined && trashedList !== undefined) {
-        setProjList(validList);
-        setTrashedProjList(trashedList);
-
-        return true;
-      } else {
+    function fetchProjectListMapFromOuter() {
+      let entire = getProjectListMap();
+      if (entire === -1) {
+                  console.log("from panel1 - proj-list-map not ready");
         return false;
       }
+ 
+      handleProjListMappingSetup(entire);
+
+                  console.log("\t\t fetched : ", entire);
+
+      return true;
+
     }
 
-    
-    function updateBothListsLocal(obj) {
-      if (obj !== undefined && obj.untrashed !== undefined && obj.trahsed !== undefined) {
-        setProjList(obj.untrashed);
-        setTrashedProjList(obj.trashed);
-      }
+
+    function handleProjListMappingSetup(obj) {
+                            console.log("proj-list-map changed!!!");
+
+        let usingList = [];
+        let trashedList = [];
+
+        Object.keys(obj).map((currKey)=>{
+          let val = obj[currKey];
+          if (val === false) { // not trashed
+            usingList.push(currKey);
+          } else {
+            trashedList.push(currKey);
+          }
+        });
+                          console.log("using-list = ", usingList, "\n\ttrashed-list = ", trashedList);
+
+        setUsingProjList(usingList);
+        setTrashedProjList(trashedList);
 
     }
 
@@ -150,23 +159,6 @@ export default function ProjectManagingPanel(
       setSelectedTrashedProj(event.target.value);
     }
 
-    async function revertTrashedProject() {
-      await revertProjectOuter(selectedTrashedProj);
-      setSelectedTrashedProj("");
-
-
-
-      //TODO30
-      makeReversionLists_vm(
-        projList, 
-        trashedProjList, 
-        setTrashedProjList, 
-        setProjList, 
-        selectedTrashedProj
-      );
-      
-    }
-
     async function handleMarkTrashProject() {
       let response = window.confirm("Are you sure to delete this project? (it can be reverted from the area below)?");
         if (response === true) {
@@ -175,36 +167,45 @@ export default function ProjectManagingPanel(
     }
 
     async function markTrashProject() {
-      await markTrashProjectOuter(selected_project_name); 
        
       setSelectedProjectName("");
 
-      //TODO30
-      makeDeletionLists_vm(
-        projList, 
-        trashedProjList, 
-        setTrashedProjList, 
-        setProjList, 
-        selected_project_name
-    );
+      fromList1ToList2({
+        list1: usingProjList, 
+        list2: trashedProjList, 
+        item: selected_project_name, 
+        saveList1Func: setUsingProjList, 
+        saveList2Func: setTrashedProjList
+      });
+
+      await markTrashProjectOuter(selected_project_name); 
+    }
+
+
+    async function revertTrashedProject() {
+      setSelectedTrashedProj("");
+
+      fromList1ToList2({
+        list1: trashedProjList, 
+        list2: usingProjList, 
+        item: selectedTrashedProj, 
+        saveList1Func: setTrashedProjList, 
+        saveList2Func: setUsingProjList
+      });
+
+      await revertProjectOuter(selectedTrashedProj);
 
     }
+
 
     function notUsing() {
       return "";
     }
 
     function triggerCreationSubmit(newProjectKeyName) {
-
-      let validListTemp = projList;
-      validListTemp.push(newProjectKeyName);
-      
-      let updatedObj = {
-        "untrashed": validListTemp,
-        "trashed": trashedProjList
-      };
-      //add this newly created obj into both lists
-      updateBothListsLocal(updatedObj);
+      let usingListTemp = usingProjList;
+      usingListTemp.push(newProjectKeyName);
+      setUsingProjList(usingListTemp);
 
       setCurrentProjectAction("selectProject");
     }
@@ -234,6 +235,21 @@ export default function ProjectManagingPanel(
 
     }
 
+    async function finalStepPermanentlyRemove() {
+      let askStrConf = "Project file downloaded. Continue to remove [" + selectedTrashedProj + "] from cloud?";
+            
+      let ansConf = window.confirm(askStrConf);
+      if (ansConf) {
+        await removeProjectPermanentlyOuter(selectedTrashedProj);
+        setSelectedTrashedProj("");
+
+        //remove from t-list!
+        let tList = trashedProjList.filter(e => e !== selectedTrashedProj);
+        setTrashedProjList(tList);
+        
+      }
+    }
+
 
 
     async function handlePermanentlyRemove() {
@@ -243,25 +259,10 @@ export default function ProjectManagingPanel(
       if (ans) {
     //TODO123
 
-
         //provide a download file of this project
-        await downloadProjectEntireFromCloudVM(selectedTrashedProj, authEmailName, backendOption)
-        .then(async(resBool)=>{
-          if (resBool === true) {
-                let askStrConf = "Project file downloaded. Continue to remove [" + selectedTrashedProj + "] from cloud?";
-            
-                let ansConf = window.confirm(askStrConf);
-                if (ansConf) {
-                  await removeProjectPermanentlyOuter(selectedTrashedProj);
-                  setSelectedTrashedProj("");
-                }
-          }
-        });
+        await downloadProjectEntireFromCloudVM(selectedTrashedProj, authEmailName, backendOption, finalStepPermanentlyRemove);
 
 
-
-
-        
       }
     } 
 
@@ -316,7 +317,7 @@ export default function ProjectManagingPanel(
                 isPart={true}
                 triggerCreationSubmit={triggerCreationSubmit}
                 username={authEmailName}
-                projList={projList}
+                projList={usingProjList}
               />
             </div>
 
@@ -358,15 +359,15 @@ export default function ProjectManagingPanel(
 
           }}>
 
-          {(projList !== undefined && projList.length > 0) &&
+          {(usingProjList !== undefined && usingProjList.length > 0) &&
           <div className="projectGrid" style={{"height": "210px", "overflow": "scroll"}}>
                 Projects on Cloud
                 <br></br>
 
-            {projList.map((item, index) => {
+            {usingProjList.map((item, index) => {
               return (
                 <div className= {(selected_project_name === item) ? "projectGridItemSelected" : "projectGridItem"}
-                    key={projList[index]} 
+                    key={usingProjList[index]} 
                     value={item} 
                     onClick={()=>{handleProjectGridClicked(item);}}>
                           <label style={{"fontWeight": "normal"}}>{item}</label>

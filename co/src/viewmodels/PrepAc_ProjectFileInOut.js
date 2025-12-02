@@ -471,7 +471,7 @@ import { generateProjectOutputName_vm } from './PrepAc_Conversion';
 
     }
 
-    export async function downloadProjectEntireFromCloudVM(projectKeyName, authorName, backendOption) {
+    export async function downloadProjectEntireFromCloudVM(projectKeyName, authorName, backendOption, finalStepFunc) {
 //TODO123
 
         await fetchProjectAllMetadataVM({
@@ -479,6 +479,8 @@ import { generateProjectOutputName_vm } from './PrepAc_Conversion';
                 currUser: authorName,
                 bkOption: backendOption
         }).then(async(metadataTemp)=>{
+                                console.log("mtdt = ", metadataTemp);
+
 
             if (metadataTemp !== undefined) {
                 let res = checkProjectMetaData_vm(metadataTemp);
@@ -493,28 +495,28 @@ import { generateProjectOutputName_vm } from './PrepAc_Conversion';
                         uname: authorName,
                         bkOption: backendOption
 
-                    }).then((allNodeDataTemp)=>{
-                        if (allNodeDataTemp === undefined) {
+                    }).then(async(allNodeDataTemp)=>{
+                                    console.log("andt = ", allNodeDataTemp);
+
+                        if (allNodeDataTemp !== undefined) {
                             entireObj["chapter_content"] = allNodeDataTemp;
                         
                             let filename = generateProjectOutputName_vm(projectKeyName, authorName);
     
                             downloadObjectAsFile(entireObj, filename);
 
-                            return true;
+                            await finalStepFunc();
                         } else {
-                            alert("Data for this project file is broken.");
-                            return false;
+
+                            alert("Data for this project file is broken. code:1");
+                         
                         }
                         
                     }); 
 
                 } else {
-                    alert("Data for this project file is broken.");
-                    return false;
+                    alert("Data for this project file is broken. code:2");
                 }
-            } else {
-                return false;
             }
 
         })

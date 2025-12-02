@@ -51,9 +51,7 @@ export default function Panel1_UserMgr({}) {
 
 //TODO area of saved info for this panel!!!
 
-    const [projList, setProjList] = useState(undefined);  //TODO123
-    const [trashedProjList, setTrashedProjList] = useState(undefined);  //TODO123
-    const [projListMixed, setProjListMixed] = useState(undefined);
+    const [projListMap, setProjListMap] = useState(-1);
 
 
     const [profileObj, setProfileObj] = useState(undefined);
@@ -81,9 +79,9 @@ export default function Panel1_UserMgr({}) {
                                         console.log("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
                                         console.log("\n\n\nPanel1_UserMgr FIRST ENTER.\n\n\n");
 
-          
+             
             if (
-                projListMixed === undefined 
+                projListMap === -1 
                 || profileObj === undefined
             ) { // condition of init-status of var...
 
@@ -109,6 +107,8 @@ export default function Panel1_UserMgr({}) {
                 }
               );
         }
+
+                    console.log("panel1 : projListMap = ", projListMap);
 
     });
 
@@ -202,6 +202,12 @@ export default function Panel1_UserMgr({}) {
         })
     }
 
+    function setBothProjListFunc(obj) {
+                console.log("\t\t!!! setting up proj-list-mapping ", obj);
+
+        setProjListMap(obj);
+    }
+ 
     async function triggerFetchProjListOuter() {
         if(authEmailName === "_") {
             return undefined;
@@ -209,7 +215,8 @@ export default function Panel1_UserMgr({}) {
         
         return await fetchProjectListVM(
             {currUser: authEmailName,
-             bkOption: backendOption 
+             bkOption: backendOption,
+             setValueFunc: setBothProjListFunc
             }
         );
 
@@ -225,30 +232,10 @@ export default function Panel1_UserMgr({}) {
         
         await fetchProjectListVM(
           {currUser: authEmailName,
-           bkOption: backendOption 
+           bkOption: backendOption,
+           setValueFunc: setBothProjListFunc
           }
-        ).then((groupList)=>{
-            console.log("load_ProjectList_FromCloud, group-list for ", authEmailName , " = ", groupList);
-        
-  
-            if (groupList !== undefined && groupList.length !== 0) {
-    
-                let pureTrashedProjList = groupList.trashed;
-                if (pureTrashedProjList !== undefined) {
-                    pureTrashedProjList = pureTrashedProjList.filter(
-                                                                                //(name) => name !== "p laceholder123456789___###___###___##"
-                        (nameStr) => nameStr !== placeholderNameDefault
-                    )
-    
-                }
-
-                setProjListMixed(groupList);
-
-            }
-    
-            return groupList;
-
-        });
+        );
 
     }
 
@@ -263,17 +250,18 @@ export default function Panel1_UserMgr({}) {
                                     // projList, setProjList
                                     // trashedProjList, setTrashedProjList
                 
-        let bothList = makeDeletionLists_vm(
-            projListMixed["untrashed"],
-            projListMixed["trashed"],
+                            // let bothList = makeDeletionLists_vm(
+                            //     projListMixed["using"],
+                            //     projListMixed["trashed"],
 
 
-            selectedTrashedProj
-        );
-        setProjListMixed(bothList);
+                            //     selectedTrashedProj
+                            // );
+
+                            // setProjListMixed(bothList);
      
 
-    //TODO30
+    //TODO123 local proj-list-labelling setprojlistmap
     }
 
     async function markTrashProjectOuter(selectedMarkedTrashProj) {
@@ -288,28 +276,36 @@ export default function Panel1_UserMgr({}) {
                               // projList, setProjList
                               // trashedProjList, setTrashedProjList
          
-        let bothList = makeReversionLists_vm(        
-            projListMixed["untrashed"],
-            projListMixed["trashed"],
-            selectedMarkedTrashProj
-        );
-        setProjListMixed(bothList);
-  
-        //TODO30 operate on projList and trashedProjList
+                                        // let bothList = makeReversionLists_vm(        
+                                        //     projListMixed["using"],
+                                        //     projListMixed["trashed"],
+                                        //     selectedMarkedTrashProj
+                                        // );
+                                        // setProjListMixed(bothList);
+                                
+                                        // //TODO30 operate on projList and trashedProjList
+
+            //TODO123 local proj-list-labelling setprojlistmap
+
     }  
 
     async function removeProjectPermanentlyOuter(selectedProj) {
 //TODO123
         //remove .. 
-        let tList = {};
-        Object.keys(projListMixed["untrashed"]).map((currKey)=>{
-            let val = projListMixed["untrashed"][currKey];
-            if (val !== selectedProj) {
-                tList[currKey] = projListMixed["untrashed"][currKey];
-            }
-        });
+
+                    //TODO123 local proj-list-labelling
+
+                            // let tList = {};
+                            // Object.keys(projListMixed["using"]).map((currKey)=>{
+                            //     let val = projListMixed["using"][currKey];
+                            //     if (val !== selectedProj) {
+                            //         tList[currKey] = projListMixed["using"][currKey];
+                            //     }
+                            // });
        // setTrashedProjList(tList);
        //TODO setProjListMixed(combined-list);
+
+//todo123 setprojlistmap
 
 
         await removeProjectPermanentlyVM({
@@ -321,18 +317,8 @@ export default function Panel1_UserMgr({}) {
 
     }
 
-    function passInValidProjectList() {
-        return projList;
-        
-    }
-
-    function passInTrashedProjectList() {
-        return trashedProjList;
-        
-    }
-
-    function passInProjectBothList() {
-        return projListMixed;
+    function passInProjectListMapping() {
+        return projListMap;
     }
 
     function receiveImportedProjFromSubCompo(projContent) {
@@ -381,8 +367,7 @@ export default function Panel1_UserMgr({}) {
                             removeProjectPermanentlyOuter={removeProjectPermanentlyOuter}
                             parseFromFile_vm={parseFromFile_vm}
 
-                            getValidProjList={passInValidProjectList}
-                            getTrashedProjList={passInTrashedProjectList}
+                            getProjectListMap={passInProjectListMapping}
                             
                             triggerFetchProjList={triggerFetchProjListOuter}
 

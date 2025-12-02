@@ -16,14 +16,16 @@ import {
     removeProjectPermanently
 } from '../models/ProjectManagerModel_Firebase';
 
+import { placeholderNameDefault } from '../components/_dataStructure_DefaultObjects';
 
-/* Returns list of project names according to given parameter: untrashed or trashed */
-export async function fetchProjectListVM({currUser, bkOption}) {
 
-    let group = {"untrashed": {}, "trashed": {}};
+/* Returns list of project names according to given parameter: using or trashed */
+export async function fetchProjectListVM({currUser, bkOption, setValueFunc}) {
+
+    let groupObj = {"using": {}, "trashed": {}};
 
     if (currUser === "_") {
-        return group;
+        return groupObj;
     }
 
 
@@ -32,26 +34,34 @@ export async function fetchProjectListVM({currUser, bkOption}) {
 
                 if (res === undefined) {
                                             console.log("returned from model-func... undefined res for project-list");
-                    return group;
+                    return groupObj;
                 }
                                                         console.log("\t vm, splitting proj-lists");
     
-                //"res" contains both "untrashed" and "trashed" proj-names
-                let resUntrashedArr = [];
-                let resTrashedArr = [];
+                                    //"res" contains both "using" and "trashed" proj-names
+                                    // let resusingArr = [];
+                                    // let resTrashedArr = [];
+
+                let resMapping = {};
+
                 res.forEach((doc) => {
-                    if (doc.data().trashed === false) {
-                        resUntrashedArr.push(doc.id);
-                    } else {
-                        resTrashedArr.push(doc.id);
-                    }
+                    resMapping[doc.id] = doc.data().trashed;
+                                                // if (doc.data().trashed === false) {
+                                                //     resusingArr.push(doc.id);
+                                                    
+                                                // } else {
+                                                //     resTrashedArr.push(doc.id);
+                                                // }
                 });
-    
-                group = {
-                    "untrashed": resUntrashedArr, 
-                    "trashed": resTrashedArr
-                };
-                return group;
+                                
+                                            // groupObj = {
+                                            //     "using": resusingArr, 
+                                            //     "trashed": resTrashedArr
+                                            // };
+                                                    //               console.log("\t\tvm: res = ", groupObj);
+
+                                            //setValueFunc(groupObj);
+                setValueFunc(resMapping);
 
             });
             

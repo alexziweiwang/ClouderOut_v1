@@ -4,10 +4,6 @@ import { useState, useEffect } from 'react';
 
 import { userLogOutVM } from '../viewmodels/_UserFirebaseAuthViewModel';
 
-import { fetchProjectListVM, createProjectVM } from '../viewmodels/ProjectManagerViewModel';
-
-import { projectNavUiTemplate, gdt1Template, epp2Template, epa3Template, ess4Template, shp5Template } from './_dataStructure_DefaultObjects';
-
 import { parseFromFile_vm } from '../viewmodels/PrepAc_ProjectFileInOut';
 import { generateNewProjectEntireObj_vm } from '../viewmodels/PrepAc_Creations';
 
