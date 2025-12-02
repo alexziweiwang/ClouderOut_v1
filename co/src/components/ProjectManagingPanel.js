@@ -14,6 +14,7 @@ export default function ProjectManagingPanel(
   {
     goToGameMaker,
     getUsername,
+    backendOption,
 
     revertProjectOuter, 
     markTrashProjectOuter,
@@ -256,7 +257,7 @@ export default function ProjectManagingPanel(
 
 
         //provide a download file of this project
-        await downloadProjectEntireFromCloudVM(selectedTrashedProj);
+        await downloadProjectEntireFromCloudVM(selectedTrashedProj, authEmailName, backendOption);
 
         
       }

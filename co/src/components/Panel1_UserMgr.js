@@ -293,8 +293,20 @@ export default function Panel1_UserMgr({}) {
         //TODO30 operate on projList and trashedProjList
     }  
 
-    async function removeProjectPermanentlyOuter() {
+    async function removeProjectPermanentlyOuter(selectedProj) {
 //TODO123
+        //remove .. 
+        let tList = {};
+        Object.keys(trashedProjList).map((currKey)=>{
+            let val = trashedProjList[currKey];
+            if (val !== selectedProj) {
+                tList[currKey] = trashedProjList[currKey];
+            }
+        });
+        setTrashedProjList(tList);
+
+        
+        //TODO update to cloud
 
     }
 
@@ -347,6 +359,7 @@ export default function Panel1_UserMgr({}) {
                             goToGameMaker={goToGameMakerOuter}
 
                             getUsername={passInUsername}
+                            backendOption={backendOption}
 
                             revertProjectOuter={revertProjectOuter}
                             markTrashProjectOuter={markTrashProjectOuter}

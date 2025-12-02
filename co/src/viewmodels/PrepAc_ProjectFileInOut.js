@@ -478,7 +478,7 @@ import { generateProjectOutputName_vm } from './PrepAc_Conversion';
                 projectName: projectKeyName, 
                 currUser: authorName,
                 bkOption: backendOption
-            }).then((metadataTemp)=>{
+        }).then((metadataTemp)=>{
 
             if (metadataTemp !== undefined) {
                 let res = checkProjectMetaData_vm(metadataTemp);
@@ -488,19 +488,22 @@ import { generateProjectOutputName_vm } from './PrepAc_Conversion';
                         "chapter_content": {}
                     }
 
-                    //TODO continue to all-node-data
                     await fetchAllNodes2VM({
                         projectName: projectKeyName, 
                         uname: authorName,
                         bkOption: backendOption
+
                     }).then((allNodeDataTemp)=>{
+                        if (allNodeDataTemp === undefined) {
+                            entireObj["chapter_content"] = allNodeDataTemp;
                         
-                        entireObj["chapter_content"] = allNodeDataTemp;
+                            let filename = generateProjectOutputName_vm(projectKeyName, authorName);
+    
+                            downloadObjectAsFile(entireObj, filename);
+                        } else {
+                            alert("Data for this project file is broken.");
+                        }
                         
-                        let filename = generateProjectOutputName_vm(projectKeyName, authorName);
-
-                        downloadObjectAsFile(entireObj, filename);
-
                     }); 
 
                 } else {
