@@ -28,29 +28,38 @@ export async function fetchProjectListVM({currUser, bkOption}) {
 
 
     if (bkOption === "firebase") {
-            const res = await fetchProjectList(currUser);
-            
-            if (res === undefined) {
-                console.log("returned from model-func... undefined res for project-list");
-                return;
-            }
+            await fetchProjectList(currUser).then((res)=>{
 
-            //"res" contains both "untrashed" and "trashed" proj-names
-            let resUntrashedArr = [];
-            let resTrashedArr = [];
-            res.forEach((doc) => {
-                if (doc.data().trashed === false) {
-                    resUntrashedArr.push(doc.id);
-                } else {
-                    resTrashedArr.push(doc.id);
+                if (res === undefined) {
+                                            console.log("returned from model-func... undefined res for project-list");
+                    return group;
                 }
-            });
+                                                        console.log("\t vm, splitting proj-lists");
+    
+                //"res" contains both "untrashed" and "trashed" proj-names
+                let resUntrashedArr = [];
+                let resTrashedArr = [];
+                res.forEach((doc) => {
+                    if (doc.data().trashed === false) {
+                        resUntrashedArr.push(doc.id);
+                    } else {
+                        resTrashedArr.push(doc.id);
+                    }
+                });
+    
+                group = {
+                    "untrashed": resUntrashedArr, 
+                    "trashed": resTrashedArr
+                };
+                return group;
 
-            group = {"untrashed": resUntrashedArr, "trashed": resTrashedArr};
+            });
+            
+
     }
 
 
-    return group;
+    
 }
 
 export async function revertProjectVM({projectToRevert, currUser, bkOption}) {

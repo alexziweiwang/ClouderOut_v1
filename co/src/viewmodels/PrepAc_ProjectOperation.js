@@ -1,5 +1,5 @@
 
-export function makeDeletionLists_vm(untrashedList, trashedList, setTrashedListFunc, setUntrashedListFunc, projName) {
+export function makeDeletionLists_vm(untrashedList, trashedList, projName) {
     let projListTemp = untrashedList;
     let trashedProjListTemp = trashedList;
 
@@ -7,10 +7,7 @@ export function makeDeletionLists_vm(untrashedList, trashedList, setTrashedListF
     projListTemp = projListTemp.filter(
         (name) => name !== projName
     )
-
-    setUntrashedListFunc(projListTemp);
-    setTrashedListFunc(trashedProjListTemp);
-
+ 
     let objTemp = {
         "trashed": trashedProjListTemp,
         "untrashed": projListTemp
@@ -20,7 +17,7 @@ export function makeDeletionLists_vm(untrashedList, trashedList, setTrashedListF
 
 }
 
-export function makeReversionLists_vm(untrashedList, trashedList, setTrashedListFunc, setUntrashedListFunc, projName) {
+export function makeReversionLists_vm(untrashedList, trashedList, projName) {
     let projListTemp = untrashedList;
     let trashedProjListTemp = trashedList;
 
@@ -28,9 +25,6 @@ export function makeReversionLists_vm(untrashedList, trashedList, setTrashedList
     trashedProjListTemp = trashedProjListTemp.filter(
         (name) => name !== projName
     )
-
-    setUntrashedListFunc(projListTemp);
-    setTrashedListFunc(trashedProjListTemp);
 
     let objTemp = {
         "trashed": trashedProjListTemp,

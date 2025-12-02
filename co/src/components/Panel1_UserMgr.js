@@ -51,8 +51,11 @@ export default function Panel1_UserMgr({}) {
 
 //TODO area of saved info for this panel!!!
 
-    const [projList, setProjList] = useState(undefined); 
-    const [trashedProjList, setTrashedProjList] = useState(undefined);
+    const [projList, setProjList] = useState(undefined);  //TODO123
+    const [trashedProjList, setTrashedProjList] = useState(undefined);  //TODO123
+    const [projListMixed, setProjListMixed] = useState(undefined);
+
+
     const [profileObj, setProfileObj] = useState(undefined);
 
     const [providedImportedProject, setProvidedImportedProject] = useState(undefined);
@@ -80,8 +83,7 @@ export default function Panel1_UserMgr({}) {
 
           
             if (
-                projList === undefined 
-                || trashedProjList === undefined 
+                projListMixed === undefined 
                 || profileObj === undefined
             ) { // condition of init-status of var...
 
@@ -221,30 +223,33 @@ export default function Panel1_UserMgr({}) {
             return undefined;
         }
         
-        const groupList = await fetchProjectListVM(
+        await fetchProjectListVM(
           {currUser: authEmailName,
            bkOption: backendOption 
           }
-        );
-                              console.log("load_ProjectList_FromCloud, group-list for ", authEmailName , " = ", groupList);
+        ).then((groupList)=>{
+            console.log("load_ProjectList_FromCloud, group-list for ", authEmailName , " = ", groupList);
         
   
-        if (groupList !== undefined && groupList.length !== 0) {
+            if (groupList !== undefined && groupList.length !== 0) {
+    
+                let pureTrashedProjList = groupList.trashed;
+                if (pureTrashedProjList !== undefined) {
+                    pureTrashedProjList = pureTrashedProjList.filter(
+                                                                                //(name) => name !== "p laceholder123456789___###___###___##"
+                        (nameStr) => nameStr !== placeholderNameDefault
+                    )
+    
+                }
 
-            let pureTrashedProjList = groupList.trashed;
-            if (pureTrashedProjList !== undefined) {
-                pureTrashedProjList = pureTrashedProjList.filter(
-                                                                            //(name) => name !== "p laceholder123456789___###___###___##"
-                    (nameStr) => nameStr !== placeholderNameDefault
-                )
+                setProjListMixed(groupList);
 
             }
+    
+            return groupList;
 
-            setProjList(groupList.untrashed);
-            setTrashedProjList(groupList.trashed);
-        }
+        });
 
-        return groupList;
     }
 
     async function revertProjectOuter(selectedTrashedProj) {
@@ -258,13 +263,14 @@ export default function Panel1_UserMgr({}) {
                                     // projList, setProjList
                                     // trashedProjList, setTrashedProjList
                 
-        makeDeletionLists_vm(
-            projList, 
-            trashedProjList, 
-            setTrashedProjList, 
-            setProjList, 
+        let bothList = makeDeletionLists_vm(
+            projListMixed["untrashed"],
+            projListMixed["trashed"],
+
+
             selectedTrashedProj
         );
+        setProjListMixed(bothList);
      
 
     //TODO30
@@ -282,13 +288,12 @@ export default function Panel1_UserMgr({}) {
                               // projList, setProjList
                               // trashedProjList, setTrashedProjList
          
-        makeReversionLists_vm(        
-            projList, 
-            trashedProjList, 
-            setTrashedProjList, 
-            setProjList, 
+        let bothList = makeReversionLists_vm(        
+            projListMixed["untrashed"],
+            projListMixed["trashed"],
             selectedMarkedTrashProj
         );
+        setProjListMixed(bothList);
   
         //TODO30 operate on projList and trashedProjList
     }  
@@ -297,13 +302,14 @@ export default function Panel1_UserMgr({}) {
 //TODO123
         //remove .. 
         let tList = {};
-        Object.keys(trashedProjList).map((currKey)=>{
-            let val = trashedProjList[currKey];
+        Object.keys(projListMixed["untrashed"]).map((currKey)=>{
+            let val = projListMixed["untrashed"][currKey];
             if (val !== selectedProj) {
-                tList[currKey] = trashedProjList[currKey];
+                tList[currKey] = projListMixed["untrashed"][currKey];
             }
         });
-        setTrashedProjList(tList);
+       // setTrashedProjList(tList);
+       //TODO setProjListMixed(combined-list);
 
 
         await removeProjectPermanentlyVM({
@@ -323,6 +329,10 @@ export default function Panel1_UserMgr({}) {
     function passInTrashedProjectList() {
         return trashedProjList;
         
+    }
+
+    function passInProjectBothList() {
+        return projListMixed;
     }
 
     function receiveImportedProjFromSubCompo(projContent) {
@@ -373,6 +383,7 @@ export default function Panel1_UserMgr({}) {
 
                             getValidProjList={passInValidProjectList}
                             getTrashedProjList={passInTrashedProjectList}
+                            
                             triggerFetchProjList={triggerFetchProjListOuter}
 
                             sendOutImportedProject={receiveImportedProjFromSubCompo}

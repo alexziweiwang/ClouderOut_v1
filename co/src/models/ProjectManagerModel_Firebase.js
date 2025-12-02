@@ -32,26 +32,28 @@ export async function fetchProjectList(currUser) {
 //firebase
                           console.log("*from cloud*: model-func - fetch project list ...", currUser);
   
-    const docRef = doc(db, "user_projects", currUser);
-  
-    const docSnap = await getDoc(docRef);
+        const docRef = doc(db, "user_projects", currUser);
+      
+        const docSnap = await getDoc(docRef);
 
-    if (!docSnap.exists()) {
+        if (!docSnap.exists()) {
 
-      console.log("\t\t??? !docSnap.exists()");
+          console.log("\t\t??? !docSnap.exists()");
 
 
-      return;
-    }
+          return [];
+        }
+        
+        const q = query(collection(docRef, "projects")); // new version
 
-    const q = query(collection(docRef, "projects")); // new version
+        const querySnapshot = await getDocs(q);
+        let projectArr = [];
+        querySnapshot.forEach((doc) => {
+          projectArr.push(doc);
+        });
 
-      const querySnapshot = await getDocs(q);
-      let projectArr = [];
-      querySnapshot.forEach((doc) => {
-        projectArr.push(doc);
-      });
-      return projectArr;
+        
+        return projectArr;
 }
 
 
