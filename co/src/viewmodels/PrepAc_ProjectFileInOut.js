@@ -470,6 +470,16 @@ import {
 
     }
 
+    export function downloadProjectEntireFromCloud(projectKeyName) {
+//TODO123
+        //fetchProjectAllMetadataVM
+            //checkProjectMetaData_vm
+        //fetchAllNodes2VM
+
+
+
+    }
+
     export function downloadObjectAsFile(obj, filename) {
         let fileContentTemp = JSON.stringify(obj);
                          

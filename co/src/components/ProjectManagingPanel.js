@@ -7,6 +7,7 @@ import langDictionary from './_textDictionary';
 //TODO700 feature: latest edited project ... (create or save)
 import { makeDeletionLists_vm, makeReversionLists_vm } from '../viewmodels/PrepAc_ProjectOperation';
 import { placeholderNameDefault } from './_dataStructure_DefaultObjects';
+import { downloadProjectEntireFromCloud } from '../viewmodels/PrepAc_ProjectFileInOut';
 
 
 export default function ProjectManagingPanel(
@@ -16,6 +17,7 @@ export default function ProjectManagingPanel(
 
     revertProjectOuter, 
     markTrashProjectOuter,
+    removeProjectPermanentlyOuter,
     parseFromFile_vm,
 
     getValidProjList,
@@ -233,7 +235,7 @@ export default function ProjectManagingPanel(
 
 
 
-    function handlePermanentlyRemove() {
+    async function handlePermanentlyRemove() {
       //remove this 
 
       //TODO ask
@@ -244,11 +246,19 @@ export default function ProjectManagingPanel(
 
         //remove this proejct from trashed-list
         //TODO notify outer layer (panel1) for new trashed-list
+
+        await removeProjectPermanentlyOuter(selectedTrashedProj);
+        setSelectedTrashedProj("");
+
         //TODO setTrashedProjList() // for local
+              //TODO: remove selectedTrashedProj from trashed-list
 
+
+              
         //provide a download file of this project
+        await downloadProjectEntireFromCloud(selectedTrashedProj);
 
-        // selectedTrashedProj
+        
       }
     } 
 

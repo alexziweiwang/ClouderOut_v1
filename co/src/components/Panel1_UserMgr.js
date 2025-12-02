@@ -293,6 +293,11 @@ export default function Panel1_UserMgr({}) {
         //TODO30 operate on projList and trashedProjList
     }  
 
+    async function removeProjectPermanentlyOuter() {
+//TODO123
+
+    }
+
     function passInValidProjectList() {
         return projList;
         
@@ -345,6 +350,7 @@ export default function Panel1_UserMgr({}) {
 
                             revertProjectOuter={revertProjectOuter}
                             markTrashProjectOuter={markTrashProjectOuter}
+                            removeProjectPermanentlyOuter={removeProjectPermanentlyOuter}
                             parseFromFile_vm={parseFromFile_vm}
 
                             getValidProjList={passInValidProjectList}
