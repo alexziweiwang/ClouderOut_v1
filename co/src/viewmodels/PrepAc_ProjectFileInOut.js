@@ -16,8 +16,9 @@ import {
 
 } from '../components/_dataStructure_DefaultObjects';
 
-
-
+import { fetchProjectAllMetadataVM } from '../viewmodels/ProjectMetadataViewModel';
+import { fetchAllNodes2VM } from '../viewmodels/NodeDataInPlayViewModel';
+import { generateProjectOutputName_vm } from './PrepAc_Conversion';
 
 
 
@@ -470,13 +471,44 @@ import {
 
     }
 
-    export function downloadProjectEntireFromCloud(projectKeyName) {
+    export function downloadProjectEntireFromCloudVM(projectKeyName, authorName, backendOption) {
 //TODO123
-        //fetchProjectAllMetadataVM
-            //checkProjectMetaData_vm
-        //fetchAllNodes2VM
 
+        await fetchProjectAllMetadataVM({
+                projectName: projectKeyName, 
+                currUser: authorName,
+                bkOption: backendOption
+            }).then((metadataTemp)=>{
 
+            if (metadataTemp !== undefined) {
+                let res = checkProjectMetaData_vm(metadataTemp);
+                if (res === true) {
+                    let entireObj = {
+                        "meta_data": metadataTemp,
+                        "chapter_content": {}
+                    }
+
+                    //TODO continue to all-node-data
+                    await fetchAllNodes2VM({
+                        projectName: projectKeyName, 
+                        uname: authorName,
+                        bkOption: backendOption
+                    }).then((allNodeDataTemp)=>{
+                        
+                        entireObj["chapter_content"] = allNodeDataTemp;
+                        
+                        let filename = generateProjectOutputName_vm(projectKeyName, authorName);
+
+                        downloadObjectAsFile(entireObj, filename);
+
+                    }); 
+
+                } else {
+                    alert("Data for this project file is broken.");
+                }
+            }
+
+        })
 
     }
 

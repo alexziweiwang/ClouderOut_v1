@@ -10,7 +10,7 @@ import GameScreen_QuickView_ConvNode from './GameScreen_QuickView_ConvNode';
 //TODO fetch-and-updte data for conv-node-game-screen
 
 //TODO1090 cloud-db related
-import { generateNodeLongKeyString_vm } from '../viewmodels/PrepAc_ProjectOperation';
+import { generateNodeLongKeyString_vm } from '../viewmodels/PrepAc_Conversion';
 import { defaultScreenWidth, defaultScreenHeight } from './_dataStructure_DefaultObjects';
 
 import { buttonConsequenceByStatementEntireArray } from '../viewmodels/CalcAc_QuickView';

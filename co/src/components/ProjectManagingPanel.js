@@ -7,7 +7,7 @@ import langDictionary from './_textDictionary';
 //TODO700 feature: latest edited project ... (create or save)
 import { makeDeletionLists_vm, makeReversionLists_vm } from '../viewmodels/PrepAc_ProjectOperation';
 import { placeholderNameDefault } from './_dataStructure_DefaultObjects';
-import { downloadProjectEntireFromCloud } from '../viewmodels/PrepAc_ProjectFileInOut';
+import { downloadProjectEntireFromCloudVM } from '../viewmodels/PrepAc_ProjectFileInOut';
 
 
 export default function ProjectManagingPanel(
@@ -254,9 +254,9 @@ export default function ProjectManagingPanel(
               //TODO: remove selectedTrashedProj from trashed-list
 
 
-              
+
         //provide a download file of this project
-        await downloadProjectEntireFromCloud(selectedTrashedProj);
+        await downloadProjectEntireFromCloudVM(selectedTrashedProj);
 
         
       }

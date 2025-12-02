@@ -13,7 +13,7 @@ import PreviewWindow_convNodeUiSetup from './PreviewWindow_convNodeUiSetup';
 import langDictionary from './_textDictionary';
 
 import { emptyConvNodeSinglePieceTemplate, gameUIDefaultButtonTemplate, gameUITextFrameTemplate, gameUIBackButtonTemplate, uiConvNavTemplate, logPageUISettingsTemplate } from './_dataStructure_DefaultObjects';
-import { generateNodeLongKeyString_vm } from '../viewmodels/PrepAc_ProjectOperation';
+import { generateNodeLongKeyString_vm } from '../viewmodels/PrepAc_Conversion';
 import { sizeLookupMap, defaultScreenWidth, defaultScreenHeight } from './_dataStructure_DefaultObjects';
 
 import { resourceRawListToUsableMap_vm } from '../viewmodels/PrepAc_Conversion';

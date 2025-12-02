@@ -57,7 +57,7 @@ import { submitFileVM, fetchRmFileListVM, addToRmFileListVM, fetchUrlByFilenameV
 
   //TODO ------------------------- new vm and model funcs for optimizations
 import { fetchProjectAllMetadataVM, updateProjectMetadataSingleFieldVM, updateProjectAllMetadataVM } from '../viewmodels/ProjectMetadataViewModel'; //TODO60
-import { generateNodeLongKeyString_vm } from '../viewmodels/PrepAc_ProjectOperation';
+import { generateNodeLongKeyString_vm, generateProjectOutputName_vm } from '../viewmodels/PrepAc_Conversion';
 import { singleNodeWriteToCloudVM, createNewNodeFoldersVM, multipleNodeWriteToCloudVM } from '../viewmodels/NodeEditingViewModel';
 import { dupObject, dupNestedObject, fromIndexedMapToList } from '../viewmodels/PrepAc_Conversion';
 
@@ -1442,7 +1442,9 @@ console.log("ui-langauge changed to: ", val);
             "meta_data": projectMetaData,
             "chapter_content": projectAllNodeContent
         };
-      let filename = "project#" + state.selected_project_name +  "#by#" + authEmailName + "_";
+      let filename = generateProjectOutputName_vm(state.selected_project_name, authEmailName);
+
+      // "project#" + state.selected_project_name +  "#by#" + authEmailName + "_";
 
       downloadObjectAsFile(largeObj, filename);
 

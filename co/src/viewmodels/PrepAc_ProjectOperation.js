@@ -39,9 +39,3 @@ export function makeReversionLists_vm(untrashedList, trashedList, setTrashedList
 
     return objTemp;
 }
-
-export function generateNodeLongKeyString_vm({chapterKey, nodeKey}) {
-    let keyStr = chapterKey + "_" + nodeKey;
-
-    return keyStr;
-}

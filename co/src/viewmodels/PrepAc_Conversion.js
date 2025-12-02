@@ -87,5 +87,12 @@ export function fromIndexedMapToList(map1) {
 
 export function replaceSpaceForNames(strProvided) {
     return strProvided.replaceAll(" ", "-");
+}
 
+export function generateNodeLongKeyString_vm({chapterKey, nodeKey}) {
+    return chapterKey + "_" + nodeKey;
+}
+
+export function generateProjectOutputName_vm(projectName, authorName) {
+    return "project#" + projectName +  "#by#" + authorName + "_";
 }
