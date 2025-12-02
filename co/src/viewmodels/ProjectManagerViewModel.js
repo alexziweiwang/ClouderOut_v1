@@ -12,7 +12,8 @@ import {
     saveConvNodeUiPlan,
     fetchConvNodeUiAllPlans,
     addNewAccountFolder,
-    fetchProjectAllMetadata
+    fetchProjectAllMetadata,
+    removeProjectPermanently
 } from '../models/ProjectManagerModel_Firebase';
 
 
@@ -66,6 +67,12 @@ export async function markTrashProjectVM({projectToMarkTrash, currUser, bkOption
         await markTrashProject({projectToMarkTrash, currUser});
     }
 
+}
+
+export async function removeProjectPermanentlyVM({projectToRemove, currUser, bkOption}) {
+    if (bkOption === "firebase") {
+        await removeProjectPermanently({projectToRemove, currUser});
+    }
 }
 
 export async function createProjectVM({currUser, projectName, projectObj, bkOption}) {

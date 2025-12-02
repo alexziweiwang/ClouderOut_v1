@@ -167,7 +167,7 @@ export default function ProjectManagingPanel(
       
     }
 
-    async function handlemarkTrashProject() {
+    async function handleMarkTrashProject() {
       let response = window.confirm("Are you sure to delete this project? (it can be reverted from the area below)?");
         if (response === true) {
           await markTrashProject();
@@ -237,27 +237,29 @@ export default function ProjectManagingPanel(
 
 
     async function handlePermanentlyRemove() {
-      //remove this 
 
-      //TODO ask
       let askStr = "Are you sure to permanently remove this project [" + selectedTrashedProj + "]?";
       let ans = window.confirm(askStr);
       if (ans) {
-        //TODO
-
-        //remove this proejct from trashed-list
-        //TODO notify outer layer (panel1) for new trashed-list
-
-        await removeProjectPermanentlyOuter(selectedTrashedProj);
-        setSelectedTrashedProj("");
-
-        //TODO setTrashedProjList() // for local
-              //TODO: remove selectedTrashedProj from trashed-list
-
+    //TODO123
 
 
         //provide a download file of this project
-        await downloadProjectEntireFromCloudVM(selectedTrashedProj, authEmailName, backendOption);
+        await downloadProjectEntireFromCloudVM(selectedTrashedProj, authEmailName, backendOption)
+        .then(async(resBool)=>{
+          if (resBool === true) {
+                let askStrConf = "Project file downloaded. Continue to remove [" + selectedTrashedProj + "] from cloud?";
+            
+                let ansConf = window.confirm(askStrConf);
+                if (ansConf) {
+                  await removeProjectPermanentlyOuter(selectedTrashedProj);
+                  setSelectedTrashedProj("");
+                }
+          }
+        });
+
+
+
 
         
       }
@@ -374,7 +376,7 @@ export default function ProjectManagingPanel(
 
                           {(selected_project_name === item) && 
                           <div style={{"display": "flex", "justifyContent": "start", "alignContent": "end"}}>
-                            <button className="elemPosLeftBottom" onClick={()=>{handlemarkTrashProject();}}>
+                            <button className="elemPosLeftBottom" onClick={()=>{handleMarkTrashProject();}}>
                               <GiTrashCan/>
                             </button>
                           </div>}

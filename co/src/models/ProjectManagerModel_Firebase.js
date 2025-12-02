@@ -1,5 +1,5 @@
 import  {db} from '../GoogleCloudConnections'; //TODO23 database
-import { doc, getDoc, getDocs, addDoc, setDoc, collection, query, where, updateDoc } from "firebase/firestore"; 
+import { doc, getDoc, getDocs, addDoc, deleteDoc, setDoc, collection, query, where, updateDoc } from "firebase/firestore"; 
 import { placeholderNameDefault } from '../components/_dataStructure_DefaultObjects';
 
 /*
@@ -69,6 +69,15 @@ export async function revertProject({projectToRevert, currUser}) {
 
     await updateDoc(projRef, {trashed: false});  
 }
+
+
+export async function removeProjectPermanently({projectToRemove, currUser}) {
+    //remove this key of project from trashed-list
+    const projRef = doc(db, "user_projects", currUser, "projects", projectToRemove);
+
+    await deleteDoc(projRef);
+}
+
 
 /**
  * Set specified project to mark-trash

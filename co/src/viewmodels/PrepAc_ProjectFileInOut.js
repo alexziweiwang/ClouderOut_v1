@@ -471,14 +471,14 @@ import { generateProjectOutputName_vm } from './PrepAc_Conversion';
 
     }
 
-    export function downloadProjectEntireFromCloudVM(projectKeyName, authorName, backendOption) {
+    export async function downloadProjectEntireFromCloudVM(projectKeyName, authorName, backendOption) {
 //TODO123
 
         await fetchProjectAllMetadataVM({
                 projectName: projectKeyName, 
                 currUser: authorName,
                 bkOption: backendOption
-        }).then((metadataTemp)=>{
+        }).then(async(metadataTemp)=>{
 
             if (metadataTemp !== undefined) {
                 let res = checkProjectMetaData_vm(metadataTemp);
@@ -500,15 +500,21 @@ import { generateProjectOutputName_vm } from './PrepAc_Conversion';
                             let filename = generateProjectOutputName_vm(projectKeyName, authorName);
     
                             downloadObjectAsFile(entireObj, filename);
+
+                            return true;
                         } else {
                             alert("Data for this project file is broken.");
+                            return false;
                         }
                         
                     }); 
 
                 } else {
                     alert("Data for this project file is broken.");
+                    return false;
                 }
+            } else {
+                return false;
             }
 
         })

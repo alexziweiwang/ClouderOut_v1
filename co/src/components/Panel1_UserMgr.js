@@ -15,7 +15,7 @@ import { makeDeletionLists_vm, makeReversionLists_vm } from '../viewmodels/PrepA
 
 
 //TODO1090 cloud-db related
-import { fetchProjectListVM, revertProjectVM, markTrashProjectVM } from '../viewmodels/ProjectManagerViewModel';
+import { fetchProjectListVM, revertProjectVM, markTrashProjectVM, removeProjectPermanentlyVM } from '../viewmodels/ProjectManagerViewModel';
 //TODO1090 collection of cloud-related
 
 
@@ -305,8 +305,13 @@ export default function Panel1_UserMgr({}) {
         });
         setTrashedProjList(tList);
 
-        
-        //TODO update to cloud
+
+        await removeProjectPermanentlyVM({
+            projectToRemove: selectedProj, 
+            currUser: authEmailName,
+            bkOption: backendOption
+        })
+
 
     }
 
