@@ -1,9 +1,5 @@
 import { useState, useEffect } from 'react';
 
-import langDictionary from './_textDictionary';
-
-import GameScreen_InPracShell_ConvNode from './GameScreen_InPracShell_ConvNode';
-
 import GameScreen_QuickView_ConvNode from './GameScreen_QuickView_ConvNode';
 
 
@@ -614,12 +610,19 @@ export default function DuringGameScreen_AllNodeTypeContainer({
         return currGameDataTracker;
     }
 
-    function buttonConsequenceByStatementEntireArray_QV(pieceNum, item) {
+    function buttonConsequenceByStatementEntireArray_EDV(pieceNum, item) {
         //     console.log("game-screen-in-prac : buttonConsequenceByStatementEntireArray_QV");
 
-        let result = buttonConsequenceByStatementEntireArray(pieceNum, item, focusedNodeData["nodeContent"], enteringGdt, notUsing, notUsing);
+        let result = buttonConsequenceByStatementEntireArray(
+            pieceNum, 
+            item, 
+            focusedNodeData["nodeContent"], 
+            enteringGdt, 
+            receiveUpdatedGameDataTracker,  //TODO567 temp (prev: notUsing)
+            notUsing
+        );
         //pieceNum, item, allPieceContent, gameDataTracker, setGameDataTracker, refreshCompo
-        receiveUpdatedGameDataTracker(result);
+        //TODO567 temp-out     receiveUpdatedGameDataTracker(result);
     }
 
     function notUsing() {
@@ -737,39 +740,7 @@ return (
         {focusedNodeData !== -1 &&
 
         <>
-                                                        {/* <GameScreen_InPracShell_ConvNode
-                                                            
-                                                            screenWidth={screenWidth}
-                                                            screenHeight={screenHeight}
-
-                                                            allPieceData={focusedNodeData["nodeContent"]}
-                                                            
-                                                            nodeUIConvNav={focusedNodeData["nodeUISettings"]["convNav"]}
-                                                            nodeUIDefaultButton={focusedNodeData["nodeUISettings"]["defaultButton"]}
-                                                            nodeUILogPage={focusedNodeData["nodeUISettings"]["logPage"]}
-                                                            nodeUITextFrame={focusedNodeData["nodeUISettings"]["textFrame"]}
-
-                                                            visualMap={visualMap} //TODO change to dynamic fetching
-                                                            audioMap={audioMap} //TODO change to dynamic fetching
-                                                            
-
-                                                            enteringEmuGameDataTracker={currGameDataTracker} //TODO change to dynamic fetching
-
-                                                            mutedViewOption={mutedViewOption}
-                                                            openSettingPage={openSettingPage} //TODO change func
-
-
-                                                            fetchGameSettings={fetchGameSettings} //TODO change func
-                                                            sendOutBgmSettings={sendOutBgmSettings} //TODO change func
-
-
-                                                            getEnteringEmuGdt={passInEnteringEmuGdt}
-
-                                                            updatedGameDataTracker={receiveUpdatedGameDataTracker}
-
-                                                            notifyNodeFinish={markNextNodeSignalTrue}
-
-                                                        /> */}
+                                              
 
             <GameScreen_QuickView_ConvNode
                 isPreview={false}
@@ -799,7 +770,7 @@ return (
                 notifyAfterReset={notUsing}
 
 
-                buttonConsequenceByStatementEntireArray_QVC={buttonConsequenceByStatementEntireArray_QV}  //TODO 
+                buttonConsequenceByStatementEntireArray_QVC={buttonConsequenceByStatementEntireArray_EDV}  //TODO 
                             
                 isViewMuted={mutedViewOption}
                 fetchGameSettingsForPlaying={fetchGameSettings}
@@ -838,3 +809,27 @@ return (
 
 
 }
+
+
+
+// GameScreen _ InPracShell_ConvNode
+                                                            
+//         screenWidth={screenWidth}
+//         screenHeight={screenHeight}
+//         allPieceData={focusedNodeData["nodeContent"]}                                                           
+//         nodeUIConvNav={focusedNodeData["nodeUISettings"]["convNav"]}
+//         nodeUIDefaultButton={focusedNodeData["nodeUISettings"]["defaultButton"]}
+//         nodeUILogPage={focusedNodeData["nodeUISettings"]["logPage"]}
+//         nodeUITextFrame={focusedNodeData["nodeUISettings"]["textFrame"]}
+//         visualMap={visualMap} //TODO change to dynamic fetching
+//         audioMap={audioMap} //TODO change to dynamic fetching                                                       
+//         enteringEmuGameDataTracker={currGameDataTracker} //TODO change to dynamic fetching
+//         mutedViewOption={mutedViewOption}
+//         openSettingPage={openSettingPage} //TODO change func
+//         fetchGameSettings={fetchGameSettings} //TODO change func
+//         sendOutBgmSettings={sendOutBgmSettings} //TODO change func
+//         getEnteringEmuGdt={passInEnteringEmuGdt}
+//         updatedGameDataTracker={receiveUpdatedGameDataTracker}
+//         notifyNodeFinish={markNextNodeSignalTrue}
+
+

@@ -60,7 +60,15 @@ function changeGameDataTrackerByStatement(ds, itemName, action, newVal, type) { 
     }
 
 
-export function buttonConsequenceByStatementEntireArray(pieceNum, buttonInfo, allPieceContent, gameDataTracker, setGameDataTracker, refreshCompo) {
+export function buttonConsequenceByStatementEntireArray(
+    pieceNum, 
+    buttonInfo, 
+    allPieceContent, 
+    gameDataTracker, 
+    setGameDataTrackerFunc, 
+    refreshCompo
+) {
+
 //called by level-3
                                         //      console.log("$button pressed: ", buttonInfo);
 
@@ -75,7 +83,7 @@ export function buttonConsequenceByStatementEntireArray(pieceNum, buttonInfo, al
     let res = gameDataTracker;
     if (gameDataTracker === undefined) {
         res = {};
-        setGameDataTracker(res);
+        setGameDataTrackerFunc(res);
         refreshCompo();
 
     } else {
@@ -95,7 +103,7 @@ export function buttonConsequenceByStatementEntireArray(pieceNum, buttonInfo, al
         }
                                 console.log("\nchange-by-stmt-arr: after - ", res);
 
-        setGameDataTracker(res);
+        setGameDataTrackerFunc(res);
 
         refreshCompo();
 

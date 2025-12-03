@@ -71,13 +71,13 @@ console.log("conv-node(from in-prac, enteringGdt = ", enteringGdt);
       return false;
   }
 
-    function buttonConsequenceByStatementEntireArray_QV(pieceNum, item) {
+   // function b uttonConsequenceByStatementEntireArray_QV(pieceNum, item) {
                                         //     console.log("game-screen-in-prac : buttonConsequenceByStatementEntireArray_QV");
 
-        let result = buttonConsequenceByStatementEntireArray(pieceNum, item, allPieceData, enteringGdt, notUsing, notUsing);
+       // let result = b uttonConsequenceByStatementEntireArray(pieceNum, item, allPieceData, enteringGdt, notUsing, notUsing);
         //pieceNum, item, allPieceContent, gameDataTracker, setGameDataTracker, refreshCompo
-        updatedGameDataTracker(result);
-    }
+     //   updatedGameDataTracker(result);
+ //   }
 
 return (<div>
 

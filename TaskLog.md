@@ -935,7 +935,7 @@
 
 - 2025-Nov-26: Design testing-project
 
-
+- 2025-Dec-03: Design sl-system setting strategies
 
 
 

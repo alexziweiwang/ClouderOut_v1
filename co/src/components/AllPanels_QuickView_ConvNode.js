@@ -33,7 +33,7 @@ export default function AllPanels_QuickView_ConvNode ({
     notifyCurrGdt
 }) {
 
-
+//TODO123: sl-info related properties
 
     const tempPlaceholder = []; //TODO temp for "initialGameDataDesignList"
 
