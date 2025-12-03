@@ -472,7 +472,6 @@ import { generateProjectOutputName_vm } from './PrepAc_Conversion';
     }
 
     export async function downloadProjectEntireFromCloudVM(projectKeyName, authorName, backendOption, finalStepFunc) {
-//TODO123
 
         await fetchProjectAllMetadataVM({
                 projectName: projectKeyName, 
@@ -485,8 +484,12 @@ import { generateProjectOutputName_vm } from './PrepAc_Conversion';
             if (metadataTemp !== undefined) {
                 let res = checkProjectMetaData_vm(metadataTemp);
                 if (res === true) {
+
+                    let mtdtObj = metadataTemp;
+                    mtdtObj["trashed"] = false; //reset -- in case file-loading need in future 
+
                     let entireObj = {
-                        "meta_data": metadataTemp,
+                        "meta_data": mtdtObj,
                         "chapter_content": {}
                     }
 

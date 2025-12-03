@@ -49,7 +49,7 @@ export default function ProjectManagingPanel(
         textDictItem.trashedProjectSelectListDefaultText
         : textDictItemDefault.trashedProjectSelectListDefaultText;
     
-        
+
     const [selected_project_name, setSelectedProjectName] = useState("");     //important !!!!!!
 
 
@@ -257,12 +257,9 @@ export default function ProjectManagingPanel(
       let askStr = "Are you sure to permanently remove this project [" + selectedTrashedProj + "]?";
       let ans = window.confirm(askStr);
       if (ans) {
-    //TODO123
 
         //provide a download file of this project
         await downloadProjectEntireFromCloudVM(selectedTrashedProj, authEmailName, backendOption, finalStepPermanentlyRemove);
-
-
       }
     } 
 

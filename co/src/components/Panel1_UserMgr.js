@@ -247,21 +247,10 @@ export default function Panel1_UserMgr({}) {
               bkOption: backendOption
         });
 
-                                    // projList, setProjList
-                                    // trashedProjList, setTrashedProjList
-                
-                            // let bothList = makeDeletionLists_vm(
-                            //     projListMixed["using"],
-                            //     projListMixed["trashed"],
-
-
-                            //     selectedTrashedProj
-                            // );
-
-                            // setProjListMixed(bothList);
+        let pMapTemp = projListMap;
+        pMapTemp[selectedTrashedProj] = false; //trahsed? to be "no"
+        setProjListMap(pMapTemp);
      
-
-    //TODO123 local proj-list-labelling setprojlistmap
     }
 
     async function markTrashProjectOuter(selectedMarkedTrashProj) {
@@ -273,40 +262,13 @@ export default function Panel1_UserMgr({}) {
           }
         );
 
-                              // projList, setProjList
-                              // trashedProjList, setTrashedProjList
-         
-                                        // let bothList = makeReversionLists_vm(        
-                                        //     projListMixed["using"],
-                                        //     projListMixed["trashed"],
-                                        //     selectedMarkedTrashProj
-                                        // );
-                                        // setProjListMixed(bothList);
-                                
-                                        // //TODO30 operate on projList and trashedProjList
-
-            //TODO123 local proj-list-labelling setprojlistmap
+        let pMapTemp = projListMap;
+        pMapTemp[selectedMarkedTrashProj] = true; //trahsed? to be "yes"
+        setProjListMap(pMapTemp);
 
     }  
 
     async function removeProjectPermanentlyOuter(selectedProj) {
-//TODO123
-        //remove .. 
-
-                    //TODO123 local proj-list-labelling
-
-                            // let tList = {};
-                            // Object.keys(projListMixed["using"]).map((currKey)=>{
-                            //     let val = projListMixed["using"][currKey];
-                            //     if (val !== selectedProj) {
-                            //         tList[currKey] = projListMixed["using"][currKey];
-                            //     }
-                            // });
-       // setTrashedProjList(tList);
-       //TODO setProjListMixed(combined-list);
-
-//todo123 setprojlistmap
-
 
         await removeProjectPermanentlyVM({
             projectToRemove: selectedProj, 
@@ -314,7 +276,9 @@ export default function Panel1_UserMgr({}) {
             bkOption: backendOption
         })
 
-
+        let pMapTemp = projListMap;
+        pMapTemp.delete(selectedProj);
+        setProjListMap(pMapTemp);
     }
 
     function passInProjectListMapping() {
