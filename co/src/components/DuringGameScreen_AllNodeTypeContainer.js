@@ -21,7 +21,7 @@ import { buttonConsequenceByStatementEntireArray } from '../viewmodels/CalcAc_Qu
 
 
 //level2 (includes all types of nodes)
-
+//TODO567 need mtdt-sl-option
 export default function DuringGameScreen_AllNodeTypeContainer({
     getNodeType, 
     getChapterKey, 
