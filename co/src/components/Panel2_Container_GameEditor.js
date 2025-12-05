@@ -688,6 +688,7 @@ console.log("handle Cancel NodeTest Viewer:", projectMetaData["emu4sets"]["gdt1"
 
     function updateResourcePairFromMgr(varPairObj) {
         if (varPairObj !== "default") {
+        
             setResourcePair(varPairObj);
             setProjectMetaData({...projectMetaData,
                 "proj_resource_visual": varPairObj.visual,
@@ -1227,14 +1228,25 @@ console.log("ui-langauge changed to: ", val);
         setDisplayRmModal(false);
     }
 
+    function handleResourceManagerOpen() {
+        setDisplayRmModal(true);
+    }
+
     function handleGameDataManagerCancel() {
         setDisplayGdmBool(false);
+    }
+
+    function handleGameDataManagerOpen() {
+        setDisplayGdmBool(true);
     }
 
     function handleEmuManagerCancel() {
         setDisplayEmBool(false);
     }
 
+    function handleEmuManagerOpen() {
+        setDisplayEmBool(true);
+    }
 
     function triggerGameDataDesignListChange(data, emuAction, singleObj) {
         //TODO999 update game-data-design-list
@@ -1854,6 +1866,10 @@ return (
 
         fetchSLInfoOption={passInSLInfoOption}
         updateSLAllInfoOption={updateSLAllInfoOption_gmk}
+
+        handleResourceManagerOpen={handleResourceManagerOpen}
+        handleGameDataManagerOpen={handleGameDataManagerOpen}
+        handleEmuManagerOpen={handleEmuManagerOpen}
     /> 
 
     </>}

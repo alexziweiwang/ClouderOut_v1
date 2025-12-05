@@ -1387,6 +1387,18 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
                                           // updateSLAllInfoOption(outObj); // out outer (panel2) // this is done in use-effect instead
   }
 
+  function handleResourceManagerOpen_gml() {
+    handleResourceManagerOpen();
+  }
+
+  function handleGameDataManagerOpen_gml() {
+    handleGameDataManagerOpen();
+  }
+
+  function handleEmuManagerOpen_gml() {
+    handleEmuManagerOpen();
+  }
+
 
 {/* //components
       
@@ -1553,7 +1565,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
           updateNodeMapOfChapter={updateNodeMapOfChapter}
           updateGridBlockOfChapter={updateGridBlockOfChapter}
           getGameData={passInGameDataDesignList}
-          displayGameDataPanel={handleGameDataManagerOpen} //TODO99999 remove
+          handleGameDataManagerOpen={handleGameDataManagerOpen_gml} //TODO99999 remove
           loadChapterInfoFromCaller={passInSelectedChapterInfo_Cloud}
           getGdmUpdatedSignal={passInGdmUpdatedSignal}
           resetGdmUpdateSignal={resetGdmUpdateSignal}
@@ -1615,7 +1627,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
                 <NavigationSetter 
                   initialNavObj={currentProjectNav} 
                   updateNavObj={updateCurrProjectNavObj} 
-                  openRm={handleResourceManagerOpen}  //TODO99999 remove
+                  openRm={handleResourceManagerOpen_gml}  //TODO99999 remove
                   triggerUpdateCurrPageName={notifyCurrPageName} 
                   fetchPageName={passInCurrSelectedPage}
                   initialScreenHeight={screenHeight}
@@ -1628,7 +1640,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
 
                   intialEmuPlayerProfile={testPlayerProfile}
-                  openEmuManager={handleEmuManagerOpen} //TODO99999 remove?
+                  openEmuManager={handleEmuManagerOpen_gml} //TODO99999 remove?
                   fetchEmuPlayerProfile={passInPlayerProfile}
                    
                   getUILanguage={passInUILanguage}
@@ -1689,12 +1701,14 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
     {/* project-sl-tab */}
     {showSlTab === true
     && <div>
-      sl settings
       
       <div style={{"textAlign": "left"}}>
-          SL mode:
+          
+            <div className="indentOne">
 
-                            <div className="indentOne">
+              <label>SL mode:</label>
+                        <div className="indentOne">
+                              
                                 <input 
                                     className="cursor_pointer"
                                     type="radio"
@@ -1745,16 +1759,17 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
                                       setSlAreSlots(true);
                                     }}
                                 >SL Slots (data does not reset in chapter transition, with SL slots)</label>
-                            </div> 
-
+                        </div>
+            </div> 
+<br></br>
               
           <div style={{"display": "flex"}}>    
                 <div style={{"marginRight": "10px"}} className="guiSettings">
-                    Settings???
+
                    {/*  slAllInfo= {slAllInfo}
                     slAllInfo = [{slAllInfo}] */}
 
-{/* slslots */}
+{/* slslots editor */}
 {/* //TODO9002 */}
                     {slAllInfo !== undefined && 
     <div>
@@ -2057,22 +2072,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
                 max={30}
                 min={2}
             ></input>                            
-            <br></br>
-"row": 2,
-"col": 3,
-"pageCount": 3,
-"item_w": 100,
-"item_h": 70,
-"itemTitleStamp": true,
-"bgPicName": "",
-"groupPosX": 0,
-"groupPoxY": 0,
-"groupItemGapX": 5,
-"groupItemGapY": 5,
 
-<br></br>
-
-!!!
     </div>
   
 

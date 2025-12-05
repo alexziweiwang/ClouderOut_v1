@@ -29,7 +29,7 @@ export default function NodeManager({projectName, currUser,
   initialChapterKey, getNodeMapOfChapter, 
   getCurrChapterKey, getGridBlocks,
   initialNodeMap, initialGridBlock,
-  displayGameDataPanel, getGameData, getGdmUpdatedSignal, resetGdmUpdateSignal,
+  handleGameDataManagerOpen, getGameData, getGdmUpdatedSignal, resetGdmUpdateSignal,
 
   loadChapterInfoFromCaller,
 
@@ -1841,7 +1841,7 @@ chapter-key = {chapterKey}
                                   );
                               })}
                           </select>
-                          {displayGameDataButton && <button onClick={()=>{displayGameDataPanel()}}> + </button>}
+                          {displayGameDataButton && <button onClick={()=>{handleGameDataManagerOpen()}}> + </button>}
                       </div>
 
                       <div>
@@ -1889,7 +1889,7 @@ chapter-key = {chapterKey}
                               })}
                               
                           </select>
-                        {displayGameDataButton && <button onClick={()=>{displayGameDataPanel()}}> + </button>}
+                        {displayGameDataButton && <button onClick={()=>{handleGameDataManagerOpen()}}> + </button>}
 
                         <br></br>
                         <input type="radio" value={logicSplitterVar2IsGData} checked={!logicSplitterVar2IsGData} onChange={()=>{changeLsVar2ToValue();setLsGdataVar2("");}}/> Value:

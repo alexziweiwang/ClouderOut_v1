@@ -29,10 +29,13 @@ import langDictionary from './_textDictionary';
 
 //operations aim to do file-pair-matching in this compo (either shared link or storage-upload): rm-file-list (for all projects)
 
+//TODO9005: improvement plan
+//for various online modes, var-pair naming and url-assigning
 
 //fetch data from cloud, and update to outer-layer when user-changed...
 export default function Modal_ResourceManagingWindow ({
     handleRmCancel, 
+
     initialProjectResourceVarPairs,
         
     languageCodeTextOption,
@@ -195,6 +198,7 @@ export default function Modal_ResourceManagingWindow ({
 
 
     //TODO22 for all operations on resource: 
+    //CRUD of dtmgr
     function storeNewVarPairDataFunction_rmLayer(action, url, givenContent, fileType) {
         markDataChanged();
 
@@ -682,49 +686,57 @@ console.log("before adding one-new-item to local list: ", usersAllFileListVisual
 
                 <br></br><br></br>
                 <label> Add a New Picture: </label> <br></br>
+
                 <div  style={{"textAlign": "left", "padding": "3px"}}>
                 
-                
-                <input 
-                    type="radio" 
-                    value={isSourceByUpload} 
-                    checked={isSourceByUpload} 
-                    onChange={()=>{setIsSourceByUpload(true);}}></input> 
-                    <label onClick={()=>{setIsSourceByUpload(true);}}>
-                        {newFileUploadText}
-                    </label>
-                    
-                <br></br>
-                {isSourceByUpload && <div className="uploadArea">
-                    {uploadConfirm === false && <input 
-                        type="file"
-                        accept=".png,.jpg,.jpeg,"
-                        onChange={(event)=>{setFileSelected(event.target.files[0]);}}
-                    />}
-                    {uploadConfirm === true && <label>File Chosen: {fileSelected.name}</label>}
-                    
-                    {uploadConfirm === true && <button 
-                        onClick={()=>{
-                            setFileSelected(""); 
-                            setUploadConfirm(false);
-                        }}
-                    >{cancelText}</button>}
-                    
-                    {uploadConfirm === false && <button 
-                        onClick={()=>{
-                            submitFiletocloud("visual", fileSelected); 
-                            setUploadConfirm(true);
-                        }}
-                    > {confirmText} </button>}
-                    
-                    {uploadConfirm === true && <button 
-                        onClick={()=>{
-                            submitFiletocloud("visual", fileSelected); 
-                            setFileSelected(""); 
-                            setUploadConfirm(false);
-                        }}
-                    > {submitText} </button>}
-                </div>}
+                        
+                            {/* <input 
+                                type="radio" 
+                                value={isSourceByUpload} 
+                                checked={isSourceByUpload} 
+                                onChange={()=>{setIsSourceByUpload(true);}}>
+                            </input> 
+                            <label onClick={()=>{setIsSourceByUpload(true);}}>
+                                {newFileUploadText}
+                            </label>
+                             */}
+                         
+                            {isSourceByUpload && 
+                            <div className="uploadArea">
+                                    {/* 
+                                    
+                                    {uploadConfirm === false && <input 
+                                        type="file"
+                                        accept=".png,.jpg,.jpeg,"
+                                        onChange={(event)=>{setFileSelected(event.target.files[0]);}}
+                                    />}
+                                    {uploadConfirm === true && <label>File Chosen: {fileSelected.name}</label>}
+                                    
+                                    {uploadConfirm === true && <button 
+                                        onClick={()=>{
+                                            setFileSelected(""); 
+                                            setUploadConfirm(false);
+                                        }}
+                                    >{cancelText}</button>} 
+                                
+                                    {uploadConfirm === false && <button 
+                                        onClick={()=>{
+                                            submitFiletocloud("visual", fileSelected); 
+                                            setUploadConfirm(true);
+                                        }}
+                                    > {confirmText} </button>}
+                                    
+                                    {uploadConfirm === true && <button 
+                                        onClick={()=>{
+                                            submitFiletocloud("visual", fileSelected); 
+                                            setFileSelected(""); 
+                                            setUploadConfirm(false);
+                                        }}
+                                    > {submitText} </button>}
+
+                                    */}
+                            </div>
+                            }
                 
                 <input type="radio" 
                     value={isSourceByUpload} 
