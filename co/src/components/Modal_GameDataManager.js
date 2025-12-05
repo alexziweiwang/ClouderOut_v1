@@ -156,7 +156,11 @@ export default function Modal_GameDataManager ({
         }
 
 
-        let newObj = {"name": newVarName, "default_value": defaultNewValue, "data_type": newGameDataType};
+        let newObj = {
+            "name": newVarName, 
+            "default_value": defaultNewValue, 
+            "data_type": newGameDataType
+        };
         
         if (newGameDataType === "isBoolean") {
             let boolVal = defaultNewBooleanValue === "isTrue" ? true : false;
@@ -250,7 +254,7 @@ export default function Modal_GameDataManager ({
         setEditAreaOpen(true);
     }
 
-    function saveTableChanges() { //TODO33333
+    function saveDefaultValChange() { //TODO33333
         //TODO validation? then save changes? for number & boolean types
         updateVarDefaultValue();
         
@@ -263,24 +267,24 @@ export default function Modal_GameDataManager ({
         setUpdatedDefaultValue(event.target.value);
     }
 
-    function updateVarDefaultValue() {
+    function updateVarDefaultValue() { //TODO99999999
         if (editLineDisplay === "") {
             console.log("error: empty editing."); //TODO
             return;
         }
 
         let updatedVal = updatedDefaultValue;
-        if (usingGameDataDesign[editLineDisplay]["data_type"] === "boolean") {
-            if (updatedDefaultValue === "True" || updatedDefaultValue === "true" || updatedDefaultValue === "1" || updatedDefaultValue === 1 || updatedDefaultValue === "Yes" || updatedDefaultValue === "yes" || updatedDefaultValue === "Y" || updatedDefaultValue === "T") {
-                updatedVal = true;
-            } else if (updatedDefaultValue === "False" || updatedDefaultValue === "false" || updatedDefaultValue === "0" || updatedDefaultValue === 0 || updatedDefaultValue === "No" || updatedDefaultValue === "no" || updatedDefaultValue === "N" || updatedDefaultValue === "F") {
-                updatedVal = false;
-            } else {
-                console.log("error: please enter valid boolean value."); //TODO test
-                return;
-            }
+        // if (usingGameDataDesign[editLineDisplay]["data_type"] === "boolean") {
+        //     if (updatedDefaultValue === "True" || updatedDefaultValue === "true" || updatedDefaultValue === "1" || updatedDefaultValue === 1 || updatedDefaultValue === "Yes" || updatedDefaultValue === "yes" || updatedDefaultValue === "Y" || updatedDefaultValue === "T") {
+        //         updatedVal = true;
+        //     } else if (updatedDefaultValue === "False" || updatedDefaultValue === "false" || updatedDefaultValue === "0" || updatedDefaultValue === 0 || updatedDefaultValue === "No" || updatedDefaultValue === "no" || updatedDefaultValue === "N" || updatedDefaultValue === "F") {
+        //         updatedVal = false;
+        //     } else {
+        //         console.log("error: please enter valid boolean value."); //TODO test
+        //         return;
+        //     }
 
-        }
+        // }
 
         let newGameData = {};
         Object.keys(usingGameDataDesign).map((k) => {
@@ -380,9 +384,29 @@ export default function Modal_GameDataManager ({
                                     </td>}
                                 {(editLineDisplay === key && editAreaOpen === true) && 
                                     <td>
-                                        <input value={updatedDefaultValue} onChange={(event)=>{editVarDefaultValue(event)}} className="editInput"></input>
+
+
+
+                                        {/* //TODO9999999999 */}
+                                        {/* check by edited-line data-type! */}
+                                        {usingGameDataDesign[key]["data_type"] !== "boolean" 
+                                        && <input 
+                                            value={updatedDefaultValue} 
+                                            onChange={(event)=>{editVarDefaultValue(event)}} 
+                                            className="editInput">    
+                                        </input>}
+
+                                        {usingGameDataDesign[key]["data_type"] === "boolean" 
+                                        && <select
+                                            value={updatedDefaultValue}
+                                            onChange={(event)=>{editVarDefaultValue(event)}}
+                                            >
+                                            <option value={true} key="edv-t">True</option>
+                                            <option value={false} key="edv-f">False</option>
+                                        </select>}
+
                                         <div>
-                                            <button className="cursor_pointer" onClick={()=>{saveTableChanges();}}>{saveText}</button>
+                                            <button className="cursor_pointer" onClick={()=>{saveDefaultValChange();}}>{saveText}</button>
                                             <button className="cursor_pointer" onClick={()=>{setEditLineDisplay("");}}>{cancelText}</button>          
                                         </div> 
                                         

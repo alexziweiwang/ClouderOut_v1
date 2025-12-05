@@ -1224,41 +1224,56 @@ console.log("ui-langauge changed to: ", val);
         return projectMetaData["emu4sets"]["shp5"]["playerPurchaseStatus"];
     }
 
-    function handleResourceManagerCancel() {
-        setDisplayRmModal(false);
-    }
-
     function handleResourceManagerOpen() {
         setDisplayRmModal(true);
-    }
-
-    function handleGameDataManagerCancel() {
-        setDisplayGdmBool(false);
-    }
-
+    }   
+    
     function handleGameDataManagerOpen() {
         setDisplayGdmBool(true);
-    }
-
-    function handleEmuManagerCancel() {
-        setDisplayEmBool(false);
-    }
+    }    
 
     function handleEmuManagerOpen() {
         setDisplayEmBool(true);
     }
 
+
+    function handleResourceManagerCancel() {
+        //TODO refresh for other editors
+        setDisplayRmModal(false);
+    }
+
+    function handleGameDataManagerCancel() {
+        //TODO refresh for other editors
+        setDisplayGdmBool(false);
+    }
+
+    function handleEmuManagerCancel() {
+        //TODO refresh for other editors
+        setDisplayEmBool(false);
+    }
+
+
+
     function triggerGameDataDesignListChange(data, emuAction, singleObj) {
         //TODO999 update game-data-design-list
+            if (singleObj === undefined
+            || singleObj["name"] === undefined
+            || singleObj["data_type"] === undefined
+            || singleObj["default_value"] === undefined
+            ) {
+                                    console.log("!!! can't add this to game-data-design!!");
+                return;
+            }
+
 
             let emu4SetsEntireTemp = projectMetaData["emu4sets"];
             let emu4SetsGdtTemp = projectMetaData["emu4sets"]["gdt1"];
                      
-            let keyStr = singleObj["name"]
+            let keyStr = singleObj["name"];
 
             if (emuAction === "addVarPair") {
                 emu4SetsGdtTemp[keyStr] = {
-                    "current_value": singleObj["current_value"],
+                    "current_value": singleObj["default_value"],
                     "data_type": singleObj["data_type"],
                     "default_value": singleObj["default_value"],
                     "name": keyStr,
