@@ -382,7 +382,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
 
   const [slAreSlots, setSlAreSlots] = useState(false); //"chapterExpr"(f) or "slSlots"(t)
-  const [slAllInfo, setSlAllInfo] = useState(-1); //including "format" and "slPage"-obj
+  const [slAllInfo, setSlAllInfo] = useState(initialMetadata !== undefined? initialMetadata["slInfo"] : -1); //including "format" and "slPage"-obj
   //TODO9001 in use
 
 
@@ -1749,12 +1749,12 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
               
           <div style={{"display": "flex"}}>    
-                <div style={{"backgroundColor": "orange", "marginRight": "10px"}} className="guiSettings">
+                <div style={{"marginRight": "10px"}} className="guiSettings">
                     Settings???
                    {/*  slAllInfo= {slAllInfo}
                     slAllInfo = [{slAllInfo}] */}
 
-
+{/* slslots */}
 {/* //TODO9002 */}
                     {slAllInfo !== undefined && 
     <div>
@@ -1898,7 +1898,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
             ></input>
             <br></br>
 
-            <label>Item Label</label>
+            <label>Item Label </label>
             {/* slAllInfo["itemTitleStamp"] */}
             <select
               value={slAllInfo["itemTitleStamp"]}
@@ -1920,7 +1920,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
             </select>
             <br></br>
 
-            <label>Background Picture</label>
+            <label>Background Picture </label>
             <select
                 value={slAllInfo["bgPicName"]}
                 onChange={(event)=>{
