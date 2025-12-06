@@ -268,45 +268,69 @@ export default function Modal_GameDataManager ({
     }
 
     function updateVarDefaultValue() { //TODO99999999
+                            console.log("func updateVarDefaultValue: for [", editLineDisplay, "]");
+
+
         if (editLineDisplay === "") {
             console.log("error: empty editing."); //TODO
             return;
         }
 
         let updatedVal = updatedDefaultValue;
-        // if (usingGameDataDesign[editLineDisplay]["data_type"] === "boolean") {
-        //     if (updatedDefaultValue === "True" || updatedDefaultValue === "true" || updatedDefaultValue === "1" || updatedDefaultValue === 1 || updatedDefaultValue === "Yes" || updatedDefaultValue === "yes" || updatedDefaultValue === "Y" || updatedDefaultValue === "T") {
-        //         updatedVal = true;
-        //     } else if (updatedDefaultValue === "False" || updatedDefaultValue === "false" || updatedDefaultValue === "0" || updatedDefaultValue === 0 || updatedDefaultValue === "No" || updatedDefaultValue === "no" || updatedDefaultValue === "N" || updatedDefaultValue === "F") {
-        //         updatedVal = false;
-        //     } else {
-        //         console.log("error: please enter valid boolean value."); //TODO test
-        //         return;
-        //     }
 
-        // }
+                            console.log("\t going to be : ", updatedVal);
 
-        let newGameData = {};
-        Object.keys(usingGameDataDesign).map((k) => {
 
-            if (k !== editLineDisplay) {
-                newGameData[k] = usingGameDataDesign[k];
-            } else {
-                const newObj = {
-                    "name": usingGameDataDesign[k]["name"],
-                    "data_type": usingGameDataDesign[k]["data_type"],
-                    "default_value": updatedVal,
-                }
-                newGameData[k] = newObj;
-            }
-            return newGameData;
-        });
+                            // if (usingGameDataDesign[editLineDisplay]["data_type"] === "boolean") {
+                            //     if (updatedDefaultValue === "True" || updatedDefaultValue === "true" || updatedDefaultValue === "1" || updatedDefaultValue === 1 || updatedDefaultValue === "Yes" || updatedDefaultValue === "yes" || updatedDefaultValue === "Y" || updatedDefaultValue === "T") {
+                            //         updatedVal = true;
+                            //     } else if (updatedDefaultValue === "False" || updatedDefaultValue === "false" || updatedDefaultValue === "0" || updatedDefaultValue === 0 || updatedDefaultValue === "No" || updatedDefaultValue === "no" || updatedDefaultValue === "N" || updatedDefaultValue === "F") {
+                            //         updatedVal = false;
+                            //     } else {
+                            //         console.log("error: please enter valid boolean value."); //TODO test
+                            //         return;
+                            //     }
+
+                            // }
+
+        const newObj = {
+            "name": usingGameDataDesign[editLineDisplay]["name"],
+            "data_type": usingGameDataDesign[editLineDisplay]["data_type"],
+            "default_value": updatedVal,
+        }
+
+        let newGameData = usingGameDataDesign;
+        newGameData[editLineDisplay] = {
+            "name": usingGameDataDesign[editLineDisplay]["name"],
+            "data_type": usingGameDataDesign[editLineDisplay]["data_type"],
+            "default_value": updatedVal,
+        };
+
+
+                                    // let newGameData = {};
+                                    // Object.keys(usingGameDataDesign).map((k) => {
+
+                                    //     if (k !== editLineDisplay) {
+                                    //         newGameData[k] = usingGameDataDesign[k];
+                                    //     } else {
+                                    //         const newObj2 = {
+                                    //             "name": usingGameDataDesign[k]["name"],
+                                    //             "data_type": usingGameDataDesign[k]["data_type"],
+                                    //             "default_value": updatedVal,
+                                    //         }
+                                    //         newGameData[k] = newObj2;
+                                    //     }
+                                    //     return newGameData;
+                                    // });
         let objSize = Object.keys(newGameData).length;
                                 console.log("new gdmMap-data size = ", objSize);
 
         let actionName = "";
-        let emptyObj = {};
-        updateToOuterLayer(newGameData, objSize, actionName, emptyObj);
+                                    // let emptyObj = {};
+
+                                    // updateToOuterLayer(newGameData, objSize, actionName, emptyObj);
+        updateToOuterLayer(newGameData, objSize, actionName, newObj);
+
     }
 
     function updateToOuterLayer(updatedGameDataObj, sizeNum, emuAction, singleObj) {

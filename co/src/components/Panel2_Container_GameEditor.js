@@ -1261,7 +1261,7 @@ console.log("ui-langauge changed to: ", val);
             || singleObj["data_type"] === undefined
             || singleObj["default_value"] === undefined
             ) {
-                                    console.log("!!! can't add this to game-data-design!!");
+                                    console.log("!!! can't add this to game-data-design!!", singleObj);
                 return;
             }
 
