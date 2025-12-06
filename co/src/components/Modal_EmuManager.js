@@ -602,12 +602,12 @@ return (<div className={modalStyleName}>
                 style={{"position": "relative", "left": "60%"}}
                 onClick={()=>{
                     setFocusingPanelName("");
-                    if (cloudUpdated === false) {
-                        let resp = window.confirm("Are you sure you would like to exit without saving to cloud?");
-                        if (!resp) {
-                            return;
-                        }
-                    }
+                                        // if (cloudUpdated === false) {
+                                        //     let resp = window.confirm("Are you sure you would like to exit without saving to cloud?");
+                                        //     if (!resp) {
+                                        //         return;
+                                        //     }
+                                        // }
                     handleEmCancel();
                     setCloudUpdated(false);
                     

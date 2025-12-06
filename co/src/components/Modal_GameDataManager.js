@@ -93,20 +93,21 @@ export default function Modal_GameDataManager ({
 
 
 
-    const [displayNewVarArea, setDisplayNewVarArea] = useState(false);
-    const [newGameDataType, setNewGameDataType] = useState("isNumber");
-    const [isNewGdataTypeBoolean, setIsNewDdataTypeBoolean] = useState(false);
-    const [defaultNewBooleanValue, setDefaultNewBooleanValue] = useState("invalid");
-    const [newVarName, setNewVarName] = useState("");
-    const [defaultNewValue, setDefaultNewValue] = useState(0);
+    const [isDisplayNewVarArea, setIsDisplayNewVarArea] = useState(false);
 
-    const [editLineDisplay, setEditLineDisplay] = useState("");
-    const [editAreaOpen, setEditAreaOpen] = useState(false);
-    const [updatedDefaultValue, setUpdatedDefaultValue] = useState("");
+    const [addingNewVar, setAddingNewVar] = useState(""); // when adding a new variable
+    const [addingNewVarType, setAddingNewVarType] = useState("isNumber");
+    const [isAddingNewVarTypeBool, setIsAddingNewVarTypeBool] = useState(false);
+    const [addingNewVarDftVal, setAddingNewVarDftVal] = useState(0);
+    const [addingNewVarDftBool, setAddingNewVarDftBool] = useState("invalid");
+
+    const [editingVarDftVal, setEditingVarDftVal] = useState(""); // when editing a variable's default-value
+    const [isDisplayEditingDftValArea, setIsDisplayEditingDftValArea] = useState(false); // whether [editing of one item's default value] area opens or not
+    const [editingVarDftCddt, setEditingVarDftCddt] = useState(""); // candidate
+
+    const [usingGameDataDesign, setUsingGameDataDesign] = useState({}); // the main data-structure for game-data-design
 
     const [gdmMapSize, setGdmMapSize] = useState(0);
-
-    const [usingGameDataDesign, setUsingGameDataDesign] = useState({});
 
 
 
@@ -129,46 +130,48 @@ export default function Modal_GameDataManager ({
 
 
     function showNewVarForm() {
-        setDisplayNewVarArea(!displayNewVarArea);
-        setNewGameDataType("isNumber");
-        setNewVarName("");
-        setDefaultNewBooleanValue("invalid");
-        setDefaultNewValue(0);
-        setIsNewDdataTypeBoolean(false);
+        setIsDisplayNewVarArea(!isDisplayNewVarArea);
+        setAddingNewVarType("isNumber");
+        setAddingNewVar("");
+        setAddingNewVarDftBool("invalid");
+        setAddingNewVarDftVal(0);
+        setIsAddingNewVarTypeBool(false);
     }
 
     function addVarPair() {
-        if (newVarName === "") {
+        if (addingNewVar === "") {
             window.alert("Variable name can not be empty.");
             return;
         }
 
-        if (newGameDataType === "isBoolean" 
-            && (defaultNewBooleanValue === "invalid" 
-                || defaultNewBooleanValue.length === 0)) {
-            console.log("invalid boolean");
-            return;
-        }
-
-        if (usingGameDataDesign.hasOwnProperty(newVarName)) {
+        if (usingGameDataDesign.hasOwnProperty(addingNewVar)) {
             console.log("Error: duplicate game-data-item name."); //TODO test
             return;
         }
 
 
+        if (addingNewVarType === "isBoolean" 
+            && (addingNewVarDftBool === "invalid" 
+                || addingNewVarDftBool.length === 0)) {
+            console.log("invalid boolean");
+            return;
+        }
+
+
+
         let newObj = {
-            "name": newVarName, 
-            "default_value": defaultNewValue, 
-            "data_type": newGameDataType
+            "name": addingNewVar, 
+            "default_value": addingNewVarDftVal, 
+            "data_type": addingNewVarType
         };
         
-        if (newGameDataType === "isBoolean") {
-            let boolVal = defaultNewBooleanValue === "isTrue" ? true : false;
-            newObj = {"name": newVarName, "default_value": boolVal, "data_type": "boolean"};
-        } else if (newGameDataType === "isNumber") {
-            newObj = {"name": newVarName, "default_value": defaultNewValue, "data_type": "number"};
-        } else if (newGameDataType === "isText") {
-            newObj = {"name": newVarName, "default_value": defaultNewValue, "data_type": "string"};
+        if (addingNewVarType === "isBoolean") {
+            let boolVal = addingNewVarDftBool === "isTrue" ? true : false;
+            newObj = {"name": addingNewVar, "default_value": boolVal, "data_type": "boolean"};
+        } else if (addingNewVarType === "isNumber") {
+            newObj = {"name": addingNewVar, "default_value": addingNewVarDftVal, "data_type": "number"};
+        } else if (addingNewVarType === "isText") {
+            newObj = {"name": addingNewVar, "default_value": addingNewVarDftVal, "data_type": "string"};
         }
 
         const naming = newObj["name"];
@@ -183,38 +186,38 @@ export default function Modal_GameDataManager ({
 
                         console.log("adding new var: ", gameDataTemp, ", size = ", objSize); //TODO test
         
-        let actionName = "addVarPair"
-        updateToOuterLayer(gameDataTemp, objSize, actionName, newObj);
+        let actionName = "addNewVar"
+        updateGDDesign_allPlaces(gameDataTemp, objSize, actionName, newObj);
 
-        setDisplayNewVarArea(false);
+        setIsDisplayNewVarArea(false);
     }
 
     function selectOnNewGdataType(event) {
-        setNewGameDataType(event.target.value);
+        setAddingNewVarType(event.target.value);
         console.log("selected:", event.target.value); //TODO testing
         if (event.target.value === "isBoolean") {
-            setIsNewDdataTypeBoolean(true);
+            setIsAddingNewVarTypeBool(true);
         } else {
-            setIsNewDdataTypeBoolean(false);
+            setIsAddingNewVarTypeBool(false);
         }
     }
 
     function selectOnDefaultBoolean(event) {
         if (event.target.value === "isTrue") {
-            setDefaultNewBooleanValue("isTrue");
+            setAddingNewVarDftBool("isTrue");
         } else if (event.target.value === "isFalse") {
-            setDefaultNewBooleanValue("isFalse");
+            setAddingNewVarDftBool("isFalse");
         } else {
-            setDefaultNewBooleanValue("");
+            setAddingNewVarDftBool("");
         }
     }
 
-    function changeNewVarName(event) {
-        setNewVarName(event.target.value);
+    function changeaddingNewVar(event) {
+        setAddingNewVar(event.target.value);
     }
 
-    function changeDefaultNewValue(event) {
-        setDefaultNewValue(event.target.value);
+    function changeaddingNewVarDftVal(event) {
+        setAddingNewVarDftVal(event.target.value);
     }
 
     function deleteListItem(singleObj) {
@@ -234,24 +237,18 @@ export default function Modal_GameDataManager ({
             let objSize = Object.keys(tempMap).length;
                                     console.log("new gdm-design size = ", objSize);
 
-            let actionName = "removeVarPair";
-            updateToOuterLayer(tempMap, objSize, actionName, singleObj);
+            let actionName = "removeVar";
+            updateGDDesign_allPlaces(tempMap, objSize, actionName, singleObj);
 
         }
 
-
-
-      
-
     }
 
+    function handleEditDftValItem(obj) {
+        setEditingVarDftVal(obj["name"]);
+        setEditingVarDftCddt(obj["default_value"]);
 
-
-    function editListItem(obj) {
-        setEditLineDisplay(obj["name"]);
-        setUpdatedDefaultValue(obj["default_value"]);
-
-        setEditAreaOpen(true);
+        setIsDisplayEditingDftValArea(true);
     }
 
     function saveDefaultValChange() { //TODO33333
@@ -259,32 +256,32 @@ export default function Modal_GameDataManager ({
         updateVarDefaultValue();
         
 
-        setEditAreaOpen(false);
-        setEditLineDisplay("");
+        setIsDisplayEditingDftValArea(false);
+        setEditingVarDftVal("");
     }
 
-    function editVarDefaultValue(event) {
-        setUpdatedDefaultValue(event.target.value);
+    function editVarDefaultValueTemp(event) {
+        setEditingVarDftCddt(event.target.value);
     }
 
     function updateVarDefaultValue() { //TODO99999999
-                            console.log("func updateVarDefaultValue: for [", editLineDisplay, "]");
+                            console.log("func updateVarDefaultValue: for [", editingVarDftVal, "]");
 
 
-        if (editLineDisplay === "") {
+        if (editingVarDftVal === "") {
             console.log("error: empty editing."); //TODO
             return;
         }
 
-        let updatedVal = updatedDefaultValue;
+        let updatedVal = editingVarDftCddt;
 
                             console.log("\t going to be : ", updatedVal);
 
 
-                            // if (usingGameDataDesign[editLineDisplay]["data_type"] === "boolean") {
-                            //     if (updatedDefaultValue === "True" || updatedDefaultValue === "true" || updatedDefaultValue === "1" || updatedDefaultValue === 1 || updatedDefaultValue === "Yes" || updatedDefaultValue === "yes" || updatedDefaultValue === "Y" || updatedDefaultValue === "T") {
+                            // if (usingGameDataDesign[editingVarDftVal]["data_type"] === "boolean") {
+                            //     if (editingVarDftCddt === "True" || editingVarDftCddt === "true" || editingVarDftCddt === "1" || editingVarDftCddt === 1 || editingVarDftCddt === "Yes" || editingVarDftCddt === "yes" || editingVarDftCddt === "Y" || editingVarDftCddt === "T") {
                             //         updatedVal = true;
-                            //     } else if (updatedDefaultValue === "False" || updatedDefaultValue === "false" || updatedDefaultValue === "0" || updatedDefaultValue === 0 || updatedDefaultValue === "No" || updatedDefaultValue === "no" || updatedDefaultValue === "N" || updatedDefaultValue === "F") {
+                            //     } else if (editingVarDftCddt === "False" || editingVarDftCddt === "false" || editingVarDftCddt === "0" || editingVarDftCddt === 0 || editingVarDftCddt === "No" || editingVarDftCddt === "no" || editingVarDftCddt === "N" || editingVarDftCddt === "F") {
                             //         updatedVal = false;
                             //     } else {
                             //         console.log("error: please enter valid boolean value."); //TODO test
@@ -294,15 +291,15 @@ export default function Modal_GameDataManager ({
                             // }
 
         const newObj = {
-            "name": usingGameDataDesign[editLineDisplay]["name"],
-            "data_type": usingGameDataDesign[editLineDisplay]["data_type"],
+            "name": usingGameDataDesign[editingVarDftVal]["name"],
+            "data_type": usingGameDataDesign[editingVarDftVal]["data_type"],
             "default_value": updatedVal,
         }
 
         let newGameData = usingGameDataDesign;
-        newGameData[editLineDisplay] = {
-            "name": usingGameDataDesign[editLineDisplay]["name"],
-            "data_type": usingGameDataDesign[editLineDisplay]["data_type"],
+        newGameData[editingVarDftVal] = {
+            "name": usingGameDataDesign[editingVarDftVal]["name"],
+            "data_type": usingGameDataDesign[editingVarDftVal]["data_type"],
             "default_value": updatedVal,
         };
 
@@ -310,7 +307,7 @@ export default function Modal_GameDataManager ({
                                     // let newGameData = {};
                                     // Object.keys(usingGameDataDesign).map((k) => {
 
-                                    //     if (k !== editLineDisplay) {
+                                    //     if (k !== editingVarDftVal) {
                                     //         newGameData[k] = usingGameDataDesign[k];
                                     //     } else {
                                     //         const newObj2 = {
@@ -325,22 +322,23 @@ export default function Modal_GameDataManager ({
         let objSize = Object.keys(newGameData).length;
                                 console.log("new gdmMap-data size = ", objSize);
 
-        let actionName = "";
-                                    // let emptyObj = {};
+        let actionName = "editVarDftVal";
 
-                                    // updateToOuterLayer(newGameData, objSize, actionName, emptyObj);
-        updateToOuterLayer(newGameData, objSize, actionName, newObj);
+        updateGDDesign_allPlaces(newGameData, objSize, actionName, newObj);
 
     }
 
-    function updateToOuterLayer(updatedGameDataObj, sizeNum, emuAction, singleObj) {
+    function updateGDDesign_allPlaces(updatedGameDataObj, sizeNum, emuAction, singleObj) {
 
         setUsingGameDataDesign(updatedGameDataObj); /* update local data structure */ 
         setGdmMapSize(sizeNum);
 
-        updateGameDataDesignListToOuterLayer(updatedGameDataObj, emuAction, singleObj); /* update for outer-layer */
- 
-            //+++ emuAction ("addVarPair" or "removeVarPair"), singleObj
+        updateGameDataDesignListToOuterLayer(
+            updatedGameDataObj, 
+            emuAction, 
+            singleObj
+        ); /* update for outer-layer */
+
     }
 
 
@@ -364,7 +362,7 @@ export default function Modal_GameDataManager ({
             
             <div>
                 <div 
-                    className={!displayNewVarArea? "dataArea" : "dataAreaShrink"}
+                    className={isDisplayNewVarArea === false? "dataArea" : "dataAreaShrink"}
                     style={{
                         
                         "marginTop": "10px",
@@ -401,12 +399,18 @@ export default function Modal_GameDataManager ({
 
                                     <td>{usingGameDataDesign[key]["data_type"]}</td>
 
-                                {(editLineDisplay !== key) && 
+                                {(editingVarDftVal !== key) && 
                                     <td>
                                         <label>{usingGameDataDesign[key]["default_value"] === true ? "True" : usingGameDataDesign[key]["default_value"] === false ? "False" : usingGameDataDesign[key]["default_value"]}</label>
-                                        <button className="cursor_pointer" onClick={()=>{editListItem(usingGameDataDesign[key]);}}>{editText}</button>
+                                        <button 
+                                            className="cursor_pointer" 
+                                            onClick={()=>{
+                                                handleEditDftValItem(usingGameDataDesign[key]);
+                                            }}>
+                                                {editText}
+                                        </button>
                                     </td>}
-                                {(editLineDisplay === key && editAreaOpen === true) && 
+                                {(editingVarDftVal === key && isDisplayEditingDftValArea === true) && 
                                     <td>
 
 
@@ -415,15 +419,15 @@ export default function Modal_GameDataManager ({
                                         {/* check by edited-line data-type! */}
                                         {usingGameDataDesign[key]["data_type"] !== "boolean" 
                                         && <input 
-                                            value={updatedDefaultValue} 
-                                            onChange={(event)=>{editVarDefaultValue(event)}} 
+                                            value={editingVarDftCddt} 
+                                            onChange={(event)=>{editVarDefaultValueTemp(event)}} 
                                             className="editInput">    
                                         </input>}
 
                                         {usingGameDataDesign[key]["data_type"] === "boolean" 
                                         && <select
-                                            value={updatedDefaultValue}
-                                            onChange={(event)=>{editVarDefaultValue(event)}}
+                                            value={editingVarDftCddt}
+                                            onChange={(event)=>{editVarDefaultValueTemp(event)}}
                                             >
                                             <option value={true} key="edv-t">True</option>
                                             <option value={false} key="edv-f">False</option>
@@ -431,7 +435,7 @@ export default function Modal_GameDataManager ({
 
                                         <div>
                                             <button className="cursor_pointer" onClick={()=>{saveDefaultValChange();}}>{saveText}</button>
-                                            <button className="cursor_pointer" onClick={()=>{setEditLineDisplay("");}}>{cancelText}</button>          
+                                            <button className="cursor_pointer" onClick={()=>{setEditingVarDftVal("");}}>{cancelText}</button>          
                                         </div> 
                                         
                                     </td>}
@@ -468,12 +472,12 @@ export default function Modal_GameDataManager ({
 
             </div>
 
-            {!displayNewVarArea && 
+            {isDisplayNewVarArea === false && 
                 <div className="addNewGameDataAreaClosed"
                 >
                     <button onClick={showNewVarForm}>+ {addNewVariableText}</button>
                 </div>}
-            {displayNewVarArea && 
+            {isDisplayNewVarArea === true && 
                 <div className="addNewGameDataArea"
                     style={{
                         
@@ -483,21 +487,21 @@ export default function Modal_GameDataManager ({
                     }}
                 >
                     <label>{varNameText}: </label>
-                    <input type="text" value={newVarName} onChange={changeNewVarName}/>
+                    <input type="text" value={addingNewVar} onChange={changeaddingNewVar}/>
                     <br></br>
                     <label>{typeText}: </label>
-                    <select value={newGameDataType} onChange={selectOnNewGdataType}>
+                    <select value={addingNewVarType} onChange={selectOnNewGdataType}>
                         <option value="isText" key="new-val-type-text"> {textText} </option>
                         <option value="isNumber" key="new-val-type-number"> {numberText} </option>
                         <option value="isBoolean" key="new-val-type-boolean"> {trueFalseText} </option>
                     </select>
                     <br></br>
                     <label>{defaultValueText}: </label>
-                    {!isNewGdataTypeBoolean && 
-                    <input type="text" value={defaultNewValue} onChange={changeDefaultNewValue}></input>
+                    {!isAddingNewVarTypeBool && 
+                    <input type="text" value={addingNewVarDftVal} onChange={changeaddingNewVarDftVal}></input>
                     }
-                    {isNewGdataTypeBoolean && 
-                    <select value={defaultNewBooleanValue} onChange={(event)=>{selectOnDefaultBoolean(event)}}>
+                    {isAddingNewVarTypeBool && 
+                    <select value={addingNewVarDftBool} onChange={(event)=>{selectOnDefaultBoolean(event)}}>
                         <option value="" key="new-val-bool-defaultNone"> --- {selectText} ---</option>
                         <option value="isTrue" key="new-val-bool-true"> {trueText} </option>
                         <option value="isFalse" key="new-val-bool-false"> {falseText} </option>

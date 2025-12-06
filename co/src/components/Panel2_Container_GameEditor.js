@@ -1271,14 +1271,14 @@ console.log("ui-langauge changed to: ", val);
                      
             let keyStr = singleObj["name"];
 
-            if (emuAction === "addVarPair") {
+            if (emuAction === "addNewVar" || emuAction === "editVarDftVal") {
                 emu4SetsGdtTemp[keyStr] = {
                     "current_value": singleObj["default_value"],
                     "data_type": singleObj["data_type"],
                     "default_value": singleObj["default_value"],
                     "name": keyStr,
                 };       
-            } else if (emuAction === "removeVarPair") {
+            } else if (emuAction === "removeVar") {
                 let emu4SetsGdtTemp2 = {};
                 Object.keys(emu4SetsGdtTemp).map((currKey) => {
                     if (currKey !== keyStr) {
