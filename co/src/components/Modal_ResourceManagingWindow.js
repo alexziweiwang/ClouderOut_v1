@@ -46,7 +46,7 @@ export default function Modal_ResourceManagingWindow ({
 
     getLocalProjectDataRsrcMgr,
 
-    updateVarPairToPanel2 //TODO update whenever change happens
+    updateVarPairToPanel2 //important: update whenever change happens
 
 
 }) {

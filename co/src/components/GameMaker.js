@@ -103,9 +103,9 @@ export default function GameMaker({
 
       notifyUpdateCurrentStanding_panel2,
 
-      handleResourceManagerOpen, //TODO99999 add in panel2
-      handleGameDataManagerOpen,  //TODO add in panel2
-      handleEmuManagerOpen, //TODO add in panel2
+      handleResourceManagerOpen, 
+      handleGameDataManagerOpen,  
+      handleEmuManagerOpen, 
 
     //TODO func: fetch sl-info from metadata: "slInfo" - "format"
       fetchSLInfoOption,

@@ -41,8 +41,14 @@ export default function ConversationNodeEditingPanel({
         saveCurrNodeEntire,
         backToGameMaker,
 
+        handleResourceManagerOpen, 
+        handleGameDataManagerOpen,  
+
         saveBothObjToCloud_release,
         startQuickView_panel2,
+
+        getFetchFlag,
+        notifySubEditorFetchFinish
 }
 ) {
 
@@ -224,9 +230,8 @@ GameDataDesign <map>
     const [displayGameDataWindow, setDisplayGameDataWindow] = useState(false);
     const [needCloudGameData, setNeedCloudGameData] = useState(true);
 
-    const [isDisplayRmBool, setDisplayRmModal] = useState(false);//TODO99999 remove (Adjust to panel2-level)
-    const [isDisplayQview, setIsDisplayQview] = useState(false);//TODO99999 remove (Adjust to panel2-level)
-    const [isDisplayEmBool, setDisplayEmBool] = useState(false);//TODO99999 remove (Adjust to panel2-level)
+
+    const [isDisplayQview, setIsDisplayQview] = useState(false); // keeping it now
 
 
     const [browseList, setBrowseList] = useState(true);
@@ -246,8 +251,7 @@ GameDataDesign <map>
 
     const [testPlayerGameData, setTestPlayerGameData] = useState({});   //TODO important for holder-in-practice
     const [testPlayerGameDataDup, setTestPlayerGameDataDup] = useState({});   //TODO important for holder-in-practice
-    const [testPlayerProfile, setTestPlayerProfile] = useState({});                                                                 //TODO important for holder-in-practice
-    const [testPlayerAccount, setTestPlayerAccount] = useState({});        
+    
 
     const [selectedGameScreenSize, setSelectedGameScreenSize] = useState("");
     const [screenWidth, setScreenWidth] = useState(defaultScreenWidth);
@@ -257,12 +261,11 @@ GameDataDesign <map>
     const [audioMap, setAudioMap] = useState({}); //TODO for bgm on each nav-page -- future feature
     const [visualMap, setVisualMap] = useState({}); 
 
-
     const [audioList, setAudioList] = useState([]);
     const [visualList, setVisualList] = useState([]); 
 
 
-    const [gameDataDesignList, setGameDataDesignList] = useState({});                    /* Important */
+    const [gameDataDesignList, setGameDataDesignList] = useState({}); /* Important */
  
     const [charaPicPrvw, setCharaPicPrvw] = useState(-1);
     
@@ -298,7 +301,16 @@ GameDataDesign <map>
                 setFirstTimeEnter(false);
             }
         } 
-        
+
+        //getFetchFlag
+        let fetchFlagTemp = getFetchFlag();
+                  console.log("get-Fetch-Flag:", fetchFlagTemp);
+
+        if (fetchFlagTemp === true) {
+            loadFromOuterLayer();
+            notifySubEditorFetchFinish();
+
+        }
 
 
 
@@ -418,32 +430,14 @@ GameDataDesign <map>
         return audioList;
     }
 
-    function handleResourceManagerOpen() {
-        setDisplayRmModal(true);
+    function handleResourceManagerOpen_ce() {
+        handleResourceManagerOpen();
     }
 
-    function handleModal_GameDataManagerOpen() {
-        setDisplayGameDataWindow(true);
+    function handleModal_GameDataManagerOpen_ce() {
+        handleGameDataManagerOpen();
     }
 
-
-    function handleResourceManagerCancel() {
-        setDisplayRmModal(false);
-
-        //TODO3 fetch laterst data from cloud?
-        // setRmUpdatedSignal(true);
-        
-    }
-    
-    function handleEmuManagerCancel() {
-        setDisplayEmBool(false);
-    } 
-
-    function handleResourceManagerSaveChanges() {
-        console.log("modal save changes!");
-        //TODO update to cloud db
-        setDisplayRmModal(false);
-    }
 
     function switchListEditor() {
         setBrowseList(!browseList);
@@ -705,29 +699,12 @@ GameDataDesign <map>
         return tempObjDup2;
     }
     
-    function getUserConfigFromEmuManager2Epp(data2) {
-        //update data2 to be the new Emu-Player-Profile
-        //TODO  //recreate emu data object
-        setTestPlayerProfile(data2);
-    }
-    
-    function getUserConfigFromEmuManager3Epa(data3) {
-        //update data3 to be the new Emu Player Account
-        //TODO  //recreate emu data object
-        setTestPlayerAccount(data3);
-    }
-
     function getUserConfigFromEmuManager4Ess(data4) {
         //TODO update data4 to be the new Emu SL slots
          //TODO  //recreate emu data object
     }
 
 
-    function handleqvCancel() {
-        setIsDisplayQview(false);
-
-        resetPlayerProfileDataDup();
-    }
 
     function passInUILanguage() {
         return languageCodeTextOption;
@@ -860,6 +837,7 @@ GameDataDesign <map>
     }
 
     function loadFromOuterLayer() { //resource & pieces
+                                console.log("conv-node-editor loaded from outer (p2)");
         fetchProjResourceLists();
         initializeNodeBothParts();
         
@@ -980,7 +958,7 @@ GameDataDesign <map>
 
 
 
-    function startQuickViewing() {
+    function startQuickViewing_ce() {
         let obj = {};
         obj["nodeKey"] = longKey;
         obj["nodeType"] = "Conversation";
@@ -1048,7 +1026,7 @@ GameDataDesign <map>
                 <>
                         <button className="button testEntire"
                             onClick={()=>{
-                                startQuickViewing();
+                                startQuickViewing_ce();
                             }}>
                                 {quickGameViewText}
                         </button>      
@@ -1128,8 +1106,8 @@ GameDataDesign <map>
                             getAllPieceData={passInAllPieceDataContent} 
                             backToList={returnToList} 
                             gameDataList={gameDataDesignList} 
-                            openRm={handleResourceManagerOpen}
-                            openGameDataManager={handleModal_GameDataManagerOpen}
+                            openRm={handleResourceManagerOpen_ce}
+                            openGameDataManager={handleModal_GameDataManagerOpen_ce}
 
                             setIsClickedOnSetters={setIsActionOnSetter}
                             fetchClickedIsOnSetter={passInUserClickSideIsOnSetter}
@@ -1183,7 +1161,7 @@ GameDataDesign <map>
                             iniMenuButtonObj={gameUIBackButton}
                             iniConvNavObj={uiConvNav}
                             iniCovLogObj={logPageUISettings}
-                            openRm={handleResourceManagerOpen} 
+                            openRm={handleResourceManagerOpen_ce} 
                             updateTextFrameUISettings={updateTextFrameUISettings} 
                             updateDefaultButtonSettings={updateDefaultButtonUISettings} 
                             updateIsDisplayDefaultButtonPreview={updateIsDisplayDefaultButtonPreviewSetting} 
@@ -1298,17 +1276,6 @@ GameDataDesign <map>
 
 
 
-{/* {firstEnterButtonPressed === false && 
-                <div
-                
-                >
-
-
-                    <button onClick={()=>{
-                        setFirstEnterButtonPressed(true);
-                    }}>Load Editor</button>
-                </div>
-} */}
 
         </div>
     );

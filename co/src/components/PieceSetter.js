@@ -15,8 +15,13 @@ import { defaultScreenWidth, defaultScreenHeight } from './_dataStructure_Defaul
 export default function PieceSetter({
     pieceNum, assignPreviewIndex, 
     allPieceData, updatePieceData, getAllPieceData, 
-    backToList, gameDataList, 
-    openRm, openGameDataManager, 
+    backToList, 
+
+    gameDataList,  //TODO change to dynamic?
+    
+    openRm, 
+    openGameDataManager, 
+    
     setIsClickedOnSetters, 
     fetchClickedIsOnSetter, getCurrentPieceNum, 
     fetchRmUpdatedSignal, respondUpdatedRm, 
@@ -1165,7 +1170,7 @@ console.log("audiolist = ", audioList);
 
                                    
                                         
-                                        console.log("stnd-button-table... item[conseq] = ", item["conseq"]);
+                              //  console.log("stnd-button-table... item[conseq] = ", item["conseq"]);
 
                                         return (
                                                 <tr key={keyStr}>

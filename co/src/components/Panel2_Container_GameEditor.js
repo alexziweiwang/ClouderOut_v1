@@ -690,6 +690,9 @@ console.log("handle Cancel NodeTest Viewer:", projectMetaData["emu4sets"]["gdt1"
 
 
     function updateResourcePairFromMgr(varPairObj) {
+
+        setEditorNeedRefresh(true);
+
         if (varPairObj !== "default") {
         
             setResourcePair(varPairObj);
@@ -1241,22 +1244,27 @@ console.log("ui-langauge changed to: ", val);
     }
 
     function passInEditorFetchFlag() {
+                                console.log("\tpassedin editor-fetch-flag: ", editorNeedRefresh);
         return editorNeedRefresh;
     }
 
     function notifySubEditorFetchFinish() {
+                                console.log("\t\t @@@ fetch finished!");
+
         setEditorNeedRefresh(false);
     }
     
 
     function handleResourceManagerOpen() {
         setDisplayRmModal(true);
+                                console.log("\t\t !!!@@@ resource-manager opened!");
 
         setEditorNeedRefresh(false);
     }   
     
     function handleGameDataManagerOpen() {
         setDisplayGdmBool(true);
+        console.log("\t\t !!!@@@ game-data-manager opened!");
 
         setEditorNeedRefresh(false);
     }    
@@ -1269,16 +1277,18 @@ console.log("ui-langauge changed to: ", val);
 
 
     function handleResourceManagerCancel() {
-
+                console.log("closed rm-window");
         setDisplayRmModal(false);
     }
 
     function handleGameDataManagerCancel() {
+        console.log("closed gdm-window");
 
         setDisplayGdmBool(false);
     }
 
     function handleEmuManagerCancel() {
+        console.log("closed emm-window");
 
         setDisplayEmBool(false);
     }
@@ -1679,7 +1689,7 @@ console.log("ui-langauge changed to: ", val);
           return;
       }
 
-      console.log("prep FirstViewingChapter: ", projectMetaData); 
+                                //   console.log("prep FirstViewingChapter: ", projectMetaData); 
                 //TODO: also, return from game-maker, if chapter-deletion happens...
 
       let firstChapItem = projectMetaData["chapterList"].length > 0 ? projectMetaData["chapterList"][1] : "";
@@ -1713,13 +1723,6 @@ console.log("ui-langauge changed to: ", val);
   
   }
 
-
-
-  function openEmuMgr() {
-    setDisplayEmBool(true);
-
-    //TODO prepare visualMap?
-  }
 
   function openTestWindow() {
     if (focusingEditor === "gameMaker") {
@@ -1824,14 +1827,16 @@ return (
                     <button 
                     className="rmTab" 
                     onClick={()=>{
-                      setDisplayRmModal(true);
+                      
+                      handleResourceManagerOpen();
                         }}> 
                     {resourceManagerButtonText} </button>
                     
                     <button 
                     className="rmTab" 
                     onClick={()=>{
-                       setDisplayGdmBool(true);
+                        handleGameDataManagerOpen();
+
                         
                         }}>
                     {gameDataManagerButtonText}</button>
@@ -1839,7 +1844,7 @@ return (
                     <button 
                     className="rmTab" 
                     onClick={()=>{
-                       openEmuMgr();
+                       handleEmuManagerOpen();
                         }}>
                         {emuManagerText}
                     </button>
@@ -1956,6 +1961,9 @@ return (
             editorMode={state.mode}
             
             getUiLangOption={passInUiLanguageOption}
+
+            handleResourceManagerOpen={handleResourceManagerOpen}
+            handleGameDataManagerOpen={handleGameDataManagerOpen}
 
             backToGameMaker={goToGameMakerResetNodeFocus}
 
