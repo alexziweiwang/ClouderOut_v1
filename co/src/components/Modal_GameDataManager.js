@@ -264,7 +264,7 @@ export default function Modal_GameDataManager ({
         setEditingVarDftCddt(event.target.value);
     }
 
-    function updateVarDefaultValue() { //TODO99999999
+    function updateVarDefaultValue() {
                             console.log("func updateVarDefaultValue: for [", editingVarDftVal, "]");
 
 

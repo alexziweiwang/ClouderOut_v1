@@ -1244,11 +1244,17 @@ console.log("ui-langauge changed to: ", val);
 
     function handleGameDataManagerCancel() {
         //TODO refresh for other editors
+
+        //TODO9999999 refresh the editors' selection list for game-data
+
         setDisplayGdmBool(false);
     }
 
     function handleEmuManagerCancel() {
         //TODO refresh for other editors
+
+        //TODO9999999 refresh the editors' selection list for game-data
+
         setDisplayEmBool(false);
     }
 
