@@ -111,7 +111,10 @@ export default function GameMaker({
       fetchSLInfoOption,
 
     //TODO func: update sl-info of metadata: "slInfo" - "format"
-      updateSLAllInfoOption
+      updateSLAllInfoOption,
+
+      getFetchFlag,
+      notifySubEditorFetchFinish
     
     }) {
   const navigate = useNavigate();
@@ -120,7 +123,6 @@ export default function GameMaker({
   const [isMtdtLoaded, setIsMtdtLoaded] = useState(false);
    //    "offline_half"       "offline_full"        "online_cloud"  
                       //          console.log("game maker, mode = ", editorMode, "\n ... project meta-data = ", projectMetaData);
-
 
 /**
 used data structures:
@@ -447,19 +449,20 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
           || authEmailName === "localUser###"
         ) {
             //valid username, or local-mode
+    
+          let fetchFlagTemp = getFetchFlag();
 
-
-          if (isMtdtLoaded === false) {
+          if (isMtdtLoaded === false || fetchFlagTemp === true) {
          //   let metadataTemp = getProjectMetaData("gameMaker");
             let metadataTemp = initialMetadata;
             if (metadataTemp === -1) {
               console.log("...unable to load proejct metadata from panel2.");
             } else {
               loadEverythingFromProvidedMetadata(metadataTemp);
+              
             }
-            
-            
-  
+
+            notifySubEditorFetchFinish();
           }
 
         }

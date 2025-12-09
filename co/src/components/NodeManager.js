@@ -321,7 +321,7 @@ export default function NodeManager({projectName, currUser,
 
       //TODO fetch this chapter's all node data
       let chapterKeyTemp = getCurrChapterKey();
-                              console.log("node-manager: curr chap = ", chapterKeyTemp);
+                              console.log("node-manager: curr chap = ", chapterKeyTemp, " \n\tgmdt = ", gameDataTemp);
 
 
       if (chapterKeyTemp !== chapterKey) { // means the chapter-clicked changed!

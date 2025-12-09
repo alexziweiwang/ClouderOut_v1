@@ -121,6 +121,9 @@ export default function Panel2_Container_GameEditor() {
     const [isDisplayViewingAny, setDisplayViewingAny] = useState(false);
     const [isDisplayEntireGameViewer, setDisplayEntireGameViewer] = useState(false);
     const [isDisplayQuickview, setDisplayQuickview] = useState(false);
+
+    const [editorNeedRefresh, setEditorNeedRefresh] = useState(false);
+
 /* todo30
                         metadata: format
       metadataObj["game_data"]
@@ -818,6 +821,8 @@ console.log("handle Cancel NodeTest Viewer:", projectMetaData["emu4sets"]["gdt1"
     }
 
     function updateUserConfigFromEmuManager1Gdt(data1) {
+        setEditorNeedRefresh(true);
+
         //update data1 to be the new Game-Data-Tracker
         //TODO  //recreate emu data object
         let entireEmuD = projectMetaData["emu4sets"];
@@ -830,6 +835,9 @@ console.log("handle Cancel NodeTest Viewer:", projectMetaData["emu4sets"]["gdt1"
     }
 
     function updateUserConfigFromEmuManager2Epp(data2) {
+        setEditorNeedRefresh(true);
+
+
         //update data2 to be the new Emu-Player-Profile
         //TODO  //recreate emu data object
         let entireEmuD = projectMetaData["emu4sets"];
@@ -842,6 +850,9 @@ console.log("handle Cancel NodeTest Viewer:", projectMetaData["emu4sets"]["gdt1"
     }
 
     function updateUserConfigFromEmuManager3Epa(data3) {
+        setEditorNeedRefresh(true);
+
+
         //update data3 to be the new Emu Player Account
         //TODO  //recreate emu data object
 
@@ -855,6 +866,9 @@ console.log("handle Cancel NodeTest Viewer:", projectMetaData["emu4sets"]["gdt1"
     }
 
     function updateUserConfigFromEmuManager4Ess(data4) {
+        setEditorNeedRefresh(true);
+
+
         //TODO update data4 to be the new Emu SL slots
         //TODO  //recreate emu data object
         let entireEmuD = projectMetaData["emu4sets"];
@@ -867,6 +881,8 @@ console.log("handle Cancel NodeTest Viewer:", projectMetaData["emu4sets"]["gdt1"
     }
 
     function updateUserConfigFromEmuManager5Shp(data5) {
+        setEditorNeedRefresh(true);
+
         //TODO update data5 to be emu-shop-product-list data
         //TODO  //recreate emu data object
         let entireEmuD = projectMetaData["emu4sets"];
@@ -1224,36 +1240,45 @@ console.log("ui-langauge changed to: ", val);
         return projectMetaData["emu4sets"]["shp5"]["playerPurchaseStatus"];
     }
 
+    function passInEditorFetchFlag() {
+        return editorNeedRefresh;
+    }
+
+    function notifySubEditorFetchFinish() {
+        setEditorNeedRefresh(false);
+    }
+    
+
     function handleResourceManagerOpen() {
         setDisplayRmModal(true);
+
+        setEditorNeedRefresh(false);
     }   
     
     function handleGameDataManagerOpen() {
         setDisplayGdmBool(true);
+
+        setEditorNeedRefresh(false);
     }    
 
     function handleEmuManagerOpen() {
         setDisplayEmBool(true);
+
+        setEditorNeedRefresh(false);
     }
 
 
     function handleResourceManagerCancel() {
-        //TODO refresh for other editors
+
         setDisplayRmModal(false);
     }
 
     function handleGameDataManagerCancel() {
-        //TODO refresh for other editors
-
-        //TODO9999999 refresh the editors' selection list for game-data
 
         setDisplayGdmBool(false);
     }
 
     function handleEmuManagerCancel() {
-        //TODO refresh for other editors
-
-        //TODO9999999 refresh the editors' selection list for game-data
 
         setDisplayEmBool(false);
     }
@@ -1262,6 +1287,8 @@ console.log("ui-langauge changed to: ", val);
 
     function triggerGameDataDesignListChange(data, emuAction, singleObj) {
         //TODO999 update game-data-design-list
+
+
             if (singleObj === undefined
             || singleObj["name"] === undefined
             || singleObj["data_type"] === undefined
@@ -1271,6 +1298,7 @@ console.log("ui-langauge changed to: ", val);
                 return;
             }
 
+            setEditorNeedRefresh(true);
 
             let emu4SetsEntireTemp = projectMetaData["emu4sets"];
             let emu4SetsGdtTemp = projectMetaData["emu4sets"]["gdt1"];
@@ -1841,9 +1869,13 @@ return (
    
    
 {/* editor area */}
-    {(
-    (state.mode === "online_cloud" && authEmailName !== "_") 
-    || (authEmailName === "localUser###")
+    {
+    (
+    (
+        (state.mode === "online_cloud" && authEmailName !== "_") 
+        || (authEmailName === "localUser###")
+    )
+    
     )
     && 
     <>
@@ -1851,7 +1883,8 @@ return (
 
 {/* Game-Maker for metadata */}
     {(focusingEditor === "gameMaker" && isPrepFinished === true)
-    && 
+    &&
+ 
     
     <>
  
@@ -1891,6 +1924,9 @@ return (
         handleResourceManagerOpen={handleResourceManagerOpen}
         handleGameDataManagerOpen={handleGameDataManagerOpen}
         handleEmuManagerOpen={handleEmuManagerOpen}
+
+        getFetchFlag={passInEditorFetchFlag} //important!
+        notifySubEditorFetchFinish={notifySubEditorFetchFinish} //important!
     /> 
 
     </>}
@@ -1901,6 +1937,8 @@ return (
 <>
     {focusingEditor === "Conversation"
     &&
+
+    
         <ConversationNodeEditingPanel
             
             getUiLanguageOption={passInUiLanguageOption}
@@ -1927,7 +1965,8 @@ return (
             saveBothObjToCloud_release={saveBothObjToCloud_release}
 
             startQuickView_panel2={startViewerSingleNodeTest}
-
+            getFetchFlag={passInEditorFetchFlag} //important!
+            notifySubEditorFetchFinish={notifySubEditorFetchFinish} //important!
         />
 
 
