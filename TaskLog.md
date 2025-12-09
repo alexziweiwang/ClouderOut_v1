@@ -941,7 +941,7 @@
 - 2025-Dec-04: Design sl-system view-playing strategies
 
 - 2025-Dec-08: Design sl-system view-playing strategies
-
+- 2025-Dec-08: Design testing-project
 
 
 
