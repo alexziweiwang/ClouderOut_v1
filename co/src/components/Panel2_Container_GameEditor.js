@@ -210,6 +210,10 @@ console.log("handle Cancel NodeTest Viewer:", projectMetaData["emu4sets"]["gdt1"
         setDisplayViewingAny(false);
     }
 
+    function passInOriginalGdtracker() {
+        return projectMetaData["emu4sets"]["gdt1"];
+    }
+
     function notifyUpdateCurrentStanding(obj) { //fetch from sub-compo
         setCurrTestingPageStatus(obj["pageStatus"]);
         setCurrTestingChapterKey(obj["chapterKey"]);
@@ -284,11 +288,6 @@ console.log("handle Cancel NodeTest Viewer:", projectMetaData["emu4sets"]["gdt1"
 
             setFirstTimeEnter(false);
         }
-
-        // window.onbeforeunload = () => { // exit or refresh
-
-        //     return "show message";
-        // }
 
         if (isSavedToCloud_metadata === false 
          || isSavedToCloud_nodedata === false
@@ -2155,6 +2154,8 @@ return (
                     getCurrChapterContent={passInCurrChapterContent}
                     getAllChaptersContent={passInAllChaptersContent}
 
+                    getOriginalGdtracker={passInOriginalGdtracker}
+                    slOption={projectMetaData["slInfo"]["format"]}
                 /> 
 
             

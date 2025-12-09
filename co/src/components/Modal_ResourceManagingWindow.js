@@ -44,7 +44,6 @@ export default function Modal_ResourceManagingWindow ({
     editorMode,            //"offline_half"       "offline_full"        "online_cloud"  
     backendOption,
 
-    getLocalProjectDataRsrcMgr,
 
     updateVarPairToPanel2 //important: update whenever change happens
 

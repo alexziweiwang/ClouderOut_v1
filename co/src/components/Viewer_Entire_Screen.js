@@ -63,6 +63,9 @@ export default function Viewer_Entire_Screen({
     notifyChapterWalk, //game-progress related, send to outer-layer
     notifyCurrGdt,
 
+    getOriginalGdtracker,
+    slOption,
+
     projectname,
     username,
 
@@ -97,6 +100,9 @@ export default function Viewer_Entire_Screen({
 
 //TODO: for emu, allow the author to setup entering status (game-data) for [each] try of view-testing
 //TODO: for emu, allow the author to "add" one or several "emu-player" for long-term testing (not resetting for every view testing)?
+
+    const storyPageNameLocal = "Story Page";
+    const mainPageNameLocal = "Main Page";
 
     const audioPlayerId = "audio-player";
     let [audioElem, setAudioElem] = useState(document.getElementById(audioPlayerId));
@@ -163,7 +169,7 @@ export default function Viewer_Entire_Screen({
 
 
     //TODO (with "changing" during in-game actions)
-    const [navPageStatus, setNavPageStatus] = useState("Main Page"); //This is tracked here (when "playing" starts)
+    const [navPageStatus, setNavPageStatus] = useState(mainPageNameLocal); //This is tracked here (when "playing" starts)
 
 
 
@@ -252,7 +258,7 @@ export default function Viewer_Entire_Screen({
             }
 
             //initialize all game-progress-items
-            configureGameProgress_local("", "", "", "Main Page", "");             
+            configureGameProgress_local("", "", "", mainPageNameLocal, "");             
             //TODO test
 
 
@@ -279,8 +285,8 @@ export default function Viewer_Entire_Screen({
                     }
                     
 
-                } else if (currentGameStatusProgress["pageStatus"] === "Main Page"
-                    || currentGameStatusProgress["pageStatus"] === "Story Page") {
+                } else if (currentGameStatusProgress["pageStatus"] === mainPageNameLocal
+                    || currentGameStatusProgress["pageStatus"] === storyPageNameLocal) {
                                                             console.log("@@@ reset all-nodes-content");
                     setCurrChapterAllNodesContent(-1);
 
@@ -368,7 +374,9 @@ export default function Viewer_Entire_Screen({
     }
 
     function updateNavPageName(pageName) {
-        setNavPageStatus(pageName);        
+        setNavPageStatus(pageName);   
+        
+        slOpChapListPageCheck(pageName);
 
         let obj = {};
         obj["pageStatus"] = pageName;
@@ -571,12 +579,30 @@ export default function Viewer_Entire_Screen({
        return allContent;
    }
 
+   function slOpChapListPageCheck(pageNameTemp) {
+       if (pageNameTemp === storyPageNameLocal) {
+            //todo check if sl-option is chapter-experience: if so, then reset gmdt-tracker
+            if (slOption !== undefined) {
+                if (slOption === "chapterExpr") {
+                    let ogdt = getOriginalGdtracker();
+                    setPlayerGameDataTracker(ogdt);
+
+                    //TODO999999999999
+                }
+            }
+
+
+       }
+   }
+
    function returnToStoryPage() {
-        setNavPageStatus("Story Page");
+        setNavPageStatus(storyPageNameLocal);
+        slOpChapListPageCheck(storyPageNameLocal);
+
         setCurrentGameStatusProgress({
             ...currentGameStatusProgress,
             
-            "pageStatus": "Story Page",
+            "pageStatus": storyPageNameLocal,
             "chapterKey": "",
             "nodeKey": "",
             "nodeType": "",
