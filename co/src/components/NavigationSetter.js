@@ -3,8 +3,11 @@ import langDictionary from './_textDictionary';
 import { defaultScreenWidth, defaultScreenHeight } from './_dataStructure_DefaultObjects';
 
 
-export default function NavigationSetter({initialNavObj, 
-  updateNavObj, openRm, 
+export default function NavigationSetter({
+  initialNavObj, 
+  isSettingSlMode,
+  updateNavObj, 
+  openRm, 
   triggerUpdateCurrPageName, fetchPageName,
   initialScreenHeight, getScreenheight,
 

@@ -367,7 +367,6 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
   const [currentProjectNav, setCurrentProjectNav] = useState({}); // receive & send-out
 
-
   const [isEmuMgrOpenedOnce, setIsEmuMgrOpenedOnce] = useState(false); //TODO remove
 
 
@@ -413,6 +412,10 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
 
     return chapterNodeMapAll[currChapterKey]; //temporary
+  }
+
+  function passInSlObj() {
+    return slAllInfo;
   }
 
 
@@ -1186,9 +1189,9 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
                                                       console.log("rm updated... (game-maker) ",  data);
                                                   //TODO100 update the visual+audio maps here?
                                                         //rm-mapping-required: 
-                                                        // <NavigationSetter> [//TODO105 refactored, to test]
+                                                        // < NavigationSetter> [//TODO105 refactored, to test]
 
-                                                        // <NavigationPreview> *** non-dynamic resource-maps so far...
+                                                        // < NavigationPreview> *** non-dynamic resource-maps so far...
 
 
       let audioListTemp = data.audio === undefined ? {} : data.audio;
@@ -1406,7 +1409,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 {/* //components
       
       1. editors - [ChapterManager> +  <NodeManager> 
-      2. editors - [NavigationSetter> + <NavigationPreview>
+      2. editors - [NavigationSetter> + < NavigationPreview>
       3. entire_view - [Viewer_Entire_Screen>
       4. modal_resource_manager - [Modal_ResourceManagingWindow>
       5. modal_game_data_manager - [Modal_GameDataManager >
@@ -1596,7 +1599,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
 
 {/* project-nagivation setting tab */}
-    {(showChapterMaker === false && showSlTab === false)
+    {(showChapterMaker === false)
     
     && 
     <>
@@ -1629,6 +1632,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
               <div style={{"marginTop": "15px", "marginLeft": "10px", "marginBottom": "10px"}}>
                 <NavigationSetter 
                   initialNavObj={currentProjectNav} 
+                  isSettingSlMode={showSlTab}
                   updateNavObj={updateCurrProjectNavObj} 
                   openRm={handleResourceManagerOpen_gml}  //TODO99999 remove
                   triggerUpdateCurrPageName={notifyCurrPageName} 
@@ -1659,7 +1663,10 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
               <div style={{"marginTop": "15px", "marginLeft": "15px"}}>
                 <NavigationPreview
+                  isSettingSlMode={showSlTab}
+
                   fetchNavObj={passInNavObj} 
+                  fetchSlObj={passInSlObj}
 
                   fetchPageName={passInCurrSelectedPage} 
                   chapterData={chapterList} 
@@ -1705,7 +1712,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
     {showSlTab === true
     && <div>
       
-      <div style={{"textAlign": "left"}}>
+      {/* <div style={{"textAlign": "left"}}>
           
             <div className="indentOne">
 
@@ -1769,14 +1776,8 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
           <div style={{"display": "flex"}}>    
                 <div style={{"marginRight": "10px"}} className="guiSettings">
 
-                   {/*  slAllInfo= {slAllInfo}
-                    slAllInfo = [{slAllInfo}] */}
-
-{/* slslots editor */}
-{/* //TODO9002 */}
                     {slAllInfo !== undefined && 
     <div>
-    {/* //TODO: apply metadata-["slInfo"] for sl slots */}
             <label>row</label>
             <input
               type="range"
@@ -1917,7 +1918,6 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
             <br></br>
 
             <label>Item Label </label>
-            {/* slAllInfo["itemTitleStamp"] */}
             <select
               value={slAllInfo["itemTitleStamp"]}
               onChange={(event)=>{
@@ -2090,6 +2090,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
                   <NavigationPreview
                     fetchNavObj={passInNavObj} 
+                    fetchSlObj={passInSlObj}
 
                     fetchPageName={passInSLPageName}  //special
                     chapterData={chapterList} 
@@ -2129,7 +2130,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
                 </div>
           
           </div>
-          </div>
+          </div> */}
 
 
       </div>}

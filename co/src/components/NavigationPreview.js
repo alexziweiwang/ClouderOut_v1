@@ -3,7 +3,8 @@ import { sizeLookupMap, defaultScreenWidth, defaultScreenHeight } from './_dataS
 
 
 export default function NavigationPreview ({
-  
+    isSettingSlMode,
+
     fetchNavObj, 
     fetchSlObj,
 
@@ -69,6 +70,7 @@ const tempFontSize = 12;
                             // 0.settingPage-playSpeed
                             // 1.settingPage-bgmVol
                             // 2.settingPage-seVol
+    const [atSlPage, setAtSlPage] = useState(isSettingSlMode);
     
     const settingsPageEntryNames = ["settingPage-playSpeed", "settingPage-bgmVol", "settingPage-seVol"];
 
@@ -246,7 +248,9 @@ const tempFontSize = 12;
 
         }
 
+
         let slObjTemp = fetchSlObj();
+        console.log("\t fetched sl-obj: ", slObjTemp);
         if (slObjTemp !== undefined) {
             setSlEntireObj(slObjTemp);
         }//TODO999999999
@@ -632,7 +636,9 @@ return (
 
 
         {(navObj["isWithSL"] === true && 
-        page === "Game Progress Strategy") && 
+        (page === "Game Progress Strategy" || isSettingSlMode === true)
+        
+        ) && 
         <div style={{
             "width": `${screenWidth}px`, 
             "height": `${screenHeight}px`,
@@ -1405,10 +1411,18 @@ return (
                 "borderRadius": "0px",
             }}
             >
-                    //fetchSlObj
 
 {/* sl page content */}
-//TODO: apply metadata-["slInfo"]["slPage"] for sl slots
+{/* //todo999999999 */}
+<br></br>
+<br></br>
+<br></br>
+                [{slEntireObj["format"]}]
+
+                <div stype={{"display": "flex"}}>
+                    
+
+                </div>
 
 
             </div>
@@ -1972,7 +1986,7 @@ return (
             {/* back-button         back button */}
                 {/* //TODO5 */}
                 {((page !== "Main Page" && page !== "Game Progress Strategy" && page !== "Quit Asking Window" && qWindowOpen === false && page !== "Shop Page") 
-                    || (page === "Game Progress Strategy" && navObj["isWithSL"] === true)
+                    || ((page === "Game Progress Strategy" ||  isSettingSlMode === true) && navObj["isWithSL"] === true)
                     || (page === "Shop Page" && shopWindowOpen === false && shopProductInfoWindowOpen === false) 
                     ) 
 
@@ -2027,7 +2041,7 @@ console.log("\t setup-page bool is ", isOpenSettingsPage);
                                         setQWindowOpen(true);
                                     }
                                     
-                                } else if (page === "Game Progress Strategy") {
+                                } else if (page === "Game Progress Strategy" || isSettingSlMode === true) {
                                     nextPageName = "Story Page";
                                     let currentStandingObjTemp = {};
                                     currentStandingObjTemp["pageStatus"] = "Story Page";
