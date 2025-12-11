@@ -65,6 +65,7 @@ export default function Viewer_Entire_Screen({
 
     getOriginalGdtracker,
     slOption,
+    slEntireObj,
 
     projectname,
     username,
@@ -426,6 +427,10 @@ export default function Viewer_Entire_Screen({
 
     }
 
+    function passInSlObj() {
+        return slEntireObj;
+    }
+
     function notifyNodeWalkLocalViewer(nodeKeyName, nodeTypeName) {
         let temp = currentGameStatusProgress;
         temp["nodeKey"] = nodeKeyName;
@@ -705,6 +710,7 @@ shop layer
                 }}>
                     <NavigationPreview 
                         fetchNavObj={passInNavObj} 
+                        fetchSlObj={passInSlObj}
 
                         chapterData={initialChapterList} 
                         fetchPageName={passInNavPageName} 

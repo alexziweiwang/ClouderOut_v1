@@ -2156,6 +2156,7 @@ return (
 
                     getOriginalGdtracker={passInOriginalGdtracker}
                     slOption={projectMetaData["slInfo"]["format"]}
+                    slEntireObj={projectMetaData["slInfo"]}
                 /> 
 
             

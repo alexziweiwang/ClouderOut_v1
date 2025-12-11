@@ -5,6 +5,7 @@ import { sizeLookupMap, defaultScreenWidth, defaultScreenHeight } from './_dataS
 export default function NavigationPreview ({
   
     fetchNavObj, 
+    fetchSlObj,
 
     fetchPageName, 
     triggerUpdateCurrPageName,
@@ -58,6 +59,7 @@ const tempFontSize = 12;
 
     const [navObj, setNavObj] = useState({});
     const [page, setPage] = useState("Main Page");
+    const [slEntireObj, setSlEntireObj] = useState(-1);
 
     const [refDataPlayerProfile, setRefDataPlayerProfile] = useState(initialPlayerProfileRefData);
     const [refDataPlayerAccount, setRefDataPlayerAccount] = useState(initialPlayerAccountRefData);
@@ -210,8 +212,7 @@ const tempFontSize = 12;
 
 
         let objTemp = fetchNavObj();
-                                                                    // console.log("nav-preivew-screen, fetched nav-obj = ", objTemp);
-                
+                                                                    // console.log("nav-preivew-screen, fetched nav-obj = ", objTemp);         
         if (Object.keys(objTemp).length !== Object.keys(navObj).length || objTemp !== navObj) {
    
             setupPPTryingObjects(objTemp);                            //TODO too-many-rendering
@@ -244,6 +245,11 @@ const tempFontSize = 12;
                 setNavObj(objTemp);
 
         }
+
+        let slObjTemp = fetchSlObj();
+        if (slObjTemp !== undefined) {
+            setSlEntireObj(slObjTemp);
+        }//TODO999999999
 
         // if (isEditing === false) {
         //     setEditingSignal(false);
@@ -1399,7 +1405,7 @@ return (
                 "borderRadius": "0px",
             }}
             >
-
+                    //fetchSlObj
 
 {/* sl page content */}
 //TODO: apply metadata-["slInfo"]["slPage"] for sl slots
