@@ -59,7 +59,7 @@ const tempFontSize = 12;
     const [viewingShopItemObj, setViewingShopItemObj] = useState("-");
 
     const [navObj, setNavObj] = useState({});
-    const [page, setPage] = useState("Main Page");
+    const [page, setPage] = useState(isSettingSlMode === true? "Game Progress Strategy" : "Main Page");
     const [slEntireObj, setSlEntireObj] = useState(-1);
 
     const [refDataPlayerProfile, setRefDataPlayerProfile] = useState(initialPlayerProfileRefData);
@@ -338,7 +338,7 @@ const tempFontSize = 12;
 
 return (
     <>
-
+page = {page}
     {(navObj !== undefined && Object.keys(navObj).length > 0) &&
     <div
         style={{

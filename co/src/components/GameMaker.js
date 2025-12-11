@@ -1405,6 +1405,18 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
     handleEmuManagerOpen();
   }
 
+  function switchTabToSLPage() {
+    
+    notifyCurrPageName("Game Progress Strategy");
+    setShowSLTab(true);
+  }
+
+  function switchToNavSettingPage() {
+    notifyCurrPageName("Main Page");
+    setShowSLTab(false);
+  }
+
+ 
 
 {/* //components
       
@@ -1503,7 +1515,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
             setFirstTimeSwitchTabNavPanel(false);
           }
 
-          setShowSLTab(false);
+          switchToNavSettingPage();
 
         }}>
           {menuNavigationsTabText}</button>
@@ -1515,7 +1527,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
         className={showSlTab ? "tabBarGMSelected" : "tabBarGM"} 
         onClick={()=>{
 
-              setShowSLTab(true);
+              switchTabToSLPage();
 
         }}>
           Save & Load System
@@ -1603,10 +1615,78 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
     
     && 
     <>
-      
+   
 
         <div className="sectionArea"> 
 
+          {showSlTab === true && 
+            <div className="indentOne" style={{"textAlign": "left"}}>
+
+            <label>SL mode:</label>
+                      <div className="indentOne">
+                            
+                              <input 
+                                  className="cursor_pointer"
+                                  type="radio"
+                                  value={slAreSlots}
+                                  checked={!slAreSlots}
+                                  onChange={()=>{
+                                    //TODO9999999999    change of nav-obj
+                                    if (slAreSlots === true) {
+                                      //TODO ask confirm
+
+                                      updateSlRelated(false);
+                                    }
+                                    setSlAreSlots(false);
+                                  }}
+                              ></input>
+                              <label
+                                  className="cursor_pointer"
+                                  onClick={()=>{
+                                    //TODO9999999999    change of nav-obj
+
+                                    if (slAreSlots === true) {
+                                      //TODO ask confirm
+                                      updateSlRelated(false);
+                                    }
+                                    setSlAreSlots(false);
+                                  }}
+                              >Chapter Experience (data resets after a chapter ends)</label>
+
+                              <br></br>
+
+                              <input 
+                                  className="cursor_pointer"
+                                  type="radio"
+                                  value={slAreSlots}
+                                  checked={slAreSlots}
+                                  onChange={()=>{
+                                    //TODO9999999999    change of nav-obj
+
+                                    if (slAreSlots === false) {
+                                      //TODO ask confirm
+                                      updateSlRelated(true);
+                                    }
+                                    setSlAreSlots(true);
+                                  }}
+                              ></input>
+                              <label
+                                  className="cursor_pointer"
+                                  onClick={()=>{
+                                    //TODO9999999999    change of nav-obj
+
+                                    if (slAreSlots === false) {
+                                      //TODO ask confirm
+                                      updateSlRelated(true);
+                                    }
+                                    setSlAreSlots(true);
+                                  }}
+                              >SL Slots (data does not reset in chapter transition, with SL slots)</label>
+                      </div>
+          </div> 
+          }
+
+          {showSlTab === false &&
           <div>
             {screenSizeForAllNavPageText}: 
             <select
@@ -1626,6 +1706,8 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
             </select>
 
           </div>
+          }
+
 
           <div className="parallelFrame">
                      
@@ -1633,6 +1715,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
                 <NavigationSetter 
                   initialNavObj={currentProjectNav} 
                   isSettingSlMode={showSlTab}
+
                   updateNavObj={updateCurrProjectNavObj} 
                   openRm={handleResourceManagerOpen_gml}  //TODO99999 remove
                   triggerUpdateCurrPageName={notifyCurrPageName} 
@@ -1712,7 +1795,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
     {showSlTab === true
     && <div>
       
-      {/* <div style={{"textAlign": "left"}}>
+       <div style={{"textAlign": "left"}}>
           
             <div className="indentOne">
 
@@ -1778,6 +1861,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
                     {slAllInfo !== undefined && 
     <div>
+ {/*           
             <label>row</label>
             <input
               type="range"
@@ -2074,7 +2158,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
                 }}
                 max={30}
                 min={2}
-            ></input>                            
+            ></input>                             */}
 
     </div>
   
@@ -2130,7 +2214,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
                 </div>
           
           </div>
-          </div> */}
+          </div> 
 
 
       </div>}

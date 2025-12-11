@@ -291,7 +291,7 @@ export default function NavigationSetter({
 
     const screenWidth = defaultScreenWidth; //TODO temp  
 
-    const [currentSettingPage, setCurrentSettingPage] = useState("Main Page");
+    const [currentSettingPage, setCurrentSettingPage] = useState(isSettingSlMode === true? "Game Progress Strategy" : "Main Page");
     const [openBackButtonSettingArea, setOpenBackButtonSettingArea] = useState(true);
 
     const [currentProjectNav, setCurrentProjectNav] = useState(initialNavObj);
