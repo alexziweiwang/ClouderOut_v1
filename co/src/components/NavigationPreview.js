@@ -246,14 +246,17 @@ const tempFontSize = 12;
 
                 setNavObj(objTemp);
 
+                console.log("navObj changed!", objTemp);
+
+
         }
 
 
-        let slObjTemp = fetchSlObj();
-        console.log("\t fetched sl-obj: ", slObjTemp);
-        if (slObjTemp !== undefined) {
-            setSlEntireObj(slObjTemp);
-        }//TODO999999999
+                                // let slObjTemp = fetchSlObj();
+                                // console.log("\t fetched sl-obj: ", slObjTemp);
+                                // if (slObjTemp !== undefined) {
+                                //     setSlEntireObj(slObjTemp);
+                                // }//TODO999999999
 
         // if (isEditing === false) {
         //     setEditingSignal(false);
@@ -338,7 +341,6 @@ const tempFontSize = 12;
 
 return (
     <>
-page = {page}
     {(navObj !== undefined && Object.keys(navObj).length > 0) &&
     <div
         style={{

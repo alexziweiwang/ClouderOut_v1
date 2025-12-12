@@ -746,7 +746,7 @@ export default function NavigationSetter({
 
 
    return (
-  
+  <>{
    <div className="guiSettings" style={{"maxHeight": `${screenHeight-30}px`}}>
         
       {(currentSettingPage !== "Main Page" && currentSettingPage !== "") && 
@@ -988,7 +988,9 @@ export default function NavigationSetter({
 
 <div style={{"border": "1px dotted #FFFFFF", "padding": "2px", "paddingTop": "7px", "paddingLeft": "5px"}}>    
 
-    {currentSettingPage === "Game Progress Strategy" && <div>
+    {(currentSettingPage === "Game Progress Strategy") 
+    
+    && <div>
      <label>Game Progress Strategy:</label>
        <div style={{"justifyContent": "center"}}>
 
@@ -6221,7 +6223,10 @@ export default function NavigationSetter({
 </div>}
 
  </div>
-);
+
+
+  }</>
+  );
 
 
 }

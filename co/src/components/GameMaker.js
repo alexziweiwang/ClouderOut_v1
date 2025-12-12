@@ -641,7 +641,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
   }
 
   function passInSLPageName() {
-    return "SL Records";
+    return "Game Progress Strategy";
   }
 
   function triggerRefreshFetchCloudData() {
@@ -1628,28 +1628,31 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
                               <input 
                                   className="cursor_pointer"
                                   type="radio"
-                                  value={slAreSlots}
-                                  checked={!slAreSlots}
+                                  value={currentProjectNav["isWithSL"]}
+                                  checked={!currentProjectNav["isWithSL"]}
                                   onChange={()=>{
+                                    setCurrentProjectNav({...currentProjectNav, "isWithSL": false})
                                     //TODO9999999999    change of nav-obj
-                                    if (slAreSlots === true) {
-                                      //TODO ask confirm
+                                            // if (slAreSlots === true) {
+                                            //   //TODO ask confirm
 
-                                      updateSlRelated(false);
-                                    }
-                                    setSlAreSlots(false);
+                                            //   updateSlRelated(false);
+                                            // }
+                                            // setSlAreSlots(false);
                                   }}
                               ></input>
                               <label
                                   className="cursor_pointer"
                                   onClick={()=>{
+                                    setCurrentProjectNav({...currentProjectNav, "isWithSL": false})
+
                                     //TODO9999999999    change of nav-obj
 
-                                    if (slAreSlots === true) {
-                                      //TODO ask confirm
-                                      updateSlRelated(false);
-                                    }
-                                    setSlAreSlots(false);
+                                    // if (slAreSlots === true) {
+                                    //   //TODO ask confirm
+                                    //   updateSlRelated(false);
+                                    // }
+                                    // setSlAreSlots(false);
                                   }}
                               >Chapter Experience (data resets after a chapter ends)</label>
 
@@ -1658,28 +1661,32 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
                               <input 
                                   className="cursor_pointer"
                                   type="radio"
-                                  value={slAreSlots}
-                                  checked={slAreSlots}
+                                  value={currentProjectNav["isWithSL"]}
+                                  checked={currentProjectNav["isWithSL"]}
                                   onChange={()=>{
+                                    setCurrentProjectNav({...currentProjectNav, "isWithSL": true})
+
                                     //TODO9999999999    change of nav-obj
 
-                                    if (slAreSlots === false) {
-                                      //TODO ask confirm
-                                      updateSlRelated(true);
-                                    }
-                                    setSlAreSlots(true);
+                                    // if (slAreSlots === false) {
+                                    //   //TODO ask confirm
+                                    //   updateSlRelated(true);
+                                    // }
+                                    // setSlAreSlots(true);
                                   }}
                               ></input>
                               <label
                                   className="cursor_pointer"
                                   onClick={()=>{
+                                    setCurrentProjectNav({...currentProjectNav, "isWithSL": true})
+
                                     //TODO9999999999    change of nav-obj
 
-                                    if (slAreSlots === false) {
-                                      //TODO ask confirm
-                                      updateSlRelated(true);
-                                    }
-                                    setSlAreSlots(true);
+                                    // if (slAreSlots === false) {
+                                    //   //TODO ask confirm
+                                    //   updateSlRelated(true);
+                                    // }
+                                    // setSlAreSlots(true);
                                   }}
                               >SL Slots (data does not reset in chapter transition, with SL slots)</label>
                       </div>
@@ -1710,7 +1717,9 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
 
           <div className="parallelFrame">
-                     
+    {    ((currPageName === "Game Progress Strategy" && currentProjectNav["isWithSL"] === true) 
+         || currPageName !== "Game Progress Strategy")
+          &&                
               <div style={{"marginTop": "15px", "marginLeft": "10px", "marginBottom": "10px"}}>
                 <NavigationSetter 
                   initialNavObj={currentProjectNav} 
@@ -1742,7 +1751,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
           
                 />
               </div>
-
+    }
 
               <div style={{"marginTop": "15px", "marginLeft": "15px"}}>
                 <NavigationPreview
@@ -1791,136 +1800,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
 
                             {/* sl tab */}
-    {/* project-sl-tab */}
-    {showSlTab === true
-    && <div>
-      
-       <div style={{"textAlign": "left"}}>
-          
-            <div className="indentOne">
 
-              <label>SL mode:</label>
-                        <div className="indentOne">
-                              
-                                <input 
-                                    className="cursor_pointer"
-                                    type="radio"
-                                    value={slAreSlots}
-                                    checked={!slAreSlots}
-                                    onChange={()=>{
-                                      if (slAreSlots === true) {
-                                        //TODO ask confirm
-
-                                        updateSlRelated(false);
-                                      }
-                                      setSlAreSlots(false);
-                                    }}
-                                ></input>
-                                <label
-                                    className="cursor_pointer"
-                                    onClick={()=>{
-                                      if (slAreSlots === true) {
-                                        //TODO ask confirm
-                                        updateSlRelated(false);
-                                      }
-                                      setSlAreSlots(false);
-                                    }}
-                                >Chapter Experience (data resets after a chapter ends)</label>
-
-                                <br></br>
-
-                                <input 
-                                    className="cursor_pointer"
-                                    type="radio"
-                                    value={slAreSlots}
-                                    checked={slAreSlots}
-                                    onChange={()=>{
-                                      if (slAreSlots === false) {
-                                        //TODO ask confirm
-                                        updateSlRelated(true);
-                                      }
-                                      setSlAreSlots(true);
-                                    }}
-                                ></input>
-                                <label
-                                    className="cursor_pointer"
-                                    onClick={()=>{
-                                      if (slAreSlots === false) {
-                                        //TODO ask confirm
-                                        updateSlRelated(true);
-                                      }
-                                      setSlAreSlots(true);
-                                    }}
-                                >SL Slots (data does not reset in chapter transition, with SL slots)</label>
-                        </div>
-            </div> 
-<br></br>
-              
-          <div style={{"display": "flex"}}>    
-                <div style={{"marginRight": "10px"}} className="guiSettings">
-
-                    {slAllInfo !== undefined && 
-    <div>
-
-
-    </div>
-  
-
-                    }            
-                </div>
-
-
-                <div>
-          
-
-
-
-                  <NavigationPreview
-                    fetchNavObj={passInNavObj} 
-                    fetchSlObj={passInSlObj}
-
-                    fetchPageName={passInSLPageName}  //special
-                    chapterData={chapterList} 
-
-                    triggerUpdateCurrPageName={notUsing}  //special
-                    triggerUpdateCurrentStanding={notUsing}  //special
-
-                    isEditing={true}
-                    initialGameDataRefData={emptyValue}
-                    initialPlayerProfileRefData={testPlayerProfile}
-                    initialPlayerAccountRefData={testPlayerAccount}
-
-                    fetchPlayerInfoSets={passInPlayerInfoSets}
-                    fetchCurrentGameData={passInCurrentGameDataList}
-
-  
-                    getUILanguage={passInUILanguage}
-                    initialUILanguage={languageCodeTextOption}
-
-                    fetchShopItemInfo={passInShopItemInfo}
-                    fetchPlayerPurchaseInfo={passInPlayerPurchaseStatus}
-
-                    visualMap={visualMap}
-                    audioMap={audioMap}
-                    sendOutGameSettingScaleObjFromSubCompo={notUsing}
-
-                    getOpenSettingSignal={passInFalseBool}
-                    closeSettingsPage={notUsing} 
-
-                  />
-
-
-
-
-
-
-                </div>
-          
-          </div>
-          </div> 
-
-
-      </div>}
 
 {/*  Entire Viewing -- all parts NOT-USING */}
     {false && 
