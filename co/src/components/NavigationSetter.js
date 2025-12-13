@@ -749,7 +749,7 @@ export default function NavigationSetter({
   <>{
    <div className="guiSettings" style={{"maxHeight": `${screenHeight-30}px`}}>
         
-      {(currentSettingPage !== "Main Page" && currentSettingPage !== "") && 
+      {(currentSettingPage !== "Main Page" && currentSettingPage !== "" && currentSettingPage !== "Game Progress Strategy") && 
       <div style={{"backgroundColor": "grey", "padding": "7px"}}>
              
              {openBackButtonSettingArea && <div className="cursor_pointer textNoSelect"
@@ -914,7 +914,8 @@ export default function NavigationSetter({
      
      </div>}
 
-      <br></br>
+     {(currentSettingPage !== "Game Progress Strategy")
+      && <div>
       <button
         onClick={()=>{
           getGameDataDesignFromOuterLayer();
@@ -922,7 +923,6 @@ export default function NavigationSetter({
           triggerUpdateCurrPageName("Main Page");
         }}
       >{reloadSetterText}</button><br></br>
-
 
       {openBackButtonSettingArea && <br></br>}
       
@@ -961,6 +961,7 @@ export default function NavigationSetter({
       </div>
 
       <br></br>
+
       <label>{selectPageToSetupText}: </label>
       <select value={currentSettingPage}
         onChange={(event)=>{
@@ -968,7 +969,7 @@ export default function NavigationSetter({
           triggerUpdateCurrPageName(event.target.value);
         }}>
           <option value="" key="defaultEmptyPage">-- {selectAPageName} --</option>
-          <option value="Game Progress Strategy" key="Game Progress Strategy">{gameProgressStrategyText}</option>
+          {/* <option value="Game Progress Strategy" key="Game Progress Strategy">{gameProgressStrategyText}</option> */}
           <option value="Main Page" key="Main Page">{mainPageText}</option>
           <option value="Story Page" key="Story Page">{storyPageText}</option>
           <option value="Settings Page" key="Settings Page">{settingsPageText}</option>
@@ -980,8 +981,10 @@ export default function NavigationSetter({
                                                                                       {/* //TODO20 */}
 
       </select>
-
-      <br></br><br></br>
+       <br></br><br></br>
+      
+      </div>}
+     
 {currentSettingPage !== "During Game" &&      
     <>
       <button>{saveChangesText}</button>
@@ -1900,6 +1903,8 @@ export default function NavigationSetter({
          <br></br>
          <br></br>
          <label>{mainPageItemsText}: </label>
+
+         {/* //TODO999999999 for with-sl-mode: entry to "load game"? */}
          <div className="indentOne someGrey" style={{"color": "#000000"}}>
             <input type="checkbox" value={toggleIsPlayerProfile}
                 checked={toggleIsPlayerProfile}
