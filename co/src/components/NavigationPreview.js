@@ -256,7 +256,7 @@ const tempFontSize = 12;
                                 // console.log("\t fetched sl-obj: ", slObjTemp);
                                 // if (slObjTemp !== undefined) {
                                 //     setSlEntireObj(slObjTemp);
-                                // }//TODO999999999
+                                // }
 
         // if (isEditing === false) {
         //     setEditingSignal(false);
@@ -336,6 +336,13 @@ const tempFontSize = 12;
         console.log("\t\t\t\t\t\tsendOut_gameSettingsParameters_Obj...  temp = ", data);
 
         sendOutGameSettingScaleObjFromSubCompo(data);
+    }
+
+    function slSlotPressed(i, p) { // the i-th item at p-th page
+        //TODO99999999
+
+        console.log("pressed on slot - ", i, " at page", slCurrentSlotPage);
+
     }
     
 
@@ -650,7 +657,7 @@ return (
         }}
         >
                             
-                <div style={{
+<div style={{
                 "width": `${screenWidth}px`, 
                 "height": `${screenHeight}px`,
                 "backgroundColor":  navObj["saveloadPage-isBackgroundShape"] === true ? `${navObj["saveloadPage-bgShadeName"]}` : "rgb(222, 222, 235)", 
@@ -663,15 +670,14 @@ return (
                 "userSelect": "none",
             
                 }}
-            >
+>
 
     
                 <div style={{
                     "left": `${navObj["saveloadPage-groupPosX"]}px`,
                     "top": `${navObj["saveloadPage-groupPosY"]}px`,
-                    "position": "absolute",
+                    "position": "relative",
                     "display": navObj["saveloadPage-slotListIsHorizontal"] === true ? "flex" : "",
-                    
                     "borderRadius": "0px",
                 }}>
                     {slSlotFrame.map((item, index) => {
@@ -703,9 +709,8 @@ return (
                             onMouseUp={
                                 ()=>{
                                     document.getElementById(keyStr).style.filter = "brightness(100%)";
-
-                                   // console.log("slot - ", (index+1), " at page", slCurrentSlotPage);
-                                    //TODO data update operation
+                                    let i = index+1;
+                                    slSlotPressed(i, slCurrentSlotPage);
 
 
                                 }
@@ -719,46 +724,47 @@ return (
          
 
 
-            <div 
-                style={{
-                    "display": "flex", 
-                    "top": "357px", 
-                    "left": "495px", 
-                    "position": "absolute", 
-
-                    "backgroundColor": "orange"    
-                    
-                }}>
-                
                 <div 
-                    id="slSlotPageLeftControler" 
                     style={{
-                        //TODO width
-                        "color": slCurrentSlotPage > 1 ? "#272626" : "#c2c2c2",
-                    }}
-                    onClick={()=>{
+                        "display": "flex", 
+                        "left": "495px", 
+                        "position": "absolute", 
+                        "top": `${navObj["saveloadPage-groupPosY"] + (navObj["saveloadPage-slotHeight"] + navObj["saveloadPage-slotGap"]) * navObj["saveloadPage-slotPerPage"] + 20}px`,
+
+                        "backgroundColor": "orange"    
                         
-                        if (slCurrentSlotPage > 1) {
-                            setSlCurrentSlotPage(slCurrentSlotPage-1);
-                        } else {
-                            setSlCurrentSlotPage(1);
-                        }
                     }}
-                    onMouseDown={
-                        ()=>{
-                            if (slCurrentSlotPage > 1) {
-                                document.getElementById("slSlotPageLeftControler").style.filter = "brightness(130%)";
-                            }
-                        }
-                    }
-                    onMouseUp={
-                        ()=>{
-                            if (slCurrentSlotPage > 1) {
-                                document.getElementById("slSlotPageLeftControler").style.filter = "brightness(100%)";
-                            }
-                        }
-                    }
                 >
+                
+                    <div 
+                        id="slSlotPageLeftControler" 
+                        style={{
+                            //TODO width
+                            "color": slCurrentSlotPage > 1 ? "#272626" : "#c2c2c2",
+                        }}
+                        onClick={()=>{
+                            
+                            if (slCurrentSlotPage > 1) {
+                                setSlCurrentSlotPage(slCurrentSlotPage-1);
+                            } else {
+                                setSlCurrentSlotPage(1);
+                            }
+                        }}
+                        onMouseDown={
+                            ()=>{
+                                if (slCurrentSlotPage > 1) {
+                                    document.getElementById("slSlotPageLeftControler").style.filter = "brightness(130%)";
+                                }
+                            }
+                        }
+                        onMouseUp={
+                            ()=>{
+                                if (slCurrentSlotPage > 1) {
+                                    document.getElementById("slSlotPageLeftControler").style.filter = "brightness(100%)";
+                                }
+                            }
+                        }
+                    >
                           
                         <label
                             style={{
@@ -769,56 +775,56 @@ return (
                             Previous
                         </label>
 
-                </div>
+                    </div>
 
-                <div>
-                        {slCurrentSlotPage < 9 ? "0" : ""}{slCurrentSlotPage}/{navObj["saveloadPage-slotPageCount"]}
-                </div>
+                    <div>
+                            {slCurrentSlotPage < 9 ? "0" : ""}{slCurrentSlotPage}/{navObj["saveloadPage-slotPageCount"]}
+                    </div>
 
-                <div id="slSlotPageRightControler"
-                  style={{
-                        //TODO width 
-                        // "color": "#272626",
-                        "color": slCurrentSlotPage < navObj["saveloadPage-slotPageCount"] ? "#272626" : "#c2c2c2",
+                    <div id="slSlotPageRightControler"
+                                style={{
+                                    //TODO width 
+                                    // "color": "#272626",
+                                    "color": slCurrentSlotPage < navObj["saveloadPage-slotPageCount"] ? "#272626" : "#c2c2c2",
 
-                    }}
-                    onClick={()=>{
-                        if (slCurrentSlotPage < navObj["saveloadPage-slotPageCount"]) {
-                            setSlCurrentSlotPage(slCurrentSlotPage+1);
-                        } else {
-                            setSlCurrentSlotPage(navObj["saveloadPage-slotPageCount"]);
-                        }
+                                }}
+                                onClick={()=>{
+                                    if (slCurrentSlotPage < navObj["saveloadPage-slotPageCount"]) {
+                                        setSlCurrentSlotPage(slCurrentSlotPage+1);
+                                    } else {
+                                        setSlCurrentSlotPage(navObj["saveloadPage-slotPageCount"]);
+                                    }
 
-                    }}
-                    onMouseDown={
-                        ()=>{
-                            if (slCurrentSlotPage < navObj["saveloadPage-slotPageCount"]) {
-                                document.getElementById("slSlotPageRightControler").style.filter = "brightness(130%)";
-                            }
-                        }
-                    }
-                    onMouseUp={
-                        ()=>{
-                            if (slCurrentSlotPage < navObj["saveloadPage-slotPageCount"]) {
-                                document.getElementById("slSlotPageRightControler").style.filter = "brightness(100%)";
-                            }
-                        }
-                    }
-                >
-
-                {
-                // (slCurrentSlotPage !== navObj["saveloadPage-slotPageCount"]) &&
-                    <label
-                    style={{
-                        "cursor": slCurrentSlotPage < navObj["saveloadPage-slotPageCount"] ? "pointer" : "not-allowed",
-                        "textDecoration": "underline"
-                    }}
+                                }}
+                                onMouseDown={
+                                    ()=>{
+                                        if (slCurrentSlotPage < navObj["saveloadPage-slotPageCount"]) {
+                                            document.getElementById("slSlotPageRightControler").style.filter = "brightness(130%)";
+                                        }
+                                    }
+                                }
+                                onMouseUp={
+                                    ()=>{
+                                        if (slCurrentSlotPage < navObj["saveloadPage-slotPageCount"]) {
+                                            document.getElementById("slSlotPageRightControler").style.filter = "brightness(100%)";
+                                        }
+                                    }
+                                }
                     >
-                        Next
-                    </label>
-                }
+
+                            {
+                            // (slCurrentSlotPage !== navObj["saveloadPage-slotPageCount"]) &&
+                                <label
+                                style={{
+                                    "cursor": slCurrentSlotPage < navObj["saveloadPage-slotPageCount"] ? "pointer" : "not-allowed",
+                                    "textDecoration": "underline"
+                                }}
+                                >
+                                    Next
+                                </label>
+                            }
                     
-                </div>
+                    </div>
             
                 
             </div>
@@ -1430,7 +1436,6 @@ return (
             >
 
 {/* sl page content */}
-{/* //todo999999999 */}
 <br></br>
 <br></br>
 <br></br>

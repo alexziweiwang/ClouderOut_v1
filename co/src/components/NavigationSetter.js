@@ -1111,9 +1111,9 @@ export default function NavigationSetter({
           
                   </div>
 
-                  <label>{listDirectionText}:</label>
+                  <label>{listItemSettingsText}:</label>
                     <div className="indentOne">
-                     <input 
+                     {/* <input 
                       type="radio" 
                       value={currentProjectNav["saveloadPage-slotListIsHorizontal"]}
                       checked={currentProjectNav["saveloadPage-slotListIsHorizontal"]}
@@ -1155,7 +1155,7 @@ export default function NavigationSetter({
                             setCurrentProjectNav({...currentProjectNav, "saveloadPage-slotListIsHorizontal": false});                 
                         }}
                      >{verticalText}</label>         
-                     <br></br>
+                     <br></br> */}
                      <label>Slot per page:</label>
                      <select
                       value={currentProjectNav["saveloadPage-slotPerPage"]}
