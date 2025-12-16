@@ -953,3 +953,15 @@
 - 2025-Dec-12: Design optimization plan for sl-related flow
 - 2025-Dec-12: Design in-view-sl-data-flow
 
+- 2025-Dec-15: Design in-view-sl-data-flow
+
+
+
+
+
+
+
+
+
+
+
