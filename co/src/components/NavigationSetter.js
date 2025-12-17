@@ -747,7 +747,13 @@ export default function NavigationSetter({
 
    return (
   <>{
-   <div className="guiSettings" style={{"maxHeight": `${screenHeight-30}px`}}>
+   <div 
+   className="guiSettings" 
+   style={{
+      "maxHeight": `${screenHeight-30}px`,
+      "minHeight": `${screenHeight-30}px`
+
+    }}>
         
       {(currentSettingPage !== "Main Page" && currentSettingPage !== "" && currentSettingPage !== "Game Progress Strategy") && 
       <div style={{"backgroundColor": "grey", "padding": "7px"}}>
@@ -997,38 +1003,39 @@ export default function NavigationSetter({
      <label>Game Progress Strategy:</label>
        <div style={{"justifyContent": "center"}}>
 
-              <input type="radio" checked={!progressWithSLinput} value={progressWithSLinput} 
-                onChange={()=>{
-                  setProgressWithSLinput(false)
-                   }}></input>
-               <label onClick={()=>{                   
-                      setProgressWithSLinput(false)
-                   }}>Without SaveLoad System</label>
+                              {/* <input type="radio" checked={!progressWithSLinput} value={progressWithSLinput} 
+                                onChange={()=>{
+                                  setProgressWithSLinput(false)
+                                  }}></input>
+                              <label onClick={()=>{                   
+                                      setProgressWithSLinput(false)
+                                  }}>Without SaveLoad System</label>
 
-              <br></br>
+                              <br></br> */}
 
+                              {/* <input type="radio" checked={progressWithSLinput} value={progressWithSLinput} 
+                                onChange={()=>{
+                                  setProgressWithSLinput(true);
+                                  }}></input>
+                              <label onClick={()=>{
+                                  setProgressWithSLinput(true);
+                            }}>SaveLoad System</label>     */}
 
-               <input type="radio" checked={progressWithSLinput} value={progressWithSLinput} 
-                onChange={()=>{
-                  setProgressWithSLinput(true);
-                   }}></input>
-               <label onClick={()=>{
-                  setProgressWithSLinput(true);
-            }}>SaveLoad System</label>    
+                            {/* <br></br>
+                            <button
+                              onClick={()=>{
+                                let tempObj = currentProjectNav;
+                                tempObj["isWithSL"] = progressWithSLinput;
+                                updateNavObj(tempObj);       
+                                
+                                setCurrentProjectNav({...currentProjectNav, "isWithSL": progressWithSLinput});
+                              }}
+                            >{updateText}</button>
+                             */}
+
 
             <br></br>
-            <button
-              onClick={()=>{
-                let tempObj = currentProjectNav;
-                tempObj["isWithSL"] = progressWithSLinput;
-                updateNavObj(tempObj);       
-                
-                setCurrentProjectNav({...currentProjectNav, "isWithSL": progressWithSLinput});
-              }}
-            >{updateText}</button>
-            <br></br><br></br>
-
-
+            
             {currentProjectNav["isWithSL"] && <>
      
               <div className="indentOne">
@@ -1156,7 +1163,7 @@ export default function NavigationSetter({
                         }}
                      >{verticalText}</label>         
                      <br></br> */}
-                     <label>Slot per page:</label>
+                     <label>Slot per page: </label>
                      <select
                       value={currentProjectNav["saveloadPage-slotPerPage"]}
                       onChange={(event)=>{
@@ -1174,7 +1181,7 @@ export default function NavigationSetter({
                      </select>        
                  
                       <br></br>
-                      <label>Number of Pages:</label>
+                      <label>Number of Pages: </label>
                       <input type="number" min="1" max="15" step="1" value={currentProjectNav["saveloadPage-slotPageCount"]}
                         onChange={(event)=>{
                           let tempObj = currentProjectNav;
@@ -5780,7 +5787,8 @@ export default function NavigationSetter({
        </div>
        </div>}
 
-      {currentSettingPage === "Quit Asking Window" && <div>
+      {currentSettingPage === "Quit Asking Window" && 
+      <div style={{"height": `${screenHeight}px`}}>
         <label>Question Content</label>
         <div className="indentOne">
             <textarea
@@ -6222,7 +6230,15 @@ export default function NavigationSetter({
     <button>{saveChangesText}</button>
     </>}
 
-{currentSettingPage === "During Game" && <div>
+{currentSettingPage === "During Game" && 
+<div 
+    style={{
+      "position": "absolute", 
+      "width": `${screenWidth}px`, 
+      "maxHeight": `${screenHeight}px`,
+
+    }}
+>
     Please confirm back-button for during-game situation. <br></br>
     Feel free to setup node UI in specific node-editors.
 </div>}

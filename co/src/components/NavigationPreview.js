@@ -1862,9 +1862,15 @@ return (
         </div>}
 
 
-        {/* {page === "During Game" && <div style={{"position": "absolute", "backgroundColor": "purple"}}
+        {page === "During Game" && 
+        <div 
+            style={{
+                "position": "absolute", 
+                "width": `${screenWidth}px`, 
+                "height": `${screenHeight}px`,
+            }}
             onClick={()=>{console.log("clicking on nav-previewer...")}} //TODO 32
-        ><br></br><br></br><br></br>(During Game)</div>} */}
+        ><br></br><br></br><br></br>(During Game)</div>}
 
         {qWindowSetup === true 
         && <div 
@@ -1891,6 +1897,7 @@ return (
                 "borderRadius": "0px",
             }}
         > 
+        
         {/* TODO add backboard */}
 
 
