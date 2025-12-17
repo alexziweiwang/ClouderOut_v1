@@ -381,6 +381,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
   const [gameDataDesignList, setGameDataDesignList] = useState({}); //TODO90 receive only
   const [gameDataArray, setGameDataArray] = useState([]);
 
+  const [popWindowName, setPopWindowName] = useState(""); // "gameQuitAsking"   "slConfirming"
 
   const [slAreSlots, setSlAreSlots] = useState(false); //"chapterExpr"(f) or "slSlots"(t)
   const [slAllInfo, setSlAllInfo] = useState(initialMetadata !== undefined? initialMetadata["slInfo"] : -1); //including "format" and "slPage"-obj
@@ -853,7 +854,8 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
   }
 
   function notifyUpdateCurrentStanding_gm(obj) { //fetch from sub-compo
-    notifyUpdateCurrentStanding_panel2(obj)
+    notifyUpdateCurrentStanding_panel2(obj);
+
   }
 
   
@@ -1416,6 +1418,17 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
     setShowSLTab(false);
   }
 
+  function notifyEditorPopWindowOpened(providedWindowName) {
+    setPopWindowName(providedWindowName);
+      //"gameQuitAsking"
+      //"slConfirming"
+
+  }
+
+  function passInCurrentPopWindowName() {
+    return popWindowName;
+  }
+
  
 
 {/* //components
@@ -1737,7 +1750,9 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
                   getUsername={passInAuthEmailName}
 
-
+                  notifyEditorPopWindowOpened={notifyEditorPopWindowOpened}
+                  //TODO receive pop-window-info
+                  
                   intialEmuPlayerProfile={testPlayerProfile}
                   openEmuManager={handleEmuManagerOpen_gml} //TODO99999 remove?
                   fetchEmuPlayerProfile={passInPlayerProfile}
@@ -1765,6 +1780,8 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
                   triggerUpdateCurrPageName={notifyCurrPageName}
                   triggerUpdateCurrentStanding={notifyUpdateCurrentStanding_gm}
+                  notifyEditorPopWindowOpened={notifyEditorPopWindowOpened}
+                  //TODO receive pop-window-info
 
                   isEditing={true}
                   initialGameDataRefData={emptyValue}

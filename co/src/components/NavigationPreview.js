@@ -9,8 +9,10 @@ export default function NavigationPreview ({
     fetchSlObj,
 
     fetchPageName, 
+
     triggerUpdateCurrPageName,
-    triggerUpdateCurrentStanding, //game-progress related, to outer-layer
+    triggerUpdateCurrentStanding, //important, game-progress related, to outer-layer
+    notifyEditorPopWindowOpened,
 
     chapterData, 
     isEditing,
@@ -116,7 +118,7 @@ const emptyStr = "";
     const [slotPerPageLocal, setSlotPerPageLocal] = useState(0); //initialNavObj["saveloadPage-slotPerPage"]
 
     const [qWindowSetup, setQwindowSetup] = useState(false);
-
+    const [slConfirmWindowSetup, setSlConfirmWindowSetup] = useState(false);
 
     const [tryPPText, setTryPPText] = useState(-1);
     const [tryPPValue, setTryPPValue] = useState(-1);
@@ -277,7 +279,13 @@ const emptyStr = "";
             if (userClickCancelQwindow === false) {
                 setQWindowOpen(true);
             }
+            
             setQwindowSetup(true);
+            notifyEditorPopWindowOpened("gameQuitAsking");
+
+        } else if (tempPage === "SL Asking Window") {
+            //TODO235
+
         }
 
 
@@ -478,7 +486,7 @@ return (
                                     let currentStandingObjTemp = {};
 
                                     //TODO230
-                                            // triggerUpdateCurrPageName(pageNaming);
+                                            // t riggerUpdateCurrPageName(pageNaming);
                                             // currentStandingObjTemp["pageStatus"] = pageNaming;
                                             // currentStandingObjTemp["chapterKey"] = "";
                                             // currentStandingObjTemp["chapterTitle"] = "";
@@ -642,7 +650,7 @@ return (
                                     let currentStandingObjTemp = {};
 
                                     //TODO230
-                                                // triggerUpdateCurrPageName(pageNaming);
+                                                // t riggerUpdateCurrPageName(pageNaming);
                                                 // currentStandingObjTemp["pageStatus"] = pageNaming;
                                                 // currentStandingObjTemp["chapterKey"] = "";
                                                 // currentStandingObjTemp["chapterTitle"] = "";
@@ -1010,7 +1018,7 @@ return (
                                         let nkTemp = "chapterStart";
                                         let ntTemp = "*chapterStart*";
                                         //TODO230
-                                                // triggerUpdateCurrPageName(nextPageName);
+                                                // t riggerUpdateCurrPageName(nextPageName);
                                                 // currentStandingObjTemp["pageStatus"] = nextPageName;
                                                 // currentStandingObjTemp["chapterKey"] = chapterKey;
                                                 // currentStandingObjTemp["chapterTitle"] = item;
@@ -1462,30 +1470,6 @@ return (
         }
 
 
-        {page === "SL Records" &&
-            <div style={{
-                "width": `${screenWidth}px`, 
-                "height": `${screenHeight}px`,
-                "backgroundColor": "rgb(222, 222, 235)",
-                "borderRadius": "0px",
-            }}
-            >
-
-{/* sl page content */}
-<br></br>
-<br></br>
-<br></br>
-                [{slEntireObj["format"]}]
-
-                <div stype={{"display": "flex"}}>
-                    
-
-                </div>
-
-
-            </div>
-
-        }
   
         {/* {page === "Shop Page" &&  */}
         {false && 
@@ -1902,10 +1886,15 @@ return (
         <div 
             style={{
                 "position": "absolute", 
-                "width": `${screenWidth}px`, 
-                "height": `${screenHeight}px`,
+                "width": `${screenWidth-6}px`, 
+                "height": `${screenHeight-6}px`,
+                "border": "3px dotted #000000",
             }}
-            onClick={()=>{console.log("clicking on nav-previewer...")}} //TODO 32
+            onClick={()=>{
+                        console.log("clicking on nav-previewer...");
+                        //TODO 32
+
+            }} 
         ><br></br><br></br><br></br>(During Game)</div>}
 
         {qWindowSetup === true 
@@ -1934,8 +1923,6 @@ return (
             }}
         > 
         
-        {/* TODO add backboard */}
-
 
             <div
                 style={{
@@ -1990,11 +1977,12 @@ return (
                                                 
                                                     //close window and return to story-chapter-page (from during-game)
                                                     let nextPageName = "Story Page";
+
                                                     let currentStandingObjTemp = {};    
                                                     
                                                     
                                                     //TODO230
-                                                                // triggerUpdateCurrPageName(nextPageName);
+                                                                // t riggerUpdateCurrPageName(nextPageName);
                                                                 // currentStandingObjTemp["pageStatus"] = nextPageName;
                                                                 // currentStandingObjTemp["chapterKey"] = "";
                                                                 // currentStandingObjTemp["chapterTitle"] = "";
@@ -2008,6 +1996,7 @@ return (
                                                 
                                                     //close q-window
                                                     setQWindowOpen(false);
+                                                    notifyEditorPopWindowOpened("");
                                         }}
 
                                     >{navObj["outWindow-Btn-confirmingText"]}</button>
@@ -2035,7 +2024,6 @@ return (
                                                 //close q-window
                                                 setQWindowOpen(false);
                                                 setUserClickCancelQwindow(true);
-                                        //        triggerUpdateCurrPageName("During Game");
 
                                                 
                                         }}
@@ -2108,9 +2096,10 @@ console.log("\t setup-page bool is ", isOpenSettingsPage);
                                         closeSettingsPage();
 
                                     } else { // during game, settings-page not opened => regular quitting game
-                                        //TODO send out page-notification for q-window-settings-page
-
+                                        
                                         setQWindowOpen(true);
+                                        notifyEditorPopWindowOpened("gameQuitAsking");
+                                        
                                     }
                                     
                                 } else if (page === "Game Progress Strategy" || isSettingSlMode === true) {
@@ -2118,7 +2107,7 @@ console.log("\t setup-page bool is ", isOpenSettingsPage);
                                     let currentStandingObjTemp = {};
 
                                     //TODO230
-                                            // triggerUpdateCurrPageName(nextPageName);
+                                            // t riggerUpdateCurrPageName(nextPageName);
                                             // currentStandingObjTemp["pageStatus"] = nextPageName;
                                             // currentStandingObjTemp["chapterKey"] = "";
                                             // currentStandingObjTemp["chapterTitle"] = "";

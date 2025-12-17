@@ -20,7 +20,7 @@
 
 /* Navigation - Pages: pagename
     "Main Page"
-    "Game Progress Strategy"
+    "Game Progress Strategy" //= earlier "SL Records"
     "Story Page"
     "Settings Page"
     "Player Profile Page"
@@ -29,7 +29,10 @@
 
     "During Game"
 
-    "SL Records"
+    
+    "SL Asking Window"
+
+    "Quit Asking Window"
 
 */
 
