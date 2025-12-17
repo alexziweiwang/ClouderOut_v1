@@ -31,7 +31,6 @@
 
     
     "SL Asking Window"
-
     "Quit Asking Window"
 
 */

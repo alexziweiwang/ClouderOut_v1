@@ -1751,8 +1751,8 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
                   getUsername={passInAuthEmailName}
 
                   notifyEditorPopWindowOpened={notifyEditorPopWindowOpened}
-                  //TODO receive pop-window-info
-                  
+                  getInCurrentPopWindowName={passInCurrentPopWindowName}//TODO receive pop-window-info
+
                   intialEmuPlayerProfile={testPlayerProfile}
                   openEmuManager={handleEmuManagerOpen_gml} //TODO99999 remove?
                   fetchEmuPlayerProfile={passInPlayerProfile}
@@ -1780,9 +1780,10 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
                   triggerUpdateCurrPageName={notifyCurrPageName}
                   triggerUpdateCurrentStanding={notifyUpdateCurrentStanding_gm}
-                  notifyEditorPopWindowOpened={notifyEditorPopWindowOpened}
-                  //TODO receive pop-window-info
 
+                  notifyEditorPopWindowOpened={notifyEditorPopWindowOpened}
+                  getInCurrentPopWindowName={passInCurrentPopWindowName}
+                  
                   isEditing={true}
                   initialGameDataRefData={emptyValue}
                   initialPlayerProfileRefData={testPlayerProfile}

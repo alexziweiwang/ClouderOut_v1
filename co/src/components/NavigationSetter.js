@@ -8,7 +8,13 @@ export default function NavigationSetter({
   isSettingSlMode,
   updateNavObj, 
   openRm, 
-  triggerUpdateCurrPageName, fetchPageName,
+
+  fetchPageName,
+  triggerUpdateCurrPageName, 
+
+  getInCurrentPopWindowName,
+  notifyEditorPopWindowOpened,
+
   initialScreenHeight, getScreenheight,
 
   intialEmuPlayerProfile,
@@ -369,7 +375,13 @@ export default function NavigationSetter({
 
       //fetch from nav-previewer for current-page-name
       let tempPage= fetchPageName();
-      setCurrentSettingPage(tempPage);
+      if (tempPage === "Quit Asking Window" || tempPage === "SL Asking Window") {
+        
+      } else {
+        setCurrentSettingPage(tempPage);
+      }
+
+      
 
       let heightTemp = getScreenheight();
       setScreenHeight(heightTemp);
@@ -971,8 +983,14 @@ export default function NavigationSetter({
       <label>{selectPageToSetupText}: </label>
       <select value={currentSettingPage}
         onChange={(event)=>{
-          setCurrentSettingPage(event.target.value);
-          triggerUpdateCurrPageName(event.target.value);
+          let pageOption = event.target.value;
+          if (pageOption !== "Quit Asking Window" && page !== "SL Asking Window") {
+            setCurrentSettingPage(pageOption);
+            triggerUpdateCurrPageName(pageOption);            
+          } else {
+            notifyEditorPopWindowOpened(pageOption);
+          }
+
         }}>
           <option value="" key="defaultEmptyPage">-- {selectAPageName} --</option>
           {/* <option value="Game Progress Strategy" key="Game Progress Strategy">{gameProgressStrategyText}</option> */}
@@ -983,7 +1001,8 @@ export default function NavigationSetter({
           <option value="Game Status Data Page" key="Game Status Data Page">{gameStatusDataPageText}</option>
           <option value="Shop Page" key="Shop Page">{shopPageText}</option>
           <option value="During Game" key="During Game">{duringGamePlayPageText}</option>
-          <option value="Quit Asking Window" key="Quit Asking Window">Quit-Asking Window</option> 
+          <option value="Quit Asking Window" key="Quit Asking Window">Quit Window</option> 
+          <option value="SL Asking Window" key="SL Asking Window" >Save/Load Confirm Window</option>
                                                                                       {/* //TODO20 */}
 
       </select>

@@ -9,9 +9,11 @@ export default function NavigationPreview ({
     fetchSlObj,
 
     fetchPageName, 
-
     triggerUpdateCurrPageName,
+
     triggerUpdateCurrentStanding, //important, game-progress related, to outer-layer
+    
+    getInCurrentPopWindowName,
     notifyEditorPopWindowOpened,
 
     chapterData, 
@@ -267,15 +269,14 @@ const emptyStr = "";
 
 
         // Page Settings
-        let tempPage= fetchPageName();
+        let fetchedPageName= fetchPageName();
         
-        if (tempPage !== undefined && tempPage !== "" && tempPage !== "Quit Asking Window") {
-            setPage(tempPage);
+        if (fetchedPageName !== undefined && fetchedPageName !== "" && fetchedPageName !== "Quit Asking Window") {
+            setPage(fetchedPageName);
             setUserClickCancelQwindow(false);
             setQwindowSetup(false);
 
-        } else if (tempPage === "Quit Asking Window") {
-          //  setPage("");
+        } else if (fetchedPageName === "Quit Asking Window") {
             if (userClickCancelQwindow === false) {
                 setQWindowOpen(true);
             }
@@ -283,7 +284,7 @@ const emptyStr = "";
             setQwindowSetup(true);
             notifyEditorPopWindowOpened("gameQuitAsking");
 
-        } else if (tempPage === "SL Asking Window") {
+        } else if (fetchedPageName === "SL Asking Window") {
             //TODO235
 
         }
