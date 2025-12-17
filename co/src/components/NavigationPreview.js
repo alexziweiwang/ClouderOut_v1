@@ -39,6 +39,7 @@ export default function NavigationPreview ({
 }) {
 //TODO game-data, player-profile, player-account-info fetching for testing ...
 const tempFontSize = 12;
+const emptyStr = "";
 
     const [languageCodeTextOption, setLanguageCodeTextOption] = useState(initialUILanguage); //TODO16
 
@@ -344,6 +345,20 @@ const tempFontSize = 12;
         console.log("pressed on slot - ", i, " at page", slCurrentSlotPage);
 
     }
+
+    function allUpdate_CurrentStanding(nextPageName, nextChapKey, nextChapTitle, nextNodeKey, nextNodeType) {
+        let currentStandingObjTemp = {
+            "pageStatus": nextPageName,
+            "chapterKey": nextChapKey,
+            "chapterTitle": nextChapTitle,
+            "nodeKey": nextNodeKey,
+            "nodeType": nextNodeType
+        };
+        triggerUpdateCurrentStanding(currentStandingObjTemp);
+
+        triggerUpdateCurrPageName(nextPageName);
+
+    }
     
 
 return (
@@ -458,16 +473,21 @@ return (
                                         return;
                                     } //TODO900 for ver.1 (no shop for now)
 
-                                    triggerUpdateCurrPageName(pageNaming);
 
 
                                     let currentStandingObjTemp = {};
-                                    currentStandingObjTemp["pageStatus"] = pageNaming;
-                                    currentStandingObjTemp["chapterKey"] = "";
-                                    currentStandingObjTemp["chapterTitle"] = "";
-                                    currentStandingObjTemp["nodeKey"] = "";
-                                    currentStandingObjTemp["nodeType"] = ""; 
-                                    triggerUpdateCurrentStanding(currentStandingObjTemp);
+
+                                    //TODO230
+                                            // triggerUpdateCurrPageName(pageNaming);
+                                            // currentStandingObjTemp["pageStatus"] = pageNaming;
+                                            // currentStandingObjTemp["chapterKey"] = "";
+                                            // currentStandingObjTemp["chapterTitle"] = "";
+                                            // currentStandingObjTemp["nodeKey"] = "";
+                                            // currentStandingObjTemp["nodeType"] = ""; 
+                                            // triggerUpdateCurrentStanding(currentStandingObjTemp);
+                                            allUpdate_CurrentStanding(pageNaming, emptyStr, emptyStr, emptyStr, emptyStr);        
+
+                                    //TODO231
 
                                 }
                             }
@@ -618,15 +638,22 @@ return (
                                 ()=>{
                                     document.getElementById(keyStr2).style.filter = "brightness(100%)";
 
-                                    triggerUpdateCurrPageName(pageNaming);
 
                                     let currentStandingObjTemp = {};
-                                    currentStandingObjTemp["pageStatus"] = pageNaming;
-                                    currentStandingObjTemp["chapterKey"] = "";
-                                    currentStandingObjTemp["chapterTitle"] = "";
-                                    currentStandingObjTemp["nodeKey"] = "";
-                                    currentStandingObjTemp["nodeType"] = ""; 
-                                    triggerUpdateCurrentStanding(currentStandingObjTemp);
+
+                                    //TODO230
+                                                // triggerUpdateCurrPageName(pageNaming);
+                                                // currentStandingObjTemp["pageStatus"] = pageNaming;
+                                                // currentStandingObjTemp["chapterKey"] = "";
+                                                // currentStandingObjTemp["chapterTitle"] = "";
+                                                // currentStandingObjTemp["nodeKey"] = "";
+                                                // currentStandingObjTemp["nodeType"] = ""; 
+                                                // triggerUpdateCurrentStanding(currentStandingObjTemp);
+
+                                    allUpdate_CurrentStanding(pageNaming, emptyStr, emptyStr, emptyStr, emptyStr);
+
+                                    //TODO231
+
                                 }
                             }
                         >
@@ -973,17 +1000,26 @@ return (
 
                            
 
-
-                                        triggerUpdateCurrPageName("During Game");
+                                        let nextPageName = "During Game";
+                                        
 
                                         let currentStandingObjTemp = {};
+
+
                                         let chapterKey = storyPageChapterKeyMapping[item];
-                                        currentStandingObjTemp["pageStatus"] = "During Game";
-                                        currentStandingObjTemp["chapterKey"] = chapterKey;
-                                        currentStandingObjTemp["chapterTitle"] = item;
-                                        currentStandingObjTemp["nodeKey"] = "chapterStart";  
-                                        currentStandingObjTemp["nodeType"] = "*chapterStart*"; //TODO if non-SL system
-                                        triggerUpdateCurrentStanding(currentStandingObjTemp);
+                                        let nkTemp = "chapterStart";
+                                        let ntTemp = "*chapterStart*";
+                                        //TODO230
+                                                // triggerUpdateCurrPageName(nextPageName);
+                                                // currentStandingObjTemp["pageStatus"] = nextPageName;
+                                                // currentStandingObjTemp["chapterKey"] = chapterKey;
+                                                // currentStandingObjTemp["chapterTitle"] = item;
+                                                // currentStandingObjTemp["nodeKey"] = "chapterStart";  
+                                                // currentStandingObjTemp["nodeType"] = "*chapterStart*"; //TODO if non-SL system
+                                                // triggerUpdateCurrentStanding(currentStandingObjTemp);
+
+                                        allUpdate_CurrentStanding(nextPageName, chapterKey, item, nkTemp, ntTemp);
+                                        //TODO231
 
                                     }
                                 }
@@ -1954,15 +1990,20 @@ return (
                                                 
                                                     //close window and return to story-chapter-page (from during-game)
                                                     let nextPageName = "Story Page";
-                                                    let currentStandingObjTemp = {};
-                                                    currentStandingObjTemp["pageStatus"] = nextPageName;
-                                                    currentStandingObjTemp["chapterKey"] = "";
-                                                    currentStandingObjTemp["chapterTitle"] = "";
-                                                    currentStandingObjTemp["nodeKey"] = "";
-                                                    currentStandingObjTemp["nodeType"] = ""; 
-                                                    triggerUpdateCurrentStanding(currentStandingObjTemp);
+                                                    let currentStandingObjTemp = {};    
                                                     
-                                                    triggerUpdateCurrPageName(nextPageName);
+                                                    
+                                                    //TODO230
+                                                                // triggerUpdateCurrPageName(nextPageName);
+                                                                // currentStandingObjTemp["pageStatus"] = nextPageName;
+                                                                // currentStandingObjTemp["chapterKey"] = "";
+                                                                // currentStandingObjTemp["chapterTitle"] = "";
+                                                                // currentStandingObjTemp["nodeKey"] = "";
+                                                                // currentStandingObjTemp["nodeType"] = ""; 
+                                                                // triggerUpdateCurrentStanding(currentStandingObjTemp);
+
+                                                    allUpdate_CurrentStanding(nextPageName, emptyStr, emptyStr, emptyStr, emptyStr);            
+                                                    //TODO231
 
                                                 
                                                     //close q-window
@@ -1970,6 +2011,7 @@ return (
                                         }}
 
                                     >{navObj["outWindow-Btn-confirmingText"]}</button>
+
                                     <button
                                         id="qWindowCancelBtn"
                                         style={{
@@ -2066,6 +2108,7 @@ console.log("\t setup-page bool is ", isOpenSettingsPage);
                                         closeSettingsPage();
 
                                     } else { // during game, settings-page not opened => regular quitting game
+                                        //TODO send out page-notification for q-window-settings-page
 
                                         setQWindowOpen(true);
                                     }
@@ -2073,13 +2116,20 @@ console.log("\t setup-page bool is ", isOpenSettingsPage);
                                 } else if (page === "Game Progress Strategy" || isSettingSlMode === true) {
                                     nextPageName = "Story Page";
                                     let currentStandingObjTemp = {};
-                                    currentStandingObjTemp["pageStatus"] = "Story Page";
-                                    currentStandingObjTemp["chapterKey"] = "";
-                                    currentStandingObjTemp["chapterTitle"] = "";
-                                    currentStandingObjTemp["nodeKey"] = "";
-                                    currentStandingObjTemp["nodeType"] = ""; 
-                                    triggerUpdateCurrentStanding(currentStandingObjTemp);
-                                    triggerUpdateCurrPageName(nextPageName);
+
+                                    //TODO230
+                                            // triggerUpdateCurrPageName(nextPageName);
+                                            // currentStandingObjTemp["pageStatus"] = nextPageName;
+                                            // currentStandingObjTemp["chapterKey"] = "";
+                                            // currentStandingObjTemp["chapterTitle"] = "";
+                                            // currentStandingObjTemp["nodeKey"] = "";
+                                            // currentStandingObjTemp["nodeType"] = ""; 
+                                            // triggerUpdateCurrentStanding(currentStandingObjTemp);
+
+                                    allUpdate_CurrentStanding(nextPageName, emptyStr, emptyStr, emptyStr, emptyStr);
+                                    //TODO231
+
+
                                 } else {
                                     triggerUpdateCurrPageName(nextPageName);
                                 }
