@@ -955,6 +955,13 @@
 
 - 2025-Dec-15: Design in-view-sl-data-flow
 
+- 2025-Dec-16: Design sl-mechanism in emu-related
+
+
+
+
+
+
 
 
 
