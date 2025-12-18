@@ -1736,7 +1736,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
               <div style={{"marginTop": "15px", "marginLeft": "10px", "marginBottom": "10px"}}>
                 <NavigationSetter 
                   initialNavObj={currentProjectNav} 
-                  isSettingSlMode={showSlTab}
+                  onEditingSlPageTab={showSlTab}
 
                   updateNavObj={updateCurrProjectNavObj} 
                   openRm={handleResourceManagerOpen_gml}  //TODO99999 remove
@@ -1770,7 +1770,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
               <div style={{"marginTop": "15px", "marginLeft": "15px"}}>
                 <NavigationPreview
-                  isSettingSlMode={showSlTab}
+                  onEditingSlPageTab={showSlTab}
 
                   fetchNavObj={passInNavObj} 
                   fetchSlObj={passInSlObj}
@@ -1783,7 +1783,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
                   notifyEditorPopWindowOpened={notifyEditorPopWindowOpened}
                   getInCurrentPopWindowName={passInCurrentPopWindowName}
-                  
+
                   isEditing={true}
                   initialGameDataRefData={emptyValue}
                   initialPlayerProfileRefData={testPlayerProfile}

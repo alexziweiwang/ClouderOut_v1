@@ -3,7 +3,7 @@ import { sizeLookupMap, defaultScreenWidth, defaultScreenHeight } from './_dataS
 
 
 export default function NavigationPreview ({
-    isSettingSlMode,
+    onEditingSlPageTab,
 
     fetchNavObj, 
     fetchSlObj,
@@ -64,18 +64,18 @@ const emptyStr = "";
     const [viewingShopItemObj, setViewingShopItemObj] = useState("-");
 
     const [navObj, setNavObj] = useState({});
-    const [page, setPage] = useState(isSettingSlMode === true? "Game Progress Strategy" : "Main Page");
+    const [page, setPage] = useState(onEditingSlPageTab === true? "Game Progress Strategy" : "Main Page");
     const [slEntireObj, setSlEntireObj] = useState(-1);
 
     const [refDataPlayerProfile, setRefDataPlayerProfile] = useState(initialPlayerProfileRefData);
     const [refDataPlayerAccount, setRefDataPlayerAccount] = useState(initialPlayerAccountRefData);
     const [refGameDataList, setRefGameDataList] = useState(initialGameDataRefData);
 
-    const [qWindowOpen, setQWindowOpen] = useState(false);
+    const [quitGameWindowOpen, setQuitGameWindowOpen] = useState(false);
                             // 0.settingPage-playSpeed
                             // 1.settingPage-bgmVol
                             // 2.settingPage-seVol
-    const [atSlPage, setAtSlPage] = useState(isSettingSlMode);
+    const [atSlPage, setAtSlPage] = useState(onEditingSlPageTab);
     
     const settingsPageEntryNames = ["settingPage-playSpeed", "settingPage-bgmVol", "settingPage-seVol"];
 
@@ -119,8 +119,6 @@ const emptyStr = "";
     const [slSlotFrame, setSlSlotFrame] = useState(0);
     const [slotPerPageLocal, setSlotPerPageLocal] = useState(0); //initialNavObj["saveloadPage-slotPerPage"]
 
-    const [qWindowSetup, setQwindowSetup] = useState(false);
-    const [slConfirmWindowSetup, setSlConfirmWindowSetup] = useState(false);
 
     const [tryPPText, setTryPPText] = useState(-1);
     const [tryPPValue, setTryPPValue] = useState(-1);
@@ -271,23 +269,41 @@ const emptyStr = "";
         // Page Settings
         let fetchedPageName= fetchPageName();
         
-        if (fetchedPageName !== undefined && fetchedPageName !== "" && fetchedPageName !== "Quit Asking Window") {
+        if (fetchedPageName !== undefined 
+            && fetchedPageName !== "") {
+
             setPage(fetchedPageName);
-            setUserClickCancelQwindow(false);
-            setQwindowSetup(false);
+
+
+            let pWindowTemp = getInCurrentPopWindowName();
+
+            if (pWindowTemp === "gameQuitAsking") {
+                // should show game-quit-pop-window
+
+               // if (userClickCancelQwindow === false) {
+                    setQuitGameWindowOpen(true);
+              //  }
+                
+    
+            } else if (pWindowTemp === "slConfirming") {
+                // should show sl-confim-pop-window
+
+
+            //    setUserClickCancelQwindow(false);
+            } else {
+
+            //    setUserClickCancelQwindow(false);
+            }
+
+     
 
         } else if (fetchedPageName === "Quit Asking Window") { //TODO79
-            if (userClickCancelQwindow === false) {
-                setQWindowOpen(true);
-            }
-            
-            setQwindowSetup(true);
-            notifyEditorPopWindowOpened("gameQuitAsking"); //TODO79
 
         } else if (fetchedPageName === "SL Asking Window") {
             //TODO235
 
         }
+
 
 
 
@@ -355,6 +371,12 @@ const emptyStr = "";
 
     }
 
+    function returnToStoryPageWithoutInfo() {
+        let nextPageName = "Story Page";
+        allUpdate_CurrentStanding(nextPageName, emptyStr, emptyStr, emptyStr, emptyStr);            
+
+    }
+
     function allUpdate_CurrentStanding(nextPageName, nextChapKey, nextChapTitle, nextNodeKey, nextNodeType) {
         let currentStandingObjTemp = {
             "pageStatus": nextPageName,
@@ -367,6 +389,13 @@ const emptyStr = "";
 
         triggerUpdateCurrPageName(nextPageName);
 
+    }
+
+    function cancelPopWindow() {
+            //close q-window
+            setQuitGameWindowOpen(false);
+
+            notifyEditorPopWindowOpened(""); //TODO79
     }
     
 
@@ -483,9 +512,6 @@ return (
                                     } //TODO900 for ver.1 (no shop for now)
 
 
-
-                                    let currentStandingObjTemp = {};
-
                                     //TODO230
                                             // t riggerUpdateCurrPageName(pageNaming);
                                             // currentStandingObjTemp["pageStatus"] = pageNaming;
@@ -494,7 +520,9 @@ return (
                                             // currentStandingObjTemp["nodeKey"] = "";
                                             // currentStandingObjTemp["nodeType"] = ""; 
                                             // triggerUpdateCurrentStanding(currentStandingObjTemp);
-                                            allUpdate_CurrentStanding(pageNaming, emptyStr, emptyStr, emptyStr, emptyStr);        
+
+                                    //grouped-menu on main-page
+                                    allUpdate_CurrentStanding(pageNaming, emptyStr, emptyStr, emptyStr, emptyStr);        
 
                                     //TODO231
 
@@ -648,8 +676,6 @@ return (
                                     document.getElementById(keyStr2).style.filter = "brightness(100%)";
 
 
-                                    let currentStandingObjTemp = {};
-
                                     //TODO230
                                                 // t riggerUpdateCurrPageName(pageNaming);
                                                 // currentStandingObjTemp["pageStatus"] = pageNaming;
@@ -659,6 +685,8 @@ return (
                                                 // currentStandingObjTemp["nodeType"] = ""; 
                                                 // triggerUpdateCurrentStanding(currentStandingObjTemp);
 
+                                                                                    //menu on main-page
+                                    //customised-menu on main-page
                                     allUpdate_CurrentStanding(pageNaming, emptyStr, emptyStr, emptyStr, emptyStr);
 
                                     //TODO231
@@ -681,7 +709,7 @@ return (
 
 
         {(navObj["isWithSL"] === true && 
-        (page === "Game Progress Strategy" || isSettingSlMode === true)
+        (page === "Game Progress Strategy" || onEditingSlPageTab === true)
         
         ) && 
         <div style={{
@@ -1007,13 +1035,7 @@ return (
                                     ()=>{
                                         document.getElementById(keyStr).style.filter = "brightness(100%)";
 
-                           
-
                                         let nextPageName = "During Game";
-                                        
-
-                                        let currentStandingObjTemp = {};
-
 
                                         let chapterKey = storyPageChapterKeyMapping[item];
                                         let nkTemp = "chapterStart";
@@ -1027,6 +1049,7 @@ return (
                                                 // currentStandingObjTemp["nodeType"] = "*chapterStart*"; //TODO if non-SL system
                                                 // triggerUpdateCurrentStanding(currentStandingObjTemp);
 
+                                        //chapter selection and then enter the game
                                         allUpdate_CurrentStanding(nextPageName, chapterKey, item, nkTemp, ntTemp);
                                         //TODO231
 
@@ -1896,24 +1919,13 @@ return (
                         //TODO 32
 
             }} 
-        ><br></br><br></br><br></br>(During Game)</div>}
+        ><br></br><br></br><br></br>(Game Content)</div>}
 
-        {qWindowSetup === true 
-        && <div 
-        style={{
-            "position": "absolute",             
-            "width": `${screenWidth}px`, 
-            "height": `${screenHeight}px`,
-            "borderRadius": "0px",
-            "border": "1px dotted #000000",
-        }}>
-                    (quit-window setup page backboard)
-        </div>}
+              
 
-        
         
 {/* q-window */}
-        {(qWindowOpen === true) && 
+        {(quitGameWindowOpen === true) && 
         <div
             style={{
                 "position": "absolute",             
@@ -1977,9 +1989,8 @@ return (
                                                 
                                                 
                                                     //close window and return to story-chapter-page (from during-game)
-                                                    let nextPageName = "Story Page";
+                                                           //    let nextPageName = "Story Page";
 
-                                                    let currentStandingObjTemp = {};    
                                                     
                                                     
                                                     //TODO230
@@ -1991,13 +2002,12 @@ return (
                                                                 // currentStandingObjTemp["nodeType"] = ""; 
                                                                 // triggerUpdateCurrentStanding(currentStandingObjTemp);
 
-                                                    allUpdate_CurrentStanding(nextPageName, emptyStr, emptyStr, emptyStr, emptyStr);            
+                                                                //  allUpdate_CurrentStanding(nextPageName, emptyStr, emptyStr, emptyStr, emptyStr);            
                                                     //TODO231
 
-                                                
+                                                    returnToStoryPageWithoutInfo();
                                                     //close q-window
-                                                    setQWindowOpen(false);
-                                                    notifyEditorPopWindowOpened(""); //TODO79
+                                                    cancelPopWindow();
                                         }}
 
                                     >{navObj["outWindow-Btn-confirmingText"]}</button>
@@ -2023,9 +2033,7 @@ return (
                                                 document.getElementById("qWindowCancelBtn").style.filter = "brightness(100%)";
 
                                                 //close q-window
-                                                setQWindowOpen(false);
-                                                setUserClickCancelQwindow(true);
-
+                                                cancelPopWindow();
                                                 
                                         }}
                                     >{navObj["outWindow-Btn-cancellingText"]}</button>
@@ -2045,8 +2053,8 @@ return (
 
             {/* back-button         back button */}
                 {/* //TODO5 */}
-                {((page !== "Main Page" && page !== "Game Progress Strategy" && page !== "Quit Asking Window" && qWindowOpen === false && page !== "Shop Page") 
-                    || ((page === "Game Progress Strategy" ||  isSettingSlMode === true) && navObj["isWithSL"] === true)
+                {((page !== "Main Page" && page !== "Game Progress Strategy" && page !== "Quit Asking Window" && quitGameWindowOpen === false && page !== "Shop Page") 
+                    || ((page === "Game Progress Strategy" ||  onEditingSlPageTab === true) && navObj["isWithSL"] === true)
                     || (page === "Shop Page" && shopWindowOpen === false && shopProductInfoWindowOpen === false) 
                     ) 
 
@@ -2085,27 +2093,31 @@ return (
                                 let nextPageName = "Main Page";
                     
 
-//TODO201 display settings-page returning...
-console.log(" back button pressed ... page is ", page);
+                                                                                //TODO201 display settings-page returning...
+                                                                                console.log(" back button pressed ... page is ", page);
 
 
                                 if (page === "During Game") {
-console.log("\t setup-page bool is ", isOpenSettingsPage);
+                                                                                console.log("\t setup-page bool is ", isOpenSettingsPage);
 
-                                    if (isOpenSettingsPage === true) { // during game, quitting settings-page only
+                                    if (isOpenSettingsPage === true) { //important: during game, quitting settings-page only
                                         setOpenSettingsPage(false);
                                         closeSettingsPage();
                                             //TODO79
+                                            
                                     } else { // during game, settings-page not opened => regular quitting game
                                          //TODO79
-                                        setQWindowOpen(true);
+                                        setQuitGameWindowOpen(true);
                                         notifyEditorPopWindowOpened("gameQuitAsking"); //TODO79
                                         
                                     }
                                     
-                                } else if (page === "Game Progress Strategy" || isSettingSlMode === true) {
-                                    nextPageName = "Story Page";
-                                    let currentStandingObjTemp = {};
+                                } else if (page === "Game Progress Strategy" 
+                                        || onEditingSlPageTab === true
+                                ) {
+                                    returnToStoryPageWithoutInfo();
+                                    //back button pressed
+                                  
 
                                     //TODO230
                                             // t riggerUpdateCurrPageName(nextPageName);
@@ -2115,13 +2127,14 @@ console.log("\t setup-page bool is ", isOpenSettingsPage);
                                             // currentStandingObjTemp["nodeKey"] = "";
                                             // currentStandingObjTemp["nodeType"] = ""; 
                                             // triggerUpdateCurrentStanding(currentStandingObjTemp);
-
-                                    allUpdate_CurrentStanding(nextPageName, emptyStr, emptyStr, emptyStr, emptyStr);
+                                 
+                                            //   nextPageName = "Story Page";
+                                            //   allUpdate_CurrentStanding(nextPageName, emptyStr, emptyStr, emptyStr, emptyStr);
                                     //TODO231
+  
 
-
-                                } else {
-                                    triggerUpdateCurrPageName(nextPageName);
+                                } else {//back button pressed, not during game, not sl
+                                    triggerUpdateCurrPageName(nextPageName); //go to "Main Page"
                                 }
         
                                 

@@ -29,6 +29,9 @@
 
     "During Game"
 
+    pop-windows:
+        "gameQuitAsking"
+        "slConfirming"
     
     "SL Asking Window"
     "Quit Asking Window"

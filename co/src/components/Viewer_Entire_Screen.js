@@ -711,7 +711,7 @@ shop layer
                     <NavigationPreview 
                         fetchNavObj={passInNavObj} 
                         fetchSlObj={passInSlObj}
-                        isSettingSlMode={false}
+                        onEditingSlPageTab={false}
                         
                         chapterData={initialChapterList} 
                         fetchPageName={passInNavPageName} 
