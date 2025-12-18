@@ -276,13 +276,13 @@ const emptyStr = "";
             setUserClickCancelQwindow(false);
             setQwindowSetup(false);
 
-        } else if (fetchedPageName === "Quit Asking Window") {
+        } else if (fetchedPageName === "Quit Asking Window") { //TODO79
             if (userClickCancelQwindow === false) {
                 setQWindowOpen(true);
             }
             
             setQwindowSetup(true);
-            notifyEditorPopWindowOpened("gameQuitAsking");
+            notifyEditorPopWindowOpened("gameQuitAsking"); //TODO79
 
         } else if (fetchedPageName === "SL Asking Window") {
             //TODO235
@@ -1997,7 +1997,7 @@ return (
                                                 
                                                     //close q-window
                                                     setQWindowOpen(false);
-                                                    notifyEditorPopWindowOpened("");
+                                                    notifyEditorPopWindowOpened(""); //TODO79
                                         }}
 
                                     >{navObj["outWindow-Btn-confirmingText"]}</button>
@@ -2095,11 +2095,11 @@ console.log("\t setup-page bool is ", isOpenSettingsPage);
                                     if (isOpenSettingsPage === true) { // during game, quitting settings-page only
                                         setOpenSettingsPage(false);
                                         closeSettingsPage();
-
+                                            //TODO79
                                     } else { // during game, settings-page not opened => regular quitting game
-                                        
+                                         //TODO79
                                         setQWindowOpen(true);
-                                        notifyEditorPopWindowOpened("gameQuitAsking");
+                                        notifyEditorPopWindowOpened("gameQuitAsking"); //TODO79
                                         
                                     }
                                     

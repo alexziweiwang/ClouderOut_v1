@@ -376,7 +376,7 @@ export default function NavigationSetter({
       //fetch from nav-previewer for current-page-name
       let tempPage= fetchPageName();
       if (tempPage === "Quit Asking Window" || tempPage === "SL Asking Window") {
-        
+         //TODO79
       } else {
         setCurrentSettingPage(tempPage);
       }
@@ -984,11 +984,14 @@ export default function NavigationSetter({
       <select value={currentSettingPage}
         onChange={(event)=>{
           let pageOption = event.target.value;
-          if (pageOption !== "Quit Asking Window" && page !== "SL Asking Window") {
+          if (pageOption !== "Quit Asking Window" && pageOption !== "SL Asking Window") {
             setCurrentSettingPage(pageOption);
             triggerUpdateCurrPageName(pageOption);            
           } else {
-            notifyEditorPopWindowOpened(pageOption);
+
+            //TODO9999999999 if pop-window, don't change the page-name here or outer???
+
+            notifyEditorPopWindowOpened(pageOption); //TODO79
           }
 
         }}>
@@ -5806,6 +5809,7 @@ export default function NavigationSetter({
        </div>
        </div>}
 
+       {/* //TODO79 */}
       {currentSettingPage === "Quit Asking Window" && 
       <div style={{"height": `${screenHeight}px`}}>
         <label>Question Content</label>

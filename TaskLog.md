@@ -957,6 +957,7 @@
 
 - 2025-Dec-16: Design sl-mechanism in emu-related
 
+- 2025-Dec-17: Design strategy of pop-window for nav-preview layer
 
 
 
