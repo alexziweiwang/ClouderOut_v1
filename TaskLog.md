@@ -959,6 +959,7 @@
 
 - 2025-Dec-17: Design strategy of pop-window for nav-preview layer
 
+- 2025-Dec-18: Design strategy of pop-window for nav-preview layer
 
 
 
