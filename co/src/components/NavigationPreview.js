@@ -279,21 +279,14 @@ const emptyStr = "";
 
             if (pWindowTemp === "gameQuitAsking") {
                 // should show game-quit-pop-window
-
-               // if (userClickCancelQwindow === false) {
-                    setQuitGameWindowOpen(true);
-              //  }
-                
+                setQuitGameWindowOpen(true);
+         
     
             } else if (pWindowTemp === "slConfirming") {
                 // should show sl-confim-pop-window
 
 
-            //    setUserClickCancelQwindow(false);
-            } else {
-
-            //    setUserClickCancelQwindow(false);
-            }
+            } 
 
      
 
@@ -391,7 +384,7 @@ const emptyStr = "";
 
     }
 
-    function cancelPopWindow() {
+    function closePopWindow() {
             //close q-window
             setQuitGameWindowOpen(false);
 
@@ -1985,13 +1978,7 @@ return (
                                         onMouseUp={
                                             ()=>{
                                                 document.getElementById("qWindowConfirmBtn").style.filter = "brightness(100%)";
-                                                
-                                                
-                                                
-                                                    //close window and return to story-chapter-page (from during-game)
-                                                           //    let nextPageName = "Story Page";
-
-                                                    
+                             
                                                     
                                                     //TODO230
                                                                 // t riggerUpdateCurrPageName(nextPageName);
@@ -2005,10 +1992,10 @@ return (
                                                                 //  allUpdate_CurrentStanding(nextPageName, emptyStr, emptyStr, emptyStr, emptyStr);            
                                                     //TODO231
 
-                                                    returnToStoryPageWithoutInfo();
-                                                    //close q-window
-                                                    cancelPopWindow();
-                                        }}
+                                                    returnToStoryPageWithoutInfo(); //will notify CurrentStanding
+
+                                                    closePopWindow(); //will notify pop-window-status
+                                                }}
 
                                     >{navObj["outWindow-Btn-confirmingText"]}</button>
 
@@ -2032,8 +2019,7 @@ return (
                                             ()=>{
                                                 document.getElementById("qWindowCancelBtn").style.filter = "brightness(100%)";
 
-                                                //close q-window
-                                                cancelPopWindow();
+                                                closePopWindow(); //will notify pop-window-status
                                                 
                                         }}
                                     >{navObj["outWindow-Btn-cancellingText"]}</button>
@@ -2104,7 +2090,7 @@ return (
                                         setOpenSettingsPage(false);
                                         closeSettingsPage();
                                             //TODO79
-                                            
+
                                     } else { // during game, settings-page not opened => regular quitting game
                                          //TODO79
                                         setQuitGameWindowOpen(true);
@@ -2115,7 +2101,7 @@ return (
                                 } else if (page === "Game Progress Strategy" 
                                         || onEditingSlPageTab === true
                                 ) {
-                                    returnToStoryPageWithoutInfo();
+                                    returnToStoryPageWithoutInfo(); //all-Update-CurrentStanding called
                                     //back button pressed
                                   
 

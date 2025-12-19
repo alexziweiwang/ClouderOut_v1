@@ -342,6 +342,8 @@ export default function NavigationSetter({
     const [qWindowConfirmBtnText, setQwindowConfirmBtnText] = useState(initialNavObj["outWindow-Btn-confirmingText"]);
     const [qWindowCancelBtnText, setQwindowCancelBtnText] = useState(initialNavObj["outWindow-Btn-cancellingText"]);
 
+    const [popWindowName, setPopWindowName] = useState(""); // "gameQuitAsking"   "slConfirming"
+
     const [progressWithSLinput, setProgressWithSLinput] = useState(initialNavObj["isWithSL"]);
 
     const [emuPlayerInfo, setEmuPlayerInfo] = useState(intialEmuPlayerProfile);
@@ -375,10 +377,30 @@ export default function NavigationSetter({
 
       //fetch from nav-previewer for current-page-name
       let tempPage= fetchPageName();
+      if (tempPage !== undefined && tempPage !== "") {
+        setCurrentSettingPage(tempPage);
+        let pWindowTemp = getInCurrentPopWindowName();
+
+
+        setPopWindowName(pWindowTemp);
+
+          if (pWindowTemp === "gameQuitAsking") {
+            // should show game-quit-pop-window-settings
+            //TODO
+  
+          } else if (pWindowTemp === "slConfirming") {
+              // should show sl-confim-pop-window-settings
+  
+  
+          } 
+
+        
+
+      }
       if (tempPage === "Quit Asking Window" || tempPage === "SL Asking Window") {
          //TODO79
       } else {
-        setCurrentSettingPage(tempPage);
+        
       }
 
       
@@ -5831,22 +5853,18 @@ export default function NavigationSetter({
     </>}
 
 {currentSettingPage === "During Game" && 
-<div 
-    style={{
-      "position": "absolute", 
-      "width": `${screenWidth}px`, 
-      "maxHeight": `${screenHeight}px`,
+<div>
 
-    }}
->
-
-    Please confirm back-button for during-game situation. <br></br>
-    Feel free to setup node UI in specific node-editors.
-
+    {popWindowName === "" && 
     <>
+    (Navigation displaying only.<br></br>
+    Setup node UI in specific node-editors.)
+    </>}
+
+    
     {/* if pop-window is "gameQuitAsking", //TODO adjust later */}
-    {false && 
-            <div style={{"height": `${screenHeight}px`}}>
+    {popWindowName === "gameQuitAsking" && 
+    <div>
             <label>Question Content</label>
             <div className="indentOne">
                 <textarea
@@ -6278,7 +6296,7 @@ export default function NavigationSetter({
           </div>
          
     }
-    </>
+   
 </div>}
 
  </div>
