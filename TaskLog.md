@@ -961,6 +961,7 @@
 
 - 2025-Dec-18: Design strategy of pop-window for nav-preview layer
 
+- 2025-Dec-19: Design pop-window-sl-confirm function and UI
 
 
 
