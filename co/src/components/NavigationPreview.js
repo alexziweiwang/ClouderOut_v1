@@ -360,6 +360,7 @@ const emptyStr = "";
 
     function slSlotPressed(i, p) { // the i-th item at p-th page
         //TODO99999999
+        setSlConfirmWindowOpen(true);
 
         console.log("pressed on slot - ", i, " at page", slCurrentSlotPage);
 
@@ -2033,12 +2034,14 @@ return (
 
 
 {/* sl-confirm-window */}
+{slConfirmWindowOpen === true && 
 <div
             style={{
                 "position": "absolute",             
                 "width": `${screenWidth}px`, 
                 "height": `${screenHeight}px`,
-                "backgroundColor": "rgba(189, 195, 199, 0.7)",
+                // "backgroundColor": "rgba(189, 195, 199, 0.7)",
+                "backgroundColor": "purple",
                 "borderRadius": "0px",
             }}
 > 
@@ -2052,6 +2055,7 @@ return (
                         "backgroundColor": navObj["slConfWindow-isShape"] === true ? `${navObj["slConfWindow-color"]}` : "pink",
                         "backgroundImage": navObj["slConfWindow-isShape"] === false ?
                                     `url('${visualMap[navObj["slConfWindow-picName"]]}')` : "",
+                                    
                         "position": "absolute",
                         "top": navObj["slConfWindow-verticalCentred"] === false ? `${navObj["slConfWindow-posY"]}px` : `${((screenHeight - navObj["slConfWindow-height"]) / 2)}px`,
                         "left": navObj["slConfWindow-horizontalCentred"] === false ? `${navObj["slConfWindow-posX"]}px` : `${((screenWidth - navObj["slConfWindow-width"]) / 2)}px`,
@@ -2063,9 +2067,7 @@ return (
                     }}
                 >
 
-                    //TODO
-
-                    {navObj["slConfWindow-askContent"]}
+                    Save to this slot?
 
                     {/* button-group */}
                     <div style={{
@@ -2130,13 +2132,13 @@ return (
                             >Cancel</button>
                     </div>
 
-                    //TODO
 
         </div>
 
 
 
 </div>
+}
 {/* sl-confirm-window */}
 
 
@@ -2148,7 +2150,12 @@ return (
 
             {/* back-button         back button */}
                 {/* //TODO5 */}
-                {((page !== "Main Page" && page !== "Game Progress Strategy" && page !== "Quit Asking Window" && quitGameWindowOpen === false && page !== "Shop Page") 
+                {((page !== "Main Page" && page !== "Game Progress Strategy" 
+                    // && page !== "Quit Asking Window" 
+                    && quitGameWindowOpen === false 
+                    && page !== "Shop Page"
+                
+                    ) 
                     || ((page === "Game Progress Strategy" ||  onEditingSlPageTab === true) && navObj["isWithSL"] === true)
                     || (page === "Shop Page" && shopWindowOpen === false && shopProductInfoWindowOpen === false) 
                     ) 

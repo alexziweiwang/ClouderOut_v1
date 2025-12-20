@@ -294,6 +294,24 @@ export const projectNavUiTemplate = {
     "outWindow-isShape": false,
     "outWindow-color": "pink",
     "outWindow-picName": "",
+
+    "slConfWindow-askContent": "Are you sure to quit the story?",
+    "slConfWindow-width": 200,
+    "slConfWindow-height": 90,
+    "slConfWindow-Btn-cornerRadius": 0,
+    "slConfWindow-Btn-color": "grey",
+    "slConfWindow-Btn-textColor": "#FFFFFF",
+    "slConfWindow-Btn-confirmingText": "confirm",
+    "slConfWindow-Btn-cancellingText": "cancel",
+    "slConfWindow-horizontalCentred": true,
+    "slConfWindow-verticalCentred": true,
+    "slConfWindow-windowCornerRadius": 0,
+    "slConfWindow-posX": 200,
+    "slConfWindow-posY": 230,
+    "slConfWindow-isShape": false,
+    "slConfWindow-color": "pink",
+    "slConfWindow-picName": "",
+    //slConfWindow-
 }
 
 export const gameUIDefaultButtonTemplate  = {
