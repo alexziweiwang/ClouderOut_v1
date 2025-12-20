@@ -72,13 +72,14 @@ const emptyStr = "";
     const [refGameDataList, setRefGameDataList] = useState(initialGameDataRefData);
 
     const [quitGameWindowOpen, setQuitGameWindowOpen] = useState(false);
-                            // 0.settingPage-playSpeed
-                            // 1.settingPage-bgmVol
-                            // 2.settingPage-seVol
+    const [slConfirmWindowOpen, setSlConfirmWindowOpen] = useState(false);           
+
     const [atSlPage, setAtSlPage] = useState(onEditingSlPageTab);
     
     const settingsPageEntryNames = ["settingPage-playSpeed", "settingPage-bgmVol", "settingPage-seVol"];
-
+                            // 0.settingPage-playSpeed
+                            // 1.settingPage-bgmVol
+                            // 2.settingPage-seVol
 
     const [gsPlaySpeed, setGsPlaySpeed] = useState(3); //TODO200 fetch current-value from player's profile
     const [gsBgmVol, setGsBgmVol] = useState(90); //TODO200 fetch current-value from player's profile
@@ -387,7 +388,8 @@ const emptyStr = "";
     function closePopWindow() {
             //close q-window
             setQuitGameWindowOpen(false);
-
+            setSlConfirmWindowOpen(false);
+            
             notifyEditorPopWindowOpened(""); //TODO79
     }
     
@@ -2028,7 +2030,114 @@ return (
 
     </div>}
 {/* q-window */}
-       
+
+
+{/* sl-confirm-window */}
+<div
+            style={{
+                "position": "absolute",             
+                "width": `${screenWidth}px`, 
+                "height": `${screenHeight}px`,
+                "backgroundColor": "rgba(189, 195, 199, 0.7)",
+                "borderRadius": "0px",
+            }}
+> 
+
+
+        <div
+                style={{
+                        "height": `${navObj["slConfWindow-height"]}px`,
+                        "width": `${navObj["slConfWindow-width"]}px`,
+
+                        "backgroundColor": navObj["slConfWindow-isShape"] === true ? `${navObj["slConfWindow-color"]}` : "pink",
+                        "backgroundImage": navObj["slConfWindow-isShape"] === false ?
+                                    `url('${visualMap[navObj["slConfWindow-picName"]]}')` : "",
+                        "position": "absolute",
+                        "top": navObj["slConfWindow-verticalCentred"] === false ? `${navObj["slConfWindow-posY"]}px` : `${((screenHeight - navObj["slConfWindow-height"]) / 2)}px`,
+                        "left": navObj["slConfWindow-horizontalCentred"] === false ? `${navObj["slConfWindow-posX"]}px` : `${((screenWidth - navObj["slConfWindow-width"]) / 2)}px`,
+                        "borderRadius": `${navObj["slConfWindow-windowCornerRadius"]}px`,
+
+                        "padding": "0px",
+                        
+                        "justifyContent": "center",                          
+                    }}
+                >
+
+                    //TODO
+
+                    {navObj["slConfWindow-askContent"]}
+
+                    {/* button-group */}
+                    <div style={{
+                        "display": "flex", 
+                        "position": "absolute",
+                        "left": "10%",
+                        "top": "50%"
+                        // TODO calculate later (According to window width, etc.)
+                    }}> 
+                            <button
+                                id="slConfWindowConfirmBtn"
+                                style={{
+                                    "color": navObj["slConfWindow-Btn-textColor"],
+                                    "backgroundColor": navObj["slConfWindow-Btn-color"],
+                                    "borderRadius": `${navObj["slConfWindow-Btn-cornerRadius"]}px`,
+
+                                    "width": "71px",
+                                    "marginRight": "10px"
+
+                                }}
+
+                                onMouseDown={
+                                    ()=>{
+                                        document.getElementById("slConfWindowConfirmBtn").style.filter = "brightness(120%)";
+                                    }
+                                }
+                                onMouseUp={
+                                    ()=>{
+                                        document.getElementById("slConfWindowConfirmBtn").style.filter = "brightness(100%)";
+
+                            {/* //TODO999999999 note: when overwriting a slot? */}
+
+
+                                    closePopWindow(); //will notify pop-window-status
+                                }}
+
+                            >Save</button>
+
+                            <button
+                                id="slConfWindowCancelBtn"
+                                style={{
+                                    "color": navObj["slConfWindow-Btn-textColor"],
+                                    "backgroundColor": navObj["slConfWindow-Btn-color"],
+                                    "borderRadius": `${navObj["slConfWindow-Btn-cornerRadius"]}px`,
+
+                                    "width": "71px",
+
+
+                                }}
+                                onMouseDown={
+                                    ()=>{
+                                        document.getElementById("slConfWindowCancelBtn").style.filter = "brightness(120%)";
+                                    }
+                                }
+                                onMouseUp={
+                                    ()=>{
+                                        document.getElementById("slConfWindowCancelBtn").style.filter = "brightness(100%)";
+
+                                        closePopWindow(); //will notify pop-window-status
+                                }}
+
+                            >Cancel</button>
+                    </div>
+
+                    //TODO
+
+        </div>
+
+
+
+</div>
+{/* sl-confirm-window */}
 
 
         {/* large frame for all elements */}
