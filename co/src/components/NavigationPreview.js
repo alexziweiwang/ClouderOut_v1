@@ -703,16 +703,16 @@ return (
         }
   
 
-
+  {/* at Game Progress Strategy */}
         {(navObj["isWithSL"] === true && 
-        (page === "Game Progress Strategy" || onEditingSlPageTab === true)
+(page === "Game Progress Strategy" || onEditingSlPageTab === true)
         
         ) && 
         <div style={{
             "width": `${screenWidth}px`, 
             "height": `${screenHeight}px`,
             "backgroundColor": "rgb(222, 222, 235)", 
-            "position": "relative",
+            "position": "absolute",
             "borderRadius": "0px",
         }}
         >
@@ -742,41 +742,74 @@ return (
                 }}>
                     {slSlotFrame.map((item, index) => {
                         let keyStr = "slSlot" + slCurrentSlotPage + "-" + index + (isEditing === true ? "__e" : "__ne");
-                        return (<div 
-                            className="navigationButton"
+                        return (
+                        <div 
+                            style={{"display": "flex"}}        
                             id={keyStr}
-                            key={keyStr}
-                            style={{
-                            "backgroundColor":  navObj["saveloadPage-isSlotShape"] === true ? `${navObj["saveloadPage-slotShadeName"]}` : "rgb(200, 122, 135)", 
-                            "backgroundImage": navObj["saveloadPage-isSlotShape"] === false ?
-                                `url('${visualMap[navObj["saveloadPage-slotPicName"]]}')` : "",
-                            "width": `${navObj["saveloadPage-slotWidth"]}px`,
-                            "height": `${navObj["saveloadPage-slotHeight"]}px`,
-                            "marginLeft": navObj["saveloadPage-slotListIsHorizontal"] === true ? `${navObj["saveloadPage-slotGap"]}px` : "0px",
-                            "marginBottom": navObj["saveloadPage-slotListIsHorizontal"] === false ? `${navObj["saveloadPage-slotGap"]}px` : "0px",
-                            "borderRadius": `${navObj["defaultCornerRadius"]}px`,
+                            key={keyStr}>
 
-                            "transition": "all 0.2s ease-out",
-                        }}
-              
-                            onMouseDown={
-                                ()=>{
-                                    document.getElementById(keyStr).style.filter = "brightness(120%)";
+                            <div 
+                                className="navigationButton"
+                        
+                                style={{
+                                    "backgroundColor":  navObj["saveloadPage-isSlotShape"] === true ? `${navObj["saveloadPage-slotShadeName"]}` : "rgb(200, 122, 135)", 
+                                    "backgroundImage": navObj["saveloadPage-isSlotShape"] === false ?
+                                        `url('${visualMap[navObj["saveloadPage-slotPicName"]]}')` : "",
+                                    "width": `${navObj["saveloadPage-slotWidth"]}px`,
+                                    "height": `${navObj["saveloadPage-slotHeight"]}px`,
+                                    "marginLeft": navObj["saveloadPage-slotListIsHorizontal"] === true ? `${navObj["saveloadPage-slotGap"]}px` : "0px",
+                                    "marginBottom": navObj["saveloadPage-slotListIsHorizontal"] === false ? `${navObj["saveloadPage-slotGap"]}px` : "0px",
+                                    "borderRadius": `${navObj["defaultCornerRadius"]}px`,
+
+                                    "transition": "all 0.2s ease-out",
+                                }}
+                
+                                onMouseDown={
+                                    ()=>{
+                                        //TODO only clickable when [reading] the slot?
+                                        document.getElementById(keyStr).style.filter = "brightness(120%)";
 
 
+                                    }
                                 }
-                            }
-                            onMouseUp={
-                                ()=>{
-                                    document.getElementById(keyStr).style.filter = "brightness(100%)";
+                                onMouseUp={
+                                    ()=>{
+
+                                        //TODO only clickable when [reading] the slot?
+
+                                        document.getElementById(keyStr).style.filter = "brightness(100%)";
+                            
+
+
+                                    }
+                                }
+                            >
+                                ?
+
+                            </div>
+
+                            {/* button only visible when writing */}
+                            {<div
+                                className="navigationButton"
+
+                                style={{
+                                
+                                    "backgroundColor": "grey",
+                                    "backgroundImage": navObj["saveloadPage-isSlotShape"] === false ?
+                                        `url('${visualMap[navObj["saveloadPage-slotPicName"]]}')` : "",
+                                    "marginLeft": "10px",
+                                    "marginBottom": navObj["saveloadPage-slotListIsHorizontal"] === false ? `${navObj["saveloadPage-slotGap"]}px` : "0px",
+                                    "borderRadius": `${navObj["defaultCornerRadius"]}px`,
+
+                                    "transition": "all 0.2s ease-out",
+                                }}
+                                onClick={()=>{
+                                    //TODO [writing] action of the slot
                                     let i = index+1;
                                     slSlotPressed(i, slCurrentSlotPage);
-
-
-                                }
-                            }
-                        >
-                            ?
+                                }}
+                            >Save
+                            </div>}
 
                         </div>);
                     })}
@@ -896,6 +929,115 @@ return (
      
         
         }
+{/* sl-confirm-window */}
+{slConfirmWindowOpen === true && 
+<div
+            style={{
+                "position": "absolute",             
+                "width": `${screenWidth}px`, 
+                "height": `${screenHeight}px`,
+                "backgroundColor": "rgba(189, 195, 199, 0.7)",
+                "borderRadius": "0px",
+            }}
+> 
+
+
+        <div
+                style={{
+                        "height": `${navObj["slConfWindow-height"]}px`,
+                        "width": `${navObj["slConfWindow-width"]}px`,
+
+                        "backgroundColor": navObj["slConfWindow-isShape"] === true ? `${navObj["slConfWindow-color"]}` : "pink",
+                        "backgroundImage": navObj["slConfWindow-isShape"] === false ?
+                                    `url('${visualMap[navObj["slConfWindow-picName"]]}')` : "",
+                                    
+                        "position": "absolute",
+                        "top": navObj["slConfWindow-verticalCentred"] === false ? `${navObj["slConfWindow-posY"]}px` : `${((screenHeight - navObj["slConfWindow-height"]) / 2)}px`,
+                        "left": navObj["slConfWindow-horizontalCentred"] === false ? `${navObj["slConfWindow-posX"]}px` : `${((screenWidth - navObj["slConfWindow-width"]) / 2)}px`,
+                        "borderRadius": `${navObj["slConfWindow-windowCornerRadius"]}px`,
+
+                        "padding": "0px",
+                        
+                        "justifyContent": "center",                          
+                    }}
+                >
+
+                    Save to this slot?
+
+                    {/* button-group */}
+                    <div style={{
+                        "display": "flex", 
+                        "position": "absolute",
+                        "left": "10%",
+                        "top": "50%"
+                        // TODO calculate later (According to window width, etc.)
+                    }}> 
+                            <button
+                                id="slConfWindowConfirmBtn"
+                                style={{
+                                    "color": navObj["slConfWindow-Btn-textColor"],
+                                    "backgroundColor": navObj["slConfWindow-Btn-color"],
+                                    "borderRadius": `${navObj["slConfWindow-Btn-cornerRadius"]}px`,
+
+                                    "width": "71px",
+                                    "marginRight": "10px"
+
+                                }}
+
+                                onMouseDown={
+                                    ()=>{
+                                        document.getElementById("slConfWindowConfirmBtn").style.filter = "brightness(120%)";
+                                    }
+                                }
+                                onMouseUp={
+                                    ()=>{
+                                        document.getElementById("slConfWindowConfirmBtn").style.filter = "brightness(100%)";
+
+                            {/* //TODO999999999 note: when overwriting a slot? */}
+
+
+                                    closePopWindow(); //will notify pop-window-status
+                                }}
+
+                            >Save</button>
+
+                            <button
+                                id="slConfWindowCancelBtn"
+                                style={{
+                                    "color": navObj["slConfWindow-Btn-textColor"],
+                                    "backgroundColor": navObj["slConfWindow-Btn-color"],
+                                    "borderRadius": `${navObj["slConfWindow-Btn-cornerRadius"]}px`,
+
+                                    "width": "71px",
+
+
+                                }}
+                                onMouseDown={
+                                    ()=>{
+                                        document.getElementById("slConfWindowCancelBtn").style.filter = "brightness(120%)";
+                                    }
+                                }
+                                onMouseUp={
+                                    ()=>{
+                                        document.getElementById("slConfWindowCancelBtn").style.filter = "brightness(100%)";
+
+                                        closePopWindow(); //will notify pop-window-status
+                                }}
+
+                            >Cancel</button>
+                    </div>
+
+
+        </div>
+
+
+
+</div>
+}
+{/* sl-confirm-window ends here */}
+
+
+
 
         {page === "Story Page" && 
         <div style={{
@@ -2033,115 +2175,6 @@ return (
 {/* q-window */}
 
 
-{/* sl-confirm-window */}
-{slConfirmWindowOpen === true && 
-<div
-            style={{
-                "position": "absolute",             
-                "width": `${screenWidth}px`, 
-                "height": `${screenHeight}px`,
-                // "backgroundColor": "rgba(189, 195, 199, 0.7)",
-                "backgroundColor": "purple",
-                "borderRadius": "0px",
-            }}
-> 
-
-
-        <div
-                style={{
-                        "height": `${navObj["slConfWindow-height"]}px`,
-                        "width": `${navObj["slConfWindow-width"]}px`,
-
-                        "backgroundColor": navObj["slConfWindow-isShape"] === true ? `${navObj["slConfWindow-color"]}` : "pink",
-                        "backgroundImage": navObj["slConfWindow-isShape"] === false ?
-                                    `url('${visualMap[navObj["slConfWindow-picName"]]}')` : "",
-                                    
-                        "position": "absolute",
-                        "top": navObj["slConfWindow-verticalCentred"] === false ? `${navObj["slConfWindow-posY"]}px` : `${((screenHeight - navObj["slConfWindow-height"]) / 2)}px`,
-                        "left": navObj["slConfWindow-horizontalCentred"] === false ? `${navObj["slConfWindow-posX"]}px` : `${((screenWidth - navObj["slConfWindow-width"]) / 2)}px`,
-                        "borderRadius": `${navObj["slConfWindow-windowCornerRadius"]}px`,
-
-                        "padding": "0px",
-                        
-                        "justifyContent": "center",                          
-                    }}
-                >
-
-                    Save to this slot?
-
-                    {/* button-group */}
-                    <div style={{
-                        "display": "flex", 
-                        "position": "absolute",
-                        "left": "10%",
-                        "top": "50%"
-                        // TODO calculate later (According to window width, etc.)
-                    }}> 
-                            <button
-                                id="slConfWindowConfirmBtn"
-                                style={{
-                                    "color": navObj["slConfWindow-Btn-textColor"],
-                                    "backgroundColor": navObj["slConfWindow-Btn-color"],
-                                    "borderRadius": `${navObj["slConfWindow-Btn-cornerRadius"]}px`,
-
-                                    "width": "71px",
-                                    "marginRight": "10px"
-
-                                }}
-
-                                onMouseDown={
-                                    ()=>{
-                                        document.getElementById("slConfWindowConfirmBtn").style.filter = "brightness(120%)";
-                                    }
-                                }
-                                onMouseUp={
-                                    ()=>{
-                                        document.getElementById("slConfWindowConfirmBtn").style.filter = "brightness(100%)";
-
-                            {/* //TODO999999999 note: when overwriting a slot? */}
-
-
-                                    closePopWindow(); //will notify pop-window-status
-                                }}
-
-                            >Save</button>
-
-                            <button
-                                id="slConfWindowCancelBtn"
-                                style={{
-                                    "color": navObj["slConfWindow-Btn-textColor"],
-                                    "backgroundColor": navObj["slConfWindow-Btn-color"],
-                                    "borderRadius": `${navObj["slConfWindow-Btn-cornerRadius"]}px`,
-
-                                    "width": "71px",
-
-
-                                }}
-                                onMouseDown={
-                                    ()=>{
-                                        document.getElementById("slConfWindowCancelBtn").style.filter = "brightness(120%)";
-                                    }
-                                }
-                                onMouseUp={
-                                    ()=>{
-                                        document.getElementById("slConfWindowCancelBtn").style.filter = "brightness(100%)";
-
-                                        closePopWindow(); //will notify pop-window-status
-                                }}
-
-                            >Cancel</button>
-                    </div>
-
-
-        </div>
-
-
-
-</div>
-}
-{/* sl-confirm-window */}
-
-
         {/* large frame for all elements */}
         <div style={{
             "borderRadius": "0px",
@@ -2156,7 +2189,7 @@ return (
                     && page !== "Shop Page"
                 
                     ) 
-                    || ((page === "Game Progress Strategy" ||  onEditingSlPageTab === true) && navObj["isWithSL"] === true)
+                    || ((page === "Game Progress Strategy" ||  onEditingSlPageTab === true) && navObj["isWithSL"] === true && slConfirmWindowOpen === false)
                     || (page === "Shop Page" && shopWindowOpen === false && shopProductInfoWindowOpen === false) 
                     ) 
 
