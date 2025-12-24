@@ -368,11 +368,20 @@ const emptyStr = "";
 
     function returnToStoryPageWithoutInfo() {
         let nextPageName = "Story Page";
+
+        if (navObj["isWithSL"] === true) {
+            nextPageName = "Main Page";
+        } 
+
         allUpdate_CurrentStanding(nextPageName, emptyStr, emptyStr, emptyStr, emptyStr);            
+    
+        
 
     }
 
     function allUpdate_CurrentStanding(nextPageName, nextChapKey, nextChapTitle, nextNodeKey, nextNodeType) {
+
+
         let currentStandingObjTemp = {
             "pageStatus": nextPageName,
             "chapterKey": nextChapKey,
@@ -380,9 +389,29 @@ const emptyStr = "";
             "nodeKey": nextNodeKey,
             "nodeType": nextNodeType
         };
+
+        if (nextPageName === "Story Page" && navObj["isWithSL"] === true) {
+            //should go to SL records instead of direct-arriving
+
+            let pageNameActual = "Game Progress Strategy";
+
+            currentStandingObjTemp = {
+                "pageStatus": pageNameActual,
+                "chapterKey": emptyStr,
+                "chapterTitle": emptyStr,
+                "nodeKey": emptyStr,
+                "nodeType": emptyStr
+            };
+
+            triggerUpdateCurrPageName(pageNameActual);
+
+        } else {
+            triggerUpdateCurrPageName(nextPageName);
+
+        }
+
         triggerUpdateCurrentStanding(currentStandingObjTemp);
 
-        triggerUpdateCurrPageName(nextPageName);
 
     }
 
@@ -2183,16 +2212,18 @@ return (
 
             {/* back-button         back button */}
                 {/* //TODO5 */}
-                {((page !== "Main Page" && page !== "Game Progress Strategy" 
-                    // && page !== "Quit Asking Window" 
-                    && quitGameWindowOpen === false 
-                    && page !== "Shop Page"
-                
-                    ) 
-                    || ((page === "Game Progress Strategy" ||  onEditingSlPageTab === true) && navObj["isWithSL"] === true && slConfirmWindowOpen === false)
+                {(
+                        (page !== "Main Page" 
+                        && page !== "Game Progress Strategy" 
+                        && page !== "Shop Page"
+                        && quitGameWindowOpen === false 
+                        && slConfirmWindowOpen === false
+                        
+                        ) 
+                    || ((page === "Game Progress Strategy" && onEditingSlPageTab === false) && slConfirmWindowOpen === false)
+                    
                     || (page === "Shop Page" && shopWindowOpen === false && shopProductInfoWindowOpen === false) 
                     ) 
-
 
                 && <div 
                     className="navigationButton"
