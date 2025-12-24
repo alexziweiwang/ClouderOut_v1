@@ -967,7 +967,7 @@
 - 2025-Dec-22: Design in-view-sl-data-flow
 
 - 2025-Dec-23: Design in-view-sl-data-flow
-
+- 2025-Dec-23: Design sl-emu option strategies
 
 
 
