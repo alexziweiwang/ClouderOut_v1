@@ -21,7 +21,7 @@
 /* Navigation - Pages: pagename
     "Main Page"
     "Game Progress Strategy" //= earlier "SL Records"
-    "Story Page"
+    "Chapter Selection Page"
     "Settings Page"
     "Player Profile Page"
     "Game Status Data Page"

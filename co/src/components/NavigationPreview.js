@@ -366,18 +366,89 @@ const emptyStr = "";
 
     }
 
-    function returnToStoryPageWithoutInfo() {
-        let nextPageName = "Story Page";
+    function backButtonPressed() {
+                    
+                                    console.log(" back button pressed ... page is ", page);
 
-        if (navObj["isWithSL"] === true) {
-            nextPageName = "Main Page";
-        } 
 
-        allUpdate_CurrentStanding(nextPageName, emptyStr, emptyStr, emptyStr, emptyStr);            
-    
-        
+        if (page === "During Game") { // game-core
+
+                                    console.log("\t setup-page bool is ", isOpenSettingsPage);
+
+            if (isOpenSettingsPage === true) { //important: during game, quitting settings-page only
+                setOpenSettingsPage(false);
+                closeSettingsPage();
+                //TODO79
+
+            } else { // during game, settings-page not opened => regular quitting game
+                //TODO79
+                setQuitGameWindowOpen(true);
+                notifyEditorPopWindowOpened("gameQuitAsking"); //TODO79
+
+            }
+
+        } else if (page === "Game Progress Strategy" ) {
+
+            quitGameCore(); 
+
+
+
+        } else {//back button pressed, not during game, not sl
+            returnToMainPage();
+        }
+
+
 
     }
+
+    function returnToMainPage() {
+        let nextPageName = "Main Page";
+        allUpdate_CurrentStanding(nextPageName, emptyStr, emptyStr, emptyStr, emptyStr);
+        triggerUpdateCurrPageName(nextPageName);
+
+
+    }
+
+    function quitGameCore() {
+
+        if (navObj["isWithSL"] === true) {
+            returnToMainPage();
+
+
+        } else {
+            let nextPageName = "Chapter Selection Page";
+
+            allUpdate_CurrentStanding(nextPageName, emptyStr, emptyStr, emptyStr, emptyStr);
+            triggerUpdateCurrPageName(nextPageName);
+
+        }
+
+
+
+    }
+
+    function slPageEnterRead() {
+        //TODO change to "sl-read" status
+
+        let pageNameActual = "Game Progress Strategy";
+        triggerUpdateCurrPageName(pageNameActual);
+
+
+        let currentStandingObjTemp = {
+            "pageStatus": pageNameActual,
+            "chapterKey": emptyStr,
+            "chapterTitle": emptyStr,
+            "nodeKey": emptyStr,
+            "nodeType": emptyStr
+        };
+        return currentStandingObjTemp;
+    }
+
+    function slPageEnterWrite() {
+
+        //TODO change to "sl-write" status
+        
+    }  
 
     function allUpdate_CurrentStanding(nextPageName, nextChapKey, nextChapTitle, nextNodeKey, nextNodeType) {
 
@@ -390,20 +461,11 @@ const emptyStr = "";
             "nodeType": nextNodeType
         };
 
-        if (nextPageName === "Story Page" && navObj["isWithSL"] === true) {
+        if (nextPageName === "Chapter Selection Page" && navObj["isWithSL"] === true) {
             //should go to SL records instead of direct-arriving
 
-            let pageNameActual = "Game Progress Strategy";
-
-            currentStandingObjTemp = {
-                "pageStatus": pageNameActual,
-                "chapterKey": emptyStr,
-                "chapterTitle": emptyStr,
-                "nodeKey": emptyStr,
-                "nodeType": emptyStr
-            };
-
-            triggerUpdateCurrPageName(pageNameActual);
+            currentStandingObjTemp = slPageEnterRead();
+         
 
         } else {
             triggerUpdateCurrPageName(nextPageName);
@@ -466,7 +528,7 @@ return (
                     let pageNaming = "";
                     if (index === 0) {
                         optionName = navObj["mainPage-story-name"];
-                        pageNaming = "Story Page";
+                        pageNaming = "Chapter Selection Page";
                     } else if (index === 1) {
                         optionName = navObj["mainPage-playerProfile-name"];             
                         pageNaming = "Player Profile Page";
@@ -580,7 +642,7 @@ return (
                 let optionName = "";
                 if (index === 0) {
                     optionName = navObj["mainPage-story-name"];
-                    pageNaming = "Story Page";
+                    pageNaming = "Chapter Selection Page";
                 } else if (index === 1) {
                     optionName = navObj["mainPage-playerProfile-name"];
                     pageNaming = "Player Profile Page";
@@ -769,6 +831,9 @@ return (
                     "display": navObj["saveloadPage-slotListIsHorizontal"] === true ? "flex" : "",
                     "borderRadius": "0px",
                 }}>
+
+                    ??
+
                     {slSlotFrame.map((item, index) => {
                         let keyStr = "slSlot" + slCurrentSlotPage + "-" + index + (isEditing === true ? "__e" : "__ne");
                         return (
@@ -1068,7 +1133,7 @@ return (
 
 
 
-        {page === "Story Page" && 
+        {page === "Chapter Selection Page" && 
         <div style={{
             "width": `${screenWidth}px`, 
             "height": `${screenHeight}px`,
@@ -1079,7 +1144,7 @@ return (
         >
 
 
-            {/* elements on story page */}
+            {/* elements on chap-slct page */}
             <div style={{
                 "width": `${screenWidth}px`, 
                 "height": `${screenHeight}px`,
@@ -1216,7 +1281,7 @@ return (
                                                 // currentStandingObjTemp["nodeType"] = "*chapterStart*"; //TODO if non-SL system
                                                 // triggerUpdateCurrentStanding(currentStandingObjTemp);
 
-                                        //chapter selection and then enter the game
+                                        //inside chapter-selection-page... going to enter the game
                                         allUpdate_CurrentStanding(nextPageName, chapterKey, item, nkTemp, ntTemp);
                                         //TODO231
 
@@ -2153,20 +2218,9 @@ return (
                                             ()=>{
                                                 document.getElementById("qWindowConfirmBtn").style.filter = "brightness(100%)";
                              
-                                                    
-                                                    //TODO230
-                                                                // t riggerUpdateCurrPageName(nextPageName);
-                                                                // currentStandingObjTemp["pageStatus"] = nextPageName;
-                                                                // currentStandingObjTemp["chapterKey"] = "";
-                                                                // currentStandingObjTemp["chapterTitle"] = "";
-                                                                // currentStandingObjTemp["nodeKey"] = "";
-                                                                // currentStandingObjTemp["nodeType"] = ""; 
-                                                                // triggerUpdateCurrentStanding(currentStandingObjTemp);
+            
 
-                                                                //  allUpdate_CurrentStanding(nextPageName, emptyStr, emptyStr, emptyStr, emptyStr);            
-                                                    //TODO231
-
-                                                    returnToStoryPageWithoutInfo(); //will notify CurrentStanding
+                                                    quitGameCore(); //will notify CurrentStanding
 
                                                     closePopWindow(); //will notify pop-window-status
                                                 }}
@@ -2256,53 +2310,7 @@ return (
                             ()=>{
                                 document.getElementById("backButton").style.filter = "brightness(100%)";
                                 
-                                let nextPageName = "Main Page";
-                    
-
-                                                                                //TODO201 display settings-page returning...
-                                                                                console.log(" back button pressed ... page is ", page);
-
-
-                                if (page === "During Game") {
-                                                                                console.log("\t setup-page bool is ", isOpenSettingsPage);
-
-                                    if (isOpenSettingsPage === true) { //important: during game, quitting settings-page only
-                                        setOpenSettingsPage(false);
-                                        closeSettingsPage();
-                                            //TODO79
-
-                                    } else { // during game, settings-page not opened => regular quitting game
-                                         //TODO79
-                                        setQuitGameWindowOpen(true);
-                                        notifyEditorPopWindowOpened("gameQuitAsking"); //TODO79
-                                        
-                                    }
-                                    
-                                } else if (page === "Game Progress Strategy" 
-                                        || onEditingSlPageTab === true
-                                ) {
-                                    returnToStoryPageWithoutInfo(); //all-Update-CurrentStanding called
-                                    //back button pressed
-                                  
-
-                                    //TODO230
-                                            // t riggerUpdateCurrPageName(nextPageName);
-                                            // currentStandingObjTemp["pageStatus"] = nextPageName;
-                                            // currentStandingObjTemp["chapterKey"] = "";
-                                            // currentStandingObjTemp["chapterTitle"] = "";
-                                            // currentStandingObjTemp["nodeKey"] = "";
-                                            // currentStandingObjTemp["nodeType"] = ""; 
-                                            // triggerUpdateCurrentStanding(currentStandingObjTemp);
-                                 
-                                            //   nextPageName = "Story Page";
-                                            //   allUpdate_CurrentStanding(nextPageName, emptyStr, emptyStr, emptyStr, emptyStr);
-                                    //TODO231
-  
-
-                                } else {//back button pressed, not during game, not sl
-                                    triggerUpdateCurrPageName(nextPageName); //go to "Main Page"
-                                }
-        
+                                backButtonPressed();
                                 
 
                                 

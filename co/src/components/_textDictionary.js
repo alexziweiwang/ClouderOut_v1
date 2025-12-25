@@ -21,7 +21,7 @@ const _textDictionary = {
         saveChangesText: "Save Changes",
         gameProgressStrategyText: "Game Progress Strategy",
         mainPageText: "Main Page",
-        storyPageText: "Story Page",
+        storyPageText: "Chapter Selection Page",
         settingsPageText: "Settings Page",
         playerProfilePageText: "Player Profile Page",
         gameStatusDataPageText: "Game Status Data Page",

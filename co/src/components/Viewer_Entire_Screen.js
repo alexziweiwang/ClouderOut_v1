@@ -102,7 +102,7 @@ export default function Viewer_Entire_Screen({
 //TODO: for emu, allow the author to setup entering status (game-data) for [each] try of view-testing
 //TODO: for emu, allow the author to "add" one or several "emu-player" for long-term testing (not resetting for every view testing)?
 
-    const storyPageNameLocal = "Story Page";
+    const storyPageNameLocal = "Chapter Selection Page";
     const mainPageNameLocal = "Main Page";
 
     const audioPlayerId = "audio-player";

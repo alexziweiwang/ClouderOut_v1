@@ -1024,7 +1024,7 @@ export default function NavigationSetter({
           <option value="" key="defaultEmptyPage">-- {selectAPageName} --</option>
           {/* <option value="Game Progress Strategy" key="Game Progress Strategy">{gameProgressStrategyText}</option> */}
           <option value="Main Page" key="Main Page">{mainPageText}</option>
-          <option value="Story Page" key="Story Page">{storyPageText}</option>
+          <option value="Chapter Selection Page" key="Chapter Selection Page">{storyPageText}</option>
           <option value="Settings Page" key="Settings Page">{settingsPageText}</option>
           <option value="Player Profile Page" key="Player Profile Page">{playerProfilePageText}</option>
           <option value="Game Status Data Page" key="Game Status Data Page">{gameStatusDataPageText}</option>
@@ -3107,7 +3107,7 @@ export default function NavigationSetter({
      </div>
     </div>}
 
-    {currentSettingPage === "Story Page" && <div>
+    {currentSettingPage === "Chapter Selection Page" && <div>
      <label>{storyPageText}:</label>
        <div className="indentOne">
        <label>{backGroundOfTheEntirePageText}:</label><br></br>
