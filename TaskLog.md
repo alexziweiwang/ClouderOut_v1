@@ -970,7 +970,7 @@
 - 2025-Dec-23: Design sl-emu option strategies
 
 - 2025-Dec-24: Design sl-emu-data flow management
-
+- 2025-Dec-24: Design sl-emu-panel display and control in emu-manager
 
 
 
