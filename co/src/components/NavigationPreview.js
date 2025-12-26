@@ -125,7 +125,8 @@ const emptyStr = "";
     const [tryPPValue, setTryPPValue] = useState(-1);
     const [tryPPPic, setTryPPPic] = useState(-1);
 
-    const [userClickCancelQwindow, setUserClickCancelQwindow] = useState(false);
+
+    const [isSlPageWriting, setIsSlPageWriting] = useState(false);
 
     
     function updateRenderCounter() {
@@ -358,7 +359,7 @@ const emptyStr = "";
         sendOutGameSettingScaleObjFromSubCompo(data);
     }
 
-    function slSlotPressed(i, p) { // the i-th item at p-th page
+    function slSlotWriteAttempt(i, p) { // the i-th item at p-th page
         //TODO99999999
         setSlConfirmWindowOpen(true);
 
@@ -427,8 +428,8 @@ const emptyStr = "";
 
     }
 
-    function slPageEnterRead() {
-        //TODO change to "sl-read" status
+    function slPageEnterReadMode() {
+        setIsSlPageWriting(false);
 
         let pageNameActual = "Game Progress Strategy";
         triggerUpdateCurrPageName(pageNameActual);
@@ -444,9 +445,8 @@ const emptyStr = "";
         return currentStandingObjTemp;
     }
 
-    function slPageEnterWrite() {
-
-        //TODO change to "sl-write" status
+    function slPageEnterWriteMode() {
+        setIsSlPageWriting(true);
         
     }  
 
@@ -464,7 +464,7 @@ const emptyStr = "";
         if (nextPageName === "Chapter Selection Page" && navObj["isWithSL"] === true) {
             //should go to SL records instead of direct-arriving
 
-            currentStandingObjTemp = slPageEnterRead();
+            currentStandingObjTemp = slPageEnterReadMode();
          
 
         } else {
@@ -807,6 +807,14 @@ return (
             "borderRadius": "0px",
         }}
         >
+
+            <button
+                onClick={()=>{
+                    //TODO999999999
+                    //TODO start from the first chapter with initial game-data
+
+                }}
+            >new game</button>
                             
 <div style={{
                 "width": `${screenWidth}px`, 
@@ -832,7 +840,7 @@ return (
                     "borderRadius": "0px",
                 }}>
 
-                    ??
+                    sl-mode: {isSlPageWriting === true ? "write" : "read"}
 
                     {slSlotFrame.map((item, index) => {
                         let keyStr = "slSlot" + slCurrentSlotPage + "-" + index + (isEditing === true ? "__e" : "__ne");
@@ -843,7 +851,7 @@ return (
                             key={keyStr}>
 
                             <div 
-                                className="navigationButton"
+                                className={isSlPageWriting === false ? "navigationButton" : ""}
                         
                                 style={{
                                     "backgroundColor":  navObj["saveloadPage-isSlotShape"] === true ? `${navObj["saveloadPage-slotShadeName"]}` : "rgb(200, 122, 135)", 
@@ -861,7 +869,11 @@ return (
                                 onMouseDown={
                                     ()=>{
                                         //TODO only clickable when [reading] the slot?
-                                        document.getElementById(keyStr).style.filter = "brightness(120%)";
+                                        if (isSlPageWriting === false) {
+                                            document.getElementById(keyStr).style.filter = "brightness(120%)";
+
+                                        }
+
 
 
                                     }
@@ -870,9 +882,9 @@ return (
                                     ()=>{
 
                                         //TODO only clickable when [reading] the slot?
-
-                                        document.getElementById(keyStr).style.filter = "brightness(100%)";
-                            
+                                        if (isSlPageWriting === false) {
+                                            document.getElementById(keyStr).style.filter = "brightness(100%)";
+                                        }
 
 
                                     }
@@ -883,7 +895,9 @@ return (
                             </div>
 
                             {/* button only visible when writing */}
-                            {<div
+                            {isSlPageWriting === true
+                            &&
+                                <div
                                 className="navigationButton"
 
                                 style={{
@@ -898,9 +912,9 @@ return (
                                     "transition": "all 0.2s ease-out",
                                 }}
                                 onClick={()=>{
-                                    //TODO [writing] action of the slot
-                                    let i = index+1;
-                                    slSlotPressed(i, slCurrentSlotPage);
+
+                                        let i = index+1;
+                                        slSlotWriteAttempt(i, slCurrentSlotPage);
                                 }}
                             >Save
                             </div>}
