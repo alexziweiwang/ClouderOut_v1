@@ -973,7 +973,7 @@
 - 2025-Dec-24: Design sl-emu-panel display and control in emu-manager
 
 - 2025-Dec-25: Design sl-emu-panel display and control in emu-manager
-
+- 2025-Dec-25: Design sl-emu-data flow management
 
 
 
