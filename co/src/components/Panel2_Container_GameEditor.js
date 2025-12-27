@@ -930,6 +930,10 @@ console.log("handle Cancel NodeTest Viewer:", projectMetaData["emu4sets"]["gdt1"
         return projectAllNodeContent;
     }
 
+    function passInNavObj() {
+        return projectMetaData["nav_ui_settings"];
+    }
+
     function passInProjecCurrNodeObject(nodeKeyTemp) {
         console.log("...passIn:ProjecCurrNodeObject", nodeKeyTemp, "...", projectAllNodeContent, "\n", projectAllNodeContent[nodeKeyTemp]);
 
@@ -2061,6 +2065,9 @@ return (
               getVisualMap={passInVisualMap}
               gameDataDesign={projectMetaData["game_data"]}
               emuDataSets={projectMetaData["emu4sets"]}
+
+              getNavObj={passInNavObj}
+              initNavObj={projectMetaData["nav_ui_settings"]}
 
               update1Gdt={updateUserConfigFromEmuManager1Gdt}
               update2Epp={updateUserConfigFromEmuManager2Epp}

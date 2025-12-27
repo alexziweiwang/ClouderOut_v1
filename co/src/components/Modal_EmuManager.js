@@ -33,6 +33,9 @@ export default function Modal_EmuManager({
     gameDataDesign,
     emuDataSets,
 
+    getNavObj,
+    initNavObj,
+
     update1Gdt, 
     update2Epp, 
     update3Epa, 
@@ -208,6 +211,10 @@ export default function Modal_EmuManager({
 
 
     const [cloudUpdated, setCloudUpdated] = useState(false);
+
+    const [navObj, setNavObj] = useState(initNavObj);
+    const [slCountSlotPerPage, setSlCountSlotPerPage] = useState(0);
+    const [slPageCount, setSlPageCount] = useState(0);
 
 
     //     {productKey: "pdt1",
@@ -538,6 +545,16 @@ export default function Modal_EmuManager({
 
         }
 
+
+        let navObjTemp = getNavObj();
+        if (navObjTemp !== navObj) {
+            //setNavObj(navObjTemp);
+
+            setSlCountSlotPerPage(navObjTemp["saveloadPage-slotPerPage"]); //how many slots per page
+            setSlPageCount(navObjTemp["saveloadPage-slotPageCount"]); //how many pages
+            //TODO9999999
+        }
+        
 
     });
 
@@ -1241,73 +1258,30 @@ return (<div className={modalStyleName}>
                                 "textAlign": "left"
                                 }}
                     >
-                        <div
-                            style={{
-
-                                "textAlign": "left"
-                            }}
-                        
-                        >
-                        SL mode: 
-                            <div className="indentOne">
-                                <input 
-                                    className="cursor_pointer"
-                                    type="radio"
-                                    value={ess4SlSlotsOption}
-                                    checked={!ess4SlSlotsOption}
-                                    onChange={()=>{
-                                        setEss4SlSlotsOption(false);
-                                    }}
-                                ></input>
-                                <label
-                                    className="cursor_pointer"
-                                    onClick={()=>{
-                                        setEss4SlSlotsOption(false);
-                                    }}
-                                >Chapter Experience (data resets after a chapter ends)</label>
-
-                                <br></br>
-
-                                <input 
-                                    className="cursor_pointer"
-                                    type="radio"
-                                    value={ess4SlSlotsOption}
-                                    checked={ess4SlSlotsOption}
-                                    onChange={()=>{
-                                        setEss4SlSlotsOption(true);
-                                    }}
-                                ></input>
-                                <label
-                                    className="cursor_pointer"
-                                    onClick={()=>{
-                                        setEss4SlSlotsOption(true);
-                                    }}
-                                >SL Slots (data does not reset in chapter transition, with SL slots)</label>
-                            </div> 
-
-
-                            <button>
-                                {updateText}
-                            </button>
-
-                        </div>
-                        
-                        
+          
+                        {/* row, col, each slot: title, set of game-data */}
 
                         <table>
                                 <thead>
                                     <tr>
-                                        <th></th>
+                                        <th>Index</th>
+                                        <th>Slot Num On Page</th>
+                                        <th>Page Num</th>
+                                        <th>Content</th>
                                     </tr>
 
                                 </thead>
 
                                 <tbody>
-                                    <tr>
+                                {/* use slCountSlotPerPage */}
+                                {/* use slPageCount */}
+
+
+                                    {<tr>
                                         <td>
 
                                         </td>
-                                    </tr>
+                                    </tr>}
 
                                 </tbody>
 
