@@ -975,6 +975,7 @@
 - 2025-Dec-25: Design sl-emu-panel display and control in emu-manager
 - 2025-Dec-25: Design sl-emu-data flow management
 
+- 2025-Dec-26: Design sl-emu-data flow management
 
 
 
