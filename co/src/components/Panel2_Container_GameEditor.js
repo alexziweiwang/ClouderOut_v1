@@ -2056,8 +2056,8 @@ return (
 
               projName={state.selected_project_name}   
               username={authEmailName}
-              backendOption={backendOption}
-              editorMode={state.mode}
+                                //   backendOption={backendOption}
+                                //   editorMode={state.mode}
 
               isForGameMaker={true}
 

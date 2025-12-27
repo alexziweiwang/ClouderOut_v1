@@ -1230,7 +1230,7 @@ export default function NavigationSetter({
                  
                       <br></br>
                       <label>Number of Pages: </label>
-                      <input type="number" min="1" max="15" step="1" value={currentProjectNav["saveloadPage-slotPageCount"]}
+                      <input type="number" min="1" max="10" step="1" value={currentProjectNav["saveloadPage-slotPageCount"]}
                         onChange={(event)=>{
                           let tempObj = currentProjectNav;
                           tempObj["saveloadPage-slotPageCount"] = event.target.value;

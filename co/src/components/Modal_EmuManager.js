@@ -25,8 +25,8 @@ export default function Modal_EmuManager({
 
     username,
 
-    backendOption,
-    editorMode,            //"offline_half"       "offline_full"        "online_cloud"  
+                            // backendOption,
+                            // editorMode,            //"offline_half"       "offline_full"        "online_cloud"  
 
     getVisualMap,
 
@@ -289,14 +289,6 @@ export default function Modal_EmuManager({
 //TODO20
     const [focusingPanelName, setFocusingPanelName] = useState("");
 
-    const namingMap = {
-        "1gdt": "1.Game Data to Test",
-        "2epp": "2.Emu Player Profile",
-        "3epa": "3.Emu Player Account",
-        "4ess": "4.Emu Save and Load",
-        "5shp": "5.Emu Shop Product Items",
-    }
-
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
 
     function update1Gdt_local(obj) {
@@ -409,24 +401,32 @@ export default function Modal_EmuManager({
 
     }
 
-    async function prepare4Ess_local(providedUname) {
-        // if local is not ready, from cloud
+    async function prepare4Ess_local() {
         
         let ess4Item = emuDataSets["ess4"];
-        let itemSize = Object.keys(ess4Item).length;
-        if (itemSize === 0) {
-            ess4Item = ess4Template;
+        let itemSize = 0;
+
+        if (ess4Item !== undefined) {
+            itemSize = Object.keys(ess4Item).length;
+        }
+
+        if (itemSize !== 50) {
+            let ess4TempObj = {};
+            let ess4Count = 1;
+            while (ess4Count <= 50) {
+              ess4TempObj[ess4Count] = {}; //prepare for 50 empty sl-slots
+      
+              ess4Count++;
+            }
+
+            ess4Item = ess4TempObj;
         }
 
 
-                // let objSize = Object.keys(tempObj4).length;
-                // if (objSize === 0 || tempObj4 === undefined || tempObj4 === null) {
-                //     return;
-                // }
-
-    //                                        console.log("... ess4 prep: ", tempObj4); //TODO test
-        // setEss4(tempObj4);
-        // update4Ess_local(tempObj4);
+                                console.log("... ess4 prep: ", ess4Item); //TODO test
+                                
+        setEss4(ess4Item);
+        update4Ess_local(ess4Item);
 
     }
 
@@ -536,7 +536,7 @@ export default function Modal_EmuManager({
             prepare2Epp_local();
             prepare3Epa_local();
 
-            // prepare4Ess_local();                                   //TODO later
+            prepare4Ess_local();  //testing and adjusting now                                //TODO later
             // prepare5Shp_local();
     
             fetchVisualListFromOuter();
@@ -548,7 +548,7 @@ export default function Modal_EmuManager({
 
         let navObjTemp = getNavObj();
         if (navObjTemp !== navObj) {
-            //setNavObj(navObjTemp);
+            setNavObj(navObjTemp);
 
             setSlCountSlotPerPage(navObjTemp["saveloadPage-slotPerPage"]); //how many slots per page
             setSlPageCount(navObjTemp["saveloadPage-slotPageCount"]); //how many pages

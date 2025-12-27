@@ -507,6 +507,14 @@ export const emptyConvNodeSinglePieceTemplate = {
 
 }
 
+const EmuDataNames = {
+    "1gdt": "1.Game Data to Test",
+    "2epp": "2.Emu Player Profile",
+    "3epa": "3.Emu Player Account",
+    "4ess": "4.Emu Save and Load",
+    "5shp": "5.Emu Shop Product Items",
+}
+
 export const gdt1Template = {
     "name": "",
     "default_value": "",
@@ -528,7 +536,7 @@ export const epa3Template = {
 }
 
 export const ess4Template = {
-
+    
 }
 
 export const shp5Template = {

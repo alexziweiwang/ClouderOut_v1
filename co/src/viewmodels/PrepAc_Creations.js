@@ -151,6 +151,15 @@ export function triggerCreatedNewNode_Prep_vm(nodeTypeTemp) {
         empty_emu_4sets["epa3"][currKey] = epa3Template[currKey];
       })
 
+      let ess4InnerObj = {};
+      let ess4Count = 1;
+      while (ess4Count <= 50) {
+        ess4InnerObj[ess4Count] = {}; //prepare for 50 empty sl-slots
+
+        ess4Count++;
+      }
+      empty_emu_4sets["ess4"] = ess4InnerObj; 
+
       let default_nav_ui_settings = {};
       Object.keys(projectNavUiTemplate).map((currKey) => {
         default_nav_ui_settings[currKey] = projectNavUiTemplate[currKey];
