@@ -212,9 +212,9 @@ export default function Modal_EmuManager({
 
     const [cloudUpdated, setCloudUpdated] = useState(false);
 
-    const [navObj, setNavObj] = useState(initNavObj);
-    const [slCountSlotPerPage, setSlCountSlotPerPage] = useState(0);
-    const [slPageCount, setSlPageCount] = useState(0);
+    const [navObj, setNavObj] = useState(-1);
+    const [slCountSlotPerPage, setSlCountSlotPerPage] = useState(-1);
+    const [slPageCount, setSlPageCount] = useState(-1);
 
 
     //     {productKey: "pdt1",
@@ -424,7 +424,7 @@ export default function Modal_EmuManager({
 
 
                                 console.log("... ess4 prep: ", ess4Item); //TODO test
-                                
+
         setEss4(ess4Item);
         update4Ess_local(ess4Item);
 
@@ -547,6 +547,7 @@ export default function Modal_EmuManager({
 
 
         let navObjTemp = getNavObj();
+        console.log("\tnav-obj = ", navObjTemp);
         if (navObjTemp !== navObj) {
             setNavObj(navObjTemp);
 
@@ -1264,24 +1265,56 @@ return (<div className={modalStyleName}>
                         <table>
                                 <thead>
                                     <tr>
-                                        <th>Index</th>
-                                        <th>Slot Num On Page</th>
-                                        <th>Page Num</th>
+                                        <th>Seq-Num</th>
+                                        <th>Page-Num</th>
+                                        <th>Slot-Num-On-Page</th>
                                         <th>Content</th>
                                     </tr>
 
                                 </thead>
 
                                 <tbody>
-                                {/* use slCountSlotPerPage */}
-                                {/* use slPageCount */}
+          
+                                {Object.keys(ess4).map((currKey) => {
 
 
-                                    {<tr>
-                                        <td>
+                                    let whichPage = "N/A";
+                                    let whichSlot = "N/A";
+                                    let indexNum = currKey - 1;
+                                    let pageGroupUnit = slCountSlotPerPage;
 
-                                        </td>
-                                    </tr>}
+                                    if (slCountSlotPerPage !== -1) {
+                                        whichPage = Math.floor(indexNum / pageGroupUnit) + 1;
+                                        whichSlot = indexNum % (pageGroupUnit) + 1;
+                                    }
+
+                                    let item = ess4[currKey];
+                                    if (Object.keys(item).length > 0) {
+                                        let gameDataSetCurr = item["gameDataSet"];
+                                        return (<tr>
+                                            <td>{currKey}</td>
+                                            <td>{whichPage}</td>
+                                            <td>{whichSlot}</td>
+                                            <td>TODO: use actual game-data-set</td>
+                                            
+                                        </tr>)
+
+                                    } else {
+                                        return (<tr>
+                                            <td>{currKey}</td>
+                                            <td>{whichPage}</td>
+                                            <td>{whichSlot}</td>
+                                            <td>(empty)</td>
+                                            
+                                        </tr>)
+                                    }
+
+
+
+                                })}
+
+
+
 
                                 </tbody>
 
