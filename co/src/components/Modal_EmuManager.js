@@ -1238,7 +1238,9 @@ return (<div className={modalStyleName}>
 
                 {/* "4.Emu SL slots" */}
                 {focusingPanelName === "4ess" && 
-                <div>
+                <div
+                
+                >
                         4   SL slots settings
 
                         <br></br>
@@ -1252,23 +1254,32 @@ return (<div className={modalStyleName}>
                     >
 
                         <div className="darkerGrey"
-                             style={{
+                            style={{
                                 "borderRadius": "0px",
             
                                 "width": "613px",
-                                "textAlign": "left"
-                                }}
+                                "textAlign": "left",
+                                "overflow": "scroll",
+                                "height": "500px"
+                            }}
                     >
           
                         {/* row, col, each slot: title, set of game-data */}
 
-                        <table>
+                        <table
+                            style={{
+                                "backgroundColor": "pink",
+                                
+                            }}
+                        >
                                 <thead>
                                     <tr>
-                                        <th>Seq-Num</th>
-                                        <th>Page-Num</th>
-                                        <th>Slot-Num-On-Page</th>
-                                        <th>Content</th>
+                                        <th style={{"width": "55px"}}>Seq-Num</th>
+                                        <th style={{"width": "55px"}}>Page-Num</th>
+                                        <th style={{"width": "55px"}}>Slot-Num</th>
+                                        <th style={{"width": "75px"}}>Title</th>
+                                        <th style={{"width": "95px"}}>Timestamp</th>
+                                        <th style={{"width": "200px"}}>Content</th>
                                     </tr>
 
                                 </thead>
@@ -1288,13 +1299,21 @@ return (<div className={modalStyleName}>
                                         whichSlot = indexNum % (pageGroupUnit) + 1;
                                     }
 
+
                                     let item = ess4[currKey];
+
+                                    let itemGameDataSet = {};
+                                    let itemTimestamp = item["tstp"] === undefined ? "": item["tstp"];
+
                                     if (Object.keys(item).length > 0) {
-                                        let gameDataSetCurr = item["gameDataSet"];
+                                        itemGameDataSet = item["gameDataSet"];
+
                                         return (<tr>
                                             <td>{currKey}</td>
                                             <td>{whichPage}</td>
                                             <td>{whichSlot}</td>
+                                            <td>TODO: title</td>
+                                            <td>{itemTimestamp}</td>
                                             <td>TODO: use actual game-data-set</td>
                                             
                                         </tr>)
@@ -1304,6 +1323,9 @@ return (<div className={modalStyleName}>
                                             <td>{currKey}</td>
                                             <td>{whichPage}</td>
                                             <td>{whichSlot}</td>
+                                            <td>TODO: title</td>
+
+                                            <td>{itemTimestamp}</td>
                                             <td>(empty)</td>
                                             
                                         </tr>)
