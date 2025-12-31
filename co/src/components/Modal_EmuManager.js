@@ -1301,9 +1301,11 @@ return (<div className={modalStyleName}>
 
 
                                     let item = ess4[currKey];
+                                    //"gameDataSet", "titleStr", "timestampStr"
 
                                     let itemGameDataSet = {};
-                                    let itemTimestamp = item["tstp"] === undefined ? "": item["tstp"];
+                                    let itemTimestamp = item["timestampStr"] === undefined ? "N/A": item["timestampStr"];
+                                    let itemTitleStr = item["titleStr"] === undefined ? "N/A":item["titleStr"]
 
                                     if (Object.keys(item).length > 0) {
                                         itemGameDataSet = item["gameDataSet"];
@@ -1312,7 +1314,7 @@ return (<div className={modalStyleName}>
                                             <td>{currKey}</td>
                                             <td>{whichPage}</td>
                                             <td>{whichSlot}</td>
-                                            <td>TODO: title</td>
+                                            <td>{itemTitleStr}</td>
                                             <td>{itemTimestamp}</td>
                                             <td>TODO: use actual game-data-set</td>
                                             
@@ -1323,8 +1325,7 @@ return (<div className={modalStyleName}>
                                             <td>{currKey}</td>
                                             <td>{whichPage}</td>
                                             <td>{whichSlot}</td>
-                                            <td>TODO: title</td>
-
+                                            <td>{itemTitleStr}</td>
                                             <td>{itemTimestamp}</td>
                                             <td>(empty)</td>
                                             
