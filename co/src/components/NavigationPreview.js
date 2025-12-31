@@ -6,8 +6,8 @@ export default function NavigationPreview ({
     onEditingSlPageTab,
 
     fetchNavObj, 
-    fetchSlObj,
 
+    
     fetchPageName, 
     triggerUpdateCurrPageName,
 
@@ -39,6 +39,8 @@ export default function NavigationPreview ({
 
     getOpenSettingSignal,
     closeSettingsPage,
+
+    triggerSlSlotPressed
 
 }) {
 //TODO game-data, player-profile, player-account-info fetching for testing ...
@@ -257,11 +259,7 @@ const emptyStr = "";
         }
 
 
-                                // let slObjTemp = fetchSlObj();
-                                // console.log("\t fetched sl-obj: ", slObjTemp);
-                                // if (slObjTemp !== undefined) {
-                                //     setSlEntireObj(slObjTemp);
-                                // }
+             
 
         // if (isEditing === false) {
         //     setEditingSignal(false);
@@ -359,12 +357,15 @@ const emptyStr = "";
         sendOutGameSettingScaleObjFromSubCompo(data);
     }
 
-    function slSlotWriteAttempt(i, p) { // the i-th item at p-th page
-        //TODO99999999
+    function slSlotWriteAttempt(seq, p) { // the i-th item at p-th page
+        
         setSlConfirmWindowOpen(true);
 
-        console.log("pressed on slot - ", i, " at page", slCurrentSlotPage);
+        console.log("pressed on slot - ", seq, " at page", slCurrentSlotPage);
 
+        let gameDataSetTemp = {};//TODO99999999
+        let timestampTemp = "";//TODO99999999
+        triggerSlSlotPressed(seq, gameDataSetTemp, timestampTemp);
     }
 
     function backButtonPressed() {
@@ -913,8 +914,8 @@ return (
                                 }}
                                 onClick={()=>{
 
-                                        let i = index+1;
-                                        slSlotWriteAttempt(i, slCurrentSlotPage);
+                                        let seq = index+1;
+                                        slSlotWriteAttempt(seq, slCurrentSlotPage);
                                 }}
                             >Save
                             </div>}

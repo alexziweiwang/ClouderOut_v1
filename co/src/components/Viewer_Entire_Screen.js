@@ -614,6 +614,11 @@ export default function Viewer_Entire_Screen({
             "chapterTitle": "",
        });
    }
+
+   function triggerSlSlotPressed(slotSeqNum, gameDataSetTemp, timestampTemp) {
+        //TODO change playing-emu-sl data
+
+   }
     
     
 
@@ -710,8 +715,8 @@ shop layer
                 }}>
                     <NavigationPreview 
                         fetchNavObj={passInNavObj} 
-                        fetchSlObj={passInSlObj}
                         onEditingSlPageTab={false}
+                        triggerSlSlotPressed={triggerSlSlotPressed}
                         
                         chapterData={initialChapterList} 
                         fetchPageName={passInNavPageName} 
