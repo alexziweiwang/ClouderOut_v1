@@ -6,7 +6,7 @@ import { configureGameProgress_vm } from '../viewmodels/CalcAc_ViewerEntireAc';
 import { initializeGameDataTracker_vm } from '../viewmodels/PrepAc_ViewerEntireAc';
 import { defaultScreenWidth, defaultScreenHeight, sizeLookupMap } from './_dataStructure_DefaultObjects';
 import { resourceRawListToUsableMap_vm } from '../viewmodels/PrepAc_Conversion';
-
+import { replaceSpaceWithUnderline } from '../viewmodels/PrepAc_Conversion';
 /* //TODO
   This component is a View/"screen" *holder* of game-play (both testing-entire and play-in-practice).
 
@@ -153,7 +153,7 @@ export default function Viewer_Entire_Screen({
                             //TODO later: "setPlayerProfile" for local-ver(curr-test only) if player did change in player-profile nav-page...
 
     const [playerAccount, setPlayerAccount] = useState({});
-    const [playerSLRecords, setPlayerSLRecords] = useState({}); //TODO changes to sl-page...
+    const [playerSLRecords, setPlayerSLRecords] = useState(initialPlayerSlRecords); //TODO changes to sl-page...
 
 
     //TODO implementation plan:
@@ -584,7 +584,7 @@ export default function Viewer_Entire_Screen({
        return allContent;
    }
 
-   function slOpChapListPageCheck(pageNameTemp) {
+   function slOpChapListPageCheck(pageNameTemp) { //TODO important
        if (pageNameTemp === storyPageNameLocal) {
             //todo check if sl-option is chapter-experience: if so, then reset gmdt-tracker
             if (slOption !== undefined) {
@@ -616,13 +616,9 @@ export default function Viewer_Entire_Screen({
    }
 
    function triggerSlSlotPressed(slotSeqNum) {
-        let titleString = "default-title";
-        let timestampString = "default-timestamp";
-        //TODO need: savingSlotSeq, current gdt, timestamp
-
-        //TODO: generate timestamp here
-        //TODO use timestamp and chapter as title?
-
+    
+        let timestampString = new Date();
+        let titleString = currentGameStatusProgress["chapterTitle"] + replaceSpaceWithUnderline(timestampString);
 
 
         let objTemp = {
@@ -632,10 +628,12 @@ export default function Viewer_Entire_Screen({
 
         };
 
-        console.log("writing to sl-slot... ", slotSeqNum, "\n obj = ", objTemp);
+                    console.log("writing to sl-slot... ", slotSeqNum, "\n obj = ", objTemp);
 
-        //TODO change playing-emu-sl data: <slotSeqNum, objTemp>
-        
+        //change playing-emu-sl data: <slotSeqNum, objTemp>
+        setPlayerSLRecords({...playerSLRecords, 
+            slotSeqNum: objTemp
+        })
 
 
 

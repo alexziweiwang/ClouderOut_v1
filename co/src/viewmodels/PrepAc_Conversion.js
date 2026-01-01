@@ -98,6 +98,10 @@ export function replaceSpaceForNames(strProvided) {
     return strProvided.replaceAll(" ", "-");
 }
 
+export function replaceSpaceWithUnderline(strProvided) {
+    return strProvided.replaceAll(" ", "_");
+}
+
 export function generateNodeLongKeyString_vm({chapterKey, nodeKey}) {
     return chapterKey + "_" + nodeKey;
 }

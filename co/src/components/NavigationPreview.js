@@ -1104,8 +1104,6 @@ return (
                                     ()=>{
                                         document.getElementById("slConfWindowConfirmBtn").style.filter = "brightness(100%)";
 
-                            {/* //TODO999999999 note: when overwriting a slot? */}
-
                                     slSlotWriteConfirmed();
                                     closePopWindow(); //will notify pop-window-status
                                 }}
