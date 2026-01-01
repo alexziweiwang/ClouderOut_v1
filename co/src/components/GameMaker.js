@@ -893,6 +893,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
 
   const emptyValue = {};
+  const emptyObj = {};
 
 
   function updateEmuPlayerProfile(data) {
@@ -1789,6 +1790,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
                   initialGameDataRefData={emptyValue}
                   initialPlayerProfileRefData={testPlayerProfile}
                   initialPlayerAccountRefData={testPlayerAccount}
+                  initialSlSlotsData={emptyObj}
 
                   fetchPlayerInfoSets={passInPlayerInfoSets}
                   fetchCurrentGameData={passInCurrentGameDataList}

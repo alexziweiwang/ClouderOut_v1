@@ -7,7 +7,6 @@ export default function NavigationPreview ({
 
     fetchNavObj, 
 
-    
     fetchPageName, 
     triggerUpdateCurrPageName,
 
@@ -22,6 +21,7 @@ export default function NavigationPreview ({
     initialGameDataRefData,
     initialPlayerProfileRefData,
     initialPlayerAccountRefData,
+    initialSlSlotsData,
 
     fetchPlayerInfoSets,
     fetchCurrentGameData,
@@ -76,7 +76,6 @@ const emptyStr = "";
     const [quitGameWindowOpen, setQuitGameWindowOpen] = useState(false);
     const [slConfirmWindowOpen, setSlConfirmWindowOpen] = useState(false);           
 
-    const [atSlPage, setAtSlPage] = useState(onEditingSlPageTab);
     
     const settingsPageEntryNames = ["settingPage-playSpeed", "settingPage-bgmVol", "settingPage-seVol"];
                             // 0.settingPage-playSpeed
@@ -120,7 +119,9 @@ const emptyStr = "";
 
 
     const [slSlotFrame, setSlSlotFrame] = useState(0);
-    const [slotPerPageLocal, setSlotPerPageLocal] = useState(0); //initialNavObj["saveloadPage-slotPerPage"]
+
+    const [savingSlotSeq, setSavingSlotSeq] = useState(0);
+
 
 
     const [tryPPText, setTryPPText] = useState(-1);
@@ -148,19 +149,6 @@ const emptyStr = "";
                                         // console.log("Navigation Preview -- "); //TODO test
                                                                  
 
-                        // let objTempFirst = fetchNavObj();
-
-                        //                         console.log("\tnav-preview first render... nav-obj = ", objTempFirst);
-
-                        // let i = 0;
-                        // let j = 0;
-
-                        // let currRow = [];
-                        // for (; objTempFirst !== undefined && j < objTempFirst["saveloadPage-slotPerPage"]; j++) {
-                        //     let num = j;
-                        //     currRow.push(num);
-                        // }
-                        // setSlSlotFrame(currRow);
 
             let initialChapterTitle = [];
             let initialChapterKeyMapping = {};
@@ -177,6 +165,10 @@ const emptyStr = "";
 
             setFirstTimeEnter(false);
 
+        }
+
+        if (slSlotFrame === 0) {
+            setSlSlotFrame(initialSlSlotsData);
         }
 
     //    console.log("nav-obj = ", navObj);
@@ -227,17 +219,6 @@ const emptyStr = "";
             setupPPTryingObjects(objTemp);                            //TODO too-many-rendering
            
 
-                                if (slotPerPageLocal != objTemp["saveloadPage-slotPerPage"]) {
-                                    setSlotPerPageLocal(objTemp["saveloadPage-slotPerPage"]);
-                                    let currRow = [];
-                                    let j = 0;
-                                    for (; j < objTemp["saveloadPage-slotPerPage"]; j++) {
-                                        let num = j;
-                                        currRow.push(num);
-                                    }
-                                    setSlSlotFrame(currRow);
-
-                               } 
 
 
                 if (objTemp["screenSize"] === "16:9(horizonal)"
@@ -357,15 +338,19 @@ const emptyStr = "";
         sendOutGameSettingScaleObjFromSubCompo(data);
     }
 
-    function slSlotWriteAttempt(seq, p) { // the i-th item at p-th page
+    function slSlotWriteAttempt(seq) { // the i-th item at p-th page
         
         setSlConfirmWindowOpen(true);
 
         console.log("pressed on slot - ", seq, " at page", slCurrentSlotPage);
 
-        let gameDataSetTemp = {};//TODO99999999
-        let timestampTemp = "";//TODO99999999
-        triggerSlSlotPressed(seq, gameDataSetTemp, timestampTemp);
+        setSavingSlotSeq(seq);
+
+    }
+
+    function slSlotWriteConfirmed() {
+        triggerSlSlotPressed(savingSlotSeq);
+
     }
 
     function backButtonPressed() {
@@ -815,7 +800,7 @@ return (
                     //TODO start from the first chapter with initial game-data
 
                 }}
-            >new game</button>
+            >start new</button>
                             
 <div style={{
                 "width": `${screenWidth}px`, 
@@ -843,7 +828,11 @@ return (
 
                     sl-mode: {isSlPageWriting === true ? "write" : "read"}
 
-                    {slSlotFrame.map((item, index) => {
+                    {/* {slSlotFrame.map((item, index) => { */}
+                    {Object.keys(slSlotFrame).map((currKey) => {
+                        let item = slSlotFrame[currKey];
+                        let seq = currKey;
+
                         let keyStr = "slSlot" + slCurrentSlotPage + "-" + index + (isEditing === true ? "__e" : "__ne");
                         return (
                         <div 
@@ -914,8 +903,7 @@ return (
                                 }}
                                 onClick={()=>{
 
-                                        let seq = index+1;
-                                        slSlotWriteAttempt(seq, slCurrentSlotPage);
+                                        slSlotWriteAttempt(seq);
                                 }}
                             >Save
                             </div>}
@@ -1104,7 +1092,7 @@ return (
 
                             {/* //TODO999999999 note: when overwriting a slot? */}
 
-
+                                    slSlotWriteConfirmed();
                                     closePopWindow(); //will notify pop-window-status
                                 }}
 

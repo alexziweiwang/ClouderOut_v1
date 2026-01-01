@@ -615,8 +615,18 @@ export default function Viewer_Entire_Screen({
        });
    }
 
-   function triggerSlSlotPressed(slotSeqNum, gameDataSetTemp, timestampTemp) {
+   function triggerSlSlotPressed(slotSeqNum) {
+
+        //TODO need: savingSlotSeq, current gdt, timestamp
+
+        //TODO: generate timestamp here
+        //TODO use timestamp and chapter as title?
+
+        console.log("writing to sl-slot... ", slotSeqNum);
+
+
         //TODO change playing-emu-sl data
+
 
    }
     
@@ -729,6 +739,7 @@ shop layer
                         initialGameDataRefData={playerGameDataTracker}
                         initialPlayerProfileRefData={playerProfile}
                         initialPlayerAccountRefData={playerAccount}
+                        initialSlSlotsData={initialPlayerSlRecords}
 
                         fetchPlayerInfoSets={passInPlayerInfoSets}
                         fetchCurrentGameData={passInViewerContainerGameDataTracker}
