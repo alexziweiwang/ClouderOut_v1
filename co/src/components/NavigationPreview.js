@@ -118,7 +118,7 @@ const emptyStr = "";
     const [slCurrentSlotPage, setSlCurrentSlotPage] = useState(1);
 
 
-    const [slSlotFrame, setSlSlotFrame] = useState(0);
+    const [slSlotDs, setSlSlotDs] = useState(0);
 
     const [savingSlotSeq, setSavingSlotSeq] = useState(0);
 
@@ -167,8 +167,8 @@ const emptyStr = "";
 
         }
 
-        if (slSlotFrame === 0) {
-            setSlSlotFrame(initialSlSlotsData);
+        if (slSlotDs === 0) {
+            setSlSlotDs(initialSlSlotsData);
         }
 
     //    console.log("nav-obj = ", navObj);
@@ -349,7 +349,19 @@ const emptyStr = "";
     }
 
     function slSlotWriteConfirmed() {
-        triggerSlSlotPressed(savingSlotSeq);
+        let slotObj = triggerSlSlotPressed(savingSlotSeq);
+
+        //TODO update sl-ds
+        let updateSlotObj = {
+            "gameDataSet": slotObj["gameDataSet"],
+            "titleStr": slotObj["titleStr"],
+            "timestampStr": slotObj["timestampStr"]
+        };
+
+        setSlSlotDs({...slSlotDs,
+            savingSlotSeq: updateSlotObj
+        });
+
 
     }
 
@@ -828,10 +840,12 @@ return (
 
                     sl-mode: {isSlPageWriting === true ? "write" : "read"}
 
-                    {/* {slSlotFrame.map((item, index) => { */}
-                    {Object.keys(slSlotFrame).map((currKey) => {
-                        let item = slSlotFrame[currKey];
+                    {/* {slSlotDs.map((item, index) => { */}
+                    {Object.keys(slSlotDs).map((currKey) => {
+                        let item = slSlotDs[currKey];
                         let seq = currKey;
+
+                        let slotTitle = item["titleStr"] === undefined ? `slot${seq}` : item["titleStr"];
 
                         let keyStr = "slSlot" + slCurrentSlotPage + "-" + index + (isEditing === true ? "__e" : "__ne");
                         return (
@@ -880,7 +894,7 @@ return (
                                     }
                                 }
                             >
-                                ?
+                                {slotTitle}
 
                             </div>
 

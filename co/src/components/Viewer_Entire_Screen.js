@@ -616,17 +616,31 @@ export default function Viewer_Entire_Screen({
    }
 
    function triggerSlSlotPressed(slotSeqNum) {
-
+        let titleString = "default-title";
+        let timestampString = "default-timestamp";
         //TODO need: savingSlotSeq, current gdt, timestamp
 
         //TODO: generate timestamp here
         //TODO use timestamp and chapter as title?
 
-        console.log("writing to sl-slot... ", slotSeqNum);
 
 
-        //TODO change playing-emu-sl data
+        let objTemp = {
+            "gameDataSet": playerGameDataTracker,
+            "titleStr": titleString,
+            "timestampStr": timestampString
 
+        };
+
+        console.log("writing to sl-slot... ", slotSeqNum, "\n obj = ", objTemp);
+
+        //TODO change playing-emu-sl data: <slotSeqNum, objTemp>
+        
+
+
+
+
+        return objTemp;
 
    }
     
