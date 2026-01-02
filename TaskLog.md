@@ -982,6 +982,8 @@
 
 - 2025-Dec-30: Design sl-emu-data flow management
 
+- 2026-Jan-02: Design sl-emu-panel display and control table strategies
+
 
 
 
