@@ -360,7 +360,7 @@ const emptyStr = "";
                 "gameDataSet": slotObj["gameDataSet"],
                 "titleStr": slotObj["titleStr"],
                 "timestampStr": slotObj["timestampStr"],
-                "stepStanding": slObj["stepStanding"]
+                "stepStanding": slotObj["stepStanding"]
             };
 
                                 // let tempSlDsObj = slSlotDs;
