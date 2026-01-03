@@ -1772,7 +1772,9 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
               <div style={{"marginTop": "15px", "marginLeft": "15px"}}>
                 <NavigationPreview
                   onEditingSlPageTab={showSlTab}
-                  triggerSlSlotPressed={notUsing}
+                  triggerSlSlotWritePressed={notUsing}
+                  triggerSlSlotReadPressed={notUsing}
+                  isInPrac={false}
 
 
                   fetchNavObj={passInNavObj} 

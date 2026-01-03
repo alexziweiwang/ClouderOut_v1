@@ -40,7 +40,9 @@ export default function NavigationPreview ({
     getOpenSettingSignal,
     closeSettingsPage,
 
-    triggerSlSlotPressed
+    triggerSlSlotWritePressed,
+    triggerSlSlotReadPressed,
+    isInPrac
 
 }) {
 //TODO game-data, player-profile, player-account-info fetching for testing ...
@@ -342,27 +344,42 @@ const emptyStr = "";
         
         setSlConfirmWindowOpen(true);
 
-        console.log("pressed on slot - ", seq, " at page", slCurrentSlotPage);
-
         setSavingSlotSeq(seq);
+
+
+                                console.log("pressed on slot - ", seq, " at page", slCurrentSlotPage);
 
     }
 
     function slSlotWriteConfirmed() {
-        let slotObj = triggerSlSlotPressed(savingSlotSeq);
+        if (isInPrac === true) {
+            let slotObj = triggerSlSlotWritePressed(savingSlotSeq);
 
-        //TODO update sl-ds
-        let updateSlotObj = {
-            "gameDataSet": slotObj["gameDataSet"],
-            "titleStr": slotObj["titleStr"],
-            "timestampStr": slotObj["timestampStr"]
-        };
+            //update local sl-ds
+            let receivedSlotObj = {
+                "gameDataSet": slotObj["gameDataSet"],
+                "titleStr": slotObj["titleStr"],
+                "timestampStr": slotObj["timestampStr"],
+                "stepStanding": slObj["stepStanding"]
+            };
 
-        setSlSlotDs({...slSlotDs,
-            savingSlotSeq: updateSlotObj
-        });
+                                // let tempSlDsObj = slSlotDs;
+                                // tempSlDsObj[savingSlotSeq] = receivedSlotObj;
+                                // setSlSlotDs(tempSlDsObj);
+                        
+            setSlSlotDs({...slSlotDs,
+                savingSlotSeq: receivedSlotObj
+            });
 
+        }
 
+    }
+
+    function slSlotReadConfirmed(seq) {
+        if (isInPrac === true) {
+            triggerSlSlotReadPressed(seq);
+             
+        }
     }
 
     function backButtonPressed() {
@@ -444,6 +461,7 @@ const emptyStr = "";
     }
 
     function slPageEnterWriteMode() {
+        //TODO99999999 this is triggered when player enter sl-page during game-play
         setIsSlPageWriting(true);
         
     }  
@@ -840,14 +858,13 @@ return (
 
                     sl-mode: {isSlPageWriting === true ? "write" : "read"}
 
-                    {/* {slSlotDs.map((item, index) => { */}
                     {Object.keys(slSlotDs).map((currKey) => {
                         let item = slSlotDs[currKey];
                         let seq = currKey;
 
-                        let slotTitle = item["titleStr"] === undefined ? `slot${seq}` : item["titleStr"];
+                        let slotTitle = item["titleStr"] === undefined ? `slot_${seq}` : item["titleStr"];
 
-                        let keyStr = "slSlot" + slCurrentSlotPage + "-" + index + (isEditing === true ? "__e" : "__ne");
+                        let keyStr = "slSlot" + slCurrentSlotPage + "-" + seq + (isEditing === true ? "__e" : "__ne");
                         return (
                         <div 
                             style={{"display": "flex"}}        
@@ -872,7 +889,7 @@ return (
                 
                                 onMouseDown={
                                     ()=>{
-                                        //TODO only clickable when [reading] the slot?
+                                        //only clickable when [reading] the slot
                                         if (isSlPageWriting === false) {
                                             document.getElementById(keyStr).style.filter = "brightness(120%)";
 
@@ -884,10 +901,10 @@ return (
                                 }
                                 onMouseUp={
                                     ()=>{
-
-                                        //TODO only clickable when [reading] the slot?
+                                        //only clickable when [reading] the slot
                                         if (isSlPageWriting === false) {
                                             document.getElementById(keyStr).style.filter = "brightness(100%)";
+                                            slSlotReadConfirmed(seq);
                                         }
 
 

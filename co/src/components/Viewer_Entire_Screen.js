@@ -615,7 +615,7 @@ export default function Viewer_Entire_Screen({
        });
    }
 
-   function triggerSlSlotPressed(slotSeqNum) {
+   function triggerSlSlotWritePressed(slotSeqNum) {
     
         let timestampString = new Date();
         let titleString = currentGameStatusProgress["chapterTitle"] + replaceSpaceWithUnderline(timestampString);
@@ -624,7 +624,8 @@ export default function Viewer_Entire_Screen({
         let objTemp = {
             "gameDataSet": playerGameDataTracker,
             "titleStr": titleString,
-            "timestampStr": timestampString
+            "timestampStr": timestampString,
+            "stepStanding": currentGameStatusProgress
 
         };
 
@@ -636,9 +637,18 @@ export default function Viewer_Entire_Screen({
         })
 
 
-
-
         return objTemp;
+
+   }
+
+   function triggerSlSlotReadPressed(slotSeqNum) {
+        let recordItem = playerSLRecords[slotSeqNum];
+
+        //TODO trigger to change standing from recordItem["stepStanding"]
+
+        //TODO change game-data-set from recordItem["gameDataSet"]
+
+
 
    }
     
@@ -738,8 +748,10 @@ shop layer
                     <NavigationPreview 
                         fetchNavObj={passInNavObj} 
                         onEditingSlPageTab={false}
-                        triggerSlSlotPressed={triggerSlSlotPressed}
-                        
+                        triggerSlSlotWritePressed={triggerSlSlotWritePressed}
+                        triggerSlSlotReadPressed={triggerSlSlotReadPressed}
+                        isInPrac={true}
+
                         chapterData={initialChapterList} 
                         fetchPageName={passInNavPageName} 
 
