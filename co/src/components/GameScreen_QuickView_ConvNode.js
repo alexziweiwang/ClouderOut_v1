@@ -34,7 +34,9 @@ export default function GameScreen_QuickView_ConvNode ({
 
     openSettingPage,
 
-    sendOutBgmSettings
+    sendOutBgmSettings,
+
+    triggerSLPageToSave
     
                                 //triggerClickOnGameScreen, getIsGameScreenClicked, //TODO test before removing these two
 
@@ -343,6 +345,11 @@ export default function GameScreen_QuickView_ConvNode ({
         //     }
         // }
 
+        function triggerSLPageToSave_local() {
+            //TODO9
+            triggerSLPageToSave();
+        }
+
     return (   
 <>      
 {(allPieceContent !== undefined && allPieceContent.length > 0) 
@@ -466,6 +473,7 @@ style={{
                     visualMap={visualMap}
                     audioMap={audioMap}
                     openSettingPageFunc={openSettingPage}
+                    triggerSLPageToSave={triggerSLPageToSave_local}
                 />
             
             }

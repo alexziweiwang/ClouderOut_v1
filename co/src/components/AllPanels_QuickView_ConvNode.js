@@ -312,6 +312,10 @@ export default function AllPanels_QuickView_ConvNode ({
         
     }
 
+    function triggerSLPageToSave_qv() {
+        alert("Save/Load Page pops when this is clicked.");
+    }
+
     return ( 
 <div>
         <div className="modalArea textNoSelect">
@@ -396,6 +400,8 @@ export default function AllPanels_QuickView_ConvNode ({
                         sendOutBgmSettings={notUsingThreeParam}
 
                         notifyNodeFinish={notUsing}
+
+                        triggerSLPageToSave={triggerSLPageToSave_qv}
                     />
                     
     

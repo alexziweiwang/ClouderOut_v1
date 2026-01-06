@@ -220,6 +220,8 @@ export default function ConvNodeUISetter({
     const [openTextFrameSection, setOpenTextFrameSection] = useState(false);
     const [openAutoLogSection, setOpenAutoLogSection] = useState(false);
     const [openLogPageSection, setOpenLogPageSection] = useState(false);
+//TODO9 saveload-setting
+
 
     const [cloudPlanOpen, setCloudPlanOpen] = useState(false);
 

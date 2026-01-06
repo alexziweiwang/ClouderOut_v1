@@ -652,6 +652,10 @@ export default function Viewer_Entire_Screen({
 
    }
     
+   function triggerSLPageToSave_ve() {
+       //TODO9 saveload pressed during game -- saving? reading?
+       
+   }
     
 
 
@@ -722,6 +726,8 @@ game-screen (specific node) layer */}
                                                 sendOutGdt={getGameDataTrackerFromSubCompo}
                                                 
                                                 returnToStoryPage={returnToStoryPage}
+
+                                                triggerSLPageToSave={triggerSLPageToSave_ve}
 
 
                                 />

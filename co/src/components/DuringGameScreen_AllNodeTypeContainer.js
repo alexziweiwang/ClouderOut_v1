@@ -53,7 +53,9 @@ export default function DuringGameScreen_AllNodeTypeContainer({
     sendOutBgmSettings,
     sendOutGdt,
 
-    returnToStoryPage
+    returnToStoryPage,
+
+    triggerSLPageToSave
 
 }) {
 
@@ -629,6 +631,11 @@ export default function DuringGameScreen_AllNodeTypeContainer({
         return;
     }
 
+    function triggerSLPageToSave_nctn() {
+        //TODO9 saveload
+        triggerSLPageToSave();
+    }
+
 
 
 
@@ -778,6 +785,7 @@ return (
                 openSettingPage={openSettingPage}
 
                 sendOutBgmSettings={sendOutBgmSettings}
+                triggerSLPageToSave={triggerSLPageToSave_nctn}
         />
             
        </>}
