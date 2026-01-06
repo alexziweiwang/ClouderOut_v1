@@ -988,7 +988,7 @@
 - 2026-Jan-05: Design strategies for ui-layer-interactions for in-game saving
 - 2026-Jan-05: Design sl-emu-panel display and control table strategies
 
-
+- 2026-Jan-06: Improve design of flow for ui-layer-interactions, in-game saving
 
 
 
