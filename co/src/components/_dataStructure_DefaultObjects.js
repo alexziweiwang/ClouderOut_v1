@@ -411,12 +411,19 @@ export const uiConvNavTemplate = {
     "buttonSetupFontName": "serif",
     "buttonSetupFontItalic": false,
 
-    "buttonSaveLoadIsTextFont": true,
-    "buttonSaveLoadPicName":  "",
-    "buttonSaveLoadShade": "#b3b3b3",
-    "buttonSaveLoadPicName": "",
-    "buttonSaveLoadFontName": "serif",
-    "buttonSaveLoadFontItalic": false,
+    "buttonSaveIsTextFont": true,
+    "buttonSavePicName":  "",
+    "buttonSaveShade": "#b3b3b3",
+    "buttonSavePicName": "",
+    "buttonSaveFontName": "serif",
+    "buttonSaveFontItalic": false,
+
+    "buttonLoadIsTextFont": true,
+    "buttonLoadPicName":  "",
+    "buttonLoadShade": "#b3b3b3",
+    "buttonLoadPicName": "",
+    "buttonLoadFontName": "serif",
+    "buttonLoadFontItalic": false,
 
     "textDisplaySpeed": 3,
 

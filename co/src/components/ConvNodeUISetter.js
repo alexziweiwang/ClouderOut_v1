@@ -218,7 +218,7 @@ export default function ConvNodeUISetter({
 
     const [openDefaultButtonSection, setOpenDefaultButtonSection] = useState(false);
     const [openTextFrameSection, setOpenTextFrameSection] = useState(false);
-    const [openAutoLogSection, setOpenAutoLogSection] = useState(false);
+    const [openMenuSection, setOpenMenuSection] = useState(false);
     const [openLogPageSection, setOpenLogPageSection] = useState(false);
 //TODO9 saveload-setting
 
@@ -239,14 +239,14 @@ export default function ConvNodeUISetter({
     function collapseAllSections() {
         setOpenDefaultButtonSection(false);
         setOpenTextFrameSection(false);
-        setOpenAutoLogSection(false);
+        setOpenMenuSection(false);
         setOpenLogPageSection(false);
     }
 
     function expandAllSections() {
         setOpenDefaultButtonSection(true);
         setOpenTextFrameSection(true);
-        setOpenAutoLogSection(true);
+        setOpenMenuSection(true);
         setOpenLogPageSection(true);        
     }
 
@@ -753,6 +753,19 @@ export default function ConvNodeUISetter({
     </div>
 
 {openTextFrameSection && <div>
+    <label>Default display Speed:</label>
+            <select value={convNav["textDisplaySpeed"]} 
+            onChange={(event)=>{                
+                setConvNav({...convNav, "textDisplaySpeed": event.target.value});   
+            }}>
+                <option key="textDisplaySpeed1" value="1">1</option>
+                <option key="textDisplaySpeed2" value="2">2</option>
+                <option key="textDisplaySpeed3" value="3">3</option>
+                <option key="textDisplaySpeed4" value="4">4</option>
+                <option key="textDisplaySpeed5" value="5">5</option>
+            </select>
+
+        <br></br><br></br>
     {widthText}: <input type="range" value={txtFrameObj["width"]} min="0" max={screenWidth} step="1" onChange={(event)=>{
             let posX = (screenWidth - txtFrameObj["width"]) / 2 - 1;
           
@@ -943,14 +956,15 @@ export default function ConvNodeUISetter({
     <br></br>
     <div className="gameUISetterSectionTitle"
         onClick={()=>{
-            setOpenAutoLogSection(!openAutoLogSection);
+            setOpenMenuSection(!openMenuSection);
         }}
     >
-        {!openAutoLogSection && <label style={{"cursor": "pointer"}}>Text Viewing Options (Auto & Log) ︾</label>}
-        {openAutoLogSection && <label style={{"cursor": "pointer"}}>Text Viewing Options (Auto & Log) ︽</label>}
+        {!openMenuSection && <label style={{"cursor": "pointer"}}>Menu Options (Auto & Log) ︾</label>}
+        {openMenuSection && <label style={{"cursor": "pointer"}}>Menu Options (Auto & Log) ︽</label>}
     </div>
+
     {/* TODO300 font size */}
-{openAutoLogSection && <div>
+{openMenuSection && <div>
     <div className="indentOne">
         <label>Auto Toggle:</label>
         <div className="indentOne">
@@ -1118,7 +1132,7 @@ export default function ConvNodeUISetter({
         <br></br><br></br>
         <label>Setup Page Button:</label>
         <div className="indentOne">
-        <label>Font Color: </label>
+            <label>Font Color: </label>
             <br></br><input type="color" value={convNav["buttonSetupShade"]} onChange={(event)=>{
                         setConvNav({...convNav,  "buttonSetupShade": event.target.value});
             }}></input>
@@ -1179,22 +1193,78 @@ export default function ConvNodeUISetter({
       
       
         <br></br><br></br>
-        <label>Default display Speed:</label>
+        <label>Save Button</label>
         <div className="indentOne">
-            <select value={convNav["textDisplaySpeed"]} 
-            onChange={(event)=>{                
-                setConvNav({...convNav, "textDisplaySpeed": event.target.value});   
+            <label>Font Color: </label>
+            <br></br><input type="color" 
+                value={convNav["buttonSaveShade"]} 
+                onChange={(event)=>{
+                        setConvNav({...convNav,  "buttonSaveShade": event.target.value});
+            }}></input>
+            <label>  </label>    
+            <input value={convNav["buttonSaveShade"]} onChange={(event)=>{
+                        setConvNav({...convNav,  "buttonSaveShade": event.target.value});
+            }}></input>
+            
+            <br></br>
+            <label>{basePictureText}: </label>
+            
+            <select value={convNav["buttonSavePicName"]} onChange={(event)=>{
+                setConvNav({...convNav, "buttonSavePicName": event.target.value});
+            }}>                    
+                    <option key="saveDefault" value="">-- {selectResourceText} --</option>
+                    {Object.keys(visualMap).map((currKey) => {
+                            let keyName = "saveButton" + currKey;
+                            if (currKey.length > 0) {
+                                return (
+                                    <option value={currKey} key={keyName}>{currKey}</option>
+                                );
+                            }
+                    })}
+                </select><button onClick={() => {openRm();}}>{manageResourceText}</button>
+            <br></br>
+            <input value={saveDisplayText}
+                        onChange={(event)=>{
+                            setSaveDisplayText(event.target.value);
+                        }}
+                    ></input>
+                    <button onClick={()=>{
+                        setConvNav({...convNav,  "buttonSaveDisplayText": saveDisplayText});     
+                    }}>{updateText}</button>
+            <br></br>
+            <label>Font:</label>
+            <select 
+                value={convNav["buttonSaveFontName"]}
+                onChange={(event)=>{
+                    setConvNav({...convNav,  "buttonSaveFontName": event.target.value});
             }}>
-                <option key="textDisplaySpeed1" value="1">1</option>
-                <option key="textDisplaySpeed2" value="2">2</option>
-                <option key="textDisplaySpeed3" value="3">3</option>
-                <option key="textDisplaySpeed4" value="4">4</option>
-                <option key="textDisplaySpeed5" value="5">5</option>
+                <option value="serif" key="saveBtn_serif">serif</option>
+                <option value="sans-serif" key="saveBtn_sans-serif">sans-serif</option>
+                <option value="cursive" key="saveBtn_cursive">cursive</option>
             </select>
+            <br></br>
+            <input type="checkbox" 
+                value={convNav["buttonSaveFontItalic"]} 
+                checked={convNav["buttonSaveFontItalic"]}
+                onChange={()=>{
+                    let val = convNav["buttonSaveFontItalic"];
+                    setConvNav({...convNav,  "buttonSaveFontItalic": !val});
+                }}
+            ></input><em>Italic</em>
+
+
+
         </div>
+      
 
         <br></br><br></br>
-   
+        <label>Load Button</label>
+
+
+
+        <br></br><br></br>
+
+                {/* group-settings for menu-options */}
         <div className="indentOne">
                 <label>{groupPositionXText}:</label>
                 <input type="range" max={screenWidth} min="0" step="1" value={convNav["groupX"]}
@@ -1255,7 +1325,7 @@ export default function ConvNodeUISetter({
         <br></br><div
             className="gameUISetterSectionCollapse"
             onClick={()=>{
-                    setOpenAutoLogSection(false);
+                    setOpenMenuSection(false);
                 }}
             >{collapseText} ︽</div>
 
