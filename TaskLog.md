@@ -991,6 +991,7 @@
 - 2026-Jan-06: Improve design of flow for ui-layer-interactions, in-game saving
 - 2026-Jan-06: Design sl-emu-panel display and control table strategies
 
+- 2026-Jan-07: Design sl-emu-panel display and control table strategies
 
 
 
