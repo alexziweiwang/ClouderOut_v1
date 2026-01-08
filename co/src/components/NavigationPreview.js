@@ -123,6 +123,7 @@ const emptyStr = "";
 
 
     const [slSlotDs, setSlSlotDs] = useState(0);
+    const [slSlotMatrix, setSlSlotMatrix] = useState([]);
 
     const [savingSlotSeq, setSavingSlotSeq] = useState(0);
 
@@ -172,6 +173,10 @@ const emptyStr = "";
         }
 
         if (slSlotDs === 0) {
+            console.log("setting up sl-slot-ds: ", initialSlSlotsData);
+
+            //TODO9999999999999 according to row and col, setup slSlotMatrix
+
             setSlSlotDs(initialSlSlotsData);
         }
 
@@ -367,7 +372,7 @@ const emptyStr = "";
 
                                 // let tempSlDsObj = slSlotDs;
                                 // tempSlDsObj[savingSlotSeq] = receivedSlotObj;
-                                // setSlSlotDs(tempSlDsObj);
+                                // s etSlSlotDs(tempSlDsObj);
                         
             setSlSlotDs({...slSlotDs,
                 savingSlotSeq: receivedSlotObj
@@ -1841,8 +1846,7 @@ slSheetOpen === true
 <div style={{
                 "width": `${screenWidth}px`, 
                 "height": `${screenHeight}px`,
-                // "backgroundColor":  navObj["saveloadPage-isBackgroundShape"] === true ? `${navObj["saveloadPage-bgShadeName"]}` : "rgb(222, 222, 235)", 
-                "backgroundColor": "green",
+                "backgroundColor":  navObj["saveloadPage-isBackgroundShape"] === true ? `${navObj["saveloadPage-bgShadeName"]}` : "rgb(222, 222, 235)", 
 
                 "backgroundImage": navObj["saveloadPage-isBackgroundShape"] === false 
                     ? `url('${visualMap[navObj["saveloadPage-bgPicName"]]}')` : "",
@@ -1872,7 +1876,7 @@ slSheetOpen === true
                     "borderRadius": "0px",
                 }}>
 
-                    sl-mode: {isSlPageWriting === true ? "write" : "read"}
+                    sl-mode: {isSlPageWriting === true ? "write" : "read"} {Object.keys(slSlotDs).length}
 
                     {Object.keys(slSlotDs).map((currKey) => {
                         let item = slSlotDs[currKey];
@@ -1922,6 +1926,8 @@ slSheetOpen === true
                                             document.getElementById(keyStr).style.filter = "brightness(100%)";
                                             slSlotReadConfirmed(seq);
                                         }
+
+                                        console.log("pressed on ...", slotTitle);
 
 
                                     }

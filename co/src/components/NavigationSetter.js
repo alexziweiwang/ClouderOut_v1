@@ -26,7 +26,9 @@ export default function NavigationSetter({
   getVisualMap,
   getAudioMap,
 
-  getGameDataDesign
+  getGameDataDesign,
+
+  getSlEditingFlag
 
 
 }) {
@@ -297,7 +299,7 @@ export default function NavigationSetter({
 
     const screenWidth = defaultScreenWidth; //TODO temp  
 
-    const [currentSettingPage, setCurrentSettingPage] = useState(onEditingSlPageTab === true? "Game Progress Strategy" : "Main Page");
+    const [currentSettingPage, setCurrentSettingPage] = useState("Main Page");
     const [openBackButtonSettingArea, setOpenBackButtonSettingArea] = useState(true);
 
     const [currentProjectNav, setCurrentProjectNav] = useState(initialNavObj);
@@ -357,6 +359,8 @@ export default function NavigationSetter({
     const [audioMap, setAudioMap] = useState({});
     const [visualMap, setVisualMap] = useState({}); 
 
+    const [isSlSheetEditing, setIsSlSheetEditing] = useState(false);
+
 
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
@@ -372,6 +376,11 @@ export default function NavigationSetter({
 
             setFirstTimeEnter(false);
       }
+
+      let slEditingTemp = getSlEditingFlag();
+      setIsSlSheetEditing(slEditingTemp);
+
+
       let UILang = getUILanguage();
       setLanguageCodeTextOption(UILang);
 
@@ -789,7 +798,10 @@ export default function NavigationSetter({
 
     }}>
         
-      {(currentSettingPage !== "Main Page" && currentSettingPage !== "" && currentSettingPage !== "Game Progress Strategy") && 
+      {(currentSettingPage !== "Main Page" && currentSettingPage !== "" 
+      //&& currentSettingPage !== "G ame Progress Strategy"
+      
+      ) && 
       <div style={{"backgroundColor": "grey", "padding": "7px"}}>
              
              {openBackButtonSettingArea && <div className="cursor_pointer textNoSelect"
@@ -954,7 +966,9 @@ export default function NavigationSetter({
      
      </div>}
 
-     {(currentSettingPage !== "Game Progress Strategy")
+     {
+       isSlSheetEditing === false
+    //  (currentSettingPage !== "G ame Progress Strategy")
       && <div>
       <button
         onClick={()=>{
@@ -1045,8 +1059,9 @@ export default function NavigationSetter({
 
 <div style={{"border": "1px dotted #FFFFFF", "padding": "2px", "paddingTop": "7px", "paddingLeft": "5px"}}>    
 
-    {(currentSettingPage === "Game Progress Strategy") 
-    
+    {
+    // (currentSettingPage === "Game Progress Strategy") 
+    isSlSheetEditing === true
     && <div>
      <label>Game Progress Strategy:</label>
        <div style={{"justifyContent": "center"}}>

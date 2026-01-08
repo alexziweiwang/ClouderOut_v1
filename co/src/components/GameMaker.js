@@ -1408,6 +1408,10 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
     handleEmuManagerOpen();
   }
 
+  function passInSlEditingFlag() {
+    return showSlTab;
+  }
+  
   function switchTabToSLPage() {
     
     notifyCurrPageName("Game Progress Strategy");
@@ -1764,6 +1768,8 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
                   getAudioMap={passInAudioMap}
 
                   getGameDataDesign={passInGameDataDesignList}
+
+                  getSlEditingFlag={passInSlEditingFlag}
           
                 />
               </div>
@@ -1792,7 +1798,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
                   initialGameDataRefData={emptyValue}
                   initialPlayerProfileRefData={testPlayerProfile}
                   initialPlayerAccountRefData={testPlayerAccount}
-                  initialSlSlotsData={emptyObj}
+                  initialSlSlotsData={testPlayerSLRecords}
 
                   fetchPlayerInfoSets={passInPlayerInfoSets}
                   fetchCurrentGameData={passInCurrentGameDataList}
@@ -1809,6 +1815,8 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
                   sendOutGameSettingScaleObjFromSubCompo={notUsing}
 
                   getOpenSettingSignal={passInFalseBool}
+
+
                   closeSettingsPage={notUsing} 
                   //TODO later: change to page-changing func for nav-setter
 

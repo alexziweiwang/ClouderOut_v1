@@ -195,7 +195,7 @@ import { generateProjectOutputName_vm } from './PrepAc_Conversion';
                     //projectNavUiTemplate
         Object.keys(projectNavUiTemplate).map((currKey) => {
             if (projNavSettingObj[currKey] === undefined) {
-                                            console.log("@@@invalid nav-ui-settings");
+                                            console.log("@@@invalid nav-ui-settings: ", projNavSettingObj, "\nunable to find: ", currKey);
                 return false;
             }
 
