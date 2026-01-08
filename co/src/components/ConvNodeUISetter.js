@@ -201,6 +201,8 @@ export default function ConvNodeUISetter({
     const [logDisplayText, setLogDisplayText] = useState("Log");
     const [logCloseDisplayText, setLogCloseDisplayText] = useState("Close");
     const [setupDisplayText, setSetupDisplayText] = useState("Settings");
+    const [saveDisplayText, setSaveDisplayText] = useState("Save");
+    const [loadDisplayText, setLoadDisplayText] = useState("Load");
 
     const defaultButtonTextSampleArr = ["Sample1: Default Button", "Sample2: Default Button, Longer Content", "Sample3: Another option..."];
 
@@ -1259,7 +1261,68 @@ export default function ConvNodeUISetter({
 
         <br></br><br></br>
         <label>Load Button</label>
+        <div className="indentOne">
+            <label>Font Color: </label>
+            <br></br><input type="color" 
+                value={convNav["buttonLoadShade"]} 
+                onChange={(event)=>{
+                        setConvNav({...convNav,  "buttonLoadShade": event.target.value});
+            }}></input>
+            <label>  </label>    
+            <input value={convNav["buttonLoadShade"]} onChange={(event)=>{
+                        setConvNav({...convNav,  "buttonLoadShade": event.target.value});
+            }}></input>
+            
+            <br></br>
+            <label>{basePictureText}: </label>
+            
+            <select value={convNav["buttonLoadPicName"]} onChange={(event)=>{
+                setConvNav({...convNav, "buttonLoadPicName": event.target.value});
+            }}>                    
+                    <option key="loadDefault" value="">-- {selectResourceText} --</option>
+                    {Object.keys(visualMap).map((currKey) => {
+                            let keyName = "loadButton" + currKey;
+                            if (currKey.length > 0) {
+                                return (
+                                    <option value={currKey} key={keyName}>{currKey}</option>
+                                );
+                            }
+                    })}
+                </select><button onClick={() => {openRm();}}>{manageResourceText}</button>
+            <br></br>
+            <input value={loadDisplayText}
+                        onChange={(event)=>{
+                            setSaveDisplayText(event.target.value);
+                        }}
+                    ></input>
+                    <button onClick={()=>{
+                        setConvNav({...convNav,  "buttonLoadDisplayText": loadDisplayText});     
+                    }}>{updateText}</button>
+            <br></br>
+            <label>Font:</label>
+            <select 
+                value={convNav["buttonLoadFontName"]}
+                onChange={(event)=>{
+                    setConvNav({...convNav,  "buttonLoadFontName": event.target.value});
+            }}>
+                <option value="serif" key="loadBtn_serif">serif</option>
+                <option value="sans-serif" key="loadBtn_sans-serif">sans-serif</option>
+                <option value="cursive" key="loadBtn_cursive">cursive</option>
+            </select>
+            <br></br>
+            <input type="checkbox" 
+                value={convNav["buttonLoadFontItalic"]} 
+                checked={convNav["buttonLoadFontItalic"]}
+                onChange={()=>{
+                    let val = convNav["buttonLoadFontItalic"];
+                    setConvNav({...convNav,  "buttonLoadFontItalic": !val});
+                }}
+            ></input><em>Italic</em>
 
+
+
+        </div>
+      
 
 
         <br></br><br></br>
