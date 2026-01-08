@@ -70,7 +70,7 @@ const emptyStr = "";
     const [viewingShopItemObj, setViewingShopItemObj] = useState("-");
 
     const [navObj, setNavObj] = useState({});
-    const [page, setPage] = useState(onEditingSlPageTab === true? "Game Progress Strategy" : "Main Page");
+    const [page, setPage] = useState( "Main Page");
     const [slEntireObj, setSlEntireObj] = useState(-1);
 
     const [refDataPlayerProfile, setRefDataPlayerProfile] = useState(initialPlayerProfileRefData);
@@ -79,7 +79,7 @@ const emptyStr = "";
 
     const [quitGameWindowOpen, setQuitGameWindowOpen] = useState(false);
     const [slConfirmWindowOpen, setSlConfirmWindowOpen] = useState(false);           
-
+    const [slSheetOpen, setSlSheetOpen] = useState(onEditingSlPageTab);
     
     const settingsPageEntryNames = ["settingPage-playSpeed", "settingPage-bgmVol", "settingPage-seVol"];
                             // 0.settingPage-playSpeed
@@ -388,32 +388,33 @@ const emptyStr = "";
                     
                                     console.log(" back button pressed ... page is ", page);
 
+        if (slSheetOpen === true) {
+            setSlSheetOpen(false);
 
-        if (page === "During Game") { // game-core
+        } else {
+            if (page === "During Game") { // game-core
 
-                                    console.log("\t setup-page bool is ", isOpenSettingsPage);
+                console.log("\t setup-page bool is ", isOpenSettingsPage);
 
-            if (isOpenSettingsPage === true) { //important: during game, quitting settings-page only
-                setOpenSettingsPage(false);
-                closeSettingsPage();
-                //TODO79
+                if (isOpenSettingsPage === true) { //important: during game, quitting settings-page only
+                    setOpenSettingsPage(false);
+                    closeSettingsPage();
+                    //TODO79
 
-            } else { // during game, settings-page not opened => regular quitting game
-                //TODO79
-                setQuitGameWindowOpen(true);
-                notifyEditorPopWindowOpened("gameQuitAsking"); //TODO79
+                } else { // during game, settings-page not opened => regular quitting game
+                    //TODO79
+                    setQuitGameWindowOpen(true);
+                    notifyEditorPopWindowOpened("gameQuitAsking"); //TODO79
 
-            }
+                }
 
-        } else if (page === "Game Progress Strategy" ) {
+                } else {//back button pressed, not during game, not sl
+                    returnToMainPage();
+                }
 
-            quitGameCore(); 
-
-
-
-        } else {//back button pressed, not during game, not sl
-            returnToMainPage();
         }
+
+
 
 
 
@@ -447,19 +448,8 @@ const emptyStr = "";
 
     function slPageEnterReadMode() {
         setIsSlPageWriting(false);
+        setSlSheetOpen(true);
 
-        let pageNameActual = "Game Progress Strategy";
-        triggerUpdateCurrPageName(pageNameActual);
-
-
-        let currentStandingObjTemp = {
-            "pageStatus": pageNameActual,
-            "chapterKey": emptyStr,
-            "chapterTitle": emptyStr,
-            "nodeKey": emptyStr,
-            "nodeType": emptyStr
-        };
-        return currentStandingObjTemp;
     }
 
     function slPageEnterWriteMode() {
@@ -482,7 +472,7 @@ const emptyStr = "";
         if (nextPageName === "Chapter Selection Page" && navObj["isWithSL"] === true) {
             //should go to SL records instead of direct-arriving
 
-            currentStandingObjTemp = slPageEnterReadMode();
+            slPageEnterReadMode();
          
 
         } else {
@@ -527,7 +517,7 @@ return (
                 "backgroundSize": `${screenWidth}px ${screenHeight}px`,
                 
              
-                "position": "relative", 
+                "position": "absolute", 
                 "borderRadius": "0px",
                 }}
             >
@@ -624,7 +614,7 @@ return (
                                             // currentStandingObjTemp["chapterTitle"] = "";
                                             // currentStandingObjTemp["nodeKey"] = "";
                                             // currentStandingObjTemp["nodeType"] = ""; 
-                                            // triggerUpdateCurrentStanding(currentStandingObjTemp);
+                                            // t riggerUpdateCurrentStanding(currentStandingObjTemp);
 
                                     //grouped-menu on main-page
                                     allUpdate_CurrentStanding(pageNaming, emptyStr, emptyStr, emptyStr, emptyStr);        
@@ -788,7 +778,7 @@ return (
                                                 // currentStandingObjTemp["chapterTitle"] = "";
                                                 // currentStandingObjTemp["nodeKey"] = "";
                                                 // currentStandingObjTemp["nodeType"] = ""; 
-                                                // triggerUpdateCurrentStanding(currentStandingObjTemp);
+                                                // t riggerUpdateCurrentStanding(currentStandingObjTemp);
 
                                                                                     //menu on main-page
                                     //customised-menu on main-page
@@ -832,7 +822,7 @@ return (
                     ? `url('${visualMap[navObj["storyPage-bgPicName"]]}')` : "",
                 "backgroundSize": `${screenWidth}px ${screenHeight}px`,
                 
-                "position": "relative", 
+                "position": "absolute", 
                 
                 "borderRadius": "0px",
                 "borderRadius": "0px",
@@ -888,15 +878,15 @@ return (
                         onMouseUp={
                             ()=>{
                                 document.getElementById("loadGameEntry").style.filter = "brightness(100%)";
-                                triggerUpdateCurrPageName("Game Progress Strategy");
+                                triggerUpdateCurrPageName("G ame Progress Strategy");
 
                                 let currentStandingObjTemp = {};
-                                currentStandingObjTemp["pageStatus"] = "Game Progress Strategy";
+                                currentStandingObjTemp["pageStatus"] = "G ame Progress Strategy";
                                 currentStandingObjTemp["chapterKey"] = "";
                                 currentStandingObjTemp["chapterTitle"] = "";
                                 currentStandingObjTemp["nodeKey"] = "";
                                 currentStandingObjTemp["nodeType"] = ""; 
-                                triggerUpdateCurrentStanding(currentStandingObjTemp);
+                                t riggerUpdateCurrentStanding(currentStandingObjTemp);
                             }
                         }
                 >
@@ -958,7 +948,7 @@ return (
                                                 // currentStandingObjTemp["chapterTitle"] = item;
                                                 // currentStandingObjTemp["nodeKey"] = "chapterStart";  
                                                 // currentStandingObjTemp["nodeType"] = "*chapterStart*"; //TODO if non-SL system
-                                                // triggerUpdateCurrentStanding(currentStandingObjTemp);
+                                                // t riggerUpdateCurrentStanding(currentStandingObjTemp);
 
                                         //inside chapter-selection-page... going to enter the game
                                         allUpdate_CurrentStanding(nextPageName, chapterKey, item, nkTemp, ntTemp);
@@ -1830,9 +1820,12 @@ return (
 
 
  {/* at Game Progress Strategy */}
-{/* TODO: "Game Progress Strategy" change to pop-window?  */}
+{/* TODO: " Game Progress Strategy" change to pop-window?  */}
 {(navObj["isWithSL"] === true && 
-(page === "Game Progress Strategy" || onEditingSlPageTab === true)
+(
+                        // page === "G ame Progress Strategy" 
+slSheetOpen === true
+|| onEditingSlPageTab === true)
         
         ) && 
         <div style={{
@@ -1844,6 +1837,24 @@ return (
         }}
         >
 
+            
+<div style={{
+                "width": `${screenWidth}px`, 
+                "height": `${screenHeight}px`,
+                // "backgroundColor":  navObj["saveloadPage-isBackgroundShape"] === true ? `${navObj["saveloadPage-bgShadeName"]}` : "rgb(222, 222, 235)", 
+                "backgroundColor": "green",
+
+                "backgroundImage": navObj["saveloadPage-isBackgroundShape"] === false 
+                    ? `url('${visualMap[navObj["saveloadPage-bgPicName"]]}')` : "",
+                "backgroundSize": `${screenWidth}px ${screenHeight}px`,
+                
+
+                "position": "absolute",
+                "userSelect": "none",
+            
+                }}
+>
+
             <button
                 onClick={()=>{
                     //TODO999999999
@@ -1851,27 +1862,12 @@ return (
 
                 }}
             >start new</button>
-                            
-<div style={{
-                "width": `${screenWidth}px`, 
-                "height": `${screenHeight}px`,
-                "backgroundColor":  navObj["saveloadPage-isBackgroundShape"] === true ? `${navObj["saveloadPage-bgShadeName"]}` : "rgb(222, 222, 235)", 
-                "backgroundImage": navObj["saveloadPage-isBackgroundShape"] === false 
-                    ? `url('${visualMap[navObj["saveloadPage-bgPicName"]]}')` : "",
-                "backgroundSize": `${screenWidth}px ${screenHeight}px`,
                 
-
-                "position": "relative", 
-                "userSelect": "none",
-            
-                }}
->
-
     
                 <div style={{
                     "left": `${navObj["saveloadPage-groupPosX"]}px`,
                     "top": `${navObj["saveloadPage-groupPosY"]}px`,
-                    "position": "relative",
+                    "position": "absolute",
                     "display": navObj["saveloadPage-slotListIsHorizontal"] === true ? "flex" : "",
                     "borderRadius": "0px",
                 }}>
@@ -2304,13 +2300,13 @@ return (
                 {/* //TODO5 */}
                 {(
                         (page !== "Main Page" 
-                        && page !== "Game Progress Strategy" 
+                                 // && page !== "G ame Progress Strategy" 
                         && page !== "Shop Page"
                         && quitGameWindowOpen === false 
                         && slConfirmWindowOpen === false
                         
                         ) 
-                    || ((page === "Game Progress Strategy" && onEditingSlPageTab === false) && slConfirmWindowOpen === false)
+                    || ((slSheetOpen === true && onEditingSlPageTab === false) && slConfirmWindowOpen === false)
                     
                     || (page === "Shop Page" && shopWindowOpen === false && shopProductInfoWindowOpen === false) 
                     ) 
