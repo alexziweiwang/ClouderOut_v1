@@ -652,9 +652,26 @@ export default function Viewer_Entire_Screen({
 
    }
     
-   function triggerSLPageToSave_ve() {
-       //TODO9 saveload pressed during game -- saving? reading?
-       
+   function triggerSLPageToSave_ve(slModeFlag) {
+       // inside during-game-phase, need to pop sl-page window?
+
+        //TODO change nav-preview first: from page-change to pop-window op
+        //TODO then... open or close this window, with op to navigate if load... or save all info if save...
+
+        
+        if (slModeFlag === "write") {
+            //enter save-page of sl
+            //TODO
+
+        } else if (slModeFlag === "read") {
+            //enter load-page of sl
+            //TODO
+
+        } else {
+            //TODO not doing sl-operations...
+
+        }
+
    }
     
 

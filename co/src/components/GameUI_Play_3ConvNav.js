@@ -5,7 +5,9 @@ import { useState, useEffect } from 'react';
 export default function GameUI_Play_3ConvNav({
     getCurrentPieceNum, triggerAutoMode, triggerLogPageOpen,
     screenWidth, screenHeight, uiConvNav, visualMap, audioMap,
-    openSettingPageFunc
+    openSettingPageFunc,
+
+    triggerSLPageToSave
 }) {
 
 

@@ -345,9 +345,9 @@ export default function GameScreen_QuickView_ConvNode ({
         //     }
         // }
 
-        function triggerSLPageToSave_local() {
+        function triggerSLPageToSave_local(slModeFlag) {
             //TODO9
-            triggerSLPageToSave();
+            triggerSLPageToSave(slModeFlag);
         }
 
     return (   

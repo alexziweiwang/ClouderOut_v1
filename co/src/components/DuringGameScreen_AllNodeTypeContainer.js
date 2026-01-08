@@ -631,9 +631,9 @@ export default function DuringGameScreen_AllNodeTypeContainer({
         return;
     }
 
-    function triggerSLPageToSave_nctn() {
+    function triggerSLPageToSave_nctn(slModeFlag) {
         //TODO9 saveload
-        triggerSLPageToSave();
+        triggerSLPageToSave(slModeFlag);
     }
 
 
