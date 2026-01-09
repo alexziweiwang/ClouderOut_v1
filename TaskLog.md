@@ -993,8 +993,7 @@
 
 - 2026-Jan-07: Design sl-emu-panel display and control table strategies
 
-
-
+- 2026-Jan-08: Design sl-window data-structure arrangement plan
 
 
 
