@@ -172,13 +172,7 @@ const emptyStr = "";
 
         }
 
-        if (slSlotDs === 0) {
-            console.log("setting up sl-slot-ds: ", initialSlSlotsData);
-
-            //TODO9999999999999 according to row and col, setup slSlotMatrix
-
-            setSlSlotDs(initialSlSlotsData);
-        }
+ 
 
     //    console.log("nav-obj = ", navObj);
 
@@ -246,7 +240,28 @@ const emptyStr = "";
                 console.log("navObj changed!", objTemp);
 
 
+
+                if (slSlotDs === 0) {
+                    console.log("setting up sl-slot-ds: ", initialSlSlotsData);
+                    //use objTemp as the nav-obj
+                    //TODO9999999999999 according to row and col, setup slSlotMatrix
+                    generateSlMatrixFromListMap(objTemp, setSlSlotMatrix, initialSlSlotsData)
+                    setSlSlotDs(initialSlSlotsData);
+                }
+
+
+        } else {
+            if (slSlotDs === 0) {
+                console.log("setting up sl-slot-ds: ", slSlotDs);
+                //use navObj as the nav-obj
+                //TODO9999999999999 according to row and col, setup slSlotMatrix
+                generateSlMatrixFromListMap(navObj, setSlSlotMatrix, initialSlSlotsData)
+
+                setSlSlotDs(slSlotDs);
+            }
         }
+
+
 
 
              
@@ -498,6 +513,35 @@ const emptyStr = "";
             notifyEditorPopWindowOpened(""); //TODO79
     }
     
+    function generateSlMatrixFromListMap(navObjProvided, setMatrixFunc, slSlotsDataProvided) {
+        let pageAmount = navObjProvided["saveloadPage-slotPageCount"];
+        let slotPerPage = navObjProvided["saveloadPage-slotPerPage"];
+        
+        let matrix = [];
+
+        let i = 0;
+        let j = 0;
+        for(i = 0; i < pageAmount; i++) {
+            let currPageArr = [];
+            
+            //within one page
+            for(j = 0; j < slotPerPage; j++) {
+                //for each slot
+
+                let numKey = i * slotPerPage + j + 1;
+                                console.log("put slot-num [", numKey, "] at i[", i, "], j[", j ,"]");
+                
+                currPageArr.push(slSlotsDataProvided[numKey]);
+            }
+            matrix.push(currPageArr);
+        }
+
+
+       setMatrixFunc(matrix);
+
+                                console.log("!!! generated matrix = ", matrix);
+
+    }
 
 return (
     <>
