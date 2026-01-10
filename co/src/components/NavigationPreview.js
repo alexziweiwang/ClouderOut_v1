@@ -242,19 +242,18 @@ const emptyStr = "";
 
 
                 if (slSlotDs === 0) {
-                    console.log("setting up sl-slot-ds: ", initialSlSlotsData);
-                    //use objTemp as the nav-obj
-                    //TODO9999999999999 according to row and col, setup slSlotMatrix
+                                console.log("setting up sl-slot-ds: ", initialSlSlotsData);
+                    
                     generateSlMatrixFromListMap(objTemp, setSlSlotMatrix, initialSlSlotsData)
+                    
                     setSlSlotDs(initialSlSlotsData);
                 }
 
 
         } else {
             if (slSlotDs === 0) {
-                console.log("setting up sl-slot-ds: ", slSlotDs);
-                //use navObj as the nav-obj
-                //TODO9999999999999 according to row and col, setup slSlotMatrix
+                            console.log("setting up sl-slot-ds: ", slSlotDs);
+                
                 generateSlMatrixFromListMap(navObj, setSlSlotMatrix, initialSlSlotsData)
 
                 setSlSlotDs(slSlotDs);
@@ -529,8 +528,8 @@ const emptyStr = "";
                 //for each slot
 
                 let numKey = i * slotPerPage + j + 1;
-                                console.log("put slot-num [", numKey, "] at i[", i, "], j[", j ,"]");
-                
+                         //       console.log("put slot-num [", numKey, "] at i[", i, "], j[", j ,"]");
+
                 currPageArr.push(slSlotsDataProvided[numKey]);
             }
             matrix.push(currPageArr);
@@ -539,7 +538,7 @@ const emptyStr = "";
 
        setMatrixFunc(matrix);
 
-                                console.log("!!! generated matrix = ", matrix);
+                       //         console.log("!!! generated matrix = ", matrix);
 
     }
 

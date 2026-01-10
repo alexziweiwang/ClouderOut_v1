@@ -237,8 +237,14 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
 
   const [showChapterMaker, setShowChapterMaker] = useState(true); // local-use
-  const [showSlTab, setShowSLTab] = useState(false);
+  const [showSlTab, setShowSLTab] = useState(
+    initialMetadata !== undefined
+      ? initialMetadata["nav_ui_settings"] !== undefined
+          ? initialMetadata["nav_ui_settings"]["isWithSL"]
+          : false
+      : false);
 
+  
 
   const [createNodeFolderSignal, setCreateNodeFolderSignal] = useState(false); // local-use
   const [createdNewNodeWaitlist, setCreatedNewNodeWaitlist] = useState([]); // local-use
@@ -573,6 +579,19 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
     updateSLAllInfoOption(slAllInfo);
         console.log("use-effect - sl_update", slAllInfo);
   }, [slAllInfo]);
+
+  useEffect(()=>{
+    if (showChapterMaker === true) {
+      setShowSLTab(false);
+    }
+  }, [showChapterMaker]);
+
+  useEffect(()=>{
+    if (showSlTab === true) {
+      setShowChapterMaker(false);
+    }
+  }, [showSlTab]);
+
 
 
   function goToNotLoggedInPage() {
@@ -1413,13 +1432,22 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
   }
   
   function switchTabToSLPage() {
-    
     notifyCurrPageName("Game Progress Strategy");
+
     setShowSLTab(true);
+    setShowChapterMaker(false);
   }
 
   function switchToNavSettingPage() {
     notifyCurrPageName("Main Page");
+
+    setShowSLTab(false);
+    setShowChapterMaker(false);
+
+  }
+
+  function switchToChapterManagerPage() {
+    setShowChapterMaker(true);
     setShowSLTab(false);
   }
 
@@ -1515,9 +1543,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
       <button 
         className={(showChapterMaker&&!showSlTab) ? "tabBarGMSelected" : "tabBarGM"} 
         onClick={()=>{
-          setShowChapterMaker(true);
-
-          setShowSLTab(false);
+          switchToChapterManagerPage();
 
         }}>
           {contentChaptersTabText}</button>
@@ -1527,7 +1553,6 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
       <button 
         className={(!showChapterMaker&&!showSlTab) ? "tabBarGMSelected" : "tabBarGM"} 
         onClick={()=>{
-          setShowChapterMaker(false);
           
           if (firstTimeSwitchTabNavPanel === true) {
             setFirstTimeSwitchTabNavPanel(false);
@@ -1744,7 +1769,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
                   onEditingSlPageTab={showSlTab}
 
                   updateNavObj={updateCurrProjectNavObj} 
-                  openRm={handleResourceManagerOpen_gml}  //TODO99999 remove
+                  openRm={handleResourceManagerOpen_gml}
                   triggerUpdateCurrPageName={notifyCurrPageName} 
                   fetchPageName={passInCurrSelectedPage}
                   initialScreenHeight={screenHeight}
@@ -1759,7 +1784,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
                   getInCurrentPopWindowName={passInCurrentPopWindowName}//TODO receive pop-window-info
 
                   intialEmuPlayerProfile={testPlayerProfile}
-                  openEmuManager={handleEmuManagerOpen_gml} //TODO99999 remove?
+                  openEmuManager={handleEmuManagerOpen_gml}
                   fetchEmuPlayerProfile={passInPlayerProfile}
                    
                   getUILanguage={passInUILanguage}
@@ -1832,44 +1857,6 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
                             {/* sl tab */}
 
-
-{/*  Entire Viewing -- all parts NOT-USING */}
-    {false && 
-
-<div>
-
-        <button
-          className="testEntire" 
-          onClick={()=>{
-              setMutedViewOption(!mutedViewOption);
-          }}
-        >
-          {mutedViewOption === true && <label>Unmute</label>}
-          {mutedViewOption === false && <label>Mute</label>}
-
-        </button>
-    
-
-<div style={{"display": "flex"}}>
-    {/* entire-viewer-screen */}
-      <div
-        style={{
-          "height": `${screenHeight+2}px`,
-          "width": `${screenWidth+2}px`,
-        }}
-
-      >
-
-
-
-      </div>
-
-
-
-</div>
-
-      </div>}
-{/*  Entire Viewing -- all parts NOT-USING */}
 
 
 
