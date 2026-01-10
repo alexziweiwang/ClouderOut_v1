@@ -995,6 +995,7 @@
 
 - 2026-Jan-08: Design sl-window data-structure arrangement plan
 
+- 2026-Jan-09: Design sl-window data-structure arrangement plan
 
 
 
