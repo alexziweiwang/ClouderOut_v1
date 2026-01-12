@@ -244,7 +244,7 @@ const emptyStr = "";
                 if (slSlotDs === 0) {
                                 console.log("setting up sl-slot-ds: ", initialSlSlotsData);
                     
-                    generateSlMatrixFromListMap(objTemp, setSlSlotMatrix, initialSlSlotsData)
+                    generateSlMatrixFromListMap(objTemp, setSlSlotMatrix)
                     
                     setSlSlotDs(initialSlSlotsData);
                 }
@@ -254,7 +254,7 @@ const emptyStr = "";
             if (slSlotDs === 0) {
                             console.log("setting up sl-slot-ds: ", slSlotDs);
                 
-                generateSlMatrixFromListMap(navObj, setSlSlotMatrix, initialSlSlotsData)
+                generateSlMatrixFromListMap(navObj, setSlSlotMatrix)
 
                 setSlSlotDs(slSlotDs);
             }
@@ -512,7 +512,7 @@ const emptyStr = "";
             notifyEditorPopWindowOpened(""); //TODO79
     }
     
-    function generateSlMatrixFromListMap(navObjProvided, setMatrixFunc, slSlotsDataProvided) {
+    function generateSlMatrixFromListMap(navObjProvided, setMatrixFunc) {
         let pageAmount = navObjProvided["saveloadPage-slotPageCount"];
         let slotPerPage = navObjProvided["saveloadPage-slotPerPage"];
         
@@ -530,7 +530,7 @@ const emptyStr = "";
                 let numKey = i * slotPerPage + j + 1;
                          //       console.log("put slot-num [", numKey, "] at i[", i, "], j[", j ,"]");
 
-                currPageArr.push(slSlotsDataProvided[numKey]);
+                currPageArr.push(numKey);
             }
             matrix.push(currPageArr);
         }
@@ -538,7 +538,7 @@ const emptyStr = "";
 
        setMatrixFunc(matrix);
 
-                       //         console.log("!!! generated matrix = ", matrix);
+                               console.log("!!! generated matrix = ", matrix);
 
     }
 
@@ -1919,93 +1919,106 @@ slSheetOpen === true
                     "borderRadius": "0px",
                 }}>
 
-                    sl-mode: {isSlPageWriting === true ? "write" : "read"} {Object.keys(slSlotDs).length}
+                    sl-mode: {isSlPageWriting === true ? "write" : "read"} {Object.keys(slSlotDs).length} -- {slSlotMatrix.length} -- {slSlotMatrix[0].length}
+                    
+                    {/* {Object.keys(slSlotDs).map((currKey) => { */}
+                    {slSlotMatrix.map((currPage, pageIndex) => {
 
-                    {Object.keys(slSlotDs).map((currKey) => {
-                        let item = slSlotDs[currKey];
-                        let seq = currKey;
+                        currPage.map((currSlotPointer, slotIndex)=>{
 
-                        let slotTitle = item["titleStr"] === undefined ? `slot_${seq}` : item["titleStr"];
 
-                        let keyStr = "slSlot" + slCurrentSlotPage + "-" + seq + (isEditing === true ? "__e" : "__ne");
-                        return (
-                        <div 
-                            style={{"display": "flex"}}        
-                            id={keyStr}
-                            key={keyStr}>
-
-                            <div 
-                                className={isSlPageWriting === false ? "navigationButton" : ""}
-                        
-                                style={{
-                                    "backgroundColor":  navObj["saveloadPage-isSlotShape"] === true ? `${navObj["saveloadPage-slotShadeName"]}` : "rgb(200, 122, 135)", 
-                                    "backgroundImage": navObj["saveloadPage-isSlotShape"] === false ?
-                                        `url('${visualMap[navObj["saveloadPage-slotPicName"]]}')` : "",
-                                    "width": `${navObj["saveloadPage-slotWidth"]}px`,
-                                    "height": `${navObj["saveloadPage-slotHeight"]}px`,
-                                    "marginLeft": navObj["saveloadPage-slotListIsHorizontal"] === true ? `${navObj["saveloadPage-slotGap"]}px` : "0px",
-                                    "marginBottom": navObj["saveloadPage-slotListIsHorizontal"] === false ? `${navObj["saveloadPage-slotGap"]}px` : "0px",
-                                    "borderRadius": `${navObj["defaultCornerRadius"]}px`,
-
-                                    "transition": "all 0.2s ease-out",
-                                }}
                 
-                                onMouseDown={
-                                    ()=>{
-                                        //only clickable when [reading] the slot
-                                        if (isSlPageWriting === false) {
-                                            document.getElementById(keyStr).style.filter = "brightness(120%)";
+                            let item = slSlotDs[currSlotPointer];
+                            let seq = item;
+
+                            // let slotTitle = item["titleStr"] === undefined ? `slot_${currSlotPointer}` : item["titleStr"];
+                            let slotTitle = `slot_${currSlotPointer}`;
+
+                            let keyStr = "slSlot" + slCurrentSlotPage + "-" + slotTitle + (isEditing === true ? "__e" : "__ne");
+                            return (
+                            <div 
+                                style={{"display": "flex"}}        
+                                id={keyStr}
+                                key={keyStr}>
+
+                                <div 
+                                    className={isSlPageWriting === false ? "navigationButton" : ""}
+                            
+                                    style={{
+                                        "backgroundColor":  navObj["saveloadPage-isSlotShape"] === true ? `${navObj["saveloadPage-slotShadeName"]}` : "rgb(200, 122, 135)", 
+                                        "backgroundImage": navObj["saveloadPage-isSlotShape"] === false ?
+                                            `url('${visualMap[navObj["saveloadPage-slotPicName"]]}')` : "",
+                                        "width": `${navObj["saveloadPage-slotWidth"]}px`,
+                                        "height": `${navObj["saveloadPage-slotHeight"]}px`,
+                                        "marginLeft": navObj["saveloadPage-slotListIsHorizontal"] === true ? `${navObj["saveloadPage-slotGap"]}px` : "0px",
+                                        "marginBottom": navObj["saveloadPage-slotListIsHorizontal"] === false ? `${navObj["saveloadPage-slotGap"]}px` : "0px",
+                                        "borderRadius": `${navObj["defaultCornerRadius"]}px`,
+
+                                        "transition": "all 0.2s ease-out",
+                                    }}
+                    
+                                    onMouseDown={
+                                        ()=>{
+                                            //only clickable when [reading] the slot
+                                            if (isSlPageWriting === false) {
+                                                document.getElementById(keyStr).style.filter = "brightness(120%)";
+
+                                            }
+
+
 
                                         }
-
-
-
                                     }
-                                }
-                                onMouseUp={
-                                    ()=>{
-                                        //only clickable when [reading] the slot
-                                        if (isSlPageWriting === false) {
-                                            document.getElementById(keyStr).style.filter = "brightness(100%)";
-                                            slSlotReadConfirmed(seq);
+                                    onMouseUp={
+                                        ()=>{
+                                            //only clickable when [reading] the slot
+                                            if (isSlPageWriting === false) {
+                                                document.getElementById(keyStr).style.filter = "brightness(100%)";
+                                                slSlotReadConfirmed(seq);
+                                            }
+
+                                            console.log("pressed on ...", slotTitle);
+
+
                                         }
-
-                                        console.log("pressed on ...", slotTitle);
-
-
                                     }
-                                }
-                            >
-                                {slotTitle}
+                                >
+                                    {slotTitle}
 
-                            </div>
+                                </div>
 
-                            {/* button only visible when writing */}
-                            {isSlPageWriting === true
-                            &&
-                                <div
-                                className="navigationButton"
+                                {/* button only visible when writing */}
+                                {isSlPageWriting === true
+                                &&
+                                    <div
+                                    className="navigationButton"
 
-                                style={{
-                                
-                                    "backgroundColor": "grey",
-                                    "backgroundImage": navObj["saveloadPage-isSlotShape"] === false ?
-                                        `url('${visualMap[navObj["saveloadPage-slotPicName"]]}')` : "",
-                                    "marginLeft": "10px",
-                                    "marginBottom": navObj["saveloadPage-slotListIsHorizontal"] === false ? `${navObj["saveloadPage-slotGap"]}px` : "0px",
-                                    "borderRadius": `${navObj["defaultCornerRadius"]}px`,
+                                    style={{
+                                    
+                                        "backgroundColor": "grey",
+                                        "backgroundImage": navObj["saveloadPage-isSlotShape"] === false ?
+                                            `url('${visualMap[navObj["saveloadPage-slotPicName"]]}')` : "",
+                                        "marginLeft": "10px",
+                                        "marginBottom": navObj["saveloadPage-slotListIsHorizontal"] === false ? `${navObj["saveloadPage-slotGap"]}px` : "0px",
+                                        "borderRadius": `${navObj["defaultCornerRadius"]}px`,
 
-                                    "transition": "all 0.2s ease-out",
-                                }}
-                                onClick={()=>{
+                                        "transition": "all 0.2s ease-out",
+                                    }}
+                                    onClick={()=>{
 
-                                        slSlotWriteAttempt(seq);
-                                }}
-                            >Save
-                            </div>}
+                                            slSlotWriteAttempt(seq);
+                                    }}
+                                >Save
+                                </div>}
 
-                        </div>);
-                    })}
+                            </div>);
+                        
+                                            
+                        })
+                
+                })}
+
+
                 </div>
          
 
