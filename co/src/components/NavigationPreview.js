@@ -122,8 +122,9 @@ const emptyStr = "";
     const [slCurrentSlotPage, setSlCurrentSlotPage] = useState(1);
 
 
-    const [slSlotDs, setSlSlotDs] = useState(0);
+    const [slSlotDs, setSlSlotDs] = useState(initialSlSlotsData);
     const [slSlotMatrix, setSlSlotMatrix] = useState([]);
+    const [slSlotOnePageTemplate, setSlSlotOnePageTemplate] = useState(0);
 
     const [savingSlotSeq, setSavingSlotSeq] = useState(0);
 
@@ -241,23 +242,27 @@ const emptyStr = "";
 
 
 
-                if (slSlotDs === 0) {
+                if (slSlotOnePageTemplate === 0) {
                                 console.log("setting up sl-slot-ds: ", initialSlSlotsData);
                     
-                    generateSlMatrixFromListMap(objTemp, setSlSlotMatrix)
-                    
+                //    generateSlMatrixFromListMap(objTemp, setSlSlotMatrix)
+                    makeOnePageTemplate_slPage(objTemp);
+
+
                     setSlSlotDs(initialSlSlotsData);
                 }
 
 
         } else {
-            if (slSlotDs === 0) {
+            if (slSlotOnePageTemplate === 0 || slSlotOnePageTemplate.length !== navObj["saveloadPage-slotPerPage"]) {
                             console.log("setting up sl-slot-ds: ", slSlotDs);
                 
-                generateSlMatrixFromListMap(navObj, setSlSlotMatrix)
+                // generateSlMatrixFromListMap(navObj, setSlSlotMatrix)
+                makeOnePageTemplate_slPage(navObj);
 
-                setSlSlotDs(slSlotDs);
+              //     setSlSlotDs(slSlotDs);
             }
+
         }
 
 
@@ -310,6 +315,8 @@ const emptyStr = "";
 
 
     }); //-- end of useEffect --
+
+
 
     function setupPPTryingObjects(navObjData) {
 
@@ -510,6 +517,38 @@ const emptyStr = "";
             setSlConfirmWindowOpen(false);
             
             notifyEditorPopWindowOpened(""); //TODO79
+    }
+
+    function makeOnePageTemplate_slPage(navObjProvided) {
+        console.log("making sl-slot-position-template: requring ", navObjProvided["saveloadPage-slotPerPage"], " slots, and template is: ", slSlotOnePageTemplate.length);
+        let slotPerPageProvided = navObjProvided["saveloadPage-slotPerPage"];
+
+        let tempArr = [];
+        let currTemplateLen = slSlotOnePageTemplate.length;
+
+        if (currTemplateLen === slotPerPageProvided) {
+            return;
+        } else if (currTemplateLen < slotPerPageProvided) {
+            //TODO make template to add more slots
+            tempArr = slSlotOnePageTemplate;
+            let diff = slotPerPageProvided - currTemplateLen;
+
+            let i = 0;
+            while (i < diff) {
+                tempArr.push("");
+                i++;
+            }
+        } else {
+            tempArr = [];
+
+            let i = 0;
+            while (i < slotPerPageProvided) {
+                tempArr.push("");
+                i++;
+            }
+        }
+
+        setSlSlotOnePageTemplate(tempArr);
     }
     
     function generateSlMatrixFromListMap(navObjProvided, setMatrixFunc) {
@@ -1919,20 +1958,23 @@ slSheetOpen === true
                     "borderRadius": "0px",
                 }}>
 
-                    sl-mode: {isSlPageWriting === true ? "write" : "read"} {Object.keys(slSlotDs).length} -- {slSlotMatrix.length} -- {slSlotMatrix[0].length}
-                    
+                    sl-mode: {isSlPageWriting === true ? "write" : "read"} 
+plan: 
+on each page, there are a few slots (according to slCurrentSlotPage, and navObjProvided["saveloadPage-slotPerPage"])
+
+
                     {/* {Object.keys(slSlotDs).map((currKey) => { */}
-                    {slSlotMatrix.map((currPage, pageIndex) => {
+                    {slSlotOnePageTemplate.map((currSlot, slotIndex) => {
+                            let seq = slotIndex;
 
-                        currPage.map((currSlotPointer, slotIndex)=>{
+                            let pageNum = slCurrentSlotPage - 1;
+                            let slotPerPage = navObj["saveloadPage-slotPerPage"];
 
 
-                
-                            let item = slSlotDs[currSlotPointer];
-                            let seq = item;
+                            let numKey = pageNum * slotPerPage + seq + 1;
 
                             // let slotTitle = item["titleStr"] === undefined ? `slot_${currSlotPointer}` : item["titleStr"];
-                            let slotTitle = `slot_${currSlotPointer}`;
+                            let slotTitle = `slot_${numKey}`;
 
                             let keyStr = "slSlot" + slCurrentSlotPage + "-" + slotTitle + (isEditing === true ? "__e" : "__ne");
                             return (
@@ -2014,7 +2056,7 @@ slSheetOpen === true
                             </div>);
                         
                                             
-                        })
+                       
                 
                 })}
 
