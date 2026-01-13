@@ -50,6 +50,8 @@ export default function NavigationPreview ({
 //TODO game-data, player-profile, player-account-info fetching for testing ...
 const tempFontSize = 12;
 const emptyStr = "";
+const slSlotOnePageTemplate = [1, 1, 1, 0, 0];
+
 
     const [languageCodeTextOption, setLanguageCodeTextOption] = useState(initialUILanguage); //TODO16
 
@@ -71,7 +73,6 @@ const emptyStr = "";
 
     const [navObj, setNavObj] = useState({});
     const [page, setPage] = useState( "Main Page");
-    const [slEntireObj, setSlEntireObj] = useState(-1);
 
     const [refDataPlayerProfile, setRefDataPlayerProfile] = useState(initialPlayerProfileRefData);
     const [refDataPlayerAccount, setRefDataPlayerAccount] = useState(initialPlayerAccountRefData);
@@ -123,8 +124,6 @@ const emptyStr = "";
 
 
     const [slSlotDs, setSlSlotDs] = useState(initialSlSlotsData);
-    const [slSlotMatrix, setSlSlotMatrix] = useState([]);
-    const [slSlotOnePageTemplate, setSlSlotOnePageTemplate] = useState(0);
 
     const [savingSlotSeq, setSavingSlotSeq] = useState(0);
 
@@ -242,31 +241,10 @@ const emptyStr = "";
 
 
 
-                if (slSlotOnePageTemplate === 0) {
-                                console.log("setting up sl-slot-ds: ", initialSlSlotsData);
-                    
-                //    generateSlMatrixFromListMap(objTemp, setSlSlotMatrix)
-                    makeOnePageTemplate_slPage(objTemp);
+   
 
-
-                    setSlSlotDs(initialSlSlotsData);
-                }
-
-
-        } else {
-            if (slSlotOnePageTemplate === 0 || slSlotOnePageTemplate.length !== navObj["saveloadPage-slotPerPage"]) {
-                            console.log("setting up sl-slot-ds: ", slSlotDs);
-                
-                // generateSlMatrixFromListMap(navObj, setSlSlotMatrix)
-                makeOnePageTemplate_slPage(navObj);
-
-              //     setSlSlotDs(slSlotDs);
-            }
 
         }
-
-
-
 
              
 
@@ -520,19 +498,22 @@ const emptyStr = "";
     }
 
     function makeOnePageTemplate_slPage(navObjProvided) {
+        //current version: 2 / 3 / 4 / 5
+
         console.log("making sl-slot-position-template: requring ", navObjProvided["saveloadPage-slotPerPage"], " slots, and template is: ", slSlotOnePageTemplate.length);
         let slotPerPageProvided = navObjProvided["saveloadPage-slotPerPage"];
 
-        let tempArr = [];
+        let tempArr = [1,1,1,1,1];
         let currTemplateLen = slSlotOnePageTemplate.length;
 
         if (currTemplateLen === slotPerPageProvided) {
             return;
+
         } else if (currTemplateLen < slotPerPageProvided) {
             //TODO make template to add more slots
             tempArr = slSlotOnePageTemplate;
             let diff = slotPerPageProvided - currTemplateLen;
-
+            
             let i = 0;
             while (i < diff) {
                 tempArr.push("");
@@ -548,39 +529,9 @@ const emptyStr = "";
             }
         }
 
-        setSlSlotOnePageTemplate(tempArr);
     }
     
-    function generateSlMatrixFromListMap(navObjProvided, setMatrixFunc) {
-        let pageAmount = navObjProvided["saveloadPage-slotPageCount"];
-        let slotPerPage = navObjProvided["saveloadPage-slotPerPage"];
-        
-        let matrix = [];
-
-        let i = 0;
-        let j = 0;
-        for(i = 0; i < pageAmount; i++) {
-            let currPageArr = [];
-            
-            //within one page
-            for(j = 0; j < slotPerPage; j++) {
-                //for each slot
-
-                let numKey = i * slotPerPage + j + 1;
-                         //       console.log("put slot-num [", numKey, "] at i[", i, "], j[", j ,"]");
-
-                currPageArr.push(numKey);
-            }
-            matrix.push(currPageArr);
-        }
-
-
-       setMatrixFunc(matrix);
-
-                               console.log("!!! generated matrix = ", matrix);
-
-    }
-
+  
 return (
     <>
     {(navObj !== undefined && Object.keys(navObj).length > 0) &&
@@ -1964,7 +1915,17 @@ on each page, there are a few slots (according to slCurrentSlotPage, and navObjP
 
 
                     {/* {Object.keys(slSlotDs).map((currKey) => { */}
+
                     {slSlotOnePageTemplate.map((currSlot, slotIndex) => {
+
+                            let slotNumLimit = navObj["saveloadPage-slotPerPage"];
+
+                            let currNum = slotIndex + 1;
+                            if (currNum > slotNumLimit) {
+                                return;
+                            }
+
+
                             let seq = slotIndex;
 
                             let pageNum = slCurrentSlotPage - 1;
@@ -1973,7 +1934,6 @@ on each page, there are a few slots (according to slCurrentSlotPage, and navObjP
 
                             let numKey = pageNum * slotPerPage + seq + 1;
 
-                            // let slotTitle = item["titleStr"] === undefined ? `slot_${currSlotPointer}` : item["titleStr"];
                             let slotTitle = `slot_${numKey}`;
 
                             let keyStr = "slSlot" + slCurrentSlotPage + "-" + slotTitle + (isEditing === true ? "__e" : "__ne");
