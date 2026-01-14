@@ -172,6 +172,7 @@ export default function Viewer_Entire_Screen({
     //TODO (with "changing" during in-game actions)
     const [navPageStatus, setNavPageStatus] = useState(mainPageNameLocal); //This is tracked here (when "playing" starts)
 
+    const [popWindowName, setPopWindowName] = useState(""); // "gameQuitAsking"   "slConfirming"
 
 
 
@@ -673,6 +674,18 @@ export default function Viewer_Entire_Screen({
         }
 
    }
+
+   function notifyEditorPopWindowOpened(providedWindowName) {
+    setPopWindowName(providedWindowName);
+      //"gameQuitAsking"
+      //"slConfirming"
+
+  }
+
+  function passInCurrentPopWindowName() {
+    return popWindowName;
+  }
+
     
 
 
@@ -802,6 +815,11 @@ shop layer
 
                         getOpenSettingSignal={passInOpenSettingsPage}
                         closeSettingsPage={setOpenSettingsPageSignalFalse}
+
+
+                        notifyEditorPopWindowOpened={notifyEditorPopWindowOpened}
+                        getCurrentPopWindowName={passInCurrentPopWindowName}
+
                     /> 
 
                     

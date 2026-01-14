@@ -12,7 +12,7 @@ export default function NavigationPreview ({
 
     triggerUpdateCurrentStanding, //important, game-progress related, to outer-layer
     
-    getInCurrentPopWindowName,
+    getCurrentPopWindowName,
     notifyEditorPopWindowOpened,
 
     chapterData, 
@@ -269,7 +269,7 @@ const slSlotOnePageTemplate = [1, 1, 1, 0, 0];
             setPage(fetchedPageName);
 
 
-            let pWindowTemp = getInCurrentPopWindowName();
+            let pWindowTemp = getCurrentPopWindowName();
 
             if (pWindowTemp === "gameQuitAsking") {
                 // should show game-quit-pop-window
@@ -356,6 +356,8 @@ const slSlotOnePageTemplate = [1, 1, 1, 0, 0];
     function slSlotWriteAttempt(seq) { // the i-th item at p-th page
         
         setSlConfirmWindowOpen(true);
+
+        notifyEditorPopWindowOpened("slConfirming");
 
         setSavingSlotSeq(seq);
 
@@ -1888,14 +1890,7 @@ slSheetOpen === true
                 }}
 >
 
-            <button
-                onClick={()=>{
-                    //TODO999999999
-                    //TODO start from the first chapter with initial game-data
-
-                }}
-            >start new</button>
-                
+         
     
                 <div style={{
                     "left": `${navObj["saveloadPage-groupPosX"]}px`,
@@ -1906,11 +1901,35 @@ slSheetOpen === true
                 }}>
 
                     sl-mode: {isSlPageWriting === true ? "write" : "read"} 
+{/*
 plan: 
-on each page, there are a few slots (according to slCurrentSlotPage, and navObjProvided["saveloadPage-slotPerPage"])
+ on each page, there are a few slots (according to slCurrentSlotPage, and navObjProvided["saveloadPage-slotPerPage"]) */}
 
 
                     {/* {Object.keys(slSlotDs).map((currKey) => { */}
+                    <div
+                        style={{
+                            "backgroundColor":  navObj["saveloadPage-isSlotShape"] === true ? `${navObj["saveloadPage-slotShadeName"]}` : "rgb(200, 122, 135)", 
+                            "backgroundImage": navObj["saveloadPage-isSlotShape"] === false ?
+                                `url('${visualMap[navObj["saveloadPage-slotPicName"]]}')` : "",
+                            "width": `${navObj["saveloadPage-slotWidth"]}px`,
+                            "height": `${navObj["saveloadPage-slotHeight"]}px`,
+                            "marginLeft": navObj["saveloadPage-slotListIsHorizontal"] === true ? `${navObj["saveloadPage-slotGap"]}px` : "0px",
+                            "marginBottom": "50px",
+                            "borderRadius": `${navObj["defaultCornerRadius"]}px`,
+
+                            "transition": "all 0.2s ease-out",
+                        }}
+                    
+                    >
+                        <button
+                            onClick={()=>{
+                                startGameFromNewGame();
+                            }}
+                        >start new</button>
+                        
+                    </div>
+                
 
                     {slSlotOnePageTemplate.map((currSlot, slotIndex) => {
 

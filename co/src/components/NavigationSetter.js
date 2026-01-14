@@ -12,7 +12,7 @@ export default function NavigationSetter({
   fetchPageName,
   triggerUpdateCurrPageName, 
 
-  getInCurrentPopWindowName,
+  getCurrentPopWindowName,
   notifyEditorPopWindowOpened,
 
   initialScreenHeight, getScreenheight,
@@ -388,7 +388,7 @@ export default function NavigationSetter({
       let tempPage= fetchPageName();
       if (tempPage !== undefined && tempPage !== "") {
         setCurrentSettingPage(tempPage);
-        let pWindowTemp = getInCurrentPopWindowName();
+        let pWindowTemp = getCurrentPopWindowName();
 
 
         setPopWindowName(pWindowTemp);
