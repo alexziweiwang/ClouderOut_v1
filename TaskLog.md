@@ -999,7 +999,7 @@
 
 - 2026-Jan-13: Design sl-emu-panel display and control table strategies
 
-
+- 2026-Jan-14: Improve sl page design
 
 
 
