@@ -642,10 +642,17 @@ export default function Viewer_Entire_Screen({
 
    }
 
+   //getSlModeFlag
+
+   function passInSlModeFlag() {
+//TODO99999999
+
+   }
+
    function triggerSlSlotReadPressed(slotSeqNum) {
         let recordItem = playerSLRecords[slotSeqNum];
 
-        //TODO trigger to change standing from recordItem["stepStanding"]
+        //TODO trigger to change *standing* from recordItem["stepStanding"]
 
         //TODO change game-data-set from recordItem["gameDataSet"]
 
@@ -819,7 +826,7 @@ shop layer
 
                         notifyEditorPopWindowOpened={notifyEditorPopWindowOpened}
                         getCurrentPopWindowName={passInCurrentPopWindowName}
-
+                        getSlModeFlag={passInSlModeFlag}
                     /> 
 
                     

@@ -10,27 +10,40 @@ import { defaultScreenWidth, defaultScreenHeight } from './_dataStructure_Defaul
 
 //TODO102 test for visualMap and audioMap
 
-export default function PreviewWindow_convNodeGameContent({initialAllPieceData, getAllPieceContent, 
+export default function PreviewWindow_convNodeGameContent({
+    initialAllPieceData, 
+    getAllPieceContent, 
+
     getCurrentPieceNum, 
-    getTextFrameUISettings, getIsDisplayDefaultButton, 
-    getDefaultButtonUISettings, getBackButtonUISettings, 
+
+    getTextFrameUISettings, 
+    getIsDisplayDefaultButton, 
+    getDefaultButtonUISettings, 
+    getBackButtonUISettings, 
     getLogPageUISettings,
-    getScreenSize, triggerToDirectNext, setIsClickedOnSetters, getUIConvNav,
+    
+    getScreenSize, 
+    triggerToDirectNext, 
+    
+    setIsClickedOnSetters, 
+    getUIConvNav,
 
     getVisualMap,
     getAudioMap,
 
     getUILanguage,
 
-    username, projName,
-
     getDisplayNonPmTemp,
     getPmEditingPreviewPiece,
 
-    getCharaPicPrvw
+    getCharaPicPrvw,
+
+    getIsDisplayGameContent
     
   
   }) {
+
+    const [isWithGameContent, setIsWithGameContent] = useState(true); //TODO9999999
 
     const [isNonPmTempPiece, setIsNonPmTempPiece] = useState(true);
 
@@ -76,9 +89,15 @@ export default function PreviewWindow_convNodeGameContent({initialAllPieceData, 
 console.log("preview-window game-content first-time entry, resource-list fetched."); //TODO test
       }
 
+      let isWithGameContentTemp = getIsDisplayGameContent();
+      setIsWithGameContent(isWithGameContentTemp);
+
+
+
       let isDisplayNonPmTemp = getDisplayNonPmTemp();
       setIsNonPmTempPiece(isDisplayNonPmTemp);
 
+      
       
       let uiLangTemp = getUILanguage();
       setLanguageCodeTextOption(uiLangTemp);
@@ -300,7 +319,10 @@ console.log("preview-window game-content first-time entry, resource-list fetched
   "display": !isShowLogScreen ? "flex" : "none"
 }}>
 
-              {<div style={{
+
+            {/* game-content layer */}
+              {isWithGameContent === true && 
+              <div style={{
                 "backgroundColor": "#000000",
                 "backgroundImage": (currentPieceNum >= 0 && bgpSource !== "") ? 
                   `url(${bgpSource})` 
@@ -313,13 +335,11 @@ console.log("preview-window game-content first-time entry, resource-list fetched
                 "width": `${screenWidth}px`,
               }}
                 
-                >
+              >
 
 
                   <div> 
        
-            {/* //TODO500 refactor */}
-
 
                     {charaPicArr2 !== undefined && 
                       Object.keys(charaPicArr2).map((index) => {
@@ -348,7 +368,6 @@ console.log("preview-window game-content first-time entry, resource-list fetched
                     }
 
 
-                         {/* //TODO500 refactor */}
                          {(charaPicCurr2 !== undefined 
                             && charaPicCurr2 !== -1 
                             && visualMap[charaPicCurr2["picVar"]] !== undefined
@@ -388,11 +407,6 @@ console.log("preview-window game-content first-time entry, resource-list fetched
                 getUIConvNav={getUIConvNav}
 
               />}
-
-             
-
-
-
 
               <GameUI_2ButtonsPreview 
                   isSettingUpUI={false}

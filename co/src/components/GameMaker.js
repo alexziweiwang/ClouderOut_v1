@@ -1462,6 +1462,15 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
     return popWindowName;
   }
 
+  function passInSlModeFlag() {
+    if (popWindowName === "") {
+      return -1;
+    } else {
+      //TODO99999999 reflect the conv-node-ui triggered operation
+    }
+
+  }
+
  
 
 {/* //components
@@ -1818,6 +1827,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
                   notifyEditorPopWindowOpened={notifyEditorPopWindowOpened}
                   getCurrentPopWindowName={passInCurrentPopWindowName}
+                  getSlModeFlag={passInSlModeFlag}
 
                   isEditing={true}
                   initialGameDataRefData={emptyValue}

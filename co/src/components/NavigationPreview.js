@@ -268,6 +268,15 @@ const slSlotOnePageTemplate = [1, 1, 1, 0, 0];
 
             setPage(fetchedPageName);
 
+            if (fetchPageName === "During Game") { //TODO9999999
+                let slModeFlag = getSlModeFlag();
+                if (slModeFlag === "w") {
+                    slPageEnterWriteMode();
+                } else if (slModeFlag === "r") {
+                    slPageEnterReadMode();
+                }
+            }
+
 
             let pWindowTemp = getCurrentPopWindowName();
 
@@ -277,17 +286,12 @@ const slSlotOnePageTemplate = [1, 1, 1, 0, 0];
          
     
             } else if (pWindowTemp === "slConfirming") {
-                // should show sl-confim-pop-window
+                //TODO9999999 should show sl-confim-pop-window
 
 
             } 
 
      
-
-        } else if (fetchedPageName === "Quit Asking Window") { //TODO79
-
-        } else if (fetchedPageName === "SL Asking Window") {
-            //TODO235
 
         }
 
@@ -454,9 +458,6 @@ const slSlotOnePageTemplate = [1, 1, 1, 0, 0];
             triggerUpdateCurrPageName(nextPageName);
 
         }
-
-
-
     }
 
     function slPageEnterReadMode() {
@@ -466,8 +467,8 @@ const slSlotOnePageTemplate = [1, 1, 1, 0, 0];
     }
 
     function slPageEnterWriteMode() {
-        //TODO99999999 this is triggered when player enter sl-page during game-play
         setIsSlPageWriting(true);
+        setSlSheetOpen(true);
         
     }  
 

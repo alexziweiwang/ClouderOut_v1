@@ -992,6 +992,10 @@ GameDataDesign <map>
         setIsDisplayQview(true);
 
     }
+
+    function passInIsDisplayGameContent() {
+        return isDisplayGameContentPreview;
+    }
     
           
 
@@ -1188,11 +1192,9 @@ GameDataDesign <map>
 
 
 
-{/* editor-right-part                       */}
+{/* editor-right-part  */}
 {pmQuickEditModeOn === false && <>
 
-    {/* game-content-preview screen */}
-            {(isDisplayGameContentPreview === true) && 
                 <PreviewWindow_convNodeGameContent
                     getDisplayNonPmTemp={passInDisplayPreviewScreen}
                     getPmEditingPreviewPiece={passInPmEditingPreviewPiece}
@@ -1218,39 +1220,39 @@ GameDataDesign <map>
 
                     getCharaPicPrvw={passInCharaPicPrvw}
 
+                    getIsDisplayGameContent={passInIsDisplayGameContent}
+
                                             //TODO later: se-volume
                                             //TODO later: voiceline-volume
 
                     
-                    username={userName}
-                    projName={projectName}
                 />
-            }
+            
 
-    {/* ui-setup-preview screen */}
-            {(isDisplayGameContentPreview === false) && 
-                <PreviewWindow_convNodeUiSetup
-                    dataObj={pieceDataStructure[previewingIndex]} 
-                    initialAllPieceData={pieceDataStructure}
-                    getAllPieceContent={passInAllPieceDataContent}
-                    getCurrentPieceNum={passInCurrentPieceNum}
-                    getTextFrameUISettings={passInTextFrameUISettings} 
-                    getDefaultButtonUISettings={passInDefaultButtonUISettings} 
-                    getIsDisplayDefaultButton={passInIsDisplayDefaultButton} 
-                    getBackButtonUISettings={passInBackButtonUISettings}
-                    getLogPageUISettings={passInLogPageUISettings}
-                    getScreenSize={passInScreenSize}
-                    getUIConvNav={passInUIConvNav}
+                                                                                                                {/* ui-setup-preview screen */}
+                                                                                                                        {/* {(isDisplayGameContentPreview === false) && 
+                                                                                                                            <PreviewWindow_convNodeUiSetup
+                                                                                                                                dataObj={pieceDataStructure[previewingIndex]} 
+                                                                                                                                initialAllPieceData={pieceDataStructure}
+                                                                                                                                getAllPieceContent={passInAllPieceDataContent}
+                                                                                                                                getCurrentPieceNum={passInCurrentPieceNum}
+                                                                                                                                getTextFrameUISettings={passInTextFrameUISettings} 
+                                                                                                                                getDefaultButtonUISettings={passInDefaultButtonUISettings} 
+                                                                                                                                getIsDisplayDefaultButton={passInIsDisplayDefaultButton} 
+                                                                                                                                getBackButtonUISettings={passInBackButtonUISettings}
+                                                                                                                                getLogPageUISettings={passInLogPageUISettings}
+                                                                                                                                getScreenSize={passInScreenSize}
+                                                                                                                                getUIConvNav={passInUIConvNav}
 
-                    getUILanguage={passInUILanguage}
+                                                                                                                                getUILanguage={passInUILanguage}
 
-                    getVisualMap={passInVisualMap}
-                    getAudioMap={passInAudioMap}
+                                                                                                                                getVisualMap={passInVisualMap}
+                                                                                                                                getAudioMap={passInAudioMap}
 
-                    username={userName}
-                    projName={projectName}
-                />
-            }
+                                                                                                                                username={userName}
+                                                                                                                                projName={projectName}
+                                                                                                                            />
+                                                                                                                        } */}
 </>}
 
  

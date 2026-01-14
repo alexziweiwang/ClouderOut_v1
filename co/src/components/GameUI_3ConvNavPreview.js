@@ -4,11 +4,27 @@ import { defaultScreenWidth, defaultScreenHeight } from './_dataStructure_Defaul
 //level5 (a part of a node)
 
 
-export default function GameUI_3ConvNavPreview({isSettingUpUI, initialAllPieceData, getAllPieceContent, 
-    getCurrentPieceNum, getScreenSize, triggerNextPiece, 
-    triggerAutoMode, getUIConvNav, isInGameView,
-    passInAudioList, getVisualMap,
+export default function GameUI_3ConvNavPreview({
+    getCurrentPieceNum,
+
+    getVisualMap,
     triggerLogOpen,
+
+
+    isSettingUpUI, 
+    initialAllPieceData, 
+    getAllPieceContent, 
+    
+    getScreenSize, 
+    triggerNextPiece, 
+    
+    triggerAutoMode, 
+    getUIConvNav, 
+    
+    isInGameView,
+    
+    passInAudioList, 
+
 
 }) {
 
