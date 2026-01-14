@@ -2,13 +2,12 @@ import * as React from 'react';
 import styles from './webpage.css';
 import { useState, useEffect } from 'react';
 
-import PieceSetter from './PieceSetter';
-import PieceManager from './PieceManager';
-import ConvNodeUISetter from './ConvNodeUISetter';
+import PieceSetter from './Panel_2_1_0_ConvNode_PieceSetter';
+import PieceManager from './Panel_2_1_0_ConvNode_PieceManager';
+import ConvNode_UISetter from './Panel_2_1_1_ConvNode_UISetter';
 
 
-import PreviewWindow_convNodeGameContent from './PreviewWindow_convNodeGameContent';
-import PreviewWindow_convNodeUiSetup from './PreviewWindow_convNodeUiSetup';
+import ConvNode_Preview from './Panel_2_1_01_ConvNode_ScreenPreview';
 
 import langDictionary from './_textDictionary';
 
@@ -20,7 +19,7 @@ import { resourceRawListToUsableMap_vm } from '../viewmodels/PrepAc_Conversion';
 
 //level2
 
-export default function ConversationNodeEditingPanel({
+export default function ConversationNode_EditingPanel({
         clickedNodeKey,  //TODO adjust for display-use
         chapterKey,  //TODO adjust for display-use
         projectName, //TODO adjust for display-use
@@ -113,7 +112,7 @@ GameDataDesign <map>
 
 
     
-// console.log("ConversationNodeEditingPanel-state: ", state);//TODO test
+// console.log("ConversationNode_EditingPanel-state: ", state);//TODO test
  
 
     let textDictItem = langDictionary[languageCodeTextOption];
@@ -820,7 +819,7 @@ GameDataDesign <map>
 // < PreviewWindow_convNodeGameContent> [//TODO105 refactored, to test]
 // < PreviewWindow_convNodeUiSetup> [//TODO105 refactored, to test]
 
-// < AllPanels_QuickView_ConvNode > [//TODO105 refactored, to test]
+// < QuickView_AllPanels_ConvNode > [//TODO105 refactored, to test]
 
 
         let audioListTemp = data.audio;
@@ -1001,13 +1000,13 @@ GameDataDesign <map>
 
 {/* components:
 
-        1. editor- [PieceSetter> or <ConvNodeUISetter>
-        2. editor- [PieceManager> or <ConvNodeUISetter>
+        1. editor- [PieceSetter> or <ConvNode_UISetter>
+        2. editor- [PieceManager> or <ConvNode_UISetter>
         3. editor- [PreviewWindow_convNodeGameContent> or <PreviewWindow_convNodeUiSetup>
         4. modal_resource- [Modal_ResourceManagingWindow>
         5. modal_game_data_manager- [Modal_GameDataManager>
         6. modal_emu_manager- [Modal_EmuManager>
-        6. quick_view- [AllPanels_QuickView_ConvNode>
+        6. quick_view- [QuickView_AllPanels_ConvNode>
 
 */}
 
@@ -1159,7 +1158,7 @@ GameDataDesign <map>
                                                                         {/* {(gameUISetterOpen === true && browseList === false) &&  //TODO remove later*/}
                 {(gameUISetterOpen === true) && 
 
-                        <ConvNodeUISetter 
+                        <ConvNode_UISetter 
                             iniDefaultButtonObj={gameUIDefaultButton} 
                             iniTxtFrameObj={gameUITextFrame} 
                             iniMenuButtonObj={gameUIBackButton}
@@ -1195,7 +1194,7 @@ GameDataDesign <map>
 {/* editor-right-part  */}
 {pmQuickEditModeOn === false && <>
 
-                <PreviewWindow_convNodeGameContent
+                <ConvNode_Preview
                     getDisplayNonPmTemp={passInDisplayPreviewScreen}
                     getPmEditingPreviewPiece={passInPmEditingPreviewPiece}
                     dataObj={pieceDataStructure[previewingIndex]} 

@@ -1,12 +1,15 @@
 import logo from './logo.svg';
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
-import ConversationNodeEditingPanel from'./components/ConversationNodeEditingPanel';
-import CardGameNodeEditingPanel from './components/CardGameNodeEditingPanel';
-import Panel2_Container_GameEditor from './components/Panel2_Container_GameEditor';
+
 import UserNotLoggedInPage from './components/UserNotLoggedInPage';
+
 import ProjectManagingOffline from './components/ProjectManagingNonCloud';
+
 import Panel1_UserMgr from './components/Panel1_UserMgr';
+import Panel2_Container_GameEditor from './components/Panel2_Container_GameEditor';
+
+
 
 function App() {
   return (

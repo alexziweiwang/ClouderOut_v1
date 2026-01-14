@@ -1,5 +1,5 @@
 
-export default function CardGameNodeEditingPanel() {
+export default function CardGameNode_EditingPanel() {
 
 return(<div>
     List of condition-node pairs...

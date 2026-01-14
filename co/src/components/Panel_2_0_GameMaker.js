@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import ChapterManager from './ChapterManager';
-import NodeManager from './NodeManager';
+import ChapterManager from './Panel_2_0_0_ChapterManager';
+import NodeManager from './Panel_2_0_0_NodeManager';
 
 
-import NavigationSetter from './NavigationSetter';
-import NavigationPreview from './NavigationPreview';
+import NavigationSetter from './Panel_2_0_1_NavigationSetter';
+import NavigationVisLayer from './Panel_2_0_1_NavigationVisLayer';
 
 
 //level0
@@ -1213,7 +1213,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
                                                         //rm-mapping-required: 
                                                         // < NavigationSetter> [//TODO105 refactored, to test]
 
-                                                        // < NavigationPreview> *** non-dynamic resource-maps so far...
+                                                        // < NavigationVisLayer> *** non-dynamic resource-maps so far...
 
 
       let audioListTemp = data.audio === undefined ? {} : data.audio;
@@ -1476,7 +1476,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 {/* //components
       
       1. editors - [ChapterManager> +  <NodeManager> 
-      2. editors - [NavigationSetter> + < NavigationPreview>
+      2. editors - [NavigationSetter> + < NavigationVisLayer>
       3. entire_view - [Viewer_Entire_Screen>
       4. modal_resource_manager - [Modal_ResourceManagingWindow>
       5. modal_game_data_manager - [Modal_GameDataManager >
@@ -1810,7 +1810,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
     }
 
               <div style={{"marginTop": "15px", "marginLeft": "15px"}}>
-                <NavigationPreview
+                <NavigationVisLayer
                   onEditingSlPageTab={showSlTab}
                   triggerSlSlotWritePressed={notUsing}
                   triggerSlSlotReadPressed={notUsing}

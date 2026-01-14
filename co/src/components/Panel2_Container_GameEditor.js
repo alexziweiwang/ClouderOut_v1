@@ -12,13 +12,12 @@ import { defaultScreenWidth, defaultScreenHeight } from './_dataStructure_Defaul
 
 //level(-1)
 
-import GameMaker from './GameMaker';
-import ConversationNodeEditingPanel from './ConversationNodeEditingPanel';
-import CardGameNodeEditingPanel from './CardGameNodeEditingPanel';
+import GameMaker from './Panel_2_0_GameMaker';
+import ConversationNode_EditingPanel from './Panel_2_1_ConversationNode_EditingPanel';
+import CardGameNode_EditingPanel from './CardGameNode_EditingPanel';
 
-import Viewer_Entire_Screen from './Viewer_Entire_Screen';
-import AllPanels_QuickView_ConvNode from './AllPanels_QuickView_ConvNode';
-import GameScreen_QuickView_ConvNode from './GameScreen_QuickView_ConvNode';
+import Viewer_Entire_Screen from './Panel_2_2_Viewer_Entire_Screen';
+import QuickView_AllPanels_ConvNode from './Panel_2_1_2_QuickView_AllPanels_ConvNode';
 
 
 import Modal_ResourceManagingWindow from './Modal_ResourceManagingWindow';
@@ -777,7 +776,7 @@ console.log("handle Cancel NodeTest Viewer:", projectMetaData["emu4sets"]["gdt1"
                             console.log("view-testing node: ", testingNodeEvrt);
 
 
-                        //TODO99999 prepare for < AllPanels_QuickView_ConvNode />
+                        //TODO99999 prepare for < QuickView_AllPanels_ConvNode />
                             // allPieceContent={projectAllNodeContent[currTestingNodeKey].nodeContent}  //from node's obj (data-structure)
 
                             // uiData1_textframe={projectAllNodeContent[currTestingNodeKey]["nodeUISettings"].textFrame}  //from node's obj (data-structure)
@@ -1947,7 +1946,7 @@ return (
     &&
 
     
-        <ConversationNodeEditingPanel
+        <ConversationNode_EditingPanel
             
             getUiLanguageOption={passInUiLanguageOption}
             getProjectResourceVarPairs={passInProjectResourceVarPairs}
@@ -2212,7 +2211,7 @@ return (
     {/* 02 . Quick-View for Conversation-Node */}    
         {focusingEditor === "Conversation"
         &&
-            <AllPanels_QuickView_ConvNode
+            <QuickView_AllPanels_ConvNode
 
                     initialPieceNum={nodeViewingEntryNum} //from conv-node-editor-triggering
 

@@ -2,10 +2,10 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import Sidebar from './Sidebar';
-import ProjectManagingPanel from './ProjectManagingPanel';
-import AccountPage from './AccountPage';
-import ProfilePage from './ProfilePage';
+import Sidebar from './Panel_1_0_Sidebar';
+import ProjectManagingPanel from './Panel_1_0_ProjectManagingPanel';
+import AccountPage from './Panel_1_0_AccountPage';
+import ProfilePage from './Panel_1_0_ProfilePage';
 
 import { getAuthFirebase } from '../authtools/firebaseAuthOperations';
 

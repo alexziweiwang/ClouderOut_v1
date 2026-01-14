@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import GameScreen_QuickView_ConvNode from './GameScreen_QuickView_ConvNode';
+import Viewer__ConvNode from './Viewer__ConvNode';
 
 
 //TODO fetch-and-updte data for conv-node-game-screen
@@ -749,7 +749,7 @@ return (
         <>
                                               
 
-            <GameScreen_QuickView_ConvNode
+            <Viewer__ConvNode
                 isPreview={false}
                 isDisplay={true}  //ok (non-dynamic)
 

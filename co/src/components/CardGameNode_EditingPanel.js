@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
-export default function CardGameNodeEditingPanel() {
+export default function CardGameNode_EditingPanel() {
     const navigate = useNavigate();
 
     const {state} = useLocation();
@@ -13,7 +13,7 @@ export default function CardGameNodeEditingPanel() {
         uname = state.userName;
         projectName = state.selected_project_name;
     } 
-    console.log("CardGameNodeEditingPanel-state: ", state);//TODO test
+    console.log("CardGameNode_EditingPanel-state: ", state);//TODO test
 
     const returnGameMakerButtonText = [" ← Game Maker"];
 

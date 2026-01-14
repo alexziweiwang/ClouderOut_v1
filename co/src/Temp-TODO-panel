@@ -6,11 +6,11 @@ TODO:
 
 
 
-* compo - < GameScreen_QuickView_ConvNode > add parameter of "volumeReq"
+* compo - < Viewer__ConvNode > add parameter of "volumeReq"
 * compo - < PreviewWindow_convNodeGameContent> add parameter of "volumeReq"
 
-parent-compo that uses < GameScreen_QuickView_ConvNode > :
-            < AllPanels_QuickView_ConvNode >
+parent-compo that uses < Viewer__ConvNode > :
+            < QuickView_AllPanels_ConvNode >
             < GameScreen_InPracShell_ConvNode >
     and outer-layer
             < DuringGameScreen_AllNodeTypeContainer >
@@ -20,7 +20,7 @@ parent-compo that uses < GameScreen_QuickView_ConvNode > :
             < GameMaker >
 
 parent-compo that uses < PreviewWindow_convNodeGameContent > :
-            < ConversationNodeEditingPanel
+            < ConversationNode_EditingPanel
 
 
 * places to decide volumes:

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { sizeLookupMap, defaultScreenWidth, defaultScreenHeight } from './_dataStructure_DefaultObjects';
 
 
-export default function NavigationPreview ({
+export default function NavigationVisLayer ({
     onEditingSlPageTab,
 
     fetchNavObj, 

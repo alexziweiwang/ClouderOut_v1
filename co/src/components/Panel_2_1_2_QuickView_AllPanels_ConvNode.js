@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import GameScreen_QuickView_ConvNode from './GameScreen_QuickView_ConvNode';
-import Panel_GameDataTest from './Panel_GameDataTest';
+import Viewer__ConvNode from './Viewer__ConvNode';
+import Panel_GameDataTest from './InfoTable_GameDataTest';
 import langDictionary from './_textDictionary';
    
 
@@ -9,7 +9,7 @@ import langDictionary from './_textDictionary';
 import { buttonConsequenceByStatementEntireArray } from '../viewmodels/CalcAc_QuickView';
 import { initializeGameDataTracker_vm } from '../viewmodels/PrepAc_ViewerEntireAc';
 
-export default function AllPanels_QuickView_ConvNode ({
+export default function QuickView_AllPanels_ConvNode ({
     initialPieceNum, 
     handleQViewCancel, 
 
@@ -357,7 +357,7 @@ export default function AllPanels_QuickView_ConvNode ({
 
                 <div  style={{ "display": "flex"}}>
 
-                    <GameScreen_QuickView_ConvNode
+                    <Viewer__ConvNode
 
                         screenWidth={screenWidth}
                         screenHeight={screenHeight}

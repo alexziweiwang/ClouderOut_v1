@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react';
 
-import GameScreen_QuickView_ConvNode from './GameScreen_QuickView_ConvNode';
 
 import { buttonConsequenceByStatementEntireArray } from '../viewmodels/CalcAc_QuickView';
 
 //level3 (container of conversation-node, for in-practice)
-//TODO consider remove this layer -- directly use gamescreen_quickview_convnode in duinggamescreen_allnodetyoecontainer??
+//TODO consider remove this layer -- directly use V iewer__ConvNode in duinggamescreen_allnodetyoecontainer??
 export default function GameScreen_InPracShell_ConvNode ({
 
     allPieceData,

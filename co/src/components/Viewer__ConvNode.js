@@ -10,7 +10,7 @@ import Modal_ConvNode_Log from './Modal_ConvNode_Log';
 
 
 // includes conversational-node content+UI
-export default function GameScreen_QuickView_ConvNode ({
+export default function Viewer__ConvNode ({
     isPreview,
     initialPieceNum, 
 

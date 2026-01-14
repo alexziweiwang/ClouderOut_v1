@@ -1,16 +1,16 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 
-import GameUI_2ButtonsPreview from './GameUI_2ButtonsPreview';
-import GameUI_1TextFramePreview from './GameUI_1TextFramePreview';
-import GameUI_3ConvNavPreview from './GameUI_3ConvNavPreview';
+import GameUI_2ButtonsPreview from './Panel_2_1_0_0_GameUI_2ButtonsPreview';
+import GameUI_1TextFramePreview from './Panel_2_1_0_0_GameUI_1TextFramePreview';
+import GameUI_3ConvNavPreview from './Panel_2_1_0_0_GameUI_3ConvNavPreview';
 import Modal_ConvNode_Log from './Modal_ConvNode_Log';
 import { defaultScreenWidth, defaultScreenHeight } from './_dataStructure_DefaultObjects';
 
 
 //TODO102 test for visualMap and audioMap
 
-export default function PreviewWindow_convNodeGameContent({
+export default function ConvNode_Preview({
     initialAllPieceData, 
     getAllPieceContent, 
 

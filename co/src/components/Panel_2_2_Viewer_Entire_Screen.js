@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import NavigationPreview from './NavigationPreview';
+import NavigationVisLayer from './Panel_2_0_1_NavigationVisLayer';
 import DuringGameScreen_AllNodeTypeContainer from './DuringGameScreen_AllNodeTypeContainer';
 
 import { configureGameProgress_vm } from '../viewmodels/CalcAc_ViewerEntireAc';
@@ -726,7 +726,7 @@ game-screen (specific node) layer */}
                                                     //important: setup entry-gameData-set (if multiple) 
                                           */}
 
-                                          <DuringGameScreen_AllNodeTypeContainer
+                        <DuringGameScreen_AllNodeTypeContainer
 
                                                 getNodeType={passInNodeType}
                                                 getChapterKey={passInChapterKey} 
@@ -767,7 +767,7 @@ game-screen (specific node) layer */}
                                                 triggerSLPageToSave={triggerSLPageToSave_ve}
 
 
-                                />
+                        />
 
                                 
                     </div>
@@ -788,7 +788,7 @@ shop layer
                     "left": "0px",
                     "backgroundColor": "purple",
                 }}>
-                    <NavigationPreview 
+                    <NavigationVisLayer 
                         fetchNavObj={passInNavObj} 
                         onEditingSlPageTab={false}
                         triggerSlSlotWritePressed={triggerSlSlotWritePressed}

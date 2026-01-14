@@ -4,7 +4,7 @@ import langDictionary from './_textDictionary';
 import { GiTrashCan } from "react-icons/gi";
 import { defaultScreenWidth, defaultScreenHeight } from './_dataStructure_DefaultObjects';
 
-export default function ConvNodeUISetter({
+export default function ConvNode_UISetter({
     openRm, iniDefaultButtonObj, 
     iniTxtFrameObj, iniMenuButtonObj, iniConvNavObj, iniCovLogObj,
     updateIsDisplayDefaultButtonPreview, 
