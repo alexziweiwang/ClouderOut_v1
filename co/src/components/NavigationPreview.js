@@ -27,6 +27,7 @@ export default function NavigationPreview ({
     fetchCurrentGameData,
 
     getUILanguage,
+
     initialUILanguage,
 
     fetchShopItemInfo,
@@ -47,6 +48,10 @@ export default function NavigationPreview ({
     getSlModeFlag,
 
 }) {
+console.log(" chapter-data = ", chapterData);
+
+
+
 //TODO game-data, player-profile, player-account-info fetching for testing ...
 const tempFontSize = 12;
 const emptyStr = "";
@@ -148,6 +153,8 @@ const slSlotOnePageTemplate = [1, 1, 1, 0, 0];
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
 
+    
+
 
         if (firstTimeEnter === true) {
                                         // console.log("initial nav-preview: ", initialNavObj); //TODO test
@@ -237,7 +244,7 @@ const slSlotOnePageTemplate = [1, 1, 1, 0, 0];
 
                 setNavObj(objTemp);
 
-                console.log("navObj changed!", objTemp);
+             //   console.log("navObj changed!", objTemp);
 
 
 
@@ -497,40 +504,29 @@ const slSlotOnePageTemplate = [1, 1, 1, 0, 0];
             notifyEditorPopWindowOpened(""); //TODO79
     }
 
-    function makeOnePageTemplate_slPage(navObjProvided) {
-        //current version: 2 / 3 / 4 / 5
-
-        console.log("making sl-slot-position-template: requring ", navObjProvided["saveloadPage-slotPerPage"], " slots, and template is: ", slSlotOnePageTemplate.length);
-        let slotPerPageProvided = navObjProvided["saveloadPage-slotPerPage"];
-
-        let tempArr = [1,1,1,1,1];
-        let currTemplateLen = slSlotOnePageTemplate.length;
-
-        if (currTemplateLen === slotPerPageProvided) {
+    function startGameFromNewGame() {
+        let firstChapterItem = chapterData.length > 1 ? chapterData[1] : -1; //[0] is the placeholder
+        if (firstChapterItem === -1) {
             return;
-
-        } else if (currTemplateLen < slotPerPageProvided) {
-            //TODO make template to add more slots
-            tempArr = slSlotOnePageTemplate;
-            let diff = slotPerPageProvided - currTemplateLen;
-            
-            let i = 0;
-            while (i < diff) {
-                tempArr.push("");
-                i++;
-            }
         } else {
-            tempArr = [];
+            let nextPageName = "During Game";
+            let nextChapKey = firstChapterItem[0];
+            let nextChapTitle = firstChapterItem[1];
+            let nextNodeKey = "chapterStart";
+            let nextNodeType = "*chapterStart*";
 
-            let i = 0;
-            while (i < slotPerPageProvided) {
-                tempArr.push("");
-                i++;
-            }
+            allUpdate_CurrentStanding(
+                nextPageName, 
+                nextChapKey, 
+                nextChapTitle, 
+                nextNodeKey, 
+                nextNodeType
+            );
+
         }
 
+
     }
-    
   
 return (
     <>
