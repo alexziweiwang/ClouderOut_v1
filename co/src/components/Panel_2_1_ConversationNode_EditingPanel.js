@@ -987,7 +987,6 @@ GameDataDesign <map>
 
         startQuickView_panel2(obj);
 
-//TODO99999 reflect to panel2!
         setIsDisplayQview(true);
 
     }
