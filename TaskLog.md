@@ -1002,7 +1002,7 @@
 - 2026-Jan-14: Improve sl page design
 
 - 2026-Jan-15: Improve sl page design
-
+- 2026-Jan-15: Design sl-emu-panel display and control table
 
 
 
