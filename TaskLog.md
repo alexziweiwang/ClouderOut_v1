@@ -1005,7 +1005,7 @@
 - 2026-Jan-15: Design sl-emu-panel display and control table
 - 2026-Jan-15: Design feature strategies for pic-preview (direction and side)
 
-
+- 2026-Jan-16: Improve sl page design: new start entry
 
 
 
