@@ -1006,7 +1006,7 @@
 - 2026-Jan-15: Design feature strategies for pic-preview (direction and side)
 
 - 2026-Jan-16: Improve sl page design: new start entry
-
+- 2026-Jan-16: Design feature strategies for pic-preview display (direction and side) - for resource saving
 
 
 
