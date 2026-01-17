@@ -48,7 +48,7 @@ export default function NavigationVisLayer ({
     getSlModeFlag,
 
 }) {
-console.log(" chapter-data = ", chapterData);
+//console.log(" chapter-data = ", chapterData);
 
 
 
@@ -425,9 +425,10 @@ const slSlotOnePageTemplate = [1, 1, 1, 0, 0];
 
                 }
 
-                } else {//back button pressed, not during game, not sl
-                    returnToMainPage();
-                }
+
+            } else {//back button pressed, not during game
+                returnToMainPage();
+            }
 
         }
 
@@ -439,7 +440,7 @@ const slSlotOnePageTemplate = [1, 1, 1, 0, 0];
 
     function returnToMainPage() {
         let nextPageName = "Main Page";
-        allUpdate_CurrentStanding(nextPageName, emptyStr, emptyStr, emptyStr, emptyStr);
+        allUpdate_CurrentStanding_local(nextPageName, emptyStr, emptyStr, emptyStr, emptyStr);
         triggerUpdateCurrPageName(nextPageName);
 
 
@@ -454,7 +455,9 @@ const slSlotOnePageTemplate = [1, 1, 1, 0, 0];
         } else {
             let nextPageName = "Chapter Selection Page";
 
-            allUpdate_CurrentStanding(nextPageName, emptyStr, emptyStr, emptyStr, emptyStr);
+            //TODO99999999999 should notify to reset game-data !!!
+
+            allUpdate_CurrentStanding_local(nextPageName, emptyStr, emptyStr, emptyStr, emptyStr);
             triggerUpdateCurrPageName(nextPageName);
 
         }
@@ -472,7 +475,7 @@ const slSlotOnePageTemplate = [1, 1, 1, 0, 0];
         
     }  
 
-    function allUpdate_CurrentStanding(nextPageName, nextChapKey, nextChapTitle, nextNodeKey, nextNodeType) {
+    function allUpdate_CurrentStanding_local(nextPageName, nextChapKey, nextChapTitle, nextNodeKey, nextNodeType) {
 
 
         let currentStandingObjTemp = {
@@ -518,7 +521,7 @@ const slSlotOnePageTemplate = [1, 1, 1, 0, 0];
             let nextNodeKey = "chapterStart";
             let nextNodeType = "*chapterStart*";
 
-            allUpdate_CurrentStanding(
+            allUpdate_CurrentStanding_local(
                 nextPageName, 
                 nextChapKey, 
                 nextChapTitle, 
@@ -654,7 +657,7 @@ return (
                                             // t riggerUpdateCurrentStanding(currentStandingObjTemp);
 
                                     //grouped-menu on main-page
-                                    allUpdate_CurrentStanding(pageNaming, emptyStr, emptyStr, emptyStr, emptyStr);        
+                                    allUpdate_CurrentStanding_local(pageNaming, emptyStr, emptyStr, emptyStr, emptyStr);        
 
                                     //TODO231
 
@@ -819,7 +822,7 @@ return (
 
                                                                                     //menu on main-page
                                     //customised-menu on main-page
-                                    allUpdate_CurrentStanding(pageNaming, emptyStr, emptyStr, emptyStr, emptyStr);
+                                    allUpdate_CurrentStanding_local(pageNaming, emptyStr, emptyStr, emptyStr, emptyStr);
 
                                     //TODO231
 
@@ -988,7 +991,7 @@ return (
                                                 // t riggerUpdateCurrentStanding(currentStandingObjTemp);
 
                                         //inside chapter-selection-page... going to enter the game
-                                        allUpdate_CurrentStanding(nextPageName, chapterKey, item, nkTemp, ntTemp);
+                                        allUpdate_CurrentStanding_local(nextPageName, chapterKey, item, nkTemp, ntTemp);
                                         //TODO231
 
                                     }

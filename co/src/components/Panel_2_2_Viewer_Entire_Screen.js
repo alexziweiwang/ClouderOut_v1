@@ -213,7 +213,7 @@ export default function Viewer_Entire_Screen({
                                                 console.log("initial chapter list: ", initialChapterList);
                                                 console.log("firstChapterData = ", firstChapterData);
             
-            initializeGameDataTracker_local(initialPlayerGameDataTracker);
+            initializeGameDataTracker_local();
 
             let allCnt = getAllChaptersContent();
             setAllContent(allCnt);
@@ -350,12 +350,14 @@ export default function Viewer_Entire_Screen({
 
 
                                                                 // function updateGameData(data) { // model's functionality     //TODO refactoring
-                                                                //     setPlayerGameDataTracker(data);
+                                                                //     s etPlayerGameDataTracker(data);
                                                                 // }
 
 
     
-    function initializeGameDataTracker_local(dataObj) {
+    function initializeGameDataTracker_local() {
+
+        let dataObj = initialPlayerGameDataTracker;
         initializeGameDataTracker_vm(dataObj, setPlayerGameDataTracker);
     }
 
@@ -693,8 +695,35 @@ export default function Viewer_Entire_Screen({
     return popWindowName;
   }
 
-    
+  function triggerQuitChapterGdataReset() {
+//TODO99999999
 
+      initializeGameDataTracker_local();
+
+  }
+
+  function triggerQuitChpaterResetList(candidateListMap) {
+      //when quitting a chapter, there is a series of game-data-items to reset
+//TODO99999999
+
+    //current: playerGameDataTracker
+    //initial: initialPlayerGameDataTracker
+
+    let currGDataList = playerGameDataTracker;
+
+    Object.keys(candidateListMap).map((currKey)=>{
+        let itemKey = currKey;
+
+        let initVal = initialPlayerGameDataTracker[currKey];
+
+        if (currGDataList[itemKey] !== undefined) {
+            currGDataList[itemKey] = initVal;
+        }
+    })
+
+    setPlayerGameDataTracker(currGDataList);
+
+  }
 
 
 return ( 
@@ -800,6 +829,7 @@ shop layer
 
                         triggerUpdateCurrPageName={updateNavPageName}
                         triggerUpdateCurrentStanding={updateCurrentStandingViewerLocal}
+                        triggerQuitChapterGdataReset={triggerQuitChapterGdataReset}
 
                         isEditing={false}
 

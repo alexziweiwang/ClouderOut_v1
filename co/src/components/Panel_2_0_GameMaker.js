@@ -1471,6 +1471,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
   }
 
+
  
 
 {/* //components
@@ -1824,6 +1825,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
                   triggerUpdateCurrPageName={notifyCurrPageName}
                   triggerUpdateCurrentStanding={notifyUpdateCurrentStanding_gm}
+                  triggerQuitChapterGdataReset={notUsing}
 
                   notifyEditorPopWindowOpened={notifyEditorPopWindowOpened}
                   getCurrentPopWindowName={passInCurrentPopWindowName}
