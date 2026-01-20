@@ -141,7 +141,7 @@ export default function PieceManager({
     }
 
       
-    function appendNewPiece() {
+    function actAppendNewPiece() { //TODO111
         const number = pieceDataLocal.length+1;
         setCurrentPieceNum(number);
         
@@ -162,7 +162,7 @@ export default function PieceManager({
                                                         //TODO notify outside layer
     }
 
-    function insertNewPiece(preIndex) {
+    function actInsertNewPiece(preIndex) { //TODO111
 
         const number = preIndex+1;
         //setCurrentPieceNum(number);
@@ -196,8 +196,8 @@ export default function PieceManager({
         return pieceDataArr;
     }
 
-    function duplicatePiece(index) {
-        let tempArr = insertNewPiece(index);
+    function actDuplicatePiece(index) { //TODO111
+        let tempArr = actInsertNewPiece(index);
         
         let pieceDataArr = tempArr;
         pieceDataArr[index+1] = makeDupPiece(pieceDataArr, index, index+1);
@@ -219,7 +219,7 @@ export default function PieceManager({
         return arr[targetIndex];
     }
  
-    function moveItemUpRow(index) { //TODO111
+    function actMoveItemUpRow(index) { //TODO111
         /* switch current item with the previous (smaller) item */
         if (index >= 1) {
             const tempArr = [...pieceDataLocal];
@@ -240,7 +240,7 @@ export default function PieceManager({
         }
     }
 
-    function moveItemDownRow(index) { //TODO111
+    function actMoveItemDownRow(index) { //TODO111
         /* switch current item with the next (larger) item */
         if (index < pieceDataLocal.length - 1) {
             const tempArr = [...pieceDataLocal];
@@ -264,7 +264,7 @@ export default function PieceManager({
         setHighlightedPiece(num);                 
     }
 
-    function deletePiece(index) {
+    function actDeletePiece(index) {//TODO111
        
 
 
@@ -297,7 +297,6 @@ export default function PieceManager({
         setHighlightedPiece(1);
         assignPreviewIndex(0);
                                     console.log("\t\t\treset: make preview the first piece.")
-//TODO111
     }
 
     function resetChosenEditingPiece() {
@@ -421,7 +420,7 @@ export default function PieceManager({
 
                             // assignPieceNum(item["num"]);
                         }}>Enter Editor</button> */}
-                        Enter Editor
+                        Edit
                     </td>}
                     <td
                         onClick={()=>{
@@ -447,21 +446,24 @@ export default function PieceManager({
                     
                     {(groupEditModeOn === false || groupMoving === true) && 
                     <>
+                    {/*
                     <button
                         onClick={()=>{
-                            if (groupEditModeOn === false) { //enter group-edit-mode
-                                setGroupEditModeOn(true);
-                                triggerPmQuickEditModeOn();
-                            }
-                            if (groupMoving === true) { //allow editing on the text-area
-                                setGroupMoving(false);
-                            }
+                                        if (groupEditModeOn === false) { //enter group-edit-mode
+                                            setGroupEditModeOn(true);
+                                            triggerPmQuickEditModeOn();
+                                        }
+                                        if (groupMoving === true) { //allow editing on the text-area
+                                            setGroupMoving(false);
+                                        }
+
                         }}
                     >
                         {groupEditModeOn === false && <label>Group Edit</label>}
-                        {groupEditModeOn === true && <label>Edit</label>}
+                        {groupEditModeOn === true && <label>Edit</label>} 
 
                     </button>
+                    */}
                     
                     
                     <br></br>
@@ -527,12 +529,12 @@ export default function PieceManager({
                     >
                     {
                     <div>
-                        <button onClick={()=>{setGroupMoving(true);moveItemUpRow(index);}}>{moveUpText}</button>
+                        <button onClick={()=>{setGroupMoving(true);actMoveItemUpRow(index);}}>{moveUpText}</button>
                         <br></br>
-                        <button onClick={()=>{setGroupMoving(true);moveItemDownRow(index);}}>{moveDownText}</button>
+                        <button onClick={()=>{setGroupMoving(true);actMoveItemDownRow(index);}}>{moveDownText}</button>
                         <br></br>
-                        <button onClick={()=>{setGroupMoving(true);duplicatePiece(index);}}>{duplicateText}</button>
-                        <button onClick={()=>{setGroupMoving(true);insertNewPiece(index);}}>{insertText}</button> 
+                        <button onClick={()=>{setGroupMoving(true);actDuplicatePiece(index);}}>{duplicateText}</button>
+                        <button onClick={()=>{setGroupMoving(true);actInsertNewPiece(index);}}>{insertText}</button> 
                     </div>}
                     
                     </td>
@@ -547,7 +549,7 @@ export default function PieceManager({
                                 let respondGiven = window.confirm(content);
                                 if (respondGiven) {
                                     setGroupMoving(true);
-                                    deletePiece(index);
+                                    actDeletePiece(index);
                                 }   
                             }
     
@@ -561,7 +563,7 @@ export default function PieceManager({
         </tbody>
     </table>
     {
-    <button onClick={()=>{appendNewPiece();}}>{addNewRowText}</button>
+    <button onClick={()=>{actAppendNewPiece();}}>{addNewRowText}</button>
     }
         
         {groupEditModeOn === true && 
