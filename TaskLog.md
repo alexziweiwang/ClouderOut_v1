@@ -1015,4 +1015,13 @@
 - 2026-Jan-20: Design feature strategies for pic-preview display (direction and side) - for resource optimization: piece-setting related
 
 - 2026-Jan-21: offline-mode design+
+- 2026-Jan-21: Design sl-emu-panel editing strategies
+
+
+
+
+
+
+
+
 
