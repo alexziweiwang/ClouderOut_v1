@@ -1012,7 +1012,7 @@
 - 2026-Jan-19: Design feature strategies for pic-preview display (direction and side) - for resource optimization
 
 - 2026-Jan-20: Design sl-emu-panel display and control table
-
+- 2026-Jan-20: Design feature strategies for pic-preview display (direction and side) - for resource optimization: piece-setting related
 
 
 
