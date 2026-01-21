@@ -41,11 +41,12 @@ export default function NavigationVisLayer ({
     getOpenSettingSignal,
     closeSettingsPage,
 
-    triggerSlSlotWritePressed,
-    triggerSlSlotReadPressed,
+    triggerSlSlotWritePressed, //TODO99999999 
+    triggerSlSlotReadPressed, //TODO99999999 
     isInPrac,
 
     getSlModeFlag,
+    resetGameDataTracker_outLayer,
 
 }) {
 //console.log(" chapter-data = ", chapterData);
@@ -278,18 +279,19 @@ const slSlotOnePageTemplate = [1, 1, 1, 0, 0];
             }
 
 
-            let pWindowTemp = getCurrentPopWindowName();
+            //let pWindowTemp = getCurrentPopWindowName();
 
-            if (pWindowTemp === "gameQuitAsking") {
-                // should show game-quit-pop-window
-                setQuitGameWindowOpen(true);
+            // if (pWindowTemp === "gameQuitAsking") {
+            //     // should show game-quit-pop-window
+            //     setQuitGameWindowOpen(true);
          
     
-            } else if (pWindowTemp === "slConfirming") {
-                //TODO9999999 should show sl-confim-pop-window
+            // } else if (pWindowTemp === "slConfirming") {
+            //     //TODO9999999 should show sl-confim-pop-window
+            //     setSlConfirmWindowOpen(true);
 
 
-            } 
+            // } 
 
      
 
@@ -455,10 +457,13 @@ const slSlotOnePageTemplate = [1, 1, 1, 0, 0];
         } else {
             let nextPageName = "Chapter Selection Page";
 
-            //TODO99999999999 should notify to reset game-data !!!
+            //TODO99999999999 should notify to reset game-data-tracker !!!
 
             allUpdate_CurrentStanding_local(nextPageName, emptyStr, emptyStr, emptyStr, emptyStr);
             triggerUpdateCurrPageName(nextPageName);
+
+            resetGameDataTracker_outLayer();
+
 
         }
     }

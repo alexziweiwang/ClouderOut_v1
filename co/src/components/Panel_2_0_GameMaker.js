@@ -1827,10 +1827,6 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
                   triggerUpdateCurrentStanding={notifyUpdateCurrentStanding_gm}
                   triggerQuitChapterGdataReset={notUsing}
 
-                  notifyEditorPopWindowOpened={notifyEditorPopWindowOpened}
-                  getCurrentPopWindowName={passInCurrentPopWindowName}
-                  getSlModeFlag={passInSlModeFlag}
-
                   isEditing={true}
                   initialGameDataRefData={emptyValue}
                   initialPlayerProfileRefData={testPlayerProfile}
@@ -1856,6 +1852,12 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
                   closeSettingsPage={notUsing} 
                   //TODO later: change to page-changing func for nav-setter
+                  
+                  
+                  notifyEditorPopWindowOpened={notifyEditorPopWindowOpened}
+                  getCurrentPopWindowName={passInCurrentPopWindowName}
+                  getSlModeFlag={passInSlModeFlag}
+                  resetGameDataTracker_outLayer={notUsing}
 
                   />
               </div>

@@ -361,7 +361,7 @@ export default function Viewer_Entire_Screen({
         initializeGameDataTracker_vm(dataObj, setPlayerGameDataTracker);
     }
 
-
+    
 
     
 
@@ -857,6 +857,7 @@ shop layer
                         notifyEditorPopWindowOpened={notifyEditorPopWindowOpened}
                         getCurrentPopWindowName={passInCurrentPopWindowName}
                         getSlModeFlag={passInSlModeFlag}
+                        resetGameDataTracker_outLayer={initializeGameDataTracker_local}
                     /> 
 
                     
