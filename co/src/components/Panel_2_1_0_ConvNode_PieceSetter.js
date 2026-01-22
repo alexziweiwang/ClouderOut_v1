@@ -176,7 +176,7 @@ export default function PieceSetter({
 
     const [stndBtnConseqGDataItemSelected, setStndBtnConseqGDataItemSelected] = useState("");
     const [stndBtnConseqGDataTypeSelected, setStndBtnConseqGDataTypeSelected] = useState("");
-    const [consequenceStndBtnIsPlus, setConsequenceStndBtnIsPlus] = useState("");
+    const [consequenceStndBtnIsPlus, setStndBtnConseqIsPlus] = useState("");
     const [stndBtnConseqIsAssignValue, setStndBtnConseqIsAssignValue] = useState(true);
     const [stndBtnConseqBecomeAmount, setStndBtnConseqBecomeAmount] = useState("");
 
@@ -1338,12 +1338,15 @@ console.log("audiolist = ", audioList);
                     <label>Change Value</label>
                     <br></br>
                     <label>Operation: </label>
-                    <select value={consequenceStndBtnIsPlus} onChange={(event)=>{setConsequenceStndBtnIsPlus(event.target.value);}}>
+                    <select value={consequenceStndBtnIsPlus} onChange={(event)=>{
+                        setStndBtnConseqIsPlus(event.target.value);
+                    }}>
                         <option value="" key="defaultOperation"> -- Select Operation -- </option>
                         <option value="plus" key="plus"> Plus </option>
                         <option value="minus" key="minus"> Minus </option>
                     </select>      
-                    <label>TODO</label>
+                    <br></br>
+                    <label>Amount</label>
                         <input onChange={(event)=>{setStndBtnConseqBecomeAmount(event.target.value);}}></input>
                     </div>}
 
@@ -1351,8 +1354,14 @@ console.log("audiolist = ", audioList);
 
                     <button onClick={()=>{
                         setIsStndBtnAddNewConsq(false);
+
+
+                        //reset all button-consequence-settings
                         setStndBtnConseqGDataItemSelected("");
                         setStndBtnConseqGDataTypeSelected("");
+                        setStndBtnConseqIsPlus("");
+                        setStndBtnConseqIsAssignValue(true);
+                        setStndBtnConseqBecomeAmount("");
                     
                     }}>{cancelText}</button> 
 
@@ -1390,6 +1399,13 @@ console.log("audiolist = ", audioList);
                         setIsStndBtnAddNewConsq(false);
 
 
+
+                        //reset all button-consequence-settings
+                        setStndBtnConseqGDataItemSelected("");
+                        setStndBtnConseqGDataTypeSelected("");
+                        setStndBtnConseqIsPlus("");
+                        setStndBtnConseqIsAssignValue(true);
+                        setStndBtnConseqBecomeAmount("");
 
                     }}>{addText}</button>
 

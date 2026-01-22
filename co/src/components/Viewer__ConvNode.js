@@ -6,9 +6,6 @@ import Modal_ConvNode_Log from './Modal_ConvNode_Log';
 
 //level4 (content of node: conversation node)
 
-//TODO123 shared core-screen for both viewing-tests
-
-
 // includes conversational-node content+UI
 export default function Viewer__ConvNode ({
     isPreview,

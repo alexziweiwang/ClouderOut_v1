@@ -100,7 +100,7 @@ return (<div>
         initialPieceNum={initialPieceNum}   //ok (non-dynamic)
         allPieceContent={allPieceData} // ok (non-dynamic)
 
-        notifyNodeFinish={notifyNodeFinish}
+        n otifyNodeFinish={notifyNodeFinish}
                     
         uiData1_textframe={nodeUITextFrame}
         uiData2_defaultButtonOption={nodeUIDefaultButton}

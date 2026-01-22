@@ -237,12 +237,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
 
   const [showChapterMaker, setShowChapterMaker] = useState(true); // local-use
-  const [showSlTab, setShowSLTab] = useState(
-    initialMetadata !== undefined
-      ? initialMetadata["nav_ui_settings"] !== undefined
-          ? initialMetadata["nav_ui_settings"]["isWithSL"]
-          : false
-      : false);
+  const [showSlTab, setShowSLTab] = useState(false);
 
   
 

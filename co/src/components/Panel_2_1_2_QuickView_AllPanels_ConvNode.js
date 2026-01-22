@@ -316,6 +316,11 @@ export default function QuickView_AllPanels_ConvNode ({
         alert("Save/Load Page pops when this is clicked.");
     }
 
+    function quickViewNodeFinishActions() {
+        alert("Node finished!");
+        handleQViewCancel();
+    }
+
     return ( 
 <div>
         <div className="modalArea textNoSelect">
@@ -328,30 +333,6 @@ export default function QuickView_AllPanels_ConvNode ({
             <div style={{"marginLeft": "-700px", "marginTop": "-30px", "paddingBottom": "20px"}}>
 
 
-
-                    
-                                                    {/* <button 
-                                                        className="cursor_pointer modalClose" 
-                                                        onClick={()=>{
-                                                            let resArr = resetViewing();
-                                                                                                        console.log("reset clicked: ", resArr);
-
-                                                            setGameDataTracker(resArr[1]);
-                                                            setResetSignal(true);
-                                                            setResetInfo(resArr);
-                                                        }}
-                                                    > {resetText} </button> */}
-
-                                                    {/* <button
-                                                        className="cursor_pointer modalClose" 
-                                                        onClick={()=>{
-                                                            setMutedViewOption(!mutedViewOption);
-                                                        }}
-                                                    >
-                                                        {mutedViewOption === true && <label>Unmute</label>}
-                                                        {mutedViewOption === false && <label>Mute</label>} 
-
-                                                    </button> */}
             </div>
 
 
@@ -399,7 +380,7 @@ export default function QuickView_AllPanels_ConvNode ({
 
                         sendOutBgmSettings={notUsingThreeParam}
 
-                        notifyNodeFinish={notUsing}
+                        notifyNodeFinish={quickViewNodeFinishActions}
 
                         triggerSLPageToSave={triggerSLPageToSave_qv}
                     />
