@@ -1017,6 +1017,7 @@
 - 2026-Jan-21: offline-mode design+
 - 2026-Jan-21: Design sl-emu-panel editing strategies
 
+- 2026-Jan-22: offline-mode design+
 
 
 
