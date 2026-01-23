@@ -1905,7 +1905,7 @@ return (
         </div>}
 
 
-        {page === "During Game" && 
+        {/* {page === "During Game" && 
         <div 
             style={{
                 "position": "absolute", 
@@ -1917,7 +1917,9 @@ return (
                         console.log("clicking on nav-previewer...");
 
             }} 
-        ><br></br><br></br><br></br>(Game Content)</div>}
+        ><br></br><br></br><br></br>(Game Content)
+        </div>} */} 
+        {/* note: removed for not covering all-node-type-container when entire-viewing... */}
 
               
 

@@ -4,7 +4,9 @@ import { useState, useEffect } from 'react';
 
 
 
-export default function GameUI_Play_2Buttons({initialPieceNum, triggerNextPiece, visualMap, 
+export default function GameUI_Play_2Buttons({
+    initialPieceNum,  
+    triggerNextPiece, visualMap, 
     allPieceContent, getCurrentPieceNum, 
     defaultBtnUISettings,
     buttonConsequenceByStatementEntireArray_UP2
@@ -34,7 +36,7 @@ export default function GameUI_Play_2Buttons({initialPieceNum, triggerNextPiece,
                     : []);            
         }
 
-    
+  
 
   //      setButtonPicUrl(visualMap[defaultBtnUISettings["picVar"]]); //TODO test later!
    

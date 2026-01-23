@@ -78,6 +78,8 @@ export default function Viewer__ConvNode ({
 
     
         const [showConvLog, setShowConvLog] = useState(false);
+
+        const [isNodeFinished, setIsNodeFinished] = useState(false);
     
         const [firstTimeEnter, setFirstTimeEnter] = useState(true);   //TODO temp
         useEffect(() => {
@@ -250,6 +252,9 @@ export default function Viewer__ConvNode ({
      
             // console.log("going to next piece! ", allPieceContent[currPieceNum+1]); //TODO test
             // console.log("\t  textStillTyping? ", textStillTyping === true ? "True" : "False", ", currPieceNum+1 = ", currPieceNum+1); //TODO test
+
+
+
                 if (textStillTyping === true) {
                     // notify to finished immediately
                     if (autoMode === false) {
@@ -261,14 +266,20 @@ export default function Viewer__ConvNode ({
                             setImmediateFinishSignal(false);
                         } 
                     }
+
                 } else if (currPieceNum >= 0 && allPieceContent[currPieceNum+1] 
                         !== undefined) { //also when textStillTyping is false
         
                     setCurrPieceNum(currPieceNum+1);
                     setImmediateFinishSignal(false);
+
                 } 
 
-                if (currPieceNum+1 === allPieceLimit) {
+                if (currPieceNum+2 === allPieceLimit) {
+                    //TODO999999999 checking
+
+                    setIsNodeFinished(true);
+
                     notifyNodeFinish();
                 }
             
@@ -326,9 +337,9 @@ export default function Viewer__ConvNode ({
 
         function buttonConsequenceByStatementEntireArray_QVC_local(pieceNum, item) {
                                                     console.log("qvc layer...");
-
-
-            buttonConsequenceByStatementEntireArray_QVC(pieceNum, item);
+            if (currPieceNum+1 < allPieceLimit) {
+                buttonConsequenceByStatementEntireArray_QVC(pieceNum, item);
+            }
         }
 
         //TODO106
@@ -349,7 +360,7 @@ export default function Viewer__ConvNode ({
 
     return (   
 <>      
-{(allPieceContent !== undefined && allPieceContent.length > 0) 
+{(allPieceContent !== undefined && allPieceContent.length > 0 && isNodeFinished === false) 
 &&
 <div   
 style={{
@@ -367,20 +378,21 @@ style={{
 >
 
 
-            {<div style={{
-                "backgroundColor": "#000000",
-                "backgroundImage": (currPieceNum >= 0 && bgpSource !== "") ? 
-                `url(${bgpSource})` 
-                    : "",
-                "backgroundSize": `${screenWidth}px ${screenHeight}px`,
-                "position": "absolute", 
-                "top": "0px", 
-                "left": "0px", 
-                "height": `${screenHeight}px`, 
-                "width": `${screenWidth}px`,
-                "borderRadius": "0px"
+            {<div 
+                style={{
+                    "backgroundColor": "#000000",
+                    "backgroundImage": (currPieceNum >= 0 && bgpSource !== "") ? 
+                    `url(${bgpSource})` 
+                        : "",
+                    "backgroundSize": `${screenWidth}px ${screenHeight}px`,
+                    "position": "absolute", 
+                    "top": "0px", 
+                    "left": "0px", 
+                    "height": `${screenHeight}px`, 
+                    "width": `${screenWidth}px`,
+                    "borderRadius": "0px"
 
-            }}
+                }}
                 
                 onClick={()=>{
                     if (directNextPieceBool === true && showConvLog === false) {
