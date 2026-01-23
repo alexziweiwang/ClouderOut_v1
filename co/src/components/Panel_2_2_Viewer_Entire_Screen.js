@@ -506,6 +506,7 @@ export default function Viewer_Entire_Screen({
     }
 
     function updateCurrentStandingViewerLocal(obj) {
+        console.log("ve: updateCurrentStanding-ViewerLocal: ", obj);
 
         // update local standing-obj
         configureGameProgress_local(
