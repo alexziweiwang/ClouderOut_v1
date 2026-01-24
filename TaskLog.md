@@ -1019,6 +1019,7 @@
 
 - 2026-Jan-22: offline-mode design+
 
+- 2026-Jan-23: offline-mode design+
 
 
 
