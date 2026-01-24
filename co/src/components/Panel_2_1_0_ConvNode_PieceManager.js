@@ -5,7 +5,11 @@ import { emptyConvNodeSinglePieceTemplate } from './_dataStructure_DefaultObject
 import { defaultScreenWidth, defaultScreenHeight } from './_dataStructure_DefaultObjects';
 
 export default function PieceManager({
-    allPieceData, assignPieceNum, assignPreviewIndex, 
+    allPieceData, 
+    assignPieceNum, 
+    assignPreviewIndex,
+    
+    
     updatePieceData, getAllPieceData, 
     setIsClickedOnSetters, fetchClickedIsOnSetter, getCurrentPieceNum,
     getScreenSize,
@@ -31,7 +35,6 @@ export default function PieceManager({
     
   
 
-    let name = "/piecemanager";
 
     let textDictItem = langDictionary[languageCodeTextOption];
     let textDictItemDefault = langDictionary["en"];
@@ -318,19 +321,19 @@ export default function PieceManager({
     }
 
 
-    function checkRowLengthOverflow(content) {
-        let boolVal = false;
-        let arr = content.match(/[^\r\n]+/g);
-        arr.forEach(
-            (element) => {
-                if (element.length > 36) {
-                    boolVal = true;
-                }          
-            }
-        );
+                            // function checkRowLengthOverflow(content) {
+                            //     let boolVal = false;
+                            //     let arr = content.match(/[^\r\n]+/g);
+                            //     arr.forEach(
+                            //         (element) => {
+                            //             if (element.length > 36) {
+                            //                 boolVal = true;
+                            //             }          
+                            //         }
+                            //     );
 
-        return boolVal;
-    }
+                            //     return boolVal;
+                            // }
 
 
 
@@ -414,12 +417,7 @@ export default function PieceManager({
 
                         }}
                     >
-                        {/* <button onClick={()=>{
-                            // assignPreviewIndex(index); //TODO1 check
-                            // console.log("table row to edit: ", index, "; ", item["num"] );//TODO1 test
-
-                            // assignPieceNum(item["num"]);
-                        }}>Enter Editor</button> */}
+             
                         Edit
                     </td>}
                     <td
@@ -500,8 +498,9 @@ export default function PieceManager({
                                     pieceArrTemp[index]["content"] = val;
                                     setPieceDataLocal(pieceArrTemp);
 
-                                    let isLineTooLong = checkRowLengthOverflow(val);
-                                    setHintTextAreaOverflow(isLineTooLong);
+                                                    //TODO: temp removed
+                                                    // let isLineTooLong = checkRowLengthOverflow(val);
+                                                    // setHintTextAreaOverflow(isLineTooLong);
                                 }}
                                 onBlur={()=>{
                                     if (hintTextAreaOverflow === true) {

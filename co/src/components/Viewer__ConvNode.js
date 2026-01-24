@@ -275,7 +275,7 @@ export default function Viewer__ConvNode ({
 
                 } 
 
-                if (currPieceNum+2 === allPieceLimit) {
+                if (currPieceNum+1 === allPieceLimit) {
                     //TODO999999999 checking
 
                     setIsNodeFinished(true);
@@ -360,7 +360,7 @@ export default function Viewer__ConvNode ({
 
     return (   
 <>      
-{(allPieceContent !== undefined && allPieceContent.length > 0 && isNodeFinished === false) 
+{(allPieceContent !== undefined && allPieceContent.length > 0) 
 &&
 <div   
 style={{

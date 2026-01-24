@@ -13,8 +13,16 @@ import { defaultScreenWidth, defaultScreenHeight } from './_dataStructure_Defaul
 
 
 export default function PieceSetter({
-    pieceNum, assignPreviewIndex, 
-    allPieceData, updatePieceData, getAllPieceData, 
+    pieceNum, 
+    assignPreviewIndex, 
+
+
+    allPieceData, 
+    
+    updatePieceData, 
+    
+    getAllPieceData, 
+
     backToList, 
 
     gameDataList,  //TODO change to dynamic?
@@ -205,52 +213,48 @@ export default function PieceSetter({
     const [allPiecesDataLocal, setAllPiecesDataLocal] = useState(allPieceData);
 
 
+    const defaultSinglePieceDetailObj = {
+        "num": 1, 
+        "isContentNotClkb": true,
+        "content": "", 
+        "speaker_name": "", 
+        "bgp_pos_x": 0, 
+        "bgp_pos_y": 0, 
+        "bgp_width": defaultScreenWidth, 
+        "bgp_height": defaultScreenHeight, 
+        "bgp_source_varname": "",
+        "chp_map": [], 
+        "stnd_btn_arr": [], 
+        "bgm_loop": true, 
+        "bgm_source_varname": "",
+        "displayTextFrame": true,
+        "bgp_action": "maintainBgp", 
+        "chp_action": "maintainCharPicArr",
+        "bgm_action": "maintainBgm", 
+    };
     //TODO200
     const [currentSinglePieceDetail, setCurrentSinglePieceDetail] = useState(
         allPieceData.length > 0 ?
         ({
-        "num": pieceNum, 
-        "isContentNotClkb": allPieceData[pieceNum-1]["isContentNotClkb"],
-        "content": allPieceData[pieceNum-1]["content"], 
-        "displayTextFrame": allPieceData[pieceNum-1]["displayTextFrame"],
-        "speaker_name": allPieceData[pieceNum-1]["speaker_name"], 
-        "bgp_source_varname": allPieceData[pieceNum-1]["bgp_source_varname"], 
-        "bgp_pos_x": allPieceData[pieceNum-1]["bgp_pos_x"], 
-        "bgp_pos_y": allPieceData[pieceNum-1]["bgp_pos_y"], 
-        "bgp_width": allPieceData[pieceNum-1]["bgp_width"], 
-        "bgp_height": allPieceData[pieceNum-1]["bgp_height"], 
-        "bgp_action": allPieceData[pieceNum-1]["bgp_action"],
-        "chp_map": allPieceData[pieceNum-1]["chp_map"], 
-        "chp_action": allPieceData[pieceNum-1]["chp_action"], 
-        "stnd_btn_arr": allPieceData[pieceNum-1]["stnd_btn_arr"], // fetch/in side
-        "bgm_source_varname": allPieceData[pieceNum-1]["bgm_source_varname"], 
-        "bgm_action": allPieceData[pieceNum-1]["bgm_action"],
-        "bgm_loop": allPieceData[pieceNum-1]["bgm_loop"], 
-
-
-   
-    }) : 
-        {
-            "num": 1, 
-            "isContentNotClkb": true,
-            "content": "", 
-            "speaker_name": "", 
-            "bgp_pos_x": 0, 
-            "bgp_pos_y": 0, 
-            "bgp_width": defaultScreenWidth, 
-            "bgp_height": defaultScreenHeight, 
-            "bgp_source_varname": "",
-            "chp_map": [], 
-            "stnd_btn_arr": [], 
-            "bgm_loop": true, 
-            "bgm_source_varname": "",
-            "displayTextFrame": true,
-            "bgp_action": "maintainBgp", 
-            "chp_action": "maintainCharPicArr",
-            "bgm_action": "maintainBgm", 
-    }, 
-
-
+            "num": pieceNum, 
+            "isContentNotClkb": allPieceData[pieceNum-1]["isContentNotClkb"],
+            "content": allPieceData[pieceNum-1]["content"], 
+            "displayTextFrame": allPieceData[pieceNum-1]["displayTextFrame"],
+            "speaker_name": allPieceData[pieceNum-1]["speaker_name"], 
+            "bgp_source_varname": allPieceData[pieceNum-1]["bgp_source_varname"], 
+            "bgp_pos_x": allPieceData[pieceNum-1]["bgp_pos_x"], 
+            "bgp_pos_y": allPieceData[pieceNum-1]["bgp_pos_y"], 
+            "bgp_width": allPieceData[pieceNum-1]["bgp_width"], 
+            "bgp_height": allPieceData[pieceNum-1]["bgp_height"], 
+            "bgp_action": allPieceData[pieceNum-1]["bgp_action"],
+            "chp_map": allPieceData[pieceNum-1]["chp_map"], 
+            "chp_action": allPieceData[pieceNum-1]["chp_action"], 
+            "stnd_btn_arr": allPieceData[pieceNum-1]["stnd_btn_arr"], // fetch/in side
+            "bgm_source_varname": allPieceData[pieceNum-1]["bgm_source_varname"], 
+            "bgm_action": allPieceData[pieceNum-1]["bgm_action"],
+            "bgm_loop": allPieceData[pieceNum-1]["bgm_loop"], 
+        }) 
+        : defaultSinglePieceDetailObj
     );
 
     const [audioList, setAudioList] = useState([]);

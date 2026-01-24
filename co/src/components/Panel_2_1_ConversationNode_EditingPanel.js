@@ -167,7 +167,6 @@ GameDataDesign <map>
     // receive & send-out
 
 
-
     
     const [gameUIisDisplayDefaultButton, setGameUIisDisplayDefaultButton] = useState(true); // receive & send-out
 
@@ -715,17 +714,6 @@ GameDataDesign <map>
         return;
     }
 
-    function resetQuickView () { 
-        let arr = [];
-        arr.push(previewingIndex);
-
-        let newPPDup = resetPlayerProfileDataDup();
-        arr.push(newPPDup);
-
-        return arr;
-
-//TODO5
-    } 
 
     function updateToOuter() { //TODO100 important
 
