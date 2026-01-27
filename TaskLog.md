@@ -1023,7 +1023,7 @@
 - 2026-Jan-23: Piece-setting optimization design
 
 - 2026-Jan-26: offline-mode design+
-
+- 2026-Jan-26: Piece-setting optimization design
 
 
 
