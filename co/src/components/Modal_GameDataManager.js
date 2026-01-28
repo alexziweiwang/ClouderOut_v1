@@ -136,6 +136,7 @@ export default function Modal_GameDataManager ({
         setAddingNewVarDftBool("invalid");
         setAddingNewVarDftVal(0);
         setIsAddingNewVarTypeBool(false);
+        
     }
 
     function addVarPair() {
@@ -212,11 +213,11 @@ export default function Modal_GameDataManager ({
         }
     }
 
-    function changeaddingNewVar(event) {
+    function changeAddingNewVar(event) {
         setAddingNewVar(event.target.value);
     }
 
-    function changeaddingNewVarDftVal(event) {
+    function changeAddingNewVarDftVal(event) {
         setAddingNewVarDftVal(event.target.value);
     }
 
@@ -251,10 +252,8 @@ export default function Modal_GameDataManager ({
         setIsDisplayEditingDftValArea(true);
     }
 
-    function saveDefaultValChange() { //TODO33333
-        //TODO validation? then save changes? for number & boolean types
+    function saveDefaultValChange() {
         updateVarDefaultValue();
-        
 
         setIsDisplayEditingDftValArea(false);
         setEditingVarDftVal("");
@@ -414,15 +413,30 @@ export default function Modal_GameDataManager ({
                                     <td>
 
 
-
-                                        {/* //TODO9999999999 */}
                                         {/* check by edited-line data-type! */}
                                         {usingGameDataDesign[key]["data_type"] !== "boolean" 
-                                        && <input 
-                                            value={editingVarDftCddt} 
-                                            onChange={(event)=>{editVarDefaultValueTemp(event)}} 
-                                            className="editInput">    
-                                        </input>}
+                                        && 
+                                        <>
+                                            
+                                            {usingGameDataDesign[key]["data_type"] === "string" 
+                                            && <input 
+                                                value={editingVarDftCddt} 
+                                                onChange={(event)=>{editVarDefaultValueTemp(event)}} 
+                                                className="editInput">    
+                                            
+                                            </input>}
+
+                                            {usingGameDataDesign[key]["data_type"] === "number" 
+                                            && <input 
+                                                type="number"
+                                                value={editingVarDftCddt} 
+                                                onChange={(event)=>{editVarDefaultValueTemp(event)}} 
+                                                className="editInput">    
+                                            
+                                            </input>}
+                                            
+                                        </>}
+
 
                                         {usingGameDataDesign[key]["data_type"] === "boolean" 
                                         && <select
@@ -487,7 +501,7 @@ export default function Modal_GameDataManager ({
                     }}
                 >
                     <label>{varNameText}: </label>
-                    <input type="text" value={addingNewVar} onChange={changeaddingNewVar}/>
+                    <input type="text" value={addingNewVar} onChange={changeAddingNewVar}/>
                     <br></br>
                     <label>{typeText}: </label>
                     <select value={addingNewVarType} onChange={selectOnNewGdataType}>
@@ -498,7 +512,7 @@ export default function Modal_GameDataManager ({
                     <br></br>
                     <label>{defaultValueText}: </label>
                     {!isAddingNewVarTypeBool && 
-                    <input type="text" value={addingNewVarDftVal} onChange={changeaddingNewVarDftVal}></input>
+                    <input type="text" value={addingNewVarDftVal} onChange={changeAddingNewVarDftVal}></input>
                     }
                     {isAddingNewVarTypeBool && 
                     <select value={addingNewVarDftBool} onChange={(event)=>{selectOnDefaultBoolean(event)}}>
