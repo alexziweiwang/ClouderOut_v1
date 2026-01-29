@@ -34,7 +34,7 @@ import { replaceSpaceWithUnderline } from '../viewmodels/PrepAc_Conversion';
 
 export default function Viewer_Entire_Screen({
 
-//TODO99999 fetch static-metadata and static-all-node-contents from oute
+// fetch static-metadata and static-all-node-contents from oute
     getAllChaptersContent,
 
     initialNavObj, //TODO remove
@@ -64,6 +64,7 @@ export default function Viewer_Entire_Screen({
     notifyCurrGdt,
 
     getOriginalGdtracker,
+
     slOption,
     slEntireObj,
 
@@ -649,6 +650,17 @@ export default function Viewer_Entire_Screen({
 
    function passInSlModeFlag() {
 //TODO99999999
+    //flag: "w" or "r"
+
+    // do save or load during game: conv-node-ui-layer
+        //from "DuringGameScreen_AllNodeTypeContainer"
+            //from "Viewer__ConvNode"
+                //from "GameUI_Play_3ConvNav"
+
+    // do save or load before game: nav-vis-layer
+        //from "NavigationVisLayer"
+
+
 
    }
 
