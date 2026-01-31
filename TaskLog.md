@@ -1036,7 +1036,7 @@
 - 2026-Jan-29: Design feature strategies for pic-preview display (direction and side) - for resource optimization: piece-setting related
 
 
-
+- 2026-Jan-30: offline-mode optimization design+
 
 
 
