@@ -1037,6 +1037,17 @@
 
 
 - 2026-Jan-30: offline-mode optimization design+
+- 2026-Jan-30: Piece-setting optimization design
+
+
+
+
+
+
+
+
+
+
 
 
 
