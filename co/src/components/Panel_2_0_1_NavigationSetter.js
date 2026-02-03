@@ -1974,7 +1974,6 @@ export default function NavigationSetter({
          <br></br>
          <label>{mainPageItemsText}: </label>
 
-         {/* //TODO999999999 for with-sl-mode: entry to "load game"? */}
          <div className="indentOne someGrey" style={{"color": "#000000"}}>
             <input type="checkbox" value={toggleIsPlayerProfile}
                 checked={toggleIsPlayerProfile}

@@ -7,32 +7,33 @@ import { defaultScreenWidth, defaultScreenHeight } from './_dataStructure_Defaul
 export default function GameUI_3ConvNavPreview({
     getCurrentPieceNum,
 
+    getUIConvNav, 
     getVisualMap,
+
+    triggerAutoMode, 
     triggerLogOpen,
 
+    getScreenSize, 
 
     isSettingUpUI, 
-    initialAllPieceData, 
-    getAllPieceContent, 
-    
-    getScreenSize, 
-    triggerNextPiece, 
-    
-    triggerAutoMode, 
-    getUIConvNav, 
-    
-    isInGameView,
-    
-    passInAudioList, 
+
+
+    initialConvNav,
+    initialVisualMap,
+
+
+    openSettingPageFunc,
+
+    isPreviewingBool
+
 
 
 }) {
 
 
-    const [uiConvNav, setUiConvNav] = useState(-1);
+    const [uiConvNav, setUiConvNav] = useState(initialConvNav);
 
     const [currentPieceNum, setCurrentPieceNum] = useState(0);
-    const allPieceData = initialAllPieceData;
 
     const [autoOn, setAutoOn] = useState(false);
 
@@ -40,7 +41,7 @@ export default function GameUI_3ConvNavPreview({
     const [screenHeight, setScreenHeight] = useState(defaultScreenHeight);
 
     //TODO fetch resource-list and generate resource-map here, for dynamic pic-var-matching
-    const [visualMap, setVisualMap] = useState([]); 
+    const [visualMap, setVisualMap] = useState(initialVisualMap); 
 
     const [auto0ButtonPicUrl, setAuto0ButtonPicUrl] = useState("");
     const [auto1ButtonPicUrl, setAuto1ButtonPicUrl] = useState("");
@@ -68,28 +69,41 @@ export default function GameUI_3ConvNavPreview({
           setCurrentPieceNum(currPieceNumTemp);
         }
 
-        let uiConvNavTemp = getUIConvNav();
-        if (uiConvNavTemp !== undefined) {
-            if (uiConvNavTemp !== uiConvNav) {
-                setUiConvNav(uiConvNavTemp);
-                setAuto0ButtonPicUrl(visualMap[uiConvNavTemp["buttonAutoPicName0"]]);
-                setAuto1ButtonPicUrl(visualMap[uiConvNavTemp["buttonAutoPicName1"]]);
-                setLogButtonPicUrl(visualMap[uiConvNavTemp["buttonLogPicName"]]);
-                setSetupButtonPicUrl(visualMap[uiConvNavTemp["buttonSetupPicName"]]);
+        if (isPreviewingBool === true) {
+            //--- dynamic area start ---
+
+
+            let uiConvNavTemp = getUIConvNav();
+            if (uiConvNavTemp !== undefined) {
+                if (uiConvNavTemp !== uiConvNav) {
+                    setUiConvNav(uiConvNavTemp);
+                    setAuto0ButtonPicUrl(visualMap[uiConvNavTemp["buttonAutoPicName0"]]);
+                    setAuto1ButtonPicUrl(visualMap[uiConvNavTemp["buttonAutoPicName1"]]);
+                    setLogButtonPicUrl(visualMap[uiConvNavTemp["buttonLogPicName"]]);
+                    setSetupButtonPicUrl(visualMap[uiConvNavTemp["buttonSetupPicName"]]);
+
+                }
 
             }
+        
 
+            let screenSizePair = getScreenSize();
+            if (screenSizePair[0] !== screenWidth || screenSizePair[1] !== screenHeight) {
+                setScreenWidth(screenSizePair[0]);
+                setScreenHeight(screenSizePair[1]);
+            }
+
+            let visualMapTemp = getVisualMap();
+            setVisualMap(visualMapTemp);
+
+
+
+
+
+
+
+            //--- dynamic area end ---
         }
-      
-
-        let screenSizePair = getScreenSize();
-        if (screenSizePair[0] !== screenWidth || screenSizePair[1] !== screenHeight) {
-            setScreenWidth(screenSizePair[0]);
-            setScreenHeight(screenSizePair[1]);
-        }
-
-        let visualMapTemp = getVisualMap();
-        setVisualMap(visualMapTemp);
 
     });
 
@@ -128,10 +142,8 @@ return (<div style={{
 
                     }}
                     onClick={()=>{
-                        //switch auto-status
-            
-                        triggerAutoMode();
-                        
+                        //switch auto-status to "on"
+                        triggerAutoMode(true);
                         setAutoOn(true);
                     }}
 
@@ -185,8 +197,8 @@ return (<div style={{
                         "alignItems": "center",
                     }}
                     onClick={()=>{
-                        //switch auto-status
-                        //TODO stop auto-mode
+                        //switch auto-status to "off"
+                        triggerAutoMode(false);
                         setAutoOn(false);
                     }}
 
@@ -300,8 +312,8 @@ return (<div style={{
                         "justifyContent": "center",
                         "alignItems": "center",
                     }}
-                    onClick={()=>{
-                        window.alert("This button pops the \"Settings Page\" during an actual game-play.");                       
+                    onClick={()=>{                        
+                        openSettingPageFunc();
                     }}
 
                     onMouseDown={

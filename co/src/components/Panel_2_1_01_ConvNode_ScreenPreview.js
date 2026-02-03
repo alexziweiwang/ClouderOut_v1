@@ -296,6 +296,11 @@ console.log("preview-window game-content first-time entry, resource-list fetched
       console.log();
     }
 
+    function popSettingReactionHint() {
+      window.alert("This button pops the \"Settings Page\" during an actual game-play.");       
+
+    }
+
 
     return (
     
@@ -434,6 +439,13 @@ console.log("preview-window game-content first-time entry, resource-list fetched
                   isInGameView={true}
                   getVisualMap={getVisualMap}
                   triggerLogOpen={triggerLogOpen}
+
+                  openSettingPageFunc={popSettingReactionHint}
+
+                  initialConvNav={-1}
+                  initialVisualMap={-1}
+
+                  isPreviewingBool={true}
               />
 
 </div>}

@@ -5,18 +5,20 @@ import { useState, useEffect } from 'react';
 export default function GameUI_Play_3ConvNav({
     getCurrentPieceNum, 
     
-    uiConvNav, 
-    visualMap, 
+    uiConvNav,  //added
+    visualMap,  //added
 
     triggerAutoMode, 
     triggerLogPageOpen,
+    
     screenWidth, 
     screenHeight, 
 
-
     audioMap,
+
     openSettingPageFunc,
-    triggerSLPageToSave
+    triggerSLPageToSave,
+
 
 }) {
 
@@ -103,9 +105,8 @@ return (<div style={{
                         "alignItems": "center",
 
                     }}
-                    onClick={()=>{
-                        //TODO switch auto-status
-            
+                    onClick={()=>{            
+                        //switch auto-status to "on"
                         triggerAutoMode(true);
                         setAutoOn(true);
                     }}
@@ -160,8 +161,7 @@ return (<div style={{
                         "alignItems": "center",
                     }}
                     onClick={()=>{
-                        //switch auto-status
-                        //TODO stop auto-mode
+                        //switch auto-status to "off"
                         triggerAutoMode(false);
                         setAutoOn(false);
                     }}
