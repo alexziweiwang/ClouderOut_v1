@@ -15,7 +15,6 @@ export default function GameUI_3ConvNavPreview({
 
     getScreenSize, 
 
-    isSettingUpUI, 
 
 
     initialConvNav,

@@ -406,7 +406,6 @@ console.log("preview-window game-content first-time entry, resource-list fetched
                 getIsDirectNextPiece={passInDirectNextPieceBool}
                 triggerNextPiece={notUsing}
                 getTextFrameUISettings={getTextFrameUISettings}
-                isInGameView={true}
                 triggerAutoMode={triggerAutoMode}
                 getVisualMap={getVisualMap}
                 getUIConvNav={getUIConvNav}
@@ -428,9 +427,9 @@ console.log("preview-window game-content first-time entry, resource-list fetched
               /> 
 
               <GameUI_3ConvNavPreview
-                  isSettingUpUI={false}
-                  initialAllPieceData={initialAllPieceData}
-                  getAllPieceContent={passInAllPieceDataContent}
+                  // initialAllPieceData={initialAllPieceData}
+                  // getAllPieceContent={passInAllPieceDataContent}
+
                   getCurrentPieceNum={passInCurrentPieceNum}
                   triggerNextPiece={notUsing}
                   getScreenSize={getScreenSize}

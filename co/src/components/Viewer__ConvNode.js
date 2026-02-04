@@ -358,6 +358,31 @@ export default function Viewer__ConvNode ({
             triggerSLPageToSave(slModeFlag);
         }
 
+        function passInScreenSize() {
+            //TODO99999999
+
+            let pair = [];
+            pair.push(screenWidth);
+            pair.push(screenHeight);
+            return pair;
+        }
+
+        function passInUiConvNav() {
+            return uiData3_ConvNavigation;
+        }
+
+        function passInVisualMap() {
+            return visualMap;
+        }
+
+        function passInAudioMap() {
+            return audioMap;
+        }
+
+        function openSettingPage_local() {
+            openSettingPage();
+        }
+
     return (   
 <>      
 {(allPieceContent !== undefined && allPieceContent.length > 0) 
@@ -473,18 +498,48 @@ style={{
             }
 
             {currPieceNum >= 0 &&
+                <>
                 <GameUI_Play_3ConvNav
                     initialPieceNum={initialPieceNum}
+
                     getCurrentPieceNum={passInCurrentPieceNum}  
+
                     triggerAutoMode={triggerAutoMode}    
-                    triggerLogPageOpen={openConvLog}                       
+                    triggerLogPageOpen={openConvLog}  
+
                     uiConvNav={uiData3_ConvNavigation}
                     visualMap={visualMap}
                     audioMap={audioMap}
-                    openSettingPageFunc={openSettingPage}
+                    openSettingPageFunc={openSettingPage_local}
+
                     triggerSLPageToSave={triggerSLPageToSave_local}
                 />
+
+                <GameUI_3ConvNavPreview
+                  
+                    getCurrentPieceNum={passInCurrentPieceNum}
+                    triggerNextPiece={notUsing}
+
+                    getScreenSize={passInScreenSize}
+
+                    getUIConvNav={passInUiConvNav}
+
+                    triggerAutoMode={triggerAutoMode}
+
+                    getVisualMap={passInVisualMap}
+
+                    triggerLogOpen={openConvLog}
+
+                    openSettingPageFunc={openSettingPage_local}
+
+                    initialConvNav={uiData3_ConvNavigation}
+                    initialVisualMap={visualMap}
+
+                    isPreviewingBool={false}
+              />    
             
+
+                </>
             }
     </div>
 
