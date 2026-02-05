@@ -175,7 +175,7 @@ export default function Viewer_Entire_Screen({
 
     const [popWindowName, setPopWindowName] = useState(""); // "gameQuitAsking"   "slConfirming"
 
-
+    const [nodeLayerOveridden, setNodeLayerOverridden] = useState(false);
 
 //game-data tracker
 //progress-tracker: current-chapter & current-node
@@ -737,6 +737,22 @@ export default function Viewer_Entire_Screen({
 
   }
 
+  function triggerNodeLayerUiOverride() {
+    setNodeLayerOverridden(true);
+
+  }
+
+  function cancelNodeLayerUiOverride() {
+    setNodeLayerOverridden(false);
+
+  }
+
+  function passInNodeLayerUiOverrideFlag() {
+      return nodeLayerOveridden;
+
+  }
+
+
 
 return ( 
 /*{ <> 
@@ -806,8 +822,9 @@ game-screen (specific node) layer */}
                                                 returnToStoryPage={returnToStoryPage}
 
                                                 triggerSLPageToSave={triggerSLPageToSave_ve}
-
-
+                                                
+                                                triggerNodeLayerUiOverride={triggerNodeLayerUiOverride}
+                                                cancelNodeLayerUiOverride={cancelNodeLayerUiOverride}
                         />
 
                                 
@@ -870,6 +887,8 @@ shop layer
                         getCurrentPopWindowName={passInCurrentPopWindowName}
                         getSlModeFlag={passInSlModeFlag}
                         resetGameDataTracker_outLayer={initializeGameDataTracker_local}
+
+                        getNodeLayerUiOverrideFlag={passInNodeLayerUiOverrideFlag}
                     /> 
 
                     

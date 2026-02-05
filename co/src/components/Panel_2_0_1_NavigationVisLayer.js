@@ -48,6 +48,8 @@ export default function NavigationVisLayer ({
     getSlModeFlag,
     resetGameDataTracker_outLayer,
 
+    getNodeLayerUiOverrideFlag,
+
 }) {
 //console.log(" chapter-data = ", chapterData);
 
@@ -151,6 +153,8 @@ const slSlotOnePageTemplate = [1, 1, 1, 0, 0];
 
     const [isOpenSettingsPage, setOpenSettingsPage] = useState(false);
 
+    const [nodeUiOverriden, setNodeUiOverriden] = useState(false);
+
     const [firstTimeEnter, setFirstTimeEnter] = useState(true);
     useEffect(() => {
 
@@ -179,6 +183,10 @@ const slSlotOnePageTemplate = [1, 1, 1, 0, 0];
             setFirstTimeEnter(false);
 
         }
+
+        let nuvflag = getNodeLayerUiOverrideFlag();
+        setNodeUiOverriden(nuvflag);
+
 
  
 

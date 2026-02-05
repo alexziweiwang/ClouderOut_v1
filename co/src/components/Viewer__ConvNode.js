@@ -4,6 +4,10 @@ import GameUI_Play_2Buttons from './GameUI_Play_2Buttons';
 import GameUI_Play_3ConvNav from './GameUI_Play_3ConvNav';
 import Modal_ConvNode_Log from './Modal_ConvNode_Log';
 
+import GameUI_2ButtonsPreview from './Panel_2_1_0_0_GameUI_2ButtonsPreview';
+import GameUI_1TextFramePreview from './Panel_2_1_0_0_GameUI_1TextFramePreview';
+import GameUI_3ConvNavPreview from './Panel_2_1_0_0_GameUI_3ConvNavPreview';
+
 //level4 (content of node: conversation node)
 
 // includes conversational-node content+UI
@@ -499,7 +503,9 @@ style={{
 
             {currPieceNum >= 0 &&
                 <>
-                <GameUI_Play_3ConvNav
+
+
+                {/* <GameUI_Play_3ConvNav
                     initialPieceNum={initialPieceNum}
 
                     getCurrentPieceNum={passInCurrentPieceNum}  
@@ -513,7 +519,7 @@ style={{
                     openSettingPageFunc={openSettingPage_local}
 
                     triggerSLPageToSave={triggerSLPageToSave_local}
-                />
+                /> */}
 
                 <GameUI_3ConvNavPreview
                   
