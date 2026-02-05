@@ -55,7 +55,11 @@ export default function DuringGameScreen_AllNodeTypeContainer({
 
     returnToStoryPage,
 
-    triggerSLPageToSave
+    triggerSLPageToSave,
+
+
+    triggerNodeLayerUiOverride,
+    cancelNodeLayerUiOverride
 
 }) {
 
@@ -636,6 +640,14 @@ export default function DuringGameScreen_AllNodeTypeContainer({
         triggerSLPageToSave(slModeFlag);
     }
 
+    function triggerNodeLayerUiOverride_nctn() {
+        triggerNodeLayerUiOverride();
+    }
+    
+    
+    function cancelNodeLayerUiOverride_nctn() {
+        cancelNodeLayerUiOverride();
+    }
 
 
 
@@ -786,6 +798,10 @@ return (
 
                 sendOutBgmSettings={sendOutBgmSettings}
                 triggerSLPageToSave={triggerSLPageToSave_nctn}
+
+                triggerNodeLayerUiOverride={triggerNodeLayerUiOverride_nctn}
+                cancelNodeLayerUiOverride={cancelNodeLayerUiOverride_nctn}
+
         />
             
        </>}

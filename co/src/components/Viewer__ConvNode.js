@@ -37,7 +37,11 @@ export default function Viewer__ConvNode ({
 
     sendOutBgmSettings,
 
-    triggerSLPageToSave
+    triggerSLPageToSave,
+
+
+    triggerNodeLayerUiOverride,
+    cancelNodeLayerUiOverride
     
                                 //triggerClickOnGameScreen, getIsGameScreenClicked, //TODO test before removing these two
 
@@ -325,10 +329,12 @@ export default function Viewer__ConvNode ({
         
         function closeConvLog() {
             setShowConvLog(false);
+            cancelNodeLayerUiOverride();
         }
     
         function openConvLog() {
             setShowConvLog(true);
+            triggerNodeLayerUiOverride();
         }
     
         function notUsing() {

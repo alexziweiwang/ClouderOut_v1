@@ -186,6 +186,7 @@ const slSlotOnePageTemplate = [1, 1, 1, 0, 0];
 
         let nuvflag = getNodeLayerUiOverrideFlag();
         setNodeUiOverriden(nuvflag);
+        console.log("node-overriden flag: ", nuvflag);
 
 
  
@@ -2454,7 +2455,11 @@ plan:
 
 {/* back-button         back button */}
                 {/* //TODO5 */}
-                {(
+                {
+                
+                    nodeUiOverriden === false
+                &&
+                    (
                         (page !== "Main Page" 
                                  // && page !== "G ame Progress Strategy" 
                         && page !== "Shop Page"
