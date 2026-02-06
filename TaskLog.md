@@ -1049,7 +1049,7 @@
 - 2026-Feb-04: Piece-setting optimization design -- data structure considerations
 
 - 2026-Feb-05: Piece-setting optimization design -- data structure considerations
-
+- 2026-Feb-05: offline-mode optimization design+
 
 
 
