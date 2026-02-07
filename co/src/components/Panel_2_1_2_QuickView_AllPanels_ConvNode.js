@@ -339,11 +339,17 @@ export default function QuickView_AllPanels_ConvNode ({
                 <div  style={{ "display": "flex"}}>
 
                     <Viewer__ConvNode
+                        isPreview={true}
+                        isDisplay={true}
 
                         screenWidth={screenWidth}
                         screenHeight={screenHeight}
 
+                        initialPieceNum={initialPieceNum}
+
                         allPieceContent={allPieceContent}
+
+                        notifyNodeFinish={quickViewNodeFinishActions}
                         
                         uiData1_textframe={uiData1_textframe}
                         uiData2_defaultButtonOption={uiData2_defaultButtonOption}
@@ -353,36 +359,30 @@ export default function QuickView_AllPanels_ConvNode ({
                         visualMap={visualMap}
                         audioMap={audioMap}
 
-                        initialPieceNum={initialPieceNum}
-
                         gameData={gameDataTracker}
                 
-                        isViewMuted={mutedViewOption}
-                        openSettingPage={openSettingPage}
-
-                        isPreview={true}
-                        isDisplay={true}
-
-                        getCurrPieceNum={passInCurrPieceNum}
-
                         getResetSignal={passInResetSignal}
                         getResetInfoSets={passInResetInfoSets}
-
-                        notifyNewGameData={notifyNewGameData}
                         notifyAfterReset={notifyAfterReset}
 
-                        receiveGameDataObj={passInGameDataFromScreen}
-                        
                         buttonConsequenceByStatementEntireArray_QVC={buttonConsequenceByStatementEntireArray_QV}
-            
 
+
+                        isViewMuted={mutedViewOption}
                         fetchGameSettingsForPlaying={passInDefulatGameSettings}
 
+                        openSettingPage={openSettingPage} //TODO99999
+
                         sendOutBgmSettings={notUsingThreeParam}
-
-                        notifyNodeFinish={quickViewNodeFinishActions}
-
                         triggerSLPageToSave={triggerSLPageToSave_qv}
+
+  
+                        triggerNodeLayerUiOverride={notUsing}
+                        cancelNodeLayerUiOverride={notUsing}
+        
+
+
+
                     />
                     
     

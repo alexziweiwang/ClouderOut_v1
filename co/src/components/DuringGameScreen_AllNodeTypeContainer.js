@@ -788,16 +788,16 @@ return (
                 getResetInfoSets={notUsing} 
                 notifyAfterReset={notUsing}
 
-
                 buttonConsequenceByStatementEntireArray_QVC={buttonConsequenceByStatementEntireArray_EDV}  //TODO 
                             
                 isViewMuted={mutedViewOption}
-                fetchGameSettingsForPlaying={fetchGameSettings}
+                fetchGameSettingsForPlaying={fetchGameSettings} //TODO99999999
 
-                openSettingPage={openSettingPage}
+                openSettingPage={openSettingPage} //TODO99999999
 
-                sendOutBgmSettings={sendOutBgmSettings}
+                sendOutBgmSettings={sendOutBgmSettings} //TODO99999999
                 triggerSLPageToSave={triggerSLPageToSave_nctn}
+       
 
                 triggerNodeLayerUiOverride={triggerNodeLayerUiOverride_nctn}
                 cancelNodeLayerUiOverride={cancelNodeLayerUiOverride_nctn}
