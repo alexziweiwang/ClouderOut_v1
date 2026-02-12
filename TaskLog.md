@@ -1062,6 +1062,7 @@
 - 2026-Feb-10: Design feature strategies for pic-preview display (direction and side) - for resource optimization: piece-setting related
 - 2026-Feb-10: offline-mode optimization design+
 
+- 2026-Feb-11: Project test plans
 
 
 
