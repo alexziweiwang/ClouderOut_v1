@@ -1068,7 +1068,7 @@
 
 - 2026-Feb-12: Project test plans
 - 2026-Feb-12: offline-mode optimization design+
-
+- 2026-Feb-12: Piece-setting optimization design -- data structure considerations
 
 
 
