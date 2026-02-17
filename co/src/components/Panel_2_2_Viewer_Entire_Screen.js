@@ -196,6 +196,7 @@ export default function Viewer_Entire_Screen({
     const [currentGameStatusProgress, setCurrentGameStatusProgress] = useState(initialGameProgress); // important - for game-progress
 
 
+    const [allChapEndsFlag, setAllChapEndsFlag] = useState(false);
 
     const [isOpenSettingsPage, setOpenSettingsPage] = useState(false);
 
@@ -748,8 +749,22 @@ export default function Viewer_Entire_Screen({
   }
 
   function passInNodeLayerUiOverrideFlag() {
-      return nodeLayerOveridden;
+        return nodeLayerOveridden;
+  }
 
+  function reportAllChapterEnds_ve() {
+        setAllChapEndsFlag(true);
+
+  }
+
+  function passInAllChapEndsFlag() {
+        let tempFlag = allChapEndsFlag;
+        if (tempFlag === true) {
+            setAllChapEndsFlag(false);
+            return true;
+        } else {
+            return false;
+        } 
   }
 
 
@@ -822,9 +837,11 @@ game-screen (specific node) layer */}
                                                 returnToStoryPage={returnToStoryPage}
 
                                                 triggerSLPageToSave={triggerSLPageToSave_ve}
-                                                
+
                                                 triggerNodeLayerUiOverride={triggerNodeLayerUiOverride}
                                                 cancelNodeLayerUiOverride={cancelNodeLayerUiOverride}
+
+                                                reportAllChapterEnds={reportAllChapterEnds_ve}
                         />
 
                                 
@@ -889,6 +906,8 @@ shop layer
                         resetGameDataTracker_outLayer={initializeGameDataTracker_local}
 
                         getNodeLayerUiOverrideFlag={passInNodeLayerUiOverrideFlag}
+
+                        getAllChapEndsFlag={passInAllChapEndsFlag}                        
                     /> 
 
                     

@@ -50,6 +50,8 @@ export default function NavigationVisLayer ({
 
     getNodeLayerUiOverrideFlag,
 
+    getAllChapEndsFlag
+
 }) {
 //console.log(" chapter-data = ", chapterData);
 
@@ -159,6 +161,10 @@ const slSlotOnePageTemplate = [1, 1, 1, 0, 0];
     useEffect(() => {
 
     
+        let chapEndsFlagTemp = getAllChapEndsFlag();
+        if (chapEndsFlagTemp === true) {
+            returnToMainPage();
+        }
 
 
         if (firstTimeEnter === true) {

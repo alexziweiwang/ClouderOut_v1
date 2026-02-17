@@ -59,7 +59,10 @@ export default function DuringGameScreen_AllNodeTypeContainer({
 
 
     triggerNodeLayerUiOverride,
-    cancelNodeLayerUiOverride
+    cancelNodeLayerUiOverride,
+
+
+    reportAllChapterEnds
 
 }) {
 
@@ -552,6 +555,13 @@ export default function DuringGameScreen_AllNodeTypeContainer({
         setCurrNodeKey("chapterStart");
     }
 
+    function actionLastChapterEnds() {
+        console.log("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nthis is the last chapter");
+        reportAllChapterEnds();
+
+
+    }
+
 
     //TODO21 refactor to VM
     function walkToNextChapter() {
@@ -567,9 +577,9 @@ export default function DuringGameScreen_AllNodeTypeContainer({
                 //next chapter is the next key
 
                 if (i+1 === len) {
-                                                    console.log("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nthis is the last chapter")
                     //change to next-chapter's chapter-start node
-                    
+                    actionLastChapterEnds();
+
                     return;
 
                 } else { // (i+1 < len): more chapters to go
