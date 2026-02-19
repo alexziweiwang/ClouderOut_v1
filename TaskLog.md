@@ -1080,6 +1080,12 @@
 - 2026-Feb-17: Project test plans
 
 - 2026-Feb-18: Project test plans
+- 2026-Feb-18: offline-mode optimization design+
+
+
+
+
+
 
 
 
