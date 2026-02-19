@@ -463,6 +463,8 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
             if (metadataTemp === -1) {
               console.log("...unable to load proejct metadata from panel2.");
             } else {
+              console.log("...loading everything from provided metadata");
+              
               loadEverythingFromProvidedMetadata(metadataTemp);
               
             }
@@ -1497,8 +1499,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
 {(
 (
-(cloudDbConnOk === true 
-  && editorMode === "online_cloud" && authEmailName !== "_") 
+(cloudDbConnOk === true && editorMode === "online_cloud" && authEmailName !== "_") 
 || (authEmailName === "localUser###")
 )
 && isMtdtLoaded === true
@@ -1592,8 +1593,6 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
     
     </div>
     
-
-
 {/* chapter-and-node setting tab */}
     {((showChapterMaker === true && showSlTab === false) 
       && authEmailName !== "_") && 

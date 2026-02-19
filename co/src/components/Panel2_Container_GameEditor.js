@@ -309,7 +309,7 @@ console.log("handle Cancel NodeTest Viewer:", projectMetaData["emu4sets"]["gdt1"
                                                         console.log("panel2 (render once) - mode = ", state.mode, 
                                                             // "... isPrepFinished = ", isPrepFinished, 
                                                             // "\n focusing on: ", focusingEditor, 
-                                                            // "\n username = ", authEmailName,
+                                                            "\n username = ", authEmailName,
                                                             "\n\t metadata = ", projectMetaData,
                                                             // "\n\t ChapListNestedArr = ", chapListNestedArr,
                                                             // "\n\tmetadata valid ? ", checkMetadataValid,
@@ -524,7 +524,7 @@ console.log("handle Cancel NodeTest Viewer:", projectMetaData["emu4sets"]["gdt1"
 
         }
 
-
+        setPrepFinished(true);
         
     }
 
