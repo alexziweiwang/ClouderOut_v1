@@ -464,7 +464,7 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
               console.log("...unable to load proejct metadata from panel2.");
             } else {
               console.log("...loading everything from provided metadata");
-              
+
               loadEverythingFromProvidedMetadata(metadataTemp);
               
             }
@@ -1468,6 +1468,10 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
 
   }
 
+  function passInFalseBoolVal() {
+    return false;
+  }
+
 
  
 
@@ -1852,6 +1856,9 @@ Node-Data (multiple, content + ui_setting) [chapter_key, node_key]  <map of maps
                   getCurrentPopWindowName={passInCurrentPopWindowName}
                   getSlModeFlag={passInSlModeFlag}
                   resetGameDataTracker_outLayer={notUsing}
+
+                  getAllChapEndsFlag={passInFalseBoolVal}                        
+                  getNodeLayerUiOverrideFlag={passInFalseBoolVal}
 
                   />
               </div>

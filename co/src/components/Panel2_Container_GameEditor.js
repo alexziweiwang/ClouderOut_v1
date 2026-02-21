@@ -86,6 +86,8 @@ export default function Panel2_Container_GameEditor() {
 
     let modalStyleName = "displayBlock modalBackboard";
 
+    let colorInvertClassName = ""; //state.mode === "online_cloud" ? "" : "colorInvert";
+
 
     const [isPrepFinished, setPrepFinished] = useState(false);
     const [isSavedToCloud, setSavedToCloud] = useState(true);
@@ -1768,7 +1770,7 @@ return (
 {(state !== undefined && state !== null)
 &&
 <div style={{"backgroundColor": "#b5b2b0"}}
-    className={state.mode === "online_cloud" ? "" : "colorInvert"}
+    className={colorInvertClassName}
 >
 
 {(state !== undefined
