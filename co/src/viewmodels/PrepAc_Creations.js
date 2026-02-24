@@ -40,7 +40,7 @@ export function prepareForNewChapterMapping_vm (
     obj[chapterEndKeyStr] = {
       nodeName: chapterEndTitleStr, 
       row: 2, 
-      col: 5, 
+      col: 2, 
       nextNode: "", 
       display: true, 
       nodeType:"*chapterEnd*", 

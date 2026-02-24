@@ -30,18 +30,18 @@ import { checkProjectMetaData_vm } from '../viewmodels/PrepAc_ProjectFileInOut';
 
 
 
-  import { prepare1Gdt_vm, prepare2Epp_vm, prepare3Epa_vm } from '../viewmodels/PrepAc_EmuData';
-  import { prepareForNewChapterMapping_vm, triggerCreatedNewNode_Prep_vm } from '../viewmodels/PrepAc_Creations';
+import { prepare1Gdt_vm, prepare2Epp_vm, prepare3Epa_vm } from '../viewmodels/PrepAc_EmuData';
+import { prepareForNewChapterMapping_vm, triggerCreatedNewNode_Prep_vm } from '../viewmodels/PrepAc_Creations';
   
-  import { saveConvNodeUiPlanVM, fetchConvNodeUiAllPlansVM } from '../viewmodels/ProjectManagerViewModel';
+import { saveConvNodeUiPlanVM, fetchConvNodeUiAllPlansVM } from '../viewmodels/ProjectManagerViewModel';
  
   
 
-  import { 
+import { 
     fetchAllNodes2VM
-  } from '../viewmodels/NodeDataInPlayViewModel';
+} from '../viewmodels/NodeDataInPlayViewModel';
 
-  import { fetchNodeByChapter2VM } from '../viewmodels/NodeDataInPlayViewModel'
+import { fetchNodeByChapter2VM } from '../viewmodels/NodeDataInPlayViewModel'
   //TODO112: fetch node-contents here, and send into Viewer_Entire_Screen and its sub-component [DuringGameScreen_AllNodeTypeContainer]
   
 
@@ -68,9 +68,6 @@ import { placeholderNameDefault } from './_dataStructure_DefaultObjects';
 
 export default function Panel2_Container_GameEditor() {
 
-
-//TODO put modals here
-//TODO put editor-switching here
 
 //TODO screen-size-string improve formatting
 
@@ -107,8 +104,8 @@ export default function Panel2_Container_GameEditor() {
     entire project-object, ! important
     meta-data (managed by game-maker)
     node-content (managed by node-editor based on each node's: by chapter-key and node-key) */
-    const [projectMetaData, setProjectMetaData] = useState(-1); //TODO99
-    const [projectAllNodeContent, setProjectAllNodeContent] = useState(-1); //TODO99
+    const [projectMetaData, setProjectMetaData] = useState(-1);
+    const [projectAllNodeContent, setProjectAllNodeContent] = useState(-1);
     const [resourcePair, setResourcePair] = useState({
         "visual": [],
         "audio": []
@@ -290,21 +287,27 @@ console.log("handle Cancel NodeTest Viewer:", projectMetaData["emu4sets"]["gdt1"
             setFirstTimeEnter(false);
         }
 
-        if (isSavedToCloud_metadata === false 
-         || isSavedToCloud_nodedata === false
-        ) {
-                // remind user to check saving-status if ANY of these two unsaved
-
-                                    // if (isSavedToCloud === false) {
-
-        
-            window.onbeforeunload = () => { // exit or refresh
-
-                    return "show message";
-            };
+        if (state.mode === "online_cloud") {
+            if (isSavedToCloud_metadata === false 
+                || isSavedToCloud_nodedata === false
+               ) {
+                       // remind user to check saving-status if ANY of these two unsaved
+       
+                                           // if (isSavedToCloud === false) {
+       
+               
+                   window.onbeforeunload = () => { // exit or refresh
+       
+                           return "show message";
+                   };
+               } else {
+                   window.onbeforeunload = undefined;
+               }
         } else {
-            window.onbeforeunload = undefined;
+            //TODO in case of offline modes
+
         }
+
         
         let checkMetadataValid = checkProjectMetaData_vm(projectMetaData);
 
