@@ -1088,7 +1088,7 @@
 
 - 2026-Feb-23: Project test plans
 
-
+- 2026-Feb-24: offline-mode optimization design
 
 
 
