@@ -621,7 +621,7 @@ export default function Viewer_Entire_Screen({
        });
    }
 
-   function triggerSlSlotWritePressed(slotSeqNum) {
+   function triggerSlSlotWritePressed(slotSeqNum) { //changes the sl-data
     
         let timestampString = new Date();
         let titleString = currentGameStatusProgress["chapterTitle"] + replaceSpaceWithUnderline(timestampString);
@@ -641,6 +641,8 @@ export default function Viewer_Entire_Screen({
         setPlayerSLRecords({...playerSLRecords, 
             slotSeqNum: objTemp
         })
+
+        //TODO: for player's cloud record?
 
 
         return objTemp;
@@ -668,16 +670,16 @@ export default function Viewer_Entire_Screen({
    function triggerSlSlotReadPressed(slotSeqNum) {
         let recordItem = playerSLRecords[slotSeqNum];
 
-        //TODO trigger to change *standing* from recordItem["stepStanding"]
+        //TODO99999 trigger to change *standing* from recordItem["stepStanding"]
 
-        //TODO change game-data-set from recordItem["gameDataSet"]
+        //TODO99999 change game-data-set from recordItem["gameDataSet"]
 
 
 
    }
     
    function triggerSLPageToSave_ve(slModeFlagTemp) {
-       // inside during-game-phase, need to pop sl-page window
+       // inside during-game-phase, to pop the sl-page window
 
         //TODO change nav-preview first: from page-change to pop-window op
         //TODO then... open or close this window, with op to navigate if load... or save all info if save...
@@ -685,14 +687,14 @@ export default function Viewer_Entire_Screen({
         
         if (slModeFlagTemp === "w") {
             //enter save-page of sl
-            //TODO
             setSlModeFlagLocal("w");
 
         } else if (slModeFlagTemp === "r") {
             //enter load-page of sl
-            //TODO
-
             setSlModeFlagLocal("r");
+
+        } else {
+            setSlModeFlagLocal("");
 
         }
    }
@@ -715,7 +717,7 @@ export default function Viewer_Entire_Screen({
 
   }
 
-  function triggerQuitChpaterResetList(candidateListMap) {
+  function triggerQuitChapterResetList(candidateListMap) {
       //when quitting a chapter, there is a series of game-data-items to reset
 //TODO99999999
 

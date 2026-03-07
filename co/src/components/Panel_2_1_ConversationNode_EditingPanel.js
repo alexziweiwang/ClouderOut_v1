@@ -872,7 +872,6 @@ GameDataDesign <map>
 
     function triggerPmQuickEditModeOff() {
         setPmQuickEditModeOn(false);
-
     }
 
     function openSettingPage() {

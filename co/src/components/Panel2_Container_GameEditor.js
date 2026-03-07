@@ -1350,7 +1350,7 @@ console.log("ui-langauge changed to: ", val);
     }
 
     function triggerCreatedNewNode_panel2(nodeKey, nodeChapter, nodeType, currChapMap) {
-        
+        //TODO99999999
                                     console.log("called triggerCreatedNewNode_panel2 once");
 
         if (projectAllNodeContent === -1) {
