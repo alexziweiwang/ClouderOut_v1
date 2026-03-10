@@ -1058,7 +1058,7 @@ console.log("handle Cancel NodeTest Viewer:", projectMetaData["emu4sets"]["gdt1"
             //any node-editor
 
 
-            if (isSavedToCloud_nodedata === false) {
+            if (state.mode === "online_cloud" && isSavedToCloud_nodedata === false) {
                 let askStr = "Are you sure to exit without saving the progress?";
 
                 let ans = window.confirm(askStr);
@@ -1905,6 +1905,7 @@ return (
         editorMode={state.mode}
         switchEditor={switchEditor}
         getAuthEmailName={passInAuthEmailName} 
+        downloadAllInOne={downloadAllInOne}
 
         initialMetadata={projectMetaData}
         getProjectMetaData={passInProjectMetaData}
@@ -1952,7 +1953,9 @@ return (
 
     
         <ConversationNode_EditingPanel
-            
+            onlineModeName={state.mode}
+            downloadAllInOne={downloadAllInOne}
+
             getUiLanguageOption={passInUiLanguageOption}
             getProjectResourceVarPairs={passInProjectResourceVarPairs}
             getGameDataDesignList={passInGameDataDesignList}

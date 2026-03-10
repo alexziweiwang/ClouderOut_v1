@@ -20,6 +20,9 @@ import { resourceRawListToUsableMap_vm } from '../viewmodels/PrepAc_Conversion';
 //level2
 
 export default function ConversationNode_EditingPanel({
+        onlineModeName,
+        downloadAllInOne,
+
         clickedNodeKey,  //TODO adjust for display-use
         chapterKey,  //TODO adjust for display-use
         projectName, //TODO adjust for display-use
@@ -1029,11 +1032,23 @@ GameDataDesign <map>
 
                 <div style={{"height": "45px", "width": "900px"}}>
             
+                    {onlineModeName === "online_cloud"
+                    && 
                     <button
                         onClick={()=>{
                             saveAllToCloud();
                         }}
-                    >{saveToCloudText}</button>
+                    >{saveToCloudText}</button>}
+
+                    {onlineModeName !== "online_cloud"
+                    &&
+                    <button
+                        onClick={()=>{
+                        downloadAllInOne();
+
+                        }}
+                    >Download Project File</button>}
+
 
                     <button className={isDisplayGameContentPreview === true ? "topBarTabSelected" : "topBarTab"} onClick={()=>{
                         setIsDisplayGameContentPreview(true); 
