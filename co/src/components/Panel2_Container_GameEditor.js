@@ -1788,95 +1788,94 @@ return (
 
 {/* top banner area */}
 <div>
-<div className="returning_buttons_cloud_mode">
-      
-      {<button 
-          className="button2" 
-          onClick={()=>{
-              //chapterChangingOrExiting(); goToDashboard();
-              handleBannerGoBack();
-            }}>
-             ←
-        </button>}
+    <div className={state.mode === "online_cloud"?"" : "colorInvert"}>
+    <div className="returning_buttons_cloud_mode">
+        
+        {<button 
+            className="button2" 
+            onClick={()=>{
+                //chapterChangingOrExiting(); goToDashboard();
+                handleBannerGoBack();
+                }}>
+                ←
+            </button>}
 
 
-      {state.mode === "online_cloud" && <div style={{"textAlign": "start"}}>
-              <label>{projectName}</label>
-              <br></br>
-              <label>{authEmailName}</label>
-              <br></br>
-              <label>Cloud Mode</label>
-      </div>}
+        {state.mode === "online_cloud" && <div style={{"textAlign": "start"}}>
+                <label>{projectName}</label>
+                <br></br>
+                <label>{authEmailName}</label>
+                <br></br>
+                <label>Cloud Mode</label>
+        </div>}
 
+        <div
+            style={{"minWidth": "150px"}}
+        >
 
-
-      <div
-        style={{"minWidth": "150px"}}
-      >
-
-      </div>
-            {focusingEditor === "gameMaker"
-            && <button
-                onClick={()=>{
-
-                    openTestWindow();
-                    
-                }}
-                className="button testEntire"
-                >Test ▶︎ </button>}       
-
-
-                <div className="parallelFrame buttonRight30px" style={{"width": "600px"}}>
-               
-
-                    {authEmailName !== "" && 
-                    <>
-                    <button 
-                    className="rmTab" 
+        </div>
+                {focusingEditor === "gameMaker"
+                && <button
                     onClick={()=>{
-                      
-                      handleResourceManagerOpen();
-                        }}> 
-                    {resourceManagerButtonText} </button>
-                    
-                    <button 
-                    className="rmTab" 
-                    onClick={()=>{
-                        handleGameDataManagerOpen();
 
+                        openTestWindow();
                         
-                        }}>
-                    {gameDataManagerButtonText}</button>
-                    
-                    <button 
-                    className="rmTab" 
-                    onClick={()=>{
-                       handleEmuManagerOpen();
-                        }}>
-                        {emuManagerText}
-                    </button>
-                    </>}
+                    }}
+                    className="button testEntire"
+                    >Test ▶︎ </button>}       
+
+
+                    <div className="parallelFrame buttonRight30px" style={{"width": "600px"}}>
                 
 
-                        <div>
-                            <label>Editor Language</label><br></br>
-                            <select value={projectMetaData["ui_language"]}
-                            onChange={(event)=>{
-                             userChangeEditorUILang(event.target.value);
-                        //TODO99999
-                            }}
-                            >
-                            <option key="lang-Eng" value="en">English</option>
-                            <option key="lang-chn" value="chn">简体中文</option> 
-                            {/* //TODO16 */}
-                            </select>
-                        </div>
+                        {authEmailName !== "" && 
+                        <>
+                        <button 
+                        className="rmTab" 
+                        onClick={()=>{
+                        
+                        handleResourceManagerOpen();
+                            }}> 
+                        {resourceManagerButtonText} </button>
+                        
+                        <button 
+                        className="rmTab" 
+                        onClick={()=>{
+                            handleGameDataManagerOpen();
 
-                </div>
+                            
+                            }}>
+                        {gameDataManagerButtonText}</button>
+                        
+                        <button 
+                        className="rmTab" 
+                        onClick={()=>{
+                        handleEmuManagerOpen();
+                            }}>
+                            {emuManagerText}
+                        </button>
+                        </>}
+                    
 
+                            <div>
+                                <label>Editor Language</label><br></br>
+                                <select value={projectMetaData["ui_language"]}
+                                onChange={(event)=>{
+                                userChangeEditorUILang(event.target.value);
+                            //TODO99999
+                                }}
+                                >
+                                <option key="lang-Eng" value="en">English</option>
+                                <option key="lang-chn" value="chn">简体中文</option> 
+                                {/* //TODO16 */}
+                                </select>
+                            </div>
+
+                    </div>
+
+        </div>
     </div>
-</div>
-   
+    </div>
    
    
    
