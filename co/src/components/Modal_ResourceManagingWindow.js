@@ -593,6 +593,34 @@ console.log("before adding one-new-item to local list: ", usersAllFileListVisual
 
     }
 
+    function ggdvRsrcUrlExtract() {
+        //parse and extract id, update id-var for this resource
+        let arr = googleDriveFileSharedLink.split("/");
+        let i = 0;
+        for (; i < arr.length; i++) {
+            if (arr[i] == "d" && (i+1) < arr.length) {
+                setGoogleDriveFileId(arr[i+1]);
+                //TODO update the url of this GoogleDrive resource
+                let temp = GoogleDrivePrefix + arr[i+1]
+                setGoogleDriveFileDisplayLink(temp);
+                i = arr.length;
+            }
+        }
+                                                        // console.log("arr: ");//TODO 
+                                                        // console.log(arr);//TODO 
+
+        setClickedFileName("");
+        setClickedFileType("");
+        setClickedFileUrl("");
+    }
+
+    function ggdvRsrcUrlAdd() {
+        updateGoogleDriveFileRecords_local("visual", googleDriveFileId);
+        setGoogleDriveFileId("");
+        setGoogleDriveFileSharedLink("");
+    }
+
+
 
 
 
@@ -699,10 +727,10 @@ console.log("before adding one-new-item to local list: ", usersAllFileListVisual
                                 {newFileUploadText}
                             </label>
                              */}
-                         
+  {/*                         
                             {isSourceByUpload && 
                             <div className="uploadArea">
-                                    {/* 
+                                   
                                     
                                     {uploadConfirm === false && <input 
                                         type="file"
@@ -733,52 +761,42 @@ console.log("before adding one-new-item to local list: ", usersAllFileListVisual
                                         }}
                                     > {submitText} </button>}
 
-                                    */}
+                                    
                             </div>
                             }
-                
+*/}
+
+<>
                 <input type="radio" 
                     value={isSourceByUpload} 
                     checked={!isSourceByUpload} 
-                    onChange={()=>{setIsSourceByUpload(false);}}></input>  
+                    onChange={()=>{setIsSourceByUpload(false);}}>
+                </input>  
                 
-                    <label 
-                        onClick={()=>{setIsSourceByUpload(false);}}>
+                <label 
+                    onClick={()=>{setIsSourceByUpload(false);}}>
                         From Google Drive
-                    </label>
+                </label>
 
-                {!isSourceByUpload && <div className="uploadArea" style={{"color": "#000000"}}>
+                {/* google-drive link adding  */}
+                {!isSourceByUpload && 
+                <div className="uploadArea" style={{"color": "#000000"}}>
                 Enter a public sharing link from Google Drive...
                 <br></br><label style={{"fontStyle": "italic"}}>Example: https://drive.google.com/file/d/[some characters]/view?usp=sharing</label>
                 <br></br>
                     <input value={googleDriveFileSharedLink} onChange={(event)=>{setGoogleDriveFileSharedLink(event.target.value);}}></input>
                     <button onClick={()=>{
-                        //parse and extract id, update id-var for this resource
-                        let arr = googleDriveFileSharedLink.split("/");
-                        let i = 0;
-                        for (; i < arr.length; i++) {
-                            if (arr[i] == "d" && (i+1) < arr.length) {
-                                setGoogleDriveFileId(arr[i+1]);
-                                //TODO update the url of this GoogleDrive resource
-                                let temp = GoogleDrivePrefix + arr[i+1]
-                                setGoogleDriveFileDisplayLink(temp);
-                                i = arr.length;
-                            }
-                        }
-                                                                        // console.log("arr: ");//TODO 
-                                                                        // console.log(arr);//TODO 
-                        
-                        setClickedFileName("");
-                        setClickedFileType("");
-                        setClickedFileUrl("");
+                        ggdvRsrcUrlExtract();
                     }}>{previewText}</button>
 
                     <br></br><button onClick={()=>{
-                        updateGoogleDriveFileRecords_local("visual", googleDriveFileId);
-                        setGoogleDriveFileId("");
-                        setGoogleDriveFileSharedLink("");
+                        ggdvRsrcUrlAdd();
                     }}>{addText}</button>
-                </div>}
+                    
+                </div>
+                }
+</>
+
                 </div>
 
                 </div>
@@ -846,7 +864,7 @@ console.log("before adding one-new-item to local list: ", usersAllFileListVisual
                         </ul>
                     </div>
                     }
-                    <div className="uploadArea"> {newFileUploadText} <br></br>
+                    {/* <div className="uploadArea"> {newFileUploadText}? <br></br>
                         {uploadConfirm === false &&  
                         <input 
                             type="file"
@@ -857,7 +875,46 @@ console.log("before adding one-new-item to local list: ", usersAllFileListVisual
                         {uploadConfirm === true && <button onClick={()=>{setFileSelected(""); setUploadConfirm(false);}}>{cancelText}</button>}
                         {uploadConfirm === false && <button onClick={()=>{submitFiletocloud("audio", fileSelected); setUploadConfirm(true);}}>{confirmText}</button>}
                         {uploadConfirm === true && <button onClick={()=>{submitFiletocloud("audio", fileSelected); setFileSelected(""); setUploadConfirm(false);}}>{submitText}</button>}
-                    </div>
+                    </div> */}
+
+<br></br><br></br>
+                <label> Add a New Audio File: </label> <br></br>
+        <div  style={{"textAlign": "left", "padding": "3px"}}>
+
+<>
+                <input type="radio" 
+                    value={isSourceByUpload} 
+                    checked={!isSourceByUpload} 
+                    onChange={()=>{setIsSourceByUpload(false);}}>
+                </input>  
+                
+                <label 
+                    onClick={()=>{setIsSourceByUpload(false);}}>
+                        From Google Drive
+                </label>
+
+                {/* google-drive link adding  */}
+                {!isSourceByUpload && 
+                <div className="uploadArea" style={{"color": "#000000"}}>
+                Enter a public sharing link from Google Drive...
+                <br></br><label style={{"fontStyle": "italic"}}>Example: https://drive.google.com/file/d/[some characters]/view?usp=sharing</label>
+                <br></br>
+                    <input value={googleDriveFileSharedLink} onChange={(event)=>{setGoogleDriveFileSharedLink(event.target.value);}}></input>
+                    <button onClick={()=>{
+                        ggdvRsrcUrlExtract();
+                    }}>{previewText}</button>
+
+                    <br></br><button onClick={()=>{
+                        ggdvRsrcUrlAdd();
+                    }}>{addText}</button>
+                    
+                </div>
+                }
+</>
+
+
+        </div>
+
 
                 </div>
                 
