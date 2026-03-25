@@ -1135,7 +1135,7 @@
 - 2026-Mar-23: Design demo version plan+
 - 2026-Mar-23: Design testing-project
 
-
+- 2026-Mar-24: Design demo version plan, offline mode
 
 
 
