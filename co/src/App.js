@@ -4,11 +4,12 @@ import { Routes, Route } from 'react-router-dom';
 
 import UserNotLoggedInPage from './components/UserNotLoggedInPage';
 
-import ProjectManagingOffline from './components/ProjectManagingNonCloud';
+import ProjectManagingNonCloud from './components/ProjectManagingNonCloud';
 
 import Panel1_UserMgr from './components/Panel1_UserMgr';
 import Panel2_Container_GameEditor from './components/Panel2_Container_GameEditor';
 
+import GamePlayViewer from './components/GamePlayViewer';
 
 
 function App() {
@@ -22,7 +23,10 @@ function App() {
         <Route path="/editorcontainer" element={<Panel2_Container_GameEditor/>} />
         
         <Route path="/notloggedin" element={<UserNotLoggedInPage/>} />
-        <Route path="/projectNonCloud" element={<ProjectManagingOffline/>} />
+        <Route path="/projectNonCloud" element={<ProjectManagingNonCloud/>} />
+
+        <Route path="/projectInPracView" element={<GamePlayViewer/>} />
+
 
       </Routes>     
     </div>
