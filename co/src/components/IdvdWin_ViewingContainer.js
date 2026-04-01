@@ -1,4 +1,9 @@
-import Viewer_Entire_Screen from './Viewer_Entire_Screen';
+import { useState, useEffect } from 'react';
+
+
+import Viewer_Entire_Screen from './Panel_2_2_Viewer_Entire_Screen';
+
+
 
 //level0
 
@@ -13,6 +18,20 @@ export default function IdvdWin_ViewingContainer({username, projectName}) {
 
     const [backendOption, setBackendOption] = useState("firebase");   
     //TODO2000
+
+
+    //for in-prac playing: 
+// import game or select game from online-db-list
+// start game in place
+// player record? (local and online)
+
+
+// player: temp-local, or online player
+// select game: from imported file or online-selection
+// then actual play-view
+// keep game-data and everything (sl reocrd, etc.)
+
+
 
     //TODO 1. project-selector page: import file & select project-on-cloud
     
@@ -53,6 +72,21 @@ export default function IdvdWin_ViewingContainer({username, projectName}) {
 
 //TODO hold "all chater contents" at this layer, and pass-in viewer-entire when needed
 
+    function step1_playerEnter() {
+        //TODO local-temp player, or online-player?
+
+    }
+
+    function step2_projGameSelect() {
+        //TODO file-import or online-selection
+
+    }
+
+    function step3_gameStartPrep() {
+        //TODO initialze all data-sets for this player, and start viewing...
+
+        //setup this player's everything for the game
+    }
    
 
     function notUsing() {
@@ -65,43 +99,9 @@ export default function IdvdWin_ViewingContainer({username, projectName}) {
 
     return (
         <div>
+test test
 
-
-             <Viewer_Entire_Screen
-
-                    // initialNavObj={currentProjectNav}
-
-                    // initialChapterList={chapterList}
-                    // initialCurrChapterAllNodeMapping={chapterNodeMapAll}
-
-                    // initialPlayerGameDataTracker={testPlayerGameDataTracker}
-                    // initialPlayerProfile={testPlayerProfile}
-                    // initialPlayerAccountSettings={testPlayerAccount}
-
-                    // initialPlayerSlRecords={testPlayerSLRecords}
-
-                    // uiLangOption={languageCodeTextOption}
-
-                    // username={username}
-                    // projectname={projectName}
-
-                    // initialShopItemInfo={testShopProducts}
-                    // initialPlayerPurchaseInfo={testPlayerPurchaseStatus}
-
-                    // triggerNodeWalk={notUsing} //update things to this layer
-                    // triggerChapterWalk={triggerChapterWalk} //update things to this layer
-                    // triggerUpdateCurrentStanding={notUsing} //update things to this layer
-
-                    // visualMap={visualMap}
-                    // audioMap={audioMap}
-                    // mutedViewOption={mutedViewOption}
-
-                    // getCurrChapterContent={passInCurrChapterContent}
-                    // backendOption={backendOption}
-            
-            
-            />
-
+          
 
         </div>
     )
@@ -111,6 +111,40 @@ export default function IdvdWin_ViewingContainer({username, projectName}) {
 
 
 
+//<Viewer_Entire_Screen
+
+// initialNavObj={currentProjectNav}
+
+// initialChapterList={chapterList}
+// initialCurrChapterAllNodeMapping={chapterNodeMapAll}
+
+// initialPlayerGameDataTracker={testPlayerGameDataTracker}
+// initialPlayerProfile={testPlayerProfile}
+// initialPlayerAccountSettings={testPlayerAccount}
+
+// initialPlayerSlRecords={testPlayerSLRecords}
+
+// uiLangOption={languageCodeTextOption}
+
+// username={username}
+// projectname={projectName}
+
+// initialShopItemInfo={testShopProducts}
+// initialPlayerPurchaseInfo={testPlayerPurchaseStatus}
+
+// triggerNodeWalk={notUsing} //update things to this layer
+// triggerChapterWalk={triggerChapterWalk} //update things to this layer
+// triggerUpdateCurrentStanding={notUsing} //update things to this layer
+
+// visualMap={visualMap}
+// audioMap={audioMap}
+// mutedViewOption={mutedViewOption}
+
+// getCurrChapterContent={passInCurrChapterContent}
+// backendOption={backendOption}
+
+
+//       />
 
 
 

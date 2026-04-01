@@ -9,8 +9,7 @@ import ProjectManagingNonCloud from './components/ProjectManagingNonCloud';
 import Panel1_UserMgr from './components/Panel1_UserMgr';
 import Panel2_Container_GameEditor from './components/Panel2_Container_GameEditor';
 
-import GamePlayViewer from './components/GamePlayViewer';
-
+import GamePlayViewer from './components/IdvdWin_ViewingContainer';
 
 function App() {
   return (
@@ -25,7 +24,7 @@ function App() {
         <Route path="/notloggedin" element={<UserNotLoggedInPage/>} />
         <Route path="/projectNonCloud" element={<ProjectManagingNonCloud/>} />
 
-        <Route path="/projectInPracView" element={<GamePlayViewer/>} />
+        <Route path="/gamePlayViewer" element={<GamePlayViewer/>} />
 
 
       </Routes>     
