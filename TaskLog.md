@@ -1148,6 +1148,10 @@
 - 2026-Mar-30: Design demo version plan, offline mode
 - 2026-Mar-30: Design play-view-pop-window for in-prac-play
 
+- 2026-Mar-31: Design impl-plan -- play-view-pop-window for in-prac-play
+
+
+
 
 
 
