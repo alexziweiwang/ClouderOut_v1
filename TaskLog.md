@@ -1155,6 +1155,7 @@
 
 - 2026-Apr-03: Design testing-project
 
+- 2026-Apr-06: Design impl-plan -- play-view-pop-window for in-prac-play
 
 
 
