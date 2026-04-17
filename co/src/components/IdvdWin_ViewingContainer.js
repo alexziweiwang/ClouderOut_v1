@@ -19,6 +19,7 @@ export default function IdvdWin_ViewingContainer({username, projectName}) {
     const [backendOption, setBackendOption] = useState("firebase");   
     //TODO2000
 
+    const [isBeforeGame, setIsBeforeGame] = useState(true);
 
     //for in-prac playing: 
 // import game or select game from online-db-list
@@ -80,12 +81,63 @@ export default function IdvdWin_ViewingContainer({username, projectName}) {
     function step2_projGameSelect() {
         //TODO file-import or online-selection
 
+
+
+        /*
+with a contact project-data, the following should be available:
+
+obj: projectMetaData
+
+               initialNavObj={projectMetaData["nav_ui_settings"]}
+
+                    initialChapterList={chapListNestedArr}
+                    initialCurrChapterAllNodeMapping={projectMetaData["chapterNodeMapping"]}
+                    firstChapterData={viewerEntireFirstChapterData}
+
+                    initialGameProgress={viewerEntireGameProgressObj}
+                    
+                    initialPlayerGameDataTracker={projectMetaData["emu4sets"]["gdt1"]} //TODo emu-4sets
+                    initialPlayerProfile={projectMetaData["emu4sets"]["epp2"]} //TODo emu-4sets
+                    initialPlayerAccountSettings={projectMetaData["emu4sets"]["epa3"]} //TODo emu-4sets
+                
+                    initialPlayerSlRecords={projectMetaData["emu4sets"]["ess4"]} //TODO emu-4sets
+
+                    initialShopItemInfo={projectMetaData["emu4sets"]["shp5"]["shopStock"]} //TODO emu-4sets
+                    initialPlayerPurchaseInfo={projectMetaData["emu4sets"]["shp5"]["playerPurchaseStatus"]} //TODO emu-4sets
+
+
+                    uiLangOption={projectMetaData["ui_language"]}
+
+                    username={authEmailName}  //TODO remove?
+                    projectname={state.selected_project_name} //TODO remove?
+
+                    visualVarPairList={projectMetaData["proj_resource_visual"]}
+                    audioVarPairList={projectMetaData["proj_resource_audio"]}
+
+                    notifyNodeWalk={notUsing} 
+                    notifyChapterWalk={notUsing} 
+                    notifyUpdateCurrentStanding={notUsing} 
+                    notifyCurrGdt={notUsing}
+
+                    getCurrChapterContent={passInCurrChapterContent} //TODO
+                    getAllChaptersContent={passInAllChaptersContent} //TODO
+
+                    getOriginalGdtracker={passInOriginalGdtracker} //TODO
+
+
+                    slOption={projectMetaData["slInfo"]["format"]}
+                    slEntireObj={projectMetaData["slInfo"]}
+
+         */
+
     }
 
     function step3_gameStartPrep() {
         //TODO initialze all data-sets for this player, and start viewing...
 
         //setup this player's everything for the game
+
+        //with imported project-data... setup local var in this page?
     }
    
 
@@ -99,6 +151,21 @@ export default function IdvdWin_ViewingContainer({username, projectName}) {
 
     return (
         <div>
+
+            {isBeforeGame &&
+            <div>
+                
+                game selection    
+            </div>}
+
+            {!isBeforeGame && 
+            <div>
+                Viewer_Entire_Screen
+
+
+
+                
+            </div>}
 test test
 
           
