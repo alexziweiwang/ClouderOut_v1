@@ -135,13 +135,25 @@ export function triggerCreatedNewNode_Prep_vm(nodeTypeTemp) {
       const empty_node_ui_plan = {};
 
       const empty_emu_4sets = {
-        "gdt1": {},
-        "epp2": {},
-        "epa3": {},
-        "ess4": {},
-        "shp5": {}
+        "gdt1": {}, 
+        "epp2": {
+            "playername": "",
+            "userTitle": "",
+            "iconPicName": "",
+            "level": 1,
+            "membership": "",
+        }, 
+        "epa3": {
+            "playername": "",
+            "email": "",  
+        },
+        "ess4": {}, 
+        "shp5": {
+            "shopStock": [],
+            "playerPurchaseStatus":  []
+        }, 
       };
-
+//TODO135
 
       Object.keys(epp2Template).map((currKey) => {
         empty_emu_4sets["epp2"][currKey] = epp2Template[currKey];

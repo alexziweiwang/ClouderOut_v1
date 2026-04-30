@@ -76,6 +76,9 @@ export default function IdvdWin_ViewingContainer({username, projectName}) {
     function step1_playerEnter() {
         //TODO local-temp player, or online-player?
 
+        //TODO demo version: default-tester
+        
+
     }
 
     function step2_projGameSelect() {

@@ -582,7 +582,7 @@ export const metadataTemplate = {
         "placeholder": {}
     },
     "convNodeUiPlanMap": {},
-    "emu4sets": {
+    "emu4sets": { //TODO135 //default-new-set
         "gdt1": {}, 
         "epp2": {
             "playername": "",
