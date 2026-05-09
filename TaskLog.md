@@ -1218,4 +1218,12 @@
 
 - 2026-May-07: Design testing-project
 
+- 2026-May-08: Design impl-plan -- play-view-pop-window user default setup
+
+
+
+
+
+
+
 
