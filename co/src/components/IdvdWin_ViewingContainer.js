@@ -20,6 +20,8 @@ export default function IdvdWin_ViewingContainer({username, projectName}) {
     //TODO2000
 
     const [isBeforeGame, setIsBeforeGame] = useState(true);
+    const [beforeGameStatus, setBeforeGameStatus] = useState("userSelectNotCompleted");
+                        /* "userSelectNotCompleted", "gameSelectNotCompleted", "gamePrepNotCompleted" */
 
     //for in-prac playing: 
 // import game or select game from online-db-list
@@ -70,6 +72,29 @@ export default function IdvdWin_ViewingContainer({username, projectName}) {
     // player's data fetching (if login); or from start (default init data sets)
 
 
+    useEffect(() => {
+        //each render: check viewer-status: player, game, in-game-status
+
+        if (isBeforeGame === true) {
+            if (beforeGameStatus === "userSelectNotCompleted") {
+                //"userSelectNotCompleted", "gameSelectNotCompleted", "gamePrepNotCompleted"
+                step1_playerEnter();
+                setBeforeGameStatus("gameSelectNotCompleted");
+                
+            } else if (beforeGameStatus === "gameSelectNotCompleted") {
+                step2_projGameSelect();
+                setBeforeGameStatus();
+
+            } else if (beforeGameStatus === "gamePrepNotCompleted") {
+                step3_gameStartPrep();
+                setBeforeGameStatus("gamePrepNotCompleted");
+
+            }
+
+        }
+
+    });
+
 
 //TODO hold "all chater contents" at this layer, and pass-in viewer-entire when needed
 
@@ -77,7 +102,7 @@ export default function IdvdWin_ViewingContainer({username, projectName}) {
         //TODO local-temp player, or online-player?
 
         //TODO demo version: default-tester
-        
+
 
     }
 
@@ -158,7 +183,11 @@ obj: projectMetaData
             {isBeforeGame &&
             <div>
                 
+                before game: 
+                
                 game selection    
+
+
             </div>}
 
             {!isBeforeGame && 
@@ -169,9 +198,7 @@ obj: projectMetaData
 
                 
             </div>}
-test test
-
-          
+  
 
         </div>
     )
